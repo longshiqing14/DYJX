@@ -71,6 +71,9 @@
                             <state key="normal" title="退出登录" backgroundImage="btn_circle_mirror_pre">
                                 <color key="titleColor" red="0.082352941176470587" green="0.16078431372549018" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="logoutBTN:" destination="-1" eventType="touchUpInside" id="O1x-tC-POV"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.08235294118" green="0.16078431369999999" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>

@@ -11,6 +11,7 @@
 #import "DYJXRegistePage.h"
 #import "DYJXFindPasswordPage.h"
 #import "DYJXIdentitySwitchingPage.h"
+#import "NaviViewController.h"
 
 @interface DYJXLoginPage ()
 @property (weak, nonatomic) IBOutlet UITextField *userNameTF;
@@ -45,7 +46,7 @@
     }
     [self.viewModel loginWithPhoneNumber:self.userNameTF.text Password:self.passwordTF.text Success:^{
         DYJXIdentitySwitchingPage *identitySwitchingPage = [[DYJXIdentitySwitchingPage alloc]initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil];
-        [self.navigationController pushViewController:identitySwitchingPage animated:YES];
+        XYKeyWindow.rootViewController = [[NaviViewController alloc]initWithRootViewController:identitySwitchingPage];
         
     } failed:^(NSString *errorMsg) {
         

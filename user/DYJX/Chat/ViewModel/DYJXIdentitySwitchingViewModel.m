@@ -134,4 +134,39 @@
     self.pageNum = self.pageNum + 1;
     [self getSearchReaultGoodsListDataFromSeviceWithPageNumer:self.pageNum Success:success failed:failed];
 }
+
+
+- (void)logoutSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail{
+    
+    [SVProgressHUD show];
+    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+//    [reqDict setObject:userModel.CertificateId forKey:@"CertificateId"];
+//    [reqDict setObject:@"iOS" forKey:@"Device"];
+    [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+//    [reqDict setObject:userModel.DeviceToken forKey:@"DeviceToken"];
+    
+    [XYNetWorking XYPOST:kDYJXAPI_user_Logout params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
+                [SVProgressHUD dismiss];
+                success();
+                
+            }else{
+                
+                [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
+            }
+            
+        }else{
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+            
+        }
+        
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        
+    }];
+}
 @end

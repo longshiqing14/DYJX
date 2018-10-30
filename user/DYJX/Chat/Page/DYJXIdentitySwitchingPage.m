@@ -9,7 +9,8 @@
 #import "DYJXIdentitySwitchingPage.h"
 #import "DYJXIdentitySwitchingViewModel.h"
 #import "DYJXIdentitySwitchingCell.h"
-
+#import "NaviViewController.h"
+#import "DYJXLoginPage.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -196,6 +197,17 @@ static NSString *cellID=@"cellID";
         scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
     }
 }
+
+- (IBAction)logoutBTN:(UIButton *)sender {
+    [self.viewModel logoutSuccess:^{
+        [YDBAlertView showToast:@"退出登录成功！"];
+        [XYUserDefaults deleteUserDefaultsLoginedInfoModel];
+        XYKeyWindow.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXLoginPage alloc] initWithNibName:@"DYJXLoginPage" bundle:nil]];
+    } failed:^(NSString *errorMsg) {
+        
+    }];
+}
+
 
 - (void)viewDidDisappear:(BOOL)animated{
     [self.tableView.mj_header endRefreshing];

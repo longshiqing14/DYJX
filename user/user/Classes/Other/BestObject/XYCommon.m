@@ -10,7 +10,7 @@
 
 //#import "XYTabbarController.h"
 #import "XYLoginVC.h"
-
+#import "DYJXLoginPage.h"
 @implementation XYCommon
 
 /**  */
@@ -111,7 +111,7 @@ NSString * const XY_PAY_TYPE_AIL = @"payi_132";
 //    XYKeyWindow.rootViewController = [[XYLoginVC alloc]init];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[XYCommon getCurrentVC] presentViewController:[[XYLoginVC alloc]init] animated:YES completion:^{
+        [[XYCommon getCurrentVC] presentViewController:[[DYJXLoginPage alloc] initWithNibName:@"DYJXLoginPage" bundle:nil] animated:YES completion:^{
             
         }];
     });
