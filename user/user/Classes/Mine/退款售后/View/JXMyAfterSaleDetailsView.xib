@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JXMyAfterSaleDetailsView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_refund" translatesAutoresizingMaskIntoConstraints="NO" id="7GN-uk-Hvw">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLt-ot-LSM">
+                    <rect key="frame" x="169.5" y="12" width="35.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="HLt-ot-LSM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0tq-EE-8SN"/>
+                <constraint firstItem="7GN-uk-Hvw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="7Sj-da-zeR"/>
+                <constraint firstItem="7GN-uk-Hvw" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="9ed-J2-cpO"/>
+                <constraint firstItem="7GN-uk-Hvw" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Qmm-KX-EuT"/>
+                <constraint firstItem="7GN-uk-Hvw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="VUT-zG-fTJ"/>
+                <constraint firstItem="HLt-ot-LSM" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eqv-pk-YeL"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="returnStateLable" destination="HLt-ot-LSM" id="biX-ec-5yc"/>
+            </connections>
+            <point key="canvasLocation" x="66.5" y="-343"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bg_refund" width="375" height="60"/>
+    </resources>
+</document>

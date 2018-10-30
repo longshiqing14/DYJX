@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JXVersionUpdateView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0GY-iT-f34">
+                    <rect key="frame" x="187" y="260" width="1" height="250"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="JAI-oS-9RZ"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_upadte" translatesAutoresizingMaskIntoConstraints="NO" id="mMM-sc-mbb">
+                    <rect key="frame" x="57.5" y="145" width="260" height="115"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="115" id="58n-8p-65O"/>
+                        <constraint firstAttribute="width" constant="260" id="y4K-9C-JBf"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iaa-Ol-2Kq">
+                    <rect key="frame" x="57.5" y="260" width="260" height="220"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否升级到新版本1.04版本？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Z4-FX-e7L">
+                            <rect key="frame" x="17" y="15" width="184.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新版本大小：28M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90J-Hq-nEc">
+                            <rect key="frame" x="17" y="44" width="115" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSc-o3-v1i">
+                            <rect key="frame" x="17.5" y="79" width="180" height="67"/>
+                            <string key="text">1、新增电子发票功能，
+2、新增宽带账号信息查询，
+3、优化“帮助与客服”功能
+4、修复了一些BUG</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcA-HW-iyf">
+                            <rect key="frame" x="13.5" y="158" width="233" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="IY5-gL-xKU"/>
+                                <constraint firstAttribute="width" constant="233" id="wwB-IS-7CI"/>
+                            </constraints>
+                            <state key="normal" image="btn_UpadteWithTitle"/>
+                            <connections>
+                                <action selector="updateBTBClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="ihk-o3-zJ1"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="zcA-HW-iyf" secondAttribute="bottom" constant="14" id="042-AS-zGq"/>
+                        <constraint firstItem="90J-Hq-nEc" firstAttribute="top" secondItem="7Z4-FX-e7L" secondAttribute="bottom" constant="12" id="2AN-JJ-dFo"/>
+                        <constraint firstItem="aSc-o3-v1i" firstAttribute="top" secondItem="90J-Hq-nEc" secondAttribute="bottom" constant="18" id="2gx-SG-A5d"/>
+                        <constraint firstAttribute="height" constant="220" id="HZS-UU-RBt"/>
+                        <constraint firstItem="7Z4-FX-e7L" firstAttribute="leading" secondItem="Iaa-Ol-2Kq" secondAttribute="leading" constant="17" id="JA9-Vf-isd"/>
+                        <constraint firstItem="90J-Hq-nEc" firstAttribute="leading" secondItem="7Z4-FX-e7L" secondAttribute="leading" id="Wpb-Y8-hkQ"/>
+                        <constraint firstItem="aSc-o3-v1i" firstAttribute="leading" secondItem="90J-Hq-nEc" secondAttribute="leading" id="b3O-d0-Aws"/>
+                        <constraint firstItem="zcA-HW-iyf" firstAttribute="centerX" secondItem="Iaa-Ol-2Kq" secondAttribute="centerX" id="dXK-YS-BML"/>
+                        <constraint firstItem="7Z4-FX-e7L" firstAttribute="top" secondItem="Iaa-Ol-2Kq" secondAttribute="top" constant="15" id="s8d-aI-66f"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UvE-Am-bih">
+                    <rect key="frame" x="170" y="510" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="4aQ-GA-8Pm"/>
+                        <constraint firstAttribute="height" constant="36" id="dLq-JW-kah"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="home_close"/>
+                    <connections>
+                        <action selector="closeUpdateClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="qt6-KE-ytt"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="0GY-iT-f34" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FhZ-gI-6YF"/>
+                <constraint firstItem="Iaa-Ol-2Kq" firstAttribute="leading" secondItem="mMM-sc-mbb" secondAttribute="leading" id="K2Z-c2-4Tm"/>
+                <constraint firstItem="UvE-Am-bih" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QkI-3y-KyQ"/>
+                <constraint firstItem="0GY-iT-f34" firstAttribute="top" secondItem="Iaa-Ol-2Kq" secondAttribute="top" id="YIt-p9-Asj"/>
+                <constraint firstItem="UvE-Am-bih" firstAttribute="top" secondItem="0GY-iT-f34" secondAttribute="bottom" id="Zsl-rQ-Awk"/>
+                <constraint firstItem="UvE-Am-bih" firstAttribute="top" secondItem="Iaa-Ol-2Kq" secondAttribute="bottom" constant="30" id="fOI-Ms-NqO"/>
+                <constraint firstItem="Iaa-Ol-2Kq" firstAttribute="top" secondItem="mMM-sc-mbb" secondAttribute="bottom" id="j5U-LI-5aS"/>
+                <constraint firstItem="Iaa-Ol-2Kq" firstAttribute="trailing" secondItem="mMM-sc-mbb" secondAttribute="trailing" id="o7h-Lb-ybp"/>
+                <constraint firstItem="mMM-sc-mbb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="125" id="uhI-cB-mHQ"/>
+                <constraint firstItem="mMM-sc-mbb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xH9-WW-dWh"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="CloseBTN" destination="UvE-Am-bih" id="BmX-o7-lev"/>
+                <outlet property="bottomView" destination="Iaa-Ol-2Kq" id="XEs-tO-ej4"/>
+                <outlet property="targetSizeLb" destination="90J-Hq-nEc" id="P9l-N3-kuv"/>
+                <outlet property="updateLogLb" destination="aSc-o3-v1i" id="HZE-9l-7xD"/>
+                <outlet property="uptateBTN" destination="zcA-HW-iyf" id="fPA-gY-5ia"/>
+                <outlet property="versionLb" destination="7Z4-FX-e7L" id="wRR-3H-LGZ"/>
+            </connections>
+            <point key="canvasLocation" x="50.5" y="80.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="btn_UpadteWithTitle" width="227" height="47"/>
+        <image name="home_close" width="37" height="37"/>
+        <image name="pic_upadte" width="260" height="114"/>
+    </resources>
+</document>

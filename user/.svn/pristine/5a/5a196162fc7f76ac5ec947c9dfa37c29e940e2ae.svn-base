@@ -1,0 +1,56 @@
+//
+//  BaseViewController.m
+//  ARP
+//
+//  Created by liu_yakai on 2017/10/20.
+//  Copyright © 2017年 liu_yakai. All rights reserved.
+//
+
+#import "BaseViewController.h"
+
+@interface BaseViewController ()
+
+@end
+
+@implementation BaseViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor=[UIColor whiteColor];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    [self baseUI];
+}
+
+-(void)baseUI{
+//    self.view.backgroundColor=RGBA(235,245,255, 1);
+//    [self.navigationController.navigationBar setBackgroundImage:SETIMAGENAME(@"navi_Image") forBarMetrics:UIBarMetricsDefault];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithImage:SETIMAGENAME(@"nav_btn_goback") style:(UIBarButtonItemStylePlain) target:self action:@selector(black_controller)];
+
+    self.navigationItem.leftBarButtonItem=item;
+//    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+}
+
+-(void)black_controller{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

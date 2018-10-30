@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="JXHomeRecommendCell">
+            <rect key="frame" x="0.0" y="0.0" width="280" height="238"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="280" height="238"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypF-wD-R4q">
+                        <rect key="frame" x="10" y="135" width="260" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="MDC-l5-E7Y"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="se8-L4-IcU">
+                        <rect key="frame" x="10" y="206" width="260" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="FDa-di-Xlt"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.9882352941176471" green="0.22745098039215686" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RXQ-ZI-ZzN">
+                        <rect key="frame" x="100" y="30" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="1LL-AU-cgD"/>
+                            <constraint firstAttribute="width" constant="80" id="Lk0-Ec-B2p"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aje-CL-0xJ">
+                        <rect key="frame" x="240" y="193" width="40" height="40"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="LRD-TA-Hcz"/>
+                            <constraint firstAttribute="height" constant="40" id="c0q-e1-Lf4"/>
+                        </constraints>
+                        <state key="normal" image="home_cell_btn_buy"/>
+                        <connections>
+                            <action selector="addShopCarClock:" destination="gTV-IL-0wX" eventType="touchUpInside" id="5tU-Sm-0AT"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4Q-jF-I7H">
+                        <rect key="frame" x="10" y="156" width="260" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="r4Q-jF-I7H" firstAttribute="top" secondItem="ypF-wD-R4q" secondAttribute="bottom" constant="5" id="4Ps-oO-Ojg"/>
+                <constraint firstItem="RXQ-ZI-ZzN" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="5UK-aB-cAY"/>
+                <constraint firstAttribute="bottom" secondItem="Aje-CL-0xJ" secondAttribute="bottom" constant="5" id="98l-Sj-NYQ"/>
+                <constraint firstAttribute="trailing" secondItem="r4Q-jF-I7H" secondAttribute="trailing" constant="10" id="CWn-TM-9SP"/>
+                <constraint firstItem="ypF-wD-R4q" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="GQM-MB-8Sk"/>
+                <constraint firstItem="RXQ-ZI-ZzN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="30" id="Kgk-wd-Qui"/>
+                <constraint firstAttribute="trailing" secondItem="ypF-wD-R4q" secondAttribute="trailing" constant="10" id="MAp-Fh-c3G"/>
+                <constraint firstItem="ypF-wD-R4q" firstAttribute="top" secondItem="RXQ-ZI-ZzN" secondAttribute="bottom" constant="25" id="MET-Or-sOO"/>
+                <constraint firstAttribute="trailing" secondItem="Aje-CL-0xJ" secondAttribute="trailing" id="MPH-W2-hGG"/>
+                <constraint firstAttribute="trailing" secondItem="se8-L4-IcU" secondAttribute="trailing" constant="10" id="RGV-KR-fsJ"/>
+                <constraint firstItem="r4Q-jF-I7H" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="TCd-ln-LkK"/>
+                <constraint firstItem="se8-L4-IcU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="gKz-20-yvf"/>
+                <constraint firstAttribute="bottom" secondItem="se8-L4-IcU" secondAttribute="bottom" constant="15" id="tK9-qB-Ojr"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="280" height="238"/>
+            <connections>
+                <outlet property="cellImgeView" destination="RXQ-ZI-ZzN" id="zfp-YD-aFS"/>
+                <outlet property="cellPrice" destination="se8-L4-IcU" id="g4b-aX-gHR"/>
+                <outlet property="cellTitle" destination="ypF-wD-R4q" id="Bca-ye-BKr"/>
+                <outlet property="sellingPointTextLable" destination="r4Q-jF-I7H" id="Hxw-MO-guu"/>
+            </connections>
+            <point key="canvasLocation" x="175" y="148"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="home_cell_btn_buy" width="26" height="26"/>
+    </resources>
+</document>

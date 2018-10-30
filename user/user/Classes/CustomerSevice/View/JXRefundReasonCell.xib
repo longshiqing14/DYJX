@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="JXRefundReasonCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申请原因" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yO-Qd-vzR">
+                        <rect key="frame" x="11" y="13.5" width="57.5" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="57.5" id="YB6-b0-Y7F"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BmC-kX-hnp">
+                        <rect key="frame" x="249" y="15" width="43" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="order_icon_more" translatesAutoresizingMaskIntoConstraints="NO" id="CBS-PA-Yej">
+                        <rect key="frame" x="302" y="15.5" width="7" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="7" id="Gh3-np-u0a"/>
+                            <constraint firstAttribute="height" constant="13" id="XGh-02-8pW"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="BmC-kX-hnp" secondAttribute="bottom" constant="15" id="2Jc-XO-ba0"/>
+                    <constraint firstItem="CBS-PA-Yej" firstAttribute="leading" secondItem="BmC-kX-hnp" secondAttribute="trailing" constant="10" id="4kM-DQ-pRP"/>
+                    <constraint firstItem="BmC-kX-hnp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6yO-Qd-vzR" secondAttribute="trailing" constant="10" id="FiM-pU-6Ay"/>
+                    <constraint firstAttribute="trailing" secondItem="CBS-PA-Yej" secondAttribute="trailing" constant="11" id="Hc8-vF-qQu"/>
+                    <constraint firstItem="6yO-Qd-vzR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="Jj6-CK-rWh"/>
+                    <constraint firstItem="6yO-Qd-vzR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PNk-SJ-B9B"/>
+                    <constraint firstItem="BmC-kX-hnp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="dgR-5p-TQe"/>
+                    <constraint firstItem="CBS-PA-Yej" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="zMe-cM-5Qa"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="subLab" destination="BmC-kX-hnp" id="Keo-Ny-GCV"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="order_icon_more" width="8" height="15"/>
+    </resources>
+</document>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JXTagCouponView">
+            <rect key="frame" x="0.0" y="0.0" width="22" height="19"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_prolist_ticket" translatesAutoresizingMaskIntoConstraints="NO" id="2r2-eR-Vpk">
+                    <rect key="frame" x="0.0" y="0.0" width="22" height="19"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Dw-Eh-JpY">
+                    <rect key="frame" x="5.5" y="2.5" width="12.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.92549019607843142" green="0.23137254901960785" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="2r2-eR-Vpk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9gd-nX-fu9"/>
+                <constraint firstItem="5Dw-Eh-JpY" firstAttribute="centerX" secondItem="2r2-eR-Vpk" secondAttribute="centerX" id="KW5-Ef-RhD"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2r2-eR-Vpk" secondAttribute="trailing" id="RAH-6p-mNX"/>
+                <constraint firstItem="2r2-eR-Vpk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="WcK-tF-dxg"/>
+                <constraint firstItem="5Dw-Eh-JpY" firstAttribute="centerY" secondItem="2r2-eR-Vpk" secondAttribute="centerY" id="X7p-XD-NPi"/>
+                <constraint firstAttribute="bottom" secondItem="2r2-eR-Vpk" secondAttribute="bottom" id="dhV-iS-1Kn"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="34" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_prolist_ticket" width="20" height="17"/>
+    </resources>
+</document>

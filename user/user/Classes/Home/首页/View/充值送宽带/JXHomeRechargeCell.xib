@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="JXHomeRechargeCell">
+            <rect key="frame" x="0.0" y="0.0" width="404" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="404" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sLV-d7-4uj">
+                        <rect key="frame" x="0.0" y="0.0" width="404" height="50"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUW-rJ-KR3">
+                        <rect key="frame" x="0.0" y="49" width="404" height="1"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="iRk-zp-6aM"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="sLV-d7-4uj" secondAttribute="trailing" id="0MO-eE-4t1"/>
+                <constraint firstItem="dUW-rJ-KR3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="MNg-27-TB3"/>
+                <constraint firstAttribute="trailing" secondItem="dUW-rJ-KR3" secondAttribute="trailing" id="UpM-th-RSr"/>
+                <constraint firstAttribute="bottom" secondItem="sLV-d7-4uj" secondAttribute="bottom" id="X8o-5C-Bmx"/>
+                <constraint firstAttribute="bottom" secondItem="dUW-rJ-KR3" secondAttribute="bottom" id="isR-iQ-wh8"/>
+                <constraint firstItem="sLV-d7-4uj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="lGI-g8-5Qi"/>
+                <constraint firstItem="sLV-d7-4uj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="yML-o9-4Dy"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="404" height="50"/>
+            <connections>
+                <outlet property="rechargeImageView" destination="sLV-d7-4uj" id="8zZ-mp-0jY"/>
+            </connections>
+            <point key="canvasLocation" x="59" y="54"/>
+        </collectionViewCell>
+    </objects>
+</document>

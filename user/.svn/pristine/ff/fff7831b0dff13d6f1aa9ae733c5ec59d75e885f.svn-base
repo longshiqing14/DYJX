@@ -1,0 +1,37 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'user' do
+    pod 'Masonry'
+    pod 'AFNetworking'
+    pod 'YYKit'
+    pod 'BlocksKit'
+    pod 'MBProgressHUD'
+    pod 'MJRefresh'
+    pod 'UITableView+FDTemplateLayoutCell'
+    pod 'iCarousel'
+    pod 'WMPageController'
+    pod 'ZWLimitCounter',         '~> 0.0.4'
+#      pod 'MWPhotoBrowser'
+#      pod 'PYPhotoBrowser'
+#    pod 'XLPhotoBrowser'
+    pod 'TYPagerController'
+    pod 'MLTransition'
+    pod 'MJExtension'
+    pod 'SDWebImage'
+    pod 'SVProgressHUD'
+    pod 'SDCycleScrollView'
+    pod 'AMapLocation-NO-IDFA'
+    pod 'AMapSearch-NO-IDFA'
+    pod 'TTGTagCollectionView'
+  target 'userTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'userUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="JXRefumdImageCollectionCell">
+            <rect key="frame" x="0.0" y="0.0" width="88" height="88"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="88" height="88"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IoP-JF-mxd">
+                        <rect key="frame" x="0.0" y="7" width="81" height="81"/>
+                        <color key="backgroundColor" red="0.94519871473312378" green="0.66715131066676803" blue="0.64490279028549657" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQB-jl-5rn">
+                        <rect key="frame" x="73" y="0.0" width="15" height="15"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="F9U-c4-9Sh"/>
+                            <constraint firstAttribute="width" constant="15" id="Soc-MR-5ja"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="comment-delete"/>
+                        <connections>
+                            <action selector="clickDeleteButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="1pM-TE-Iab"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="IoP-JF-mxd" secondAttribute="bottom" id="1Ka-te-7gN"/>
+                <constraint firstItem="KQB-jl-5rn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9Ba-R5-UHf"/>
+                <constraint firstItem="IoP-JF-mxd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="7" id="FTK-CH-i1p"/>
+                <constraint firstItem="IoP-JF-mxd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="P5n-Je-j3Q"/>
+                <constraint firstAttribute="trailing" secondItem="KQB-jl-5rn" secondAttribute="trailing" id="TAR-do-uNj"/>
+                <constraint firstAttribute="trailing" secondItem="IoP-JF-mxd" secondAttribute="trailing" constant="7" id="eOF-75-prE"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <connections>
+                <outlet property="deleteBtn" destination="KQB-jl-5rn" id="OrG-H5-fGR"/>
+                <outlet property="imgView" destination="IoP-JF-mxd" id="MP1-9B-yUO"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="comment-delete" width="16" height="16"/>
+    </resources>
+</document>

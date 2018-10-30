@@ -1,0 +1,145 @@
+//
+//  PrefixHeader.pch
+//  user
+//
+//  Created by xingyun on 2017/9/4.
+//  Copyright © 2017年 xiaopenglive. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+//#import <MJExtension.h>
+#import "MJExtension.h"
+//#import <MJRefresh.h>
+#import "MJRefresh.h"
+//#import <Masonry.h>
+#import "Masonry.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+Tool.h"
+#import "YWDPopupControl.h"
+#import "YWDPopupControl+YWDBuyer.h"
+#import "YWDPopupControl+YDBBiz.h"
+#import "UITableView+WLEmptyPlaceHolder.h"
+//#import <SVProgressHUD.h>
+#import "SVProgressHUD.h"
+//#import <SDCycleScrollView.h>
+#import "SDCycleScrollView.h"
+//#import <TYPagerController.h>
+#import "TYPagerController.h"
+//#import <AFNetworking.h>
+#import "AFNetworking.h"
+#import "XYProgressHUD.h"
+#import "XYCommon.h"
+#import "XYStringHandle.h"
+#import "XYUserDefaults.h"
+#import <AMapLocationKit/AMapLocationKit.h>
+#import "JXApiDefineMacro.h"
+#import "AppConfigMacro.h"
+//#import <YYKit.h>
+#import "YYKit.h"
+#import "YWDTools.h"
+#import "YDBAlertView.h"
+#import "UIImageView+WebCache.h"
+#import "EABAUITools.h"
+#import "UIView+Tool.h"
+#import "XYBestRequest.h"
+#import "XYNetWorking.h"
+#import "JXBaseModel.h"
+#import "TTGTagCollectionView.h"
+#import "TTGTextTagCollectionView.h"
+#import "UIViewController+Tool.h"
+#import "UIAlertController+XYAlertController.h"
+#import "NSString+Tool.h"
+
+#define RETURN_CODE_  @"RETURN_CODE"
+#define RETURN_DESC_  @"RETURN_DESC"
+#define RETURN_STAMP_  @"RETURN_STAMP"
+#define RETURN_DATA_  @"RETURN_DATA"
+
+#define ERROR_NUM_STRING_  @"S0A00000"  // 返回成功
+#define ERROR_NUM_NOTlOGGED_  @"E1M000003"  // 未登录
+#import "BaseTableView.h"
+/************************************************log**********************************************/
+#ifdef DEBUG //调试阶段
+#define LRString [NSString stringWithFormat:@"%s", __FILE__].lastPathComponent
+#define XYLog(...) printf(" %s 第%d行: %s\n",[LRString UTF8String],__LINE__, [[NSString stringWithFormat:__VA_ARGS__] UTF8String]);
+#else //发布阶段
+#define XYLog(...)
+#endif
+
+
+/************************************************color**********************************************/
+#define XYRGBAColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+#define XYRGBColor(r, g, b)     [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+/*#define XYGlobalBg              XYRGBColor(244, 244, 244)
+ #define XYMainColor             XYRGBColor(236, 58, 45)
+ #define XYNavMainColor          XYRGBColor(218, 180, 133)
+ #define XYLineColor             XYRGBColor(228, 228, 228)
+ #define XYBlackColor            XYRGBColor(0, 0, 0)
+ #define XYGrayColor             XYRGBColor(153, 153, 153)
+ #define XYWhiteColor            XYRGBColor(255, 255, 255)
+ #define XYFontTitleColor        XYRGBColor(53, 53, 53)*/
+
+#define XYGlobalBg              XYRGBColor(244, 244, 244)
+//tarbar选中字体颜色
+#define XYSelectGlobalBg        XYRGBColor(114, 114, 114)
+//tarbar未选中颜色
+#define XYNoSelectGlobalBg      XYRGBColor(236,59,44)
+//tarbar颜色
+#define XYMainColor             XYRGBColor(236, 58, 45)
+#define XYNavMainColor          XYRGBColor(255, 255, 255)
+#define XYLineColor             XYRGBColor(228, 228, 228)
+//导航title颜色
+#define XYBlackColor            XYRGBColor(0, 0, 0)
+#define XYGrayColor             XYRGBColor(153, 153, 153)
+#define XYWhiteColor            XYRGBColor(255, 255, 255)
+#define XYFontTitleColor        XYRGBColor(53, 53, 53)
+//结算按钮颜色加入购物车按钮退出登录
+#define BALANCEColor            XYRGBColor(236,59,44)
+//我的订单未选择状态（全部。代付款等）
+#define NoBALANCEColor            XYRGBColor(51,51,51)
+
+//钱的颜色
+#define MONEYColor            XYRGBColor(236,58,45)
+
+/************************************************system**********************************************/
+#define XYScreenW               [UIScreen mainScreen].bounds.size.width
+#define XYScreenH               [UIScreen mainScreen].bounds.size.height
+#define XYMainBounds            [UIScreen mainScreen].bounds
+#define XYSystemVersion         [[[UIDevice currentDevice] systemVersion] floatValue]
+
+#define XYKeyWindow             [UIApplication sharedApplication].keyWindow
+#define XYAppDelegate           [UIApplication sharedApplication].delegate
+
+#define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO) 
+
+#define WeakSelf __weak typeof(self) weakSelf = self;
+
+/************************************************Font**********************************************/
+#define XYTitleFont(font)   (XYScreenW > 400) ? ((font) + 0) : (font)
+
+#define XYFont_10          [UIFont systemFontOfSize:XYTitleFont(10)]
+#define XYFont_11          [UIFont systemFontOfSize:XYTitleFont(11)]
+#define XYFont_12          [UIFont systemFontOfSize:XYTitleFont(12)]
+#define XYFont_13          [UIFont systemFontOfSize:XYTitleFont(13)]
+#define XYFont_14          [UIFont systemFontOfSize:XYTitleFont(14)]
+#define XYFont_15          [UIFont systemFontOfSize:XYTitleFont(15)]
+#define XYFont_16          [UIFont systemFontOfSize:XYTitleFont(16)]
+#define XYFont_17          [UIFont systemFontOfSize:XYTitleFont(17)]
+#define XYFont_18          [UIFont systemFontOfSize:XYTitleFont(18)]
+#define XYFont_19          [UIFont systemFontOfSize:XYTitleFont(19)]
+#define XYFont_20          [UIFont systemFontOfSize:XYTitleFont(20)]
+
+#define XYFont_60          [UIFont systemFontOfSize:XYTitleFont(60)]
+#define XYFont(font)      [UIFont systemFontOfSize:XYTitleFont(font)]
+
+/************************************************KEY**********************************************/
+
+
+
+#endif /* PrefixHeader_pch */

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="JXRefundContentCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系电话" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egg-z2-Cz4">
+                        <rect key="frame" x="12" y="15" width="57.5" height="13.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="57.5" id="evh-5B-ebi"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QYa-dq-63B">
+                        <rect key="frame" x="84.5" y="12.5" width="225.5" height="17"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="egg-z2-Cz4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="6wN-oP-Bd4"/>
+                    <constraint firstAttribute="bottom" secondItem="egg-z2-Cz4" secondAttribute="bottom" constant="15" id="Fyq-kS-g8u"/>
+                    <constraint firstItem="QYa-dq-63B" firstAttribute="leading" secondItem="egg-z2-Cz4" secondAttribute="trailing" constant="15" id="MHy-dR-kXm"/>
+                    <constraint firstAttribute="trailing" secondItem="QYa-dq-63B" secondAttribute="trailing" constant="10" id="b3G-Co-APt"/>
+                    <constraint firstItem="QYa-dq-63B" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nKg-kg-nxZ"/>
+                    <constraint firstItem="egg-z2-Cz4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="o9g-jL-j9w"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="contentLab" destination="egg-z2-Cz4" id="G6x-By-0EI"/>
+                <outlet property="contentSubLab" destination="QYa-dq-63B" id="aBw-9M-iLP"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

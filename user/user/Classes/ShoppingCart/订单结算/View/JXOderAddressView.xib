@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JXOderAddressView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请先设置收货地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UaK-Co-AuO">
+                    <rect key="frame" x="32" y="40" width="106.5" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请先设置收货地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Oh-xz-9G6">
+                    <rect key="frame" x="32" y="14" width="106.5" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请先设置收货地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2M-wY-S0Q">
+                    <rect key="frame" x="148.5" y="14" width="106.5" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_locate_normal" translatesAutoresizingMaskIntoConstraints="NO" id="aYP-sR-WLK">
+                    <rect key="frame" x="7" y="24" width="16" height="22"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_category_close" translatesAutoresizingMaskIntoConstraints="NO" id="lBP-dz-qGc">
+                    <rect key="frame" x="349" y="29.5" width="11" height="11"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="order_icon_address" translatesAutoresizingMaskIntoConstraints="NO" id="a4p-6c-ffJ">
+                    <rect key="frame" x="0.0" y="66" width="375" height="4"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="order_icon_address" translatesAutoresizingMaskIntoConstraints="NO" id="BfY-oe-FCR">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="4"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="y2M-wY-S0Q" firstAttribute="top" secondItem="BfY-oe-FCR" secondAttribute="bottom" constant="10" id="4Xw-sq-a4E"/>
+                <constraint firstItem="y2M-wY-S0Q" firstAttribute="leading" secondItem="6Oh-xz-9G6" secondAttribute="trailing" constant="10" id="CpN-wi-xIM"/>
+                <constraint firstItem="aYP-sR-WLK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="GcF-go-Ulh"/>
+                <constraint firstItem="a4p-6c-ffJ" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Kaa-gh-Zzq"/>
+                <constraint firstItem="BfY-oe-FCR" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="La2-nf-deD"/>
+                <constraint firstItem="UaK-Co-AuO" firstAttribute="leading" secondItem="aYP-sR-WLK" secondAttribute="trailing" constant="9" id="Oqc-xL-6zb"/>
+                <constraint firstItem="6Oh-xz-9G6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="STH-uX-Fr1"/>
+                <constraint firstItem="UaK-Co-AuO" firstAttribute="top" secondItem="6Oh-xz-9G6" secondAttribute="bottom" constant="10" id="STQ-Nx-wy3"/>
+                <constraint firstItem="aYP-sR-WLK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="7" id="WbV-In-gZZ"/>
+                <constraint firstItem="a4p-6c-ffJ" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Yt9-Yk-pn2"/>
+                <constraint firstItem="lBP-dz-qGc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Z9P-vr-AS8"/>
+                <constraint firstItem="UaK-Co-AuO" firstAttribute="leading" secondItem="aYP-sR-WLK" secondAttribute="trailing" constant="9" id="c7H-zK-wTy"/>
+                <constraint firstItem="6Oh-xz-9G6" firstAttribute="top" secondItem="BfY-oe-FCR" secondAttribute="bottom" constant="10" id="d46-6e-zUY"/>
+                <constraint firstItem="BfY-oe-FCR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dwP-pf-C3H"/>
+                <constraint firstItem="BfY-oe-FCR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="pJQ-mU-gGQ"/>
+                <constraint firstItem="a4p-6c-ffJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vaU-0F-hPt"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lBP-dz-qGc" secondAttribute="trailing" constant="15" id="w5i-v8-uw5"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="oderConsigneeAddressLable" destination="UaK-Co-AuO" id="wCH-GP-HgJ"/>
+                <outlet property="oderConsigneeLable" destination="6Oh-xz-9G6" id="8Qx-L0-diE"/>
+                <outlet property="oderContactNumberLable" destination="y2M-wY-S0Q" id="LC5-50-Eyo"/>
+            </connections>
+            <point key="canvasLocation" x="86.5" y="-140"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_category_close" width="11" height="11"/>
+        <image name="ic_locate_normal" width="16" height="22"/>
+        <image name="order_icon_address" width="413" height="4"/>
+    </resources>
+</document>
