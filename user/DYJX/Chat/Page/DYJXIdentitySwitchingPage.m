@@ -46,6 +46,10 @@ static NSString *headerID=@"headerID";
 }
 
 - (void)initNavigation{
+    self.title = @"身份切换";
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:18]};
     [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
 
     UIButton *rightBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -171,6 +175,9 @@ static NSString *headerID=@"headerID";
     [self.navigationController pushViewController:findPasswordPage animated:YES];
 }
 
+- (void)IdentitySwitchingCommit{
+    
+}
 
 - (void)viewDidDisappear:(BOOL)animated{
     [self.tableView.mj_header endRefreshing];
