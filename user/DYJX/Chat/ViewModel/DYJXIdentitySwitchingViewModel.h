@@ -11,16 +11,26 @@
 @interface DYJXIdentitySwitchingViewModel : NSObject
 
 @property (nonatomic,strong) NSMutableDictionary *requestDic;
-- (NSInteger)numberOfCell;
-- (NSString *)listShowTile;
-- (NSString *)goodsName:(NSIndexPath *)indexPath;
-- (NSString *)goodsPrice:(NSIndexPath *)indexPath;
-- (NSString *)sellingPointText:(NSIndexPath *)indexPath;
-- (NSString *)goodsImageUrl:(NSIndexPath *)indexPath;
+- (NSInteger)numberOfSection;
+- (NSInteger)numberOfCell:(NSInteger )section;
+- (NSString *)GroupName:(NSIndexPath *)indexPath;
+- (NSString *)GroupNumberString:(NSIndexPath *)indexPath;
+- (NSString *)iconImageUrl:(NSIndexPath *)indexPath;
 - (NSArray *)goodsLable:(NSIndexPath *)indexPath;
 - (NSString *)productID:(NSIndexPath *)indexPath;
-- (void)getSearchReaultGoodsListDataFromSeviceWithPageNumer:(NSInteger)pageNumber Success:(void(^)(BOOL isLastPage,BOOL doHaveData))success failed:(void(^)(NSString *errorMsg))fail;
-- (void)loadMoreDataSuccess:(void(^)(BOOL isLastPage,BOOL doHaveData))success failed:(void(^)(NSString *errorMsg))failed;
-- (void)refreshDataSuccess:(void(^)(BOOL isLastPage,BOOL doHaveData))success failed:(void(^)(NSString *errorMsg))failed ;
+
+- (NSString *)sectionHeaderGroupName:(NSInteger )section;
+- (NSString *)sectionHeaderGroupNumberString:(NSInteger )section;
+- (NSString *)sectionHeadericonImageUrl:(NSInteger )section;
+//获取子公司、参与公司 信息
+- (void)getMyEnterprisesSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail;
+
+//获取用户信息
+- (void)getUserInfoSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail;
+
+//退出登录
 - (void)logoutSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail;
+
+//- (void)loadMoreDataSuccess:(void(^)(BOOL isLastPage,BOOL doHaveData))success failed:(void(^)(NSString *errorMsg))failed;
+//- (void)refreshDataSuccess:(void(^)(BOOL isLastPage,BOOL doHaveData))success failed:(void(^)(NSString *errorMsg))failed ;
 @end

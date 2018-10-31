@@ -12,7 +12,8 @@
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"AdminUserIds" : [NSString class],
              @"MemberIds" : [NSString class],
-             @"AllMemberIds" : [NSString class]
+             @"AllMemberIds" : [NSString class],
+             @"Children" : [DYJXIdentitySwitchingChildrenModel class],
              };
 }
 @end
@@ -37,7 +38,8 @@
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"AdminUserIds" : [NSString class],
              @"MemberIds" : [NSString class],
-             @"AllMemberIds" : [NSString class]
+             @"AllMemberIds" : [NSString class],
+             @"Children" : [DYJXIdentitySwitchingChildrenModel class]
              };
 }
 @end

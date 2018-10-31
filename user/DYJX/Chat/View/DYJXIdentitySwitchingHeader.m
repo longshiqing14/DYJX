@@ -1,25 +1,26 @@
 //
-//  JXFoodCell.m
+//  DYJXIdentitySwitchingHeader.m
 //  user
 //
-//  Created by 岩  熊 on 2017/12/11.
-//  Copyright © 2017年 xiaopenglive. All rights reserved.
+//  Created by 岩  熊 on 2018/10/31.
+//  Copyright © 2018年 xiaopenglive. All rights reserved.
 //
 
-#import "DYJXIdentitySwitchingCell.h"
+#import "DYJXIdentitySwitchingHeader.h"
 
-@interface DYJXIdentitySwitchingCell ()
+@interface DYJXIdentitySwitchingHeader ()
 @property (nonatomic, strong) UIView *lLine;//长
 @property (nonatomic, strong) UIView *line;//短
 @end
 
-@implementation DYJXIdentitySwitchingCell
+@implementation DYJXIdentitySwitchingHeader
 
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
-        [self initSubViews];
+       [self initSubViews];
+        
     }
     return self;
 }
@@ -27,7 +28,7 @@
 - (void)initSubViews
 {
     
-    
+    self.backgroundColor = [UIColor lightGrayColor];
     self.goodsNameLabel = [[UILabel alloc] init];
     self.goodsNameLabel.textColor = [UIColor colorWithHexString:@"#333333"];
     self.goodsNameLabel.font = [UIFont systemFontOfSize:14];
@@ -36,12 +37,12 @@
     self.sellingPointLable.textColor = [UIColor colorWithHexString:@"999999"];
     self.sellingPointLable.font = [UIFont systemFontOfSize:12];
     self.sellingPointLable.numberOfLines = 1;
-
+    
     
     self.line = [[UIView alloc] init];
     self.line.backgroundColor = [UIColor colorWithHexString:@"#E4E4E4"];
-    [self.contentView addSubview:self.line];
-   
+    [self addSubview:self.line];
+    
     
     
     
@@ -52,21 +53,21 @@
 {
     WeakSelf
     [super layoutSubviews];
-    [self.contentView addSubview:self.goodsImageView];
+    [self addSubview:self.goodsImageView];
     [self.goodsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(40 , 40));
     }];
     
-    [self.contentView addSubview:self.goodsNameLabel];
+    [self addSubview:self.goodsNameLabel];
     [self.goodsNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.goodsImageView.mas_right).mas_equalTo(10);
         make.top.mas_equalTo(weakSelf.goodsImageView.mas_top).mas_equalTo(0);
         make.right.mas_equalTo(-14);
     }];
     
-    [self.contentView addSubview:self.sellingPointLable];
+    [self addSubview:self.sellingPointLable];
     [self.sellingPointLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.goodsNameLabel.mas_left).mas_equalTo(0);
         make.top.mas_equalTo(weakSelf.goodsNameLabel.mas_bottom).mas_equalTo(0);
@@ -102,5 +103,6 @@
     }
     return _sellingPointLable;
 }
+
 
 @end

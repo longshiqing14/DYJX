@@ -46,6 +46,9 @@ static NSString * const kDYJXAPI_user_GetBackPwd = @"GetBackPwd";
 //获取用户信息
 static NSString * const kDYJXAPI_user_GetUserById = @"GetUserById";
 
+//获取用户公司信息
+static NSString * const kDYJXAPI_user_MyEnterprises = @"MyEnterprises";
+
 //退出登录
 static NSString * const kDYJXAPI_user_Logout = @"Logout";
 

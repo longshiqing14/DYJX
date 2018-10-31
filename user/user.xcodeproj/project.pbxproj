@@ -51,6 +51,8 @@
 		4873513E2186F5A5001B59AB /* DYJXIdentitySwitchingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4873513D2186F5A5001B59AB /* DYJXIdentitySwitchingViewModel.m */; };
 		487351412186F626001B59AB /* DYJXIdentitySwitchingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 487351402186F626001B59AB /* DYJXIdentitySwitchingModel.m */; };
 		4873514421870F8F001B59AB /* DYJXIdentitySwitchingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4873514321870F8F001B59AB /* DYJXIdentitySwitchingCell.m */; };
+		4873515E218945BF001B59AB /* DYJXUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4873515D218945BF001B59AB /* DYJXUserInfoModel.m */; };
+		4873518F2189A73D001B59AB /* DYJXIdentitySwitchingHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4873518E2189A73D001B59AB /* DYJXIdentitySwitchingHeader.m */; };
 		487B5CA1205FAEE1006921AC /* JXDeliverWayViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 487B5CA0205FAEE1006921AC /* JXDeliverWayViewModel.m */; };
 		487C55A82060FF93006A8071 /* JXVersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 487C55A72060FF93006A8071 /* JXVersionUpdateView.m */; };
 		487C55AA2060FFE1006A8071 /* JXVersionUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487C55A92060FFE1006A8071 /* JXVersionUpdateView.xib */; };
@@ -817,6 +819,10 @@
 		487351402186F626001B59AB /* DYJXIdentitySwitchingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXIdentitySwitchingModel.m; sourceTree = "<group>"; };
 		4873514221870F8F001B59AB /* DYJXIdentitySwitchingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXIdentitySwitchingCell.h; sourceTree = "<group>"; };
 		4873514321870F8F001B59AB /* DYJXIdentitySwitchingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXIdentitySwitchingCell.m; sourceTree = "<group>"; };
+		4873515C218945BF001B59AB /* DYJXUserInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXUserInfoModel.h; sourceTree = "<group>"; };
+		4873515D218945BF001B59AB /* DYJXUserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXUserInfoModel.m; sourceTree = "<group>"; };
+		4873518D2189A73D001B59AB /* DYJXIdentitySwitchingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXIdentitySwitchingHeader.h; sourceTree = "<group>"; };
+		4873518E2189A73D001B59AB /* DYJXIdentitySwitchingHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXIdentitySwitchingHeader.m; sourceTree = "<group>"; };
 		487B5C9F205FAEE1006921AC /* JXDeliverWayViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXDeliverWayViewModel.h; sourceTree = "<group>"; };
 		487B5CA0205FAEE1006921AC /* JXDeliverWayViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXDeliverWayViewModel.m; sourceTree = "<group>"; };
 		487C55A62060FF93006A8071 /* JXVersionUpdateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXVersionUpdateView.h; sourceTree = "<group>"; };
@@ -2292,6 +2298,8 @@
 			children = (
 				4873514221870F8F001B59AB /* DYJXIdentitySwitchingCell.h */,
 				4873514321870F8F001B59AB /* DYJXIdentitySwitchingCell.m */,
+				4873518D2189A73D001B59AB /* DYJXIdentitySwitchingHeader.h */,
+				4873518E2189A73D001B59AB /* DYJXIdentitySwitchingHeader.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2320,6 +2328,8 @@
 			children = (
 				4873513F2186F626001B59AB /* DYJXIdentitySwitchingModel.h */,
 				487351402186F626001B59AB /* DYJXIdentitySwitchingModel.m */,
+				4873515C218945BF001B59AB /* DYJXUserInfoModel.h */,
+				4873515D218945BF001B59AB /* DYJXUserInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5830,6 +5840,7 @@
 				CBFF46101F7D2D9F00D2AF93 /* XYAddCommentImgCVCell.m in Sources */,
 				CB3307AB1FA32FD200117695 /* XYOrderDetailPayRecsVC.m in Sources */,
 				DEB72FE91FBDABAC0069C581 /* JXDetailsCell.m in Sources */,
+				4873515E218945BF001B59AB /* DYJXUserInfoModel.m in Sources */,
 				DE71B15B208744DD00467E06 /* MBProgressHUD+PYExtension.m in Sources */,
 				4848B7A1208888440093D8C4 /* JXRefundTextModel.m in Sources */,
 				CB4287621F66326E004C43C1 /* XYOrderDetailSubClassOrderDetailVC.m in Sources */,
@@ -6066,6 +6077,7 @@
 				48CC2C351FD927DB00622935 /* FXBlurView.m in Sources */,
 				CBCF83581F7129BD00B20CF9 /* LBXScanViewStyle.m in Sources */,
 				DE4FC2A12091B3190069A4B4 /* JXMyAfterSaleDetailLineFootView.m in Sources */,
+				4873518F2189A73D001B59AB /* DYJXIdentitySwitchingHeader.m in Sources */,
 				CBCF83551F7129BD00B20CF9 /* LBXScanVideoZoomView.m in Sources */,
 				DE3764381FDA30AD00D84A7B /* JXHomeLifeView.m in Sources */,
 				DEA083872021CE53003A492C /* JXSpecialOfferView1.m in Sources */,

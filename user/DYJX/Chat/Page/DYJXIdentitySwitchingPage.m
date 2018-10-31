@@ -11,6 +11,8 @@
 #import "DYJXIdentitySwitchingCell.h"
 #import "NaviViewController.h"
 #import "DYJXLoginPage.h"
+#import "DYJXFindPasswordPage.h"
+#import "DYJXIdentitySwitchingHeader.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -19,6 +21,8 @@
 @end
 
 static NSString *cellID=@"cellID";
+static NSString *headerID=@"headerID";
+
 @implementation DYJXIdentitySwitchingPage
 
 
@@ -26,18 +30,18 @@ static NSString *cellID=@"cellID";
     [super viewDidLoad];
     [self initNavigation];
     [self.tableView registerClass:[DYJXIdentitySwitchingCell class] forCellReuseIdentifier:cellID];
-//    self.tableView.delegate = self;
-//    self.tableView.dataSource = self;
+    [self.tableView registerClass:[DYJXIdentitySwitchingHeader class] forHeaderFooterViewReuseIdentifier:@"headerID"];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     self.tableView.showsVerticalScrollIndicator = NO;
     
     
-    [self.tableView setTableFooterView:[UIView new]];
+//    [self.tableView setTableFooterView:[UIView new]];
     [self.tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     [self.tableView setBackgroundColor:[UIColor colorWithHexString:@"f4f4f4"]];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self addFooterAndHeader];
-//    [self getHomelData];
+    [self GetUserInfo];
 
 }
 
@@ -62,89 +66,32 @@ static NSString *cellID=@"cellID";
     //    [self.otherTableView.mj_header beginRefreshing];
 }
 
-- (void)getHomelData{
+- (void)GetUserInfo{
     WeakSelf;
-    [self.viewModel refreshDataSuccess:^(BOOL isLastPage,BOOL doHaveData) {
-        
-        if (doHaveData) {
+    [self.viewModel getUserInfoSuccess:^{
+        [weakSelf.viewModel getMyEnterprisesSuccess:^{
+             [weakSelf.tableView reloadData];
+        } failed:^(NSString *errorMsg) {
             
-        }else {
-            
-            [weakSelf.view showNoDataCustomTipViewWithText:@"找不到相关商品" imageString:@"no_search" WithInset:80.];
-        }
-        [weakSelf.tableView.mj_header endRefreshing];
-        [weakSelf.tableView reloadData];
+        }];
     } failed:^(NSString *errorMsg) {
-        [weakSelf.tableView.mj_header endRefreshing];
-    }];
-    
-}
-
-- (void)addFooterAndHeader{
-    WeakSelf;
-    
-    
-    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [weakSelf.viewModel refreshDataSuccess:^(BOOL isLastPage,BOOL doHaveData) {
-            
-            if (doHaveData) {
-                
-            }else {
-                
-                [weakSelf.view showNoDataCustomTipViewWithText:@"找不到相关商品" imageString:@"no_search" WithInset:80.];
-            }
-            
-            if (isLastPage) {
-                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
-            }else {
-                [weakSelf.tableView.mj_footer endRefreshing];
-            }
-            
-            [weakSelf.tableView.mj_header endRefreshing];
-            [weakSelf.tableView reloadData];
-        } failed:^(NSString *errorMsg) {
-            [weakSelf.tableView.mj_header endRefreshing];
-        }];
-    }];
-    
-    _tableView.mj_footer=[MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        [weakSelf.viewModel loadMoreDataSuccess:^(BOOL isLastPage,BOOL doHaveData) {
-            
-            if (doHaveData) {
-                
-            }else {
-                
-                [weakSelf.view showNoDataCustomTipViewWithText:@"找不到相关商品" imageString:@"no_search" WithInset:80.];
-                [weakSelf.tableView.mj_footer endRefreshing];
-            }
-            
-            if (isLastPage) {
-                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
-            }else {
-                [weakSelf.tableView.mj_footer endRefreshing];
-            }
-            [weakSelf.tableView reloadData];
-        } failed:^(NSString *errorMsg) {
-            [weakSelf.tableView.mj_footer endRefreshing];
-        }];
     }];
     
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return [self.viewModel numberOfCell];
+    return [self.viewModel numberOfCell:section];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 1;
+    return [self.viewModel numberOfSection];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 130;
-    
+    return 60;
 }
 
 
@@ -152,19 +99,29 @@ static NSString *cellID=@"cellID";
     
     DYJXIdentitySwitchingCell *tableCell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     
-    [tableCell.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[self.viewModel goodsImageUrl:indexPath]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [tableCell.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[self.viewModel iconImageUrl:indexPath]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
-    tableCell.goodsNameLabel.text = [self.viewModel goodsName:indexPath];
-    tableCell.goodsPriceLabel.text = [NSString stringWithFormat:@"¥ %@", [self.viewModel goodsPrice:indexPath]];
-    tableCell.sellingPointLable.text = [self.viewModel sellingPointText:indexPath];
-    [tableCell setDataArray:[NSMutableArray arrayWithArray:[self.viewModel goodsLable:indexPath]]];
-    
+    tableCell.goodsNameLabel.text = [self.viewModel GroupName:indexPath];
+    tableCell.sellingPointLable.text = [self.viewModel GroupNumberString:indexPath];
     tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return tableCell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 60;
+}
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    DYJXIdentitySwitchingHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerID];
+    if (header == nil) {
+        header = [[DYJXIdentitySwitchingHeader alloc] initWithReuseIdentifier:headerID];
+    }
 
+    [header.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[self.viewModel sectionHeadericonImageUrl:section]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    header.goodsNameLabel.text = [self.viewModel sectionHeaderGroupName:section];
+    header.sellingPointLable.text = [self.viewModel sectionHeaderGroupNumberString:section];
+    return header;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -206,6 +163,12 @@ static NSString *cellID=@"cellID";
     } failed:^(NSString *errorMsg) {
         
     }];
+}
+
+- (IBAction)modify:(UIButton *)sender {
+    
+    DYJXFindPasswordPage *findPasswordPage = [[DYJXFindPasswordPage alloc]initWithNibName:@"DYJXFindPasswordPage" bundle:nil];
+    [self.navigationController pushViewController:findPasswordPage animated:YES];
 }
 
 

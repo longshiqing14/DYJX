@@ -8,13 +8,16 @@
 
 #import "DYJXIdentitySwitchingViewModel.h"
 #import "DYJXIdentitySwitchingModel.h"
+#import "DYJXUserInfoModel.h"
 
 #define kRequestPageNumber @"page"
 #define kRequestPageSize @"page_size"
 #define kStartPageIndex 1
 @interface DYJXIdentitySwitchingViewModel()
 @property (nonatomic,assign) NSInteger pageNum;
+@property (nonatomic, strong) DYJXUserInfoModel *resultUserInfoModel;
 @property (nonatomic, strong) DYJXIdentitySwitchingModel *resultModel;
+@property (nonatomic, strong) NSMutableArray<DYJXIdentitySwitchingModel*> *dataArray;
 @end
 @implementation DYJXIdentitySwitchingViewModel
 - (NSMutableDictionary *)requestDic{
@@ -31,80 +34,78 @@
     }
     return _resultModel;
 }
-//
-//- (NSString *)goodsName:(NSIndexPath *)indexPath
-//{
-//    
-//    return self.dataArray[indexPath.row].productName;
-//}
-//
-//- (NSString *)sellingPointText:(NSIndexPath *)indexPath
-//{
-//    
-//    return self.goodsListArray[indexPath.row].sellingPointText;
-//}
-//
-//- (NSString *)goodsPrice:(NSIndexPath *)indexPath
-//{
-//    return self.goodsListArray[indexPath.row].memberPrice;
-//}
-//
-//- (NSString *)productID:(NSIndexPath *)indexPath
-//{
-//    return self.goodsListArray[indexPath.row].productId;
-//}
-//
-//- (NSString *)goodsImageUrl:(NSIndexPath *)indexPath
-//{
-//    
-//    return self.goodsListArray[indexPath.row].logo;
-//}
-//
-//- (NSArray *)goodsLable:(NSIndexPath *)indexPath
-//{
-//    
-//    return self.goodsListArray[indexPath.row].lable;
-//}
-//
-//- (NSString *)listShowTile
-//{
-//    
-//    return self.SearchReusltListModel.activeCard.firstObject.listShowTile;
-//}
-//
-//- (NSInteger)numberOfCell{
-//    return self.dataArray.count;
-//}
 
+- (DYJXUserInfoModel *)resultUserInfoModel{
+    if (!_resultUserInfoModel) {
+        _resultUserInfoModel = [[DYJXUserInfoModel alloc]init];
+    }
+    return _resultUserInfoModel;
+}
 
-- (void)getSearchReaultGoodsListDataFromSeviceWithPageNumer:(NSInteger)pageNumber Success:(void(^)(BOOL isLastPage,BOOL doHaveData))success failed:(void(^)(NSString *errorMsg))fail{
+- (NSMutableArray<DYJXIdentitySwitchingModel *> *)dataArray{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
+}
+
+- (NSString *)GroupName:(NSIndexPath *)indexPath
+{
+    
+    return self.dataArray[indexPath.section].Children[indexPath.row].GroupName;
+}
+
+- (NSString *)GroupNumberString:(NSIndexPath *)indexPath
+{
+    
+    return self.dataArray[indexPath.section].Children[indexPath.row].NumberString;
+}
+
+- (NSString *)iconImageUrl:(NSIndexPath *)indexPath
+{
+    return self.dataArray[indexPath.section].Children[indexPath.row].GroupHeadImg;
+}
+
+- (NSInteger)numberOfSection{
+    return self.dataArray.count;
+}
+
+- (NSInteger)numberOfCell:(NSInteger)section{
+    return self.dataArray[section].Children.count;
+}
+
+- (NSString *)sectionHeaderGroupName:(NSInteger )section{
+   return self.dataArray[section].GroupName;
+}
+- (NSString *)sectionHeaderGroupNumberString:(NSInteger )section{
+    return self.dataArray[section].NumberString;
+}
+- (NSString *)sectionHeadericonImageUrl:(NSInteger )section{
+    return self.dataArray[section].GroupHeadImg;
+}
+
+//获取子公司、参与公司 信息
+- (void)getMyEnterprisesSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail{
     [XYProgressHUD show];
     WeakSelf;
-    [self.requestDic setValue:[NSString stringWithFormat:@"%ld",(long)pageNumber] forKey:kRequestPageNumber];
-    [self.requestDic setValue:@"10" forKey:kRequestPageSize];
+    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+    [reqDict setObject:userModel.UserID forKey:@"UserID"];
+    [reqDict setObject:userModel.UserID forKey:@"CertificateId"];
+    [reqDict setObject:@"iOS" forKey:@"Device"];
+    [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+    [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
+    [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
     
-    NSMutableDictionary * dict = [XYBestRequest requestAllDataWithApi_ID:kJXAPI_user_channelDetail request_data:self.requestDic];
-    
-    [XYNetWorking XYPOST:@"" params:dict success:^(NSURLSessionDataTask *task, id responseObject) {
+    [XYNetWorking XYPOST:kDYJXAPI_user_MyEnterprises params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             
             if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
                 [XYProgressHUD svHUDDismiss];
-                if (pageNumber > 1) {
-                    self.resultModel = [DYJXIdentitySwitchingModel modelWithJSON:[responseObject objectForKey:@"Result"]];
-//                    NSMutableArray *array = [self.SearchReusltListModel.products mutableCopy];
-//                    [weakSelf.goodsListArray addObjectsFromArray:array];
-                }else{
-//                    [weakSelf.goodsListArray removeAllObjects];
-//                    self.SearchReusltListModel = [JXSearchReusltListModel modelWithJSON:[responseObject objectForKey:@"Result"]];
-//                    weakSelf.goodsListArray = [self.SearchReusltListModel.products mutableCopy];
-                }
-                
-//                BOOL isLastPage = (self.goodsListArray.count == self.SearchReusltListModel.total);
-//                BOOL isHaveData = self.goodsListArray.count;
-                
-                
-//                success(isLastPage,isHaveData);
+                    NSArray *resultArray = [NSArray modelArrayWithClass:[DYJXIdentitySwitchingModel class] json:[responseObject objectForKey:@"Result"]];
+                    [weakSelf.dataArray addObjectsFromArray:resultArray];
+
+                success();
                 
             }else{
                 [YDBAlertView showToast:[responseObject objectForKey:RETURN_DESC_] dismissDelay:1.0];
@@ -125,19 +126,53 @@
     }];
 }
 
-- (void)refreshDataSuccess:(void(^)(BOOL isLastPage,BOOL doHaveData))success failed:(void(^)(NSString *errorMsg))failed {
-    self.pageNum = kStartPageIndex;
-    [self getSearchReaultGoodsListDataFromSeviceWithPageNumer:self.pageNum Success:success failed:failed];
-}
-
-- (void)loadMoreDataSuccess:(void(^)(BOOL isLastPage,BOOL doHaveData))success failed:(void(^)(NSString *errorMsg))failed {
-    self.pageNum = self.pageNum + 1;
-    [self getSearchReaultGoodsListDataFromSeviceWithPageNumer:self.pageNum Success:success failed:failed];
-}
-
-
-- (void)logoutSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail{
+//获取用户信息
+- (void)getUserInfoSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail{
+    WeakSelf;
+    [SVProgressHUD show];
+    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+        [reqDict setObject:userModel.UserID forKey:@"Data"];
+        [reqDict setObject:userModel.UserID forKey:@"UserID"];
+        [reqDict setObject:userModel.UserID forKey:@"CertificateId"];
+        [reqDict setObject:@"iOS" forKey:@"Device"];
+        [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+        [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
+        [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
     
+    [XYNetWorking XYPOST:kDYJXAPI_user_GetUserById params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
+                [SVProgressHUD dismiss];
+                weakSelf.resultUserInfoModel = [DYJXUserInfoModel modelWithJSON:[responseObject objectForKey:@"Result"]];
+                DYJXIdentitySwitchingModel *identitySwitchingModel = [[DYJXIdentitySwitchingModel alloc]init];
+                identitySwitchingModel.NumberString = weakSelf.resultUserInfoModel.NumberString;
+                identitySwitchingModel.GroupName = weakSelf.resultUserInfoModel.Business.IMInfo.NickName;
+                identitySwitchingModel.GroupHeadImg = weakSelf.resultUserInfoModel.Business.IMInfo.HeadImgUrl;
+                [weakSelf.dataArray addObject:identitySwitchingModel];
+                success();
+                
+            }else{
+                
+                [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
+            }
+            
+        }else{
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+            
+        }
+        
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        
+    }];
+}
+
+
+//退出登录
+- (void)logoutSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail{
     [SVProgressHUD show];
     DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
     NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];

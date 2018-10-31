@@ -50,6 +50,9 @@
                             <state key="normal" title="修改密码" backgroundImage="btn_circle_mirror_pre">
                                 <color key="titleColor" red="0.082352941176470587" green="0.16078431372549018" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="modify:" destination="-1" eventType="touchUpInside" id="piS-77-dX9"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.082352941176470587" green="0.16078431372549018" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>

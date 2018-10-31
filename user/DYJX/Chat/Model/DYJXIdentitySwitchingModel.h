@@ -36,7 +36,7 @@
 @property(nonatomic, strong)NSArray<NSString*> *AllMemberIds;
 @property(nonatomic, strong)DYJXIdentitySwitchingCreatorModel *Creator;
 @property(nonatomic, strong)DYJXIdentitySwitchingCreatorModel *Owner;
-@property(nonatomic, strong)DYJXIdentitySwitchingChildrenModel *Children;
+@property(nonatomic, strong)NSArray<DYJXIdentitySwitchingChildrenModel*> *Children;
 @property(nonatomic, assign)BOOL Deleted;
 @property(nonatomic, assign)BOOL Disabled;
 @property(nonatomic, copy)NSString *CreateOn;
@@ -68,6 +68,7 @@
 @property(nonatomic, strong)NSArray<NSString*> *AllMemberIds;
 @property(nonatomic, strong)DYJXIdentitySwitchingCreatorModel *Creator;
 @property(nonatomic, strong)DYJXIdentitySwitchingCreatorModel *Owner;
+@property(nonatomic, strong)NSArray<DYJXIdentitySwitchingChildrenModel*> *Children;
 @property(nonatomic, assign)BOOL Deleted;
 @property(nonatomic, assign)BOOL Disabled;
 @property(nonatomic, copy)NSString *CreateOn;
