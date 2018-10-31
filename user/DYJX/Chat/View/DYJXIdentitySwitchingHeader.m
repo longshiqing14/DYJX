@@ -70,7 +70,7 @@
     [self addSubview:self.sellingPointLable];
     [self.sellingPointLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.goodsNameLabel.mas_left).mas_equalTo(0);
-        make.top.mas_equalTo(weakSelf.goodsNameLabel.mas_bottom).mas_equalTo(0);
+        make.bottom.mas_equalTo(weakSelf.goodsImageView.mas_bottom).mas_equalTo(0);
         make.right.mas_equalTo(0);
     }];
     
