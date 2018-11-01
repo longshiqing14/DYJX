@@ -14,11 +14,13 @@
 #import "DYJXFindPasswordPage.h"
 #import "DYJXIdentitySwitchingHeader.h"
 #import "DYJXLogisticPage.h"
+#import "DYJXIdentitySwitchingModel.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong)DYJXIdentitySwitchingViewModel *viewModel;
+@property(nonatomic, strong)DYJXIdentitySwitchingModel *selectedIdentity;
 @end
 
 static NSString *cellID=@"cellID";
@@ -102,7 +104,7 @@ static NSString *headerID=@"headerID";
     
     DYJXIdentitySwitchingCell *tableCell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     
-    [tableCell.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[self.viewModel iconImageUrl:indexPath]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [tableCell.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[[self.viewModel iconImageUrl:indexPath] XYImageURL]] placeholderImage:[UIImage imageNamed:@"btn_group"]];
     
     tableCell.goodsNameLabel.text = [self.viewModel GroupName:indexPath];
     tableCell.sellingPointLable.text = [self.viewModel GroupNumberString:indexPath];
@@ -128,7 +130,7 @@ static NSString *headerID=@"headerID";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    self.selectedIdentity = [self.viewModel IdentityAtIndexPath:indexPath];
     
 }
 
@@ -136,6 +138,13 @@ static NSString *headerID=@"headerID";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (DYJXIdentitySwitchingModel *)selectedIdentity{
+    if (!_selectedIdentity) {
+        _selectedIdentity = [[DYJXIdentitySwitchingModel alloc] init];
+    }
+    return _selectedIdentity;
 }
 
 - (DYJXIdentitySwitchingViewModel *)viewModel{
@@ -175,7 +184,11 @@ static NSString *headerID=@"headerID";
 }
 
 - (void)IdentitySwitchingCommit{
-   
+    if ([YWDTools isNil:self.selectedIdentity.GroupNumber]) {
+        [YDBAlertView showToast:@"请选择一个身份!"];
+        return;
+    }
+    
     DYJXLogisticPage *logisticPage = [[DYJXLogisticPage alloc]initWithNibName:@"DYJXLogisticPage" bundle:nil];
     [self.navigationController pushViewController:logisticPage animated:YES];
 }

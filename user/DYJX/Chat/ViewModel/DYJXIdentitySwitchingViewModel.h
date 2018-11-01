@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DYJXIdentitySwitchingModel.h"
+
 
 @interface DYJXIdentitySwitchingViewModel : NSObject
 
 @property (nonatomic,strong) NSMutableDictionary *requestDic;
+- (DYJXIdentitySwitchingModel*)IdentityAtIndexPath:(NSIndexPath *)indexPath;
 - (NSInteger)numberOfSection;
 //- (NSInteger)numberOfCell:(NSInteger )section;
 - (NSInteger)numberOfCell;

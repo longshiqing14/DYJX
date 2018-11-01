@@ -7,7 +7,6 @@
 //
 
 #import "DYJXIdentitySwitchingViewModel.h"
-#import "DYJXIdentitySwitchingModel.h"
 #import "DYJXUserInfoModel.h"
 
 #define kRequestPageNumber @"page"
@@ -47,6 +46,10 @@
         _dataArray = [NSMutableArray array];
     }
     return _dataArray;
+}
+
+- (DYJXIdentitySwitchingModel*)IdentityAtIndexPath:(NSIndexPath *)indexPath{
+    return self.dataArray[indexPath.row];
 }
 
 - (NSString *)GroupName:(NSIndexPath *)indexPath

@@ -79,5 +79,10 @@
     return [[NSAttributedString alloc] initWithData:[self dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 }
 
-
+- (NSString *)XYImageURL{
+    NSString *firstString = [self substringWithRange:NSMakeRange(0, 1)];
+    
+    NSString *secondString = [self substringWithRange:NSMakeRange(1, 2)];
+    return [NSString stringWithFormat:@"%@%@/%@/%@",BEST_IMAGE_URL,firstString,secondString,self];
+}
 @end

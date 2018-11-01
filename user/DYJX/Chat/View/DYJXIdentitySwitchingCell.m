@@ -119,7 +119,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated{
     if (selected) {
-        [self.selectedImageView setImage:[UIImage imageNamed:@"btn_buy_check"]];
+        [self.selectedImageView setImage:[UIImage imageNamed:@"check35"]];
     }else{
         [self.selectedImageView setImage:[UIImage imageNamed:@""]];
     }

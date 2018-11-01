@@ -15,7 +15,7 @@
 
 #define  BEST_URL @"http://www.xtt168.com:9000/zim/"
 #define BEST_H5_URL  @"http://bisdevh5.xiaopenglife.com/"
-
+#define BEST_IMAGE_URL  @"http://www.xtt168.com:9000/Files/Images/"
 //* 生产
 //#define BEST_URL  @"https://bisapi.xiaopenglife.com/api/rest"
 //#define BEST_H5_URL  @"https://bish5.xiaopenglife.com/"

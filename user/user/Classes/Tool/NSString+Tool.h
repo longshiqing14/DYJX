@@ -48,4 +48,5 @@
 -(NSMutableAttributedString *)changeColour:(NSString *)changeColourtext FountColour:(UIColor *)fountColour;
 -(NSAttributedString *)attributedStringHTML;
 
+- (NSString*)XYImageURL;
 @end
