@@ -59,18 +59,25 @@
         make.size.mas_equalTo(CGSizeMake(40 , 40));
     }];
     
+    [self.contentView addSubview:self.selectedImageView];
+    [self.selectedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-10);
+        make.centerY.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(18, 18));
+    }];
+    
     [self.contentView addSubview:self.goodsNameLabel];
     [self.goodsNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.goodsImageView.mas_right).mas_equalTo(10);
         make.top.mas_equalTo(weakSelf.goodsImageView.mas_top).mas_equalTo(0);
-        make.right.mas_equalTo(-14);
+        make.right.mas_equalTo(weakSelf.selectedImageView.mas_left).mas_equalTo(-10);
     }];
     
     [self.contentView addSubview:self.sellingPointLable];
     [self.sellingPointLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.goodsNameLabel.mas_left).mas_equalTo(0);
         make.bottom.mas_equalTo(weakSelf.goodsImageView.mas_bottom).mas_equalTo(0);
-        make.right.mas_equalTo(0);
+        make.right.mas_equalTo(weakSelf.selectedImageView.mas_left).mas_equalTo(-10);
     }];
     
     [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -80,6 +87,13 @@
     
     
     
+}
+
+- (UIImageView *)selectedImageView{
+    if (!_selectedImageView) {
+        _selectedImageView = [[UIImageView alloc]init];
+    }
+    return _selectedImageView;
 }
 
 - (UIImageView *)goodsImageView{
@@ -101,6 +115,14 @@
         _sellingPointLable = [[UILabel alloc]init];
     }
     return _sellingPointLable;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
+    if (selected) {
+        [self.selectedImageView setImage:[UIImage imageNamed:@"btn_buy_check"]];
+    }else{
+        [self.selectedImageView setImage:[UIImage imageNamed:@""]];
+    }
 }
 
 @end

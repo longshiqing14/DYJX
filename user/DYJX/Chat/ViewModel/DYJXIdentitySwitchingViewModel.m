@@ -52,26 +52,30 @@
 - (NSString *)GroupName:(NSIndexPath *)indexPath
 {
     
-    return self.dataArray[indexPath.section].Children[indexPath.row].GroupName;
+    return self.dataArray[indexPath.row].GroupName;
 }
 
 - (NSString *)GroupNumberString:(NSIndexPath *)indexPath
 {
     
-    return self.dataArray[indexPath.section].Children[indexPath.row].NumberString;
+    return self.dataArray[indexPath.row].NumberString;
 }
 
 - (NSString *)iconImageUrl:(NSIndexPath *)indexPath
 {
-    return self.dataArray[indexPath.section].Children[indexPath.row].GroupHeadImg;
+    return self.dataArray[indexPath.row].GroupHeadImg;
 }
 
 - (NSInteger)numberOfSection{
     return self.dataArray.count;
 }
 
-- (NSInteger)numberOfCell:(NSInteger)section{
-    return self.dataArray[section].Children.count;
+//- (NSInteger)numberOfCell:(NSInteger)section{
+//    return self.dataArray[section].Children.count;
+//}
+
+- (NSInteger)numberOfCell{
+    return self.dataArray.count;
 }
 
 - (NSString *)sectionHeaderGroupName:(NSInteger )section{
@@ -103,7 +107,14 @@
             if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
                 [XYProgressHUD svHUDDismiss];
                     NSArray *resultArray = [NSArray modelArrayWithClass:[DYJXIdentitySwitchingModel class] json:[responseObject objectForKey:@"Result"]];
-                    [weakSelf.dataArray addObjectsFromArray:resultArray];
+
+                [resultArray enumerateObjectsUsingBlock:^(DYJXIdentitySwitchingModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [weakSelf.dataArray addObject:obj];
+                    if (obj.Children.count > 0) {
+                        [weakSelf.dataArray addObjectsFromArray:obj.Children];
+                    }
+                    
+                }];
 
                 success();
                 

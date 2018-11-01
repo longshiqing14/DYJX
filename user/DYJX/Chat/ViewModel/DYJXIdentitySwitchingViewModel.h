@@ -12,7 +12,8 @@
 
 @property (nonatomic,strong) NSMutableDictionary *requestDic;
 - (NSInteger)numberOfSection;
-- (NSInteger)numberOfCell:(NSInteger )section;
+//- (NSInteger)numberOfCell:(NSInteger )section;
+- (NSInteger)numberOfCell;
 - (NSString *)GroupName:(NSIndexPath *)indexPath;
 - (NSString *)GroupNumberString:(NSIndexPath *)indexPath;
 - (NSString *)iconImageUrl:(NSIndexPath *)indexPath;

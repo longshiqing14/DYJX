@@ -11,7 +11,7 @@
 @class DYJXIdentitySwitchingCreatorModel;
 @class DYJXIdentitySwitchingCreatorBusinessModel;
 @class DYJXIdentitySwitchingCreatorBusinessIMInfoModel;
-@class DYJXIdentitySwitchingChildrenModel;
+//@class DYJXIdentitySwitchingChildrenModel;
 
 @interface DYJXIdentitySwitchingModel : NSObject
 @property(nonatomic, assign)int Number;
@@ -36,7 +36,7 @@
 @property(nonatomic, strong)NSArray<NSString*> *AllMemberIds;
 @property(nonatomic, strong)DYJXIdentitySwitchingCreatorModel *Creator;
 @property(nonatomic, strong)DYJXIdentitySwitchingCreatorModel *Owner;
-@property(nonatomic, strong)NSArray<DYJXIdentitySwitchingChildrenModel*> *Children;
+@property(nonatomic, strong)NSArray<DYJXIdentitySwitchingModel*> *Children;
 @property(nonatomic, assign)BOOL Deleted;
 @property(nonatomic, assign)BOOL Disabled;
 @property(nonatomic, copy)NSString *CreateOn;
@@ -46,37 +46,38 @@
 @property(nonatomic, copy)NSString *Id;
 @end
 
-@interface DYJXIdentitySwitchingChildrenModel : NSObject
-@property(nonatomic, copy)NSString *NumberString;
-@property(nonatomic, copy)NSString *GroupName;
-@property(nonatomic, copy)NSString *GroupNumber;
-@property(nonatomic, copy)NSString *GroupType;
-@property(nonatomic, copy)NSString *CreatorId;
-@property(nonatomic, copy)NSString *OwnerId;
-@property(nonatomic, assign)BOOL IsPart;
-@property(nonatomic, assign)int PartType;
-@property(nonatomic, assign)int WildType;
-@property(nonatomic, copy)NSString *GroupHeadImg;
-@property(nonatomic, assign)BOOL NotAllowMemberInvite;
-@property(nonatomic, assign)BOOL NotAllowJoinFree;
-@property(nonatomic, assign)BOOL NotAllowSay;
-@property(nonatomic, assign)BOOL CanNotSearch;
-@property(nonatomic, strong)NSArray *SilenceUserIds;
-@property(nonatomic, strong)DYJXIdentitySwitchingEnterpriseInfoModel *EnterpriseInfo;
-@property(nonatomic, strong)NSArray<NSString*> *AdminUserIds;
-@property(nonatomic, strong)NSArray<NSString*> *MemberIds;
-@property(nonatomic, strong)NSArray<NSString*> *AllMemberIds;
-@property(nonatomic, strong)DYJXIdentitySwitchingCreatorModel *Creator;
-@property(nonatomic, strong)DYJXIdentitySwitchingCreatorModel *Owner;
-@property(nonatomic, strong)NSArray<DYJXIdentitySwitchingChildrenModel*> *Children;
-@property(nonatomic, assign)BOOL Deleted;
-@property(nonatomic, assign)BOOL Disabled;
-@property(nonatomic, copy)NSString *CreateOn;
-@property(nonatomic, copy)NSString *CreateBy;
-@property(nonatomic, copy)NSString *UpdateOn;
-@property(nonatomic, copy)NSString *UpdateBy;
-@property(nonatomic, copy)NSString *Id;
-@end
+//@interface DYJXIdentitySwitchingChildrenModel : NSObject
+//@property(nonatomic, assign)int Number;
+//@property(nonatomic, copy)NSString *NumberString;
+//@property(nonatomic, copy)NSString *GroupName;
+//@property(nonatomic, copy)NSString *GroupNumber;
+//@property(nonatomic, copy)NSString *GroupType;
+//@property(nonatomic, copy)NSString *CreatorId;
+//@property(nonatomic, copy)NSString *OwnerId;
+//@property(nonatomic, assign)BOOL IsPart;
+//@property(nonatomic, assign)int PartType;
+//@property(nonatomic, assign)int WildType;
+//@property(nonatomic, copy)NSString *GroupHeadImg;
+//@property(nonatomic, assign)BOOL NotAllowMemberInvite;
+//@property(nonatomic, assign)BOOL NotAllowJoinFree;
+//@property(nonatomic, assign)BOOL NotAllowSay;
+//@property(nonatomic, assign)BOOL CanNotSearch;
+//@property(nonatomic, strong)NSArray *SilenceUserIds;
+//@property(nonatomic, strong)DYJXIdentitySwitchingEnterpriseInfoModel *EnterpriseInfo;
+//@property(nonatomic, strong)NSArray<NSString*> *AdminUserIds;
+//@property(nonatomic, strong)NSArray<NSString*> *MemberIds;
+//@property(nonatomic, strong)NSArray<NSString*> *AllMemberIds;
+//@property(nonatomic, strong)DYJXIdentitySwitchingCreatorModel *Creator;
+//@property(nonatomic, strong)DYJXIdentitySwitchingCreatorModel *Owner;
+//@property(nonatomic, strong)NSArray<DYJXIdentitySwitchingChildrenModel*> *Children;
+//@property(nonatomic, assign)BOOL Deleted;
+//@property(nonatomic, assign)BOOL Disabled;
+//@property(nonatomic, copy)NSString *CreateOn;
+//@property(nonatomic, copy)NSString *CreateBy;
+//@property(nonatomic, copy)NSString *UpdateOn;
+//@property(nonatomic, copy)NSString *UpdateBy;
+//@property(nonatomic, copy)NSString *Id;
+//@end
 
 @interface DYJXIdentitySwitchingEnterpriseInfoModel : NSObject
 @property(nonatomic, copy)NSString *CompanyShortName;

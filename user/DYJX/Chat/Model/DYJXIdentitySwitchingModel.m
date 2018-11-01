@@ -13,7 +13,7 @@
     return @{@"AdminUserIds" : [NSString class],
              @"MemberIds" : [NSString class],
              @"AllMemberIds" : [NSString class],
-             @"Children" : [DYJXIdentitySwitchingChildrenModel class],
+             @"Children" : [DYJXIdentitySwitchingModel class],
              };
 }
 @end
@@ -34,13 +34,13 @@
 
 @end
 
-@implementation DYJXIdentitySwitchingChildrenModel
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"AdminUserIds" : [NSString class],
-             @"MemberIds" : [NSString class],
-             @"AllMemberIds" : [NSString class],
-             @"Children" : [DYJXIdentitySwitchingChildrenModel class]
-             };
-}
-@end
+//@implementation DYJXIdentitySwitchingChildrenModel
+//+ (NSDictionary *)modelContainerPropertyGenericClass {
+//    return @{@"AdminUserIds" : [NSString class],
+//             @"MemberIds" : [NSString class],
+//             @"AllMemberIds" : [NSString class],
+//             @"Children" : [DYJXIdentitySwitchingChildrenModel class]
+//             };
+//}
+//@end
 

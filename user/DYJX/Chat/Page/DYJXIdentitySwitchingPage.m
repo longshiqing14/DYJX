@@ -13,6 +13,7 @@
 #import "DYJXLoginPage.h"
 #import "DYJXFindPasswordPage.h"
 #import "DYJXIdentitySwitchingHeader.h"
+#import "DYJXLogisticPage.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -35,10 +36,8 @@ static NSString *headerID=@"headerID";
     self.tableView.dataSource = self;
     self.tableView.showsVerticalScrollIndicator = NO;
     
-    
-//    [self.tableView setTableFooterView:[UIView new]];
     [self.tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
-    [self.tableView setBackgroundColor:[UIColor colorWithHexString:@"f4f4f4"]];
+    [self.tableView setBackgroundColor:[UIColor colorWithHexString:@"FFFFFF"]];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self GetUserInfo];
@@ -86,11 +85,11 @@ static NSString *headerID=@"headerID";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return [self.viewModel numberOfCell:section];
+    return [self.viewModel numberOfCell];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return [self.viewModel numberOfSection];
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -111,24 +110,24 @@ static NSString *headerID=@"headerID";
     return tableCell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 60;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    DYJXIdentitySwitchingHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerID];
-    if (header == nil) {
-        header = [[DYJXIdentitySwitchingHeader alloc] initWithReuseIdentifier:headerID];
-    }
-
-    [header.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[self.viewModel sectionHeadericonImageUrl:section]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    header.goodsNameLabel.text = [self.viewModel sectionHeaderGroupName:section];
-    header.sellingPointLable.text = [self.viewModel sectionHeaderGroupNumberString:section];
-    return header;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 60;
+//}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    DYJXIdentitySwitchingHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerID];
+//    if (header == nil) {
+//        header = [[DYJXIdentitySwitchingHeader alloc] initWithReuseIdentifier:headerID];
+//    }
+//
+//    [header.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[self.viewModel sectionHeadericonImageUrl:section]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+//    header.goodsNameLabel.text = [self.viewModel sectionHeaderGroupName:section];
+//    header.sellingPointLable.text = [self.viewModel sectionHeaderGroupNumberString:section];
+//    return header;
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     
 }
@@ -151,7 +150,7 @@ static NSString *headerID=@"headerID";
 {
     //headerView
     //去掉UItableview的section的headerview黏性
-    CGFloat sectionHeaderHeight = 46;
+    CGFloat sectionHeaderHeight = 60;
     if (scrollView.contentOffset.y<=sectionHeaderHeight && scrollView.contentOffset.y>=0) {
         scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
     } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
@@ -176,7 +175,9 @@ static NSString *headerID=@"headerID";
 }
 
 - (void)IdentitySwitchingCommit{
-    
+   
+    DYJXLogisticPage *logisticPage = [[DYJXLogisticPage alloc]initWithNibName:@"DYJXLogisticPage" bundle:nil];
+    [self.navigationController pushViewController:logisticPage animated:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{

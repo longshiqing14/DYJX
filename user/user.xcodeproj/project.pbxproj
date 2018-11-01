@@ -53,6 +53,8 @@
 		4873514421870F8F001B59AB /* DYJXIdentitySwitchingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4873514321870F8F001B59AB /* DYJXIdentitySwitchingCell.m */; };
 		4873515E218945BF001B59AB /* DYJXUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4873515D218945BF001B59AB /* DYJXUserInfoModel.m */; };
 		4873518F2189A73D001B59AB /* DYJXIdentitySwitchingHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4873518E2189A73D001B59AB /* DYJXIdentitySwitchingHeader.m */; };
+		48735198218ADFF5001B59AB /* DYJXLogisticPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48735196218ADFF5001B59AB /* DYJXLogisticPage.m */; };
+		48735199218ADFF5001B59AB /* DYJXLogisticPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48735197218ADFF5001B59AB /* DYJXLogisticPage.xib */; };
 		487B5CA1205FAEE1006921AC /* JXDeliverWayViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 487B5CA0205FAEE1006921AC /* JXDeliverWayViewModel.m */; };
 		487C55A82060FF93006A8071 /* JXVersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 487C55A72060FF93006A8071 /* JXVersionUpdateView.m */; };
 		487C55AA2060FFE1006A8071 /* JXVersionUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487C55A92060FFE1006A8071 /* JXVersionUpdateView.xib */; };
@@ -823,6 +825,9 @@
 		4873515D218945BF001B59AB /* DYJXUserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXUserInfoModel.m; sourceTree = "<group>"; };
 		4873518D2189A73D001B59AB /* DYJXIdentitySwitchingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXIdentitySwitchingHeader.h; sourceTree = "<group>"; };
 		4873518E2189A73D001B59AB /* DYJXIdentitySwitchingHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXIdentitySwitchingHeader.m; sourceTree = "<group>"; };
+		48735195218ADFF5001B59AB /* DYJXLogisticPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXLogisticPage.h; sourceTree = "<group>"; };
+		48735196218ADFF5001B59AB /* DYJXLogisticPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXLogisticPage.m; sourceTree = "<group>"; };
+		48735197218ADFF5001B59AB /* DYJXLogisticPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DYJXLogisticPage.xib; sourceTree = "<group>"; };
 		487B5C9F205FAEE1006921AC /* JXDeliverWayViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXDeliverWayViewModel.h; sourceTree = "<group>"; };
 		487B5CA0205FAEE1006921AC /* JXDeliverWayViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXDeliverWayViewModel.m; sourceTree = "<group>"; };
 		487C55A62060FF93006A8071 /* JXVersionUpdateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXVersionUpdateView.h; sourceTree = "<group>"; };
@@ -2171,6 +2176,7 @@
 		481FE7012182165700CFE26B /* DYJX */ = {
 			isa = PBXGroup;
 			children = (
+				48735190218ADD16001B59AB /* Logistics */,
 				487351322186F1BE001B59AB /* Chat */,
 				481FE7272183123200CFE26B /* User */,
 				481FE7022182167000CFE26B /* Login */,
@@ -2330,6 +2336,48 @@
 				487351402186F626001B59AB /* DYJXIdentitySwitchingModel.m */,
 				4873515C218945BF001B59AB /* DYJXUserInfoModel.h */,
 				4873515D218945BF001B59AB /* DYJXUserInfoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		48735190218ADD16001B59AB /* Logistics */ = {
+			isa = PBXGroup;
+			children = (
+				48735194218ADE75001B59AB /* Model */,
+				48735193218ADE6C001B59AB /* ViewModel */,
+				48735192218ADE63001B59AB /* View */,
+				48735191218ADD9E001B59AB /* Page */,
+			);
+			path = Logistics;
+			sourceTree = "<group>";
+		};
+		48735191218ADD9E001B59AB /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				48735195218ADFF5001B59AB /* DYJXLogisticPage.h */,
+				48735196218ADFF5001B59AB /* DYJXLogisticPage.m */,
+				48735197218ADFF5001B59AB /* DYJXLogisticPage.xib */,
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
+		48735192218ADE63001B59AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		48735193218ADE6C001B59AB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		48735194218ADE75001B59AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5363,6 +5411,7 @@
 				DE71B1192086E1DA00467E06 /* JXMyAfterSaleDetailsView.xib in Resources */,
 				DE94566B1FBEE82500827C08 /* JXRenewalRecordCell.xib in Resources */,
 				DE910FCB2085DD3C00BDDABF /* JXMyGoodsFootView.xib in Resources */,
+				48735199218ADFF5001B59AB /* DYJXLogisticPage.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5986,6 +6035,7 @@
 				CBFF45B21F79459B00D2AF93 /* XYGoodsDetailWebVC.m in Sources */,
 				48EB46482079B45600B0A736 /* JXRefundAddressCell.m in Sources */,
 				CBD98FA21FB056470051C477 /* XYClassificationModel.m in Sources */,
+				48735198218ADFF5001B59AB /* DYJXLogisticPage.m in Sources */,
 				DED655142092C85200FA9D2D /* JXMyAfterSaleDetailNoDataView.m in Sources */,
 				DE4E685A1FFF678F0057FAF3 /* JXShoppingCartViewController.m in Sources */,
 				DE9456721FBF00B900827C08 /* JXMyAccountManagementCell.m in Sources */,
