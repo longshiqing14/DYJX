@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "DYJXIdentitySwitchingModel.h"
 
 @interface DYJXLogisticPage : BaseViewController
-
+@property(nonatomic, strong)DYJXIdentitySwitchingModel *IdentityModel;
 @end

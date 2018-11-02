@@ -190,6 +190,7 @@ static NSString *headerID=@"headerID";
     }
     
     DYJXLogisticPage *logisticPage = [[DYJXLogisticPage alloc]initWithNibName:@"DYJXLogisticPage" bundle:nil];
+    logisticPage.IdentityModel = self.selectedIdentity;
     [self.navigationController pushViewController:logisticPage animated:YES];
 }
 

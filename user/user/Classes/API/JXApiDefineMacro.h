@@ -52,6 +52,8 @@ static NSString * const kDYJXAPI_user_MyEnterprises = @"MyEnterprises";
 //退出登录
 static NSString * const kDYJXAPI_user_Logout = @"Logout";
 
+//我的应用
+static NSString * const kDYJXAPI_user_MyApps = @"MyApps";
 
 
 
