@@ -11,6 +11,7 @@
 #import "DYJXLogisticCollectionViewCell.h"
 #import "DYJXLogisticViewModel.h"
 #import "DYJXBaiDuWebPage.h"
+#import "DYJXConversationTabBarController.h"
 
 @interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -221,6 +222,9 @@
 }
 
 - (IBAction)conversationBTN:(UIButton *)sender {
+//    [self.navigationController pushViewController:[[DYJXConversationTabBarController alloc] init] animated:YES];
+    XYKeyWindow.rootViewController = [[DYJXConversationTabBarController alloc] init];
+    
 }
 
 /*

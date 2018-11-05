@@ -55,7 +55,8 @@ static NSString * const kDYJXAPI_user_Logout = @"Logout";
 //我的应用
 static NSString * const kDYJXAPI_user_MyApps = @"MyApps";
 
-
+//最近会话
+static NSString * const kDYJXAPI_user_Conversations = @"Conversations";
 
 
 

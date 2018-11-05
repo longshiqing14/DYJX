@@ -60,6 +60,11 @@
 		487351A1218C1FCC001B59AB /* DYJXLogisticViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 487351A0218C1FCC001B59AB /* DYJXLogisticViewModel.m */; };
 		487351A4218C3222001B59AB /* DYJXLogisticModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 487351A3218C3222001B59AB /* DYJXLogisticModel.m */; };
 		487351A7218C522D001B59AB /* DYJXBaiDuWebPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 487351A6218C522D001B59AB /* DYJXBaiDuWebPage.m */; };
+		487351AF218D5115001B59AB /* DYJXConversationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 487351AE218D5115001B59AB /* DYJXConversationTabBarController.m */; };
+		487351B3218D598B001B59AB /* DYJXConversionPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 487351B1218D598B001B59AB /* DYJXConversionPage.m */; };
+		487351B4218D598B001B59AB /* DYJXConversionPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487351B2218D598B001B59AB /* DYJXConversionPage.xib */; };
+		487351B7218D5A17001B59AB /* DYJXContacterPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 487351B6218D5A17001B59AB /* DYJXContacterPage.m */; };
+		487351BA218D5A38001B59AB /* DYJXGroupPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 487351B9218D5A38001B59AB /* DYJXGroupPage.m */; };
 		487B5CA1205FAEE1006921AC /* JXDeliverWayViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 487B5CA0205FAEE1006921AC /* JXDeliverWayViewModel.m */; };
 		487C55A82060FF93006A8071 /* JXVersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 487C55A72060FF93006A8071 /* JXVersionUpdateView.m */; };
 		487C55AA2060FFE1006A8071 /* JXVersionUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487C55A92060FFE1006A8071 /* JXVersionUpdateView.xib */; };
@@ -842,6 +847,15 @@
 		487351A3218C3222001B59AB /* DYJXLogisticModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXLogisticModel.m; sourceTree = "<group>"; };
 		487351A5218C522D001B59AB /* DYJXBaiDuWebPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXBaiDuWebPage.h; sourceTree = "<group>"; };
 		487351A6218C522D001B59AB /* DYJXBaiDuWebPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXBaiDuWebPage.m; sourceTree = "<group>"; };
+		487351AD218D5115001B59AB /* DYJXConversationTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXConversationTabBarController.h; sourceTree = "<group>"; };
+		487351AE218D5115001B59AB /* DYJXConversationTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXConversationTabBarController.m; sourceTree = "<group>"; };
+		487351B0218D598B001B59AB /* DYJXConversionPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXConversionPage.h; sourceTree = "<group>"; };
+		487351B1218D598B001B59AB /* DYJXConversionPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXConversionPage.m; sourceTree = "<group>"; };
+		487351B2218D598B001B59AB /* DYJXConversionPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DYJXConversionPage.xib; sourceTree = "<group>"; };
+		487351B5218D5A17001B59AB /* DYJXContacterPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXContacterPage.h; sourceTree = "<group>"; };
+		487351B6218D5A17001B59AB /* DYJXContacterPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXContacterPage.m; sourceTree = "<group>"; };
+		487351B8218D5A38001B59AB /* DYJXGroupPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXGroupPage.h; sourceTree = "<group>"; };
+		487351B9218D5A38001B59AB /* DYJXGroupPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXGroupPage.m; sourceTree = "<group>"; };
 		487B5C9F205FAEE1006921AC /* JXDeliverWayViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXDeliverWayViewModel.h; sourceTree = "<group>"; };
 		487B5CA0205FAEE1006921AC /* JXDeliverWayViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXDeliverWayViewModel.m; sourceTree = "<group>"; };
 		487C55A62060FF93006A8071 /* JXVersionUpdateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXVersionUpdateView.h; sourceTree = "<group>"; };
@@ -2190,6 +2204,7 @@
 		481FE7012182165700CFE26B /* DYJX */ = {
 			isa = PBXGroup;
 			children = (
+				487351A8218D4EB0001B59AB /* Conversations */,
 				48735190218ADD16001B59AB /* Logistics */,
 				487351322186F1BE001B59AB /* Chat */,
 				481FE7272183123200CFE26B /* User */,
@@ -2403,6 +2418,54 @@
 				487351A3218C3222001B59AB /* DYJXLogisticModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		487351A8218D4EB0001B59AB /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				487351AC218D4EFB001B59AB /* Page */,
+				487351AB218D4ED2001B59AB /* ViewModel */,
+				487351AA218D4EC8001B59AB /* Model */,
+				487351A9218D4EBF001B59AB /* View */,
+			);
+			path = Conversations;
+			sourceTree = "<group>";
+		};
+		487351A9218D4EBF001B59AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		487351AA218D4EC8001B59AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		487351AB218D4ED2001B59AB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		487351AC218D4EFB001B59AB /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				487351AD218D5115001B59AB /* DYJXConversationTabBarController.h */,
+				487351AE218D5115001B59AB /* DYJXConversationTabBarController.m */,
+				487351B0218D598B001B59AB /* DYJXConversionPage.h */,
+				487351B1218D598B001B59AB /* DYJXConversionPage.m */,
+				487351B2218D598B001B59AB /* DYJXConversionPage.xib */,
+				487351B5218D5A17001B59AB /* DYJXContacterPage.h */,
+				487351B6218D5A17001B59AB /* DYJXContacterPage.m */,
+				487351B8218D5A38001B59AB /* DYJXGroupPage.h */,
+				487351B9218D5A38001B59AB /* DYJXGroupPage.m */,
+			);
+			path = Page;
 			sourceTree = "<group>";
 		};
 		487C55A52060FF29006A8071 /* UpdateVersion */ = {
@@ -5388,6 +5451,7 @@
 				486BA981207B66A400FB709D /* JXRefundStateCell.xib in Resources */,
 				DE91100B2085DD5600BDDABF /* JXOderAddressView.xib in Resources */,
 				DE9F8CB71FDFA64900D8FE8A /* JXCityListHeatView.xib in Resources */,
+				487351B4218D598B001B59AB /* DYJXConversionPage.xib in Resources */,
 				487C55AA2060FFE1006A8071 /* JXVersionUpdateView.xib in Resources */,
 				48F3F45E2084614B005D5D0C /* JXRefundReasonPopCell.xib in Resources */,
 				DEB72FF01FBDB8DE0069C581 /* JXMyBroadbandAccountHeatView.xib in Resources */,
@@ -5647,6 +5711,7 @@
 				CBE85A131F6112C800E1E4EA /* XYHomeAllNet.m in Sources */,
 				CB4287741F66ABF5004C43C1 /* XYOrderDetailSubClassOrderDetailAddressTVCell.m in Sources */,
 				CBD2BAAD1F5D50170057E2E7 /* XYProgressHUD.m in Sources */,
+				487351BA218D5A38001B59AB /* DYJXGroupPage.m in Sources */,
 				CB5AE5B61F7BA30A004846E2 /* XYOrderCommentListCell.m in Sources */,
 				CBE85ACB1F63999F00E1E4EA /* XYOrderDetailGoodsListTVCell.m in Sources */,
 				CB123C1F1F973C5700CD4429 /* XYMineAboutUsVC.m in Sources */,
@@ -6003,6 +6068,7 @@
 				CBE85A101F60FC4600E1E4EA /* XYUserDefaults.m in Sources */,
 				CBE8598D1F5E81E100E1E4EA /* XYCycleImageModel.m in Sources */,
 				CB3307A41FA1BF8F00117695 /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				487351AF218D5115001B59AB /* DYJXConversationTabBarController.m in Sources */,
 				CB42874F1F6466BF004C43C1 /* XYMineOrderListTVCell.m in Sources */,
 				48D47A541FF48CE400B280DE /* JXPointsRecordVC.m in Sources */,
 				CB123C451F98D10A00CD4429 /* ShoppingCartTool.m in Sources */,
@@ -6062,6 +6128,7 @@
 				48EB46482079B45600B0A736 /* JXRefundAddressCell.m in Sources */,
 				CBD98FA21FB056470051C477 /* XYClassificationModel.m in Sources */,
 				48735198218ADFF5001B59AB /* DYJXLogisticPage.m in Sources */,
+				487351B7218D5A17001B59AB /* DYJXContacterPage.m in Sources */,
 				DED655142092C85200FA9D2D /* JXMyAfterSaleDetailNoDataView.m in Sources */,
 				DE4E685A1FFF678F0057FAF3 /* JXShoppingCartViewController.m in Sources */,
 				DE9456721FBF00B900827C08 /* JXMyAccountManagementCell.m in Sources */,
@@ -6152,6 +6219,7 @@
 				480B97372085D5F800EF09C2 /* JXRefundReasonsModel.m in Sources */,
 				48CC2C351FD927DB00622935 /* FXBlurView.m in Sources */,
 				CBCF83581F7129BD00B20CF9 /* LBXScanViewStyle.m in Sources */,
+				487351B3218D598B001B59AB /* DYJXConversionPage.m in Sources */,
 				DE4FC2A12091B3190069A4B4 /* JXMyAfterSaleDetailLineFootView.m in Sources */,
 				4873518F2189A73D001B59AB /* DYJXIdentitySwitchingHeader.m in Sources */,
 				CBCF83551F7129BD00B20CF9 /* LBXScanVideoZoomView.m in Sources */,
