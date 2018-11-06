@@ -2097,6 +2097,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBF8DDD41FA817760018EC62 /* libstdc++.6.0.9.tbd in Frameworks */,
 				487C55AF2061FE44006A8071 /* StoreKit.framework in Frameworks */,
 				CB42F5FB1FAB0C4200889257 /* CoreMotion.framework in Frameworks */,
 				CB123BED1F8DC89600CD4429 /* Security.framework in Frameworks */,
@@ -2105,7 +2106,6 @@
 				CB123BE91F8DC87300CD4429 /* UserNotifications.framework in Frameworks */,
 				CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */,
 				CB123BE51F8DC85100CD4429 /* UIKit.framework in Frameworks */,
-				CBF8DDD41FA817760018EC62 /* libstdc++.6.0.9.tbd in Frameworks */,
 				489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */,
 				CB123BE31F8DC84800CD4429 /* Foundation.framework in Frameworks */,
 				CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */,

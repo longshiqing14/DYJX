@@ -178,9 +178,9 @@
 
 - (void)initNavigation{
     self.title = @"达意简讯";
-    self.navigationController.navigationBar.titleTextAttributes=
-    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
-      NSFontAttributeName:[UIFont systemFontOfSize:18]};
+//    self.navigationController.navigationBar.titleTextAttributes=
+//    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+//      NSFontAttributeName:[UIFont systemFontOfSize:18]};
     
     [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
 
@@ -188,7 +188,8 @@
     [rightBarButton addTarget:self action:@selector(goBackPage) forControlEvents:UIControlEventTouchUpInside];
     rightBarButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10);
     rightBarButton.frame = CGRectMake(0, 0, 40, 20);
-    [rightBarButton setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] forState:(UIControlStateNormal) placeholder:[UIImage imageNamed:@"btn_group"]];
+//    [rightBarButton setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] forState:(UIControlStateNormal) placeholder:[UIImage imageNamed:@"btn_group"]];
+    [rightBarButton setImage:[UIImage imageNamed:@"btn_group"] forState:(UIControlStateNormal)];
     
     
 //    [rightBarButton setTitle:@"提交" forState:UIControlStateNormal];
@@ -227,6 +228,9 @@
     
 }
 
+- (void)dealloc{
+    
+}
 /*
 #pragma mark - Navigation
 
