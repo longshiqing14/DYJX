@@ -49,12 +49,14 @@
                     <rect key="frame" x="188" y="587" width="187" height="80"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Da6-oB-roB">
-                            <rect key="frame" x="25" y="20.5" width="137" height="40"/>
+                            <rect key="frame" x="25" y="22.5" width="137" height="36"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="NXj-GK-AbA"/>
+                                <constraint firstAttribute="height" constant="36" id="NXj-GK-AbA"/>
                                 <constraint firstAttribute="width" constant="137" id="Tta-jm-CJ4"/>
                             </constraints>
-                            <state key="normal" image="newmoney" backgroundImage="btn_circle_mirror_pre">
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="钱包" backgroundImage="btn_money">
                                 <color key="titleColor" red="0.08235294118" green="0.16078431369999999" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -97,8 +99,7 @@
         </view>
     </objects>
     <resources>
-        <image name="btn_circle_mirror_pre" width="189" height="48"/>
+        <image name="btn_money" width="189" height="48"/>
         <image name="btn_session" width="236" height="69"/>
-        <image name="newmoney" width="72" height="72"/>
     </resources>
 </document>

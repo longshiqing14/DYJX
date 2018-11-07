@@ -28,7 +28,7 @@
     
     self.navigationItem.leftBarButtonItem=item;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
-//    [self.navigationController.navigationBar setTintColor:[UIColor colorWithHexString:@"#F2A73B"]];
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithHexString:@"#F2A73B"]];
 
 }
 

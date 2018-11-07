@@ -7,6 +7,8 @@
 //
 
 #import "DYJXConversionPage.h"
+#import "NaviViewController.h"
+#import "DYJXIdentitySwitchingPage.h"
 
 @interface DYJXConversionPage ()
 
@@ -16,7 +18,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.title = @"最近会话";
+    [self initNavigation];
+    
+}
+
+- (void)initNavigation{
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:18]};
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
+    
+    UIImage *image = [UIImage imageNamed:@"btn_home"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithImage:image style:(UIBarButtonItemStylePlain) target:self action:@selector(black_controller)];
+    
+    self.navigationItem.leftBarButtonItem=item;
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+}
+
+- (void)black_controller{
+    XYKeyWindow.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
 }
 
 - (void)didReceiveMemoryWarning {
