@@ -188,15 +188,14 @@
     [rightBarButton addTarget:self action:@selector(goBackPage) forControlEvents:UIControlEventTouchUpInside];
     rightBarButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10);
     rightBarButton.frame = CGRectMake(0, 0, 40, 20);
+    
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]]]];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 //    [rightBarButton setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] forState:(UIControlStateNormal) placeholder:[UIImage imageNamed:@"btn_group"]];
-    [rightBarButton setImage:[UIImage imageNamed:@"btn_group"] forState:(UIControlStateNormal)];
+    [rightBarButton setImage:image forState:(UIControlStateNormal)];
     
-    
-//    [rightBarButton setTitle:@"提交" forState:UIControlStateNormal];
-//    [rightBarButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBarButton];
     
-//    rightBarButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     
 }
 

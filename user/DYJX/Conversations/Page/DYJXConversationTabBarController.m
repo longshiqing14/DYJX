@@ -28,19 +28,19 @@
     
     [DYJXConversationTabBarController setTabBarItemsTitleColor];
     
-    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]]];
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"15293B"]]];
 
     // 添加子控制器
-    [self setupChildVC:[[DYJXConversionPage alloc]init] title:@"最近会话" image:@"tabbar_home_n" selectedImage:@"tabbar_home_s"];
+    [self setupChildVC:[[DYJXConversionPage alloc]init] title:@"最近会话" image:@"huihua" selectedImage:@"huihua-select"];
     //原生
-    [self setupChildVC:[[DYJXContacterPage alloc] init] title:@"联系人" image:@"tabbar_cata_n" selectedImage:@"tabbar_cata_s"];
+    [self setupChildVC:[[DYJXContacterPage alloc] init] title:@"联系人" image:@"lianxiren" selectedImage:@"lianxiren-select"];
     
     
     
     
     //    [self setupChildVC:[[JXActivityPage alloc] init] title:@"活动" image:@"tabbar_activity_n" selectedImage:@"tabbar_activity_s"];
     
-    [self setupChildVC:[[DYJXGroupPage alloc] init] title:@"群组" image:@"tabbar_buy_n" selectedImage:@"tabbar_buy_s"];
+    [self setupChildVC:[[DYJXGroupPage alloc] init] title:@"群组" image:@"qunzu" selectedImage:@"qunzu-select"];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateItemsBadge:) name:XY_notification_ItemsBadge object:nil];
@@ -54,12 +54,12 @@
     // 未点击下的 文字颜色 大小
     NSMutableDictionary * attrs = [NSMutableDictionary dictionary];
     attrs[NSFontAttributeName]  = XYFont_10;
-    attrs[NSForegroundColorAttributeName] = XYSelectGlobalBg;
+    attrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
     
     // 点击下的 文字颜色 大小
     NSMutableDictionary * selectedAttrs = [NSMutableDictionary dictionary];
     selectedAttrs[NSFontAttributeName] = attrs[NSFontAttributeName];
-    selectedAttrs[NSForegroundColorAttributeName] = XYNoSelectGlobalBg;
+    selectedAttrs[NSForegroundColorAttributeName] = [UIColor colorWithHexString:@"#F2A73B"];
     
     // 修改 UITabBarItem 的文字
     UITabBarItem *item = [UITabBarItem appearance];
