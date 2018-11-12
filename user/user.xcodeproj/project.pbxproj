@@ -6642,8 +6642,6 @@
 					"$(PROJECT_DIR)/user/Classes/Other/libs/UMSocial_v6.4.5_SDK/UMSocialSDK",
 					"$(PROJECT_DIR)/user/Classes/Other/libs/UMSocial_v6.4.5_SDK/UMSocialUI",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/user/Classes/Other/libs/AMap_Loc_Lib_V2.5.0",
-					"$(PROJECT_DIR)/user/Classes/Other/libs/AMap_Foundation_NO_IDFA_Lib_V1.4.1",
 					"$(PROJECT_DIR)/user/Classes/Other/libs/AliSDK_v2.0",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -6714,8 +6712,6 @@
 					"$(PROJECT_DIR)/user/Classes/Other/libs/UMSocial_v6.4.5_SDK/UMSocialSDK",
 					"$(PROJECT_DIR)/user/Classes/Other/libs/UMSocial_v6.4.5_SDK/UMSocialUI",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/user/Classes/Other/libs/AMap_Loc_Lib_V2.5.0",
-					"$(PROJECT_DIR)/user/Classes/Other/libs/AMap_Foundation_NO_IDFA_Lib_V1.4.1",
 					"$(PROJECT_DIR)/user/Classes/Other/libs/AliSDK_v2.0",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
