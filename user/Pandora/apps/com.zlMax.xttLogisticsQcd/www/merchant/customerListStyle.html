@@ -1,0 +1,223 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>商户列表样式</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">商户列表样式</h1>
+		</header>
+		<div class="mui-content">
+			<!--数据列表-->
+			<ul id="list" class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right btn-edit">
+						<p class="customer-title mui-ellipsis">
+							测试商户
+							<span class="customer-fullName">
+                        这是测试商户的全称
+                        </span>
+						</p>
+						<p class="customer-contact mui-ellipsis">黎先生 13633322228 0755-23232268</p>
+						<p class="customer-address mui-ellipsis">（广州-广州汽配城）测试商户的地址档口110</p>
+					</a>
+					<a class="mui-btn mui-btn-red btn-delete">
+                删除
+            </a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right btn-edit">
+						<p class="customer-title mui-ellipsis">
+							新泰通物流公司
+							<span class="customer-fullName">
+                       [ 深广一班 ] 
+                        </span>
+						</p>
+						<p class="customer-contact mui-ellipsis">黎先生 13633322228 0755-23232268</p>
+						<p class="customer-address mui-ellipsis"><span class="mui-icon mui-icon-location"></span>广东省深圳市福田区</p>
+						<p class="customer-address mui-ellipsis">八封岭营业点 【08：35】出发</p>
+						<p class="customer-address mui-ellipsis"><span class="mui-icon mui-icon-paperplane"></span>广东省广州市天元区 </p>
+						<p class="customer-address mui-ellipsis">八封岭营业点 【次日 23：35】到达</p>
+					</a>
+					<a class="mui-btn mui-btn-red btn-delete">
+                删除
+            </a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="btn-edit btn-lineInstance-edit">
+						<p class="lineInstance-title mui-ellipsis">广深白班<span class="lineInstance-date">2016-05-06</span>
+						</p>
+						<p class="lineInstance-outlets mui-ellipsis">
+							<span class="mui-icon mui-icon-location"></span>广州-深圳
+						</p>
+						<span class="mui-icon mui-icon-flag line-flag"></span>
+						<p class="lineInstance-log">
+							<span>11:50</span> 八卦岭货物到达，龙岗货物到达。
+						</p>
+						<ul class="lineInstance-logs mui-hidden">
+							<li>
+								<span>11:35</span> 八卦岭货物到达，龙岗货物运输中
+							</li>
+							<li>
+								<span>11:20</span> 到达沙井，开往深圳途中...
+							</li>
+							<li>
+								<span>10:15</span> 广州发出，开往深圳...
+							</li>
+						</ul>
+					</a>
+					<a class="mui-btn mui-btn-warning btn-logs">
+                物流详情
+            </a>
+					<a class="mui-btn mui-btn-primary btn-add-log">
+                添加日志
+            </a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="mui-content-padded">
+			<button id="addOne" type="button" class="mui-btn mui-btn-block">
+        添加一个
+    </button>
+		</div>
+
+		<div class="xtt-prompt-bk mui-hidden"></div>
+		<div class="xtt-prompt mui-hidden">
+			<div class="xtt-prompt-wrapper">
+				<div class="title">
+					请编辑日志并保存
+				</div>
+				<div class="content">
+					<textarea id="promptText" rows="5"></textarea>
+				</div>
+				<div class="action">
+					<button class="mui-btn mui-btn-danger btn-prompt-cancel">取消</button>
+					<button class="mui-btn mui-btn-primary btn-prompt-save">保存</button>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+			});
+			var customer = {
+				"Id": "326b0f7c-3057-4723-a3dd-e314b756b15c",
+				"MemberId": "1db35e76-0e3c-4b96-b3ee-52f94b0872f2",
+				"AreaId": 2,
+				"CarCityId": "5e042576-72f3-4af0-bc26-962545337ede",
+				"ShortName": "景虹",
+				"FullName": null,
+				"ShortNameFullPY": "JingHong",
+				"ShortNameFirstPY": "JH",
+				"FullNameFullPY": "",
+				"FullNameFirstPY": "",
+				"Cellphone": null,
+				"Tel": null,
+				"Address": null,
+				"LinkMan": null,
+				"CreatedBy": "a",
+				"CreatedOn": "2016-03-22 10:23:01",
+				"UpdatedBy": null,
+				"UpdatedOn": null,
+				"CarCityName": "广州汽配城",
+				"Color": null
+			};
+			/**
+			 * 构建列表项
+			 * @param item 汽配城数据对象
+			 * @returns {*|jQuery} 列表项
+			 */
+			function createLi(item) {
+				var li = $('<li>')
+					.addClass('mui-table-view-cell').attr('id', 'li_' + item.Id);
+				var a = $('<a>').addClass('mui-navigate-right btn-edit')
+					.append(
+						$('<p>').addClass('customer-title mui-ellipsis')
+						.append(item.ShortName)
+						.append((item.FullName ?
+							($('<span>').addClass('customer-fullName')
+								.append(' ' + item.FullName)) : ''))
+					)
+					.attr('id', item.Id);
+				if (item.LinkMan || item.Cellphone || item.Tel)
+					a.append(
+						$('<p>').addClass('customer-contact mui-ellipsis')
+						.append((item.LinkMan ? (' ' + item.LinkMan) : ''))
+						.append((item.Cellphone ? (' ' + item.Cellphone) : ''))
+						.append((item.Tel ? (' ' + item.Tel) : ''))
+					);
+				a.append(
+					$('<p>').addClass('customer-address mui-ellipsis').append('（')
+					.append(AreaText[item.AreaId])
+					.append('-')
+					.append((item.CarCityName ? (item.CarCityName) : ''))
+					.append('）')
+					.append((item.Address ? (item.Address) : ''))
+				);
+				//				li.append(
+				//					$('<div>').addClass('mui-slider-right mui-disabled')
+				//					.append(
+				//						$('<a>').addClass('mui-btn mui-btn-red btn-delete')
+				//						.append('删除')
+				//					)
+				//				);
+				//				li.append(
+				//					$('<div>').addClass('mui-slider-handle')
+				//					.append(a)
+				//				);
+				li.append(a).append(
+					$('<a>').addClass('mui-btn mui-btn-red btn-delete')
+					.addClass(showMore ? '' : 'mui-hidden')
+					.append('删除')
+				);
+				return li;
+			}
+			document.getElementById('addOne').addEventListener('tap', function() {
+				var li = createLi(customer);
+				$('#list').append(li);
+			});
+			//主列表点击事件
+			mui('#list').on('tap', '.btn-edit', function() {
+				//alert('edit');
+			});
+			mui('#list').on('tap', '.lineInstance-log', function() {});
+			mui('#list').on('tap', '.btn-logs', function() {
+				var logs = $('.lineInstance-logs', $(this).parent());
+				logs.toggleClass('mui-hidden');
+			});
+			mui('#list').on('tap', '.btn-add-log', function() {
+				$('.xtt-prompt').removeClass('mui-hidden');
+				$('.xtt-prompt-bk').removeClass('mui-hidden');
+				var lastLog = $('.lineInstance-log', $(this).parent()).clone();
+				$('span', lastLog).remove();
+				var ptxt = $('#promptText');
+				ptxt.val(lastLog.text().trim());
+				ptxt.focus();
+				//ptxt.select();
+			});
+			mui('body').on('tap', '.xtt-prompt-bk, .btn-prompt-cancel', function() {
+				$('.xtt-prompt').addClass('mui-hidden');
+				$('.xtt-prompt-bk').addClass('mui-hidden');
+			});
+		</script>
+	</body>
+
+</html>

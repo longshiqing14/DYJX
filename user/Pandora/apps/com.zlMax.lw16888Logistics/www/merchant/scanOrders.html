@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>货运单扫描收款</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+		<style>
+			.bottom-action-bar-ex {}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a class="mui-icon mui-icon-search mui-pull-right" id="aScan"></a>
+			<h1 id="title" class="mui-title">货运单扫描收款</h1>
+		</header>
+		<div class="mui-content">
+			<ul id="list" class="mui-table-view" style="position: absolute;
+top: 30px;
+width: 100%;
+bottom: 250px;
+overflow: auto;">
+
+			</ul>
+			<div id='divSave' class="bottom-action-bar bottom-action-bar-ex">
+				<div class="mui-input-row">
+					<a class="">
+						<label>
+							手工录入
+						</label>
+						<input type="text" placeholder="请输入货运单号..." id="manOrderNumber" name="manOrderNumber">
+						<a id="btnManAdd" class="mui-btn mui-btn-success float-btn btn-clear">新增</a>
+					</a>
+				</div>
+				<div class="mui-button-row" style="margin-top: -1px;">
+					<button id="btnClear" type="button" style="width:24%;height:35px;" class="mui-btn mui-btn-danger">
+						清空所有
+					</button>
+
+					<button id="btnScanAdd" type="button" style="width:40%;height:35px;" class="mui-btn mui-btn-primary">
+						扫描新增条码 +
+					</button>
+					<button id="btnScanSub" type="button" style="width:32%;height:35px;" class="mui-btn mui-btn-warning">
+						扫描删除 -
+					</button>
+				</div>
+				<div class="multi-input-row">
+					<div class="col-6">
+						<div class="mui-input-row">
+							<a>
+								<label style="padding-right: 2px;">运费</label>
+								<input type="text" readonly id="amount" name="amount" value="0.00">
+							</a>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="mui-input-row">
+							<a>
+								<label style="padding-right: 2px;">实付</label>
+								<input type="text" id="realAmount" name="realAmount" value="0.00">
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="multi-input-row">
+					<div class="col-6">
+						<div class="mui-input-row">
+							<a>
+								<label style="padding-right: 2px;">件数</label>
+								<input type="text" readonly id="quantity" name="quantity" value="0">
+							</a>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="mui-input-row">
+							<a class="mui-btn mui-btn-warning" id="btnQuantity" style="width:100px;float: left;">
+								5元/件 计费
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="multi-input-row">
+					<div class="col-6">
+						<div class="mui-input-row">
+							<a>
+								<label style="padding-right: 2px;">代收</label>
+								<input type="text" readonly id="memberFee" name="memberFee" value="0.00">
+							</a>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="mui-input-row">
+							<a>
+								<label style="padding-right: 2px;">实付</label>
+								<input type="text" readonly id="realMemberFee" name="realMemberFee" value="0.00">
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="multi-input-row">
+					<div class="col-12">
+						<div class="mui-input-row">
+							<a>
+								<label style="padding-right: 2px;">说明</label>
+								<input type="text" placeholder="请输入收款说明" id="desc" name="description">
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="mui-button-row" style="margin-top: -1px;">
+					<button style="width: 24%; height: 40px;" id="btnClose" type="button" class="mui-btn mui-btn-danger">
+						关闭
+					</button>
+					<button style="width: 40%; height: 40px;" id="btnGoFee" type="button" class="mui-btn mui-btn-primary">
+						运费收款
+					</button>
+					<button style="width: 32%; height: 40px;" id="btnGoMemberFee" type="button" class="mui-btn mui-btn-warning">
+						代收款收款
+					</button>
+
+				</div>
+
+			</div>
+		</div>
+		<div id="bk" class="xtt-prompt-bk mui-hidden"></div>
+		<div id="pmtFee" class="xtt-prompt mui-hidden" style="top: 8%;">
+			<div class="xtt-prompt-wrapper">
+				<div class="title">
+					收取运费
+				</div>
+				<div class="qr">
+					<img class='WXImage' src="" /></div>
+				<div class="description">
+					请扫面二维码支付费用或者收取现金，确定费用支付后请点击确定按钮更新数据。
+				</div>
+				<div id="logFee" class="log-text pay-log">
+					<!--准备就绪-->
+				</div>
+				<div class="action">
+					<button id="btnClosePmtFee" class="mui-btn mui-btn-danger btn-prompt-cancel" style="width: 20%;">关闭</button>
+					<button id='btnFeeOK0' class="mui-btn mui-btn-primary btn-prompt-save btn-fee0 mui-hidden" style="width: 38%;">现金收讫</button>
+					<button id='btnFeeOK1' class="mui-btn mui-btn-primary btn-prompt-save btn-fee1 mui-hidden" style="width: 38%;">微信转账OK</button>
+				</div>
+			</div>
+		</div>
+		<div id="pmtMemberPayFee" class="xtt-prompt mui-hidden" style="top: 8%;">
+			<div class="xtt-prompt-wrapper">
+				<div class="title">
+					收取代收款
+				</div>
+				<div class="qr">
+					<img class='WXImage' src=""  /></div>
+				<div class="description">
+					请扫面二维码支付费用或者收取现金，确定费用支付后请点击确定按钮更新数据。
+				</div>
+				<div id="logMemberPayFee" class="log-text pay-log">
+					<!--准备就绪-->
+				</div>
+				<div class="action">
+					<button id="btnClosePmtMemberPayFee" class="mui-btn mui-btn-danger btn-prompt-cancel" style="width: 20%;">关闭</button>
+					<button id='btnMemberPayFeeOK0' class="mui-btn mui-btn-primary btn-prompt-save btn-fee0 mui-hidden" style="width: 38%;">现金收讫</button>
+					<button id='btnMemberPayFeeOK1' class="mui-btn mui-btn-primary btn-prompt-save btn-fee1 mui-hidden" style="width: 38%;">微信转账OK</button>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+
+			//变量
+			var numbers = []; //扫描的条形码
+			var table = $('#list');
+			var flashFlag = false; //更新标志
+			var flashAction = '+'; //更新操作，+或者-
+			var btnArray = ['确认', '取消'];
+			var sumGoodsQuantity = 0;
+			var scanQuantity = 0;
+			var orders = [];
+			var bill_no;
+			var closeReflash= false;//刷新开关
+			var sumFee = 0;
+			var sumMemberPayFee = 0;
+
+			var paying = false; //是否在保存，如果是的话不能关闭对话框。
+			var feeType = 0; //0：运费；1：代收款
+			var inType = 0; //0：现金；1：微信账号转账收款；
+
+			//Dom元素
+			var bkEl = $('#bk');
+			var feePmt = $('#pmtFee');
+			var imgNode = $('.WXImage');
+			var memberPayFeePmt = $('#pmtMemberPayFee');
+			var realFeeEl = $('#realAmount');
+			var quantityEl= $('#quantity');
+			var realMemberFeeEl = $('#realMemberFee');
+			var descEl = $('#desc');
+			var manOrderNumber = $('#manOrderNumber');
+			var logEl = $('.pay-log');
+			var feeTitleEl = $('.title', feePmt);
+			var mfeeTittleEl = $('.title', memberPayFeePmt);
+
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+				mui.later(function() {
+
+					mui.preload({
+						id: 'merchant-selectOutlet',
+						url: 'selectOutlet.html'
+					});
+
+					/*	mui.preload({
+							id: 'scan',
+							url: 'scan.html'
+						});*/
+				}, 200);
+
+			});
+
+			//document.addEventListener('add', add); //点击添加，进入扫描
+
+			//扫描完成事件
+			document.addEventListener('scanDone', scanDone);
+
+			function scanDone(e) {
+				//处理numbers
+				var narr = (e.detail + '').split(',');
+				for(var i = 0; i < narr.length; i++) {
+					var n = narr[i];
+					var idx = numbers.indexOf(n);
+					if(idx > -1) {
+						if(flashAction == '+') {
+
+						} else {
+							numbers.splice(idx, 1);
+						}
+					} else {
+						if(flashAction == '+') {
+							numbers.push(n);
+						} else {
+
+						}
+					}
+				}
+				//numbers = e.detail;
+				//查询订单数据
+				if(numbers.length != 0) {
+					var param = xtt.getDefaultParam();
+					param['OrderNumbers'] = numbers;
+					mui.ajax(xtt.serverRoot + 'GetCompanyLogisticsOrdersByNumbers', {
+						type: 'post',
+						data: JSON.stringify(param),
+						timeout: 30000,
+						contentType: 'application/json',
+						beforeSend: function() {
+							//loadingMsg('正在恢复会话信息...');
+						},
+						success: function(res) {
+							if(res) {
+								if(res.Succeed) {
+									//alert(res.Timestamp);
+									var str = '获取扫描货运单列表成功';
+									mui.toast(str);
+									$('#list').empty();
+									orders = res.ListOrder;
+									updateList(orders);
+									state();
+								} else {
+									mui.toast('获取扫描货运单失败！' + res.Message ? res.Message : '');
+								}
+							} else {
+								mui.toast('获取扫描货运单失败，请稍后再试！');
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast('请求错误！' + errorThrown);
+						}
+					});
+
+				}
+			}
+			//保存
+			//			document.getElementById('btnSave').addEventListener('tap', save);
+			//            function save() {
+			//                if(numbers == null || numbers.length == 0) {
+			//                    mui.toast('请扫描要提交的物流条形码！');
+			//                    return;
+			//                }
+			//                if($('#StartOutletId').val() == '' || $('#StartOutletId').attr('data-') == '') {
+			//                    mui.toast('请选择地点！');
+			//                    return;
+			//                }
+			//
+			//                if(sumGoodsQuantity != scanQuantity){
+			//                    mui.confirm('扫描的件数与货运单件数不符，确定要提交吗？', '提交确认', btnArray, function(e) {
+			//                        if(e.index == 0) {
+			//							doSave();
+			//                        }
+			//                    });
+			//				} else {
+			//                    doSave();
+			//				}
+			//            }
+			//            function doSave() {
+			//                var des = {};
+			//                des['CarNo'] = $('#CarNo').val();
+			//                des['LogisticsOutletId'] = $('#StartOutletId').attr('data-');
+			//                des['LogisticsOutletName'] = $('#StartOutletId').val();
+			//                des['IndexStatus'] = $('#IndexStatus').val();
+			//
+			//                //提交数据
+			//                var param = xtt.getDefaultParam();
+			//                param['OrderNumbers'] = numbers;
+			//                param['Description'] = des;
+			//
+			//                mui.ajax(xtt.serverRoot + 'SetLogisticsDescriptionByNumbers', {
+			//                    type: 'post',
+			//                    data: JSON.stringify(param),
+			//                    timeout: 30000,
+			//                    contentType: 'application/json',
+			//                    beforeSend: function() {
+			//                        //loadingMsg('正在恢复会话信息...');
+			//                    },
+			//                    success: function(res) {
+			//                        if(res) {
+			//                            if(res.Succeed) {
+			//                                mui.toast('提交成功，所扫描的货运单物流状态已变更！');
+			//                                table.empty();
+			//                                numbers = [];
+			//                                $('#quantity').val(0);
+			//                                $('scanQuantity').val(0);
+			//
+			//                                var list = plus.webview.getWebviewById('list-orderlogs.html');
+			//                                if(list)
+			//                                    mui.fire(list, 'saved', {
+			//                                        LogisticsOrderLog: res.LogisticsOrderLog,
+			//                                        isUpdated: false
+			//                                    });
+			//
+			//                                mui.openWindow({
+			//                                    url: "index.html",
+			//                                    id: "merchant",
+			//                                    show: {
+			//                                        aniShow: 'pop-in',
+			//                                        duration: 300
+			//                                    }
+			//                                });
+			//
+			//                            } else {
+			//                                mui.toast('提交扫描货运单失败！' + res.Message ? res.Message : '');
+			//                            }
+			//                        } else {
+			//                            mui.toast('提交扫描货运单失败，请稍后再试！');
+			//                        }
+			//                    },
+			//                    error: function(xhr, type, errorThrown) {
+			//                        mui.toast('请求错误！' + errorThrown);
+			//                    }
+			//                });
+			//            }
+
+			//扫描
+			document.getElementById('aScan').addEventListener('tap', scanAdd);
+			document.getElementById('btnScanAdd').addEventListener('tap', scanAdd);
+			document.getElementById('btnScanSub').addEventListener('tap', scanSub);
+			document.getElementById('btnClear').addEventListener('tap', clearItem);
+			document.getElementById('btnQuantity').addEventListener('tap', setRealPayFee);
+			
+			//设置按件计算实收款
+			function setRealPayFee(){
+				realFeeEl.val(quantityEl.val()*5);
+			}
+
+			function scanAdd() {
+				scan('+');
+			}
+
+			function scanSub() {
+				scan('-');
+			}
+
+			function scan(act) {
+				param = xtt.getDefaultParam();
+				timestamp = new Date().getTime();
+				if(plus.os.name == "Android") {
+					plus.runtime.launchApplication({
+						pname: "com.zlmax.scan",
+						action: "android.intent.action.SEND",
+						type: "text/plain",
+						extra: {
+							CLIENT_ID: param.ClientId,
+							TIMESPAN: timestamp + '',
+							SERVER: xtt.serverRoot + 'AddScan'
+						}
+					}, function(e) {
+						alert("调用失败！ " + e.message);
+					});
+					//alert('abc');
+				} else if(plus.os.name == "iOS") {
+					/*plus.runtime.launchApplication( {action:"http://www.html5plus.org"}, function ( e ) {
+					 alert( "Open system default browser failed: " + e.message );
+					 } );*/
+					//mui.alert('IOS系统暂时不支持打印！');
+				}
+				flashFlag = true;
+				flashAction = act;
+			}
+
+			function clearItem() {
+				mui.confirm('确认全部清除吗？', '新泰通', btnArray, function(e) {
+					if(e.index == 0) {
+						table.empty();
+						numbers = [];
+						orders = [];
+						state();
+					}
+				});
+			}
+
+			//手工添加
+			document.getElementById('btnManAdd').addEventListener('tap', function() {
+				if(manOrderNumber.val() == '') {
+					mui.alert('请输入货运单号！');
+					return;
+				}
+
+				var n = manOrderNumber.val()
+
+				var param = xtt.getDefaultParam();
+				param['OrderNumbers'] = [n];
+				mui.ajax(xtt.serverRoot + 'GetCompanyLogisticsOrdersByNumbers', {
+					type: 'post',
+					data: JSON.stringify(param),
+					timeout: 30000,
+					contentType: 'application/json',
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								//alert(res.Timestamp);
+								if(res.ListOrder.length > 0) {
+									var str = '手工货运单列表成功';
+									mui.toast(str);
+									orders.push(res.ListOrder[0]);
+									numbers.push(n);
+									updateList(res.ListOrder);
+									state();
+
+								} else {
+									mui.toast('手工添加货运单失败！订单号错误。');
+								}
+
+							} else {
+								mui.toast('获取扫描货运单失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('获取扫描货运单失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			});
+
+			//收款对话框
+			function closePmt() {
+				if(paying)
+					return;
+				closeReflash=true;
+				bkEl.addClass('mui-hidden');
+				feePmt.addClass('mui-hidden');
+				memberPayFeePmt.addClass('mui-hidden');
+			}
+
+			function showFeePmt() {
+
+				if(!/^\d+(\.\d*)?$/.test(realFeeEl.val())) {
+					mui.alert('实付运费请输入数字');
+					return;
+				}
+				var realAmout = parseFloat(realFeeEl.val());
+				feeType = 0;
+
+				//数据校验
+				if(sumFee <= 0) {
+					mui.alert('没有需要收取运费的订单！');
+					return;
+				}
+
+				if(realAmout <= 0) {
+					mui.alert('没有实收的款项！');
+					return;
+				}
+
+				if(sumFee != realAmout && descEl.val() == '') {
+					mui.alert('运费与实收款不符，请前些收款说明！');
+					return;
+				}
+				logText('');
+				feeTitleEl.html('运费收款 金额：' + realAmout);
+
+				//调用获取微信支持图片接口
+				var ids = [];
+				$.each(orders, function(index, item) {
+					if(!item.IsPaidFee) {
+						ids.push(item.Id);
+					}
+				});
+
+				var param = xtt.getDefaultParam();
+				param['OrderFeeIds'] = ids;
+				param['Data'] = realAmout
+				mui.ajax(xtt.serverRoot + 'PayWXByScan2', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								imgNode.attr("src", 'data:image/png;base64,' + res.Result);
+								//支付订单号：
+								bill_no = res.Bill_no;
+								bkEl.removeClass('mui-hidden');
+								feePmt.removeClass('mui-hidden');
+								closeReflash=false;
+								ReflashPayStatus(); //开始刷新
+							} else {
+								mui.toast('生成扫码失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('生成扫码失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			}
+
+			/*	bkEl.removeClass('mui-hidden');
+				feePmt.removeClass('mui-hidden');*/
+			
+
+			function showMemberPayFeePmt() {
+				feeType = 1;
+				//数据校验
+				if(sumMemberPayFee <= 0) {
+					mui.alert('没有需要收取代收款的订单！');
+					return;
+				}
+				logText('');
+				mfeeTittleEl.html('代收款收款 金额：' + sumMemberPayFee);
+				/*bkEl.removeClass('mui-hidden');
+				memberPayFeePmt.removeClass('mui-hidden');*/
+				
+					//调用获取微信支持图片接口
+				var ids = [];
+				$.each(orders, function(index, item) {
+					if(feeType == 1 && !item.IsPaidMemberPayFee && item.MemberPayFee > 0) {
+						ids.push(item.Id);
+					}
+				});
+
+				var param = xtt.getDefaultParam();
+				param['OrderMemberPayFeeIds'] = ids;
+				param['Data'] = sumMemberPayFee
+				mui.ajax(xtt.serverRoot + 'PayWXByScan2', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								imgNode.attr("src", 'data:image/png;base64,' + res.Result);
+								//支付订单号：
+								bill_no = res.Bill_no;
+								bkEl.removeClass('mui-hidden');
+								memberPayFeePmt.removeClass('mui-hidden');
+								closeReflash=false;
+								ReflashPayStatus(); //开始刷新
+							} else {
+								mui.toast('生成扫码失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('生成扫码失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			
+				
+			}
+			document.getElementById('btnClosePmtFee').addEventListener('tap', closePmt);
+			document.getElementById('btnClosePmtMemberPayFee').addEventListener('tap', closePmt);
+			document.getElementById('bk').addEventListener('tap', closePmt);
+			document.getElementById('btnGoMemberFee').addEventListener('tap', showMemberPayFeePmt);
+			document.getElementById('btnGoFee').addEventListener('tap', showFeePmt);
+
+			//保存收款信息
+			function logText(s) {
+				logEl.html(s);
+			}
+
+			function save0() {
+				inType = 0;
+				saveIncome();
+			}
+
+			function save1() {
+				inType = 1;
+				saveIncome();
+			}
+
+			function saveIncome() {
+				//收款确定
+				mui.confirm('请确定收到了相关的款项！', '收款确认', btnArray, function(e) {
+					if(e.index == 0) {
+						closeReflash=true;
+						doSave();
+					}
+				});
+			}
+
+			function doSave() {
+
+				//数据整理
+				var ids = [];
+				var ns = [];
+				$.each(orders, function(index, item) {
+					if(feeType == 0 && !item.IsPaidFee) {
+						ids.push(item.Id);
+						ns.push(item.OrderNumber);
+					}
+					if(feeType == 1 && !item.IsPaidMemberPayFee && item.MemberPayFee > 0) {
+						ids.push(item.Id);
+						ns.push(item.OrderNumber);
+					}
+				});
+
+				var data = {
+					InType: inType,
+					FeeType: feeType,
+					TotalAmount: feeType == 0 ? sumFee : sumMemberPayFee,
+					RealAmount: feeType == 0 ? realFeeEl.val() : sumMemberPayFee,
+					Description: descEl.val(),
+					InAccount: feeType == 0 ? '运费微信转账账号' : '代收款微信转账账号',
+					OrderIds: ids.join(','),
+					OrderNumbers: ns.join(',')
+				};
+
+				//提交数据
+				var param = xtt.getDefaultParam();
+				param['Data'] = data;
+
+				mui.ajax(xtt.serverRoot + 'AddIncome', {
+					type: 'post',
+					data: JSON.stringify(param),
+					timeout: 30000,
+					contentType: 'application/json',
+					beforeSend: function() {
+						logText('正在保存收款信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								mui.toast('提交成功，所扫描的货运单收款状态已变更！');
+								logText('提交成功，所扫描的货运单收款状态已变更！');
+								//更新订单状态
+								$.each(orders, function(index, item) {
+									if(feeType == 0 && !item.IsPaidFee) {
+										item.IsPaidFee = true;
+									}
+									if(feeType == 1 && !item.IsPaidMemberPayFee && item.MemberPayFee > 0) {
+										item.IsPaidMemberPayFee = true;
+									}
+								});
+								$('#list').empty();
+								updateList(orders);
+								state();
+								closePmt();
+
+								//更新列表
+								var list = plus.webview.getWebviewById('list-incomes.html');
+								if(list)
+									mui.fire(list, 'saved', {
+										income: res.Result,
+										isUpdated: false
+									});
+
+							} else {
+								mui.toast('提交扫描货运单失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('提交扫描货运单失败，请稍后再试！');
+							logText('提交扫描货运单失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						logText('请求错误！' + errorThrown);
+					}
+				});
+			}
+
+			mui('.xtt-prompt-wrapper').on('tap', '.btn-fee0', save0);
+			mui('.xtt-prompt-wrapper').on('tap', '.btn-fee1', save1);
+
+			document.getElementById('btnClose').addEventListener('tap', function() {
+				mui.back();
+			});
+
+			//显示状态
+			function stat(orderstat) {
+				//				if(orderstat) {
+				//				    sumGoodsQuantity = orderstat.SumGoodsQuantity;
+				//					$('#quantity').val(sumGoodsQuantity);
+				//				}
+			}
+
+			function state() {
+				sumFee = 0;
+				sumMemberPayFee = 0;
+				quantity=0;
+				$.each(orders, function(index, item) {
+				
+					if(!item.IsPaidFee){
+						sumFee += item.TotalAccount;
+							quantity += item.ServicesGoodsTotalQuantity;
+						}
+
+					if(!item.IsPaidMemberPayFee && item.MemberPayFee > 0)
+						sumMemberPayFee += item.MemberPayFee;
+				});
+
+				$('#amount').val(sumFee);
+				$('#realAmount').val(sumFee);
+				$('#memberFee').val(sumMemberPayFee);
+				$('#realMemberFee').val(sumMemberPayFee);
+				$('#quantity').val(quantity);
+			}
+
+			//更新列表
+			function updateList(os) {
+				var tmp = $('<div>');
+				scanQuantity = 0;
+				$.each(os, function(index, item) {
+					var old = document.getElementById('li_' + item.Id);
+					if(old)
+						$(old).remove();
+					var li = createLi(item);
+					tmp.append(li);
+					if(item.Children) {
+						scanQuantity += item.Children.length;
+					}
+				});
+				table.append(tmp.children());
+				//$('#scanQuantity').html(scanQuantity);
+			}
+			//构建列表
+			function createLi(item) {
+				if(item.Status == 0) { //初始状态的数量，以客户为准
+					item.ServicesGoodsTotalQuantity = item.GoodsTotalQuantity;
+				}
+				if(item.OrderType == 0) {
+					item.SendCarCityName = (item.SendFullName == null || item.SendFullName == '') ? '暂未填写公司名称' : item.SendFullName;
+					item.ReceiveCarCityName = (item.ReceiveFullName == null | item.ReceiveFullName == '') ? '暂未填写公司名称' : item.ReceiveFullName;
+				} else {
+					if(!item.SendCarCityName) {
+						item.SendCarCityName = item.SendFullName;
+					}
+					if(!item.ReceiveCarCityName) {
+						item.ReceiveCarCityName = item.ReceiveFullName;
+					}
+				}
+				var li = $('<li>')
+					.addClass('mui-table-view-cell').attr('id', 'li_' + item.Id);
+				var a = $('<a>').addClass('mui-navigate-right btn-edit btn-order-edit')
+					.append(
+						$('<div style="background-color:' + ((item.ReceiveCarCityColor == null || item.ReceiveCarCityColor.length == 0) ? '#bababa' : item.ReceiveCarCityColor) + '">').addClass('order-quantity').append(item.ServicesGoodsTotalQuantity).append(
+							$('<span>').addClass('unit').append('件')
+						).append($('<div>').addClass('order-other').append('<span style="color:' + (item.Status == 0 ? 'red' : '') + '">[' + item.InstanceOnText + ']</span>' + (item.OrderType == 0 ? '普' : '代')))
+						.append($('<div>').addClass('order-other').append(item.LineName))
+						.append($('<div>').addClass('order-other').append((item.Status > 0 && item.OrderType == 0) ? item.PickName : item.CreatedBy))
+					)
+					.append(
+						$('<div>').addClass('order-detail')
+						.append(
+							$('<p>').addClass('order-from mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-location'))
+							.append(item.SendShortName + ' ' + item.SendCarCityName)
+						).append(
+							$('<p>').addClass('order-to mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-paperplane'))
+							.append(item.ReceiveShortName + ' ' + item.ReceiveCarCityName)
+						).append(
+							$('<p>').addClass('order-fee mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-info-filled'))
+							.append(item.FeeInfo)
+						)
+					).attr('id', item.Id);
+				li.append(a).append(
+					$('<a>').addClass('mui-btn mui-btn-red btn-delete btn-order-delete')
+					//.addClass(showMore ? '' : 'mui-hidden')
+					.append('删除')
+					.css('padding', '10px 10px')
+				);
+
+				//收费状态
+				if(item.IsPaidFee || item.IsPaidMemberPayFee)
+					li.css('background-color', '#ff0');
+
+				if(item.IsPaidFee && (item.MemberPayFee == null || (item.IsPaidMemberPayFee && item.MemberPayFee > 0)))
+					li.css('background-color', '#666');
+
+				$('.order-detail', a).append(
+					$('<p>').addClass('order-fee mui-ellipsis')
+					.append($('<span>').addClass('mui-icon mui-icon-close'))
+					.append('单号：' + item.OrderNumber)
+				);
+
+				//判断是否全部扫描
+				//				if(item.GoodsTotalQuantity > item.Children.length)
+				//				{
+				//				    li.css('background-color', '#ff0');
+				//				    var ns = [];
+				//				    for(var j=1; j<=item.GoodsTotalQuantity; j++){
+				//				        ns.push((Array(2).join('0') + j).slice(-2));
+				//					}
+				//					var cs = [];
+				//                    $.each(item.Children, function(index, child) {
+				//                        cs.push(child.ChildOrderNumber.substring(child.ChildOrderNumber.indexOf('-') + 1));
+				//					});
+				//                    for(var i = 0; i < cs.length; i++){
+				//                        var idx = ns.indexOf(cs[i]);
+				//                        if(idx > -1)
+				//                            ns.splice(idx, 1);
+				//					}
+				//					$('.order-detail', a).append(
+				//                        $('<p>').addClass('order-fee mui-ellipsis')
+				//							.append($('<span>').addClass('mui-icon mui-icon-close'))
+				//                            .append('未扫：' + item.OrderNumber + '-' + ns.join(' '))
+				//					);
+				//				}
+				return li;
+			}
+
+			//删除
+			mui('#list').on('tap', '.btn-delete', function(e) {
+				var elem = this;
+				var li = elem.parentNode;
+				var id = $('.btn-edit', $(li)).attr('id');
+				var idx = $(li).index();
+				numbers.splice(idx, 1);
+				orders.splice(idx, 1);
+				state();
+				li.parentNode.removeChild(li);
+			});
+
+			mui('.mui-input-row').on('tap', '.mui-radio', function() {
+				var name = $(this).find('input').attr('name');
+				var val = $(this).find('input').val();
+				$('#IndexStatus').val(val);
+			});
+
+			//扫描后事件处理，获取数据
+			document.addEventListener("resume", function(e) {
+				//取出数据并调用doscan
+				if(flashFlag) {
+					flashFlag = false;
+
+					var orderscan = {};
+					orderscan["Timespan"] = timestamp;
+					param['OrderScan'] = orderscan;
+
+					mui.ajax(xtt.serverRoot + 'GetScan', {
+						type: 'post',
+						data: JSON.stringify(param),
+						contentType: 'application/json',
+						timeout: 10000,
+						success: function(res) {
+							if(res) {
+								if(res.Succeed) {
+									//打开扫描结果
+									var doscan = plus.webview.getWebviewById('scanOrders');
+									mui.fire(doscan, 'scanDone', res.OrderScan.OrderNumbers);
+									/*mui.later(function() {
+										mui.openWindow({
+											url: "doscan.html",
+											id: "doscan",
+											show: {
+												aniShow: 'pop-in',
+												duration: 300
+											}
+										});
+
+									}, 100);
+*/
+								} else {
+									mui.toast('获取扫描失败！' + res.Message ? res.Message : '');
+								}
+							} else {
+								mui.toast('保存错误，请稍后再试！');
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast('请求错误！' + errorThrown);
+						}
+					});
+					//mui.toast('程序在前台运行')
+				}
+			}, false);
+
+			//更新支付状态，每隔2秒检查一次是否支付完成
+			function ReflashPayStatus() {
+				if(closeReflash){
+					return;					
+				}
+				var param = xtt.getDefaultParam();
+				param['BillNo'] = bill_no;
+				console.log('ReflashPayStatus');
+				if(bill_no != '') {
+					mui.ajax(xtt.serverRoot + 'CheckPayStatus', {
+						type: 'post',
+						data: JSON.stringify(param),
+						contentType: 'application/json',
+						timeout: 10000,
+						success: function(res) {
+							if(res) {
+								if(res.Succeed) {
+									inType=1;
+									doSave();
+									closeReflash=true;
+								} else {
+									//再次刷新
+									setTimeout(ReflashPayStatus, 2000);
+								}
+							} else {
+								//mui.toast('生成扫码失败，请稍后再试！');
+								setTimeout(ReflashPayStatus, 2000);
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							//mui.toast('请求错误！' + errorThrown);
+							setTimeout(ReflashPayStatus, 2000);
+						}
+					});
+				}
+			}
+		</script>
+	</body>
+
+</html>

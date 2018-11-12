@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>商户新增/修改</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">汽配城商户新增/修改</h1>
+		</header>
+		<div class="mui-content">
+			<!--<ul class="mui-table-view" style="margin-top: 0;">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="aCarCity">
+            		    选择汽配城
+          			</a>
+				</li>
+			</ul>-->
+			<form id="editForm" class="mui-input-group" style="margin-top: -1px;">
+				<input type="hidden" id="AreaId" name="AreaId">
+				<input type="hidden" id="Id" name="Id" value="">
+				<div class="mui-input-row">
+					<a class="mui-navigate-right">
+						<label>
+							选择汽配城
+						</label>
+						<input type="text" readonly placeholder="请选择汽配城..." id="CarCityId" name="CarCityId">
+					</a>
+				</div>
+				<div class="mui-input-row">
+					<a class="mui-navigate-right">
+						<label>
+							绑定用户
+						</label>
+						<input type="text" readonly placeholder="请绑定用户..." id="BindMemberId" name="BindMemberId">
+					</a>
+				</div>
+				<div class="mui-input-row">
+					<label>简称</label>
+					<input type="text" placeholder="档口简称" id="ShortName" name="ShortName">
+				</div>
+				<div class="mui-input-row">
+					<label>全称</label>
+					<input type="text" placeholder="档口全称" id="FullName" name="FullName">
+				</div>
+				<div class="mui-input-row">
+					<label>手机号</label>
+					<input type="text" placeholder="档口手机号" id="Cellphone" name="Cellphone">
+				</div>
+				<div class="mui-input-row">
+					<label>座机号</label>
+					<input type="text" placeholder="档口座机号" id="Tel" name="Tel">
+				</div>
+				<div class="mui-input-row">
+					<label>联系人</label>
+					<input type="text" placeholder="档口联系人" id="LinkMan" name="LinkMan">
+				</div>
+				<div class="mui-input-row">
+					<a class="mui-navigate-right">
+						<label>GPS位置</label>
+						<input type="text" readonly placeholder="选取定位..." style="" value="" id="GPSAddress" name="GPSAddress">
+					</a>
+					<!--<a id="btnGetPoint" class="mui-btn mui-btn-blue" style="float:right; margin-top: 1px; margin-right: 5px; width:80px;">-->
+						<!--获取定位-->
+					<!--</a>-->
+				</div>
+				<div class="mui-input-row" style="height: 100px;">
+					<label>地址</label>
+					<textarea rows="3" placeholder="档口地址" name="Address" id="Address"></textarea>
+				</div>
+
+			</form>
+			<div class="mui-button-row mui-content-padded">
+				<button id="btnSave" type="button" class="mui-btn mui-btn-primary mui-btn-block">
+					保存
+				</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+			});
+
+			var title = $('#title'); //标题
+			var AreaId = $('#AreaId'); //区域
+			var CarCityId = $('#CarCityId'); //汽配城
+			var BindMemberId = $('#BindMemberId'); //绑定用户
+			var ShortName = $('#ShortName'); //简称
+			var FullName = $('#FullName'); //全称
+			var Cellphone = $('#Cellphone'); //手机号
+			var Tel = $('#Tel'); //座机
+			var LinkMan = $('#LinkMan'); //联系人
+			var Address = $('#Address'); //地址
+			var Id = $('#Id'); //Id
+			var gpsAddressEl = $('#GPSAddress');
+			var from = '';
+			var backId = '';
+			var geoLng = null;
+			var geoLat = null;
+			/**
+			 * 初始化数据，清空
+			 */
+			function defautValue() {
+				title.val('');
+				//AreaId.val('');
+				//CarCityId.val('');
+				ShortName.val('');
+				BindMemberId.val('');
+				BindMemberId.attr('data-', '');
+				FullName.val('');
+				Cellphone.val('');
+				Tel.val('');
+				LinkMan.val('');
+				Address.val('');
+				Id.val('');
+				gpsAddressEl.val('');
+				geoLng = null;
+				geoLat = null;
+			}
+			/**
+			 * 设置Id
+			 * @param e 事件调用参数
+			 */
+			function setId(e) {
+				var id = e.detail.id;
+				from = e.detail.from;
+				backId = e.detail.backId;
+				title.html(id ? '汽配城商户修改' : '汽配城商户新增')
+				defautValue();
+				if(id) {
+					var param = xtt.getDefaultParam();
+					param['Id'] = id;
+					mui.ajax(xtt.serverRoot + 'GetCustomer', {
+						type: 'post',
+						data: param,
+						timeout: 10000,
+						beforeSend: function() {
+							//loadingMsg('正在恢复会话信息...');
+						},
+						success: function(res) {
+							if(res) {
+								if(res.Succeed) {
+									var Customer = res.Customer;
+									if(Customer) {
+										Id.val(Customer.Id);
+										AreaId.val(Customer.AreaId);
+										if(Customer.PCDName) {
+											CarCityId.val('[' + Customer.PCDName.substr(Customer.PCDName.indexOf('省') + 1, 3) + '] ' + Customer.CarCityName);
+										} else {
+											CarCityId.val(Customer.CarCityName);
+										}
+										CarCityId.attr('data-', Customer.CarCityId);
+										ShortName.val(Customer.ShortName);
+										FullName.val(Customer.FullName);
+										Cellphone.val(Customer.Cellphone);
+										Tel.val(Customer.Tel);
+										LinkMan.val(Customer.LinkMan);
+										Address.val(Customer.Address);
+										if(Customer.BindMember) {
+											BindMemberId.val(Customer.BindMember.Cellphone + '[' + Customer.BindMember.MemberNOString + ']');
+											BindMemberId.attr('data-', Customer.BindMember.MemberID);
+										}
+										gpsAddressEl.val(Customer.GeoAddress);
+										geoLng = Customer.GeoLng;
+										geoLat = Customer.GeoLat;
+										//mui.toast('获取汽配城资料成功！');
+									}
+								} else {
+									mui.toast('获取汽配城资料失败！' + res.Message ? res.Message : '');
+									mui.back();
+								}
+							} else {
+								mui.toast('获取汽配城资料错误，请稍后再试！');
+								mui.back();
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast('请求错误！' + errorThrown);
+							mui.back();
+						}
+					});
+				}
+			}
+			//侦听setId
+			document.addEventListener('setId', setId);
+			/**
+			 * 保存
+			 */
+			function save() {
+				//校验数据
+				var CityId = CarCityId.attr('data-');
+				if(CityId == null || CityId == '') {
+					mui.toast('请选择汽配城！');
+					return;
+				}
+				var bindMId = BindMemberId.attr('data-');
+				var shortName = ShortName.val().trim();
+				var fullName = FullName.val().trim();
+				if((shortName == null || shortName == '') && (!fullName == null || fullName == '')) {
+					mui.toast('档口简称或者全称不能同时为空！');
+					return;
+				}
+				var id = Id.val().trim();
+				var action = (id && id != '') ? 'UpdateCustomer' : 'AddCustomer';
+				/*		console.log(id);
+						console.log(action);*/
+				var arr = $('#editForm').serializeArray();
+				var customer = {};
+				$.each(arr, function(index, item) {
+					customer[item.name] = item.value;
+				});
+				customer['CarCityId'] = CityId;
+				customer['BindMemberId'] = bindMId;
+				customer['GeoAddress'] = gpsAddressEl.val();
+				customer['GeoLng'] = geoLng;
+				customer['GeoLat'] = geoLat;
+				var param = xtt.getDefaultParam();
+				param['Customer'] = customer;
+				mui.ajax(xtt.serverRoot + action, {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function(xhr, settings) {
+						//loadingMsg('正在恢复会话信息...');
+						//xhr.setRequestHeader('Content-Type', 'application/json');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								Id.val(res.Customer.Id);
+								if(from == '' || from == undefined) {
+									var list = plus.webview.getWebviewById('list-customers.html');
+									if(list)
+										mui.fire(list, 'saved', {
+											customer: res.Customer,
+											isUpdated: action == 'UpdateCustomer'
+										});
+									mui.toast('保存成功！');
+									mui.openWindow({
+										url: "index.html",
+										id: "merchant",
+										show: {
+											aniShow: 'pop-in',
+											duration: 300
+										}
+									});
+								} else {
+									if(backId) {
+										mui.fire(plus.webview.getWebviewById(backId), 'customerSelected', {
+											customer: res.Customer,
+											from: from
+										});
+										mui.openWindow({
+											url: "order.html",
+											id: backId,
+											show: {
+												aniShow: 'pop-in',
+												duration: 300
+											}
+										});
+									}
+								}
+							} else {
+								mui.toast('保存失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('保存错误，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			}
+			//保存按钮事件
+			document.getElementById('btnSave').addEventListener('tap', save);
+
+			//获取定位
+			//document.getElementById('btnGetPoint').addEventListener('tap', getpoint);
+
+			function getpoint() {
+				plus.geolocation.getCurrentPosition(geoInf, function(e) {
+					console.log( "获取定位位置信息失败："+e.message );
+				}, {
+					geocode: true
+				});
+			}
+
+			function geoInf(position) {
+				var str = "";
+				str += "地址：" + position.addresses + "\n"; //获取地址信息
+				$('#GPSAddress').val(position.addresses);
+				str += "坐标类型：" + position.coordsType + "\n";
+				var timeflag = position.timestamp; //获取到地理位置信息的时间戳；一个毫秒数；
+				str += "时间戳：" + timeflag + "\n";
+				var codns = position.coords; //获取地理坐标信息；
+				var lat = codns.latitude; //获取到当前位置的纬度；
+				str += "纬度：" + lat + "\n";
+				var longt = codns.longitude; //获取到当前位置的经度
+				str += "经度：" + longt + "\n";
+				var alt = codns.altitude; //获取到当前位置的海拔信息；
+				str += "海拔：" + alt + "\n";
+				var accu = codns.accuracy; //地理坐标信息精确度信息；
+				str += "精确度：" + accu + "\n";
+				var altAcc = codns.altitudeAccuracy; //获取海拔信息的精确度；
+				str += "海拔精确度：" + altAcc + "\n";
+				var head = codns.heading; //获取设备的移动方向；
+				str += "移动方向：" + head + "\n";
+				var sped = codns.speed; //获取设备的移动速度；
+				str += "移动速度：" + sped;
+				console.log(JSON.stringify(position));
+
+			}
+
+			//选择事件
+			document.getElementById('CarCityId').addEventListener('tap', function() {
+				mui.fire(
+					plus.webview.getWebviewById('merchant-selectCarCity'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id
+					}
+				);
+				mui.openWindow({
+					url: "selectCarCity.html",
+					id: "merchant-selectCarCity",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+			document.getElementById('BindMemberId').addEventListener('tap', function() {
+				mui.fire(
+					plus.webview.getWebviewById('merchant-selectBindMember'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id
+					}
+				);
+				mui.openWindow({
+					url: "selectBindMember.html",
+					id: "merchant-selectBindMember",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+			document.getElementById('GPSAddress').addEventListener('tap', function(e) {
+
+				var point = null;
+				if(geoLng && geoLat)
+					point = {
+						longitude: geoLng,
+						latitude: geoLat
+					};
+				mui.fire(
+					plus.webview.getWebviewById('baiduMap'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id,
+						backEvent: 'geoSet',
+						point: point,
+					}
+				);
+				mui.openWindow({
+					url: "baiduMap.html",
+					id: "baiduMap",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+
+			var AreaText = ["", "深圳", "广州", "中山"];
+			//选择后回调
+			document.addEventListener("carCitySelected", function(e) {
+				var carCity = e.detail;
+				//$('#aCarCity').html('汽配城 ' + carCity.CarCityName + '[' + (carCity.AreaId == 1 ? '深圳' : '广州') + ']');
+				AreaId.val(carCity.AreaId);
+				CarCityId.val('[' + carCity.PCDName.substr(carCity.PCDName.indexOf('省') + 1, 3) + '] ' + carCity.CarCityName);
+				CarCityId.attr('data-', carCity.Id);
+				//alert(carCity.Id);
+			});
+			document.addEventListener("memberSelected", function(e) {
+				var member = e.detail;
+				BindMemberId.val(member.Cellphone + '[' + member.MemberNOString + ']');
+				BindMemberId.attr('data-', member.MemberID);
+			});
+			document.addEventListener("geoSet", function(e) {
+				var data = e.detail;
+				gpsAddressEl.val(data.address);
+				geoLng = data.point.longitude;
+				geoLat = data.point.latitude;
+				console.log('选择地图位置：' + JSON.stringify(data));
+			});
+		</script>
+	</body>
+
+</html>

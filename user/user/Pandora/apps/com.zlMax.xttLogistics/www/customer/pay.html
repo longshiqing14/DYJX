@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>支付</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/customer.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="xtt-pay">
+			<!--<div id="title" class="title">-->
+			<!--移动支付-->
+			<!--</div>-->
+			<div class="content">
+				<!--数据列表-->
+				<ul id="list" class="mui-table-view">
+				</ul>
+			</div>
+			<div class="sum">
+				<span class="pre-amount">合计金额：￥</span><span id="RealAccount" style="color: red;" class="real-amount"></span>
+			</div>
+			<div class="pay-type">
+
+			</div>
+			<div class="action">
+				<button id="btnCancel" class="mui-btn mui-btn-danger">全部移除</button>
+				<button id='btnOK' class="mui-btn mui-btn-primary btn-prompt-weixin">
+            <span class="mui-icon mui-icon-weixin"></span>
+            微信支付
+       </button>
+
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			var self;
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+				self = plus.webview.currentWebview();
+				Reflash();
+			});
+			//初始化数据
+
+			var openerId, backEvent;
+			var title = $('#title');
+			var orderType = '';
+			var table = $('.mui-table-view');
+			var RealAccount = $('#RealAccount');
+			var ids = '';
+
+			function init(e) {
+				var data = e.detail;
+				if(data) {
+					openerId = data.openerId;
+					backEvent = data.backEvent;
+					orderType = data.orderType;
+					if(data.title)
+						title.html(data.title);
+					//处理传入的订单Id列表
+					ids = e.detail.ids;
+					Reflash();
+				}
+			}
+
+			function Reflash() {
+
+				var param = xtt.getDefaultParam();
+				//alert(ids);
+				var Ids = ids.substr(0, ids.length - 1).split(',');
+				/*alert(ids);
+				alert(JSON.stringify(RealAccount));*/
+				param['OrderIds'] = Ids;
+				mui.ajax(xtt.serverRoot + 'SeachPayOrder', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+						table.empty();
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								table.empty();
+								var fee = 0;
+								$.each(res.ListOrder, function(index, item) {
+									//alert('1');
+									table.append(createLi(item));
+									if(!item.IsPaidFee) {
+										fee += item.PromotionAccount;
+									}
+									if(item.MemberPayFee != null && item.MemberPayFee != 0) {
+										fee += item.MemberPayFee;
+									}
+								});
+								RealAccount.html(fee.toFixed(2));
+
+								mui('.mui-checkbox').on('change', 'input', function() {
+									var name = $(this).attr('name');
+									if(name == 'chkFee') {
+										if(this.checked) {
+											RealAccount.html((Number(RealAccount.html()) + Number($(this).val())).toFixed(2));
+										} else {
+											RealAccount.html((Number(RealAccount.html()) - Number($(this).val())).toFixed(2));
+										}
+									} else if(name == 'chkMemberPayFee') {
+										if(this.checked) {
+											RealAccount.html((Number(RealAccount.html()) + Number($(this).val())).toFixed(2));
+										} else {
+											RealAccount.html((Number(RealAccount.html()) - Number($(this).val())).toFixed(2));
+										}
+									}
+								});
+
+							} else {
+								mui.toast('查找付款运单列表失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('查找付款运单列表失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			}
+
+			//promptText.focus();
+			document.addEventListener('init', init);
+
+			var IndexForm = null;
+			document.addEventListener('SetIds', function(e) {
+				var Id = e.detail.Id;
+				if(ids.indexOf(Id + ',') > -1) {
+					mui.toast('此订单已经添加到支付列表！');
+				} else {
+					ids = ids + Id + ',';
+				}
+
+				Reflash();
+				//alert('1');
+				if(IndexForm == null) {
+					IndexForm = plus.webview.getWebviewById('customerIndex');
+				}
+				mui.fire(IndexForm, 'SetPayNum', {
+					Num: ids.split(',').length - 1
+				});
+			});
+
+			//关闭
+			/*	mui('body').on('tap', '.xtt-prompt-bk, .btn-prompt-cancel', function() {
+					mui.back();
+				});*/
+
+			/**
+			 * 构建列表项
+			 * @param item 货运单数据对象
+			 * @returns {*|jQuery} 列表项
+			 */
+			function createLi(item) {
+				if(item.Status == 0) { //初始状态的数量，以客户为准
+					item.ServicesGoodsTotalQuantity = item.GoodsTotalQuantity;
+				}
+				if(item.OrderType == 0) {
+					item.SendCarCityName = item.StartPCDName;
+					item.ReceiveCarCityName = item.EndPCDName;
+				}
+				var li = $('<li>')
+					.addClass('mui-table-view-cell').attr('id', 'li_' + item.Id);
+				var a = $('<a>').addClass('mui-navigate-right btn-edit btn-order-edit')
+					.append(
+						$('<div>').addClass('order-quantity').append(item.ServicesGoodsTotalQuantity).append(
+							$('<span>').addClass('unit').append('件')
+						).append($('<div>').addClass('order-other').append('[' + item.InstanceOnText + ']' + (item.OrderType == 0 ? '普' : '代')))
+						.append($('<div>').addClass('order-other').append(item.LineName))
+					)
+					.attr('id', item.Id);
+				var detail = $('<div>').addClass('order-detail');
+
+				/*if(orderType == '#receive') {*/
+				detail.append(
+						$('<p>').addClass('order-from mui-ellipsis')
+						.append($('<span>').addClass('mui-icon mui-icon-location'))
+						.append((item.SendFullName == null ? item.SendShortName : item.SendFullName) + ' ' + item.SendCarCityName)
+					)
+					/*}*/
+					/*	if(orderType == '#send') {*/
+				detail.append(
+						$('<p>').addClass('order-to mui-ellipsis')
+						.append($('<span>').addClass('mui-icon mui-icon-paperplane'))
+						.append((item.ReceiveFullName == null ? item.ReceiveShortName : item.ReceiveFullName) + ' ' + item.ReceiveCarCityName)
+					)
+					/*}*/
+
+				//运费
+				var divFee = $('<div style="clear: none;">').addClass('mui-input-row mui-checkbox')
+					.append(
+						$('<label class="order-fee" style="padding: 6px 48px 6px 6px;">').append(
+							'运费：' + item.PromotionAccount + '[原价' + item.TotalAccount + ']'
+						)
+					);
+				if(item.IsPaidFee) {
+					divFee.append(
+						$('<input style="float:right;">').attr('value', '已付款').attr('readonly', 'readonly')
+					);
+				} else {
+					divFee.append(
+						$('<input>').attr('type', 'checkbox')
+						.attr('data-', item.Id).attr('name', 'chkFee')
+						.attr('checked', 'checked').attr('value', item.PromotionAccount))
+				}
+
+				detail.append(
+					divFee
+				).append(
+					$('<p>').addClass('lineInstance-log lineInstance-order-log')
+					.append(item.PromotionDescription)
+				);
+
+				//代收款
+				var divMemberPayFee = '';
+				var MemberPay = 0;
+				if(item.MemberPayFee != null && item.MemberPayFee != 0) {
+					divMemberPayFee = $('<div style="clear: none;">').addClass('mui-input-row mui-checkbox')
+						.append(
+							$('<label class="order-fee" style="padding: 6px 48px 6px 6px;">').append(
+								'代收：' + item.MemberPayFee
+							)
+						);
+					if(item.IsPaidMemberPayFee) {
+						divMemberPayFee.append(
+							$('<input>').attr('value', '已付款').attr('readonly', 'readonly')
+						);
+					} else {
+						divMemberPayFee.append(
+							$('<input>').attr('type', 'checkbox').attr('data-', item.Id)
+							.attr('name', 'chkMemberPayFee').attr('checked', 'checked').attr('value', item.MemberPayFee)
+						)
+						MemberPay = item.MemberPayFee;
+					}
+				}
+				detail.append(
+					divMemberPayFee
+				)
+				a.append(detail);
+				li.append(a).append(
+					$('<a>').addClass('mui-btn mui-btn-warning btn-pay btn-order-delete')
+					.attr('data-', item.Id)
+					.attr('data-OrderNum', item.OrderNumber)
+					.attr('data-TotalFee', item.PromotionAccount + MemberPay)
+					.append('移除')
+				);
+				return li;
+			}
+
+			mui('#list').on('tap', '.btn-order-delete', function() {
+				var Id = $(this).attr('data-');
+				var OrderNum = $(this).attr('data-OrderNum');
+				var totalFee = $(this).attr('data-TotalFee');
+				var li = this.parentNode;
+				li.parentNode.removeChild(li);
+				var total = (Number(RealAccount.html()).toFixed(2) - Number(totalFee).toFixed(2)).toFixed(2);
+				RealAccount.html(total);
+				ids = ids.replace(Id + ',', '');
+
+				if(IndexForm == null) {
+					IndexForm = plus.webview.getWebviewById('customerIndex');
+				}
+				mui.fire(IndexForm, 'SetPayNum', {
+					Num: ids.split(',').length - 1
+				});
+
+			});
+
+			//保存
+			mui('body').on('tap', '.btn-prompt-weixin', function() {
+				//发起服务器支付请求
+				var param = xtt.getDefaultParam();
+
+				var countFee = 0;
+				var countMemberPayFee = 0;
+				var checkTotal = 0;
+				var FeeIds = '';
+				var MemberPayFeeIds = '';
+				mui('.mui-checkbox input[type=checkbox]').each(function() {
+					var name = $(this).attr('name');
+					if(name == 'chkFee') {
+						if(this.checked) {
+							checkTotal += Number($(this).val());
+							countFee++;
+							FeeIds += $(this).attr('data-') + ',';
+						}
+					} else if(name == 'chkMemberPayFee') {
+						if(this.checked) {
+							checkTotal += Number($(this).val());
+							countMemberPayFee++;
+							MemberPayFeeIds += $(this).attr('data-') + ',';
+						}
+					}
+				});
+				if(countFee + countMemberPayFee == 0) {
+					mui.toast('请选择要收款的货运订单！');
+					return;
+				}
+				var total = Number(RealAccount.html()).toFixed(2)
+				if(checkTotal != total) {
+					mui.toast('选择的货运订单总价与计算的不一致！');
+					return;
+				}
+				param['OrderIds'] = FeeIds.substr(0, FeeIds.length - 1).split(','); //要收的运费集合
+				param['MemberPayOrderIds'] = MemberPayFeeIds.substr(0, MemberPayFeeIds.length - 1).split(','); //要收的代收款集合
+
+				//alert(Number(RealAccount.html()));
+				param['PayAccount'] = checkTotal;
+				//alert(JSON.stringify(param));
+				$('.btn-prompt-weixin').attr('disabled', 'disabled');
+				mui.ajax(xtt.serverRoot + 'PayOrderRequest', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								//发起支付流程
+								PayOrder(res.Bill_no, res.Total_fee, res.App_id, res.App_Title, res.Channel);
+							} else {
+								mui.toast('支付失败！' + res.Message ? res.Message : '');
+								//刷新页面
+								Reflash();
+							}
+							$('.btn-prompt-weixin').attr('disabled', null);
+						} else {
+							mui.toast('支付失败，请稍后再试！');
+							Reflash();
+							$('.btn-prompt-weixin').attr('disabled', null);
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						Reflash();
+						$('.btn-prompt-weixin').attr('disabled', null);
+					}
+				});
+			});
+
+			//保存按钮事件
+			var btnArray = ['确认', '取消'];
+			document.getElementById('btnCancel').addEventListener('tap', function() {
+				if(ids == '' || ids == null) {
+					return;
+				}
+				mui.confirm('您确认要全部移除吗？', '新泰通', btnArray, function(e) {
+					if(e.index == 0) {
+						table.empty();
+						RealAccount.html('');
+						//删除操作
+						ids = '';
+						if(IndexForm == null) {
+							IndexForm = plus.webview.getWebviewById('customerIndex');
+						}
+						mui.fire(IndexForm, 'SetPayNum', {
+							Num: ids.split(',').length - 1
+						});
+
+					} else {}
+				});
+			});
+
+			function PayOrder(Bill_no, Total_fee, App_id, App_Title, Channel) {
+				//发起支付流程
+				var TotalFee = Number(Total_fee);
+				//alert(TotalFee);
+				/*
+				 * 构建支付参数
+				 * 
+				 * app_id: BeeCloud控制台上创建的APP的appid，必填 
+				 * title: 订单标题，32个字节，最长支持16个汉字；必填
+				 * total_fee: 支付金额，以分为单位，大于0的整数，必填
+				 * bill_no: 订单号，8~32位数字和/或字母组合,确保在商户系统中唯一，必填
+				 * optional: 扩展参数,可以传入任意数量的key/value对来补充对业务逻辑的需求;此参数会在webhook回调中返回; 选填
+				 * bill_timeout: 订单失效时间,必须为非零正整数，单位为秒，必须大于360。选填 
+				 */
+				var payData = {
+					app_id: App_id,
+					channel: Channel,
+					title: App_Title,
+					total_fee: TotalFee,
+					bill_no: Bill_no,
+					optional: {
+						'bill_no': Bill_no,
+						'ids': ids.substr(0, ids.length - 1).split(','), //回调订单Id
+					},
+					bill_timeout: 360,
+					return_url: xtt.serverRoot + 'PayOrderBack' //wap支付成功后的回跳地址
+				};
+				/*
+				 *  发起支付
+				 *  payData: 支付参数
+				 *  cbsuccess: 支付成功回调
+				 *  cberror: 支付失败回调
+				 */
+				beecloud.payReq(payData, function(result) {
+					/*	var result = "-------- 支付成功 --------" + "\n感谢您的支持,我们会继续努力完善产品";*/
+					//console.log(result);
+					mui.later(function() {
+						var param = xtt.getDefaultParam();
+						param['Id'] = ids;
+						mui.ajax(xtt.serverRoot + 'GetOrder', {
+							type: 'post',
+							data: param,
+							timeout: 10000,
+							beforeSend: function() {
+								//loadingMsg('正在恢复会话信息...');
+							},
+							success: function(res) {
+								if(res) {
+									if(res.Succeed) {
+										mui.toast('支付完成！');
+										var main = plus.webview.getWebviewById(openerId);
+										mui.fire(main, 'saved', {
+											//返回对象
+											logisticsOrder: res.LogisticsOrder,
+											isUpdated: true
+										});
+										mui.back();
+									} else {
+										mui.toast('支付失败！' + res.Message ? res.Message : '');
+									}
+								} else {
+									mui.toast('支付失败，请稍后再试！');
+									mui.back();
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								mui.toast('请求错误！' + errorThrown);
+								mui.back();
+							}
+						});
+					}, 2000);
+
+				}, function(e) {
+					var result = "-------- 支付失败 --------\n" + "错误码：" + e.code + '\n' + e.message;
+					console.log(result);
+				});
+			}
+		</script>
+
+		<script src="../js/beecloud.js">
+		</script>
+	</body>
+
+</html>

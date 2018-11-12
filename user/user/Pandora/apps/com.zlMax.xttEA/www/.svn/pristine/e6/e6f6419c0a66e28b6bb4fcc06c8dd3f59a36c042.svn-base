@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>选择车牌</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">选择车牌</h1>
+		</header>
+		<div class="mui-content" style="margin-top: 0;">
+			<div class="mui-input-row mui-search" style="padding: 2px;">
+				<input id="searchInput" type="search" class="mui-input-clear" placeholder="输入关键字查询...">
+			</div>
+			<ul id="list" class="mui-table-view list-fixed-top96" style="margin-top: -15px;">
+
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			var searching = false;
+			var table = $('#list');
+			var cacheData = {};
+			var backId = null;
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+				$('#searchInput').val('');
+				search('');
+			});
+
+			function search(keyword) {
+				//获取数据
+				var param = xtt.getDefaultParam();
+				param = mui.extend(param, {
+					Keyword: keyword,
+					PageIndex: 1,
+					PageSize: 30
+				});
+				mui.ajax(xtt.serverRoot + 'XttLogistics/SearchCarNo', {
+					type: 'post',
+					data: param,
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if (res) {
+							if (res.Succeed) {
+								table.html('');
+								table.scrollTop(0);
+								$.each(res.LogisticsCarNos, function(index, item) {
+									cacheData[item.AutoId] = item;
+									table.append(createLi(item));
+								});
+							} else {
+								mui.toast('获取车牌失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('获取车牌失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			}
+			document.getElementById('searchInput').addEventListener('input', function(e) {
+				//mui.alert($('#searchInput').val());
+				var keyword = $('#searchInput').val().trim();
+				//if(keyword.length < 2)
+				//   return;
+				search(keyword);
+			});
+			document.addEventListener('setBack', function(e) {
+				backId = e.detail.backId;
+				search('');
+			});
+			//列表点击事件
+			mui('#list').on('tap', '.btn-edit', function() {
+				var id = this.id;
+				if (backId) {
+					mui.fire(plus.webview.getWebviewById(backId), 'carNoSelected', cacheData[id]);
+					mui.later(function() {
+						mui.back();
+					}, 100);
+				}
+			});
+			/**
+			 * 构建列表项
+			 * @param item 汽配城数据对象
+			 * @returns {*|jQuery} 列表项
+			 */
+			function createLi(item) {
+				var li = $('<li>')
+					.addClass('mui-table-view-cell').attr('id', 'li_' + item.LineId);
+				var a = $('<a>').addClass('mui-navigate-right btn-edit')
+					.append(
+						$('<p>').addClass('customer-title mui-ellipsis')
+						.append(item.CarNo)
+					)
+					.attr('id', item.AutoId);
+				li.append(a);
+				return li;
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>送货片区新增/修改</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">送货片区新增/修改</h1>
+		</header>
+		<div class="mui-content">
+			<form id="editForm" class="mui-input-group">
+				<input type="hidden" id="Id" name="Id" value="">
+				<div class="mui-input-row">
+					<label>所在省市区</label>
+					<input type="text" placeholder="请选择所在省市区" readonly id="ChoosePCD" name="ChoosePCD">
+					<input type="hidden" id="ProvinceID" name="ProvinceID" />
+					<input type="hidden" id="CityID" name="CityID" />
+					<input type="hidden" id="DistrictID" name="DistrictID" />
+				</div>
+				<div class="mui-input-row">
+					<label>片区名称</label>
+					<input type="text" placeholder="送货片区名称" id="Name" name="Name">
+				</div>
+				<div class="mui-input-row">
+					<label>联系电话</label>
+					<input type="text" placeholder="送货片区联系电话" id="Phone" name="Phone">
+				</div>
+				<div class="mui-input-row">
+					<label>联系人</label>
+					<input type="text" placeholder="送货片区联系人" id="LinkMan" name="LinkMan">
+				</div>
+				<div class="mui-input-row" style="height: 100px;">
+					<label>片区地址</label>
+					<textarea rows="3" placeholder="送货片区详细地址" name="Address" id="Address"></textarea>
+				</div>
+
+			</form>
+			<div class="mui-button-row mui-content-padded">
+				<button id="btnSave" type="button" class="mui-btn mui-btn-primary mui-btn-block">
+					保存
+				</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+			});
+			var title = $('#title'); //标题
+			var Name = $('#Name'); //名称
+			var Phone = $('#Phone'); //电话
+			var LinkMan = $("#LinkMan"); //联系人
+			var Address = $('#Address'); //地址
+			var ChoosePCD = $('#ChoosePCD'); //省市区
+			var ProvinceID = $('#ProvinceID'); //省
+			var CityID = $('#CityID'); //市
+			var DistrictID = $('#DistrictID'); //区
+			var Id = $('#Id');
+			/**
+			 * 初始化数据，清空
+			 */
+			function defautValue() {
+				Name.val('');
+				Phone.val('');
+				LinkMan.val('');
+				Address.val('');
+				ProvinceID.val('');
+				CityID.val('');
+				DistrictID.val('');
+				ChoosePCD.val('');
+				Id.val('');
+			}
+			/**
+			 * 设置Id
+			 * @param e 事件调用参数
+			 */
+			function setId(e) {
+				var id = e.detail.id;
+				title.html(id ? '送货片区修改' : '送货片区新增')
+				defautValue();
+				if (id) {
+					var param = xtt.getDefaultParam();
+					param['Id'] = id;
+					mui.ajax(xtt.serverRoot + 'GetLogisticsOutlet', {
+						type: 'post',
+						data: param,
+						timeout: 10000,
+						beforeSend: function() {
+							//loadingMsg('正在恢复会话信息...');
+						},
+						success: function(res) {
+							if (res) {
+								if (res.Succeed) {
+									var outlet = res.Outlet;
+									if (outlet) {
+										Id.val(outlet.Id);
+										Name.val(outlet.Name);
+										LinkMan.val(outlet.LinkMan);
+										Phone.val(outlet.Phone);
+										ChoosePCD.val(outlet.PCDName);
+										Address.val(outlet.Address);
+										CityID.val(outlet.City);
+										DistrictID.val(outlet.District);
+										ProvinceID.val(outlet.Province);
+										//mui.toast('获取送货片区资料成功！');
+									}
+								} else {
+									mui.toast('获取送货片区资料失败！' + res.Message ? res.Message : '');
+									mui.back();
+								}
+							} else {
+								mui.toast('获取送货片区资料错误，请稍后再试！');
+								mui.back();
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast('请求错误！' + errorThrown);
+							mui.back();
+						}
+					});
+				}
+			}
+			//侦听setId
+			document.addEventListener('setId', setId);
+			/**
+			 * 保存
+			 */
+			function save() {
+				//校验数据
+				var name = Name.val().trim();
+				if (!name || name == '') {
+					mui.toast('请输入送货片区名称！');
+					return;
+				}
+				if (ProvinceID.val().trim() == null || ProvinceID.val().trim() == '' || CityID.val().trim() == null || CityID.val().trim() == '' || DistrictID.val().trim() == null || DistrictID.val().trim() == '') {
+					mui.toast('请选择所在的省市区！');
+					return;
+				}
+				var id = Id.val().trim();
+				var action = (id && id != '') ? 'UpdateLogisticsOutlet' : 'AddLogisticsOutlet';
+				var arr = $('#editForm').serializeArray();
+				var outlet = {};
+				$.each(arr, function(index, item) {
+					outlet[item.name] = item.value;
+				});
+				outlet['Province'] = ProvinceID.val();
+				outlet['City'] = CityID.val();
+				outlet['District'] = DistrictID.val();
+				var param = xtt.getDefaultParam();
+				param['Outlet'] = outlet;
+				mui.ajax(xtt.serverRoot + action, {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function(xhr, settings) {
+						//loadingMsg('正在恢复会话信息...');
+						//xhr.setRequestHeader('Content-Type', 'application/json');
+					},
+					success: function(res) {
+						if (res) {
+							if (res.Succeed) {
+								var list = plus.webview.getWebviewById('list-outlets.html');
+								if (list)
+									mui.fire(list, 'saved', {
+										outlet: res.Outlet,
+										isUpdated: action == 'UpdateLogisticsOutlet'
+									});
+								mui.toast('保存成功！');
+								mui.openWindow({
+									url: "index.html",
+									id: "merchant",
+									show: {
+										aniShow: 'pop-in',
+										duration: 300
+									}
+								});
+								//mui.back();
+							} else {
+								mui.toast('保存失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('保存错误，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			}
+			//保存按钮事件
+			document.getElementById('btnSave').addEventListener('tap', save);
+			//选择事件
+			document.getElementById('ChoosePCD').addEventListener('tap', function() {
+				mui.fire(
+					plus.webview.getWebviewById('merchant-selectProvince'),
+					'chooseProvince', {
+						backId: plus.webview.currentWebview().id
+					}
+				);
+				mui.openWindow({
+					url: "selectProvince.html",
+					id: "merchant-selectProvince",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+			//选择后回调
+			document.addEventListener("PCDSelected", function(e) {
+				ChoosePCD.val(e.detail.PCDName);
+				ProvinceID.val(e.detail.ProvinceID);
+				CityID.val(e.detail.CityID);
+				DistrictID.val(e.detail.DistrictID);
+			});
+		</script>
+	</body>
+
+</html>

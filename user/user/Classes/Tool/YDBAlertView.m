@@ -8,7 +8,7 @@
 
 #import "YDBAlertView.h"
 #import "SVProgressHUD.h"
-#import "UIAlertController+EABFAlertController.h"
+//#import "UIAlertController+EABFAlertController.h"
 
 static NSString * currentAlertText;
 @implementation YDBAlertView

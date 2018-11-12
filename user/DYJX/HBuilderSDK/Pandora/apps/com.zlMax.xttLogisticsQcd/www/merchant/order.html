@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>货运单新增/修改</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">货运单新增/修改</h1>
+		</header>
+		<div class="mui-content">
+			<form id="editForm" class="mui-input-group" style="margin-top: 0px;">
+				<input type="hidden" id="AreaId" name="AreaId" value="1">
+				<input type="hidden" id="Id" name="Id" value="">
+				<input type="hidden" id="OrderType" name='OrderType' value="" />
+				<div class="mui-input-row">
+					<a class="mui-navigate-right">
+						<label>
+							物流班次
+						</label>
+						<input type="text" readonly placeholder="请选择班次..." id="LineId" name="LineId">
+					</a>
+				</div>
+				<div class="mui-input-row">
+					<a class="mui-navigate-right">
+						<label>发货商户</label>
+						<input type="text" readonly placeholder="请选择发货商户..." id="SendId" name="SendId">
+					</a>
+				</div>
+				<div class="mui-input-row">
+					<a class="mui-navigate-right">
+						<label>收货商户</label>
+						<input type="text" readonly placeholder="请选择收货商户..." id="ReceiveId" name="ReceiveId">
+					</a>
+				</div>
+				<div class="mui-input-row">
+					<label>销售单号</label>
+					<input type="text" id="SendSaleNum" placeholder="发货方销售单号" name="SendSaleNum">
+				</div>
+				<div class="mui-input-row">
+					<label>货款金额</label>
+					<!--	<div id='divMemberPayFee' class="mui-switch mui-switch-mini mui-switch-blue mui-active" style="margin-right: 4px;">
+						<div class="mui-switch-handle"></div>
+					</div>
+					<div style="float: right;margin-top: 10px; margin-right: 5px; margin-left: 8px;">代收</div>-->
+					<input type="text" style="float: left; width:120px" id="MemberPayFee" placeholder="请输货款金额" name="MemberPayFee">
+					<div class="mui-checkbox mui-left" style="float:right;">
+						<label>代收</label>
+						<input name="IsNeedMemberPayFee" id="IsNeedMemberPayFee" value="1" type="checkbox">
+					</div>
+				</div>
+				<div class="mui-input-row" style="height: 85px;">
+					<label>物品件数</label>
+					<div class="mui-numbox" data-numbox-min='0' data-numbox-max='100'>
+						<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+						<input id="ServicesGoodsTotalQuantity" class="mui-input-numbox" type="number" name="ServicesGoodsTotalQuantity" value="1" />
+						<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+					</div>
+
+					<label style="width: 5%;"></label>
+					<ul id='ulGoodsCount' class="mui-pagination mui-pagination-sm mui-pull-right" style="margin-top: 6px;">
+						<li>
+							<a href="javascript:void(0)">
+								0
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								1
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								2
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								3
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								4
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								5
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								6
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								7
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								8
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								9
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								10
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="mui-input-row" style="height: 85px;">
+					<label style="width: 85px;">运费</label>
+					<div class="mui-numbox" data-numbox-min='0' data-numbox-max='1000'>
+						<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+						<input id="Fee" class="mui-input-numbox" name="Fee" type="number" value="5" />
+						<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+					</div>
+					
+					<label style="width: 5%;"></label>
+					<ul id="ulFee" class="mui-pagination mui-pagination-sm mui-pull-right" style="margin-top: 6px;">
+						<li>
+							<a href="javascript:void(0)">
+								0
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								10
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								15
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								20
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								25
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								30
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								35
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								40
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								45
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								50
+							</a>
+						</li>
+					</ul>
+				</div>
+
+
+				<div class="mui-input-row">
+					<label>备注</label>
+					<input type="text" id="Remark" placeholder="" name="Remark">
+				</div>
+			</form>
+			<div id='divSave' class="mui-button-row mui-content-padded mui-hidden">
+				<button id="btnSave1" type="button" style="width:49%;height:55px;" class="mui-btn mui-btn-primary">
+					保存
+				</button>
+				<button id="btnSaveAndNext" type="button" style="width:49%;height:55px;" class="mui-btn mui-btn-primary">
+					保存并新增下一条
+				</button>
+			</div>
+			<div id='divSaveAndAccept' class="mui-button-row mui-content-padded mui-hidden">
+				<button id="btnSave2" type="button" style="width:49%;height:55px;" class="mui-btn mui-btn-primary">
+					保存
+				</button>
+				<button id="btnAccept" type="button" style="width:49%;height:55px;" class="mui-btn mui-btn-primary mui-btn-danger">
+					接单
+				</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+			});
+			var Id = $('#Id');
+			var OrderType = $('#OrderType');
+			var title = $('#title'); //标题
+			var LineId = $('#LineId'); //物流班次
+			var SendId = $('#SendId'); //发货商户
+			var ReceiveId = $('#ReceiveId'); //收货商户
+			var ServicesGoodsTotalQuantity = $('#ServicesGoodsTotalQuantity');
+			var Fee = $('#Fee');
+			var MemberPayFee = $('#MemberPayFee');
+			var IsNeedMemberPayFee = $('#IsNeedMemberPayFee');
+			var SendSaleNum = $('#SendSaleNum');
+			var Remark = $('#Remark');
+			var divSave = $('#divSave');
+			var divSaveAndAccept = $('#divSaveAndAccept');
+			var btnSave1 = $('#btnSave1');
+			var btnSaveAndNext = $('#btnSaveAndNext');
+			var btnSave2 = $('#btnSave2');
+			var btnAccept = $('#btnAccept');
+			var btnArray = ['确认', '取消'];
+			var saveAndNext = false;
+			/**
+			 * 初始化数据，清空
+			 */
+			function defautValue(onlyAdd) {
+				xtt.initPlusReady();
+				Id.val('');
+				//LineId.val('');
+				if(onlyAdd) {
+					SendId.val('');
+					SendId.attr('data-', '');
+				}
+
+				ReceiveId.val('');
+				ReceiveId.attr('data-', '');
+				ServicesGoodsTotalQuantity.val('1');
+				//IsNeedMemberPayFee.removeAttr('checked');
+				mui('input[name=IsNeedMemberPayFee]').each(function() {
+					this.checked = false
+				});
+				Fee.val('5');
+				MemberPayFee.val('');
+				SendSaleNum.val('');
+				Remark.val('');
+				btnSave1.attr('disabled', null);
+				btnSave2.attr('disabled', null);
+				btnAccept.attr('disabled', null);
+				$('body').scrollTop(0);
+			}
+			/**
+			 * 设置Id
+			 * @param e 事件调用参数
+			 */
+			function setId(e) {
+				var id = e.detail.id;
+				title.html(id ? '货运单修改' : '货运单新增')
+				defautValue(true);
+				if(id) {
+					var param = xtt.getDefaultParam();
+					param['Id'] = id;
+					mui.ajax(xtt.serverRoot + 'GetCompanyLogisticsOrder', {
+						type: 'post',
+						data: param,
+						timeout: 10000,
+						beforeSend: function() {
+							//loadingMsg('正在恢复会话信息...');
+						},
+						success: function(res) {
+							if(res) {
+								if(res.Succeed) {
+									var logisticsOrder = res.LogisticsOrder;
+									if(logisticsOrder) {
+										Id.val(id);
+										OrderType.val(logisticsOrder.OrderType);
+										LineId.val(logisticsOrder.LineName);
+										LineId.attr('data-', logisticsOrder.LineId);
+										SendId.val(logisticsOrder.SendShortName);
+										SendId.attr('data-', logisticsOrder.SendId);
+										ReceiveId.val(logisticsOrder.ReceiveShortName + '[' + logisticsOrder.ReceiveCarCityName + ']');
+										ReceiveId.attr('data-', logisticsOrder.ReceiveId);
+										if(logisticsOrder.OrderType == 0) {
+											//物流班次，收货人都不能更改
+											LineId.attr('disabled', 'disabled');
+											SendId.attr('disabled', 'disabled');
+											ReceiveId.attr('disabled', 'disabled');
+											if(logisticsOrder.Status == 0) {
+												divSaveAndAccept.removeClass('mui-hidden');
+												divSave.addClass('mui-hidden');
+											} else {
+												ServicesGoodsTotalQuantity.val(logisticsOrder.ServicesGoodsTotalQuantity)
+												divSave.removeClass('mui-hidden');
+												divSaveAndAccept.addClass('mui-hidden');
+											}
+										} else {
+											LineId.attr('disabled', null);
+											SendId.attr('disabled', null);
+											ReceiveId.attr('disabled', null);
+											ServicesGoodsTotalQuantity.val(logisticsOrder.ServicesGoodsTotalQuantity)
+											divSave.removeClass('mui-hidden');
+											divSaveAndAccept.addClass('mui-hidden');
+										}
+										Fee.val(logisticsOrder.Fee);
+										mui('input[name=IsNeedMemberPayFee]').each(function() {
+											this.checked = logisticsOrder.IsNeedMemberPayFee
+										})
+										MemberPayFee.val(logisticsOrder.MemberPayFee);
+										SendSaleNum.val(logisticsOrder.SendSaleNum);
+										Remark.val(logisticsOrder.Remark);
+										//mui.toast('获取货运单资料成功！');
+									}
+								} else {
+									mui.toast('获取货运单资料失败！' + res.Message ? res.Message : '');
+									mui.back();
+								}
+							} else {
+								mui.toast('获取货运单资料错误，请稍后再试！');
+								mui.back();
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast('请求错误！' + errorThrown);
+							mui.back();
+						}
+					});
+				} else {
+					LineId.attr('disabled', null);
+					SendId.attr('disabled', null);
+					ReceiveId.attr('disabled', null);
+					divSave.removeClass('mui-hidden');
+					divSaveAndAccept.addClass('mui-hidden');
+				}
+			}
+			//侦听setId
+			document.addEventListener('setId', setId);
+			/**
+			 * 保存
+			 */
+			function save() {
+				//校验数据
+				var lineId = LineId.attr('data-');
+				if(lineId == null || lineId == '') {
+					mui.toast('请选择物流班次！');
+					return;
+				}
+				var sendId = SendId.attr('data-');
+				if(sendId == null || sendId == '') {
+					mui.toast('请选择发货商户！');
+					return;
+				}
+				var receiveId = ReceiveId.attr('data-');
+				if(receiveId == null || receiveId == '') {
+					mui.toast('请选择收货商户！');
+					return;
+				}
+				if(Fee.val() == null || Fee.val() == '') {
+					mui.toast('请输入运费！');
+					return;
+				}
+				var id = Id.val();
+				var action = 'AddAgentLogisticsOrder';
+				if(id && id != '') {
+					if(OrderType.val() == '0') {
+						action = 'UpdateMemberLogisticsOrder';
+					} else if(OrderType.val() == '1') {
+						action = 'UpdateAgentLogisticsOrder';
+					}
+				}
+				var arr = $('#editForm').serializeArray();
+				var logisticsOrder = {};
+				$.each(arr, function(index, item) {
+					logisticsOrder[item.name] = item.value;
+				});
+				logisticsOrder['SendId'] = sendId;
+				logisticsOrder['ReceiveId'] = receiveId;
+				logisticsOrder['LineId'] = lineId;
+				logisticsOrder['IsNeedMemberPayFee'] = IsNeedMemberPayFee.attr('checked');
+				var param = xtt.getDefaultParam();
+				param['LogisticsOrder'] = logisticsOrder;
+				btnSave1.attr('disabled', 'disabled');
+				btnSave2.attr('disabled', 'disabled');
+				btnSaveAndNext.attr('disabled', 'disabled');
+				mui.ajax(xtt.serverRoot + action, {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function(xhr, settings) {
+						//loadingMsg('正在恢复会话信息...');
+						//xhr.setRequestHeader('Content-Type', 'application/json');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								mui.toast('保存成功！');
+								btnSave1.attr('disabled', null);
+								btnSave2.attr('disabled', null);
+								btnSaveAndNext.attr('disabled', null);
+								var list = plus.webview.getWebviewById('list-orders.html');
+								if(list)
+									mui.fire(list, 'saved', {
+										logisticsOrder: res.LogisticsOrder,
+										isUpdated: action == 'UpdateAgentLogisticsOrder'
+									});
+								if(saveAndNext) {
+									defautValue(false);
+								} else {
+									Id.val(res.LogisticsOrder.Id);
+									mui.openWindow({
+										url: "index.html",
+										id: "merchant",
+										show: {
+											aniShow: 'pop-in',
+											duration: 300
+										}
+									});
+								}
+								//mui.back();
+							} else {
+								mui.toast('保存失败！' + res.Message ? res.Message : '');
+								btnSave1.attr('disabled', null);
+								btnSave2.attr('disabled', null);
+								btnSaveAndNext.attr('disabled', null);
+							}
+						} else {
+							mui.toast('保存错误，请稍后再试！');
+							btnSave1.attr('disabled', null);
+							btnSave2.attr('disabled', null);
+							btnSaveAndNext.attr('disabled', null);
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						btnSave1.attr('disabled', null);
+						btnSave2.attr('disabled', null);
+						btnSaveAndNext.attr('disabled', null);
+					}
+				});
+			}
+
+			function saveAndAccept() {
+				//校验数据
+				var lineId = LineId.attr('data-');
+				if(lineId == null || lineId == '') {
+					mui.toast('请选择物流班次！');
+					return;
+				}
+				var sendId = SendId.attr('data-');
+				if(sendId == null || sendId == '') {
+					mui.toast('请选择发货商户！');
+					return;
+				}
+				var receiveId = ReceiveId.attr('data-');
+				if(receiveId == null || receiveId == '') {
+					mui.toast('请选择收货商户！');
+					return;
+				}
+				if(Fee.val() == null || Fee.val() == '' || Fee.val() == 0) {
+					mui.toast('请输入运费！');
+					return;
+				}
+				var msg = "";
+				msg += "物品件数：" + ServicesGoodsTotalQuantity.val() + "\r\n";
+				msg += "　　运费：" + Fee.val();
+				var totalFee = Number(Fee.val());
+				if(GoodsPriceFee.val() != null && GoodsPriceFee.val() != '' && GoodsPriceFee.val() != 0) {
+					msg += "\r\n　　保费：" + GoodsPriceFee.val();
+					totalFee += Number(GoodsPriceFee.val());
+				}
+				if(BoxFee.val() != null && BoxFee.val() != '' && BoxFee.val() != 0) {
+					msg += "\r\n　木架费：" + BoxFee.val();
+					totalFee += Number(BoxFee.val());
+				}
+				msg += "\r\n费用合计：" + totalFee;
+				if(MemberPayFee.val() != null && MemberPayFee.val() != '' && MemberPayFee.val() != 0) {
+					msg += "\r\n　代收款：" + MemberPayFee.val();
+				}
+				mui.confirm(msg, '确认接单？', btnArray, function(e) {
+					if(e.index == 0) {
+						var id = Id.val();
+						var arr = $('#editForm').serializeArray();
+						var logisticsOrder = {};
+						$.each(arr, function(index, item) {
+							logisticsOrder[item.name] = item.value;
+						});
+						logisticsOrder['SendId'] = sendId;
+						logisticsOrder['ReceiveId'] = receiveId;
+						logisticsOrder['LineId'] = lineId;
+						var param = xtt.getDefaultParam();
+						param['LogisticsOrder'] = logisticsOrder;
+						btnAccept.attr('disabled', 'disabled');
+						mui.ajax(xtt.serverRoot + 'AcceptLogisticsOrder', {
+							type: 'post',
+							data: JSON.stringify(param),
+							contentType: 'application/json',
+							timeout: 10000,
+							beforeSend: function(xhr, settings) {
+								//loadingMsg('正在恢复会话信息...');
+								//xhr.setRequestHeader('Content-Type', 'application/json');
+							},
+							success: function(res) {
+								if(res) {
+									if(res.Succeed) {
+										var list = plus.webview.getWebviewById('list-orders.html');
+										if(list)
+											mui.fire(list, 'saved', {
+												logisticsOrder: res.LogisticsOrder,
+												isUpdated: true
+											});
+										mui.toast('保存成功！');
+										Id.val(res.LogisticsOrder.Id);
+										btnAccept.attr('disabled', null);
+										mui.openWindow({
+											url: "index.html",
+											id: "merchant",
+											show: {
+												aniShow: 'pop-in',
+												duration: 300
+											}
+										});
+										//mui.back();
+									} else {
+										mui.toast('保存失败！' + res.Message ? res.Message : '');
+										btnAccept.attr('disabled', null);
+									}
+								} else {
+									mui.toast('保存错误，请稍后再试！');
+									btnAccept.attr('disabled', null);
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								mui.toast('请求错误！' + errorThrown);
+								btnAccept.attr('disabled', null);
+							}
+						});
+					}
+				});
+			}
+			//保存按钮事件
+			document.getElementById('btnSave1').addEventListener('tap', function() {
+				if(xtt.getMember().RoleType == 2) {
+					mui.toast('你当前角色为司机，不能操作订单，请联系开单人！');
+					return;
+				}
+				save();
+			});
+			document.getElementById('btnSave2').addEventListener('tap', function() {
+				if(xtt.getMember().RoleType == 2) {
+					mui.toast('你当前角色为司机，不能操作订单，请联系开单人！');
+					return;
+				}
+				save();
+			});
+
+			//保存按钮事件
+			document.getElementById('btnSaveAndNext').addEventListener('tap', function() {
+				if(xtt.getMember().RoleType == 2) {
+					mui.toast('你当前角色为司机，不能操作订单，请联系开单人！');
+					return;
+				}
+				saveAndNext = true;
+				save();
+			});
+
+			document.getElementById('btnAccept').addEventListener('tap', function() {
+				if(xtt.getMember().RoleType == 2) {
+					mui.toast('你当前角色为司机，不能操作订单，请联系开单人！');
+					return;
+				}
+				saveAndAccept();
+			});
+			document.getElementById('LineId').addEventListener('tap', function() {
+				mui.fire(
+					plus.webview.getWebviewById('merchant-selectLine'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id
+					}
+				);
+				mui.openWindow({
+					url: "selectLine.html",
+					id: "merchant-selectLine",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+			document.getElementById('SendId').addEventListener('tap', function() {
+				mui.fire(
+					plus.webview.getWebviewById('merchant-selectCustomer-sender'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id,
+						lineId: LineId.attr('data-'),
+						from: 'Sender'
+					}
+				);
+				mui.openWindow({
+					url: "selectCustomer.html",
+					id: "merchant-selectCustomer-sender",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+			document.getElementById('ReceiveId').addEventListener('tap', function() {
+				mui.fire(
+					plus.webview.getWebviewById('merchant-selectCustomer-receiver'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id,
+						lineId: LineId.attr('data-'),
+						from: 'Receiver'
+					}
+				);
+				mui.openWindow({
+					url: "selectCustomer.html",
+					id: "merchant-selectCustomer-receiver",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+			document.addEventListener("customerSelected", function(e) {
+				var customer = e.detail.customer;
+				var from = e.detail.from;
+				if(from == 'Sender') {
+					SendId.val(customer.ShortName);
+					SendId.attr('data-', customer.Id);
+				} else {
+					ReceiveId.val(customer.ShortName + '[' + customer.LineName + ']');
+					ReceiveId.attr('data-', customer.Id);
+				}
+			});
+			document.addEventListener("lineSelected", function(e) {
+				var line = e.detail;
+				LineId.val(line.Name);
+				LineId.attr('data-', line.LineId);
+				SendId.val('');
+				SendId.attr('data-', '');
+				ReceiveId.val('');
+				ReceiveId.attr('data-', '');
+			});
+			mui('#ulGoodsCount a').each(function() {
+				this.addEventListener('tap', function(e) {
+					ServicesGoodsTotalQuantity.val($(this).html().trim());
+				});
+			});
+			mui('#ulFee a').each(function() {
+				this.addEventListener('tap',
+					function(e) {
+						Fee.val($(this).html().trim());
+					});
+			});
+		</script>
+	</body>
+
+</html>

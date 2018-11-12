@@ -1,0 +1,51 @@
+.guide {
+  background-color: #0062cc;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.guide #txt {
+  display: block;
+  width: 300px;
+  left: 50%;
+  top: 15%;
+  margin-left: -150px;
+  position: absolute;
+}
+.guide #txt h1 {
+  color: white;
+  font-size: 28px;
+  line-height: 50px;
+  text-align: center;
+}
+.guide #txt p {
+  color: #ddd;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+.guide #txt p span {
+  font-size: 12px;
+}
+#actionPanel {
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  bottom: 0;
+  text-align: center;
+}
+#customerLogin,
+#login {
+  margin: 4px;
+  width: 120px;
+  padding: 10px;
+  color: #fff;
+  border-color: #fff;
+}
+#close {
+  margin: 4px;
+  width: 180px;
+  padding: 10px;
+  color: #fff;
+  border-color: #fff;
+}

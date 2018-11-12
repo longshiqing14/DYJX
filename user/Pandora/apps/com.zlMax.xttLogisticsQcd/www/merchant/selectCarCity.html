@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>选择汽配城</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">选择汽配城</h1>
+		</header>
+		<div class="mui-content" style="margin-top: 0;">
+			<div class="mui-input-row mui-search" style="padding: 2px;">
+				<input id="searchInput" type="search" class="mui-input-clear" placeholder="输入关键字查询...">
+			</div>
+			<ul id="list" class="mui-table-view" style="margin-top: -15px;">
+
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			var searching = false;
+			var table = $('#list');
+			var cacheData = {};
+			var backId = null;
+			var AreaText = ["", "深圳", "广州", "中山"];
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+				search('');
+			});
+			document.getElementById('searchInput').addEventListener('input', function(e) {
+				//mui.alert($('#searchInput').val());
+				var keyword = $('#searchInput').val().trim();
+				/*  if(keyword.length < 2)
+				      return;*/
+				search(keyword);
+			});
+			document.addEventListener('setBack', function(e) {
+				backId = e.detail.backId;
+			});
+			//列表点击事件
+			mui('#list').on('tap', '.btn-edit', function() {
+				var id = this.id;
+				if (backId) {
+					mui.fire(plus.webview.getWebviewById(backId), 'carCitySelected', cacheData[id]);
+					mui.later(function() {
+						mui.back();
+					}, 100);
+				}
+			});
+			/**
+			 * 构建列表项
+			 * @param item 汽配城数据对象
+			 * @returns {*|jQuery} 列表项
+			 */
+			function createLi(item) {
+				var li = $('<li>')
+					.addClass('mui-table-view-cell').attr('id', 'li_' + item.Id);
+				var a = $('<a>').addClass('mui-navigate-right btn-edit')
+					.append(
+						$('<p>').addClass('carCity-title mui-ellipsis').append('[' + AreaText[item.AreaId] + '] ' + item.CarCityName)
+					)
+					.attr('id', item.Id);
+				if (item.Address)
+					a.append(
+						$('<p>').addClass('carCity-address mui-ellipsis')
+						.append('地址：' + item.Address)
+					);
+				/*li.append(
+				        $('<div>').addClass('mui-slider-right mui-disabled')
+				                .append(
+				                        $('<a>').addClass('mui-btn mui-btn-red btn-delete')
+				                                .append('删除')
+				                )
+				);
+				li.append(
+				        $('<div>').addClass('mui-slider-handle')
+				                .append(a)
+				);*/
+				li.append(a);
+				return li;
+			}
+
+			function search(keyword) {
+				//获取数据
+				var param = xtt.getDefaultParam();
+				param = mui.extend(param, {
+					Keyword: keyword,
+					PageIndex: 1,
+					PageSize: 30
+				});
+				mui.ajax(xtt.serverRoot + 'CarCitys', {
+					type: 'post',
+					data: param,
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if (res) {
+							if (res.Succeed) {
+								table.html('');
+								$.each(res.CarCitys, function(index, item) {
+									cacheData[item.Id] = item;
+									table.append(createLi(item));
+								});
+							} else {
+								mui.toast('获取汽配城失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('获取汽配城失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

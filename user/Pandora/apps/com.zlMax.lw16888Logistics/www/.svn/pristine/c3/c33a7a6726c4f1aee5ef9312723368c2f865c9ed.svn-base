@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>货运单扫描</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a class="mui-icon mui-icon-search mui-pull-right" id="aScan"></a>
+			<h1 id="title" class="mui-title">货运单扫描</h1>
+		</header>
+		<div class="mui-content">
+			<ul id="list" class="mui-table-view" style="margin-top: 0px; padding-bottom: 180px;">
+
+			</ul>
+			<div id='divSave' class="mui-button-row bottom-action-bar">
+				<div class="mui-button-row" style="margin-top: -1px;">
+					<button id="btnClear" type="button" style="width:24%;height:35px;" class="mui-btn mui-btn-danger">
+						清空所有
+					</button>
+
+					<button id="btnScanAdd" type="button" style="width:40%;height:35px;" class="mui-btn mui-btn-primary">
+						扫描新增条码 +
+					</button>
+					<button id="btnScanSub" type="button" style="width:32%;height:35px;" class="mui-btn mui-btn-warning">
+						扫描删除 -
+					</button>
+				</div>
+				<div class="multi-input-row">
+					<div class="col-6">
+						<div class="mui-input-row">
+							<a>
+								<label style="padding-right: 2px;">件数</label>
+								<input type="text" readonly id="quantity" name="quantity" value="0">
+							</a>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="mui-input-row">
+							<a>
+								<label>车</label>
+								<input type="text" id="CarNo" name="CarNo" readonly placeholder="请选车牌...">
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="multi-input-row">
+
+					<div class="col-6">
+						<div class="mui-input-row">
+							<a>
+								<label style="padding-right: 2px;">地点</label>
+								<input type="text" readonly placeholder="请选地点..." id="StartOutletId" name="StartOutletId">
+							</a>
+						</div>
+					</div>
+					
+				</div>
+	<div class="multi-input-row">
+		<div class="col-12">
+						<div class="mui-input-row">
+							<div class="mui-radio mui-pull-left mui-left ">
+								<label style="font-size: 14px;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding-left: 40px;
+    padding-right: 1px;">收货</label>
+								<input name="IndexStatus" style="left:10px" value="0" checked="checked" type="radio">
+							</div>
+							<div class="mui-radio mui-pull-left mui-left ">
+								<label style="font-size: 14px;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding-left: 40px;
+    padding-right: 1px;">分货</label>
+								<input name="IndexStatus" style="left:10px" value="1" type="radio">
+							</div>
+							<div class="mui-radio mui-pull-left mui-left ">
+								<label style="font-size: 14px;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding-left: 40px;
+    padding-right: 1px;">装货</label>
+								<input name="IndexStatus" style="left:10px" value="2" type="radio">
+							</div>
+							<div class="mui-radio mui-pull-left mui-left">
+								<label style="font-size: 14px;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding-left: 40px;
+    padding-right: 1px;">卸货</label>
+								<input name="IndexStatus" style="left:10px" value="3" type="radio">
+							</div>
+							<div class="mui-radio mui-pull-left mui-left">
+								<label style="font-size: 14px;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding-left: 40px;
+    padding-right: 1px;">送达</label>
+								<input name="IndexStatus" style="left:10px" value="4" type="radio">
+							</div>
+							<input type="hidden" id="IndexStatus" value="0" />
+						</div>
+					</div>
+					
+	</div>
+		
+				<button id="btnSave" type="button" class="mui-btn mui-btn-primary mui-btn-block">
+					确定【共扫描  <span id='scanQuantity' class="mui-btn-red">0</span> 件】
+				</button>
+
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+
+			//变量
+			var numbers = []; //扫描的条形码
+            var table = $('#list');
+            var flashFlag = false; //更新标志
+			var flashAction = '+' //更新操作，+或者-
+            var btnArray = ['确认', '取消'];
+			var sumGoodsQuantity = 0;
+			var scanQuantity = 0;
+
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+				/*mui.later(function() {
+
+					mui.preload({
+						id: 'merchant-selectCarNo.html',
+						url: 'selectOutlet.html'
+					});
+
+					mui.preload({
+							id: 'scan',
+							url: 'scan.html'
+						});
+				}, 200);*/
+
+			});
+
+			//document.addEventListener('add', add); //点击添加，进入扫描
+
+			//扫描完成事件
+			document.addEventListener('scanDone', scanDone);
+            function scanDone(e) {
+                //处理numbers
+				var narr = (e.detail + '').split(',');
+				for(var i = 0; i < narr.length; i++)
+				{
+				    var n = narr[i];
+				    var idx = numbers.indexOf(n);
+				    if(idx > -1) {
+                        if (flashAction == '+') {
+
+                        } else {
+							numbers.splice(idx, 1);
+                        }
+                    } else {
+                        if (flashAction == '+') {
+                            numbers.push(n);
+                        } else {
+
+                        }
+					}
+				}
+                //numbers = e.detail;
+                //查询订单数据
+                if(numbers.length != 0) {
+                    var param = xtt.getDefaultParam();
+                    param['OrderNumbers'] = numbers;
+                    mui.ajax(xtt.serverRoot + 'GetCompanyLogisticsOrdersByNumbers', {
+                        type: 'post',
+                        data: JSON.stringify(param),
+                        timeout: 30000,
+                        contentType: 'application/json',
+                        beforeSend: function() {
+                            //loadingMsg('正在恢复会话信息...');
+                        },
+                        success: function(res) {
+                            if(res) {
+                                if(res.Succeed) {
+                                    //alert(res.Timestamp);
+                                    var str = '获取扫描货运单列表成功';
+                                    mui.toast(str);
+                                    $('#list').empty();
+                                    updateList(res.ListOrder);
+                                    stat(res.OrderStat);
+                                } else {
+                                    mui.toast('获取扫描货运单失败！' + res.Message ? res.Message : '');
+                                }
+                            } else {
+                                mui.toast('获取扫描货运单失败，请稍后再试！');
+                            }
+                        },
+                        error: function(xhr, type, errorThrown) {
+                            mui.toast('请求错误！' + errorThrown);
+                        }
+                    });
+
+                }
+            }
+			//保存
+			document.getElementById('btnSave').addEventListener('tap', save);
+            function save() {
+                if(numbers == null || numbers.length == 0) {
+                    mui.toast('请扫描要提交的物流条形码！');
+                    return;
+                }
+                if($('#StartOutletId').val() == '' || $('#StartOutletId').attr('data-') == '') {
+                    mui.toast('请选择地点！');
+                    return;
+                }
+
+                if(sumGoodsQuantity != scanQuantity){
+                    mui.confirm('扫描的件数与货运单件数不符，确定要提交吗？', '提交确认', btnArray, function(e) {
+                        if(e.index == 0) {
+							doSave();
+                        }
+                    });
+				} else {
+                    doSave();
+				}
+            }
+            function doSave() {
+                var des = {};
+                des['CarNo'] = $('#CarNo').val();
+                des['LogisticsOutletId'] = $('#StartOutletId').attr('data-');
+                des['LogisticsOutletName'] = $('#StartOutletId').val();
+                des['IndexStatus'] = $('#IndexStatus').val();
+
+                //提交数据
+                var param = xtt.getDefaultParam();
+                param['OrderNumbers'] = numbers;
+                param['Description'] = des;
+
+                mui.ajax(xtt.serverRoot + 'SetLogisticsDescriptionByNumbers', {
+                    type: 'post',
+                    data: JSON.stringify(param),
+                    timeout: 30000,
+                    contentType: 'application/json',
+                    beforeSend: function() {
+                        //loadingMsg('正在恢复会话信息...');
+                    },
+                    success: function(res) {
+                        if(res) {
+                            if(res.Succeed) {
+                                mui.toast('提交成功，所扫描的货运单物流状态已变更！');
+                                table.empty();
+                                numbers = [];
+                                $('#quantity').val(0);
+                                $('scanQuantity').val(0);
+
+                                var list = plus.webview.getWebviewById('list-orderlogs.html');
+                                if(list)
+                                    mui.fire(list, 'saved', {
+                                        LogisticsOrderLog: res.LogisticsOrderLog,
+                                        isUpdated: false
+                                    });
+
+                                mui.openWindow({
+                                    url: "index.html",
+                                    id: "merchant",
+                                    show: {
+                                        aniShow: 'pop-in',
+                                        duration: 300
+                                    }
+                                });
+
+                            } else {
+                                mui.toast('提交扫描货运单失败！' + res.Message ? res.Message : '');
+                            }
+                        } else {
+                            mui.toast('提交扫描货运单失败，请稍后再试！');
+                        }
+                    },
+                    error: function(xhr, type, errorThrown) {
+                        mui.toast('请求错误！' + errorThrown);
+                    }
+                });
+            }
+            
+            //扫描
+			document.getElementById('aScan').addEventListener('tap', scanAdd);
+            document.getElementById('btnScanAdd').addEventListener('tap', scanAdd);
+            document.getElementById('btnScanSub').addEventListener('tap', scanSub);
+            document.getElementById('btnClear').addEventListener('tap', clearItem);
+            function scanAdd(){
+                scan('+');
+			}
+			function scanSub() {
+				scan('-');
+            }
+            function scan(act) {
+                param = xtt.getDefaultParam();
+                timestamp = new Date().getTime();
+                console.log(xtt.serverRoot + 'AddScan');
+                if(plus.os.name == "Android") {
+                    plus.runtime.launchApplication({
+                        pname: "com.zlmax.scan",
+                        action: "android.intent.action.SEND",
+                        type: "text/plain",
+                        extra: {
+                            CLIENT_ID: param.ClientId,
+                            TIMESPAN: timestamp + '',
+                            SERVER: xtt.serverRoot + 'AddScan',
+                        }
+                    }, function(e) {
+                        alert("调用失败！ " + e.message);
+                    });
+                    //alert('abc');
+                } else if(plus.os.name == "iOS") {
+					/*plus.runtime.launchApplication( {action:"http://www.html5plus.org"}, function ( e ) {
+					 alert( "Open system default browser failed: " + e.message );
+					 } );*/
+                    //mui.alert('IOS系统暂时不支持打印！');
+                }
+                flashFlag = true;
+                flashAction = act;
+            }
+            function clearItem() {
+                mui.confirm('确认全部清除吗？', '新泰通', btnArray, function(e) {
+                    if(e.index == 0) {
+                        table.empty();
+                        numbers = [];
+                    }
+                });
+            }
+
+			//选择收卸货点
+			document.getElementById('StartOutletId').addEventListener('tap', function() {
+				mui.fire(
+					plus.webview.getWebviewById('merchant-selectOutlet'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id,
+						searchType: 0
+					}
+				);
+				mui.openWindow({
+					url: "selectOutlet.html",
+					id: "merchant-selectOutlet",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+			//选择车辆
+			document.getElementById('CarNo').addEventListener('tap', function() {
+				mui.fire(
+					plus.webview.getWebviewById('selectCarNo'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id,
+						searchType: 0
+					}
+				);
+				mui.openWindow({
+					url: "selectCarNo.html",
+					id: "selectCarNo",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+			//收卸货点选择后
+			document.addEventListener("outletSelected", function(e) {
+				var outlet = e.detail.OutLet;
+				$('#StartOutletId').attr('data-', outlet.Id);
+				$('#StartOutletId').val(outlet.Name);
+			});
+			//车辆选择则后
+			document.addEventListener("carNoSelected", function(e) {
+				var Car = e.detail;
+				$('#CarNo').attr('data-', Car.AutoId);
+				$('#CarNo').val(Car.CarNo);
+			});
+
+			var scanView = null;
+
+			function add() {
+				if(!scanView)
+					scanView = plus.webview.getWebviewById('scan');
+				mui.fire(
+					scanView,
+					'clear', {
+						backId: plus.webview.currentWebview().id,
+					});
+				mui.openWindow({
+					url: "scan.html",
+					id: "scan",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			}
+
+			//显示状态
+			function stat(orderstat) {
+				if(orderstat) {
+				    sumGoodsQuantity = orderstat.SumGoodsQuantity;
+					$('#quantity').val(sumGoodsQuantity);
+				}
+			}
+			//更新列表
+			function updateList(orders) {
+				var tmp = $('<div>');
+				scanQuantity = 0;
+				$.each(orders, function(index, item) {
+					var old = document.getElementById('li_' + item.Id);
+					if(old)
+						$(old).remove();
+					var li = createLi(item);
+					tmp.append(li);
+					if(item.Children) {
+						scanQuantity += item.Children.length;
+					}
+				});
+				table.append(tmp.children());
+				$('#scanQuantity').html(scanQuantity);
+			}
+			//构建列表
+			function createLi(item) {
+				if(item.Status == 0) { //初始状态的数量，以客户为准
+					item.ServicesGoodsTotalQuantity = item.GoodsTotalQuantity;
+				}
+				if(item.OrderType == 0) {
+					item.SendCarCityName = (item.SendFullName == null || item.SendFullName == '') ? '暂未填写公司名称' : item.SendFullName;
+					item.ReceiveCarCityName = (item.ReceiveFullName == null | item.ReceiveFullName == '') ? '暂未填写公司名称' : item.ReceiveFullName;
+				} else {
+					if(!item.SendCarCityName) {
+						item.SendCarCityName = item.SendFullName;
+					}
+					if(!item.ReceiveCarCityName) {
+						item.ReceiveCarCityName = item.ReceiveFullName;
+					}
+				}
+				var li = $('<li>')
+					.addClass('mui-table-view-cell').attr('id', 'li_' + item.Id);
+				var a = $('<a>').addClass('mui-navigate-right btn-edit btn-order-edit')
+					.append(
+						$('<div style="background-color:' + ((item.ReceiveCarCityColor == null || item.ReceiveCarCityColor.length == 0) ? '#bababa' : item.ReceiveCarCityColor) + '">').addClass('order-quantity').append(item.ServicesGoodsTotalQuantity).append(
+							$('<span>').addClass('unit').append('件')
+						).append($('<div>').addClass('order-other').append('<span style="color:' + (item.Status == 0 ? 'red' : '') + '">[' + item.InstanceOnText + ']</span>' + (item.OrderType == 0 ? '普' : '代')))
+						.append($('<div>').addClass('order-other').append(item.LineName))
+						.append($('<div>').addClass('order-other').append((item.Status > 0 && item.OrderType == 0) ? item.PickName : item.CreatedBy))
+					)
+					.append(
+						$('<div>').addClass('order-detail')
+						.append(
+							$('<p>').addClass('order-from mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-location'))
+							.append(item.SendShortName + ' ' + item.SendCarCityName)
+						).append(
+							$('<p>').addClass('order-to mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-paperplane'))
+							.append(item.ReceiveShortName + ' ' + item.ReceiveCarCityName)
+						).append(
+							$('<p>').addClass('order-fee mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-info-filled'))
+							.append(item.FeeInfo)
+						)
+					).attr('id', item.Id);
+				li.append(a);
+				//判断是否全部扫描
+				if(item.GoodsTotalQuantity > item.Children.length)
+				{
+				    li.css('background-color', '#ff0');
+				    var ns = [];
+				    for(var j=1; j<=item.GoodsTotalQuantity; j++){
+				        ns.push((Array(2).join('0') + j).slice(-2));
+					}
+					var cs = [];
+                    $.each(item.Children, function(index, child) {
+                        cs.push(child.ChildOrderNumber.substring(child.ChildOrderNumber.indexOf('-') + 1));
+					});
+                    for(var i = 0; i < cs.length; i++){
+                        var idx = ns.indexOf(cs[i]);
+                        if(idx > -1)
+                            ns.splice(idx, 1);
+					}
+					$('.order-detail', a).append(
+                        $('<p>').addClass('order-fee mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-close'))
+                            .append('未扫：' + item.OrderNumber + '-' + ns.join(' '))
+					);
+				}
+				return li;
+			}
+
+			mui('.mui-input-row').on('tap', '.mui-radio', function() {
+				var name = $(this).find('input').attr('name');
+				var val = $(this).find('input').val();
+				$('#IndexStatus').val(val);
+			});
+
+			//扫描后事件处理，获取数据
+			document.addEventListener("resume", function(e) {
+				//取出数据并调用doscan
+				if(flashFlag) {
+					flashFlag = false;
+
+					var orderscan = {};
+					orderscan["Timespan"] = timestamp;
+					param['OrderScan'] = orderscan;
+
+					mui.ajax(xtt.serverRoot + 'GetScan', {
+						type: 'post',
+						data: JSON.stringify(param),
+						contentType: 'application/json',
+						timeout: 10000,
+						success: function(res) {
+							if(res) {
+								if(res.Succeed) {
+									//打开扫描结果
+									var doscan = plus.webview.getWebviewById('doscan');
+									mui.fire(doscan, 'scanDone',res.OrderScan.OrderNumbers);
+									/*mui.later(function() {
+										mui.openWindow({
+											url: "doscan.html",
+											id: "doscan",
+											show: {
+												aniShow: 'pop-in',
+												duration: 300
+											}
+										});
+
+									}, 100);
+*/
+								} else {
+									mui.toast('获取扫描失败！' + res.Message ? res.Message : '');
+								}
+							} else {
+								mui.toast('保存错误，请稍后再试！');
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast('请求错误！' + errorThrown);
+						}
+					});
+					//mui.toast('程序在前台运行')
+				}
+			}, false);
+			
+		</script>
+	</body>
+
+</html>

@@ -12,6 +12,15 @@
 #import "DYJXLogisticViewModel.h"
 #import "DYJXBaiDuWebPage.h"
 #import "DYJXConversationTabBarController.h"
+#import "WebAppController.h"
+#import "WebViewController.h"
+#import "PDRToolSystem.h"
+#import "PDRToolSystemEx.h"
+#import "PDRCoreAppFrame.h"
+#import "PDRCoreAppManager.h"
+#import "PDRCoreAppWindow.h"
+#import "PDRCoreAppInfo.h"
+#import "PDRCore.h"
 
 @interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -104,7 +113,21 @@
 //    }
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            //168物流平台
+            //16888物流平台
+            // Webivew集成不能同时WebApp集成，需要修改AppDelegate文件的PDRCore的启动参数
+          WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            if (pWebAppController) {
+//                self.navigationController.navigationBarHidden = YES;
+                [self.navigationController pushViewController:pWebAppController animated:YES];
+            }
+            
+//            WebViewController  *pWebViewController = [[WebViewController alloc] init];
+//            if (pWebViewController) {
+////                self.navigationController.navigationBarHidden = YES;
+//                [self.navigationController pushViewController:pWebViewController animated:YES];
+//            }
+
+            
         }else if (indexPath.row == 1){
             //百度
             DYJXBaiDuWebPage * baiDuWebPage = [[DYJXBaiDuWebPage alloc]init];

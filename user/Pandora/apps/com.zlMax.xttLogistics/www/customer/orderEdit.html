@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>货运单新增/修改</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title"></h1>
+		</header>
+		<div class="mui-content">
+			<form id="editForm" class="mui-input-group" style="margin-top: 0px;margin-bottom: 60px;">
+				<input type="hidden" id="AreaId" name="AreaId" value="1">
+				<input type="hidden" id="Id" name="Id" value="">
+				<div class="mui-input-row">
+					<a class="mui-navigate-right">
+						<label>发货人</label>
+						<input type="text" readonly placeholder="请选择发货人..." id="SendId" name="SendId">
+						<input type="hidden" id='SendMemberID' />
+						<input type="hidden" id='SendP' />
+						<input type="hidden" id='SendC' />
+						<input type="hidden" id='SendD' />
+					</a>
+				</div>
+				<div class="mui-input-row" style="height: 80px;">
+					<p>
+						<textarea rows="3" placeholder="" name="" style="font-size: 14px;overflow:hidden;" readonly="readonly" id="SendAddress">
+		                </textarea>
+					</p>
+				</div>
+				<div class="mui-input-row">
+					<a class="mui-navigate-right">
+						<label>收货人</label>
+						<input type="text" readonly placeholder="请选择收货人..." id="ReceiveId" name="ReceiveId">
+						<input type="hidden" id='ReceiveMemberID' />
+						<input type="hidden" id='ReceiveP' />
+						<input type="hidden" id='ReceiveC' />
+						<input type="hidden" id='ReceiveD' />
+					</a>
+				</div>
+				<div class="mui-input-row" style="height: 80px;">
+					<p>
+						<textarea rows="3" placeholder="" name="" style="font-size: 14px;overflow:hidden;" readonly="readonly" id="ReceiveAddress">
+		                </textarea>
+					</p>
+				</div>
+				<div class="mui-input-row">
+					<a class="mui-navigate-right">
+						<label>
+							物流班次
+						</label>
+						<input type="text" readonly placeholder="请选择物流班次..." id="LineId" name="LineId">
+					</a>
+				</div>
+				<div class="mui-input-row" style="height: 85px;">
+					<label>物品件数</label>
+					<div class="mui-numbox" data-numbox-min='1' data-numbox-max='100'>
+						<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+						<input id="GoodsTotalQuantity" class="mui-input-numbox" type="number" name="GoodsTotalQuantity" value="1" />
+						<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+					</div>
+
+					<label style="width: 5%;"></label>
+					<ul id='ulGoodsCount' class="mui-pagination mui-pagination-sm mui-pull-right" style="margin-top: 6px;">
+						<li>
+							<a href="#">
+								1
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								2
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								3
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								4
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								5
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								6
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								7
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								8
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								9
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								10
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="mui-input-row">
+					<label style="width: 85px;">运费</label>
+					<input type="hidden" name="IsNeedReceiveMemberPay" id="IsNeedReceiveMemberPay" />
+					<!--<div class="mui-numbox" data-numbox-min='1' data-numbox-max='1000'>
+						<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+						<input id="Fee" class="mui-input-numbox" name="Fee" type="number" value="5" />
+						<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+					
+					</div>-->
+					<div id='divMemberReceivePay' class="mui-switch mui-switch-mini mui-switch-blue mui-active" style="margin-right: 4px;">
+						<div class="mui-switch-handle"></div>
+					</div>
+					<div style="float: right;margin-top: 10px; margin-right: 5px; margin-left: 8px;">到付</div>
+
+					<!--<label style="width: 5%;"></label>
+					<ul id="ulFee" class="mui-pagination mui-pagination-sm mui-pull-right" style="margin-top: 6px;">
+						<li>
+							<a href="#">
+                        10
+                    </a>
+						</li>
+						<li>
+							<a href="#">
+                        15
+                    </a>
+						</li>
+						<li>
+							<a href="#">
+                        20
+                    </a>
+						</li>
+						<li>
+							<a href="#">
+                        25
+                    </a>
+						</li>
+						<li>
+							<a href="#">
+                        30
+                    </a>
+						</li>
+						<li>
+							<a href="#">
+                        35
+                    </a>
+						</li>
+						<li>
+							<a href="#">
+                        40
+                    </a>
+						</li>
+						<li>
+							<a href="#">
+                        45
+                    </a>
+						</li>
+						<li>
+							<a href="#">
+                        50
+                    </a>
+						</li>
+					</ul>-->
+				</div>
+				<div class="mui-input-row">
+					<label>物品描述</label>
+					<input type="text" id="GoodsDescription" placeholder="请输入物品描述" value="汽配" name="GoodsDescription">
+				</div>
+				<div class="mui-input-row">
+					<label>代收款</label>
+					<input type="text" id="MemberPayFee" placeholder="请输入代收款项" name="MemberPayFee">
+				</div>
+
+				<div class="mui-input-row">
+					<label>代收手续费</label>
+					<input type="text" id="MemberPayFeeRate" placeholder="此项由接单人员填写" readonly name="MemberPayFeeRate">
+				</div>
+
+				<div class="mui-input-row">
+					<label>声明保价</label>
+					<input type="text" id="GoodsPrice" placeholder="请输入声明保价价值" name="GoodsPrice">
+				</div>
+				<div class="mui-input-row">
+					<label>保费金额</label>
+					<input type="text" id="GoodsPriceFee" placeholder="此项由接单人员填写" readonly="readonly" placeholder="" name="GoodsPriceFee">
+				</div>
+
+				<div class="mui-input-row">
+					<label>中转费用</label>
+					<input type="text" id="TranshipmentFee" placeholder="此项由接单人员填写" readonly="readonly" name="TranshipmentFee">
+				</div>
+
+				<div class="mui-input-row">
+					<label>打木架</label>
+					<input type="text" id="BoxFee" readonly="readonly" placeholder="此项由接单人员填写" name="BoxFee">
+				</div>
+
+				<div class="mui-input-row">
+					<label>打木架方</label>
+					<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px; width:105px">
+						<label style="font-size: 12px;margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px">发货人打</label>
+						<input name="BoxFeeType" value="1" id="BoxFeeType1" type="checkbox">
+					</div>
+					<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px; width:125px">
+						<label style="font-size: 12px;margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px">物流公司打</label>
+						<input name="BoxFeeType" value="2" id="BoxFeeType2" type="checkbox">
+					</div>
+				</div>
+
+				<div class="mui-input-row">
+					<div class="mui-radio mui-pull-left mui-left ">
+						<label style="font-size: 12px;">上门收件</label>
+						<input name="PickType" value="0" checked="checked" type="radio">
+					</div>
+					<div class="mui-radio mui-pull-left mui-left">
+						<label style="font-size: 12px;">推车上门</label>
+						<input name="PickType" value="1" type="radio">
+					</div>
+					<div class="mui-radio mui-pull-left mui-left">
+						<label style="font-size: 12px;">自送件</label>
+						<input name="PickType" value="2" type="radio">
+					</div>
+					<input type="hidden" id="PickType" value="0" />
+				</div>
+				<div class="mui-input-row">
+					<div class=" mui-radio mui-pull-left mui-left ">
+						<label style="font-size: 12px;">人工派货</label>
+						<input name="SendType" value="0" checked="checked" type="radio">
+					</div>
+					<div class="mui-radio mui-pull-left mui-left">
+						<label style="font-size: 12px;">开车派货</label>
+						<input name="SendType" value="1" type="radio">
+					</div>
+					<div class="mui-radio mui-pull-left mui-left">
+						<label style="font-size: 12px;">自取件</label>
+						<input name="SendType" value="2" type="radio">
+					</div>
+					<input type="hidden" id="SendType" value="0" />
+				</div>
+
+				<div class="mui-input-row">
+					<label>备注</label>
+					<input type="text" id="Remark" placeholder="" name="Remark">
+				</div>
+			</form>
+			<div class="mui-button-row bottom-action-bar">
+				<button id="btnSave" type="button" class="mui-btn mui-btn-primary mui-btn-block">
+					保存
+				</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+			});
+			var Id = $('#Id');
+			var title = $('#title'); //标题
+			var LineId = $('#LineId'); //物流班次
+			var SendId = $('#SendId'); //发货商户
+			var ReceiveId = $('#ReceiveId'); //收货商户
+			var SendMemberID = $('#SendMemberID');
+			var SendP = $('#SendP');
+			var SendD = $('#SendD');
+			var SendC = $('#SendC');
+			var SendAddress = $('#SendAddress');
+			var ReceiveMemberID = $('#ReceiveMemberID');
+			var ReceiveP = $('#ReceiveP');
+			var ReceiveD = $('#ReceiveD');
+			var ReceiveC = $('#ReceiveC');
+			var ReceiveAddress = $('#ReceiveAddress');
+
+			var GoodsTotalQuantity = $('#GoodsTotalQuantity');
+			/*var Fee = $('#Fee');*/
+			var GoodsDescription = $('#GoodsDescription');
+			var MemberPayFee = $('#MemberPayFee');
+			var MemberPayFeeRate = $('#MemberPayFeeRate');
+			var IsNeedReceiveMemberPay = $('#IsNeedReceiveMemberPay');
+			var GoodsPrice = $('#GoodsPrice');
+			var GoodsPriceFee = $('#GoodsPriceFee');
+			var BoxFee = $('#BoxFee');
+			var TranshipmentFee = $('#TranshipmentFee');
+			var PickType = $('#PickType');
+			var SendType = $('#SendType');
+			var Remark = $('#Remark');
+
+			/**
+			 * 初始化数据，清空
+			 */
+			function defautValue() {
+				Id.val('');
+				//LineId.val('');
+				SendId.val('');
+				SendId.attr('data-', '');
+				SendP.val('');
+				SendD.val('');
+				SendC.val('');
+				SendMemberID.val('');
+				SendAddress.val('');
+				//alert('a');
+
+				ReceiveId.val('');
+				ReceiveId.attr('data-', '');
+				ReceiveP.val('');
+				ReceiveC.val('');
+				ReceiveD.val('');
+				ReceiveMemberID.val('');
+				ReceiveAddress.val('');
+
+				LineId.val('');
+				LineId.attr('data-', '');
+				GoodsTotalQuantity.val('1');
+				/*	Fee.val('5');*/
+				GoodsDescription.val('汽配');
+				$('#divMemberReceivePay').addClass('mui-active');
+				IsNeedReceiveMemberPay.val(true);
+				MemberPayFee.val('');
+				MemberPayFeeRate.val('');
+				GoodsPrice.val('');
+				GoodsPriceFee.val('');
+				TranshipmentFee.val('');
+				BoxFee.val('');
+				Remark.val('');
+				btnSave.attr('disabled', null);
+				mui('input[name=BoxFeeType]').each(function() {
+					this.checked = false
+				});
+			}
+			/**
+			 * 设置Id
+			 * @param e 事件调用参数
+			 */
+			function setId(e) {
+				var id = e.detail.id;
+				title.html(id ? '货运单修改' : '货运单新增')
+				defautValue();
+				if(id) {
+					var param = xtt.getDefaultParam();
+					param['Id'] = id;
+					mui.ajax(xtt.serverRoot + 'GetOrder', {
+						type: 'post',
+						data: param,
+						timeout: 10000,
+						beforeSend: function() {
+							//loadingMsg('正在恢复会话信息...');
+						},
+						success: function(res) {
+							if(res) {
+								if(res.Succeed) {
+									var logisticsOrder = res.LogisticsOrder;
+									if(logisticsOrder) {
+										Id.val(id);
+										LineId.val(logisticsOrder.LineName);
+										LineId.attr('data-', logisticsOrder.LineId);
+										SendId.val(logisticsOrder.SendShortName);
+										SendId.attr('data-', logisticsOrder.SendId);
+										SendMemberID.val(logisticsOrder.SendMemberID);
+										ReceiveMemberID.val(logisticsOrder.ReceiveMemberID);
+										ReceiveId.val(logisticsOrder.ReceiveShortName);
+										ReceiveId.attr('data-', logisticsOrder.ReceiveId);
+										if(logisticsOrder.SendPhone) {
+											SendId.val(logisticsOrder.SendShortName + '[' + logisticsOrder.SendPhone + ']');
+										}
+										if(logisticsOrder.ReceivePhone) {
+											ReceiveId.val(logisticsOrder.ReceiveShortName + '[' + logisticsOrder.ReceivePhone + ']');
+										}
+										SendAddress.val('');
+										ReceiveAddress.val('');
+
+										SendAddress.val(((logisticsOrder.SendFullName == null || logisticsOrder.SendFullName == '') ? '暂未填写公司名称' : logisticsOrder.SendFullName) + '\r\n');
+										SendAddress.val(SendAddress.val() + logisticsOrder.StartPCDName + '\r\n');
+										SendAddress.val(SendAddress.val() + logisticsOrder.SendAddress);
+										ReceiveAddress.val(((logisticsOrder.ReceiveFullName == null || logisticsOrder.ReceiveFullName == '') ? '暂未填写公司名称' : logisticsOrder.ReceiveFullName) + '\r\n');
+										ReceiveAddress.val(ReceiveAddress.val() + logisticsOrder.EndPCDName + '\r\n');
+										ReceiveAddress.val(ReceiveAddress.val() + logisticsOrder.ReceiveAddress);
+
+										GoodsTotalQuantity.val(logisticsOrder.GoodsTotalQuantity)
+											//Fee.val(logisticsOrder.Fee);
+										IsNeedReceiveMemberPay.val(logisticsOrder.IsNeedReceiveMemberPay)
+										if(logisticsOrder.IsNeedReceiveMemberPay) {
+											$('#divMemberReceivePay').addClass('mui-active')
+										} else {
+											$('#divMemberReceivePay').removeClass('mui-active')
+										}
+										GoodsDescription.val(logisticsOrder.GoodsDescription);
+										MemberPayFee.val(logisticsOrder.MemberPayFee);
+										MemberPayFeeRate.val((logisticsOrder.MemberPayFeeRate == null || logisticsOrder.MemberPayFeeRate == 0) ? '' : logisticsOrder.TranshipmentFee);
+										TranshipmentFee.val(logisticsOrder.TranshipmentFee == 0 ? '' : logisticsOrder.TranshipmentFee);
+										GoodsPrice.val(logisticsOrder.GoodsPrice == 0 ? '' : logisticsOrder.GoodsPrice);
+										GoodsPriceFee.val(logisticsOrder.GoodsPriceFee == 0 ? '' : logisticsOrder.GoodsPriceFee);
+										BoxFee.val(logisticsOrder.BoxFee == 0 ? '' : logisticsOrder.BoxFee);
+										mui('input[name=PickType]').each(function() {
+											if($(this).val() == logisticsOrder.PickType) {
+												this.checked = true
+											}
+										});
+										mui('input[name=SendType]').each(function() {
+											if($(this).val() == logisticsOrder.SendType) {
+												this.checked = true
+											}
+										});
+										SendP.val(logisticsOrder.StartProvinceId);
+										SendC.val(logisticsOrder.StartCityId)
+										SendD.val(logisticsOrder.StartDistrict)
+										ReceiveP.val(logisticsOrder.EndProvinceId);
+										ReceiveC.val(logisticsOrder.EndCityId)
+										ReceiveD.val(logisticsOrder.EndDistrict)
+										PickType.val(logisticsOrder.PickType);
+										SendType.val(logisticsOrder.SendType);
+										Remark.val(logisticsOrder.Remark);
+										mui('input[name=BoxFeeType]').each(function() {
+											if($(this).val() == logisticsOrder.BoxFeeType) {
+												this.checked = true
+											}
+										});
+										//mui.toast('获取货运单资料成功！');
+									}
+								} else {
+									mui.toast('获取货运单资料失败！' + res.Message ? res.Message : '');
+									mui.back();
+								}
+							} else {
+								mui.toast('获取货运单资料错误，请稍后再试！');
+								mui.back();
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast('请求错误！' + errorThrown);
+							mui.back();
+						}
+					});
+				} else {
+					//填充默认的发货人
+					var param = xtt.getDefaultParam();
+					mui.ajax(xtt.serverRoot + 'GetDefaultOrder', {
+						type: 'post',
+						data: param,
+						timeout: 10000,
+						beforeSend: function() {
+							//loadingMsg('正在恢复会话信息...');
+						},
+						success: function(res) {
+							if(res) {
+								if(res.Succeed) {
+									var logisticsOrder = res.LogisticsOrder;
+									if(logisticsOrder) {
+										SendId.val(logisticsOrder.SendShortName);
+										SendId.attr('data-', logisticsOrder.SendId);
+										SendMemberID.val(logisticsOrder.SendMemberID);
+										if(logisticsOrder.SendPhone) {
+											SendId.val(logisticsOrder.SendShortName + '[' + logisticsOrder.SendPhone + ']');
+										}
+										SendAddress.val('');
+										SendAddress.val(((logisticsOrder.SendFullName == null || logisticsOrder.SendFullName == '') ? '暂未填写公司名称' : logisticsOrder.SendFullName) + '\r\n');
+										SendAddress.val(SendAddress.val() + logisticsOrder.StartPCDName + '\r\n');
+										SendAddress.val(SendAddress.val() + logisticsOrder.SendAddress);
+										SendP.val(logisticsOrder.StartProvinceId);
+										SendC.val(logisticsOrder.StartCityId)
+										SendD.val(logisticsOrder.StartDistrict)
+											//mui.toast('获取货运单资料成功！');
+									}
+								} else {
+									mui.toast('获取默认货运单资料失败！' + res.Message ? res.Message : '');
+									mui.back();
+								}
+							} else {
+								mui.toast('获取默认货运单资料错误，请稍后再试！');
+								mui.back();
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast('请求错误！' + errorThrown);
+							mui.back();
+						}
+					});
+				}
+			}
+			//侦听setId
+			document.addEventListener('setId', setId);
+			/**
+			 * 保存
+			 */
+			btnSave = $('#btnSave');
+
+			function save() {
+				//校验数据
+				var sendId = SendId.attr('data-');
+				if((sendId == null || sendId == '') && (SendMemberID.val() == null || SendMemberID.val() == '')) {
+					mui.toast('请选择发货人！');
+					return;
+				}
+				var receiveId = ReceiveId.attr('data-');
+				if((receiveId == null || receiveId == '') && (ReceiveMemberID.val() == null || ReceiveMemberID.val() == '')) {
+					mui.toast('请选择收货人！');
+					return;
+				}
+				var lineId = LineId.attr('data-');
+				if(lineId == null || lineId == '') {
+					mui.toast('请选择物流班次！');
+					return;
+				}
+				var id = Id.val();
+				var action = (id && id != '') ? 'UpdateOrder' : 'AddOrder';
+				var arr = $('#editForm').serializeArray();
+				var logisticsOrder = {};
+				$.each(arr, function(index, item) {
+					logisticsOrder[item.name] = item.value;
+				});
+
+				logisticsOrder['SendMemberID'] = SendMemberID.val();
+				logisticsOrder['SendId'] = sendId;
+				logisticsOrder['ReceiveMemberID'] = ReceiveMemberID.val();
+				logisticsOrder['ReceiveId'] = receiveId;
+
+				logisticsOrder['LineId'] = lineId;
+				logisticsOrder['SendType'] = SendType.val();
+				logisticsOrder['PickType'] = PickType.val();
+				var param = xtt.getDefaultParam();
+				param['LogisticsOrder'] = logisticsOrder;
+				btnSave.attr('disabled', 'disabled');
+				mui.ajax(xtt.serverRoot + action, {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function(xhr, settings) {
+						//loadingMsg('正在恢复会话信息...');
+						//xhr.setRequestHeader('Content-Type', 'application/json');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								var list = plus.webview.getWebviewById('list-orders.html_send');
+								if(list)
+									mui.fire(list, 'saved', {
+										logisticsOrder: res.LogisticsOrder,
+										isUpdated: action == 'UpdateOrder'
+									});
+								mui.toast('保存成功！');
+								mui.openWindow({
+									url: "index.html",
+									id: "customerIndex",
+									show: {
+										aniShow: 'pop-in',
+										duration: 300
+									}
+								});
+							} else {
+								mui.toast('保存失败！' + res.Message ? res.Message : '');
+								btnSave.attr('disabled', null);
+							}
+						} else {
+							mui.toast('保存错误，请稍后再试！');
+							btnSave.attr('disabled', null);
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						btnSave.attr('disabled', null);
+					}
+				});
+			}
+			//保存按钮事件
+			document.getElementById('btnSave').addEventListener('tap', save);
+			document.getElementById('LineId').addEventListener('tap', function() {
+				var sender = {
+					ProvinceID: $('#SendP').val(),
+					CityID: $('#SendC').val(),
+					DistrictID: $('#SendD').val(),
+				};
+				var receiver = {
+					ProvinceID: $('#ReceiveP').val(),
+					CityID: $('#ReceiveC').val(),
+					DistrictID: $('#ReceiveD').val(),
+				};
+				//alert($('#SendP').val() + $('#SendC').val() + $('#SendD').val());
+				mui.fire(
+					plus.webview.getWebviewById('customer-selectLine'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id,
+						sender: sender,
+						receiver: receiver,
+					}
+				);
+				mui.openWindow({
+					url: "selectLine.html",
+					id: "customer-selectLine",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+			document.getElementById('SendId').addEventListener('tap', function() {
+				mui.fire(
+					plus.webview.getWebviewById('customer-selectUser'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id,
+						from: 'Sender'
+					}
+				);
+				mui.openWindow({
+					url: "selectUser.html",
+					id: "customer-selectUser",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+			document.getElementById('ReceiveId').addEventListener('tap', function() {
+				mui.fire(
+					plus.webview.getWebviewById('customer-selectUser'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id,
+						from: 'Receiver'
+					}
+				);
+				mui.openWindow({
+					url: "selectUser.html",
+					id: "customer-selectUser",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+			mui('#editForm').on('tap', '.mui-radio', function() {
+				var name = $(this).find('input').attr('name');
+				var val = $(this).find('input').val();
+				if(name == "PickType") {
+					PickType.val(val);
+				} else if(name == "SendType") {
+					SendType.val(val);
+				}
+			});
+
+			document.addEventListener("customerSelected", function(e) {
+				var user = e.detail.customer;
+				var from = e.detail.from;
+				if(from == 'Sender') {
+					if(user.MemberID) {
+						//会员
+						SendId.val(user.MemberNO);
+						SendId.val(SendId.val() + '[' + user.Cellphone + ']');
+						SendId.attr('data-', '');
+						SendMemberID.val(user.MemberID);
+					} else {
+						SendId.val(user.TrueName);
+						SendId.val(SendId.val() + '[' + user.Cellphone + ']');
+						SendId.attr('data-', user.Id);
+						SendMemberID.val('');
+					}
+					$('#SendP').val(user.ProvinceID);
+					$('#SendC').val(user.CityID);
+					$('#SendD').val(user.DistrictID);
+
+					$('#SendAddress').val((user.CompanyName == null || user.CompanyName == '') ? '暂未填写公司名称' : user.CompanyName);
+					$('#SendAddress').val($('#SendAddress').val() + '\r\n' + user.PCDName + "\r\n" + user.Address);
+				} else if(from == 'Receiver') {
+					if(user.MemberID) {
+						//会员
+						ReceiveId.val(user.MemberNO);
+						ReceiveId.val(ReceiveId.val() + '[' + user.Cellphone + ']');
+						ReceiveId.attr('data-', '');
+						ReceiveMemberID.val(user.MemberID);
+					} else {
+						ReceiveId.val(user.TrueName);
+						ReceiveId.val(ReceiveId.val() + '[' + user.Cellphone + ']');
+						ReceiveId.attr('data-', user.Id);
+						ReceiveMemberID.val('');
+					}
+					$('#ReceiveP').val(user.ProvinceID)
+					$('#ReceiveC').val(user.CityID)
+					$('#ReceiveD').val(user.DistrictID)
+					$('#ReceiveAddress').val((user.CompanyName == null || user.CompanyName == '') ? '暂未填写公司名称' : user.CompanyName);
+					$('#ReceiveAddress').val($('#ReceiveAddress').val() + '\r\n' + user.PCDName + "\r\n" + user.Address);
+				} else if(from == 'ReceiveCustomerId') {
+					ReceiveCustomerId.val(customer.ShortName);
+					ReceiveCustomerId.attr('data-', customer.Id);
+				}
+				LineId.val('');
+				LineId.attr('data-', '');
+			});
+
+			document.addEventListener("lineSelected", function(e) {
+				var line = e.detail;
+				LineId.val(line.Name + '【' + line.CompanyName + '】');
+				LineId.attr('data-', line.LineId);
+				/*	SendId.val('');
+					SendId.attr('data-', '');
+					ReceiveId.val('');
+					ReceiveId.attr('data-', '');*/
+			});
+			mui('#ulGoodsCount a').each(function() {
+				this.addEventListener('tap', function(e) {
+					GoodsTotalQuantity.val($(this).html().trim());
+				});
+			});
+			document.getElementById('divMemberReceivePay').addEventListener('toggle', function(event) {
+				IsNeedReceiveMemberPay.val(event.detail.isActive)
+			});
+
+			mui('.mui-checkbox').on('change', 'input', function() {
+				var value = this.checked ? "true" : "false";
+				var id = $(this).attr('id');
+				mui('input[name="BoxFeeType"]').each(function(index, element) {
+					if(value == "true") {
+						if($(this).attr("id") != id) {
+							this.checked = false;
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

@@ -5,7 +5,7 @@
 //  Created by xingyun on 2017/9/4.
 //  Copyright © 2017年 xiaopenglive. All rights reserved.
 //
-
+#import "PDRCore.h"
 #import "AppDelegate.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "IQKeyboardManager.h"        //键盘
@@ -74,6 +74,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"%@",launchOptions);
+    
 //    [self getSessionId];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     [WXApi registerApp:@"wx58c50219d3defad2"];
@@ -115,7 +116,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
     [self netWorkReachAbility];
 //    [self eliminate];
 
-    return YES;
+    return [PDRCore initEngineWihtOptions:launchOptions withRunMode:PDRCoreRunModeAppClient];
 }
 
 
@@ -180,7 +181,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+   [PDRCore destoryEngine];
 }
 
 /** 获取 deviceToken */
@@ -730,4 +731,5 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         //        block(nil,error);
     }];
 }
+
 @end

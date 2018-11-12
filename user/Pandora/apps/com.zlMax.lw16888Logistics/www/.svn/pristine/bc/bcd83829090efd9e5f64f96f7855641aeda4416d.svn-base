@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>测试页面</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">测试页面</h1>
+		</header>
+		<div class="mui-content mui-content-padded">
+			<h5>列表样式</h5>
+			<button id="customerListStyle" type="button" class="mui-btn mui-btn-block">
+				商户列表样式
+			</button>
+			<button id="orderListStyle" type="button" class="mui-btn mui-btn-block">
+				货运单列表样式
+			</button>
+			</button>
+			<button id="logPrompt" type="button" class="mui-btn mui-btn-block">
+				添加日志对话框
+			</button>
+			<h5>查询选择页面</h5>
+			<button id="selectCarCity" type="button" class="mui-btn mui-btn-block">
+				汽配城选择
+			</button>
+			<button id="selectCustomer" type="button" class="mui-btn mui-btn-block">
+				商户选择
+			</button>
+			<button id="selectLine" type="button" class="mui-btn mui-btn-block">
+				线路选择
+			</button>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+			});
+			document.getElementById('customerListStyle').addEventListener('tap', function() {
+				mui.openWindow({
+					id: 'customerListStyle',
+					url: 'customerListStyle.html'
+				});
+			});
+			document.getElementById('orderListStyle').addEventListener('tap', function() {
+				mui.openWindow({
+					id: 'orderListStyle',
+					url: 'orderListStyle.html'
+				});
+			});
+			document.getElementById('selectCarCity').addEventListener('tap', function() {
+				mui.openWindow({
+					id: 'selectCarCity',
+					url: 'selectCarCity.html'
+				});
+			});
+			document.getElementById('selectCustomer').addEventListener('tap', function() {
+				mui.openWindow({
+					id: 'selectCustomer',
+					url: 'selectCustomer.html'
+				});
+			});
+			document.getElementById('selectLine').addEventListener('tap', function() {
+				mui.openWindow({
+					id: 'merchant-selectLine',
+					url: 'selectLine.html'
+				});
+			});
+			document.getElementById('logPrompt').addEventListener('tap', function() {
+				mui.openWindow({
+					id: 'logPrompt',
+					url: 'logPrompt.html'
+				});
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,1172 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>货运单列表</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul id="list" class="mui-table-view">
+
+				</ul>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//第一次加载完成
+			var hasLoaded = false;
+			//查询选项，查询事件处理中需要置为初始值
+			var searchOption = {
+				Keyword: '',
+				PageSize: 20,
+				PageIndex: 0,
+				StartDateTime: '',
+				EndDateTime: '',
+				LineId: '',
+				CarCityId: '',
+				SearchType: '1', //1为普通查询，2为统计查询
+				OnlyMe: false,
+				OnlyNeedMemberPay: false,
+				OnlyNoPay: false,
+				OnlyNoAccept: false,
+				EndProvinceId: 0,
+				EndCityId: 0,
+				EndDistrictId: 0,
+				StartOutletIds: '',
+				StartOutletStrs: '',
+				EndOutletIds: '',
+				EndOutletStrs: ''
+			};
+			//结果状态，查询事件处理中需要置为初始值
+			var resultStatus = {
+				"PageSize": 20,
+				"PageIndex": 0,
+				"TotalPages": 0,
+				"TotalCount": -1
+			};
+			var cacheData = {};
+			//列表
+			var table = $('.mui-table-view');
+			//查询事件
+			document.addEventListener('search', function(e) {
+				searchOption.Keyword = e.detail.Keyword;
+				searchOption.LineId = e.detail.LineId;
+				searchOption.CarCityId = e.detail.CarCityId;
+				searchOption.StartDateTime = e.detail.StartDateTime;
+				searchOption.EndDateTime = e.detail.EndDateTime;
+				searchOption.SearchType = e.detail.SearchType;
+				searchOption.OnlyMe = e.detail.OnlyMe;
+				searchOption.OnlyNeedMemberPay = e.detail.OnlyNeedMemberPay;
+				searchOption.OnlyNoPay = e.detail.OnlyNoPay;
+				searchOption.OnlyNoAccept = e.detail.OnlyNoAccept;
+				searchOption.EndProvinceId = e.detail.EndProvinceId;
+				searchOption.EndCityId = e.detail.EndCityId;
+				searchOption.EndDistrictId = e.detail.EndDistrictId;
+				searchOption.StartOutletIds = e.detail.StartOutletIds;
+				searchOption.EndOutletIds = e.detail.EndOutletIds;
+				searchOption.StartOutletStrs = e.detail.StartOutletStrs;
+				searchOption.EndOutletStrs = e.detail.EndOutletStrs;
+				searchOption.PageIndex = 0;
+				resultStatus.PageIndex = 0;
+				resultStatus.TotalPages = 0;
+				resultStatus.TotalCount = -1;
+				hasLoaded = false;
+				if(searchOption.SearchType != 3) {
+					table.children().remove();
+					cacheData = {};
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 10);
+				} else {
+					printSearchOrders();
+				}
+			});
+			//初始化
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				searchOption.PageIndex = 1;
+				if(searchOption.SearchType == 2) {
+					var param = xtt.getDefaultParam();
+					param = mui.extend(param, searchOption);
+					mui.ajax(xtt.serverRoot + 'LogisticsOrderStats', {
+						type: 'post',
+						data: param,
+						timeout: 30000,
+						beforeSend: function() {
+							//loadingMsg('正在恢复会话信息...');
+						},
+						success: function(res) {
+							if(res) {
+								if(res.Succeed) {
+									//alert(res.Timestamp);
+									//mui.toast('统计货运单更新成功,用时：'+res.Timestamp+'毫秒');
+									mui.toast('统计货运单更新成功');
+									hasLoaded = true;
+									resultStatus.PageIndex = res.PageIndex;
+									resultStatus.PageSize = res.PageSize;
+									resultStatus.TotalCount = res.TotalCount;
+									resultStatus.TotalPages = res.TotalPages;
+									setOrderStat(res.OrderStat);
+									updateStatList(res.ListOrder, false);
+									mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+								} else {
+									mui.toast('获取统计货运失败！' + res.Message ? res.Message : '');
+									mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+								}
+							} else {
+								mui.toast('获取统计货运失败，请稍后再试！');
+								mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast('请求错误！' + errorThrown);
+							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						}
+					});
+					return;
+				}
+
+				//获取数据
+				var param = xtt.getDefaultParam();
+				param = mui.extend(param, searchOption);
+				mui.ajax(xtt.serverRoot + 'LogisticsOrders', {
+					type: 'post',
+					data: param,
+					timeout: 30000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								//alert(res.Timestamp);
+								//mui.toast('货运单更新成功，用时：'+res.Timestamp+'毫秒');
+								mui.toast('货运单更新成功');
+								//resultStatus.PageIndex = res.PageIndex;
+								resultStatus.PageSize = res.PageSize;
+								resultStatus.TotalCount = res.TotalCount;
+								resultStatus.TotalPages = res.TotalPages;
+								setOrderStat(res.OrderStat);
+								updateList(res.ListOrder, false);
+								mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+							} else {
+								mui.toast('获取货运单失败！' + res.Message ? res.Message : '');
+								mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+							}
+						} else {
+							mui.toast('获取货运单失败，请稍后再试！');
+							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					}
+				});
+			}
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				if(searchOption.SearchType == 2) {
+					if(hasLoaded) {
+						mui.toast('已经到最后一页了');
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+						return;
+					} else {
+						//加载统计
+						var param = xtt.getDefaultParam();
+						param = mui.extend(param, searchOption);
+						mui.ajax(xtt.serverRoot + 'LogisticsOrderStats', {
+							type: 'post',
+							data: param,
+							timeout: 30000,
+							beforeSend: function() {
+								//loadingMsg('正在恢复会话信息...');
+							},
+							success: function(res) {
+								if(res) {
+									if(res.Succeed) {
+										//alert(res.Timestamp);
+
+										var str = '获取统计货运列表成功！';
+										if(hasLoaded) {
+
+											if(res.PageIndex >= res.TotalPages)
+												str = '已经到最后一页了';
+											//mui.toast(str+'用时：'+res.Timestamp+'毫秒');
+
+										} else {
+											mui('#pullrefresh').pullRefresh().scrollTo(0, 0, 0);
+										}
+										mui.toast(str)
+										hasLoaded = true;
+										resultStatus.PageIndex = res.PageIndex;
+										resultStatus.PageSize = res.PageSize;
+										resultStatus.TotalCount = res.TotalCount;
+										resultStatus.TotalPages = res.TotalPages;
+										setOrderStat(res.OrderStat);
+										updateStatList(res.ListOrder, true);
+										mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+									} else {
+										mui.toast('获取统计货运失败！' + res.Message ? res.Message : '');
+										mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+									}
+								} else {
+									mui.toast('获取统计货运失败，请稍后再试！');
+									mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								mui.toast('请求错误！' + errorThrown);
+								mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+							}
+						});
+					}
+					return;
+				}
+				if(resultStatus.TotalCount < 0) {
+					//第一次获取
+					searchOption.PageIndex = 1;
+				} else {
+					searchOption.PageIndex = resultStatus.PageIndex + 1;
+					/*if(searchOption.PageIndex > resultStatus.TotalPages){
+					 mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					 return;
+					 }*/
+				}
+				//获取数据
+				var param = xtt.getDefaultParam();
+				param = mui.extend(param, searchOption);
+				mui.ajax(xtt.serverRoot + 'LogisticsOrders', {
+					type: 'post',
+					data: param,
+					timeout: 30000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								//alert(res.Timestamp);
+								var str = '获取货运单列表成功';
+								if(hasLoaded) {
+									if(res.PageIndex >= res.TotalPages)
+										str = '已经到最后一页了';
+								} else {
+									mui('#pullrefresh').pullRefresh().scrollTo(0, 0, 0);
+								}
+								hasLoaded = true;
+								//mui.toast(str+'用时：'+res.Timestamp+'毫秒');
+								mui.toast(str);
+								resultStatus.PageIndex = res.PageIndex;
+								resultStatus.PageSize = res.PageSize;
+								resultStatus.TotalCount = res.TotalCount;
+								resultStatus.TotalPages = res.TotalPages;
+								setOrderStat(res.OrderStat);
+								updateList(res.ListOrder, true);
+								mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+							} else {
+								mui.toast('获取货运单失败！' + res.Message ? res.Message : '');
+								mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+							}
+						} else {
+							mui.toast('获取货运单失败，请稍后再试！');
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+					}
+				});
+			}
+			/**
+			 * 更新列表数据（会去重，位置会有变化，已最后取到的为准）
+			 * @param carCities 货运单数组
+			 * @param append 是否添加在列表尾部
+			 */
+			function updateList(carCities, append) {
+				var tmp = $('<div>');
+				$.each(carCities, function(index, item) {
+					var old = document.getElementById('li_' + item.Id);
+					if(old)
+						$(old).remove();
+					var li = createLi(item);
+					tmp.append(li);
+				});
+				if(append)
+					table.append(tmp.children());
+				else {
+					if(table.children().length > 0)
+						tmp.children().insertBefore(table.children().first());
+					else
+						table.append(tmp.children());
+				}
+			}
+
+			function updateStatList(orders, append) {
+				var tmp = $('<div>');
+				$.each(orders, function(index, item) {
+					var old = document.getElementById('li_' + item.Id);
+					if(old)
+						$(old).remove();
+					var li = createStatLi(item);
+					tmp.append(
+						$('<a>').addClass('mui-btn mui-btn-primary btn-print btn-orderstat-print')
+						.attr('data-', item.Id)
+						.append(
+							$('<span>').addClass('mui-icon  mui-icon-upload')
+						).append('打印')
+					).append(
+						$('<a>').addClass('mui-btn mui-btn-warning btn-pay btn-orderstat-pay')
+						.attr('data-', li.attr('childIds'))
+						.append('￥')
+						.attr('id', 'Pay_' + item.Id)
+					);
+					tmp.append(li);
+					cacheData[item.Id] = item;
+				});
+				if(append)
+					table.append(tmp.children());
+				else {
+					if(table.children().length > 0)
+						tmp.children().insertBefore(table.children().first());
+					else
+						table.append(tmp.children());
+				}
+			}
+
+			function setOrderStat(OrderStat) {
+				var orders = plus.webview.getWebviewById('orders.html');
+				mui.fire(orders, 'setOrderStat', {
+					OrderStat: OrderStat
+				});
+			}
+			/**
+			 * 更新单个货运单，用于编辑保存后的操作
+			 * @param item
+			 */
+			function updateOrder(item) {
+				var old = document.getElementById('li_' + item.Id);
+				if(old) {
+					var li = createLi(item);
+					$(old).html(li.html());
+				}
+			}
+			/**
+			 * 构建列表项
+			 * @param item 货运单数据对象
+			 * @returns {*|jQuery} 列表项
+			 */
+			function createLi(item) {
+				if(item.Status == 0) { //初始状态的数量，以客户为准
+					item.ServicesGoodsTotalQuantity = item.GoodsTotalQuantity;
+				}
+				if(item.OrderType == 0) {
+					item.SendCarCityName = (item.SendFullName == null || item.SendFullName == '') ? '暂未填写公司名称' : item.SendFullName;
+					item.ReceiveCarCityName = (item.ReceiveFullName == null | item.ReceiveFullName == '') ? '暂未填写公司名称' : item.ReceiveFullName;
+				} else {
+					if(!item.SendCarCityName) {
+						item.SendCarCityName = item.SendFullName;
+					}
+					if(!item.ReceiveCarCityName) {
+						item.ReceiveCarCityName = item.ReceiveFullName;
+					}
+				}
+				var money = $('<a>').addClass('mui-btn mui-btn-warning btn-pay btn-order-pay')
+					.attr('data-', item.Id)
+					.append('￥');
+				var li = $('<li>')
+					.addClass('mui-table-view-cell').attr('id', 'li_' + item.Id);
+				var a = $('<a>').addClass('mui-navigate-right btn-edit btn-order-edit')
+					.append(
+						$('<div style="background-color:' + ((item.ReceiveCarCityColor == null || item.ReceiveCarCityColor.length == 0) ? '#bababa' : item.ReceiveCarCityColor) + '">').addClass('order-quantity').append(item.ServicesGoodsTotalQuantity).append(
+							$('<span>').addClass('unit').append('件')
+						).append($('<div>').addClass('order-other').append('<span style="color:' + (item.Status == 0 ? 'red' : '') + '">[' + item.InstanceOnText + ']</span>' + (item.OrderType == 0 ? '普' : '代')))
+						.append($('<div>').addClass('order-other').append(item.LineName))
+						.append($('<div>').addClass('order-other').append((item.Status > 0 && item.OrderType == 0) ? item.PickName : item.CreatedBy))
+					)
+					.append(
+						$('<div>').addClass('order-detail')
+						.append(
+							$('<p>').addClass('order-from mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-location'))
+							.append(item.SendShortName + ' ' + item.SendCarCityName)
+						).append(
+							$('<p>').addClass('order-to mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-paperplane'))
+							.append(item.ReceiveShortName + ' ' + item.ReceiveCarCityName)
+						).append(
+							$('<p>').addClass('order-fee mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-info-filled'))
+							.append(item.FeeInfo)
+						)
+					).attr('id', item.Id);
+				li.append(a).append(
+					$('<a>').addClass('mui-btn mui-btn-red btn-delete btn-order-delete')
+					.addClass(showMore ? '' : 'mui-hidden')
+					.append('删除')
+				).append(
+					$('<a>').addClass('mui-btn mui-btn-primary btn-print btn-order-print')
+					.attr('data-', item.Id)
+					.append(
+						$('<span>').addClass('mui-icon  mui-icon-upload')
+					).append('打印')
+				);
+				if(item.Status > 0) {
+					if(!item.IsPaidFee || (item.MemberPayFee != null && item.MemberPayFee != 0 && !item.IsPaidMemberPayFee)) {
+						li.append(money);
+					}
+				}
+				return li;
+			}
+			//创建统计条目
+			function createStatLi(item) {
+				/*	alert(item.TotalGoodsCount);*/
+				var li = $('<li>')
+					.addClass('mui-table-view-cell mui-collapse').attr('id', 'li_' + item.Id);
+				var a = $('<a>').addClass('mui-navigate-right btn-receive-group')
+					.append(
+						$('<div style="background-color:' + ((item.ReceiveCarCityColor == null || item.ReceiveCarCityColor.length == 0) ? '#bababa' : item.ReceiveCarCityColor) + '">').addClass('order-quantity').append(item.TotalGoodsCount).append(
+							$('<span>').addClass('unit').append('件')
+						)
+					)
+					.append(
+						$('<div>').addClass('order-detail')
+						.append(
+							$('<p>').addClass('order-to mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-paperplane'))
+							.append(item.ReceiveShortName + ' ' + item.ReceiveCarCityName)
+						)
+					);
+				var childIds = '';
+				var ul = $('<ul>').addClass('mui-table-view');
+				$.each(item.Children, function(index, child) {
+					var childLi = $('<li>')
+						.addClass('mui-table-view-cell table-view-cell-padding-fix-less');
+					var childA = $('<a>').addClass('mui-navigate-right btn-edit btn-receive-item')
+						.append(
+							$('<div style="background-color:' + ((child.ReceiveCarCityColor == null || child.ReceiveCarCityColor.length == 0) ? '#bababa' : item.ReceiveCarCityColor) + '">').addClass('order-quantity').append(child.ServicesGoodsTotalQuantity).append(
+								$('<span>').addClass('unit').append('件')
+							).append($('<div>').addClass('order-other').append('[' + child.InstanceOnText + ']'))
+							.append($('<div>').addClass('order-other').append(child.LineName))
+						)
+						.append(
+							$('<div>').addClass('order-detail')
+							.append(
+								$('<p>').addClass('order-from mui-ellipsis')
+								.append($('<span>').addClass('mui-icon mui-icon-location'))
+								.append(child.SendCarCityName + ' ' + child.SendShortName)
+							)
+							.append(
+								$('<p>').addClass('order-fee mui-ellipsis')
+								.append($('<span>').addClass('mui-icon mui-icon-info-filled'))
+								.append((child.Fee + child.BoxFee + child.GoodsPriceFee) + '[运' + child.Fee + (child.GoodsPriceFee == 0 ? '' : ('保' + child.GoodsPriceFee)) + (child.BoxFee == 0 ? '' : ('木' + child.BoxFee)) + ']' + (child.IsNeedReceiveMemberPay ? '到付' : '发付') + (child.MemberPayFee ? (' 代' + child.MemberPayFee) : ''))
+							)
+						).attr('id', child.Id);
+					childLi.append(childA);
+					ul.append(childLi);
+					childIds += child.Id + ',';
+				});
+				li.append(a).append(ul).attr('childIds', childIds);
+				return li;
+			}
+			//ready
+			var printPrompt = null;
+			if(mui.os.plus) {
+				mui.plusReady(function() {
+					xtt.initPlusReady();
+					printPrompt = plus.webview.getWebviewById('proprint');
+					printPrompt.setStyle({
+						zindex: 100
+					});
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 10);
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}
+			var editForm = null;
+			/**
+			 * 新增
+			 */
+			function add() {
+				if(!editForm)
+					editForm = plus.webview.getWebviewById('merchant-order');
+				mui.fire(editForm, 'setId', {
+					id: null
+				});
+				mui.openWindow({
+					url: "order.html",
+					id: "merchant-order",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			}
+			/**
+			 * 保存后的处理
+			 * @param e 事件参数
+			 */
+			function saved(e) {
+				var order = e.detail.logisticsOrder;
+				var isUpdated = e.detail.isUpdated;
+				if(order) {
+					if(isUpdated)
+						updateOrder(order);
+					else
+						updateList([order], false);
+					//editForm.hide('slide-out-right');
+				}
+			}
+			//设置收款
+			function paid(e) {
+				var orders = e.detail.logisticsOrder;
+				$.each(orders, function(index, item) {
+					var old = document.getElementById('li_' + item.Id);
+					if(old) {
+						if(searchOption.SearchType == 2) {
+							/*	var li = createStatLi(item);
+								$(old).html(li.html());*/
+						} else {
+							var li = createLi(item);
+							$(old).html(li.html());
+							//找到Id
+						}
+					}
+				});
+			}
+			var showMore = false; //是否显示了更多操作
+			function moreAction() {
+				var btnSendOrReback = ['打印派货单', '打印退货单', '取消'];
+				if(searchOption.SearchType == 2) {
+					var count = 0;
+					var strBuilder = '\r\n\r\n\r新泰通物流：18824708026\r\n\r\n';
+					strBuilder += '服务条款见：www.xtt168.com\r\n';
+					strBuilder += '--------------------------------';
+					strBuilder += '[' + searchOption.StartDateTime + ']-[' + searchOption.EndDateTime + ']\r\n';
+					strBuilder += '[' + searchOption.StartOutletStrs + ']-[' + searchOption.EndOutletStrs + ']\r\n';
+					strBuilder += '总件数： #TOTALCOUNT# \r\n';
+					strBuilder += '--------------------------------';
+
+					var strBuilderBack = strBuilder;
+					var oldCarCity = '';
+					var totalCount = 0;
+					for(var p in cacheData) { // 方法
+
+						if(typeof(cacheData[p]) != " function ") {
+							var fenggexian = '';
+							if(cacheData[p].ReceiveCarCityName) {
+								for(var i = cacheData[p].ReceiveCarCityName.length * 2; i <= 32; i++) {
+									fenggexian += '-';
+								}
+							}
+							count++;
+							var itemStr = ''
+							if(cacheData[p].ReceiveCarCityName != oldCarCity) {
+								//变更了汽配城，需要加上汽配城头
+								itemStr += '\r\n' + cacheData[p].ReceiveCarCityName + fenggexian + '\r\n';
+								itemStr += cacheData[p].ReceiveShortName + ':' + cacheData[p].TotalGoodsCount + '件\r\n';
+								oldCarCity = cacheData[p].ReceiveCarCityName;
+							} else {
+								itemStr += cacheData[p].ReceiveShortName + ':' + cacheData[p].TotalGoodsCount + '\r\n';
+							}
+							strBuilder += itemStr;
+							$.each(cacheData[p].Children, function(index, child) {
+								var strFeeInfo = (child.Fee + child.BoxFee + child.GoodsPriceFee) + '[运' + child.Fee + (child.GoodsPriceFee == 0 ? '' : ('保' + child.GoodsPriceFee)) + (child.BoxFee == 0 ? '' : ('木' + child.BoxFee)) + ']' + (child.IsNeedReceiveMemberPay ? '到付' : '发付') + (child.MemberPayFee ? (' 代' + child.MemberPayFee) : '')
+								strBuilderBack += cacheData[p].ReceiveShortName + ' ' + cacheData[p].ReceiveCarCityName + ':' + child.ServicesGoodsTotalQuantity + '件\r\n';
+								strBuilderBack += strFeeInfo + '\r\n';
+								strBuilderBack += child.SendCarCityName + ' ' + child.SendShortName + '\r\n\r\n';
+								totalCount += child.ServicesGoodsTotalQuantity;
+							})
+						}
+					}
+
+					strBuilder = strBuilder.replace('#TOTALCOUNT#', totalCount + '件');
+					strBuilderBack = strBuilderBack.replace('#TOTALCOUNT#', totalCount + '件');
+
+					// 最后显示所有的属性
+					if(count != 0) {
+						mui.confirm('请选择统计打印类型？', '新泰通', btnSendOrReback, function(e) {
+							if(e.index == 0 || e.index == 1) {
+								//alert(strBuilder);
+								var temp = e.index == 0 ? strBuilder : strBuilderBack;
+								if(plus.os.name == "Android") {
+									plus.runtime.launchApplication({
+										pname: "com.zlmax.xttprinter",
+										action: "android.intent.action.SEND",
+										type: "text/plain",
+										extra: {
+											HB_TEXT: temp,
+											HB_TAG: null
+										}
+									}, function(e) {
+										alert("调用失败！ " + e.message);
+									});
+								} else if(plus.os.name == "iOS") {
+									/*plus.runtime.launchApplication( {action:"http://www.html5plus.org"}, function ( e ) {
+									 alert( "Open system default browser failed: " + e.message );
+									 } );*/
+									mui.alert('IOS系统暂时不支持打印！');
+								}
+							} else {
+								//mui.alert('打印退货单！');
+							}
+						});
+					} else {
+						mui.toast('没有要打印的数据！');
+					}
+				} else {
+					if(showMore) {
+						$('.btn-delete').addClass('mui-hidden');
+						showMore = false;
+					} else {
+						$('.btn-delete').removeClass('mui-hidden');
+						showMore = true;
+					}
+				}
+			} //新增事件
+			document.addEventListener('add', add);
+			document.addEventListener('moreAction', moreAction);
+			//保存后事件
+			document.addEventListener('saved', saved);
+			//设置收款
+			document.addEventListener('paid', paid);
+			//列表滚动到顶部
+			function scroll2Top() {
+				mui('#pullrefresh').pullRefresh().scrollTo(0, 0, 100)
+			}
+			document.addEventListener('scroll2Top', scroll2Top);
+			var btnArray = ['确认', '取消'];
+			//主列表点击事件
+			mui('#list').on('tap', '.btn-edit', function() {
+				var id = this.id;
+				//alert(id);
+				if(!editForm)
+					editForm = plus.webview.getWebviewById('merchant-order');
+				mui.fire(editForm, 'setId', {
+					id: id
+				});
+				mui.later(function() {
+					mui.openWindow({
+						url: "order.html",
+						id: "merchant-order",
+						show: {
+							aniShow: 'pop-in',
+							duration: 300
+						}
+					});
+				}, 100);
+			});
+			//收款
+			var payForm;
+			mui('#list').on('tap', '.btn-pay', function() {
+				var ids = $(this).attr('data-').split(',');
+				//找到所有集合的Id
+				//alert(id);
+				if(!payForm)
+					payForm = plus.webview.getWebviewById('merchant-orderPay');
+				mui.fire(payForm, 'SeachPay', {
+					ids: ids
+				});
+				mui.later(function() {
+					mui.openWindow({
+						url: "orderPay.html",
+						id: "merchant-orderPay",
+						show: {
+							aniShow: 'pop-in',
+							duration: 300
+						}
+					});
+				}, 100);
+			});
+			//统计打印
+			mui('#list').on('tap', '.btn-orderstat-print', function(e) {
+				var btnPriter = ['打印统计单', '打印多张运单', '取消打印'];
+				var id = $(this).attr('data-');
+				//统计打印或者一次打印多张
+				mui.confirm('请选择打印统计运单方式？', '新泰通', btnPriter, function(e) {
+					if(e.index == 0) {
+						//统计情况
+						var strBuilder = '\r\n\r\n\r\n\r\n新泰通物流：18824708026\r\n\r\n';
+						strBuilder += '服务条款见：www.xtt168.com\r\n\r\n';
+						strBuilder += '--------------------------------\r\n\r\n';
+						var sendPayCount = 0;
+						var sendFee = 0;
+						var sendBoxFee = 0;
+						var sendGoodsPriceFee = 0;
+						var sendTranshipmentFee = 0;
+						var totalSend = 0
+						var receivePayCount = 0;
+						var receiveFee = 0;
+						var receiveBoxFee = 0;
+						var receiveGoodsPriceFee = 0;
+						var receiveTranshipmentFee = 0;
+						var totalReceive = 0;
+						var detail = '';
+						var memberPayFee = 0;
+						$.each(cacheData[id].Children, function(index, child) {
+							if(child.IsNeedReceiveMemberPay) {
+								receivePayCount++;
+								receiveFee += child.Fee;
+								receiveBoxFee += child.BoxFee;
+								receiveGoodsPriceFee += child.GoodsPriceFee;
+								receiveTranshipmentFee += child.TranshipmentFee == null ? 0 : child.TranshipmentFee;
+								totalReceive += child.Fee + child.BoxFee + child.GoodsPriceFee + (child.TranshipmentFee == null ? 0 : child.TranshipmentFee);
+							} else {
+								sendPayCount++;
+								sendFee += child.Fee;
+								sendBoxFee += child.BoxFee;
+								sendGoodsPriceFee += child.GoodsPriceFee;
+								sendTranshipmentFee += child.TranshipmentFee == null ? 0 : child.TranshipmentFee;
+								totalSend += child.Fee + child.BoxFee + child.GoodsPriceFee + (child.TranshipmentFee == null ? 0 : child.TranshipmentFee);
+							}
+							memberPayFee += child.MemberPayFee;
+							detail += child.SendCarCityName + ' ' + child.SendShortName + '\r\n '
+							detail += child.ServicesGoodsTotalQuantity + '件' + ' 合计：' + (child.Fee + child.BoxFee + child.GoodsPriceFee + (child.TranshipmentFee == null ? 0 : child.TranshipmentFee)) + ''
+							detail += (child.IsNeedReceiveMemberPay ? '[到付]' : '[发付]') + '运费:' + child.Fee + (child.BoxFee == 0 ? '' : (' 木架:' + child.BoxFee)) + (child.GoodsPriceFee == 0 ? '' : (' 保费:' + child.GoodsPriceFee)) +
+								(child.TranshipmentFee == null ? '' : (' 中转:' + child.TranshipmentFee)) + '\r\n';
+							detail += child.MemberPayFee == null ? '\r\n' : ('代收款：' + child.MemberPayFee + '\r\n\r\n');
+						});
+						strBuilder += cacheData[id].ReceiveCarCityName + ' ' + '\r\n';
+						strBuilder += cacheData[id].ReceiveShortName + '[' + searchOption.StartDateTime + ']-[' + searchOption.EndDateTime + ']\r\n';
+						strBuilder += '总计费用：' + (totalSend + totalReceive) + '[' + cacheData[id].TotalGoodsCount + '件]代收款：' + memberPayFee + '\r\n\r\n';
+						var summer = '';
+						if(sendPayCount != 0) {
+							summer += '----------发付统计情况----------\r\n\r\n';
+							summer += '合计: ' + (sendFee + sendBoxFee + sendGoodsPriceFee + sendTranshipmentFee) + '\r\n';
+							summer += '运费: ' + sendFee + ' 木架: ' + sendBoxFee + ' 保费: ' + sendGoodsPriceFee + '中转: ' + sendTranshipmentFee + '\r\n\r\n';
+						}
+						if(receivePayCount != 0) {
+							summer += '----------到付统计情况----------\r\n\r\n';
+							summer += '合计: ' + (receiveFee + receiveBoxFee + receiveGoodsPriceFee + receiveTranshipmentFee) + '\r\n';
+							summer += '运费: ' + receiveFee + ' 木架: ' + receiveBoxFee + ' 保费: ' + receiveGoodsPriceFee + '中转: ' + receiveTranshipmentFee + '\r\n\r\n';
+						}
+						strBuilder += summer;
+						strBuilder += '----------费用明细情况----------\r\n\r\n';
+						strBuilder += detail;
+						strBuilder += '\r\n\r\n\r\n\r\n';
+						if(plus.os.name == "Android") {
+							plus.runtime.launchApplication({
+								pname: "com.zlmax.xttprinter",
+								action: "android.intent.action.SEND",
+								type: "text/plain",
+								extra: {
+									HB_TEXT: strBuilder
+								}
+							}, function(e) {
+								alert("调用失败！ " + e.message);
+							});
+						} else if(plus.os.name == "iOS") {
+							mui.alert('IOS系统暂时不支持打印！');
+						}
+					} else if(e.index == 1) {
+						//alert('打印！');
+						$.each(cacheData[id].Children, function(index, child) {
+							setTimeout(function() {
+								mui.toast('正在提交第 ' + (index + 1) + ' 张运单，共 ' + cacheData[id].Children.length + ' 张');
+								if(plus.os.name == "Android") {
+									plus.runtime.launchApplication({
+										pname: "com.zlmax.xttprinter",
+										action: "android.intent.action.SEND",
+										type: "text/plain",
+										extra: {
+											HB_TEXT: child.Printer
+										}
+									}, function(e) {
+										alert("调用失败！ " + e.message);
+									});
+								} else if(plus.os.name == "iOS") {
+									/*plus.runtime.launchApplication( {action:"http://www.html5plus.org"}, function ( e ) {
+									 alert( "Open system default browser failed: " + e.message );
+									 } );*/
+									mui.alert('IOS系统暂时不支持打印！');
+								}
+							}, index * 8000)
+						});
+					}
+				});
+			});
+
+			//普通打印
+			mui('#list').on('tap', '.btn-order-print', function(e) {
+				/*var elem = this;*/
+				var id = $(this).attr('data-');
+				//取出对象
+				var param = xtt.getDefaultParam();
+				param['Id'] = id;
+				mui.ajax(xtt.serverRoot + 'GetCompanyLogisticsOrder', {
+					type: 'post',
+					data: param,
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								var logisticsOrder = res.LogisticsOrder;
+
+								if(logisticsOrder.Status == 0) {
+									alert('此订单未接单，请先接单后再打印！');
+									return;
+								}
+								//alert('1');
+								if(printPrompt) {
+									//alert('2');
+									mui.fire(printPrompt, 'init', {
+										openerId: plus.webview.currentWebview().id,
+										backEvent: 'printOrder',
+										title: '请选择打印类型',
+										//promptText: lastLog.text().trim(),
+										order: logisticsOrder,
+										ok: '保存日志',
+										cancel: '取消'
+									});
+									printPrompt.show('none');
+								} else {
+									printPrompt = plus.webview.getWebviewById('proprint');
+									printPrompt.setStyle({
+										zindex: 100
+									});
+								}
+
+							} else {
+								mui.toast('获取货运单资料失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('获取货运单资料错误，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			});
+
+			window.addEventListener('printOrder', printOrder);
+
+			function printOrder(e) {
+				if(e.detail) {
+					var logisticsOrder = e.detail.order;
+					var printOrder = e.detail.printOrder;
+					var printTag = e.detail.printTag;
+					var orderNum = e.detail.orderNum;
+					var start = e.detail.start;
+					var end = e.detail.end;
+					var singleTag = '';
+					var tag = [];
+					console.log(orderNum);
+					//return;
+					//alert(start+'!'+end);
+					if(printTag == 1 || printTag == 2) {
+						var allTag = logisticsOrder.PrintTag.substr(4); //BWP:
+						var tags = JSON.parse(allTag);
+						if(printTag == 2) {
+							if(logisticsOrder.ServicesGoodsTotalQuantity == 1) {
+								tag.push(tags[0]);
+							} else {
+								var temp = tags[0];
+								$.each(temp.items, function(index, item) {
+									if(item.text == logisticsOrder.OrderNumber + '-01') {
+										item.text = logisticsOrder.OrderNumber + '-00';
+									}
+								});
+								tag.push(temp);
+								//alert(JSON.stringify(temp));
+							}
+						} else {
+							for(var i = start; i <= end; i++) {
+								tag.push(tags[i - 1]);
+							}
+						}
+						singleTag = "BWP:" + JSON.stringify(tag);
+					}
+					//alert(JSON.stringify(tag));
+
+					//alert(logisticsOrder.PrintTag);
+					if(logisticsOrder) {
+						if(plus.os.name == "Android") {
+							console.log(printOrder);
+							console.log(singleTag);
+							plus.runtime.launchApplication({
+								pname: "com.zlmax.xttprinter",
+								action: "android.intent.action.SEND",
+								type: "text/plain",
+								extra: {
+									HB_TEXT: printOrder == 1 ? logisticsOrder.Printer : null,
+									HB_TAG: printTag == 0 ? null : singleTag
+								}
+							}, function(e) {
+								alert("调用失败！ " + e.message);
+							});
+							for(var i = 1; i < orderNum; i++) {
+								mui.later(function() {
+									plus.runtime.launchApplication({
+										pname: "com.zlmax.xttprinter",
+										action: "android.intent.action.SEND",
+										type: "text/plain",
+										extra: {
+											HB_TEXT: printOrder == 1 ? logisticsOrder.Printer : null,
+											HB_TAG: printTag == 0 ? null : singleTag
+										}
+									}, function(e) {
+										alert("调用失败！ " + e.message);
+									});
+								}, i * 1000)
+							}
+							if(printOrder == 1) {
+								//提交打印数据
+								var id = $(this).attr('data-');
+								//取出对象
+								var param = xtt.getDefaultParam();
+								param['Id'] = logisticsOrder.Id;
+								mui.ajax(xtt.serverRoot + 'SetPrintLogisticsOrder', {
+									type: 'post',
+									data: param,
+									timeout: 10000,
+									beforeSend: function() {
+										//loadingMsg('正在恢复会话信息...');
+									},
+									success: function(res) {
+										if(res) {
+											if(res.Succeed) {
+												
+											} else {
+												mui.toast('设置运货单打印失败！' + res.Message ? res.Message : '');
+											}
+										} else {
+											mui.toast('设置运货单打印错误，请稍后再试！');
+										}
+									},
+									error: function(xhr, type, errorThrown) {
+										mui.toast('请求错误！' + errorThrown);
+									}
+								});
+							}
+
+							//alert('abc');
+						} else if(plus.os.name == "iOS") {
+							/*plus.runtime.launchApplication( {action:"http://www.html5plus.org"}, function ( e ) {
+							 alert( "Open system default browser failed: " + e.message );
+							 } );*/
+							mui.alert('IOS系统暂时不支持打印！');
+						}
+						//printPrompt.hide();
+					}
+				}
+			}
+
+			//删除
+			mui('#list').on('tap', '.btn-delete', function(e) {
+				var elem = this;
+				var li = elem.parentNode;
+				var id = $('.btn-edit', $(li)).attr('id');
+				mui.confirm('确认删除该条记录？', '新泰通', btnArray, function(e) {
+					if(e.index == 0) {
+						//删除操作
+						var param = xtt.getDefaultParam();
+						param['Id'] = id;
+						mui.ajax(xtt.serverRoot + 'DelLogisticsOrders', {
+							type: 'post',
+							data: param,
+							timeout: 10000,
+							beforeSend: function() {
+								//loadingMsg('正在恢复会话信息...');
+							},
+							success: function(res) {
+								if(res) {
+									if(res.Succeed) {
+										mui.toast('删除成功！');
+										li.parentNode.removeChild(li);
+									} else {
+										mui.toast('删除失败！' + res.Message ? res.Message : '');
+										mui.back();
+									}
+								} else {
+									mui.toast('删除失败，请稍后再试！');
+									mui.back();
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								mui.toast('请求错误！' + errorThrown);
+								mui.back();
+							}
+						});
+					} else {
+						setTimeout(function() {
+							mui.swipeoutClose(li);
+						}, 0);
+					}
+				});
+			});
+
+			function printSearchOrders() {
+				var param = xtt.getDefaultParam();
+				param = mui.extend(param, searchOption);
+				mui.ajax(xtt.serverRoot + 'PrintLogisticsOrders', {
+					type: 'post',
+					data: param,
+					timeout: 30000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								createDownloadTask(res.Result);
+							} else {
+								mui.toast('获取打印的货运失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('获取打印的货运失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			}
+
+			var dtask = null;
+
+			function createDownloadTask(excelURL) {
+				var fName = excelURL.substr(excelURL.lastIndexOf('/'));
+				var savePath = '_doc/eprint' + fName;
+				//alert(excelURL);
+				//alert(savePath);
+
+				if(dtask) {
+					log("下载任务已创建！");
+					return;
+				}
+				//log("创建下载任务...");
+				downloadSuccess = false;
+				var options = {
+					method: "GET",
+					filename: savePath,
+					timeout: 5,
+					retry: 0,
+					retryInterval: 3
+				};
+				//alert(updateInfo.path);
+				dtask = plus.downloader.createDownload(excelURL, options, function(d, status) {
+					//            dtask = null;
+					//            if (status == 200) {
+					//                log("下载完成！" + task.totalSize);
+					//                setProgress(90);
+					//                downloadSuccess = true;
+					//                unzip();
+					//            } else {
+					//                log("下载失败！请重新下载或者稍后再试！");
+					//                setProgress(0);
+					//                downloadSuccess = false;
+					//            }
+				});
+
+				dtask.addEventListener("statechanged", function(task, status) {
+					if(!dtask) {
+						return;
+					}
+					switch(task.state) {
+						case 1: // 开始
+							log("开始下载...");
+							//setProgress(0);
+							break;
+						case 2: // 已连接到服务器
+							//log("链接到服务器...");
+							break;
+						case 3: // 已接收到数据
+							//log("下载数据更新:" + task.downloadedSize + "/" + task.totalSize);
+							//setProgress((task.downloadedSize / task.totalSize * 90));
+							break;
+						case 4: // 下载完成
+							dtask = null;
+							if(status == 200) {
+								log("下载完成！" + task.totalSize);
+								//setProgress(90);
+								downloadSuccess = true;
+								//调用打印
+								var jumpUrl = plus.io.convertLocalFileSystemURL(savePath);
+
+								//alert(jumpUrl);
+								plus.runtime.openFile(savePath, null, null);
+
+								/*if(plus.os.name == "Android") {
+									var obj = {
+										type: "eprint",
+										data: jumpUrl
+									};
+									plus.runtime.launchApplication({
+										pname: "com.zlmax.xtthbridge",
+										action: "android.intent.action.SEND",
+										type: "text/plain",
+										extra: {
+											HB_TEXT: JSON.stringify(obj)
+										}
+									}, function(e) {
+										alert("调用失败！ " + e.message);
+									});
+
+									plus.runtime.openFile(savePath, null, null);
+
+								} else if(plus.os.name == "iOS") {
+									plus.runtime.launchApplication({
+										action: "http://www.html5plus.org"
+									}, function(e) {
+										alert("Open system default browser failed: " + e.message);
+									});
+									mui.alert('IOS系统暂时不支持打印！');
+								}*/
+
+							} else {
+								log("下载失败！请重新下载或者稍后再试！");
+								//setProgress(0);
+								downloadSuccess = false;
+							}
+							break;
+					}
+				});
+				//log("下载任务创建成功");
+				dtask.start();
+				//log("开始下载...");
+
+			}
+
+			function log(s) {
+				mui.toast(s);
+			}
+		</script>
+	</body>
+
+</html>

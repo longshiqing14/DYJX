@@ -1,0 +1,236 @@
+#searchPanel {
+  position: absolute;
+  top: 0;
+  padding: 2px 6px;
+  height: 41px;
+  width: 100%;
+}
+#filter {
+  width: 100%;
+  background-color: #dedede;
+  padding: 4px;
+  margin-bottom: 40px;
+}
+#filter .float-btn {
+  width: 60px;
+}
+#filter .line-point {
+  padding: 2px 6px;
+  text-align: center;
+}
+#filter .line-point span {
+  display: inline-block;
+  font-size: 14px;
+  padding: 4px 4px;
+  width: 60px;
+  text-align: center;
+  margin: 0;
+}
+#stPanel {
+  position: fixed;
+  bottom: 0;
+  height: 38px;
+  width: 100%;
+  background-color: aliceblue;
+}
+#stPanel #statInfo {
+  position: absolute;
+  left: 2px;
+  bottom: 6px;
+  color: #0062cc;
+}
+#stPanel #btnShowFilter {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  font-size: 18px;
+}
+#stPanel #stat {
+  margin-left: 28px;
+  margin-right: 30px;
+  padding: 3px;
+  font-size: 14px;
+  line-height: 16px;
+}
+.mui-android.mt38-fixed .mui-pull-top-pocket {
+  top: 38px;
+}
+li.mui-table-view-cell a.btn-edit .carCity-title {
+  color: #000000;
+  font-size: 17px;
+  line-height: 21px;
+}
+li.mui-table-view-cell a.btn-edit .customer-title {
+  color: #000000;
+  font-size: 17px;
+  line-height: 21px;
+}
+li.mui-table-view-cell a.btn-edit .customer-fullName {
+  color: #333333;
+  font-size: 14px;
+  line-height: 16px;
+}
+li.mui-table-view-cell a.btn-edit .order-quantity {
+  float: left;
+  width: 60px;
+  height: 70px;
+  text-align: center;
+  font-size: 28px;
+  padding-top: 10px;
+  color: #007aff;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background-color: #eeeeee;
+  overflow: hidden;
+}
+li.mui-table-view-cell a.btn-edit .order-quantity .unit {
+  font-size: 12px;
+}
+li.mui-table-view-cell a.btn-edit .order-other {
+  font-size: 12px;
+  line-height: 16px;
+}
+li.mui-table-view-cell a.btn-edit .order-detail {
+  padding-left: 60px;
+}
+li.mui-table-view-cell a.btn-edit .order-detail .order-to {
+  color: darkgreen;
+}
+li.mui-table-view-cell a.btn-edit .order-detail .order-fee {
+  color: darkred;
+}
+li.mui-table-view-cell .line-flag {
+  float: left;
+}
+li.mui-table-view-cell .lineInstance-log {
+  color: #333;
+  padding-left: 23px;
+  white-space: normal;
+  padding-right: 85px;
+}
+li.mui-table-view-cell .lineInstance-log.lineInstance-order-log {
+  padding-right: 55px;
+}
+li.mui-table-view-cell ul.lineInstance-logs {
+  font-size: 13px;
+  color: #999;
+  padding-left: 26px;
+}
+li.mui-table-view-cell ul.lineInstance-logs li {
+  list-style: none;
+  white-space: normal;
+}
+li.mui-table-view-cell a.btn-receive-group .carCity-title {
+  color: #000000;
+  font-size: 17px;
+  line-height: 21px;
+}
+li.mui-table-view-cell a.btn-receive-group .customer-title {
+  color: #000000;
+  font-size: 17px;
+  line-height: 21px;
+}
+li.mui-table-view-cell a.btn-receive-group .customer-fullName {
+  color: #333333;
+  font-size: 14px;
+  line-height: 16px;
+}
+li.mui-table-view-cell a.btn-receive-group .order-quantity {
+  float: left;
+  width: 60px;
+  text-align: center;
+  font-size: 28px;
+  padding-top: 6px;
+  margin-top: -4px;
+  margin-bottom: -4px;
+  color: #fff;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+li.mui-table-view-cell a.btn-receive-group .order-quantity .unit {
+  font-size: 12px;
+}
+li.mui-table-view-cell a.btn-receive-group .order-other {
+  font-size: 12px;
+  line-height: 16px;
+}
+li.mui-table-view-cell a.btn-receive-group .order-detail .order-to {
+  color: darkgreen;
+  font-size: 16px;
+}
+li.mui-table-view-cell a.btn-receive-group .order-detail .order-fee {
+  color: darkred;
+}
+li.mui-table-view-cell a.btn-edit.btn-receive-item .order-quantity {
+  float: left;
+  width: 60px;
+  height: auto;
+  text-align: center;
+  font-size: 16px;
+  line-height: 18px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-top: -2px;
+  color: #fff;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+li.mui-table-view-cell a.btn-edit.btn-receive-item .order-quantity .unit {
+  font-size: 10px;
+}
+li.mui-table-view-cell a.btn-edit.btn-receive-item .order-other {
+  font-size: 10px;
+  line-height: 14px;
+}
+li.mui-table-view-cell a.btn-edit.btn-receive-item .order-detail .order-to {
+  color: darkgreen;
+  font-size: 16px;
+}
+li.mui-table-view-cell a.btn-edit.btn-receive-item .order-detail .order-fee {
+  color: darkred;
+}
+li.mui-table-view-cell a.btn-order-edit.mui-navigate-right:after {
+  top: 30px;
+}
+li.mui-table-view-cell a.mui-btn.btn-order-delete {
+  top: 30px;
+}
+li.mui-table-view-cell a.mui-btn.btn-order-pay {
+  top: 30px;
+}
+li.mui-table-view-cell a.mui-btn.btn-order-logs {
+  top: 68px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell.table-view-cell-padding-fix-less {
+  background-color: #dfdfdf;
+  padding: 8px 15px;
+}
+.mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell.table-view-cell-padding-fix-less > a:not(.mui-btn) {
+  margin: -8 -15px;
+}
+.mui-table-view-cell.mui-collapse.mui-active .mui-table-view-cell.table-view-cell-padding-fix-less > a:not(.mui-btn).mui-active {
+  padding: 8px 15px;
+  margin-left: -15px;
+}
+.mui-android.mt38-fixed .mui-pull-top-pocket {
+  top: 38px;
+}
+#pullrefresh.select-customer-list-fixed {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top: 0;
+}
+.mui-bar-nav ~ .mui-content.select-customer-list-fixed .mui-pull-top-pocket {
+  top: 0;
+}
+.mui-input-row a label {
+  color: #000;
+}

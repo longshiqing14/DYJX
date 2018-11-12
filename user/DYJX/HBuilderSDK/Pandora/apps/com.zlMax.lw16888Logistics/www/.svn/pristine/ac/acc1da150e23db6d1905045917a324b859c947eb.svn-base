@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>物流跟踪</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body class="mt38-fixed">
+		<div class="mui-content">
+			<div id="searchPanel">
+				<div class="mui-input-row mui-search">
+					<input id="searchInput" type="search" class="mui-input-clear" placeholder="输入订单号查询...">
+					<!--<a class="mui-btn mui-btn-primary float-btn" id="btnSearch" style="margin-top: -8px;">搜索</a>-->
+				</div>
+			</div>
+			<!--<div id="stPanel">-->
+
+			<!--</div>-->
+		</div>
+		<div id="loadDiv" class="mui-loader">
+			<span class="mui-spinner"></span><br/> 加载中...
+			<br/>
+			<span id="loadingLabel" style="font-size: 10px;">正在加载收款列表</span>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			var listStyle = {
+				top: '38px',
+				bottom: '0px'
+			};
+			//启用双击监听
+			mui.init({
+				gestureConfig: {
+					doubletap: true
+				}
+				//        ,
+				//        subpages: [{
+				//            url: 'list-carCities.html',
+				//            id: 'list-carCities.html',
+				//            styles: {
+				//                top: '38px',
+				//                bottom: '38px'
+				//            }
+				//        }]
+			});
+			var self, sub, scanOrders;
+			mui.plusReady(function() {
+				//添加子窗体
+				self = plus.webview.currentWebview();
+				mui.later(function() {
+					sub = plus.webview.getWebviewById('list-incomes.html');
+					if(!sub) {
+						sub = plus.webview.create('list-incomes.html', 'list-incomes.html', listStyle);
+					}
+
+					self.append(sub);
+
+					mui.preload({
+						id: 'scanOrders',
+						url: 'scanOrders.html'
+					});
+
+					$("#loadDiv").addClass('mui-hidden');
+				}, 200);
+			});
+
+			var flashFlag = false; //是否需要刷新;
+			var param, timestamp;
+			//新增
+			function add() {
+				//param = xtt.getDefaultParam();
+				//timestamp = new Date().getTime();
+				//if(plus.os.name == "Android") {
+					//plus.runtime.launchApplication({
+						//pname: "com.zlmax.scan",
+						//action: "android.intent.action.SEND",
+						//type: "text/plain",
+						//extra: {
+						//	CLIENT_ID: param.ClientId,
+						//	TIMESPAN: timestamp + ''
+						//}
+					//}, function(e) {
+					//	alert("调用失败！ " + e.message);
+					//});
+					//alert('abc');
+				//} else if(plus.os.name == "iOS") {
+					/*plus.runtime.launchApplication( {action:"http://www.html5plus.org"}, function ( e ) {
+					 alert( "Open system default browser failed: " + e.message );
+					 } );*/
+					//mui.alert('IOS系统暂时不支持打印！');
+				//} 
+				//flashFlag = true;
+
+				if(!scanOrders)
+					scanView = plus.webview.getWebviewById('scanOrders');
+				/*mui.fire(
+					scanView,
+					'clear', {
+						backId: plus.webview.currentWebview().id,
+					});
+					*/
+					
+				mui.openWindow({
+					url: "scanOrders.html",
+					id: "scanOrders",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			}
+
+			function moreAction() {
+				if(sub)
+					mui.fire(sub, 'moreAction');
+			}
+			//新增事件
+			document.addEventListener('add', add);
+			document.addEventListener('moreAction', moreAction);
+
+			//查询
+			var searchInput = $('#searchInput');
+
+			function search() {
+				var keyword = searchInput.val().trim();
+				//if(keyword && keyword != '')
+				mui.fire(sub, 'search', {
+					Keyword: keyword
+				});
+			}
+
+			/*var numbers = '';
+			
+			document.addEventListener('keyup', function(e) {
+				alert('');
+				//alert(e.target.value + "|" + e.keyCode);
+				if(e.keyCode != 13) {
+					if(e.keyCode == 189)
+						numbers += '-';
+					else {
+						numbers += String.fromCharCode(e.keyCode);
+					}
+				} else {
+					alert(numbers);
+					searchInput(numbers)
+					search();
+				}
+			});*/
+
+			//绑定查询事件
+			document.getElementById('searchInput').addEventListener('search', search);
+
+			/*document.getElementById('btnSearch').addEventListener('tap', search);*/
+
+			/*document.addEventListener("pause", function() {
+				console.log("应用从前台切换到后台");
+				mui.toast('程序在后台运行');
+			}, false);*/
+
+		</script>
+	</body>
+
+</html>
