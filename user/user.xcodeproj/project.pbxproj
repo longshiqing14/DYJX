@@ -33,6 +33,8 @@
 		4804A1A42196BB260081AB5B /* liblibXHR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1A32196BB260081AB5B /* liblibXHR.a */; };
 		4804A1A621995E4C0081AB5B /* liblibStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1A521995E4C0081AB5B /* liblibStorage.a */; };
 		4804A1A821995F250081AB5B /* storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1A721995F250081AB5B /* storage.framework */; };
+		4804A1AB219974630081AB5B /* SCAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804A1AA219974630081AB5B /* SCAccountManager.m */; };
+		4804A1AD219981030081AB5B /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1AC219981020081AB5B /* liblibNativeUI.a */; };
 		4809D2B61FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4809D2B51FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m */; };
 		480B97372085D5F800EF09C2 /* JXRefundReasonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97362085D5F800EF09C2 /* JXRefundReasonsModel.m */; };
 		480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97392086118400EF09C2 /* UITextView+XYPlaceHolder.m */; };
@@ -843,6 +845,9 @@
 		4804A1A32196BB260081AB5B /* liblibXHR.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibXHR.a; sourceTree = "<group>"; };
 		4804A1A521995E4C0081AB5B /* liblibStorage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibStorage.a; sourceTree = "<group>"; };
 		4804A1A721995F250081AB5B /* storage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = storage.framework; sourceTree = "<group>"; };
+		4804A1A9219974620081AB5B /* SCAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAccountManager.h; sourceTree = "<group>"; };
+		4804A1AA219974630081AB5B /* SCAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAccountManager.m; sourceTree = "<group>"; };
+		4804A1AC219981020081AB5B /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeUI.a; sourceTree = "<group>"; };
 		4809D2B41FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXOrderConfirmPaymentTypeModel.h; sourceTree = "<group>"; };
 		4809D2B51FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXOrderConfirmPaymentTypeModel.m; sourceTree = "<group>"; };
 		480B97352085D5F800EF09C2 /* JXRefundReasonsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JXRefundReasonsModel.h; path = user/Classes/CustomerSevice/View/JXRefundReasonsModel.h; sourceTree = SOURCE_ROOT; };
@@ -2263,6 +2268,7 @@
 				CBFF458B1F74C03500D2AF93 /* libSocialWeChat.a in Frameworks */,
 				CB123BD81F8DC40A00CD4429 /* jpush-ios-3.0.6.a in Frameworks */,
 				CB42F5F81FAB0A6400889257 /* AlipaySDK.framework in Frameworks */,
+				4804A1AD219981030081AB5B /* liblibNativeUI.a in Frameworks */,
 				4804A19A21968B0D0081AB5B /* liblibIO.a in Frameworks */,
 				CBFF458D1F74C03500D2AF93 /* UMSocialNetwork.framework in Frameworks */,
 				CBFF45911F74C03500D2AF93 /* UShareUI.framework in Frameworks */,
@@ -2358,6 +2364,15 @@
 			);
 			name = inc;
 			path = ../../user/inc;
+			sourceTree = "<group>";
+		};
+		4804A1AE219987BE0081AB5B /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				4804A1A9219974620081AB5B /* SCAccountManager.h */,
+				4804A1AA219974630081AB5B /* SCAccountManager.m */,
+			);
+			path = manager;
 			sourceTree = "<group>";
 		};
 		481434A11FE8C18600E7DCD8 /* paymentcontrol */ = {
@@ -3743,6 +3758,7 @@
 		CBD2B9F21F5D23CC0057E2E7 = {
 			isa = PBXGroup;
 			children = (
+				4804A1AE219987BE0081AB5B /* manager */,
 				481FE7012182165700CFE26B /* DYJX */,
 				CBFF457C1F74BCFA00D2AF93 /* Frameworks */,
 				CBD2B9FD1F5D23CC0057E2E7 /* user */,
@@ -4548,6 +4564,7 @@
 				487352EB2192EE42001B59AB /* libiconv.2.tbd */,
 				487352E92192EE1E001B59AB /* libxml2.tbd */,
 				4804A1A521995E4C0081AB5B /* liblibStorage.a */,
+				4804A1AC219981020081AB5B /* liblibNativeUI.a */,
 				4804A1A721995F250081AB5B /* storage.framework */,
 				487352E72192EDE2001B59AB /* CoreAudioKit.framework */,
 				487352E52192EDD6001B59AB /* CoreAudio.framework */,
@@ -6109,6 +6126,7 @@
 				48644D6F1FCFD70800CE47BC /* JXCouponActivityWebPage.m in Sources */,
 				CBE85A1C1F61461500E1E4EA /* XYCycleScrollViewNet.m in Sources */,
 				CBE85A0C1F60F68B00E1E4EA /* UIColor+Extension.m in Sources */,
+				4804A1AB219974630081AB5B /* SCAccountManager.m in Sources */,
 				DE910FCA2085DD3C00BDDABF /* JXMyOrderDetailsCell.m in Sources */,
 				CB3307991FA1BF8F00117695 /* IQUITextFieldView+Additions.m in Sources */,
 				CBFF46561F7E7ACC00D2AF93 /* FSActionSheet.m in Sources */,
