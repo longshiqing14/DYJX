@@ -35,6 +35,8 @@
 		4804A1A821995F250081AB5B /* storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1A721995F250081AB5B /* storage.framework */; };
 		4804A1AB219974630081AB5B /* SCAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804A1AA219974630081AB5B /* SCAccountManager.m */; };
 		4804A1AD219981030081AB5B /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1AC219981020081AB5B /* liblibNativeUI.a */; };
+		4804A1B8219BFC990081AB5B /* DYJXConversionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804A1B7219BFC990081AB5B /* DYJXConversionViewModel.m */; };
+		4804A1BB219C135E0081AB5B /* DYJXConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804A1BA219C135E0081AB5B /* DYJXConversationModel.m */; };
 		4809D2B61FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4809D2B51FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m */; };
 		480B97372085D5F800EF09C2 /* JXRefundReasonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97362085D5F800EF09C2 /* JXRefundReasonsModel.m */; };
 		480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97392086118400EF09C2 /* UITextView+XYPlaceHolder.m */; };
@@ -848,6 +850,10 @@
 		4804A1A9219974620081AB5B /* SCAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAccountManager.h; sourceTree = "<group>"; };
 		4804A1AA219974630081AB5B /* SCAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAccountManager.m; sourceTree = "<group>"; };
 		4804A1AC219981020081AB5B /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeUI.a; sourceTree = "<group>"; };
+		4804A1B6219BFC990081AB5B /* DYJXConversionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXConversionViewModel.h; sourceTree = "<group>"; };
+		4804A1B7219BFC990081AB5B /* DYJXConversionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXConversionViewModel.m; sourceTree = "<group>"; };
+		4804A1B9219C135E0081AB5B /* DYJXConversationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXConversationModel.h; sourceTree = "<group>"; };
+		4804A1BA219C135E0081AB5B /* DYJXConversationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXConversationModel.m; sourceTree = "<group>"; };
 		4809D2B41FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXOrderConfirmPaymentTypeModel.h; sourceTree = "<group>"; };
 		4809D2B51FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXOrderConfirmPaymentTypeModel.m; sourceTree = "<group>"; };
 		480B97352085D5F800EF09C2 /* JXRefundReasonsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JXRefundReasonsModel.h; path = user/Classes/CustomerSevice/View/JXRefundReasonsModel.h; sourceTree = SOURCE_ROOT; };
@@ -2660,6 +2666,8 @@
 		487351AA218D4EC8001B59AB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4804A1B9219C135E0081AB5B /* DYJXConversationModel.h */,
+				4804A1BA219C135E0081AB5B /* DYJXConversationModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2667,6 +2675,8 @@
 		487351AB218D4ED2001B59AB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4804A1B6219BFC990081AB5B /* DYJXConversionViewModel.h */,
+				4804A1B7219BFC990081AB5B /* DYJXConversionViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6131,6 +6141,7 @@
 				CB3307991FA1BF8F00117695 /* IQUITextFieldView+Additions.m in Sources */,
 				CBFF46561F7E7ACC00D2AF93 /* FSActionSheet.m in Sources */,
 				CBE85AC11F63846200E1E4EA /* XYMineTVCell.m in Sources */,
+				4804A1B8219BFC990081AB5B /* DYJXConversionViewModel.m in Sources */,
 				48B35107208F027300A9F7E4 /* DSectionIndexItemView.m in Sources */,
 				48D47A5B1FF4AEDA00B280DE /* JXPointsRecordVCSiftVC.m in Sources */,
 				DE277D341FBAC2EF00FE52C8 /* XYAddressViewController.m in Sources */,
@@ -6251,6 +6262,7 @@
 				CB4287621F66326E004C43C1 /* XYOrderDetailSubClassOrderDetailVC.m in Sources */,
 				CB4287711F66AB5C004C43C1 /* XYOrderDetailSubClassOrderDetailPayTVCell.m in Sources */,
 				481FE70B2182170600CFE26B /* DYJXLoginPage.m in Sources */,
+				4804A1BB219C135E0081AB5B /* DYJXConversationModel.m in Sources */,
 				DE71B15C208744DD00467E06 /* PYProgressView.m in Sources */,
 				CBE85AC51F63943A00E1E4EA /* XYOrderConfirmOrderVC.m in Sources */,
 				48DE38DE1FDE35160006528C /* JXFoodCell.m in Sources */,

@@ -10,18 +10,36 @@
 #import "NaviViewController.h"
 #import "DYJXIdentitySwitchingPage.h"
 #import "AppDelegate.h"
+#import "DYJXConversionViewModel.h"
+#import "DYJXIdentitySwitchingCell.h"
 
-@interface DYJXConversionPage ()
+@interface DYJXConversionPage ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong)DYJXConversionViewModel *viewModel;
 @end
 
+static NSString *cellID=@"cellID";
 @implementation DYJXConversionPage
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"最近会话";
     [self initNavigation];
-    
+    [self initSubViews];
+    [self getConversionData];
+}
+
+- (void)getConversionData{
+    NSString *certificateId = [XYUserDefaults readAppDlegateOfCertificateId];
+    [self.viewModel.requestDic setObject:certificateId forKey:@"CertificateId"];
+    [self.viewModel getMyConversionDataSuccess:^{
+        
+    } failed:^(NSString *errorMsg) {
+        
+    }];
 }
 
 - (void)initNavigation{
@@ -50,6 +68,82 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightCustomView];
 }
 
+- (void)initSubViews{
+    _searchTextField.delegate = self;
+    _searchTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_search"]];
+    iconView.center = _searchTextField.leftView.center;
+    _searchTextField.leftViewMode = UITextFieldViewModeAlways;
+    _searchTextField.tintColor = [UIColor colorWithHexString:@"FA5E71"];
+//    _searchTextField.backgroundColor = [UIColor colorWithHexString:@"f7f7f7"];
+    _searchTextField.layer.cornerRadius = 5;
+    _searchTextField.font = [UIFont systemFontOfSize:13];
+    [_searchTextField.leftView addSubview:iconView];
+    _searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
+    [self.tableView registerClass:[DYJXIdentitySwitchingCell class] forCellReuseIdentifier:cellID];
+//    [self.tableView registerClass:[DYJXIdentitySwitchingHeader class] forHeaderFooterViewReuseIdentifier:@"headerID"];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.showsVerticalScrollIndicator = NO;
+    
+    [self.tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
+    [self.tableView setBackgroundColor:[UIColor colorWithHexString:@"FFFFFF"]];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return [self.viewModel numberOfCell];
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return 1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 60;
+}
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    DYJXIdentitySwitchingCell *tableCell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    
+    [tableCell.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[[self.viewModel iconImageUrl:indexPath] XYImageURL]] placeholderImage:[UIImage imageNamed:@"btn_group"]];
+    
+    tableCell.goodsNameLabel.text = [self.viewModel GroupName:indexPath];
+    tableCell.sellingPointLable.text = [self.viewModel GroupNumberString:indexPath];
+    tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return tableCell;
+}
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 60;
+//}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    DYJXIdentitySwitchingHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerID];
+//    if (header == nil) {
+//        header = [[DYJXIdentitySwitchingHeader alloc] initWithReuseIdentifier:headerID];
+//    }
+//
+//    [header.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[self.viewModel sectionHeadericonImageUrl:section]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+//    header.goodsNameLabel.text = [self.viewModel sectionHeaderGroupName:section];
+//    header.sellingPointLable.text = [self.viewModel sectionHeaderGroupNumberString:section];
+//    return header;
+//}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    self.selectedIdentity = [self.viewModel IdentityAtIndexPath:indexPath];
+    
+}
+
+
+
 - (void)black_controller{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     XYKeyWindow.rootViewController = appDelegate.rootViewController;
@@ -67,6 +161,13 @@
     XYKeyWindow.rootViewController = appDelegate.rootViewController;
     [appDelegate.rootViewController.navigationController popViewControllerAnimated:YES];
 
+}
+
+- (DYJXConversionViewModel *)viewModel{
+    if (!_viewModel) {
+        _viewModel = [[DYJXConversionViewModel alloc]init];
+    }
+    return _viewModel;
 }
 
 - (void)didReceiveMemoryWarning {

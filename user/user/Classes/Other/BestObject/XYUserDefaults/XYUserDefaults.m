@@ -31,6 +31,24 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+/********************************CertificateId************************************/
+/** 读取全局变量  CertificateId  */
++ (NSString*)readAppDlegateOfCertificateId
+{
+    AppDelegate * delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    return delegate.certificateId;
+}
+
+
+/** 写入全局变量  CertificateId  */
++ (void)writeAppDlegateOfCertificateId:(NSString *)str
+{
+    AppDelegate * delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    delegate.certificateId = str;
+}
+
+
+
 /** 读取 Registered  */
 + (NSDictionary*)readUserDefaultsRegistered
 {

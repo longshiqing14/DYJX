@@ -191,6 +191,8 @@ static NSString *headerID=@"headerID";
     
     DYJXLogisticPage *logisticPage = [[DYJXLogisticPage alloc]initWithNibName:@"DYJXLogisticPage" bundle:nil];
     logisticPage.IdentityModel = self.selectedIdentity;
+    
+    [XYUserDefaults writeAppDlegateOfCertificateId:self.selectedIdentity.GroupNumber];
     [self.navigationController pushViewController:logisticPage animated:YES];
 }
 

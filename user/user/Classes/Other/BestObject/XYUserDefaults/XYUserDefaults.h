@@ -20,7 +20,13 @@
 + (void)writeUserDefaultsLoginedInfoModel:(DYJXUserModel*)model;
 /** 删除 LoginedInfoModel  */
 + (void)deleteUserDefaultsLoginedInfoModel;
+/********************************CertificateId************************************/
+/** 读取全局变量  CertificateId  */
++ (NSString*)readAppDlegateOfCertificateId;
 
+
+/** 写入全局变量  CertificateId  */
++ (void)writeAppDlegateOfCertificateId:(NSString *)str;
 
 
 
