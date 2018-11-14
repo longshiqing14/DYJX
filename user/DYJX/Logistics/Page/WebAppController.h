@@ -12,5 +12,5 @@
 
 
 @interface WebAppController : UIViewController<PDRCoreDelegate,PDRCoreAppWindowDelegate>
-
+@property(nonatomic, copy) NSString *AppId;
 @end

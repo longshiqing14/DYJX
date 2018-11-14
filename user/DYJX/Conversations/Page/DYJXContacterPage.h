@@ -9,5 +9,5 @@
 #import <WMPageController/WMPageController.h>
 
 @interface DYJXContacterPage : WMPageController
-
+@property(nonatomic, copy)NSString *iconUrl;
 @end

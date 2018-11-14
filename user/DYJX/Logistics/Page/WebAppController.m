@@ -46,7 +46,7 @@ static UIView* pContentVIew = nil;
     h5Engine.persentViewController = self;
     
     // 设置WebApp所在的目录，该目录下必须有mainfest.json
-    NSString* pWWWPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Pandora/apps/com.zlMax.lw16888Logistics/www"];
+    NSString* pWWWPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"Pandora/apps/%@/www",self.AppId]];
     
     // 如果路径中包含中文，或Xcode工程的targets名为中文则需要对路径进行编码
     //NSString* pWWWPath2 =  (NSString *)CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)pTempString, NULL, NULL,  kCFStringEncodingUTF8 );
@@ -59,17 +59,37 @@ static UIView* pContentVIew = nil;
     
     // 传入参数可以在页面中通过plus.runtime.arguments参数获取
     NSString* pArgus = @"id=plus.runtime.arguments";
+
+
+    // 如果应用可能会重复打开的话建议使用restart方法
+    //[[[PDRCore Instance] appManager] restart:pAppHandle];
     // 启动该应用
     pAppHandle = [[[PDRCore Instance] appManager] openAppAtLocation:pWWWPath withIndexPath:@"login.html" withArgs:pArgus withDelegate:nil];
     
+    PDRCore* core = [PDRCore Instance];
+    // Override point for customization after application launch.
     
-    // 如果应用可能会重复打开的话建议使用restart方法
-    //[[[PDRCore Instance] appManager] restart:pAppHandle];
+    
+    //添加一个自定义插件
+    NSError *error = nil;
+    NSString *JSPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/js/xtt",pWWWPath] ofType:@"js"];
+    NSString *logPluginJS = [NSString stringWithContentsOfFile:JSPath
+                                                      encoding:NSUTF8StringEncoding
+                                                         error:&error];
+    
+    [core regPluginWithName:@"SCAccountManager" impClassName:@"SCAccountManager" type:PDRExendPluginTypeFrame javaScript:logPluginJS];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
+
+
+
+- (void)received:(NSNotification *)noti {
+    NSLog(@"原生界面收到了通知");
+}
+
 
 - (void)viewDidUnload
 {

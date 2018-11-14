@@ -9,9 +9,10 @@
 #import "DYJXConversionPage.h"
 #import "NaviViewController.h"
 #import "DYJXIdentitySwitchingPage.h"
+#import "AppDelegate.h"
 
 @interface DYJXConversionPage ()
-
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @end
 
 @implementation DYJXConversionPage
@@ -35,10 +36,37 @@
     
     self.navigationItem.leftBarButtonItem=item;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+    
+    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [iconImage setContentMode:UIViewContentModeScaleAspectFill];
+    iconImage.clipsToBounds = YES;
+    [iconImage setImageWithURL:[NSURL URLWithString:self.iconUrl] placeholder:[UIImage imageNamed:@"btn_group"]];
+    self.navigationItem.rightBarButtonItem.width = 30;
+    
+    UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
+    [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
+    [rightCustomView addSubview: iconImage];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightCustomView];
 }
 
 - (void)black_controller{
-    XYKeyWindow.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    XYKeyWindow.rootViewController = appDelegate.rootViewController;
+}
+
+- (UITapGestureRecognizer *)tapGestureRecognizer{
+    if (!_tapGestureRecognizer) {
+        _tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goBackPage)];
+    }
+    return _tapGestureRecognizer;
+}
+
+- (void)goBackPage{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    XYKeyWindow.rootViewController = appDelegate.rootViewController;
+    [appDelegate.rootViewController.navigationController popViewControllerAnimated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning {

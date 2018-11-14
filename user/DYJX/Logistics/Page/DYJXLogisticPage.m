@@ -25,6 +25,7 @@
 @interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) DYJXLogisticViewModel *viewModel;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @end
 
 @implementation DYJXLogisticPage
@@ -97,35 +98,17 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    GJHomeMenuListModel *model=_homepageModel.menuList[indexPath.row];
-//    if ([model.typeId isEqualToString:@"JYGL"]) {
-//        //        经营管理
-//        XYOperationManagementVC * operationManagementVC = [[XYOperationManagementVC alloc]init];
-//        [self.navigationController pushViewController:operationManagementVC animated:YES];
-//    }else if ([model.typeId isEqualToString:@"HDGL"]){
-//        //        活动管理
-//        XYActivityWebVC * activityWebVC = [[XYActivityWebVC alloc]init];
-//        [self.navigationController pushViewController:activityWebVC animated:YES];
-//    }else if ([model.typeId isEqualToString:@"YGGL"]){
-//        //        员工管理
-//        XYEmployeeManagementWebVC * employeeManagementWebVC = [[XYEmployeeManagementWebVC alloc]init];
-//        [self.navigationController pushViewController:employeeManagementWebVC animated:YES];
-//    }
+    
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             //16888物流平台
             // Webivew集成不能同时WebApp集成，需要修改AppDelegate文件的PDRCore的启动参数
           WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            pWebAppController.AppId = @"com.zlMax.lw16888Logistics";
             if (pWebAppController) {
 //                self.navigationController.navigationBarHidden = YES;
                 [self.navigationController pushViewController:pWebAppController animated:YES];
             }
-            
-//            WebViewController  *pWebViewController = [[WebViewController alloc] init];
-//            if (pWebViewController) {
-////                self.navigationController.navigationBarHidden = YES;
-//                [self.navigationController pushViewController:pWebViewController animated:YES];
-//            }
 
             
         }else if (indexPath.row == 1){
@@ -135,7 +118,26 @@
             [self.navigationController pushViewController:baiDuWebPage animated:YES];
         }
     }else if (indexPath.section == 1){
-        if ([self.viewModel itemName:indexPath]) {
+        if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_ea"]) {
+            WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            pWebAppController.AppId = @"com.zlMax.xttEA";
+                //          self.navigationController.navigationBarHidden = YES;
+                [self.navigationController pushViewController:pWebAppController animated:YES];
+            
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_back"]){
+            WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            pWebAppController.AppId = @"com.zlMax.xttlc";
+                [self.navigationController pushViewController:pWebAppController animated:YES];
+            
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt"]){
+            WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            pWebAppController.AppId = @"com.zlMax.xttLogistics";
+            [self.navigationController pushViewController:pWebAppController animated:YES];
+            
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_qcd"]){
+            WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            pWebAppController.AppId = @"com.zlMax.xttLogisticsQcd";
+            [self.navigationController pushViewController:pWebAppController animated:YES];
             
         }
     }
@@ -201,25 +203,20 @@
 
 - (void)initNavigation{
     self.title = @"达意简讯";
-//    self.navigationController.navigationBar.titleTextAttributes=
-//    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
-//      NSFontAttributeName:[UIFont systemFontOfSize:18]};
-    
+
     [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
 
-    UIButton *rightBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [rightBarButton addTarget:self action:@selector(goBackPage) forControlEvents:UIControlEventTouchUpInside];
-    rightBarButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10);
-    rightBarButton.frame = CGRectMake(0, 0, 40, 20);
+    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [iconImage setContentMode:UIViewContentModeScaleAspectFill];
+    iconImage.clipsToBounds = YES;
+    [iconImage setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
+    self.navigationItem.rightBarButtonItem.width = 30;
     
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]]]];
-    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    [rightBarButton setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] forState:(UIControlStateNormal) placeholder:[UIImage imageNamed:@"btn_group"]];
-    [rightBarButton setImage:image forState:(UIControlStateNormal)];
+    UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
+    [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
+    [rightCustomView addSubview: iconImage];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBarButton];
-    
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightCustomView];
 }
 
 - (DYJXIdentitySwitchingModel *)IdentityModel{
@@ -236,7 +233,14 @@
     return _viewModel;
 }
 
-- (void)goBackPage{
+- (UITapGestureRecognizer *)tapGestureRecognizer{
+    if (!_tapGestureRecognizer) {
+        _tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goBackPage:)];
+    }
+    return _tapGestureRecognizer;
+}
+
+- (void)goBackPage:(UITapGestureRecognizer*)tapGestureRecognizer{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -246,7 +250,8 @@
 
 - (IBAction)conversationBTN:(UIButton *)sender {
 //    [self.navigationController pushViewController:[[DYJXConversationTabBarController alloc] init] animated:YES];
-    XYKeyWindow.rootViewController = [[DYJXConversationTabBarController alloc] init];
+    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[self.IdentityModel.GroupHeadImg XYImageURL]];
+    XYKeyWindow.rootViewController = conversationTabBarController;
     
 }
 
