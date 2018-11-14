@@ -11,7 +11,12 @@
 #import "DYJXContacterPage.h"
 #import "DYJXGroupPage.h"
 #import "XYBestNavigationVC.h"
-#import "NaviViewController.h"
+
+#pragma mark - chatList
+#import "DYLastestChatViewController.h"
+#import "DJContactsChatViewController.h"
+#import "DJCompanyChatPage.h"
+#import "DJGroupChatPage.h"
 
 @interface DYJXConversationTabBarController ()
 
@@ -19,17 +24,9 @@
 
 @implementation DYJXConversationTabBarController
 
-- (instancetype)initWithIconUrl:(NSString*)iconUrl{
-    if (self = [super init]) {
-        self.iconUrl = iconUrl;
-         [self initSubViews];
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    [self initSubViews];
 }
 
 - (void)initSubViews{
@@ -37,23 +34,29 @@
     
     [DYJXConversationTabBarController setTabBarItemsTitleColor];
     
-    
     [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"15293B"]]];
 
+//    // 添加子控制器
+//    [self setupChildVC:[[DYJXConversionPage alloc]init] title:@"最近会话" image:@"huihua" selectedImage:@"huihua-select"];
+//    //原生
+//    [self setupChildVC:[[DYJXContacterPage alloc] init] title:@"联系人" image:@"lianxiren" selectedImage:@"lianxiren-select"];
+//
+//
+//
+//
+//    //    [self setupChildVC:[[JXActivityPage alloc] init] title:@"活动" image:@"tabbar_activity_n" selectedImage:@"tabbar_activity_s"];
+//
+//    [self setupChildVC:[[DYJXGroupPage alloc] init] title:@"群组" image:@"qunzu" selectedImage:@"qunzu-select"];
+    //    [self setupChildVC:[[JXActivityPage alloc] init] title:@"活动" image:@"tabbar_activity_n" selectedImage:@"tabbar_activity_s"];
+    
     // 添加子控制器
-    DYJXConversionPage *conversionPage = [[DYJXConversionPage alloc]init];
-    conversionPage.iconUrl = self.iconUrl;
-    [self setupChildVC:conversionPage title:@"最近会话" image:@"huihua" selectedImage:@"huihua-select"];
-    
-    DYJXContacterPage *contacterPage = [[DYJXContacterPage alloc] init];
-    contacterPage.iconUrl = self.iconUrl;
-    [self setupChildVC:contacterPage title:@"联系人" image:@"lianxiren" selectedImage:@"lianxiren-select"];
+    [self setupChildVC:[[DYLastestChatViewController alloc]init] title:@"最近会话" image:@"huihua" selectedImage:@"huihua-select"];
+    //原生
+    [self setupChildVC:[[DJContactsChatViewController alloc] init] title:@"联系人" image:@"lianxiren" selectedImage:@"lianxiren-select"];
+    [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"公司" image:@"qunzu" selectedImage:@"qunzu-select"];
+    [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"群组" image:@"qunzu" selectedImage:@"qunzu-select"];
 
-    DYJXGroupPage *groupPage = [[DYJXGroupPage alloc] init];
-    groupPage.iconUrl = self.iconUrl;
-    [self setupChildVC:groupPage title:@"群组" image:@"qunzu" selectedImage:@"qunzu-select"];
-    
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateItemsBadge:) name:XY_notification_ItemsBadge object:nil];
 }
 
@@ -90,7 +93,7 @@
     vc.tabBarItem.selectedImage = [self readingImage:selectedImage];
     
     // 包装一个导航控制器, 添加导航控制器为tabbarcontroller的子控制器
-    NaviViewController *nav = [[NaviViewController alloc] initWithRootViewController:vc];
+    XYBestNavigationVC *nav = [[XYBestNavigationVC alloc] initWithRootViewController:vc];
     [self addChildViewController:nav];
 }
 

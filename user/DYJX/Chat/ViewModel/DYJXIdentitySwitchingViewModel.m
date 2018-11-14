@@ -165,6 +165,7 @@
                 identitySwitchingModel.GroupName = weakSelf.resultUserInfoModel.Business.IMInfo.NickName;
                 identitySwitchingModel.GroupHeadImg = weakSelf.resultUserInfoModel.Business.IMInfo.HeadImgUrl;
                 [weakSelf.dataArray addObject:identitySwitchingModel];
+                [XYUserDefaults writeLoginedInfoRongTokenModel: weakSelf.resultUserInfoModel];
                 success();
                 
             }else{

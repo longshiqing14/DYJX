@@ -10,6 +10,7 @@
 
 #import "XYPickCityModel.h"
 #import "DYJXUserModel.h"
+#import "DYJXUserInfoModel.h"
 
 @interface XYUserDefaults : NSObject
 
@@ -28,6 +29,11 @@
 /** 写入全局变量  CertificateId  */
 + (void)writeAppDlegateOfCertificateId:(NSString *)str;
 
+
+//RongToken
++ (DYJXUserInfoModel*)readLoginedInfoRongTokenModel;
+/** 写入 DYJXUserInfoModel  */
++ (void)writeLoginedInfoRongTokenModel:(DYJXUserInfoModel*)model;
 
 
 /** 读取 Registered  */

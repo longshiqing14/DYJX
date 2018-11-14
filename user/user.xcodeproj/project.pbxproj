@@ -102,7 +102,6 @@
 		487352E82192EDE2001B59AB /* CoreAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 487352E72192EDE2001B59AB /* CoreAudioKit.framework */; };
 		487352EA2192EE1F001B59AB /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 487352E92192EE1E001B59AB /* libxml2.tbd */; };
 		487352EC2192EE42001B59AB /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 487352EB2192EE42001B59AB /* libiconv.2.tbd */; };
-		487352EE2192EE5D001B59AB /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 487352ED2192EE5D001B59AB /* libstdc++.6.tbd */; };
 		487352F02192EE78001B59AB /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 487352EF2192EE77001B59AB /* libicucore.tbd */; };
 		487353072192F3CF001B59AB /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 487353062192F3CE001B59AB /* QuickLook.framework */; };
 		487353082192F4FE001B59AB /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD01FA817440018EC62 /* JavaScriptCore.framework */; };
@@ -463,8 +462,6 @@
 		CBF74E621F8F46BF00D528C2 /* XYBoardBandEditDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF74E611F8F46BF00D528C2 /* XYBoardBandEditDetailVC.m */; };
 		CBF74E721F8F87C300D528C2 /* XYMyBoardBandFirstChildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF74E711F8F87C300D528C2 /* XYMyBoardBandFirstChildVC.m */; };
 		CBF74E751F8F87DF00D528C2 /* XYMyBoardBandSecondChildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF74E741F8F87DF00D528C2 /* XYMyBoardBandSecondChildVC.m */; };
-		CBF8DDD21FA817650018EC62 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD11FA817640018EC62 /* libc++.tbd */; };
-		CBF8DDD41FA817760018EC62 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD31FA817760018EC62 /* libstdc++.6.0.9.tbd */; };
 		CBF8DDD81FA896160018EC62 /* XYTableViewFooterIntervalView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF8DDD71FA896160018EC62 /* XYTableViewFooterIntervalView.m */; };
 		CBFF455C1F72418D00D2AF93 /* XYEWalletBalanceRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFF455B1F72418D00D2AF93 /* XYEWalletBalanceRecordVC.m */; };
 		CBFF455F1F7241F400D2AF93 /* XYEWalletBalanceRecordTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFF455E1F7241F400D2AF93 /* XYEWalletBalanceRecordTVCell.m */; };
@@ -776,6 +773,30 @@
 		DEF7C9BA2005F59300B53AAC /* JXPointsDescriptionHeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C9B92005F59300B53AAC /* JXPointsDescriptionHeatView.m */; };
 		DEF7C9BC2005F5A600B53AAC /* JXPointsDescriptionHeatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEF7C9BB2005F5A600B53AAC /* JXPointsDescriptionHeatView.xib */; };
 		DEFC90342088371D00FFB4F3 /* FLAnimatedImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFC90332088371D00FFB4F3 /* FLAnimatedImageView+WebCache.m */; };
+		E19DC893219ABB9000C86478 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD31FA817760018EC62 /* libstdc++.6.0.9.tbd */; };
+		E19DC8A7219AC28100C86478 /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC897219AC28100C86478 /* RongCallLib.framework */; };
+		E19DC8A8219AC28100C86478 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC898219AC28100C86478 /* AgoraRtcEngineKit.framework */; };
+		E19DC8A9219AC28100C86478 /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC89A219AC28100C86478 /* RongIMLib.framework */; };
+		E19DC8AA219AC28100C86478 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC89B219AC28100C86478 /* libopencore-amrnb.a */; };
+		E19DC8AB219AC28100C86478 /* RCConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = E19DC89C219AC28100C86478 /* RCConfig.plist */; };
+		E19DC8AC219AC28100C86478 /* release_notes_ios.txt in Resources */ = {isa = PBXBuildFile; fileRef = E19DC89D219AC28100C86478 /* release_notes_ios.txt */; };
+		E19DC8AD219AC28100C86478 /* RongCloudKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = E19DC89F219AC28100C86478 /* RongCloudKit.strings */; };
+		E19DC8AE219AC28100C86478 /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC8A2219AC28100C86478 /* RongIMKit.framework */; };
+		E19DC8AF219AC28100C86478 /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = E19DC8A3219AC28100C86478 /* Emoji.plist */; };
+		E19DC8B0219AC28100C86478 /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E19DC8A4219AC28100C86478 /* RongCloud.bundle */; };
+		E19DC8B1219AC28100C86478 /* RongCallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC8A6219AC28100C86478 /* RongCallKit.framework */; };
+		E19DC8B5219AC2DB00C86478 /* BaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8B4219AC2DB00C86478 /* BaseListViewController.m */; };
+		E19DC8B8219AC36400C86478 /* DYChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8B7219AC36400C86478 /* DYChatViewController.m */; };
+		E19DC8BA219AC4DE00C86478 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC8B9219AC4DD00C86478 /* CoreVideo.framework */; };
+		E19DC8BC219AC50100C86478 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC8BB219AC50100C86478 /* libc++abi.tbd */; };
+		E19DC8BE219AC59800C86478 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC8BD219AC59800C86478 /* OpenGLES.framework */; };
+		E19DC8C0219AC61D00C86478 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC8BF219AC61D00C86478 /* Photos.framework */; };
+		E19DC8C2219AC69700C86478 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC8C1219AC69700C86478 /* VideoToolbox.framework */; };
+		E19DC8C6219ACC5700C86478 /* DYLastestChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8C5219ACC5700C86478 /* DYLastestChatViewController.m */; };
+		E19DC8C9219ACC6A00C86478 /* DJContactsChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8C8219ACC6A00C86478 /* DJContactsChatViewController.m */; };
+		E19DC8CC219ACC7B00C86478 /* DJCompanyChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8CB219ACC7B00C86478 /* DJCompanyChatPage.m */; };
+		E19DC8CF219ACC9100C86478 /* DJGroupChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */; };
+		E19DC8D3219AE7E600C86478 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8D2219AE7E600C86478 /* BaseModel.m */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -2212,6 +2233,37 @@
 		DEF7C9BB2005F5A600B53AAC /* JXPointsDescriptionHeatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JXPointsDescriptionHeatView.xib; sourceTree = "<group>"; };
 		DEFC90322088371D00FFB4F3 /* FLAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
 		DEFC90332088371D00FFB4F3 /* FLAnimatedImageView+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImageView+WebCache.m"; sourceTree = "<group>"; };
+		E19DC897219AC28100C86478 /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallLib.framework; sourceTree = "<group>"; };
+		E19DC898219AC28100C86478 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		E19DC89A219AC28100C86478 /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
+		E19DC89B219AC28100C86478 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		E19DC89C219AC28100C86478 /* RCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCConfig.plist; sourceTree = "<group>"; };
+		E19DC89D219AC28100C86478 /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes_ios.txt; sourceTree = "<group>"; };
+		E19DC8A0219AC28100C86478 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RongCloudKit.strings"; sourceTree = "<group>"; };
+		E19DC8A1219AC28100C86478 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongCloudKit.strings; sourceTree = "<group>"; };
+		E19DC8A2219AC28100C86478 /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
+		E19DC8A3219AC28100C86478 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
+		E19DC8A4219AC28100C86478 /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
+		E19DC8A6219AC28100C86478 /* RongCallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallKit.framework; sourceTree = "<group>"; };
+		E19DC8B3219AC2DB00C86478 /* BaseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseListViewController.h; sourceTree = "<group>"; };
+		E19DC8B4219AC2DB00C86478 /* BaseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseListViewController.m; sourceTree = "<group>"; };
+		E19DC8B6219AC36400C86478 /* DYChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYChatViewController.h; sourceTree = "<group>"; };
+		E19DC8B7219AC36400C86478 /* DYChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYChatViewController.m; sourceTree = "<group>"; };
+		E19DC8B9219AC4DD00C86478 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		E19DC8BB219AC50100C86478 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
+		E19DC8BD219AC59800C86478 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		E19DC8BF219AC61D00C86478 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		E19DC8C1219AC69700C86478 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		E19DC8C4219ACC5700C86478 /* DYLastestChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYLastestChatViewController.h; sourceTree = "<group>"; };
+		E19DC8C5219ACC5700C86478 /* DYLastestChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYLastestChatViewController.m; sourceTree = "<group>"; };
+		E19DC8C7219ACC6A00C86478 /* DJContactsChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJContactsChatViewController.h; sourceTree = "<group>"; };
+		E19DC8C8219ACC6A00C86478 /* DJContactsChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJContactsChatViewController.m; sourceTree = "<group>"; };
+		E19DC8CA219ACC7B00C86478 /* DJCompanyChatPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJCompanyChatPage.h; sourceTree = "<group>"; };
+		E19DC8CB219ACC7B00C86478 /* DJCompanyChatPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJCompanyChatPage.m; sourceTree = "<group>"; };
+		E19DC8CD219ACC9100C86478 /* DJGroupChatPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJGroupChatPage.h; sourceTree = "<group>"; };
+		E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGroupChatPage.m; sourceTree = "<group>"; };
+		E19DC8D1219AE7E600C86478 /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		E19DC8D2219AE7E600C86478 /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2219,6 +2271,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E19DC8C2219AC69700C86478 /* VideoToolbox.framework in Frameworks */,
+				E19DC8C0219AC61D00C86478 /* Photos.framework in Frameworks */,
+				E19DC8BE219AC59800C86478 /* OpenGLES.framework in Frameworks */,
+				489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */,
+				E19DC8BC219AC50100C86478 /* libc++abi.tbd in Frameworks */,
+				E19DC8BA219AC4DE00C86478 /* CoreVideo.framework in Frameworks */,
+				487352E42192EDC5001B59AB /* CoreMedia.framework in Frameworks */,
+				E19DC893219ABB9000C86478 /* libstdc++.6.0.9.tbd in Frameworks */,
 				487353152192F5F5001B59AB /* AssetsLibrary.framework in Frameworks */,
 				487353132192F5E5001B59AB /* AVFoundation.framework in Frameworks */,
 				487353112192F5D6001B59AB /* AddressBook.framework in Frameworks */,
@@ -2227,34 +2287,35 @@
 				4873530D2192F558001B59AB /* CoreText.framework in Frameworks */,
 				4804A1A42196BB260081AB5B /* liblibXHR.a in Frameworks */,
 				4804A19C2196B6760081AB5B /* libcrypto.a in Frameworks */,
+				E19DC8A7219AC28100C86478 /* RongCallLib.framework in Frameworks */,
 				4873530C2192F54A001B59AB /* ImageIO.framework in Frameworks */,
+				E19DC8B1219AC28100C86478 /* RongCallKit.framework in Frameworks */,
 				4873530A2192F51D001B59AB /* MobileCoreServices.framework in Frameworks */,
+				E19DC8A8219AC28100C86478 /* AgoraRtcEngineKit.framework in Frameworks */,
 				487353082192F4FE001B59AB /* JavaScriptCore.framework in Frameworks */,
 				487353072192F3CF001B59AB /* QuickLook.framework in Frameworks */,
 				487352F02192EE78001B59AB /* libicucore.tbd in Frameworks */,
-				487352EE2192EE5D001B59AB /* libstdc++.6.tbd in Frameworks */,
 				487352EC2192EE42001B59AB /* libiconv.2.tbd in Frameworks */,
 				487352EA2192EE1F001B59AB /* libxml2.tbd in Frameworks */,
 				487352E82192EDE2001B59AB /* CoreAudioKit.framework in Frameworks */,
 				4804A19E2196B6B90081AB5B /* libssl.a in Frameworks */,
 				487352E62192EDD7001B59AB /* CoreAudio.framework in Frameworks */,
 				4804A1882195994D0081AB5B /* liblibPDRCore.a in Frameworks */,
-				487352E42192EDC5001B59AB /* CoreMedia.framework in Frameworks */,
 				487352E22192EDA7001B59AB /* MediaPlayer.framework in Frameworks */,
 				487352E02192ED8C001B59AB /* AudioToolbox.framework in Frameworks */,
 				4804A192219680430081AB5B /* liblibPGInvocation.a in Frameworks */,
-				CBF8DDD41FA817760018EC62 /* libstdc++.6.0.9.tbd in Frameworks */,
 				4804A1902196800D0081AB5B /* liblibNavigator.a in Frameworks */,
 				487C55AF2061FE44006A8071 /* StoreKit.framework in Frameworks */,
 				CB42F5FB1FAB0C4200889257 /* CoreMotion.framework in Frameworks */,
+				E19DC8A9219AC28100C86478 /* RongIMLib.framework in Frameworks */,
 				CB123BED1F8DC89600CD4429 /* Security.framework in Frameworks */,
 				CB123BEB1F8DC88000CD4429 /* libresolv.tbd in Frameworks */,
+				E19DC8AE219AC28100C86478 /* RongIMKit.framework in Frameworks */,
 				4804A1A22196B7170081AB5B /* libASIHttpRequest.a in Frameworks */,
 				CB123C211F9741F100CD4429 /* UMMobClick.framework in Frameworks */,
 				CB123BE91F8DC87300CD4429 /* UserNotifications.framework in Frameworks */,
 				CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */,
 				CB123BE51F8DC85100CD4429 /* UIKit.framework in Frameworks */,
-				489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */,
 				4804A1A621995E4C0081AB5B /* liblibStorage.a in Frameworks */,
 				CB123BE31F8DC84800CD4429 /* Foundation.framework in Frameworks */,
 				CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */,
@@ -2263,7 +2324,6 @@
 				CB123BDB1F8DC81000CD4429 /* CFNetwork.framework in Frameworks */,
 				4804A1A821995F250081AB5B /* storage.framework in Frameworks */,
 				CBFF45991F74C34E00D2AF93 /* libsqlite3.tbd in Frameworks */,
-				CBF8DDD21FA817650018EC62 /* libc++.tbd in Frameworks */,
 				4804A18E21959E630081AB5B /* libcoreSupport.a in Frameworks */,
 				CBFF45971F74C33600D2AF93 /* CoreGraphics.framework in Frameworks */,
 				CBFF458C1F74C03500D2AF93 /* UMSocialCore.framework in Frameworks */,
@@ -2276,6 +2336,7 @@
 				CB42F5F81FAB0A6400889257 /* AlipaySDK.framework in Frameworks */,
 				4804A1AD219981030081AB5B /* liblibNativeUI.a in Frameworks */,
 				4804A19A21968B0D0081AB5B /* liblibIO.a in Frameworks */,
+				E19DC8AA219AC28100C86478 /* libopencore-amrnb.a in Frameworks */,
 				CBFF458D1F74C03500D2AF93 /* UMSocialNetwork.framework in Frameworks */,
 				CBFF45911F74C03500D2AF93 /* UShareUI.framework in Frameworks */,
 				DEF2349D1FF1E5360000AED3 /* libPaymentControl.a in Frameworks */,
@@ -2424,6 +2485,7 @@
 		481FE7012182165700CFE26B /* DYJX */ = {
 			isa = PBXGroup;
 			children = (
+				E19DC894219AC14400C86478 /* Vender */,
 				487352D22192EBE8001B59AB /* HBuilderSDK */,
 				487351A8218D4EB0001B59AB /* Conversations */,
 				48735190218ADD16001B59AB /* Logistics */,
@@ -2586,6 +2648,8 @@
 				487351402186F626001B59AB /* DYJXIdentitySwitchingModel.m */,
 				4873515C218945BF001B59AB /* DYJXUserInfoModel.h */,
 				4873515D218945BF001B59AB /* DYJXUserInfoModel.m */,
+				E19DC8D1219AE7E600C86478 /* BaseModel.h */,
+				E19DC8D2219AE7E600C86478 /* BaseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2684,6 +2748,7 @@
 		487351AC218D4EFB001B59AB /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				E19DC8C3219AC94100C86478 /* subVC */,
 				487351AD218D5115001B59AB /* DYJXConversationTabBarController.h */,
 				487351AE218D5115001B59AB /* DYJXConversationTabBarController.m */,
 				487351B0218D598B001B59AB /* DYJXConversionPage.h */,
@@ -4563,6 +4628,11 @@
 		CBFF457C1F74BCFA00D2AF93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E19DC8C1219AC69700C86478 /* VideoToolbox.framework */,
+				E19DC8BF219AC61D00C86478 /* Photos.framework */,
+				E19DC8BD219AC59800C86478 /* OpenGLES.framework */,
+				E19DC8BB219AC50100C86478 /* libc++abi.tbd */,
+				E19DC8B9219AC4DD00C86478 /* CoreVideo.framework */,
 				487353142192F5F4001B59AB /* AssetsLibrary.framework */,
 				487353122192F5E5001B59AB /* AVFoundation.framework */,
 				487353102192F5D5001B59AB /* AddressBook.framework */,
@@ -5500,6 +5570,91 @@
 			path = Viev;
 			sourceTree = "<group>";
 		};
+		E19DC894219AC14400C86478 /* Vender */ = {
+			isa = PBXGroup;
+			children = (
+				E19DC8B2219AC29800C86478 /* IM */,
+				E19DC895219AC28100C86478 /* RCloudSDK */,
+			);
+			path = Vender;
+			sourceTree = "<group>";
+		};
+		E19DC895219AC28100C86478 /* RCloudSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E19DC896219AC28100C86478 /* CallLib */,
+				E19DC899219AC28100C86478 /* IMLib */,
+				E19DC89D219AC28100C86478 /* release_notes_ios.txt */,
+				E19DC89E219AC28100C86478 /* IMKit */,
+				E19DC8A5219AC28100C86478 /* CallKit */,
+			);
+			path = RCloudSDK;
+			sourceTree = "<group>";
+		};
+		E19DC896219AC28100C86478 /* CallLib */ = {
+			isa = PBXGroup;
+			children = (
+				E19DC897219AC28100C86478 /* RongCallLib.framework */,
+				E19DC898219AC28100C86478 /* AgoraRtcEngineKit.framework */,
+			);
+			path = CallLib;
+			sourceTree = "<group>";
+		};
+		E19DC899219AC28100C86478 /* IMLib */ = {
+			isa = PBXGroup;
+			children = (
+				E19DC89A219AC28100C86478 /* RongIMLib.framework */,
+				E19DC89B219AC28100C86478 /* libopencore-amrnb.a */,
+				E19DC89C219AC28100C86478 /* RCConfig.plist */,
+			);
+			path = IMLib;
+			sourceTree = "<group>";
+		};
+		E19DC89E219AC28100C86478 /* IMKit */ = {
+			isa = PBXGroup;
+			children = (
+				E19DC89F219AC28100C86478 /* RongCloudKit.strings */,
+				E19DC8A2219AC28100C86478 /* RongIMKit.framework */,
+				E19DC8A3219AC28100C86478 /* Emoji.plist */,
+				E19DC8A4219AC28100C86478 /* RongCloud.bundle */,
+			);
+			path = IMKit;
+			sourceTree = "<group>";
+		};
+		E19DC8A5219AC28100C86478 /* CallKit */ = {
+			isa = PBXGroup;
+			children = (
+				E19DC8A6219AC28100C86478 /* RongCallKit.framework */,
+			);
+			path = CallKit;
+			sourceTree = "<group>";
+		};
+		E19DC8B2219AC29800C86478 /* IM */ = {
+			isa = PBXGroup;
+			children = (
+				E19DC8B3219AC2DB00C86478 /* BaseListViewController.h */,
+				E19DC8B4219AC2DB00C86478 /* BaseListViewController.m */,
+				E19DC8B6219AC36400C86478 /* DYChatViewController.h */,
+				E19DC8B7219AC36400C86478 /* DYChatViewController.m */,
+			);
+			path = IM;
+			sourceTree = "<group>";
+		};
+		E19DC8C3219AC94100C86478 /* subVC */ = {
+			isa = PBXGroup;
+			children = (
+				E19DC8C4219ACC5700C86478 /* DYLastestChatViewController.h */,
+				E19DC8C5219ACC5700C86478 /* DYLastestChatViewController.m */,
+				E19DC8C7219ACC6A00C86478 /* DJContactsChatViewController.h */,
+				E19DC8C8219ACC6A00C86478 /* DJContactsChatViewController.m */,
+				E19DC8CA219ACC7B00C86478 /* DJCompanyChatPage.h */,
+				E19DC8CB219ACC7B00C86478 /* DJCompanyChatPage.m */,
+				E19DC8CD219ACC9100C86478 /* DJGroupChatPage.h */,
+				E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */,
+			);
+			path = subVC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5610,6 +5765,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = CBD2B9F21F5D23CC0057E2E7;
 			productRefGroup = CBD2B9FC1F5D23CC0057E2E7 /* Products */;
@@ -5630,6 +5786,7 @@
 			files = (
 				487C55C120638AE4006A8071 /* JXAddressCell.xib in Resources */,
 				DE9110122085DD5600BDDABF /* JXOderIntegralCell.xib in Resources */,
+				E19DC8AC219AC28100C86478 /* release_notes_ios.txt in Resources */,
 				DEC5C0E61FD81314000E8788 /* loading@3x.gif in Resources */,
 				DEC5C0E51FD8130B000E8788 /* loading@2x.gif in Resources */,
 				DE9456731FBF00B900827C08 /* JXMyAccountManagementCell.xib in Resources */,
@@ -5643,6 +5800,7 @@
 				48EB46442079B14000B0A736 /* JXRefundContentCell.xib in Resources */,
 				DE2E3FB61FC2E8B000481474 /* JXMyBroadbandOrdersView.xib in Resources */,
 				DE36FA441FCE5C9D00ED184E /* JXCouponHeatView.xib in Resources */,
+				E19DC8AB219AC28100C86478 /* RCConfig.plist in Resources */,
 				DE8E74381FBC1E3E00426EAF /* JXMyBroadbandAccountCell.xib in Resources */,
 				DE910FCE2085DD3C00BDDABF /* JXMyOderDetailsDistributionHeatView.xib in Resources */,
 				DEA083842021BFD8003A492C /* JXSpecialOfferView.xib in Resources */,
@@ -5719,6 +5877,7 @@
 				487351B4218D598B001B59AB /* DYJXConversionPage.xib in Resources */,
 				4804A14621957D5D0081AB5B /* MiPassport.bundle in Resources */,
 				487C55AA2060FFE1006A8071 /* JXVersionUpdateView.xib in Resources */,
+				E19DC8AD219AC28100C86478 /* RongCloudKit.strings in Resources */,
 				48F3F45E2084614B005D5D0C /* JXRefundReasonPopCell.xib in Resources */,
 				DEB72FF01FBDB8DE0069C581 /* JXMyBroadbandAccountHeatView.xib in Resources */,
 				4804A15021957D5D0081AB5B /* SVProgressHUD.bundle in Resources */,
@@ -5734,6 +5893,7 @@
 				4804A14E21957D5D0081AB5B /* AMap.bundle in Resources */,
 				DE4364DC1FCBDFC0002976B0 /* JXExpiredViewController.xib in Resources */,
 				CB42F6031FAC67CC00889257 /* new_feature_2.png in Resources */,
+				E19DC8AF219AC28100C86478 /* Emoji.plist in Resources */,
 				486BA97C207B49D200FB709D /* JXRefundImageUploadCell.xib in Resources */,
 				48DE38D71FDE1D760006528C /* JXFoodheaderView.xib in Resources */,
 				DEB72FEA1FBDABAC0069C581 /* JXDetailsCell.xib in Resources */,
@@ -5753,6 +5913,7 @@
 				CBFF45901F74C03500D2AF93 /* UMSocialSDKResources.bundle in Resources */,
 				DEAE3E221FCC29A700641D5A /* JXMyAleadyUsedHeatView.xib in Resources */,
 				48EB46492079B45600B0A736 /* JXRefundAddressCell.xib in Resources */,
+				E19DC8B0219AC28100C86478 /* RongCloud.bundle in Resources */,
 				DE91101C2085DD5600BDDABF /* JXOderFootView.xib in Resources */,
 				DE9110102085DD5600BDDABF /* JXOderPromptView.xib in Resources */,
 				DE910FD02085DD3C00BDDABF /* JXMyOderDetailsHeadView.xib in Resources */,
@@ -6017,8 +6178,10 @@
 				48B8309E1FBABA3F0019F503 /* JXStyleView.m in Sources */,
 				CB53FE691F695B540020F19A /* XYPreDepositSelectCVC.m in Sources */,
 				CBE85ADE1F63DB9900E1E4EA /* XYOrderDetailGoodsListModel.m in Sources */,
+				E19DC8C6219ACC5700C86478 /* DYLastestChatViewController.m in Sources */,
 				DEB72FEE1FBDB8D20069C581 /* JXMyBroadbandAccountHeatView.m in Sources */,
 				CBFF45951F74C26700D2AF93 /* XYUMSocialShareView.m in Sources */,
+				E19DC8CF219ACC9100C86478 /* DJGroupChatPage.m in Sources */,
 				DE9456601FBEC12800827C08 /* JXRenewModel.m in Sources */,
 				481FE760218342F500CFE26B /* DYJXRegistePage.m in Sources */,
 				CBCB72051FA03B6A009BA93E /* XYOrderDetailPayPickView.m in Sources */,
@@ -6054,6 +6217,7 @@
 				CBD2BAC01F5D52670057E2E7 /* XYLocalCheck.m in Sources */,
 				CBD2BAA51F5D4A720057E2E7 /* XYBestWebVC.m in Sources */,
 				CBF74E591F8F163400D528C2 /* XYBoardBandRenewalCell.m in Sources */,
+				E19DC8B5219AC2DB00C86478 /* BaseListViewController.m in Sources */,
 				CBE859A81F5E854500E1E4EA /* XYNetWorking.m in Sources */,
 				CB123C4B1F98DA6600CD4429 /* XYGoodsSearchResultTVCell.m in Sources */,
 				CBD2BAD31F5E50700057E2E7 /* XYHomeVC.m in Sources */,
@@ -6262,7 +6426,11 @@
 				CB4287621F66326E004C43C1 /* XYOrderDetailSubClassOrderDetailVC.m in Sources */,
 				CB4287711F66AB5C004C43C1 /* XYOrderDetailSubClassOrderDetailPayTVCell.m in Sources */,
 				481FE70B2182170600CFE26B /* DYJXLoginPage.m in Sources */,
+
 				4804A1BB219C135E0081AB5B /* DYJXConversationModel.m in Sources */,
+
+				E19DC8B8219AC36400C86478 /* DYChatViewController.m in Sources */,
+
 				DE71B15C208744DD00467E06 /* PYProgressView.m in Sources */,
 				CBE85AC51F63943A00E1E4EA /* XYOrderConfirmOrderVC.m in Sources */,
 				48DE38DE1FDE35160006528C /* JXFoodCell.m in Sources */,
@@ -6317,6 +6485,7 @@
 				48644D671FCE5ED700CE47BC /* JXAlreadyUsedViewModel.m in Sources */,
 				CBFF45D21F7A939900D2AF93 /* XYUMSocialShareItemModel.m in Sources */,
 				CBD2BA681F5D39E90057E2E7 /* XYCommon.m in Sources */,
+				E19DC8D3219AE7E600C86478 /* BaseModel.m in Sources */,
 				CBFF459C1F74E56B00D2AF93 /* XYOrderCommon.m in Sources */,
 				DE910FD62085DD3C00BDDABF /* JXMyOderDetailsFootView.m in Sources */,
 				48C5E6F320590FCB00239081 /* JXSelectDeliverToShopPage.m in Sources */,
@@ -6339,6 +6508,7 @@
 				CBF74E5F1F8F437200D528C2 /* XYCaculateTool.m in Sources */,
 				CB063E141F9F1B2400A9395D /* XYEWalletBalanceFirstCell.m in Sources */,
 				CB063E201FA027EA00A9395D /* XYEWalletPreDepositThirdCell.m in Sources */,
+				E19DC8CC219ACC7B00C86478 /* DJCompanyChatPage.m in Sources */,
 				CB063E1A1FA0279800A9395D /* XYEWalletPreDepositFirstCell.m in Sources */,
 				DE9110132085DD5600BDDABF /* JXOderInvoiceView.m in Sources */,
 				DE9F8CCA1FDFF5C600D8FE8A /* JXSeachCityModel.m in Sources */,
@@ -6477,6 +6647,7 @@
 				481FE70F2182EB3B00CFE26B /* DYJXLoginViewModel.m in Sources */,
 				DE2C53D61FAC67230015A84C /* XYOrderConfirmModel.m in Sources */,
 				DE4364C91FCBBA93002976B0 /* BaseTableView.m in Sources */,
+				E19DC8C9219ACC6A00C86478 /* DJContactsChatViewController.m in Sources */,
 				CBFF467C1F7F271500D2AF93 /* XYOrderReAddCommentSecondCell.m in Sources */,
 				DEDA7CFE1FCD0D3C008A362A /* JXNotUsedHeatView.m in Sources */,
 				DE24BD85207F39AE00A213C5 /* JXMyRefundAfterSaleViewController.m in Sources */,
@@ -6554,6 +6725,18 @@
 			targetProxy = CBD2BA201F5D23CC0057E2E7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E19DC89F219AC28100C86478 /* RongCloudKit.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E19DC8A0219AC28100C86478 /* zh-Hans */,
+				E19DC8A1219AC28100C86478 /* en */,
+			);
+			name = RongCloudKit.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		CBD2BA261F5D23CC0057E2E7 /* Debug */ = {
@@ -6673,6 +6856,10 @@
 					"$(PROJECT_DIR)/user/Classes/Other/libs/UMSocial_v6.4.5_SDK/UMSocialUI",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/user/Classes/Other/libs/AliSDK_v2.0",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/CallLib",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/IMLib",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/IMKit",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/CallKit",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/user/Classes/Other/Extension/PrefixHeader.pch";
@@ -6709,6 +6896,7 @@
 					"$(PROJECT_DIR)/DYJX/HBuilderSDK",
 					"$(PROJECT_DIR)/user/inc",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/IMLib",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -6743,6 +6931,10 @@
 					"$(PROJECT_DIR)/user/Classes/Other/libs/UMSocial_v6.4.5_SDK/UMSocialUI",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/user/Classes/Other/libs/AliSDK_v2.0",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/CallLib",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/IMLib",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/IMKit",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/CallKit",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/user/Classes/Other/Extension/PrefixHeader.pch";
@@ -6779,6 +6971,7 @@
 					"$(PROJECT_DIR)/DYJX/HBuilderSDK",
 					"$(PROJECT_DIR)/user/inc",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/IMLib",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

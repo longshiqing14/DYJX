@@ -41,13 +41,19 @@
 #import "UpdateVersionModel.h"
 #import "DYJXIdentitySwitchingPage.h"
 
+// 账号密码： 18778399213 123456
+// 账号密码： 13750820441 654321
 //达意简讯
 //###########################################
 #import "DYJXLoginPage.h"
 
+#import <RongIMKit/RongIMKit.h>
+#define RongAppKey @"qf3d5gbjqs03h"
+
 #endif
 
-@interface AppDelegate ()<JPUSHRegisterDelegate>
+@interface AppDelegate ()<JPUSHRegisterDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,RCIMGroupUserInfoDataSource,RCIMReceiveMessageDelegate>
+
 @property (nonatomic, strong) UIImageView *photoIV;
 @property (nonatomic, strong) JXShareImageView *shareImageView;
 @property (nonatomic, strong) NSString *shareURL;
@@ -82,8 +88,11 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
     
 //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [UIApplication sharedApplication].statusBarStyle = UIBarStyleBlack;
-    
 
+    DYJXUserInfoModel *model = [XYUserDefaults readLoginedInfoRongTokenModel];
+    if(model.RongCloudToken.length) {
+        [self IMInit];
+    }
     
     [self initKeyboardManager];
     
@@ -106,10 +115,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
         self.window.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXLoginPage alloc] initWithNibName:@"DYJXLoginPage" bundle:nil]];
     }else{
         //已登录
-        if (self.rootViewController == nil) {
-            self.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
-        }
-        self.window.rootViewController = self.rootViewController;
+        self.window.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
     }
     
     
@@ -119,6 +125,115 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
 //    [self eliminate];
 
     return [PDRCore initEngineWihtOptions:launchOptions withRunMode:PDRCoreRunModeAppClient];
+}
+
+#pragma mark - 初始化融云SDK
+-(void)IMInit{
+
+    //请使用您之前从融云开发者控制台注册得到的 App Key，通过RCIM的单例，传入 initWithAppKey: 方法，初始化 SDK。
+    [[RCIM sharedRCIM] initWithAppKey:RongAppKey];
+    //    [[RCIMClient sharedRCIMClient] initWithAppKey:RongAppKey];
+    [RCIM sharedRCIM].enableMessageAttachUserInfo = YES;
+    /*
+     将您在上一步获取到的 Token，通过 RCIMClient 的单例，传入 -connectWithToken:success:error:tokenIncorrect: 方法，即可建立与服务器的连接。
+
+     在 App 整个生命周期，您只需要调用一次此方法与融云服务器建立连接。之后无论是网络出现异常或者 App 有前后台的切换等，SDK 都会负责自动重连。 SDK 针对 iOS 的前后台和各种网络状况，进行了连接和重连机制的优化，建议您调用一次 connectWithToken 即可，其余交给 SDK 处理。 除非您已经手动将连接断开，否则您不需要自己再手动重连。
+     */
+    DYJXUserInfoModel *userModel = [XYUserDefaults readLoginedInfoRongTokenModel];
+    [[RCIMClient sharedRCIMClient] connectWithToken:userModel.RongCloudToken
+                                            success:^(NSString *userId) {
+                                                NSLog(@"登陆成功。当前登录的用户ID：%@", userId);
+
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [[RCIM sharedRCIM] setUserInfoDataSource:self];
+                                                });
+
+                                            } error:^(RCConnectErrorCode status) {
+                                                NSLog(@"登陆的错误码为:%ld", status);
+                                            } tokenIncorrect:^{
+                                                //token过期或者不正确。
+                                                //如果设置了token有效期并且token过期，请重新请求您的服务器获取新的token
+                                                //如果没有设置token有效期却提示token错误，请检查您客户端和服务器的appkey是否匹配，还有检查您获取token的流程。
+                                                NSLog(@"token错误");
+                                            }];
+
+
+    //用户信息提供者
+    [[RCIM sharedRCIM] setUserInfoDataSource:self];
+    //群组信息提供者
+    [[RCIM sharedRCIM] setGroupInfoDataSource:self];
+    //群名片信息提供者
+    [[RCIM sharedRCIM] setGroupUserInfoDataSource:self];
+    //IMKit连接状态的监听器
+    //    [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
+    //IMKit消息接收的监听器
+    [[RCIM sharedRCIM] setReceiveMessageDelegate:self];
+    //是否关闭本地通知，默认是打开的
+    [[RCIM sharedRCIM] setDisableMessageNotificaiton:NO];
+    //设置Log级别，开发阶段打印详细logsetReceiveMessageDelegate
+    //    [RCIMClient sharedRCIMClient].logLevel = RC_Log_Level_Error;
+
+}
+
+#pragma mark - 更新BadgeNumber
+-(void)updataBadgeNumber{
+    int unreadMsgCount = [[RCIMClient sharedRCIMClient] getUnreadCount:@[
+                                                                         @(ConversationType_PRIVATE),
+                                                                         @(ConversationType_DISCUSSION),
+                                                                         @(ConversationType_APPSERVICE),
+                                                                         @(ConversationType_PUBLICSERVICE),
+                                                                         @(ConversationType_GROUP)
+                                                                         ]];
+
+    NSString * unreadNum = [NSString stringWithFormat:@"%d",unreadMsgCount];
+    NSDictionary * dict = @{@"unreadNum":unreadNum};
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageUnreadNum" object:nil userInfo:dict];
+
+    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+
+    if (version >= 8.0) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }
+    UIApplication *app = [UIApplication sharedApplication];
+    app.applicationIconBadgeNumber = unreadMsgCount;
+}
+
+#pragma mark - 用户信息提供者、群组信息提供者、群名片信息提供者
+- (void)getUserInfoWithUserId:(NSString *)userId
+                   completion:(void (^)(RCUserInfo *userInfo))completion{
+    RCUserInfo *userInfo = [[RCUserInfo alloc]initWithUserId:userId name:userId portrait:nil];
+    return completion(userInfo);
+}
+
+- (void)getGroupInfoWithGroupId:(NSString *)groupId
+                     completion:(void (^)(RCGroup *groupInfo))completion{
+
+    RCGroup *grounpInfo = [[RCGroup alloc]initWithGroupId:groupId groupName:groupId portraitUri:nil];
+    return completion(grounpInfo);
+
+}
+
+- (void)getUserInfoWithUserId:(NSString *)userId
+                      inGroup:(NSString *)groupId
+                   completion:(void (^)(RCUserInfo *userInfo))completion{
+
+    RCUserInfo *userInfo = [[RCUserInfo alloc]initWithUserId:userId name:userId portrait:nil];
+    return completion(userInfo);
+}
+#pragma mark - 消息接收监听器
+- (void)onRCIMReceiveMessage:(RCMessage *)message
+                        left:(int)left{
+    NSLog(@"onRCIMReceiveMessage %@",message.content.mentionedInfo);
+}
+
+-(BOOL)onRCIMCustomLocalNotification:(RCMessage*)message
+                      withSenderName:(NSString *)senderName{
+    return NO;
+}
+-(BOOL)onRCIMCustomAlertSound:(RCMessage *)message{
+    return NO;
 }
 
 
