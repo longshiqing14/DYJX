@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DYJXConversationTabBarController : UITabBarController
-
+- (instancetype)initWithIconUrl:(NSString*)iconUrl;
+@property(nonatomic, copy)NSString *iconUrl;
 @end

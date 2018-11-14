@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface DYJXConversionPage : BaseViewController
-
+@property(nonatomic, copy)NSString *iconUrl;
 @end

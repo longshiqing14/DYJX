@@ -48,7 +48,6 @@
 #endif
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
-
 @property (nonatomic, strong) UIImageView *photoIV;
 @property (nonatomic, strong) JXShareImageView *shareImageView;
 @property (nonatomic, strong) NSString *shareURL;
@@ -107,7 +106,10 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
         self.window.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXLoginPage alloc] initWithNibName:@"DYJXLoginPage" bundle:nil]];
     }else{
         //已登录
-        self.window.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
+        if (self.rootViewController == nil) {
+            self.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
+        }
+        self.window.rootViewController = self.rootViewController;
     }
     
     
