@@ -16,6 +16,7 @@
 #define XY_userDefaults_SessionId                  @"XY_userDefaults_SessionId"    //SessionId
 #define XY_userDefaults_Registered                 @"XY_userDefaults_Registered"   //注册信息
 #define XY_userDefaults_Info                       @"XY_userDefaults_Info"         //个人信息
+#define XY_userDefaults_userInfo             @"XY_userDefaults_userInfo"         //rongToken
 
 
 //

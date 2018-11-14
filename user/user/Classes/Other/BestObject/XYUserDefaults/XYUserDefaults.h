@@ -10,6 +10,7 @@
 
 #import "XYPickCityModel.h"
 #import "DYJXUserModel.h"
+#import "DYJXUserInfoModel.h"
 
 @interface XYUserDefaults : NSObject
 
@@ -22,6 +23,11 @@
 + (void)deleteUserDefaultsLoginedInfoModel;
 
 
+
+//RongToken
++ (DYJXUserInfoModel*)readLoginedInfoRongTokenModel;
+/** 写入 DYJXUserInfoModel  */
++ (void)writeLoginedInfoRongTokenModel:(DYJXUserInfoModel*)model;
 
 
 /** 读取 Registered  */

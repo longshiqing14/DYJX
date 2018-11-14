@@ -23,5 +23,8 @@
 //唤醒app跳转到对应的活动，商详页面
 @property (nonatomic, strong) NSDictionary * pushJumpDic;
 @property (nonatomic, strong) NSString * pushJumpStr;
+
+-(void)updataBadgeNumber;
+-(void)IMInit;
 @end
 

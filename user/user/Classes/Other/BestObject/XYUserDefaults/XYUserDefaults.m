@@ -7,8 +7,8 @@
 //
 
 #import "XYUserDefaults.h"
-
 #import "AppDelegate.h"
+#import <Foundation/Foundation.h>
 
 @implementation XYUserDefaults
 
@@ -23,10 +23,24 @@
     NSString *LoginedInfoModelJsonString =  [model modelToJSONString];
     [[NSUserDefaults standardUserDefaults]setObject:LoginedInfoModelJsonString forKey:XY_userDefaults_Logined];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
+}
+
+/** 读取 DYJXUserInfoModel  */
++ (DYJXUserInfoModel*)readLoginedInfoRongTokenModel{
+    DYJXUserInfoModel * model = (DYJXUserInfoModel *)[XYUserDefaults getModelWithKey:XY_userDefaults_userInfo];
+    return model;
+}
+/** 写入 DYJXUserInfoModel  */
++ (void)writeLoginedInfoRongTokenModel:(DYJXUserInfoModel*)model{
+    [XYUserDefaults setModel:model forKey:XY_userDefaults_userInfo];
+    if (model.RongCloudToken) { // 登录后去连接
+        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate IMInit];
+    }
 }
 /** 删除 LoginedInfoModel  */
 + (void)deleteUserDefaultsLoginedInfoModel{
+    [self writeLoginedInfoRongTokenModel:nil];
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:XY_userDefaults_Logined];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -198,5 +212,27 @@
     delegate.user_city = dict;
 }
 
++(void)setModel:(id)model forKey:(NSString *)key {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (model == nil) {
+        [defaults removeObjectForKey:key];
+    }
+    else {
+        NSData *data = [model modelToJSONData];
+        [defaults setObject:data forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
++(id)getModelWithKey:(NSString *)key {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *data = [defaults objectForKey:key];
+    if (data != nil) {
+        return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+
+    }
+    return nil;
+}
 
 @end
+

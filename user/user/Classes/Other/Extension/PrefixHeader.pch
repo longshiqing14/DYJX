@@ -119,7 +119,6 @@
 #define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO) 
 
 #define WeakSelf __weak typeof(self) weakSelf = self;
-
 /************************************************Font**********************************************/
 #define XYTitleFont(font)   (XYScreenW > 400) ? ((font) + 0) : (font)
 
