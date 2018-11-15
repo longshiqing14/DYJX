@@ -33,6 +33,7 @@
 		4804A1A621995E4C0081AB5B /* liblibStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1A521995E4C0081AB5B /* liblibStorage.a */; };
 		4804A1A821995F250081AB5B /* storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1A721995F250081AB5B /* storage.framework */; };
 		4804A1AD219981030081AB5B /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1AC219981020081AB5B /* liblibNativeUI.a */; };
+		4804A1C4219D64E90081AB5B /* DYJXConversionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804A1C3219D64E80081AB5B /* DYJXConversionViewModel.m */; };
 		4809D2B61FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4809D2B51FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m */; };
 		480B97372085D5F800EF09C2 /* JXRefundReasonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97362085D5F800EF09C2 /* JXRefundReasonsModel.m */; };
 		480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97392086118400EF09C2 /* UITextView+XYPlaceHolder.m */; };
@@ -867,6 +868,8 @@
 		4804A1A521995E4C0081AB5B /* liblibStorage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibStorage.a; sourceTree = "<group>"; };
 		4804A1A721995F250081AB5B /* storage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = storage.framework; sourceTree = "<group>"; };
 		4804A1AC219981020081AB5B /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeUI.a; sourceTree = "<group>"; };
+		4804A1C2219D64E80081AB5B /* DYJXConversionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXConversionViewModel.h; sourceTree = "<group>"; };
+		4804A1C3219D64E80081AB5B /* DYJXConversionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXConversionViewModel.m; sourceTree = "<group>"; };
 		4809D2B41FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXOrderConfirmPaymentTypeModel.h; sourceTree = "<group>"; };
 		4809D2B51FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXOrderConfirmPaymentTypeModel.m; sourceTree = "<group>"; };
 		480B97352085D5F800EF09C2 /* JXRefundReasonsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JXRefundReasonsModel.h; path = user/Classes/CustomerSevice/View/JXRefundReasonsModel.h; sourceTree = SOURCE_ROOT; };
@@ -2725,6 +2728,8 @@
 		487351AB218D4ED2001B59AB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4804A1C2219D64E80081AB5B /* DYJXConversionViewModel.h */,
+				4804A1C3219D64E80081AB5B /* DYJXConversionViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6657,6 +6662,7 @@
 				DE3764381FDA30AD00D84A7B /* JXHomeLifeView.m in Sources */,
 				DEA083872021CE53003A492C /* JXSpecialOfferView1.m in Sources */,
 				DE8E74291FBC19A200426EAF /* JXMyBroadCell.m in Sources */,
+				4804A1C4219D64E90081AB5B /* DYJXConversionViewModel.m in Sources */,
 				48B830881FB941C60019F503 /* JXGoToShopCartControl.m in Sources */,
 				CB53FED11F6BEFEC0020F19A /* XYWebViewJavaScript.m in Sources */,
 				CBCF83751F72147500B20CF9 /* XYEWalletHeaderVC.m in Sources */,
