@@ -100,6 +100,7 @@
         plus.screen.lockOrientation("portrait-primary");
 
         //判断是否登录，设置显示
+                  xtt.ClientId = "123";
         if (!xtt.clientId) {
             document.getElementById('loadDiv').classList.add('mui-hidden');
             document.getElementById('header').classList.remove('mui-hidden');
@@ -141,6 +142,7 @@
      * 跳转到主界面
      */
     function toMain() {
+        xtt.ClientId = "123";
         if (xtt.clientId) {
 
             document.getElementById('loadDiv').classList.remove('mui-hidden');

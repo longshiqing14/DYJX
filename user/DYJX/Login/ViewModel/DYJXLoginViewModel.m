@@ -8,6 +8,7 @@
 
 #import "DYJXLoginViewModel.h"
 #import "DYJXUserModel.h"
+#import "JSExtension.h"
 
 @interface DYJXLoginViewModel()
 
@@ -51,6 +52,7 @@
                 DYJXUserModel *model = [[DYJXUserModel alloc]init];
 //                [model setValuesForKeysWithDictionary:responseObject];
                 model.ClientId = [responseObject objectForKey:@"ClientId"];
+                [JSExtension shared].myClientId = model.ClientId;
                 model.UserID = [responseObject objectForKey:@"UserID"];
                 model.ObjResult = [responseObject objectForKey:@"ObjResult"];
                 model.Device = [responseObject objectForKey:@"Device"];

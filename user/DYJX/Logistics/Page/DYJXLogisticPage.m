@@ -61,7 +61,6 @@
     self.collectionView.backgroundColor = [UIColor colorWithRed:106/225. green:171/225. blue:206/225. alpha:1];
     [self.collectionView registerNib:[UINib nibWithNibName:@"DYJXLogisticCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"DYJXLogisticCollectionViewCell"];
      [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
-
 }
 
 
