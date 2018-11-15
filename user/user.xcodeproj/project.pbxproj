@@ -19,7 +19,6 @@
 		4804A14E21957D5D0081AB5B /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4804A14121957D5D0081AB5B /* AMap.bundle */; };
 		4804A14F21957D5D0081AB5B /* qucsdkResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4804A14221957D5D0081AB5B /* qucsdkResources.bundle */; };
 		4804A15021957D5D0081AB5B /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4804A14321957D5D0081AB5B /* SVProgressHUD.bundle */; };
-		4804A171219589F00081AB5B /* Pandora in Resources */ = {isa = PBXBuildFile; fileRef = 4804A170219589F00081AB5B /* Pandora */; };
 		4804A186219593170081AB5B /* native-bundle-main.js in Resources */ = {isa = PBXBuildFile; fileRef = 4804A184219593170081AB5B /* native-bundle-main.js */; };
 		4804A1882195994D0081AB5B /* liblibPDRCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1872195994C0081AB5B /* liblibPDRCore.a */; };
 		4804A18C21959DFC0081AB5B /* liblibUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A18B21959DFC0081AB5B /* liblibUI.a */; };
@@ -37,6 +36,8 @@
 		4804A1AD219981030081AB5B /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1AC219981020081AB5B /* liblibNativeUI.a */; };
 		4804A1B8219BFC990081AB5B /* DYJXConversionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804A1B7219BFC990081AB5B /* DYJXConversionViewModel.m */; };
 		4804A1BB219C135E0081AB5B /* DYJXConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804A1BA219C135E0081AB5B /* DYJXConversationModel.m */; };
+		4804A1BD219D49550081AB5B /* Pandora in Resources */ = {isa = PBXBuildFile; fileRef = 4804A1BC219D49550081AB5B /* Pandora */; };
+		4804A1C1219D52130081AB5B /* liblibMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1BF219D52130081AB5B /* liblibMap.a */; };
 		4809D2B61FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4809D2B51FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m */; };
 		480B97372085D5F800EF09C2 /* JXRefundReasonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97362085D5F800EF09C2 /* JXRefundReasonsModel.m */; };
 		480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97392086118400EF09C2 /* UITextView+XYPlaceHolder.m */; };
@@ -835,7 +836,6 @@
 		4804A14121957D5D0081AB5B /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
 		4804A14221957D5D0081AB5B /* qucsdkResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = qucsdkResources.bundle; sourceTree = "<group>"; };
 		4804A14321957D5D0081AB5B /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		4804A170219589F00081AB5B /* Pandora */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pandora; sourceTree = "<group>"; };
 		4804A173219593170081AB5B /* PDRCoreAppWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDRCoreAppWindow.h; sourceTree = "<group>"; };
 		4804A174219593170081AB5B /* PDRNView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDRNView.h; sourceTree = "<group>"; };
 		4804A175219593170081AB5B /* PDRCommonString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDRCommonString.h; sourceTree = "<group>"; };
@@ -875,6 +875,8 @@
 		4804A1B7219BFC990081AB5B /* DYJXConversionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXConversionViewModel.m; sourceTree = "<group>"; };
 		4804A1B9219C135E0081AB5B /* DYJXConversationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXConversationModel.h; sourceTree = "<group>"; };
 		4804A1BA219C135E0081AB5B /* DYJXConversationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXConversationModel.m; sourceTree = "<group>"; };
+		4804A1BC219D49550081AB5B /* Pandora */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Pandora; path = user/Pandora; sourceTree = SOURCE_ROOT; };
+		4804A1BF219D52130081AB5B /* liblibMap.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibMap.a; sourceTree = "<group>"; };
 		4809D2B41FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXOrderConfirmPaymentTypeModel.h; sourceTree = "<group>"; };
 		4809D2B51FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXOrderConfirmPaymentTypeModel.m; sourceTree = "<group>"; };
 		480B97352085D5F800EF09C2 /* JXRefundReasonsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JXRefundReasonsModel.h; path = user/Classes/CustomerSevice/View/JXRefundReasonsModel.h; sourceTree = SOURCE_ROOT; };
@@ -2309,6 +2311,7 @@
 				CB42F5FB1FAB0C4200889257 /* CoreMotion.framework in Frameworks */,
 				E19DC8A9219AC28100C86478 /* RongIMLib.framework in Frameworks */,
 				CB123BED1F8DC89600CD4429 /* Security.framework in Frameworks */,
+				4804A1C1219D52130081AB5B /* liblibMap.a in Frameworks */,
 				CB123BEB1F8DC88000CD4429 /* libresolv.tbd in Frameworks */,
 				E19DC8AE219AC28100C86478 /* RongIMKit.framework in Frameworks */,
 				4804A1A22196B7170081AB5B /* libASIHttpRequest.a in Frameworks */,
@@ -2428,6 +2431,7 @@
 				4804A191219680420081AB5B /* liblibPGInvocation.a */,
 				4804A193219680B50081AB5B /* liblibStorage.a */,
 				4804A19921968B0D0081AB5B /* liblibIO.a */,
+				4804A1BF219D52130081AB5B /* liblibMap.a */,
 			);
 			name = inc;
 			path = ../../user/inc;
@@ -2485,6 +2489,7 @@
 		481FE7012182165700CFE26B /* DYJX */ = {
 			isa = PBXGroup;
 			children = (
+				4804A1BC219D49550081AB5B /* Pandora */,
 				E19DC894219AC14400C86478 /* Vender */,
 				487352D22192EBE8001B59AB /* HBuilderSDK */,
 				487351A8218D4EB0001B59AB /* Conversations */,
@@ -3857,7 +3862,6 @@
 		CBD2B9FD1F5D23CC0057E2E7 /* user */ = {
 			isa = PBXGroup;
 			children = (
-				4804A170219589F00081AB5B /* Pandora */,
 				CB123BD91F8DC7C500CD4429 /* user.entitlements */,
 				CBD2BA311F5D24B10057E2E7 /* Classes */,
 				CBD2BA011F5D23CC0057E2E7 /* AppDelegate.h */,
@@ -5808,7 +5812,6 @@
 				481FE70C2182170600CFE26B /* DYJXLoginPage.xib in Resources */,
 				486BA977207A1ACE00FB709D /* JXRefundFooterView.xib in Resources */,
 				DE910FD92085DD3C00BDDABF /* JXMyOderClockFootView.xib in Resources */,
-				4804A171219589F00081AB5B /* Pandora in Resources */,
 				DE4364D21FCBDF37002976B0 /* JXAlreadyUsedViewController.xib in Resources */,
 				DE4FC2B22091CA6E0069A4B4 /* JXMyOderDeailsStateLineView.xib in Resources */,
 				DED74DDB1FC57C3700346AD0 /* NoNetworkView.xib in Resources */,
@@ -5852,6 +5855,7 @@
 				DED76E0B1FD3E930009332E6 /* JXDiscountCell.xib in Resources */,
 				4804A14B21957D5D0081AB5B /* TZImagePickerController.bundle in Resources */,
 				DE910FD22085DD3C00BDDABF /* JXMyDetailsGoodsCell.xib in Resources */,
+				4804A1BD219D49550081AB5B /* Pandora in Resources */,
 				DE910FCC2085DD3C00BDDABF /* JXMyOderDetailsFootView.xib in Resources */,
 				486BA986207C937D00FB709D /* JXRefumdImageCollectionCell.xib in Resources */,
 				48F3F4712085B277005D5D0C /* JXRefundSelectAddressContentCellTableViewCell.xib in Resources */,
@@ -6426,11 +6430,8 @@
 				CB4287621F66326E004C43C1 /* XYOrderDetailSubClassOrderDetailVC.m in Sources */,
 				CB4287711F66AB5C004C43C1 /* XYOrderDetailSubClassOrderDetailPayTVCell.m in Sources */,
 				481FE70B2182170600CFE26B /* DYJXLoginPage.m in Sources */,
-
 				4804A1BB219C135E0081AB5B /* DYJXConversationModel.m in Sources */,
-
 				E19DC8B8219AC36400C86478 /* DYChatViewController.m in Sources */,
-
 				DE71B15C208744DD00467E06 /* PYProgressView.m in Sources */,
 				CBE85AC51F63943A00E1E4EA /* XYOrderConfirmOrderVC.m in Sources */,
 				48DE38DE1FDE35160006528C /* JXFoodCell.m in Sources */,

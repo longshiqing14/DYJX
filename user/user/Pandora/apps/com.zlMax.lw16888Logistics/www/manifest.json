@@ -23,8 +23,7 @@
 	"permissions": {
 		"SCAccountManager":{
 				"description": "H5 plugins"
-			},
-
+		},
 		"Audio": {
 			"description": "访问麦克风"
 		},

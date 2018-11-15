@@ -24,9 +24,18 @@
 
 @implementation DYJXConversationTabBarController
 
+-(instancetype)initWithIconUrl:(NSString*)iconUrl{
+    if (self = [super init]) {
+        self.iconUrl =  iconUrl;
+        [self initSubViews];
+
+    }
+    return self;
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initSubViews];
 }
 
 - (void)initSubViews{
