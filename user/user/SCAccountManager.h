@@ -14,8 +14,8 @@
 
 @interface SCAccountManager : PGPlugin
 
-- (NSString*)getCertificateId;
-- (NSString*)getClientId;
++ (NSString*)getCertificateId;
++ (NSString*)getClientId;
 
 - (void)PluginTestFunction:(PGMethod*)command;
 - (void)PluginTestFunctionArrayArgu:(PGMethod*)command;
