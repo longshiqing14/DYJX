@@ -14,7 +14,7 @@ var xtt = (function (document, undefined) {
     var host = 'HB'; //默认宿主为HB(HBuilder)
 	var importedClass = null;
     var androidImportClassName = 'com.cjj.sungocar.manager.SCAccountManager';
-	var iosImportClassName = 'com.cjj.sungocar.manager.SCAccountManager';
+	var iosImportClassName = 'SCAccountManager';
     //uiType = !uiType ? 'merchant' : uiType; //默认界面类型为物流商
     var $ = {
         launchFlag: launchFlag, //打开应用程序标志（不同版本号的标志不是一个）
