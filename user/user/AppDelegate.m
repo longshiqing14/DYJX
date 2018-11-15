@@ -40,6 +40,7 @@
 #import "JXVersionUpdateView.h"
 #import "UpdateVersionModel.h"
 #import "DYJXIdentitySwitchingPage.h"
+#import "JSExtension.h"
 
 // 账号密码： 18778399213 123456
 // 账号密码： 13750820441 654321
@@ -115,6 +116,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
         self.window.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXLoginPage alloc] initWithNibName:@"DYJXLoginPage" bundle:nil]];
     }else{
         //已登录
+        [JSExtension shared].myClientId = userModel.ClientId;
         self.window.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
     }
     

@@ -64,7 +64,6 @@ static UIView* pContentVIew = nil;
     // 如果应用可能会重复打开的话建议使用restart方法
     // 启动该应用
     pAppHandle = [[[PDRCore Instance] appManager] openAppAtLocation:pWWWPath withIndexPath:@"login.html" withArgs:pArgus withDelegate:nil];
-    [[[PDRCore Instance] appManager] restart:pAppHandle];
 
     PDRCore* core = [PDRCore Instance];
     // Override point for customization after application launch.
@@ -87,6 +86,7 @@ static UIView* pContentVIew = nil;
                                                          error:&error];
     
     [core regPluginWithName:@"SCAccountManager" impClassName:@"SCAccountManager" type:PDRExendPluginTypeFrame javaScript:logPluginJS];
+    [[[PDRCore Instance] appManager] restart:pAppHandle];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

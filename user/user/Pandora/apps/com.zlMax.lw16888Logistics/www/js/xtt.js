@@ -78,6 +78,7 @@ var xtt = (function(document, undefined) {
 			$.clientId = plus.storage.getItem('clientId');
 			$.certificateId = plus.storage.getItem('certificateId');
 		}
+//           $.clientId = "db8e1f50-49e1-4b4f-bb27-966a4ea070cb";
 		return $.clientId;
 	};
 
