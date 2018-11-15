@@ -148,7 +148,6 @@
     NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
         [reqDict setObject:userModel.UserID forKey:@"Data"];
         [reqDict setObject:userModel.UserID forKey:@"UserID"];
-        [reqDict setObject:userModel.UserID forKey:@"CertificateId"];
         [reqDict setObject:@"iOS" forKey:@"Device"];
         [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
         [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];

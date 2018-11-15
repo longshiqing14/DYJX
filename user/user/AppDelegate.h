@@ -12,9 +12,9 @@
 @property (nonatomic, strong) UIViewController *rootViewController;
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (nonatomic, copy) NSString *certificateId;
 /** cart count */
-@property (nonatomic, strong) NSString * cartCountStr;
+@property (nonatomic, copy) NSString * cartCountStr;
 /** order count */
 @property (nonatomic, strong) NSDictionary * orderCountDict;
 
@@ -23,9 +23,12 @@
 
 //唤醒app跳转到对应的活动，商详页面
 @property (nonatomic, strong) NSDictionary * pushJumpDic;
-@property (nonatomic, strong) NSString * pushJumpStr;
+
+@property (nonatomic, copy) NSString * pushJumpStr;
+
 
 -(void)updataBadgeNumber;
 -(void)IMInit;
+
 @end
 

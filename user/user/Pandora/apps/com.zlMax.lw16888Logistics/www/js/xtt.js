@@ -65,7 +65,7 @@ var xtt = (function(document, undefined) {
 		try {
 			importedClass = plus.ios.importClass(iosImportClassName);
 			if(importedClass)
-				$.host = 'iOS';
+				$.host = 'IOS';
 		} catch(err) {
 			//console.log(err);
 		}
