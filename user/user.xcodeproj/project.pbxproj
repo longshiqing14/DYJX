@@ -32,12 +32,7 @@
 		4804A1A42196BB260081AB5B /* liblibXHR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1A32196BB260081AB5B /* liblibXHR.a */; };
 		4804A1A621995E4C0081AB5B /* liblibStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1A521995E4C0081AB5B /* liblibStorage.a */; };
 		4804A1A821995F250081AB5B /* storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1A721995F250081AB5B /* storage.framework */; };
-		4804A1AB219974630081AB5B /* SCAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804A1AA219974630081AB5B /* SCAccountManager.m */; };
 		4804A1AD219981030081AB5B /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1AC219981020081AB5B /* liblibNativeUI.a */; };
-		4804A1B8219BFC990081AB5B /* DYJXConversionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804A1B7219BFC990081AB5B /* DYJXConversionViewModel.m */; };
-		4804A1BB219C135E0081AB5B /* DYJXConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804A1BA219C135E0081AB5B /* DYJXConversationModel.m */; };
-		4804A1BD219D49550081AB5B /* Pandora in Resources */ = {isa = PBXBuildFile; fileRef = 4804A1BC219D49550081AB5B /* Pandora */; };
-		4804A1C1219D52130081AB5B /* liblibMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1BF219D52130081AB5B /* liblibMap.a */; };
 		4809D2B61FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4809D2B51FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m */; };
 		480B97372085D5F800EF09C2 /* JXRefundReasonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97362085D5F800EF09C2 /* JXRefundReasonsModel.m */; };
 		480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97392086118400EF09C2 /* UITextView+XYPlaceHolder.m */; };
@@ -774,6 +769,7 @@
 		DEF7C9BA2005F59300B53AAC /* JXPointsDescriptionHeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C9B92005F59300B53AAC /* JXPointsDescriptionHeatView.m */; };
 		DEF7C9BC2005F5A600B53AAC /* JXPointsDescriptionHeatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEF7C9BB2005F5A600B53AAC /* JXPointsDescriptionHeatView.xib */; };
 		DEFC90342088371D00FFB4F3 /* FLAnimatedImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFC90332088371D00FFB4F3 /* FLAnimatedImageView+WebCache.m */; };
+		E182E386219D102200BC5028 /* JSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E182E385219D102100BC5028 /* JSExtension.m */; };
 		E19DC893219ABB9000C86478 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD31FA817760018EC62 /* libstdc++.6.0.9.tbd */; };
 		E19DC8A7219AC28100C86478 /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC897219AC28100C86478 /* RongCallLib.framework */; };
 		E19DC8A8219AC28100C86478 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC898219AC28100C86478 /* AgoraRtcEngineKit.framework */; };
@@ -798,6 +794,8 @@
 		E19DC8CC219ACC7B00C86478 /* DJCompanyChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8CB219ACC7B00C86478 /* DJCompanyChatPage.m */; };
 		E19DC8CF219ACC9100C86478 /* DJGroupChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */; };
 		E19DC8D3219AE7E600C86478 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8D2219AE7E600C86478 /* BaseModel.m */; };
+		E1B1178B219D4F0D00C96B3E /* SCAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B11789219D4F0C00C96B3E /* SCAccountManager.m */; };
+		E1B1178D219D58A800C96B3E /* Pandora in Resources */ = {isa = PBXBuildFile; fileRef = E1B1178C219D58A800C96B3E /* Pandora */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -868,15 +866,7 @@
 		4804A1A32196BB260081AB5B /* liblibXHR.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibXHR.a; sourceTree = "<group>"; };
 		4804A1A521995E4C0081AB5B /* liblibStorage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibStorage.a; sourceTree = "<group>"; };
 		4804A1A721995F250081AB5B /* storage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = storage.framework; sourceTree = "<group>"; };
-		4804A1A9219974620081AB5B /* SCAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAccountManager.h; sourceTree = "<group>"; };
-		4804A1AA219974630081AB5B /* SCAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAccountManager.m; sourceTree = "<group>"; };
 		4804A1AC219981020081AB5B /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeUI.a; sourceTree = "<group>"; };
-		4804A1B6219BFC990081AB5B /* DYJXConversionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXConversionViewModel.h; sourceTree = "<group>"; };
-		4804A1B7219BFC990081AB5B /* DYJXConversionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXConversionViewModel.m; sourceTree = "<group>"; };
-		4804A1B9219C135E0081AB5B /* DYJXConversationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXConversationModel.h; sourceTree = "<group>"; };
-		4804A1BA219C135E0081AB5B /* DYJXConversationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXConversationModel.m; sourceTree = "<group>"; };
-		4804A1BC219D49550081AB5B /* Pandora */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Pandora; path = user/Pandora; sourceTree = SOURCE_ROOT; };
-		4804A1BF219D52130081AB5B /* liblibMap.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibMap.a; sourceTree = "<group>"; };
 		4809D2B41FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXOrderConfirmPaymentTypeModel.h; sourceTree = "<group>"; };
 		4809D2B51FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXOrderConfirmPaymentTypeModel.m; sourceTree = "<group>"; };
 		480B97352085D5F800EF09C2 /* JXRefundReasonsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JXRefundReasonsModel.h; path = user/Classes/CustomerSevice/View/JXRefundReasonsModel.h; sourceTree = SOURCE_ROOT; };
@@ -2235,6 +2225,8 @@
 		DEF7C9BB2005F5A600B53AAC /* JXPointsDescriptionHeatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JXPointsDescriptionHeatView.xib; sourceTree = "<group>"; };
 		DEFC90322088371D00FFB4F3 /* FLAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
 		DEFC90332088371D00FFB4F3 /* FLAnimatedImageView+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImageView+WebCache.m"; sourceTree = "<group>"; };
+		E182E384219D102100BC5028 /* JSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSExtension.h; sourceTree = "<group>"; };
+		E182E385219D102100BC5028 /* JSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSExtension.m; sourceTree = "<group>"; };
 		E19DC897219AC28100C86478 /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallLib.framework; sourceTree = "<group>"; };
 		E19DC898219AC28100C86478 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		E19DC89A219AC28100C86478 /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
@@ -2266,6 +2258,9 @@
 		E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGroupChatPage.m; sourceTree = "<group>"; };
 		E19DC8D1219AE7E600C86478 /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		E19DC8D2219AE7E600C86478 /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		E1B11789219D4F0C00C96B3E /* SCAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAccountManager.m; sourceTree = "<group>"; };
+		E1B1178A219D4F0D00C96B3E /* SCAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAccountManager.h; sourceTree = "<group>"; };
+		E1B1178C219D58A800C96B3E /* Pandora */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pandora; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2311,7 +2306,6 @@
 				CB42F5FB1FAB0C4200889257 /* CoreMotion.framework in Frameworks */,
 				E19DC8A9219AC28100C86478 /* RongIMLib.framework in Frameworks */,
 				CB123BED1F8DC89600CD4429 /* Security.framework in Frameworks */,
-				4804A1C1219D52130081AB5B /* liblibMap.a in Frameworks */,
 				CB123BEB1F8DC88000CD4429 /* libresolv.tbd in Frameworks */,
 				E19DC8AE219AC28100C86478 /* RongIMKit.framework in Frameworks */,
 				4804A1A22196B7170081AB5B /* libASIHttpRequest.a in Frameworks */,
@@ -2431,19 +2425,9 @@
 				4804A191219680420081AB5B /* liblibPGInvocation.a */,
 				4804A193219680B50081AB5B /* liblibStorage.a */,
 				4804A19921968B0D0081AB5B /* liblibIO.a */,
-				4804A1BF219D52130081AB5B /* liblibMap.a */,
 			);
 			name = inc;
 			path = ../../user/inc;
-			sourceTree = "<group>";
-		};
-		4804A1AE219987BE0081AB5B /* manager */ = {
-			isa = PBXGroup;
-			children = (
-				4804A1A9219974620081AB5B /* SCAccountManager.h */,
-				4804A1AA219974630081AB5B /* SCAccountManager.m */,
-			);
-			path = manager;
 			sourceTree = "<group>";
 		};
 		481434A11FE8C18600E7DCD8 /* paymentcontrol */ = {
@@ -2489,7 +2473,6 @@
 		481FE7012182165700CFE26B /* DYJX */ = {
 			isa = PBXGroup;
 			children = (
-				4804A1BC219D49550081AB5B /* Pandora */,
 				E19DC894219AC14400C86478 /* Vender */,
 				487352D22192EBE8001B59AB /* HBuilderSDK */,
 				487351A8218D4EB0001B59AB /* Conversations */,
@@ -2735,8 +2718,6 @@
 		487351AA218D4EC8001B59AB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4804A1B9219C135E0081AB5B /* DYJXConversationModel.h */,
-				4804A1BA219C135E0081AB5B /* DYJXConversationModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2744,8 +2725,6 @@
 		487351AB218D4ED2001B59AB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				4804A1B6219BFC990081AB5B /* DYJXConversionViewModel.h */,
-				4804A1B7219BFC990081AB5B /* DYJXConversionViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2770,6 +2749,8 @@
 		487352D22192EBE8001B59AB /* HBuilderSDK */ = {
 			isa = PBXGroup;
 			children = (
+				E182E384219D102100BC5028 /* JSExtension.h */,
+				E182E385219D102100BC5028 /* JSExtension.m */,
 				4804A172219593170081AB5B /* inc */,
 				4804A13721957D5D0081AB5B /* Bundles */,
 			);
@@ -3838,7 +3819,6 @@
 		CBD2B9F21F5D23CC0057E2E7 = {
 			isa = PBXGroup;
 			children = (
-				4804A1AE219987BE0081AB5B /* manager */,
 				481FE7012182165700CFE26B /* DYJX */,
 				CBFF457C1F74BCFA00D2AF93 /* Frameworks */,
 				CBD2B9FD1F5D23CC0057E2E7 /* user */,
@@ -3862,6 +3842,9 @@
 		CBD2B9FD1F5D23CC0057E2E7 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				E1B1178C219D58A800C96B3E /* Pandora */,
+				E1B1178A219D4F0D00C96B3E /* SCAccountManager.h */,
+				E1B11789219D4F0C00C96B3E /* SCAccountManager.m */,
 				CB123BD91F8DC7C500CD4429 /* user.entitlements */,
 				CBD2BA311F5D24B10057E2E7 /* Classes */,
 				CBD2BA011F5D23CC0057E2E7 /* AppDelegate.h */,
@@ -5855,7 +5838,7 @@
 				DED76E0B1FD3E930009332E6 /* JXDiscountCell.xib in Resources */,
 				4804A14B21957D5D0081AB5B /* TZImagePickerController.bundle in Resources */,
 				DE910FD22085DD3C00BDDABF /* JXMyDetailsGoodsCell.xib in Resources */,
-				4804A1BD219D49550081AB5B /* Pandora in Resources */,
+				E1B1178D219D58A800C96B3E /* Pandora in Resources */,
 				DE910FCC2085DD3C00BDDABF /* JXMyOderDetailsFootView.xib in Resources */,
 				486BA986207C937D00FB709D /* JXRefumdImageCollectionCell.xib in Resources */,
 				48F3F4712085B277005D5D0C /* JXRefundSelectAddressContentCellTableViewCell.xib in Resources */,
@@ -6210,6 +6193,7 @@
 				CBF74E2E1F8B6CDB00D528C2 /* XYNotificationCenterWebVC.m in Sources */,
 				CBE85A6B1F628C6E00E1E4EA /* XYShopingCartListModel.m in Sources */,
 				CB123C3B1F989A4D00CD4429 /* XYEWalletPreDepositReturnListVC.m in Sources */,
+				E1B1178B219D4F0D00C96B3E /* SCAccountManager.m in Sources */,
 				DEA1D4231FFC6D4F00B4E6BD /* JXPreDepositSelectModel.m in Sources */,
 				CB53FE721F6A0FAC0020F19A /* XYPreDepositVCell.m in Sources */,
 				CB123C131F9592BE00CD4429 /* XYConfirmOrderInvoiceOrNotVC.m in Sources */,
@@ -6304,12 +6288,10 @@
 				48644D6F1FCFD70800CE47BC /* JXCouponActivityWebPage.m in Sources */,
 				CBE85A1C1F61461500E1E4EA /* XYCycleScrollViewNet.m in Sources */,
 				CBE85A0C1F60F68B00E1E4EA /* UIColor+Extension.m in Sources */,
-				4804A1AB219974630081AB5B /* SCAccountManager.m in Sources */,
 				DE910FCA2085DD3C00BDDABF /* JXMyOrderDetailsCell.m in Sources */,
 				CB3307991FA1BF8F00117695 /* IQUITextFieldView+Additions.m in Sources */,
 				CBFF46561F7E7ACC00D2AF93 /* FSActionSheet.m in Sources */,
 				CBE85AC11F63846200E1E4EA /* XYMineTVCell.m in Sources */,
-				4804A1B8219BFC990081AB5B /* DYJXConversionViewModel.m in Sources */,
 				48B35107208F027300A9F7E4 /* DSectionIndexItemView.m in Sources */,
 				48D47A5B1FF4AEDA00B280DE /* JXPointsRecordVCSiftVC.m in Sources */,
 				DE277D341FBAC2EF00FE52C8 /* XYAddressViewController.m in Sources */,
@@ -6430,7 +6412,6 @@
 				CB4287621F66326E004C43C1 /* XYOrderDetailSubClassOrderDetailVC.m in Sources */,
 				CB4287711F66AB5C004C43C1 /* XYOrderDetailSubClassOrderDetailPayTVCell.m in Sources */,
 				481FE70B2182170600CFE26B /* DYJXLoginPage.m in Sources */,
-				4804A1BB219C135E0081AB5B /* DYJXConversationModel.m in Sources */,
 				E19DC8B8219AC36400C86478 /* DYChatViewController.m in Sources */,
 				DE71B15C208744DD00467E06 /* PYProgressView.m in Sources */,
 				CBE85AC51F63943A00E1E4EA /* XYOrderConfirmOrderVC.m in Sources */,
@@ -6637,6 +6618,7 @@
 				DE910FD32085DD3C00BDDABF /* JXMyOderDetailsDistributionHeatView.m in Sources */,
 				CBE859D01F5FCF2A00E1E4EA /* XYLoginAndRegisterNet.m in Sources */,
 				DE2E3FB41FC2E8A200481474 /* JXMyBroadbandOrdersView.m in Sources */,
+				E182E386219D102200BC5028 /* JSExtension.m in Sources */,
 				CB38727F1FA4295400254263 /* XYFindMainVC.m in Sources */,
 				DE910FC92085DD3C00BDDABF /* JXMyDetailsGoodsCell.m in Sources */,
 				CBE859CA1F5FAD1000E1E4EA /* XYHomeHotGoodsCVCell.m in Sources */,

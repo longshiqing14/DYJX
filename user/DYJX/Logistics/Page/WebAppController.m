@@ -46,7 +46,7 @@ static UIView* pContentVIew = nil;
     h5Engine.persentViewController = self;
     
     // 设置WebApp所在的目录，该目录下必须有mainfest.json
-    NSString* pWWWPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"Pandora/apps/%@/www",self.AppId]];
+    NSString* pWWWPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"/Pandora/apps/%@/www",self.AppId]];
     
     // 如果路径中包含中文，或Xcode工程的targets名为中文则需要对路径进行编码
     //NSString* pWWWPath2 =  (NSString *)CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)pTempString, NULL, NULL,  kCFStringEncodingUTF8 );
@@ -62,17 +62,26 @@ static UIView* pContentVIew = nil;
 
 
     // 如果应用可能会重复打开的话建议使用restart方法
-    //[[[PDRCore Instance] appManager] restart:pAppHandle];
     // 启动该应用
     pAppHandle = [[[PDRCore Instance] appManager] openAppAtLocation:pWWWPath withIndexPath:@"login.html" withArgs:pArgus withDelegate:nil];
-    
+    [[[PDRCore Instance] appManager] restart:pAppHandle];
+
     PDRCore* core = [PDRCore Instance];
     // Override point for customization after application launch.
     
     
-    //添加一个自定义插件
+    //添加一个自定义插件/Users/Nica/DYJX/user/user/Pandora/apps/com.zlMax.lw16888Logistics/www/js/xtt.js
     NSError *error = nil;
-    NSString *JSPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/js/xtt",pWWWPath] ofType:@"js"];
+//    NSString *
+//    NSString *JSPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/js/xtt",pWWWPath] ofType:@"js"];
+    NSString *jsPath = [NSString stringWithFormat:@"%@/js/xtt.js",pWWWPath];
+    NSLog(@"目录：%@", jsPath);
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSData* data = [[NSData alloc] init];
+    data = [fm contentsAtPath:jsPath];
+    NSString *JSPath = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+     NSLog(@"%@",JSPath);
+
     NSString *logPluginJS = [NSString stringWithContentsOfFile:JSPath
                                                       encoding:NSUTF8StringEncoding
                                                          error:&error];

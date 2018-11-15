@@ -15,6 +15,7 @@
 #import "DYJXIdentitySwitchingHeader.h"
 #import "DYJXLogisticPage.h"
 #import "DYJXIdentitySwitchingModel.h"
+#import "JSExtension.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -131,7 +132,7 @@ static NSString *headerID=@"headerID";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.selectedIdentity = [self.viewModel IdentityAtIndexPath:indexPath];
-    
+    [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
 }
 
 
