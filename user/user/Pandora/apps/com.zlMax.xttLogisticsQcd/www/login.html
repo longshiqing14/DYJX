@@ -420,7 +420,8 @@
             }, 1000);
         } else {
             if (new Date().getTime() - first < 1000) {
-                plus.runtime.quit();
+                // plus.runtime.quit();
+                mui.currentWebview.close();
             }
         }
 //        }

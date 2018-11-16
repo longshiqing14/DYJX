@@ -2506,6 +2506,7 @@
 		481FE7012182165700CFE26B /* DYJX */ = {
 			isa = PBXGroup;
 			children = (
+				48511D6C219EC376006C6081 /* New Group */,
 				E19DC894219AC14400C86478 /* Vender */,
 				487352D22192EBE8001B59AB /* HBuilderSDK */,
 				487351A8218D4EB0001B59AB /* Conversations */,
@@ -2589,6 +2590,13 @@
 				4843205C20245F6C00468411 /* JXPiontsRuleModel.m */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		48511D6C219EC376006C6081 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		48644D541FCD7EAE00CE47BC /* ViewModel */ = {
