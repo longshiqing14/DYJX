@@ -61,6 +61,12 @@
 +(NSString *)getClientId {
     return [[JSExtension shared] myClientId];
 }
++(void)plusBack{
+    [[XYCommon getCurrentVC].navigationController popViewControllerAnimated:YES];
+}
++(void)plusRestart{
+    
+}
 //- (NSString*)getCertificateId{
 //    return @"123";
 //}

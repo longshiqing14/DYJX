@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString*)getCertificateId;
 +(NSString *)getClientId;
-
++(void)plusBack;
 
 @end
 

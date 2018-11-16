@@ -83,14 +83,33 @@
     DYJXLogisticCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"DYJXLogisticCollectionViewCell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            //168物流平台
+            //16888物流平台
+            [cell.imageView setImage:[UIImage imageNamed:@"16888wuliupingtai"]];
+            
         }else if (indexPath.row == 1){
             //百度
+            [cell.imageView setImage:[UIImage imageNamed:@"baidu_more"]];
         }
+    
     }else if (indexPath.section == 1){
-        if ([self.viewModel itemName:indexPath]) {
+        if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_ea"]) {
+            //新泰通物流员工端
+            [cell.imageView setImage:[UIImage imageNamed:@"xtt_baoxiao"]];
+            
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_back"]){
+            //广州退货员工端
+            [cell.imageView setImage:[UIImage imageNamed:@"gz_tuihuo"]];
+            
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt"]){
+            //新泰通报销员工端
+            [cell.imageView setImage:[UIImage imageNamed:@"xtt_wuliu"]];
+            
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_qcd"]){
+            //全城达
+            [cell.imageView setImage:[UIImage imageNamed:@"qcd_tongcheng"]];
             
         }
+    
     }
     return cell;
     
@@ -105,7 +124,7 @@
           WebAppController  *pWebAppController = [[WebAppController alloc] init];
             pWebAppController.AppId = @"com.zlMax.lw16888Logistics";
             if (pWebAppController) {
-//                self.navigationController.navigationBarHidden = YES;
+                self.navigationController.navigationBarHidden = YES;
                 [self.navigationController pushViewController:pWebAppController animated:YES];
             }
 
@@ -113,6 +132,7 @@
         }else if (indexPath.row == 1){
             //百度
             DYJXBaiDuWebPage * baiDuWebPage = [[DYJXBaiDuWebPage alloc]init];
+            self.navigationController.navigationBarHidden = YES;
             baiDuWebPage.webURLstr = @"https://m.baidu.com/usrprofile?action=square";
             [self.navigationController pushViewController:baiDuWebPage animated:YES];
         }
@@ -120,17 +140,19 @@
         if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_ea"]) {
             WebAppController  *pWebAppController = [[WebAppController alloc] init];
             pWebAppController.AppId = @"com.zlMax.xttEA";
-                //          self.navigationController.navigationBarHidden = YES;
+            self.navigationController.navigationBarHidden = YES;
                 [self.navigationController pushViewController:pWebAppController animated:YES];
             
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_back"]){
             WebAppController  *pWebAppController = [[WebAppController alloc] init];
             pWebAppController.AppId = @"com.zlMax.xttlc";
+            self.navigationController.navigationBarHidden = YES;
                 [self.navigationController pushViewController:pWebAppController animated:YES];
             
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt"]){
             WebAppController  *pWebAppController = [[WebAppController alloc] init];
             pWebAppController.AppId = @"com.zlMax.xttLogistics";
+            self.navigationController.navigationBarHidden = YES;
             [self.navigationController pushViewController:pWebAppController animated:YES];
             
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_qcd"]){

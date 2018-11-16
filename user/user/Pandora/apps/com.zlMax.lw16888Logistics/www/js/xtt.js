@@ -92,8 +92,8 @@ var xtt = (function(document, undefined) {
 	$.plusBack = function() {
 		if(importedClass)
 			importedClass.plusBack();
-		// 		else
-		// 				plus.runtime.restart();
+				// else
+				// 		plus.runtime.restart();
 	};
 
 	$.plusInvoke = function(param) {

@@ -16,7 +16,8 @@
 
 + (NSString*)getCertificateId;
 + (NSString*)getClientId;
-
++(void)plusBack;
++(void)plusRestart;
 - (void)PluginTestFunction:(PGMethod*)command;
 - (void)PluginTestFunctionArrayArgu:(PGMethod*)command;
 

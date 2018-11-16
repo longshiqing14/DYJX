@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DYJXLogisticCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UILabel *titleLb;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
