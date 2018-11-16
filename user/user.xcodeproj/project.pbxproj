@@ -63,6 +63,7 @@
 		48511D14219E6CB2006C6081 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48511D13219E6CB2006C6081 /* MAMapKit.framework */; };
 		48511D18219E7343006C6081 /* libbmapimp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48511D17219E7342006C6081 /* libbmapimp.a */; };
 		48511D1A219E736F006C6081 /* libBaiduKeyVerify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48511D19219E736F006C6081 /* libBaiduKeyVerify.a */; };
+		48511D1C219E9666006C6081 /* liblibZip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48511D1B219E9666006C6081 /* liblibZip.a */; };
 		48644D531FCD7C2400CE47BC /* JXFullReduceGoodsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48644D521FCD7C2400CE47BC /* JXFullReduceGoodsPage.m */; };
 		48644D571FCD7EC900CE47BC /* JXFullReduceGoodsViewmodel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48644D561FCD7EC900CE47BC /* JXFullReduceGoodsViewmodel.m */; };
 		48644D5A1FCE48EC00CE47BC /* JXNotUsedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48644D591FCE48EC00CE47BC /* JXNotUsedViewModel.m */; };
@@ -926,6 +927,7 @@
 		48511D13219E6CB2006C6081 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
 		48511D17219E7342006C6081 /* libbmapimp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbmapimp.a; sourceTree = "<group>"; };
 		48511D19219E736F006C6081 /* libBaiduKeyVerify.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduKeyVerify.a; sourceTree = "<group>"; };
+		48511D1B219E9666006C6081 /* liblibZip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibZip.a; sourceTree = "<group>"; };
 		48644D511FCD7C2400CE47BC /* JXFullReduceGoodsPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXFullReduceGoodsPage.h; sourceTree = "<group>"; };
 		48644D521FCD7C2400CE47BC /* JXFullReduceGoodsPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXFullReduceGoodsPage.m; sourceTree = "<group>"; };
 		48644D551FCD7EC900CE47BC /* JXFullReduceGoodsViewmodel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXFullReduceGoodsViewmodel.h; sourceTree = "<group>"; };
@@ -2348,6 +2350,7 @@
 				4804A1A821995F250081AB5B /* storage.framework in Frameworks */,
 				CBFF45991F74C34E00D2AF93 /* libsqlite3.tbd in Frameworks */,
 				4804A18E21959E630081AB5B /* libcoreSupport.a in Frameworks */,
+				48511D1C219E9666006C6081 /* liblibZip.a in Frameworks */,
 				CBFF45971F74C33600D2AF93 /* CoreGraphics.framework in Frameworks */,
 				CBFF458C1F74C03500D2AF93 /* UMSocialCore.framework in Frameworks */,
 				48511D14219E6CB2006C6081 /* MAMapKit.framework in Frameworks */,
@@ -4668,6 +4671,7 @@
 				487353092192F51D001B59AB /* MobileCoreServices.framework */,
 				487353062192F3CE001B59AB /* QuickLook.framework */,
 				487352EF2192EE77001B59AB /* libicucore.tbd */,
+				48511D1B219E9666006C6081 /* liblibZip.a */,
 				487352ED2192EE5D001B59AB /* libstdc++.6.tbd */,
 				487352EB2192EE42001B59AB /* libiconv.2.tbd */,
 				487352E92192EE1E001B59AB /* libxml2.tbd */,

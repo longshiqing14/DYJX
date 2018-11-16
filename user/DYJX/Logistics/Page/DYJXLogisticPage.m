@@ -157,6 +157,7 @@
             
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_qcd"]){
             WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            self.navigationController.navigationBarHidden = YES;
             pWebAppController.AppId = @"com.zlMax.xttLogisticsQcd";
             [self.navigationController pushViewController:pWebAppController animated:YES];
             
