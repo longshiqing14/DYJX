@@ -20,16 +20,16 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4SD-qH-A7O">
-                        <rect key="frame" x="10" y="10" width="39" height="37"/>
+                        <rect key="frame" x="0.0" y="0.0" width="59" height="57"/>
                     </imageView>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="4SD-qH-A7O" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="U9h-Ig-oLS"/>
-                <constraint firstItem="4SD-qH-A7O" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="c2V-J7-pDM"/>
-                <constraint firstAttribute="bottom" secondItem="4SD-qH-A7O" secondAttribute="bottom" constant="10" id="c3d-jt-Qmx"/>
-                <constraint firstAttribute="trailing" secondItem="4SD-qH-A7O" secondAttribute="trailing" constant="10" id="cc7-EV-0IV"/>
+                <constraint firstItem="4SD-qH-A7O" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="U9h-Ig-oLS"/>
+                <constraint firstItem="4SD-qH-A7O" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="c2V-J7-pDM"/>
+                <constraint firstAttribute="bottom" secondItem="4SD-qH-A7O" secondAttribute="bottom" id="c3d-jt-Qmx"/>
+                <constraint firstAttribute="trailing" secondItem="4SD-qH-A7O" secondAttribute="trailing" id="zvp-Tx-7zc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="59" height="57"/>
