@@ -23,7 +23,23 @@
     //************************************
     //注意根据需要添加相册、相机、定位、语音等权限
     //************************************
+    [self baseUI];
 
+}
+
+-(void)baseUI{
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithImage:SETIMAGENAME(@"btn_top_back") style:(UIBarButtonItemStylePlain) target:self action:@selector(black_controller)];
+
+    self.navigationItem.leftBarButtonItem=item;
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithHexString:@"#F2A73B"]];
+
+}
+
+-(void)black_controller{
+
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

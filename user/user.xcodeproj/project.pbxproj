@@ -833,7 +833,7 @@
 		E1B5292D219FBD94008B27A5 /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52929219FBD94008B27A5 /* RongIMKit.framework */; };
 		E1B5292E219FBD94008B27A5 /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B5292A219FBD94008B27A5 /* Emoji.plist */; };
 		E1B5292F219FBD94008B27A5 /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B5292B219FBD94008B27A5 /* RongCloud.bundle */; };
-		E1B52933219FC245008B27A5 /* Blink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52932219FC245008B27A5 /* Blink.framework */; };
+		E1B52936219FCB6B008B27A5 /* Blink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52935219FCB6B008B27A5 /* Blink.framework */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -2339,7 +2339,7 @@
 		E1B52929219FBD94008B27A5 /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
 		E1B5292A219FBD94008B27A5 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
 		E1B5292B219FBD94008B27A5 /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
-		E1B52932219FC245008B27A5 /* Blink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Blink.framework; sourceTree = "<group>"; };
+		E1B52935219FCB6B008B27A5 /* Blink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Blink.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2366,7 +2366,7 @@
 				489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */,
 				E19DC8BE219AC59800C86478 /* OpenGLES.framework in Frameworks */,
 				CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */,
-				E1B52933219FC245008B27A5 /* Blink.framework in Frameworks */,
+				E1B52936219FCB6B008B27A5 /* Blink.framework in Frameworks */,
 				E19DC8C0219AC61D00C86478 /* Photos.framework in Frameworks */,
 				E1B52924219FB9FB008B27A5 /* SafariServices.framework in Frameworks */,
 				E1B52922219FB9EF008B27A5 /* GLKit.framework in Frameworks */,
@@ -5767,7 +5767,7 @@
 		E1B528DE219FB2D4008B27A5 /* CallLib */ = {
 			isa = PBXGroup;
 			children = (
-				E1B52932219FC245008B27A5 /* Blink.framework */,
+				E1B52935219FCB6B008B27A5 /* Blink.framework */,
 				E1B528E3219FB33A008B27A5 /* RongCallLib.framework */,
 				E1B528E1219FB332008B27A5 /* GPUImage.framework */,
 				E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */,

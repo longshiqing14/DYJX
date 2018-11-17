@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DYChatViewController : RCConversationViewController
 
+-(void)black_controller;
 
 @end
 
