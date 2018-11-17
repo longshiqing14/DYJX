@@ -31,9 +31,9 @@
 
 
 //RongToken
-+ (DYJXUserInfoModel*)readLoginedInfoRongTokenModel;
-/** 写入 DYJXUserInfoModel  */
-+ (void)writeLoginedInfoRongTokenModel:(DYJXUserInfoModel*)model;
++ (DYJXIdentitySwitchingCreatorModel*)readLoginedInfoRongTokenModel;
+/** 写入 DYJXIdentitySwitchingCreatorModel  */
++ (void)writeLoginedInfoRongTokenModel:(DYJXIdentitySwitchingCreatorModel*)model;
 
 
 /** 读取 Registered  */

@@ -189,6 +189,9 @@ static NSString *headerID=@"headerID";
         [YDBAlertView showToast:@"请选择一个身份!"];
         return;
     }
+
+    [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
+    [XYUserDefaults writeLoginedInfoRongTokenModel:self.selectedIdentity.Owner];
     
     DYJXLogisticPage *logisticPage = [[DYJXLogisticPage alloc]initWithNibName:@"DYJXLogisticPage" bundle:nil];
     logisticPage.IdentityModel = self.selectedIdentity;

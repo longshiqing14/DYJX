@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *myClientId;
 @property (nonatomic, copy)NSString *myIdentityId;
 
+@property (nonatomic) dispatch_semaphore_t semaphore;
+
 @end
 
 NS_ASSUME_NONNULL_END

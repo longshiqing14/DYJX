@@ -16,6 +16,7 @@
     dispatch_once(&onceToken, ^{
         if (singler == NULL) {
             singler = [[JSExtension alloc] init];
+            singler.semaphore = dispatch_semaphore_create(1);
         }
     });
     return singler;
@@ -30,4 +31,6 @@
 +(void)plusBack{
     [[XYCommon getCurrentVC].navigationController popViewControllerAnimated:YES];
 }
+
+
 @end

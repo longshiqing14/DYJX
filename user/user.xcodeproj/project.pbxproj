@@ -807,6 +807,7 @@
 		E19DC8D3219AE7E600C86478 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8D2219AE7E600C86478 /* BaseModel.m */; };
 		E1B1178B219D4F0D00C96B3E /* SCAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B11789219D4F0C00C96B3E /* SCAccountManager.m */; };
 		E1B1178D219D58A800C96B3E /* Pandora in Resources */ = {isa = PBXBuildFile; fileRef = E1B1178C219D58A800C96B3E /* Pandora */; };
+		E1B528C8219FAD7F008B27A5 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B528C7219FAD7F008B27A5 /* NSObject+Extension.m */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -2284,6 +2285,8 @@
 		E1B11789219D4F0C00C96B3E /* SCAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAccountManager.m; sourceTree = "<group>"; };
 		E1B1178A219D4F0D00C96B3E /* SCAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAccountManager.h; sourceTree = "<group>"; };
 		E1B1178C219D58A800C96B3E /* Pandora */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pandora; sourceTree = "<group>"; };
+		E1B528C6219FAD7F008B27A5 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
+		E1B528C7219FAD7F008B27A5 /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5613,6 +5616,7 @@
 		E19DC894219AC14400C86478 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				E1B528C5219FAD7F008B27A5 /* Category */,
 				E19DC8B2219AC29800C86478 /* IM */,
 				E19DC895219AC28100C86478 /* RCloudSDK */,
 			);
@@ -5693,6 +5697,15 @@
 				E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */,
 			);
 			path = subVC;
+			sourceTree = "<group>";
+		};
+		E1B528C5219FAD7F008B27A5 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				E1B528C6219FAD7F008B27A5 /* NSObject+Extension.h */,
+				E1B528C7219FAD7F008B27A5 /* NSObject+Extension.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6447,6 +6460,7 @@
 				CB33079A1FA1BF8F00117695 /* IQUIView+Hierarchy.m in Sources */,
 				CB3872821FA455D200254263 /* XYFindBestVC.m in Sources */,
 				487C55A82060FF93006A8071 /* JXVersionUpdateView.m in Sources */,
+				E1B528C8219FAD7F008B27A5 /* NSObject+Extension.m in Sources */,
 				DE97D2481FD914F700D70F46 /* JXHomeHeatView.m in Sources */,
 				CBCF835E1F71384C00B20CF9 /* XYOrderDetailOrderBottonVC.m in Sources */,
 				481434AB1FE8EFF000E7DCD8 /* JXShareModel.m in Sources */,

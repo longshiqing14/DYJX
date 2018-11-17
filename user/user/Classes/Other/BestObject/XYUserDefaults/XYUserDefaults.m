@@ -25,19 +25,18 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-/** 读取 DYJXUserInfoModel  */
-+ (DYJXUserInfoModel*)readLoginedInfoRongTokenModel{
-    DYJXUserInfoModel * model = (DYJXUserInfoModel *)[XYUserDefaults getModelWithKey:XY_userDefaults_userInfo];
+/** 读取 DYJXIdentitySwitchingCreatorModel  */
++ (DYJXIdentitySwitchingCreatorModel*)readLoginedInfoRongTokenModel{
+    DYJXIdentitySwitchingCreatorModel * model = (DYJXIdentitySwitchingCreatorModel *)[DYJXIdentitySwitchingCreatorModel getModelWithKey:XY_userDefaults_userInfo Class:[DYJXIdentitySwitchingCreatorModel class]];
     return model;
 }
-/** 写入 DYJXUserInfoModel  */
-+ (void)writeLoginedInfoRongTokenModel:(DYJXUserInfoModel*)model{
+/** 写入 DYJXIdentitySwitchingCreatorModel  */
++ (void)writeLoginedInfoRongTokenModel:(DYJXIdentitySwitchingCreatorModel*)model{
     [XYUserDefaults setModel:model forKey:XY_userDefaults_userInfo];
-    if (model.RongCloudToken) { // 登录后去连接
-        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [delegate IMInit];
-    }
 }
+
+
+
 /** 删除 LoginedInfoModel  */
 + (void)deleteUserDefaultsLoginedInfoModel{
     [self writeLoginedInfoRongTokenModel:nil];
@@ -228,28 +227,6 @@
     
     AppDelegate * delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     delegate.user_city = dict;
-}
-
-+(void)setModel:(id)model forKey:(NSString *)key {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (model == nil) {
-        [defaults removeObjectForKey:key];
-    }
-    else {
-        NSData *data = [model modelToJSONData];
-        [defaults setObject:data forKey:key];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-}
-
-+(id)getModelWithKey:(NSString *)key {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSData *data = [defaults objectForKey:key];
-    if (data != nil) {
-        return [NSKeyedUnarchiver unarchiveObjectWithData:data];
-
-    }
-    return nil;
 }
 
 @end
