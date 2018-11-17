@@ -784,8 +784,6 @@
 		E19DC893219ABB9000C86478 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD31FA817760018EC62 /* libstdc++.6.0.9.tbd */; };
 		E19DC8A7219AC28100C86478 /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC897219AC28100C86478 /* RongCallLib.framework */; };
 		E19DC8A8219AC28100C86478 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC898219AC28100C86478 /* AgoraRtcEngineKit.framework */; };
-		E19DC8AA219AC28100C86478 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC89B219AC28100C86478 /* libopencore-amrnb.a */; };
-		E19DC8AB219AC28100C86478 /* RCConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = E19DC89C219AC28100C86478 /* RCConfig.plist */; };
 		E19DC8AC219AC28100C86478 /* release_notes_ios.txt in Resources */ = {isa = PBXBuildFile; fileRef = E19DC89D219AC28100C86478 /* release_notes_ios.txt */; };
 		E19DC8AD219AC28100C86478 /* RongCloudKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = E19DC89F219AC28100C86478 /* RongCloudKit.strings */; };
 		E19DC8AE219AC28100C86478 /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC8A2219AC28100C86478 /* RongIMKit.framework */; };
@@ -807,7 +805,9 @@
 		E1B1178B219D4F0D00C96B3E /* SCAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B11789219D4F0C00C96B3E /* SCAccountManager.m */; };
 		E1B1178D219D58A800C96B3E /* Pandora in Resources */ = {isa = PBXBuildFile; fileRef = E1B1178C219D58A800C96B3E /* Pandora */; };
 		E1B528C8219FAD7F008B27A5 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B528C7219FAD7F008B27A5 /* NSObject+Extension.m */; };
-		E1B528CA219FB09C008B27A5 /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528C9219FB09C008B27A5 /* RongIMLib.framework */; };
+		E1B528CF219FB20E008B27A5 /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528CC219FB20D008B27A5 /* RongIMLib.framework */; };
+		E1B528D0219FB20E008B27A5 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528CD219FB20D008B27A5 /* libopencore-amrnb.a */; };
+		E1B528D1219FB20E008B27A5 /* RCConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B528CE219FB20D008B27A5 /* RCConfig.plist */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -2253,8 +2253,6 @@
 		E182E385219D102100BC5028 /* JSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSExtension.m; sourceTree = "<group>"; };
 		E19DC897219AC28100C86478 /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallLib.framework; sourceTree = "<group>"; };
 		E19DC898219AC28100C86478 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
-		E19DC89B219AC28100C86478 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
-		E19DC89C219AC28100C86478 /* RCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCConfig.plist; sourceTree = "<group>"; };
 		E19DC89D219AC28100C86478 /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes_ios.txt; sourceTree = "<group>"; };
 		E19DC8A0219AC28100C86478 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RongCloudKit.strings"; sourceTree = "<group>"; };
 		E19DC8A1219AC28100C86478 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongCloudKit.strings; sourceTree = "<group>"; };
@@ -2286,7 +2284,9 @@
 		E1B1178C219D58A800C96B3E /* Pandora */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pandora; sourceTree = "<group>"; };
 		E1B528C6219FAD7F008B27A5 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		E1B528C7219FAD7F008B27A5 /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
-		E1B528C9219FB09C008B27A5 /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
+		E1B528CC219FB20D008B27A5 /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
+		E1B528CD219FB20D008B27A5 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		E1B528CE219FB20D008B27A5 /* RCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCConfig.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2327,6 +2327,7 @@
 				487352E62192EDD7001B59AB /* CoreAudio.framework in Frameworks */,
 				4804A1882195994D0081AB5B /* liblibPDRCore.a in Frameworks */,
 				487352E22192EDA7001B59AB /* MediaPlayer.framework in Frameworks */,
+				E1B528D0219FB20E008B27A5 /* libopencore-amrnb.a in Frameworks */,
 				48511D7A219EC417006C6081 /* BaiduMapAPI_Search.framework in Frameworks */,
 				487352E02192ED8C001B59AB /* AudioToolbox.framework in Frameworks */,
 				4804A192219680430081AB5B /* liblibPGInvocation.a in Frameworks */,
@@ -2334,6 +2335,7 @@
 				487C55AF2061FE44006A8071 /* StoreKit.framework in Frameworks */,
 				CB42F5FB1FAB0C4200889257 /* CoreMotion.framework in Frameworks */,
 				CB123BED1F8DC89600CD4429 /* Security.framework in Frameworks */,
+				E1B528CF219FB20E008B27A5 /* RongIMLib.framework in Frameworks */,
 				CB123BEB1F8DC88000CD4429 /* libresolv.tbd in Frameworks */,
 				E19DC8AE219AC28100C86478 /* RongIMKit.framework in Frameworks */,
 				4804A1A22196B7170081AB5B /* libASIHttpRequest.a in Frameworks */,
@@ -2360,14 +2362,12 @@
 				CB42F5F31FAB0A5C00889257 /* libWeChatSDK.a in Frameworks */,
 				4804A18C21959DFC0081AB5B /* liblibUI.a in Frameworks */,
 				CBFF458F1F74C03500D2AF93 /* libUMSocialLog.a in Frameworks */,
-				E1B528CA219FB09C008B27A5 /* RongIMLib.framework in Frameworks */,
 				48511D78219EC417006C6081 /* BaiduMapAPI_Map.framework in Frameworks */,
 				CBFF458B1F74C03500D2AF93 /* libSocialWeChat.a in Frameworks */,
 				CB123BD81F8DC40A00CD4429 /* jpush-ios-3.0.6.a in Frameworks */,
 				CB42F5F81FAB0A6400889257 /* AlipaySDK.framework in Frameworks */,
 				4804A1AD219981030081AB5B /* liblibNativeUI.a in Frameworks */,
 				4804A19A21968B0D0081AB5B /* liblibIO.a in Frameworks */,
-				E19DC8AA219AC28100C86478 /* libopencore-amrnb.a in Frameworks */,
 				CBFF458D1F74C03500D2AF93 /* UMSocialNetwork.framework in Frameworks */,
 				48511D18219E7343006C6081 /* libbmapimp.a in Frameworks */,
 				48511D77219EC417006C6081 /* BaiduMapAPI_Utils.framework in Frameworks */,
@@ -5626,8 +5626,8 @@
 		E19DC895219AC28100C86478 /* RCloudSDK */ = {
 			isa = PBXGroup;
 			children = (
+				E1B528CB219FB20D008B27A5 /* IMLib */,
 				E19DC896219AC28100C86478 /* CallLib */,
-				E19DC899219AC28100C86478 /* IMLib */,
 				E19DC89D219AC28100C86478 /* release_notes_ios.txt */,
 				E19DC89E219AC28100C86478 /* IMKit */,
 				E19DC8A5219AC28100C86478 /* CallKit */,
@@ -5642,16 +5642,6 @@
 				E19DC898219AC28100C86478 /* AgoraRtcEngineKit.framework */,
 			);
 			path = CallLib;
-			sourceTree = "<group>";
-		};
-		E19DC899219AC28100C86478 /* IMLib */ = {
-			isa = PBXGroup;
-			children = (
-				E1B528C9219FB09C008B27A5 /* RongIMLib.framework */,
-				E19DC89B219AC28100C86478 /* libopencore-amrnb.a */,
-				E19DC89C219AC28100C86478 /* RCConfig.plist */,
-			);
-			path = IMLib;
 			sourceTree = "<group>";
 		};
 		E19DC89E219AC28100C86478 /* IMKit */ = {
@@ -5706,6 +5696,16 @@
 				E1B528C7219FAD7F008B27A5 /* NSObject+Extension.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		E1B528CB219FB20D008B27A5 /* IMLib */ = {
+			isa = PBXGroup;
+			children = (
+				E1B528CC219FB20D008B27A5 /* RongIMLib.framework */,
+				E1B528CD219FB20D008B27A5 /* libopencore-amrnb.a */,
+				E1B528CE219FB20D008B27A5 /* RCConfig.plist */,
+			);
+			path = IMLib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5853,7 +5853,6 @@
 				48EB46442079B14000B0A736 /* JXRefundContentCell.xib in Resources */,
 				DE2E3FB61FC2E8B000481474 /* JXMyBroadbandOrdersView.xib in Resources */,
 				DE36FA441FCE5C9D00ED184E /* JXCouponHeatView.xib in Resources */,
-				E19DC8AB219AC28100C86478 /* RCConfig.plist in Resources */,
 				DE8E74381FBC1E3E00426EAF /* JXMyBroadbandAccountCell.xib in Resources */,
 				DE910FCE2085DD3C00BDDABF /* JXMyOderDetailsDistributionHeatView.xib in Resources */,
 				DEA083842021BFD8003A492C /* JXSpecialOfferView.xib in Resources */,
@@ -5915,6 +5914,7 @@
 				48EB46562079F15F00B0A736 /* JXRefundReasonCell.xib in Resources */,
 				DEB72FD61FBD6C390069C581 /* JXMyOderDetailsCell.xib in Resources */,
 				DEE9AA3B1FBD3AC1001FA69A /* JXRenewInInPutCell.xib in Resources */,
+				E1B528D1219FB20E008B27A5 /* RCConfig.plist in Resources */,
 				CB42F6011FAC655D00889257 /* new_feature_3.png in Resources */,
 				DE8E74471FBC224E00426EAF /* JXMyBroadbandAccountFootView.xib in Resources */,
 				DEDA7D001FCD0D5A008A362A /* JXNotUsedHeatView.xib in Resources */,
