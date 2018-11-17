@@ -785,10 +785,6 @@
 		E19DC8A7219AC28100C86478 /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC897219AC28100C86478 /* RongCallLib.framework */; };
 		E19DC8A8219AC28100C86478 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC898219AC28100C86478 /* AgoraRtcEngineKit.framework */; };
 		E19DC8AC219AC28100C86478 /* release_notes_ios.txt in Resources */ = {isa = PBXBuildFile; fileRef = E19DC89D219AC28100C86478 /* release_notes_ios.txt */; };
-		E19DC8AD219AC28100C86478 /* RongCloudKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = E19DC89F219AC28100C86478 /* RongCloudKit.strings */; };
-		E19DC8AE219AC28100C86478 /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC8A2219AC28100C86478 /* RongIMKit.framework */; };
-		E19DC8AF219AC28100C86478 /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = E19DC8A3219AC28100C86478 /* Emoji.plist */; };
-		E19DC8B0219AC28100C86478 /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E19DC8A4219AC28100C86478 /* RongCloud.bundle */; };
 		E19DC8B1219AC28100C86478 /* RongCallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19DC8A6219AC28100C86478 /* RongCallKit.framework */; };
 		E19DC8B5219AC2DB00C86478 /* BaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8B4219AC2DB00C86478 /* BaseListViewController.m */; };
 		E19DC8B8219AC36400C86478 /* DYChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8B7219AC36400C86478 /* DYChatViewController.m */; };
@@ -808,6 +804,10 @@
 		E1B528CF219FB20E008B27A5 /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528CC219FB20D008B27A5 /* RongIMLib.framework */; };
 		E1B528D0219FB20E008B27A5 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528CD219FB20D008B27A5 /* libopencore-amrnb.a */; };
 		E1B528D1219FB20E008B27A5 /* RCConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B528CE219FB20D008B27A5 /* RCConfig.plist */; };
+		E1B528D7219FB250008B27A5 /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B528D3219FB250008B27A5 /* Emoji.plist */; };
+		E1B528D8219FB250008B27A5 /* RCColor.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B528D4219FB250008B27A5 /* RCColor.plist */; };
+		E1B528D9219FB250008B27A5 /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B528D5219FB250008B27A5 /* RongCloud.bundle */; };
+		E1B528DA219FB250008B27A5 /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528D6219FB250008B27A5 /* RongIMKit.framework */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -2254,11 +2254,6 @@
 		E19DC897219AC28100C86478 /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallLib.framework; sourceTree = "<group>"; };
 		E19DC898219AC28100C86478 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		E19DC89D219AC28100C86478 /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes_ios.txt; sourceTree = "<group>"; };
-		E19DC8A0219AC28100C86478 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RongCloudKit.strings"; sourceTree = "<group>"; };
-		E19DC8A1219AC28100C86478 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongCloudKit.strings; sourceTree = "<group>"; };
-		E19DC8A2219AC28100C86478 /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
-		E19DC8A3219AC28100C86478 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
-		E19DC8A4219AC28100C86478 /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
 		E19DC8A6219AC28100C86478 /* RongCallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallKit.framework; sourceTree = "<group>"; };
 		E19DC8B3219AC2DB00C86478 /* BaseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseListViewController.h; sourceTree = "<group>"; };
 		E19DC8B4219AC2DB00C86478 /* BaseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseListViewController.m; sourceTree = "<group>"; };
@@ -2287,6 +2282,10 @@
 		E1B528CC219FB20D008B27A5 /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
 		E1B528CD219FB20D008B27A5 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		E1B528CE219FB20D008B27A5 /* RCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCConfig.plist; sourceTree = "<group>"; };
+		E1B528D3219FB250008B27A5 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
+		E1B528D4219FB250008B27A5 /* RCColor.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCColor.plist; sourceTree = "<group>"; };
+		E1B528D5219FB250008B27A5 /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
+		E1B528D6219FB250008B27A5 /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2313,6 +2312,7 @@
 				4804A19C2196B6760081AB5B /* libcrypto.a in Frameworks */,
 				E19DC8A7219AC28100C86478 /* RongCallLib.framework in Frameworks */,
 				4873530C2192F54A001B59AB /* ImageIO.framework in Frameworks */,
+				E1B528DA219FB250008B27A5 /* RongIMKit.framework in Frameworks */,
 				E19DC8B1219AC28100C86478 /* RongCallKit.framework in Frameworks */,
 				4873530A2192F51D001B59AB /* MobileCoreServices.framework in Frameworks */,
 				E19DC8A8219AC28100C86478 /* AgoraRtcEngineKit.framework in Frameworks */,
@@ -2337,7 +2337,6 @@
 				CB123BED1F8DC89600CD4429 /* Security.framework in Frameworks */,
 				E1B528CF219FB20E008B27A5 /* RongIMLib.framework in Frameworks */,
 				CB123BEB1F8DC88000CD4429 /* libresolv.tbd in Frameworks */,
-				E19DC8AE219AC28100C86478 /* RongIMKit.framework in Frameworks */,
 				4804A1A22196B7170081AB5B /* libASIHttpRequest.a in Frameworks */,
 				CB123C211F9741F100CD4429 /* UMMobClick.framework in Frameworks */,
 				48511D7B219EC417006C6081 /* BaiduMapAPI_Base.framework in Frameworks */,
@@ -5626,10 +5625,10 @@
 		E19DC895219AC28100C86478 /* RCloudSDK */ = {
 			isa = PBXGroup;
 			children = (
+				E1B528D2219FB250008B27A5 /* IMKit */,
 				E1B528CB219FB20D008B27A5 /* IMLib */,
 				E19DC896219AC28100C86478 /* CallLib */,
 				E19DC89D219AC28100C86478 /* release_notes_ios.txt */,
-				E19DC89E219AC28100C86478 /* IMKit */,
 				E19DC8A5219AC28100C86478 /* CallKit */,
 			);
 			path = RCloudSDK;
@@ -5642,17 +5641,6 @@
 				E19DC898219AC28100C86478 /* AgoraRtcEngineKit.framework */,
 			);
 			path = CallLib;
-			sourceTree = "<group>";
-		};
-		E19DC89E219AC28100C86478 /* IMKit */ = {
-			isa = PBXGroup;
-			children = (
-				E19DC89F219AC28100C86478 /* RongCloudKit.strings */,
-				E19DC8A2219AC28100C86478 /* RongIMKit.framework */,
-				E19DC8A3219AC28100C86478 /* Emoji.plist */,
-				E19DC8A4219AC28100C86478 /* RongCloud.bundle */,
-			);
-			path = IMKit;
 			sourceTree = "<group>";
 		};
 		E19DC8A5219AC28100C86478 /* CallKit */ = {
@@ -5706,6 +5694,18 @@
 				E1B528CE219FB20D008B27A5 /* RCConfig.plist */,
 			);
 			path = IMLib;
+			sourceTree = "<group>";
+		};
+		E1B528D2219FB250008B27A5 /* IMKit */ = {
+			isa = PBXGroup;
+			children = (
+				E1B528D3219FB250008B27A5 /* Emoji.plist */,
+				E1B528D4219FB250008B27A5 /* RCColor.plist */,
+				E1B528D5219FB250008B27A5 /* RongCloud.bundle */,
+				E1B528D6219FB250008B27A5 /* RongIMKit.framework */,
+			);
+			name = IMKit;
+			path = "../../../../../../../../Volumes/Data_2/龙PS/rong/IMKit";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5928,9 +5928,9 @@
 				DE91100B2085DD5600BDDABF /* JXOderAddressView.xib in Resources */,
 				DE9F8CB71FDFA64900D8FE8A /* JXCityListHeatView.xib in Resources */,
 				487351B4218D598B001B59AB /* DYJXConversionPage.xib in Resources */,
+				E1B528D8219FB250008B27A5 /* RCColor.plist in Resources */,
 				4804A14621957D5D0081AB5B /* MiPassport.bundle in Resources */,
 				487C55AA2060FFE1006A8071 /* JXVersionUpdateView.xib in Resources */,
-				E19DC8AD219AC28100C86478 /* RongCloudKit.strings in Resources */,
 				48F3F45E2084614B005D5D0C /* JXRefundReasonPopCell.xib in Resources */,
 				DEB72FF01FBDB8DE0069C581 /* JXMyBroadbandAccountHeatView.xib in Resources */,
 				4804A15021957D5D0081AB5B /* SVProgressHUD.bundle in Resources */,
@@ -5940,13 +5940,13 @@
 				4804A14721957D5D0081AB5B /* AlipaySDK.bundle in Resources */,
 				DE37643A1FDA30B700D84A7B /* JXHomeLifeView.xib in Resources */,
 				48644D6C1FCED26700CE47BC /* JXFullReduceGoodsPagePromotionView.xib in Resources */,
+				E1B528D7219FB250008B27A5 /* Emoji.plist in Resources */,
 				4873513B2186F475001B59AB /* DYJXIdentitySwitchingPage.xib in Resources */,
 				CBCF83521F7129BD00B20CF9 /* CodeScan.bundle in Resources */,
 				DE277D391FBAC2FB00FE52C8 /* XYAddressCell.xib in Resources */,
 				4804A14E21957D5D0081AB5B /* AMap.bundle in Resources */,
 				DE4364DC1FCBDFC0002976B0 /* JXExpiredViewController.xib in Resources */,
 				CB42F6031FAC67CC00889257 /* new_feature_2.png in Resources */,
-				E19DC8AF219AC28100C86478 /* Emoji.plist in Resources */,
 				486BA97C207B49D200FB709D /* JXRefundImageUploadCell.xib in Resources */,
 				48DE38D71FDE1D760006528C /* JXFoodheaderView.xib in Resources */,
 				DEB72FEA1FBDABAC0069C581 /* JXDetailsCell.xib in Resources */,
@@ -5966,7 +5966,7 @@
 				CBFF45901F74C03500D2AF93 /* UMSocialSDKResources.bundle in Resources */,
 				DEAE3E221FCC29A700641D5A /* JXMyAleadyUsedHeatView.xib in Resources */,
 				48EB46492079B45600B0A736 /* JXRefundAddressCell.xib in Resources */,
-				E19DC8B0219AC28100C86478 /* RongCloud.bundle in Resources */,
+				E1B528D9219FB250008B27A5 /* RongCloud.bundle in Resources */,
 				DE91101C2085DD5600BDDABF /* JXOderFootView.xib in Resources */,
 				DE9110102085DD5600BDDABF /* JXOderPromptView.xib in Resources */,
 				DE910FD02085DD3C00BDDABF /* JXMyOderDetailsHeadView.xib in Resources */,
@@ -6776,18 +6776,6 @@
 			targetProxy = CBD2BA201F5D23CC0057E2E7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		E19DC89F219AC28100C86478 /* RongCloudKit.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E19DC8A0219AC28100C86478 /* zh-Hans */,
-				E19DC8A1219AC28100C86478 /* en */,
-			);
-			name = RongCloudKit.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		CBD2BA261F5D23CC0057E2E7 /* Debug */ = {
