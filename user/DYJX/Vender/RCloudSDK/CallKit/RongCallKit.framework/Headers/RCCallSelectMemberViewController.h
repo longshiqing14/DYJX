@@ -41,6 +41,11 @@
 @property(nonatomic, strong) NSArray *existUserIdList;
 
 /*!
+ 通话实体
+ */
+@property(nonatomic, strong) RCCallSession *callSession;
+
+/*!
  初始化选择通话成员的ViewController
 
  @param conversationType 会话类型
@@ -55,7 +60,6 @@
                                 targetId:(NSString *)targetId
                                mediaType:(RCCallMediaType)mediaType
                                    exist:(NSArray *)existUserIdList
-                                 success:(void (^)(NSArray *addUserIdList))
-                                             successBlock;
+                                 success:(void (^)(NSArray *addUserIdList))successBlock;
 
 @end
