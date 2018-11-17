@@ -16,6 +16,7 @@
 #import "DYJXLogisticPage.h"
 #import "DYJXIdentitySwitchingModel.h"
 #import "JSExtension.h"
+#import "AppDelegate.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -192,7 +193,11 @@ static NSString *headerID=@"headerID";
 
     [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
     [XYUserDefaults writeLoginedInfoRongTokenModel:self.selectedIdentity.Owner];
-    
+    AppDelegate *appD = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (appD) {
+        [appD IMInit];
+    }
+
     DYJXLogisticPage *logisticPage = [[DYJXLogisticPage alloc]initWithNibName:@"DYJXLogisticPage" bundle:nil];
     logisticPage.IdentityModel = self.selectedIdentity;
     
