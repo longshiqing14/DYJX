@@ -7,6 +7,7 @@
 //
 
 #import "DYChatViewController.h"
+#import "IQKeyboardManager.h"
 
 @interface DYChatViewController()
 
@@ -27,8 +28,12 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    [[IQKeyboardManager sharedManager] setEnable:false];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadUI:) name:self.targetId object:nil];
+}
+
+-(void)dealloc {
+    [[IQKeyboardManager sharedManager] setEnable:true];
 }
 
 -(void)reloadUI:(NSNotification *)notif{
