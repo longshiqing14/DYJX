@@ -807,6 +807,8 @@
 		E1B528DA219FB250008B27A5 /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528D6219FB250008B27A5 /* RongIMKit.framework */; };
 		E1B528DD219FB295008B27A5 /* RongCallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528DC219FB295008B27A5 /* RongCallKit.framework */; };
 		E1B528E0219FB2D4008B27A5 /* Bailingquic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */; };
+		E1B528E2219FB332008B27A5 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528E1219FB332008B27A5 /* GPUImage.framework */; };
+		E1B528E4219FB33A008B27A5 /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528E3219FB33A008B27A5 /* RongCallLib.framework */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -2284,6 +2286,8 @@
 		E1B528D6219FB250008B27A5 /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
 		E1B528DC219FB295008B27A5 /* RongCallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallKit.framework; sourceTree = "<group>"; };
 		E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bailingquic.framework; sourceTree = "<group>"; };
+		E1B528E1219FB332008B27A5 /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPUImage.framework; sourceTree = "<group>"; };
+		E1B528E3219FB33A008B27A5 /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallLib.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2314,6 +2318,7 @@
 				487353082192F4FE001B59AB /* JavaScriptCore.framework in Frameworks */,
 				487353072192F3CF001B59AB /* QuickLook.framework in Frameworks */,
 				487352F02192EE78001B59AB /* libicucore.tbd in Frameworks */,
+				E1B528E4219FB33A008B27A5 /* RongCallLib.framework in Frameworks */,
 				487352EC2192EE42001B59AB /* libiconv.2.tbd in Frameworks */,
 				487352EA2192EE1F001B59AB /* libxml2.tbd in Frameworks */,
 				48511D1A219E736F006C6081 /* libBaiduKeyVerify.a in Frameworks */,
@@ -2352,6 +2357,7 @@
 				E1B528DD219FB295008B27A5 /* RongCallKit.framework in Frameworks */,
 				48511D1C219E9666006C6081 /* liblibZip.a in Frameworks */,
 				CBFF45971F74C33600D2AF93 /* CoreGraphics.framework in Frameworks */,
+				E1B528E2219FB332008B27A5 /* GPUImage.framework in Frameworks */,
 				CBFF458C1F74C03500D2AF93 /* UMSocialCore.framework in Frameworks */,
 				48511D14219E6CB2006C6081 /* MAMapKit.framework in Frameworks */,
 				CB123BD71F8DC40A00CD4429 /* jcore-ios-1.1.5.a in Frameworks */,
@@ -5699,6 +5705,8 @@
 		E1B528DE219FB2D4008B27A5 /* CallLib */ = {
 			isa = PBXGroup;
 			children = (
+				E1B528E3219FB33A008B27A5 /* RongCallLib.framework */,
+				E1B528E1219FB332008B27A5 /* GPUImage.framework */,
 				E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */,
 			);
 			path = CallLib;
