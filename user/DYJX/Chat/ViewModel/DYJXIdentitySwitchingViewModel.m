@@ -102,7 +102,7 @@
     [reqDict setObject:@"iOS" forKey:@"Device"];
     [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
     [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
-    [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
+    [reqDict setObject:userModel.MemberID forKey:@"MemberID"];
     
     [XYNetWorking XYPOST:kDYJXAPI_user_MyEnterprises params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -151,15 +151,20 @@
         [reqDict setObject:@"iOS" forKey:@"Device"];
         [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
         [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
-        [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
-    
+//        [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
+
     [XYNetWorking XYPOST:kDYJXAPI_user_GetUserById params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
                 [SVProgressHUD dismiss];
+
+
                 weakSelf.resultUserInfoModel = [DYJXUserInfoModel modelWithJSON:[responseObject objectForKey:@"Result"]];
+                userModel.MemberID = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"MemberID"]];
+                [XYUserDefaults writeUserDefaultsLoginedInfoModel:userModel];
+
                 DYJXIdentitySwitchingModel *identitySwitchingModel = [[DYJXIdentitySwitchingModel alloc]init];
                 identitySwitchingModel.NumberString = weakSelf.resultUserInfoModel.NumberString;
                 identitySwitchingModel.GroupName = weakSelf.resultUserInfoModel.Business.IMInfo.NickName;

@@ -48,9 +48,12 @@
     [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
     manager.requestSerializer.timeoutInterval = 60.f;
     [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-    
+    NSLog(@"%@",[NSString stringWithFormat:@"\n url:%@ -----\n",url]);
     [manager POST:[BEST_URL stringByAppendingString:url] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        XYLog(@"接口返回值%@",responseObject);
+        NSString *dict = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:NULL] encoding:NSUTF8StringEncoding];
+        NSLog(@"\n-----response start-----\n");
+        XYLog(@"%@",dict);
+        NSLog(@"\n-------response end--------\n");
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:RETURN_CODE] isEqualToString:ERROR_NUM_NOTlOGGED] ) {
                 

@@ -15,6 +15,9 @@ typedef NSError *(^GoShopCartBtnClickBlock) (UIButton *btn);
 @property (nonatomic, strong) UIImageView *selectedImageView;
 @property (nonatomic, strong) UILabel *goodsNameLabel;
 @property (nonatomic, strong) UILabel *sellingPointLable;
+@property (nonatomic, strong) UIButton *detailButton;
 @property (nonatomic, strong) NSMutableArray<NSString*> *dataArray;
+
+-(void)setNumber:(NSInteger)number;
 
 @end

@@ -834,6 +834,7 @@
 		E1B5292E219FBD94008B27A5 /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B5292A219FBD94008B27A5 /* Emoji.plist */; };
 		E1B5292F219FBD94008B27A5 /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B5292B219FBD94008B27A5 /* RongCloud.bundle */; };
 		E1B52936219FCB6B008B27A5 /* Blink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52935219FCB6B008B27A5 /* Blink.framework */; };
+		E1B52939219FE0FC008B27A5 /* XJInfoDetailPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -2340,6 +2341,8 @@
 		E1B5292A219FBD94008B27A5 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
 		E1B5292B219FBD94008B27A5 /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
 		E1B52935219FCB6B008B27A5 /* Blink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Blink.framework; sourceTree = "<group>"; };
+		E1B52937219FE0FC008B27A5 /* XJInfoDetailPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJInfoDetailPage.h; sourceTree = "<group>"; };
+		E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJInfoDetailPage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2732,6 +2735,8 @@
 				487351372186F475001B59AB /* DYJXIdentitySwitchingPage.h */,
 				487351382186F475001B59AB /* DYJXIdentitySwitchingPage.m */,
 				487351392186F475001B59AB /* DYJXIdentitySwitchingPage.xib */,
+				E1B52937219FE0FC008B27A5 /* XJInfoDetailPage.h */,
+				E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -6381,6 +6386,7 @@
 				DEE9AA3A1FBD3AC1001FA69A /* JXRenewInInPutCell.m in Sources */,
 				489A3F391FB53A870084E2BC /* JXSearchResultPage.m in Sources */,
 				48B8309E1FBABA3F0019F503 /* JXStyleView.m in Sources */,
+				E1B52939219FE0FC008B27A5 /* XJInfoDetailPage.m in Sources */,
 				CB53FE691F695B540020F19A /* XYPreDepositSelectCVC.m in Sources */,
 				CBE85ADE1F63DB9900E1E4EA /* XYOrderDetailGoodsListModel.m in Sources */,
 				E19DC8C6219ACC5700C86478 /* DYLastestChatViewController.m in Sources */,

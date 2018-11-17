@@ -17,6 +17,7 @@
 #import "DYJXIdentitySwitchingModel.h"
 #import "JSExtension.h"
 #import "AppDelegate.h"
+#import "XJInfoDetailPage.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -98,18 +99,20 @@ static NSString *headerID=@"headerID";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 60;
+    return 65;
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     DYJXIdentitySwitchingCell *tableCell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    
+    NSArray *titles = @[@"本人\n详情",@"公司\n详情",@"子公司\n  详情"];
     [tableCell.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[[self.viewModel iconImageUrl:indexPath] XYImageURL]] placeholderImage:[UIImage imageNamed:@"btn_group"]];
-    
-    tableCell.goodsNameLabel.text = [self.viewModel GroupName:indexPath];
-    tableCell.sellingPointLable.text = [self.viewModel GroupNumberString:indexPath];
+    [tableCell.detailButton addTarget:self action:@selector(btnClick:)
+                     forControlEvents:UIControlEventTouchUpInside];
+    tableCell.detailButton.tag = indexPath.row;
+    tableCell.goodsNameLabel.text = [NSString stringWithFormat:@"ID:%@ TEL:", [self.viewModel GroupNumberString:indexPath]];
+    tableCell.sellingPointLable.text = [NSString stringWithFormat:@"%@%@",[self.viewModel GroupName:indexPath],@"(参与者)"];
     tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return tableCell;
 }
@@ -167,6 +170,14 @@ static NSString *headerID=@"headerID";
     } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
         scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
     }
+}
+
+#pragma mark - Action
+-(void)btnClick:(UIButton *)sender {
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    DYJXIdentitySwitchingModel *model  = [self.viewModel IdentityAtIndexPath:indexpath];
+    XJInfoDetailPage *target = [[XJInfoDetailPage alloc] init];
+    [self.navigationController pushViewController:target animated:true];
 }
 
 - (IBAction)logoutBTN:(UIButton *)sender {

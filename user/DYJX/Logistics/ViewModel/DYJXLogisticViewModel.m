@@ -54,7 +54,7 @@
     [reqDict setObject:userModel.UserID forKey:@"UserID"];
     [reqDict setObject:@"iOS" forKey:@"Device"];
     [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
-    [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
+    [reqDict setObject:userModel.MemberID forKey:@"MemberID"];
     
     [XYNetWorking XYPOST:kDYJXAPI_user_MyApps params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
         

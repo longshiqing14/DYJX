@@ -74,7 +74,7 @@
     [self.requestDic setObject:@"iOS" forKey:@"Device"];
     [self.requestDic setObject:userModel.ClientId forKey:@"ClientId"];
     [self.requestDic setObject:userModel.ObjResult forKey:@"DeviceToken"];
-    [self.requestDic setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
+    [self.requestDic setObject:userModel.MemberID forKey:@"MemberID"];
 
     [XYNetWorking XYPOST:kDYJXAPI_user_Conversations params:self.requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
