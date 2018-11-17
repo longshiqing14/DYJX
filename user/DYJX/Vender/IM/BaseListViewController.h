@@ -6,7 +6,7 @@
 //  Copyright © 2018年 xiaopenglive. All rights reserved.
 //
 
-  #import <RongIMKit/RongIMKit.h>
+#import <RongIMKit/RongIMKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
