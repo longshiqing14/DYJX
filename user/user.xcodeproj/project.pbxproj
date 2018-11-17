@@ -809,6 +809,16 @@
 		E1B528E0219FB2D4008B27A5 /* Bailingquic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */; };
 		E1B528E2219FB332008B27A5 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528E1219FB332008B27A5 /* GPUImage.framework */; };
 		E1B528E4219FB33A008B27A5 /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528E3219FB33A008B27A5 /* RongCallLib.framework */; };
+		E1B528ED219FB37B008B27A5 /* RCML.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1B528E6219FB37B008B27A5 /* RCML.strings */; };
+		E1B528EE219FB37B008B27A5 /* RongMCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528E9219FB37B008B27A5 /* RongMCenter.framework */; };
+		E1B528EF219FB37B008B27A5 /* default_image_square.png in Resources */ = {isa = PBXBuildFile; fileRef = E1B528EA219FB37B008B27A5 /* default_image_square.png */; };
+		E1B528F0219FB37B008B27A5 /* default_image.png in Resources */ = {isa = PBXBuildFile; fileRef = E1B528EB219FB37B008B27A5 /* default_image.png */; };
+		E1B528F1219FB37B008B27A5 /* default_image_rectangular.png in Resources */ = {isa = PBXBuildFile; fileRef = E1B528EC219FB37B008B27A5 /* default_image_rectangular.png */; };
+		E1B528F8219FB383008B27A5 /* RongSticker.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1B528F3219FB383008B27A5 /* RongSticker.strings */; };
+		E1B528F9219FB383008B27A5 /* RongSticker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B528F6219FB383008B27A5 /* RongSticker.bundle */; };
+		E1B528FA219FB383008B27A5 /* RongSticker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528F7219FB383008B27A5 /* RongSticker.framework */; };
+		E1B528FD219FB38A008B27A5 /* RongSight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528FC219FB38A008B27A5 /* RongSight.framework */; };
+		E1B528FF219FB38F008B27A5 /* release_notes_ios.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1B528FE219FB38F008B27A5 /* release_notes_ios.txt */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -2288,6 +2298,18 @@
 		E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bailingquic.framework; sourceTree = "<group>"; };
 		E1B528E1219FB332008B27A5 /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPUImage.framework; sourceTree = "<group>"; };
 		E1B528E3219FB33A008B27A5 /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallLib.framework; sourceTree = "<group>"; };
+		E1B528E7219FB37B008B27A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RCML.strings"; sourceTree = "<group>"; };
+		E1B528E8219FB37B008B27A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RCML.strings; sourceTree = "<group>"; };
+		E1B528E9219FB37B008B27A5 /* RongMCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongMCenter.framework; sourceTree = "<group>"; };
+		E1B528EA219FB37B008B27A5 /* default_image_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_image_square.png; sourceTree = "<group>"; };
+		E1B528EB219FB37B008B27A5 /* default_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_image.png; sourceTree = "<group>"; };
+		E1B528EC219FB37B008B27A5 /* default_image_rectangular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_image_rectangular.png; sourceTree = "<group>"; };
+		E1B528F4219FB383008B27A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RongSticker.strings"; sourceTree = "<group>"; };
+		E1B528F5219FB383008B27A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongSticker.strings; sourceTree = "<group>"; };
+		E1B528F6219FB383008B27A5 /* RongSticker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongSticker.bundle; sourceTree = "<group>"; };
+		E1B528F7219FB383008B27A5 /* RongSticker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongSticker.framework; sourceTree = "<group>"; };
+		E1B528FC219FB38A008B27A5 /* RongSight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongSight.framework; sourceTree = "<group>"; };
+		E1B528FE219FB38F008B27A5 /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = release_notes_ios.txt; path = "../../../../../../../../Volumes/Data_2/龙PS/rong/release_notes_ios.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2319,6 +2341,7 @@
 				487353072192F3CF001B59AB /* QuickLook.framework in Frameworks */,
 				487352F02192EE78001B59AB /* libicucore.tbd in Frameworks */,
 				E1B528E4219FB33A008B27A5 /* RongCallLib.framework in Frameworks */,
+				E1B528FD219FB38A008B27A5 /* RongSight.framework in Frameworks */,
 				487352EC2192EE42001B59AB /* libiconv.2.tbd in Frameworks */,
 				487352EA2192EE1F001B59AB /* libxml2.tbd in Frameworks */,
 				48511D1A219E736F006C6081 /* libBaiduKeyVerify.a in Frameworks */,
@@ -2344,6 +2367,7 @@
 				CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */,
 				CB123BE51F8DC85100CD4429 /* UIKit.framework in Frameworks */,
 				4804A1A621995E4C0081AB5B /* liblibStorage.a in Frameworks */,
+				E1B528FA219FB383008B27A5 /* RongSticker.framework in Frameworks */,
 				CB123BE31F8DC84800CD4429 /* Foundation.framework in Frameworks */,
 				CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */,
 				CB123BDF1F8DC82E00CD4429 /* CoreTelephony.framework in Frameworks */,
@@ -2374,6 +2398,7 @@
 				48511D18219E7343006C6081 /* libbmapimp.a in Frameworks */,
 				48511D77219EC417006C6081 /* BaiduMapAPI_Utils.framework in Frameworks */,
 				CBFF45911F74C03500D2AF93 /* UShareUI.framework in Frameworks */,
+				E1B528EE219FB37B008B27A5 /* RongMCenter.framework in Frameworks */,
 				DEF2349D1FF1E5360000AED3 /* libPaymentControl.a in Frameworks */,
 				60EFA386C4471EDF263B8394 /* libPods-user.a in Frameworks */,
 			);
@@ -5628,6 +5653,10 @@
 		E19DC895219AC28100C86478 /* RCloudSDK */ = {
 			isa = PBXGroup;
 			children = (
+				E1B528FE219FB38F008B27A5 /* release_notes_ios.txt */,
+				E1B528FB219FB38A008B27A5 /* Sight */,
+				E1B528F2219FB383008B27A5 /* RongSticker */,
+				E1B528E5219FB37B008B27A5 /* RCMCenter */,
 				E1B528DE219FB2D4008B27A5 /* CallLib */,
 				E1B528DB219FB295008B27A5 /* CallKit */,
 				E1B528D2219FB250008B27A5 /* IMKit */,
@@ -5710,6 +5739,36 @@
 				E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */,
 			);
 			path = CallLib;
+			sourceTree = "<group>";
+		};
+		E1B528E5219FB37B008B27A5 /* RCMCenter */ = {
+			isa = PBXGroup;
+			children = (
+				E1B528E6219FB37B008B27A5 /* RCML.strings */,
+				E1B528E9219FB37B008B27A5 /* RongMCenter.framework */,
+				E1B528EA219FB37B008B27A5 /* default_image_square.png */,
+				E1B528EB219FB37B008B27A5 /* default_image.png */,
+				E1B528EC219FB37B008B27A5 /* default_image_rectangular.png */,
+			);
+			path = RCMCenter;
+			sourceTree = "<group>";
+		};
+		E1B528F2219FB383008B27A5 /* RongSticker */ = {
+			isa = PBXGroup;
+			children = (
+				E1B528F3219FB383008B27A5 /* RongSticker.strings */,
+				E1B528F6219FB383008B27A5 /* RongSticker.bundle */,
+				E1B528F7219FB383008B27A5 /* RongSticker.framework */,
+			);
+			path = RongSticker;
+			sourceTree = "<group>";
+		};
+		E1B528FB219FB38A008B27A5 /* Sight */ = {
+			isa = PBXGroup;
+			children = (
+				E1B528FC219FB38A008B27A5 /* RongSight.framework */,
+			);
+			path = Sight;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5854,6 +5913,7 @@
 				DEF678BE1FDA950100F7525D /* JXOtherViewController.xib in Resources */,
 				DE36FA5D1FCEBED600ED184E /* JXShopUnavailableViewController.xib in Resources */,
 				DE71B1322086E7B900467E06 /* JXMyAfterSaleDetailInformationCell.xib in Resources */,
+				E1B528F9219FB383008B27A5 /* RongSticker.bundle in Resources */,
 				48EB46442079B14000B0A736 /* JXRefundContentCell.xib in Resources */,
 				DE2E3FB61FC2E8B000481474 /* JXMyBroadbandOrdersView.xib in Resources */,
 				DE36FA441FCE5C9D00ED184E /* JXCouponHeatView.xib in Resources */,
@@ -5861,6 +5921,7 @@
 				DE910FCE2085DD3C00BDDABF /* JXMyOderDetailsDistributionHeatView.xib in Resources */,
 				DEA083842021BFD8003A492C /* JXSpecialOfferView.xib in Resources */,
 				48F3F45420843A58005D5D0C /* JXRefumdImageCameraCollectionCell.xib in Resources */,
+				E1B528F1219FB37B008B27A5 /* default_image_rectangular.png in Resources */,
 				481FE70C2182170600CFE26B /* DYJXLoginPage.xib in Resources */,
 				486BA977207A1ACE00FB709D /* JXRefundFooterView.xib in Resources */,
 				DE910FD92085DD3C00BDDABF /* JXMyOderClockFootView.xib in Resources */,
@@ -5876,6 +5937,7 @@
 				DE36FA4A1FCE88A900ED184E /* JXShopCouponHeatView.xib in Resources */,
 				DE36FA581FCEBEAD00ED184E /* JXHhopAvailableViewController.xib in Resources */,
 				DE138CEB1FD931C5006E5A6F /* JXHomeViewController.xib in Resources */,
+				E1B528F0219FB37B008B27A5 /* default_image.png in Resources */,
 				DE71B1372087339100467E06 /* JXMyAfterSaleDetailImageControllerCell.xib in Resources */,
 				DE8E74421FBC1F4200426EAF /* JXMyBroadbandOrdersCell.xib in Resources */,
 				DE97D2491FD914F700D70F46 /* JXHomeHeatView.xib in Resources */,
@@ -5895,6 +5957,7 @@
 				DEF7C9B72005E7EC00B53AAC /* JXPointsDescriptionView.xib in Resources */,
 				DED76E061FD3E795009332E6 /* JXDiscountView.xib in Resources */,
 				DE277D331FBAC2EF00FE52C8 /* XYAddressViewController.xib in Resources */,
+				E1B528F8219FB383008B27A5 /* RongSticker.strings in Resources */,
 				DE9F8CC21FDFD08200D8FE8A /* JXHomeRecommendCollectionView.xib in Resources */,
 				48D980241FEB5F1700246D4B /* JXClassificationTableHeader.xib in Resources */,
 				481FE761218342F500CFE26B /* DYJXRegistePage.xib in Resources */,
@@ -5915,10 +5978,12 @@
 				4804A14F21957D5D0081AB5B /* qucsdkResources.bundle in Resources */,
 				DE9110092085DD5600BDDABF /* JXOrderPricelCell.xib in Resources */,
 				48DE38D21FDA37D80006528C /* JXCouponDetailHeaderView.xib in Resources */,
+				E1B528FF219FB38F008B27A5 /* release_notes_ios.txt in Resources */,
 				48EB46562079F15F00B0A736 /* JXRefundReasonCell.xib in Resources */,
 				DEB72FD61FBD6C390069C581 /* JXMyOderDetailsCell.xib in Resources */,
 				DEE9AA3B1FBD3AC1001FA69A /* JXRenewInInPutCell.xib in Resources */,
 				E1B528D1219FB20E008B27A5 /* RCConfig.plist in Resources */,
+				E1B528EF219FB37B008B27A5 /* default_image_square.png in Resources */,
 				CB42F6011FAC655D00889257 /* new_feature_3.png in Resources */,
 				DE8E74471FBC224E00426EAF /* JXMyBroadbandAccountFootView.xib in Resources */,
 				DEDA7D001FCD0D5A008A362A /* JXNotUsedHeatView.xib in Resources */,
@@ -5949,6 +6014,7 @@
 				CBCF83521F7129BD00B20CF9 /* CodeScan.bundle in Resources */,
 				DE277D391FBAC2FB00FE52C8 /* XYAddressCell.xib in Resources */,
 				4804A14E21957D5D0081AB5B /* AMap.bundle in Resources */,
+				E1B528ED219FB37B008B27A5 /* RCML.strings in Resources */,
 				DE4364DC1FCBDFC0002976B0 /* JXExpiredViewController.xib in Resources */,
 				CB42F6031FAC67CC00889257 /* new_feature_2.png in Resources */,
 				486BA97C207B49D200FB709D /* JXRefundImageUploadCell.xib in Resources */,
@@ -6781,6 +6847,27 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		E1B528E6219FB37B008B27A5 /* RCML.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1B528E7219FB37B008B27A5 /* zh-Hans */,
+				E1B528E8219FB37B008B27A5 /* en */,
+			);
+			name = RCML.strings;
+			sourceTree = "<group>";
+		};
+		E1B528F3219FB383008B27A5 /* RongSticker.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1B528F4219FB383008B27A5 /* zh-Hans */,
+				E1B528F5219FB383008B27A5 /* en */,
+			);
+			name = RongSticker.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		CBD2BA261F5D23CC0057E2E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -6904,6 +6991,9 @@
 					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/IMKit",
 					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/CallKit",
 					"$(PROJECT_DIR)/DYJX/MyFrameWork",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/RCMCenter",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/RongSticker",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/Sight",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/user/Classes/Other/Extension/PrefixHeader.pch";
@@ -6980,6 +7070,9 @@
 					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/IMKit",
 					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/CallKit",
 					"$(PROJECT_DIR)/DYJX/MyFrameWork",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/RCMCenter",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/RongSticker",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/Sight",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/user/Classes/Other/Extension/PrefixHeader.pch";
