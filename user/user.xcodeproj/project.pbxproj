@@ -801,10 +801,6 @@
 		E1B528CF219FB20E008B27A5 /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528CC219FB20D008B27A5 /* RongIMLib.framework */; };
 		E1B528D0219FB20E008B27A5 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528CD219FB20D008B27A5 /* libopencore-amrnb.a */; };
 		E1B528D1219FB20E008B27A5 /* RCConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B528CE219FB20D008B27A5 /* RCConfig.plist */; };
-		E1B528D7219FB250008B27A5 /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B528D3219FB250008B27A5 /* Emoji.plist */; };
-		E1B528D8219FB250008B27A5 /* RCColor.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B528D4219FB250008B27A5 /* RCColor.plist */; };
-		E1B528D9219FB250008B27A5 /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B528D5219FB250008B27A5 /* RongCloud.bundle */; };
-		E1B528DA219FB250008B27A5 /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528D6219FB250008B27A5 /* RongIMKit.framework */; };
 		E1B528DD219FB295008B27A5 /* RongCallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528DC219FB295008B27A5 /* RongCallKit.framework */; };
 		E1B528E0219FB2D4008B27A5 /* Bailingquic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */; };
 		E1B528E2219FB332008B27A5 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528E1219FB332008B27A5 /* GPUImage.framework */; };
@@ -828,7 +824,16 @@
 		E1B52914219FB405008B27A5 /* JYangToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B5290D219FB405008B27A5 /* JYangToolKit.framework */; };
 		E1B52915219FB405008B27A5 /* JrmfWalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B5290E219FB405008B27A5 /* JrmfWalletKit.framework */; };
 		E1B52916219FB405008B27A5 /* JResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B5290F219FB405008B27A5 /* JResource.bundle */; };
-		E1B5291C219FB8F1008B27A5 /* Blink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B5291B219FB8F0008B27A5 /* Blink.framework */; };
+		E1B5291E219FB9B4008B27A5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B5291D219FB9B3008B27A5 /* libiconv.tbd */; };
+		E1B52920219FB9BC008B27A5 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B5291F219FB9BC008B27A5 /* libbz2.tbd */; };
+		E1B52922219FB9EF008B27A5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52921219FB9EF008B27A5 /* GLKit.framework */; };
+		E1B52924219FB9FB008B27A5 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52923219FB9FB008B27A5 /* SafariServices.framework */; };
+		E1B52925219FBA7D008B27A5 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD11FA817640018EC62 /* libc++.tbd */; };
+		E1B5292C219FBD94008B27A5 /* RCColor.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B52928219FBD94008B27A5 /* RCColor.plist */; };
+		E1B5292D219FBD94008B27A5 /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52929219FBD94008B27A5 /* RongIMKit.framework */; };
+		E1B5292E219FBD94008B27A5 /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B5292A219FBD94008B27A5 /* Emoji.plist */; };
+		E1B5292F219FBD94008B27A5 /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B5292B219FBD94008B27A5 /* RongCloud.bundle */; };
+		E1B52931219FBE55008B27A5 /* Blink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52930219FBE54008B27A5 /* Blink.framework */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -2300,10 +2305,6 @@
 		E1B528CC219FB20D008B27A5 /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
 		E1B528CD219FB20D008B27A5 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		E1B528CE219FB20D008B27A5 /* RCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCConfig.plist; sourceTree = "<group>"; };
-		E1B528D3219FB250008B27A5 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
-		E1B528D4219FB250008B27A5 /* RCColor.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCColor.plist; sourceTree = "<group>"; };
-		E1B528D5219FB250008B27A5 /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
-		E1B528D6219FB250008B27A5 /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
 		E1B528DC219FB295008B27A5 /* RongCallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallKit.framework; sourceTree = "<group>"; };
 		E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bailingquic.framework; sourceTree = "<group>"; };
 		E1B528E1219FB332008B27A5 /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPUImage.framework; sourceTree = "<group>"; };
@@ -2330,7 +2331,15 @@
 		E1B5290D219FB405008B27A5 /* JYangToolKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JYangToolKit.framework; sourceTree = "<group>"; };
 		E1B5290E219FB405008B27A5 /* JrmfWalletKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JrmfWalletKit.framework; sourceTree = "<group>"; };
 		E1B5290F219FB405008B27A5 /* JResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JResource.bundle; sourceTree = "<group>"; };
-		E1B5291B219FB8F0008B27A5 /* Blink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Blink.framework; sourceTree = "<group>"; };
+		E1B5291D219FB9B3008B27A5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		E1B5291F219FB9BC008B27A5 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		E1B52921219FB9EF008B27A5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		E1B52923219FB9FB008B27A5 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		E1B52928219FBD94008B27A5 /* RCColor.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCColor.plist; sourceTree = "<group>"; };
+		E1B52929219FBD94008B27A5 /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
+		E1B5292A219FBD94008B27A5 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
+		E1B5292B219FBD94008B27A5 /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
+		E1B52930219FBE54008B27A5 /* Blink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Blink.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2338,37 +2347,52 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E19DC8C2219AC69700C86478 /* VideoToolbox.framework in Frameworks */,
-				E19DC8C0219AC61D00C86478 /* Photos.framework in Frameworks */,
-				E19DC8BE219AC59800C86478 /* OpenGLES.framework in Frameworks */,
-				489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */,
-				E19DC8BC219AC50100C86478 /* libc++abi.tbd in Frameworks */,
-				E19DC8BA219AC4DE00C86478 /* CoreVideo.framework in Frameworks */,
-				48511D7D219EC4E0006C6081 /* liblibMap.a in Frameworks */,
-				487352E42192EDC5001B59AB /* CoreMedia.framework in Frameworks */,
+				487C55AF2061FE44006A8071 /* StoreKit.framework in Frameworks */,
+				487352E82192EDE2001B59AB /* CoreAudioKit.framework in Frameworks */,
+				487353072192F3CF001B59AB /* QuickLook.framework in Frameworks */,
+				4873530D2192F558001B59AB /* CoreText.framework in Frameworks */,
+				CB123BDB1F8DC81000CD4429 /* CFNetwork.framework in Frameworks */,
+				487352E62192EDD7001B59AB /* CoreAudio.framework in Frameworks */,
+				4873530F2192F5C7001B59AB /* CoreLocation.framework in Frameworks */,
+				CB123BDF1F8DC82E00CD4429 /* CoreTelephony.framework in Frameworks */,
+				4873530C2192F54A001B59AB /* ImageIO.framework in Frameworks */,
+				E1B52925219FBA7D008B27A5 /* libc++.tbd in Frameworks */,
+				CBFF45991F74C34E00D2AF93 /* libsqlite3.tbd in Frameworks */,
 				E19DC893219ABB9000C86478 /* libstdc++.6.0.9.tbd in Frameworks */,
+				E19DC8BA219AC4DE00C86478 /* CoreVideo.framework in Frameworks */,
+				E19DC8BC219AC50100C86478 /* libc++abi.tbd in Frameworks */,
+				487352EA2192EE1F001B59AB /* libxml2.tbd in Frameworks */,
+				CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */,
+				489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */,
+				E19DC8BE219AC59800C86478 /* OpenGLES.framework in Frameworks */,
+				CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */,
+				E1B52931219FBE55008B27A5 /* Blink.framework in Frameworks */,
+				E19DC8C0219AC61D00C86478 /* Photos.framework in Frameworks */,
+				E1B52924219FB9FB008B27A5 /* SafariServices.framework in Frameworks */,
+				E1B52922219FB9EF008B27A5 /* GLKit.framework in Frameworks */,
+				487352E42192EDC5001B59AB /* CoreMedia.framework in Frameworks */,
+				CB123BED1F8DC89600CD4429 /* Security.framework in Frameworks */,
+				CB123BDD1F8DC82500CD4429 /* CoreFoundation.framework in Frameworks */,
+				CB42F5FB1FAB0C4200889257 /* CoreMotion.framework in Frameworks */,
+				E1B52920219FB9BC008B27A5 /* libbz2.tbd in Frameworks */,
+				E1B5291E219FB9B4008B27A5 /* libiconv.tbd in Frameworks */,
+				CB123BEB1F8DC88000CD4429 /* libresolv.tbd in Frameworks */,
+				E19DC8C2219AC69700C86478 /* VideoToolbox.framework in Frameworks */,
+				48511D7D219EC4E0006C6081 /* liblibMap.a in Frameworks */,
 				487353152192F5F5001B59AB /* AssetsLibrary.framework in Frameworks */,
 				487353132192F5E5001B59AB /* AVFoundation.framework in Frameworks */,
 				487353112192F5D6001B59AB /* AddressBook.framework in Frameworks */,
-				4873530F2192F5C7001B59AB /* CoreLocation.framework in Frameworks */,
 				4873530E2192F572001B59AB /* QuartzCore.framework in Frameworks */,
-				4873530D2192F558001B59AB /* CoreText.framework in Frameworks */,
 				4804A1A42196BB260081AB5B /* liblibXHR.a in Frameworks */,
 				4804A19C2196B6760081AB5B /* libcrypto.a in Frameworks */,
-				4873530C2192F54A001B59AB /* ImageIO.framework in Frameworks */,
-				E1B528DA219FB250008B27A5 /* RongIMKit.framework in Frameworks */,
 				4873530A2192F51D001B59AB /* MobileCoreServices.framework in Frameworks */,
 				487353082192F4FE001B59AB /* JavaScriptCore.framework in Frameworks */,
-				487353072192F3CF001B59AB /* QuickLook.framework in Frameworks */,
 				487352F02192EE78001B59AB /* libicucore.tbd in Frameworks */,
 				E1B528E4219FB33A008B27A5 /* RongCallLib.framework in Frameworks */,
 				E1B528FD219FB38A008B27A5 /* RongSight.framework in Frameworks */,
 				487352EC2192EE42001B59AB /* libiconv.2.tbd in Frameworks */,
-				487352EA2192EE1F001B59AB /* libxml2.tbd in Frameworks */,
 				48511D1A219E736F006C6081 /* libBaiduKeyVerify.a in Frameworks */,
-				487352E82192EDE2001B59AB /* CoreAudioKit.framework in Frameworks */,
 				4804A19E2196B6B90081AB5B /* libssl.a in Frameworks */,
-				487352E62192EDD7001B59AB /* CoreAudio.framework in Frameworks */,
 				4804A1882195994D0081AB5B /* liblibPDRCore.a in Frameworks */,
 				487352E22192EDA7001B59AB /* MediaPlayer.framework in Frameworks */,
 				E1B528D0219FB20E008B27A5 /* libopencore-amrnb.a in Frameworks */,
@@ -2378,29 +2402,18 @@
 				E1B52905219FB3E7008B27A5 /* AlipaySDK.framework in Frameworks */,
 				4804A192219680430081AB5B /* liblibPGInvocation.a in Frameworks */,
 				4804A1902196800D0081AB5B /* liblibNavigator.a in Frameworks */,
-				487C55AF2061FE44006A8071 /* StoreKit.framework in Frameworks */,
-				CB42F5FB1FAB0C4200889257 /* CoreMotion.framework in Frameworks */,
-				CB123BED1F8DC89600CD4429 /* Security.framework in Frameworks */,
 				E1B528CF219FB20E008B27A5 /* RongIMLib.framework in Frameworks */,
-				CB123BEB1F8DC88000CD4429 /* libresolv.tbd in Frameworks */,
 				4804A1A22196B7170081AB5B /* libASIHttpRequest.a in Frameworks */,
 				CB123C211F9741F100CD4429 /* UMMobClick.framework in Frameworks */,
-				E1B5291C219FB8F1008B27A5 /* Blink.framework in Frameworks */,
 				48511D7B219EC417006C6081 /* BaiduMapAPI_Base.framework in Frameworks */,
 				CB123BE91F8DC87300CD4429 /* UserNotifications.framework in Frameworks */,
 				E1B52913219FB405008B27A5 /* JrmfPacketKit.framework in Frameworks */,
-				CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */,
 				CB123BE51F8DC85100CD4429 /* UIKit.framework in Frameworks */,
 				4804A1A621995E4C0081AB5B /* liblibStorage.a in Frameworks */,
 				E1B528FA219FB383008B27A5 /* RongSticker.framework in Frameworks */,
 				CB123BE31F8DC84800CD4429 /* Foundation.framework in Frameworks */,
-				CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */,
-				CB123BDF1F8DC82E00CD4429 /* CoreTelephony.framework in Frameworks */,
-				CB123BDD1F8DC82500CD4429 /* CoreFoundation.framework in Frameworks */,
-				CB123BDB1F8DC81000CD4429 /* CFNetwork.framework in Frameworks */,
 				4804A1A821995F250081AB5B /* storage.framework in Frameworks */,
 				E1B528E0219FB2D4008B27A5 /* Bailingquic.framework in Frameworks */,
-				CBFF45991F74C34E00D2AF93 /* libsqlite3.tbd in Frameworks */,
 				48511D79219EC417006C6081 /* BaiduMapAPI_Location.framework in Frameworks */,
 				4804A18E21959E630081AB5B /* libcoreSupport.a in Frameworks */,
 				E1B528DD219FB295008B27A5 /* RongCallKit.framework in Frameworks */,
@@ -2427,6 +2440,7 @@
 				E1B528EE219FB37B008B27A5 /* RongMCenter.framework in Frameworks */,
 				DEF2349D1FF1E5360000AED3 /* libPaymentControl.a in Frameworks */,
 				60EFA386C4471EDF263B8394 /* libPods-user.a in Frameworks */,
+				E1B5292D219FBD94008B27A5 /* RongIMKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4719,6 +4733,10 @@
 		CBFF457C1F74BCFA00D2AF93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E1B52923219FB9FB008B27A5 /* SafariServices.framework */,
+				E1B52921219FB9EF008B27A5 /* GLKit.framework */,
+				E1B5291F219FB9BC008B27A5 /* libbz2.tbd */,
+				E1B5291D219FB9B3008B27A5 /* libiconv.tbd */,
 				48511D13219E6CB2006C6081 /* MAMapKit.framework */,
 				48511D19219E736F006C6081 /* libBaiduKeyVerify.a */,
 				48511D17219E7342006C6081 /* libbmapimp.a */,
@@ -5679,6 +5697,7 @@
 		E19DC895219AC28100C86478 /* RCloudSDK */ = {
 			isa = PBXGroup;
 			children = (
+				E1B52927219FBD94008B27A5 /* IMKit */,
 				E1B528FE219FB38F008B27A5 /* release_notes_ios.txt */,
 				E1B52900219FB3E6008B27A5 /* RedPacket */,
 				E1B528FB219FB38A008B27A5 /* Sight */,
@@ -5686,7 +5705,6 @@
 				E1B528E5219FB37B008B27A5 /* RCMCenter */,
 				E1B528DE219FB2D4008B27A5 /* CallLib */,
 				E1B528DB219FB295008B27A5 /* CallKit */,
-				E1B528D2219FB250008B27A5 /* IMKit */,
 				E1B528CB219FB20D008B27A5 /* IMLib */,
 				E19DC89D219AC28100C86478 /* release_notes_ios.txt */,
 			);
@@ -5738,18 +5756,6 @@
 			path = IMLib;
 			sourceTree = "<group>";
 		};
-		E1B528D2219FB250008B27A5 /* IMKit */ = {
-			isa = PBXGroup;
-			children = (
-				E1B528D3219FB250008B27A5 /* Emoji.plist */,
-				E1B528D4219FB250008B27A5 /* RCColor.plist */,
-				E1B528D5219FB250008B27A5 /* RongCloud.bundle */,
-				E1B528D6219FB250008B27A5 /* RongIMKit.framework */,
-			);
-			name = IMKit;
-			path = "../../../../../../../../Volumes/Data_2/龙PS/rong/IMKit";
-			sourceTree = "<group>";
-		};
 		E1B528DB219FB295008B27A5 /* CallKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -5761,7 +5767,7 @@
 		E1B528DE219FB2D4008B27A5 /* CallLib */ = {
 			isa = PBXGroup;
 			children = (
-				E1B5291B219FB8F0008B27A5 /* Blink.framework */,
+				E1B52930219FBE54008B27A5 /* Blink.framework */,
 				E1B528E3219FB33A008B27A5 /* RongCallLib.framework */,
 				E1B528E1219FB332008B27A5 /* GPUImage.framework */,
 				E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */,
@@ -5829,6 +5835,17 @@
 				E1B5290F219FB405008B27A5 /* JResource.bundle */,
 			);
 			path = JrmfIMLib;
+			sourceTree = "<group>";
+		};
+		E1B52927219FBD94008B27A5 /* IMKit */ = {
+			isa = PBXGroup;
+			children = (
+				E1B52928219FBD94008B27A5 /* RCColor.plist */,
+				E1B52929219FBD94008B27A5 /* RongIMKit.framework */,
+				E1B5292A219FBD94008B27A5 /* Emoji.plist */,
+				E1B5292B219FBD94008B27A5 /* RongCloud.bundle */,
+			);
+			path = IMKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5985,6 +6002,7 @@
 				DEA083842021BFD8003A492C /* JXSpecialOfferView.xib in Resources */,
 				48F3F45420843A58005D5D0C /* JXRefumdImageCameraCollectionCell.xib in Resources */,
 				E1B528F1219FB37B008B27A5 /* default_image_rectangular.png in Resources */,
+				E1B5292E219FBD94008B27A5 /* Emoji.plist in Resources */,
 				481FE70C2182170600CFE26B /* DYJXLoginPage.xib in Resources */,
 				486BA977207A1ACE00FB709D /* JXRefundFooterView.xib in Resources */,
 				DE910FD92085DD3C00BDDABF /* JXMyOderClockFootView.xib in Resources */,
@@ -6061,7 +6079,6 @@
 				DE91100B2085DD5600BDDABF /* JXOderAddressView.xib in Resources */,
 				DE9F8CB71FDFA64900D8FE8A /* JXCityListHeatView.xib in Resources */,
 				487351B4218D598B001B59AB /* DYJXConversionPage.xib in Resources */,
-				E1B528D8219FB250008B27A5 /* RCColor.plist in Resources */,
 				4804A14621957D5D0081AB5B /* MiPassport.bundle in Resources */,
 				487C55AA2060FFE1006A8071 /* JXVersionUpdateView.xib in Resources */,
 				48F3F45E2084614B005D5D0C /* JXRefundReasonPopCell.xib in Resources */,
@@ -6073,13 +6090,13 @@
 				4804A14721957D5D0081AB5B /* AlipaySDK.bundle in Resources */,
 				DE37643A1FDA30B700D84A7B /* JXHomeLifeView.xib in Resources */,
 				48644D6C1FCED26700CE47BC /* JXFullReduceGoodsPagePromotionView.xib in Resources */,
-				E1B528D7219FB250008B27A5 /* Emoji.plist in Resources */,
 				4873513B2186F475001B59AB /* DYJXIdentitySwitchingPage.xib in Resources */,
 				CBCF83521F7129BD00B20CF9 /* CodeScan.bundle in Resources */,
 				DE277D391FBAC2FB00FE52C8 /* XYAddressCell.xib in Resources */,
 				4804A14E21957D5D0081AB5B /* AMap.bundle in Resources */,
 				E1B528ED219FB37B008B27A5 /* RCML.strings in Resources */,
 				DE4364DC1FCBDFC0002976B0 /* JXExpiredViewController.xib in Resources */,
+				E1B5292C219FBD94008B27A5 /* RCColor.plist in Resources */,
 				CB42F6031FAC67CC00889257 /* new_feature_2.png in Resources */,
 				486BA97C207B49D200FB709D /* JXRefundImageUploadCell.xib in Resources */,
 				48DE38D71FDE1D760006528C /* JXFoodheaderView.xib in Resources */,
@@ -6100,7 +6117,7 @@
 				CBFF45901F74C03500D2AF93 /* UMSocialSDKResources.bundle in Resources */,
 				DEAE3E221FCC29A700641D5A /* JXMyAleadyUsedHeatView.xib in Resources */,
 				48EB46492079B45600B0A736 /* JXRefundAddressCell.xib in Resources */,
-				E1B528D9219FB250008B27A5 /* RongCloud.bundle in Resources */,
+				E1B5292F219FBD94008B27A5 /* RongCloud.bundle in Resources */,
 				DE91101C2085DD5600BDDABF /* JXOderFootView.xib in Resources */,
 				DE9110102085DD5600BDDABF /* JXOderPromptView.xib in Resources */,
 				DE910FD02085DD3C00BDDABF /* JXMyOderDetailsHeadView.xib in Resources */,
