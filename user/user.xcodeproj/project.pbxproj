@@ -819,6 +819,15 @@
 		E1B528FA219FB383008B27A5 /* RongSticker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528F7219FB383008B27A5 /* RongSticker.framework */; };
 		E1B528FD219FB38A008B27A5 /* RongSight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528FC219FB38A008B27A5 /* RongSight.framework */; };
 		E1B528FF219FB38F008B27A5 /* release_notes_ios.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1B528FE219FB38F008B27A5 /* release_notes_ios.txt */; };
+		E1B52904219FB3E7008B27A5 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B52902219FB3E6008B27A5 /* AlipaySDK.bundle */; };
+		E1B52905219FB3E7008B27A5 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52903219FB3E6008B27A5 /* AlipaySDK.framework */; };
+		E1B52910219FB405008B27A5 /* JrmfInfo.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1B52907219FB405008B27A5 /* JrmfInfo.strings */; };
+		E1B52911219FB405008B27A5 /* WalletResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B5290A219FB405008B27A5 /* WalletResource.bundle */; };
+		E1B52912219FB405008B27A5 /* jrmf.cer in Resources */ = {isa = PBXBuildFile; fileRef = E1B5290B219FB405008B27A5 /* jrmf.cer */; };
+		E1B52913219FB405008B27A5 /* JrmfPacketKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B5290C219FB405008B27A5 /* JrmfPacketKit.framework */; };
+		E1B52914219FB405008B27A5 /* JYangToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B5290D219FB405008B27A5 /* JYangToolKit.framework */; };
+		E1B52915219FB405008B27A5 /* JrmfWalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B5290E219FB405008B27A5 /* JrmfWalletKit.framework */; };
+		E1B52916219FB405008B27A5 /* JResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B5290F219FB405008B27A5 /* JResource.bundle */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -2310,6 +2319,16 @@
 		E1B528F7219FB383008B27A5 /* RongSticker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongSticker.framework; sourceTree = "<group>"; };
 		E1B528FC219FB38A008B27A5 /* RongSight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongSight.framework; sourceTree = "<group>"; };
 		E1B528FE219FB38F008B27A5 /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = release_notes_ios.txt; path = "../../../../../../../../Volumes/Data_2/龙PS/rong/release_notes_ios.txt"; sourceTree = "<group>"; };
+		E1B52902219FB3E6008B27A5 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		E1B52903219FB3E6008B27A5 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		E1B52908219FB405008B27A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/JrmfInfo.strings"; sourceTree = "<group>"; };
+		E1B52909219FB405008B27A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/JrmfInfo.strings; sourceTree = "<group>"; };
+		E1B5290A219FB405008B27A5 /* WalletResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WalletResource.bundle; sourceTree = "<group>"; };
+		E1B5290B219FB405008B27A5 /* jrmf.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = jrmf.cer; sourceTree = "<group>"; };
+		E1B5290C219FB405008B27A5 /* JrmfPacketKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JrmfPacketKit.framework; sourceTree = "<group>"; };
+		E1B5290D219FB405008B27A5 /* JYangToolKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JYangToolKit.framework; sourceTree = "<group>"; };
+		E1B5290E219FB405008B27A5 /* JrmfWalletKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JrmfWalletKit.framework; sourceTree = "<group>"; };
+		E1B5290F219FB405008B27A5 /* JResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JResource.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2352,7 +2371,9 @@
 				487352E22192EDA7001B59AB /* MediaPlayer.framework in Frameworks */,
 				E1B528D0219FB20E008B27A5 /* libopencore-amrnb.a in Frameworks */,
 				48511D7A219EC417006C6081 /* BaiduMapAPI_Search.framework in Frameworks */,
+				E1B52914219FB405008B27A5 /* JYangToolKit.framework in Frameworks */,
 				487352E02192ED8C001B59AB /* AudioToolbox.framework in Frameworks */,
+				E1B52905219FB3E7008B27A5 /* AlipaySDK.framework in Frameworks */,
 				4804A192219680430081AB5B /* liblibPGInvocation.a in Frameworks */,
 				4804A1902196800D0081AB5B /* liblibNavigator.a in Frameworks */,
 				487C55AF2061FE44006A8071 /* StoreKit.framework in Frameworks */,
@@ -2364,6 +2385,7 @@
 				CB123C211F9741F100CD4429 /* UMMobClick.framework in Frameworks */,
 				48511D7B219EC417006C6081 /* BaiduMapAPI_Base.framework in Frameworks */,
 				CB123BE91F8DC87300CD4429 /* UserNotifications.framework in Frameworks */,
+				E1B52913219FB405008B27A5 /* JrmfPacketKit.framework in Frameworks */,
 				CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */,
 				CB123BE51F8DC85100CD4429 /* UIKit.framework in Frameworks */,
 				4804A1A621995E4C0081AB5B /* liblibStorage.a in Frameworks */,
@@ -2389,6 +2411,7 @@
 				4804A18C21959DFC0081AB5B /* liblibUI.a in Frameworks */,
 				CBFF458F1F74C03500D2AF93 /* libUMSocialLog.a in Frameworks */,
 				48511D78219EC417006C6081 /* BaiduMapAPI_Map.framework in Frameworks */,
+				E1B52915219FB405008B27A5 /* JrmfWalletKit.framework in Frameworks */,
 				CBFF458B1F74C03500D2AF93 /* libSocialWeChat.a in Frameworks */,
 				CB123BD81F8DC40A00CD4429 /* jpush-ios-3.0.6.a in Frameworks */,
 				CB42F5F81FAB0A6400889257 /* AlipaySDK.framework in Frameworks */,
@@ -5654,6 +5677,7 @@
 			isa = PBXGroup;
 			children = (
 				E1B528FE219FB38F008B27A5 /* release_notes_ios.txt */,
+				E1B52900219FB3E6008B27A5 /* RedPacket */,
 				E1B528FB219FB38A008B27A5 /* Sight */,
 				E1B528F2219FB383008B27A5 /* RongSticker */,
 				E1B528E5219FB37B008B27A5 /* RCMCenter */,
@@ -5769,6 +5793,38 @@
 				E1B528FC219FB38A008B27A5 /* RongSight.framework */,
 			);
 			path = Sight;
+			sourceTree = "<group>";
+		};
+		E1B52900219FB3E6008B27A5 /* RedPacket */ = {
+			isa = PBXGroup;
+			children = (
+				E1B52906219FB405008B27A5 /* JrmfIMLib */,
+				E1B52901219FB3E6008B27A5 /* AlipaySDK */,
+			);
+			path = RedPacket;
+			sourceTree = "<group>";
+		};
+		E1B52901219FB3E6008B27A5 /* AlipaySDK */ = {
+			isa = PBXGroup;
+			children = (
+				E1B52902219FB3E6008B27A5 /* AlipaySDK.bundle */,
+				E1B52903219FB3E6008B27A5 /* AlipaySDK.framework */,
+			);
+			path = AlipaySDK;
+			sourceTree = "<group>";
+		};
+		E1B52906219FB405008B27A5 /* JrmfIMLib */ = {
+			isa = PBXGroup;
+			children = (
+				E1B52907219FB405008B27A5 /* JrmfInfo.strings */,
+				E1B5290A219FB405008B27A5 /* WalletResource.bundle */,
+				E1B5290B219FB405008B27A5 /* jrmf.cer */,
+				E1B5290C219FB405008B27A5 /* JrmfPacketKit.framework */,
+				E1B5290D219FB405008B27A5 /* JYangToolKit.framework */,
+				E1B5290E219FB405008B27A5 /* JrmfWalletKit.framework */,
+				E1B5290F219FB405008B27A5 /* JResource.bundle */,
+			);
+			path = JrmfIMLib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5906,11 +5962,14 @@
 				DEC5C0E61FD81314000E8788 /* loading@3x.gif in Resources */,
 				DEC5C0E51FD8130B000E8788 /* loading@2x.gif in Resources */,
 				DE9456731FBF00B900827C08 /* JXMyAccountManagementCell.xib in Resources */,
+				E1B52916219FB405008B27A5 /* JResource.bundle in Resources */,
 				DE8E74201FBC180500426EAF /* BaseCell.xib in Resources */,
+				E1B52910219FB405008B27A5 /* JrmfInfo.strings in Resources */,
 				DEAB009E1FDE3D6A0007E66D /* JXHomeCommodityHeatView.xib in Resources */,
 				DEDA7D061FCD5C12008A362A /* JXShoppingCartHeatView.xib in Resources */,
 				DE9110182085DD5600BDDABF /* JXOderGoodsCell.xib in Resources */,
 				DEF678BE1FDA950100F7525D /* JXOtherViewController.xib in Resources */,
+				E1B52911219FB405008B27A5 /* WalletResource.bundle in Resources */,
 				DE36FA5D1FCEBED600ED184E /* JXShopUnavailableViewController.xib in Resources */,
 				DE71B1322086E7B900467E06 /* JXMyAfterSaleDetailInformationCell.xib in Resources */,
 				E1B528F9219FB383008B27A5 /* RongSticker.bundle in Resources */,
@@ -5961,6 +6020,7 @@
 				DE9F8CC21FDFD08200D8FE8A /* JXHomeRecommendCollectionView.xib in Resources */,
 				48D980241FEB5F1700246D4B /* JXClassificationTableHeader.xib in Resources */,
 				481FE761218342F500CFE26B /* DYJXRegistePage.xib in Resources */,
+				E1B52912219FB405008B27A5 /* jrmf.cer in Resources */,
 				DE71B167208744DD00467E06 /* PYPhotosView.bundle in Resources */,
 				DE910FC82085DD3C00BDDABF /* JXMyOrderDetailsCell.xib in Resources */,
 				CB42F5FD1FAC655000889257 /* new_feature_1.png in Resources */,
@@ -6053,6 +6113,7 @@
 				DE24BD93207F5DCB00A213C5 /* JXMyAfterSaleDetailCell.xib in Resources */,
 				DE71B1192086E1DA00467E06 /* JXMyAfterSaleDetailsView.xib in Resources */,
 				4804A14C21957D5D0081AB5B /* PandoraApi.bundle in Resources */,
+				E1B52904219FB3E7008B27A5 /* AlipaySDK.bundle in Resources */,
 				DE94566B1FBEE82500827C08 /* JXRenewalRecordCell.xib in Resources */,
 				DE910FCB2085DD3C00BDDABF /* JXMyGoodsFootView.xib in Resources */,
 				48735199218ADFF5001B59AB /* DYJXLogisticPage.xib in Resources */,
@@ -6866,6 +6927,15 @@
 			name = RongSticker.strings;
 			sourceTree = "<group>";
 		};
+		E1B52907219FB405008B27A5 /* JrmfInfo.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1B52908219FB405008B27A5 /* zh-Hans */,
+				E1B52909219FB405008B27A5 /* en */,
+			);
+			name = JrmfInfo.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -6994,6 +7064,8 @@
 					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/RCMCenter",
 					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/RongSticker",
 					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/Sight",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/RedPacket/AlipaySDK",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/RedPacket/JrmfIMLib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/user/Classes/Other/Extension/PrefixHeader.pch";
@@ -7073,6 +7145,8 @@
 					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/RCMCenter",
 					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/RongSticker",
 					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/Sight",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/RedPacket/AlipaySDK",
+					"$(PROJECT_DIR)/DYJX/Vender/RCloudSDK/RedPacket/JrmfIMLib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/user/Classes/Other/Extension/PrefixHeader.pch";
