@@ -89,11 +89,6 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
     
 //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [UIApplication sharedApplication].statusBarStyle = UIBarStyleBlack;
-
-    DYJXUserInfoModel *model = [XYUserDefaults readLoginedInfoRongTokenModel];
-    if(model.RongCloudToken.length) {
-        [self IMInit];
-    }
     
     [self initKeyboardManager];
     
@@ -141,7 +136,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
 
      在 App 整个生命周期，您只需要调用一次此方法与融云服务器建立连接。之后无论是网络出现异常或者 App 有前后台的切换等，SDK 都会负责自动重连。 SDK 针对 iOS 的前后台和各种网络状况，进行了连接和重连机制的优化，建议您调用一次 connectWithToken 即可，其余交给 SDK 处理。 除非您已经手动将连接断开，否则您不需要自己再手动重连。
      */
-    DYJXUserInfoModel *userModel = [XYUserDefaults readLoginedInfoRongTokenModel];
+    DYJXIdentitySwitchingCreatorModel *userModel = [XYUserDefaults readLoginedInfoRongTokenModel];
     [[RCIMClient sharedRCIMClient] connectWithToken:userModel.RongCloudToken
                                             success:^(NSString *userId) {
                                                 NSLog(@"登陆成功。当前登录的用户ID：%@", userId);
