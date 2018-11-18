@@ -57,6 +57,7 @@
                 model.ObjResult = [responseObject objectForKey:@"ObjResult"];
                 model.Device = [responseObject objectForKey:@"Device"];
                 //用户登录信息保存
+                [UserManager shared].login = model;
                 [XYUserDefaults writeUserDefaultsLoginedInfoModel:model];
                 success();
                 

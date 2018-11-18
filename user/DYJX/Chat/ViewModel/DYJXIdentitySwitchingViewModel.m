@@ -8,6 +8,7 @@
 
 #import "DYJXIdentitySwitchingViewModel.h"
 #import "DYJXUserInfoModel.h"
+#import "DJJXResponModel.h"
 
 #define kRequestPageNumber @"page"
 #define kRequestPageSize @"page_size"
@@ -106,7 +107,8 @@
     
     [XYNetWorking XYPOST:kDYJXAPI_user_MyEnterprises params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            
+            DJJXResponModel *responseModel = [DJJXResponModel mj_objectWithKeyValues:responseObject];
+            responseModel.Result = [NSArray modelArrayWithClass:[DJJXResult class] json:responseModel.Result];
             if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
                 [XYProgressHUD svHUDDismiss];
                     NSArray *resultArray = [NSArray modelArrayWithClass:[DYJXIdentitySwitchingModel class] json:[responseObject objectForKey:@"Result"]];
@@ -154,15 +156,15 @@
 //        [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
 
     [XYNetWorking XYPOST:kDYJXAPI_user_GetUserById params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
                 [SVProgressHUD dismiss];
 
-
                 weakSelf.resultUserInfoModel = [DYJXUserInfoModel modelWithJSON:[responseObject objectForKey:@"Result"]];
                 userModel.MemberID = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"MemberID"]];
+                [UserManager shared].login.MemberID = userModel.MemberID;
                 [XYUserDefaults writeUserDefaultsLoginedInfoModel:userModel];
 
                 DYJXIdentitySwitchingModel *identitySwitchingModel = [[DYJXIdentitySwitchingModel alloc]init];
