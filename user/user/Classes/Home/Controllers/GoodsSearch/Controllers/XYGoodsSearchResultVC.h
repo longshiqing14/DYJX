@@ -11,6 +11,6 @@
 @interface XYGoodsSearchResultVC : XYBestVC
 
 /** 条形码 */
-@property (nonatomic, strong) NSString * barcode;
+@property (nonatomic, copy) NSString * barcode;
 
 @end

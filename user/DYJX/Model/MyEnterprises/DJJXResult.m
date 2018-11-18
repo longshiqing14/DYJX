@@ -46,8 +46,32 @@ NSString *const kDJJXResultWildType = @"WildType";
 @end
 @implementation DJJXResult
 
+-(BOOL)isManager {
+    if (self.AdminUserIds && self.AdminUserIds.count) {
+        for (int i = 0; i < self.AdminUserIds.count ; i++) {
+            NSString *obj = self.AdminUserIds[i];
+            if ([obj isEqualToString:[UserManager shared].getUserModel.UserID]) {
+                return YES;
+                break;
+            }
+        }
+    }
+    return NO;
+}
 
+-(BOOL)isSelf {
+    if ([[UserManager shared].login.UAUser.NumberString isEqualToString:self.NumberString]) {
+        return YES;
+    }
+    return NO;
+}
 
+-(BOOL)inCompany {
+    if (!self.IsPart) {
+        return YES;
+    }
+    return NO;
+}
 
 /**
  * Instantiate the instance using the passed dictionary values to set the properties values

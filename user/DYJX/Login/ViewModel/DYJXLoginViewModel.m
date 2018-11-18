@@ -9,6 +9,7 @@
 #import "DYJXLoginViewModel.h"
 #import "DYJXUserModel.h"
 #import "JSExtension.h"
+#import "DJJLLoginResponse.h"
 
 @interface DYJXLoginViewModel()
 
@@ -57,7 +58,9 @@
                 model.ObjResult = [responseObject objectForKey:@"ObjResult"];
                 model.Device = [responseObject objectForKey:@"Device"];
                 //用户登录信息保存
-                [UserManager shared].login = model;
+                [UserManager shared].login = [DJJLLoginResponse mj_objectWithKeyValues:responseObject];
+                [UserManager shared].login.UAUser = [DJJLUAUser mj_objectWithKeyValues:responseObject[@"UAUser"]];
+                [XYUserDefaults cacheLoginedModel:[UserManager shared].login];
                 [XYUserDefaults writeUserDefaultsLoginedInfoModel:model];
                 success();
                 

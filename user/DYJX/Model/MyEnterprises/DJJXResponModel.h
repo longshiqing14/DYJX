@@ -12,13 +12,13 @@
 
 @interface DJJXResponModel : NSObject
 
-@property (nonatomic, strong) NSString * ClientId;
+@property (nonatomic, copy) NSString * ClientId;
 @property (nonatomic, strong) NSArray * DebugMessages;
 @property (nonatomic, assign) BOOL HasNextPage;
 @property (nonatomic, assign) BOOL HasPreviousPage;
 @property (nonatomic, assign) BOOL Kicked;
-@property (nonatomic, strong) NSString * MemberID;
-@property (nonatomic, strong) NSString * Message;
+@property (nonatomic, copy) NSString * MemberID;
+@property (nonatomic, copy) NSString * Message;
 @property (nonatomic, assign) NSInteger PageIndex;
 @property (nonatomic, assign) NSInteger PageSize;
 @property (nonatomic, strong) NSArray <DJJXResult *> * Result;
@@ -27,7 +27,7 @@
 @property (nonatomic, assign) NSInteger Take;
 @property (nonatomic, assign) NSInteger TotalCount;
 @property (nonatomic, assign) NSInteger TotalPages;
-@property (nonatomic, strong) NSString * UserID;
+@property (nonatomic, copy) NSString * UserID;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

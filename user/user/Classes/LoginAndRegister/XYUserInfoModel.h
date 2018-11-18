@@ -13,7 +13,7 @@
 
 
 /** 头像 */
-@property (nonatomic, strong) NSString * userImage;
+@property (nonatomic, copy) NSString * userImage;
 /** 名称 */
 @property (nonatomic, copy) NSString * nickName;
 /** 名称 */

@@ -21,11 +21,11 @@
     return singler;
 }
 
--(DYJXUserModel *)login {
+-(DJJLLoginResponse *)login {
     if (!_login) {
-        _login = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+        _login = [XYUserDefaults readLoginedModel];
         if (!_login) { // 能取则取存储
-            _login = [[DYJXUserModel alloc] init];
+            _login = [[DJJLLoginResponse alloc] init];
         }
     }
     return _login;

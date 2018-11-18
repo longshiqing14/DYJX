@@ -25,6 +25,17 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+// DJJLLoginResponse
+/** 读取 DJJLLoginResponse  */
++ (DJJLLoginResponse*)readLoginedModel {
+    DJJLLoginResponse * model = (DJJLLoginResponse *)[DJJLLoginResponse getModelWithKey:XY_userDefaults_DJJLLogin Class:[DJJLLoginResponse class]];
+    return model;
+}
+/** 写入 DJJLLoginResponse  */
++ (void)cacheLoginedModel:(DJJLLoginResponse*)model {
+    [XYUserDefaults setModel:model forKey:XY_userDefaults_DJJLLogin];
+}
+
 /** 读取 DYJXIdentitySwitchingCreatorModel  */
 + (DYJXIdentitySwitchingCreatorModel*)readLoginedInfoRongTokenModel{
     DYJXIdentitySwitchingCreatorModel * model = (DYJXIdentitySwitchingCreatorModel *)[DYJXIdentitySwitchingCreatorModel getModelWithKey:XY_userDefaults_userInfo Class:[DYJXIdentitySwitchingCreatorModel class]];

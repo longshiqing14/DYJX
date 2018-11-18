@@ -12,11 +12,11 @@
 
 @interface DJJXBusines : NSObject
 
-@property (nonatomic, strong) NSString * CreateOn;
+@property (nonatomic, copy) NSString * CreateOn;
 @property (nonatomic, assign) BOOL Deleted;
 @property (nonatomic, assign) BOOL Disabled;
 @property (nonatomic, strong) DJJXIMInfo * IMInfo;
-@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, copy) NSString * IdField;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

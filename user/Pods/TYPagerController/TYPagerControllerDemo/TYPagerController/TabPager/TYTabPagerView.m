@@ -15,7 +15,7 @@
 @property (nonatomic, weak) TYPagerView *pageView;
 
 // Data
-@property (nonatomic, strong) NSString *identifier;
+@property (nonatomic, copy) NSString *identifier;
 
 @end
 

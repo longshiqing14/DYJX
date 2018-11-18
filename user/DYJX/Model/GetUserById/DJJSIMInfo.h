@@ -1,7 +1,7 @@
 //
-//	DJJXIMInfo.h
+//	DJJSIMInfo.h
 //
-//	Create by longshiqing on 17/11/2018
+//	Create by longshiqing on 18/11/2018
 //	Copyright © 2018. All rights reserved.
 //
 
@@ -9,14 +9,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DJJXIMInfo : NSObject
+@interface DJJSIMInfo : NSObject
 
 @property (nonatomic, assign) BOOL AdminSay;
 @property (nonatomic, assign) BOOL CanNotSearch;
-@property (nonatomic, copy) NSString * HeadImgUrl;
-@property (nonatomic, copy) NSString * IdField;
-@property (nonatomic, copy) NSString * Images;
-@property (nonatomic, copy) NSString * NickName;
+@property (nonatomic, strong) NSString * HeadImgUrl;
+@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, strong) NSString * Images;
+@property (nonatomic, strong) NSString * NickName;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

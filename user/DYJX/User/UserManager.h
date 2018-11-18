@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "DJJXResponModel.h"
-#import "DYJXUserModel.h"
+#import "DJJLLoginResponse.h"
+#import "DJJSGetUserModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,7 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)DJJXResponModel *myEnterprises;
 
 // 登录信息
-@property (nonatomic, strong)DYJXUserModel *login;
+@property (nonatomic, strong)DJJLLoginResponse *login;
+
+// 获取当前用户信息 rongTaken等
+@property (nonatomic, strong)DJJSGetUserModel *getUserModel;
 
 @end
 

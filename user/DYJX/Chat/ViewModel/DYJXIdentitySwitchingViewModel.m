@@ -9,7 +9,8 @@
 #import "DYJXIdentitySwitchingViewModel.h"
 #import "DYJXUserInfoModel.h"
 #import "DJJXResponModel.h"
-
+#import "DJJSGetUserModel.h"
+#import "AppDelegate.h"
 #define kRequestPageNumber @"page"
 #define kRequestPageSize @"page_size"
 #define kStartPageIndex 1
@@ -158,10 +159,11 @@
     [XYNetWorking XYPOST:kDYJXAPI_user_GetUserById params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
 
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            
+            [weakSelf.dataArray removeAllObjects];
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
                 [SVProgressHUD dismiss];
-
+                [UserManager shared].getUserModel = [DJJSGetUserModel mj_objectWithKeyValues:responseObject];
+                [UserManager shared].getUserModel.Result = [DJJSResult mj_objectWithKeyValues:responseObject[@"Result"]];
                 weakSelf.resultUserInfoModel = [DYJXUserInfoModel modelWithJSON:[responseObject objectForKey:@"Result"]];
                 userModel.MemberID = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"MemberID"]];
                 [UserManager shared].login.MemberID = userModel.MemberID;
@@ -172,6 +174,10 @@
                 identitySwitchingModel.GroupName = weakSelf.resultUserInfoModel.Business.IMInfo.NickName;
                 identitySwitchingModel.GroupHeadImg = weakSelf.resultUserInfoModel.Business.IMInfo.HeadImgUrl;
                 [weakSelf.dataArray addObject:identitySwitchingModel];
+                AppDelegate *appD = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                if (appD) {
+                    [appD IMInit];
+                }
                 success();
                 
             }else{

@@ -15,7 +15,7 @@
 @property (nonatomic, strong) TYPagerController *pagerController;
 
 // Data
-@property (nonatomic, strong) NSString *identifier;
+@property (nonatomic, copy) NSString *identifier;
 
 @end
 

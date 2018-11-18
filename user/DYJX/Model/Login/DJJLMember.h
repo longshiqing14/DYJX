@@ -11,19 +11,19 @@
 
 @interface DJJLMember : NSObject
 
-@property (nonatomic, strong) NSString * Cellphone;
+@property (nonatomic, copy) NSString * Cellphone;
 @property (nonatomic, assign) BOOL CellphoneChecked;
 @property (nonatomic, assign) NSInteger City;
 @property (nonatomic, assign) NSInteger District;
 @property (nonatomic, assign) NSInteger FailureCount;
-@property (nonatomic, strong) NSString * NickName;
-@property (nonatomic, strong) NSString * ParentID;
-@property (nonatomic, strong) NSString * Password;
+@property (nonatomic, copy) NSString * NickName;
+@property (nonatomic, copy) NSString * ParentID;
+@property (nonatomic, copy) NSString * Password;
 @property (nonatomic, assign) NSInteger Province;
 @property (nonatomic, assign) BOOL RegisterByAdmin;
-@property (nonatomic, strong) NSString * RegisterFrom;
+@property (nonatomic, copy) NSString * RegisterFrom;
 @property (nonatomic, assign) NSInteger RegisterFromType;
-@property (nonatomic, strong) NSString * UserName;
+@property (nonatomic, copy) NSString * UserName;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

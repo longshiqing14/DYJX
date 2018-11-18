@@ -29,16 +29,16 @@
 {
     self.goodsNameLabel = [[UILabel alloc] init];
     self.goodsNameLabel.textColor = [UIColor colorWithHexString:@"#333333"];
-    self.goodsNameLabel.font = [UIFont systemFontOfSize:15];
+    self.goodsNameLabel.font = [UIFont systemFontOfSize:14];
     self.goodsNameLabel.numberOfLines = 1;
 
     self.sellingPointLable.textColor = [UIColor colorWithHexString:@"#333333"];
-    self.sellingPointLable.font = [UIFont systemFontOfSize:15];
+    self.sellingPointLable.font = [UIFont systemFontOfSize:14];
     self.sellingPointLable.numberOfLines = 1;
 
 
     self.line = [[UIView alloc] init];
-    self.line.backgroundColor = [UIColor colorWithHexString:@"#E4E4E4"];
+    self.line.backgroundColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1];
     
     [self.contentView addSubview:self.detailButton];
     [self.contentView addSubview:self.goodsImageView];
@@ -60,13 +60,13 @@
     }];
 
     [self.goodsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(70);
+        make.left.mas_equalTo(65);
         make.centerY.equalTo(weakSelf);
         make.size.mas_equalTo(CGSizeMake(50 , 50));
     }];
     
     [self.selectedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-26);
+        make.right.mas_equalTo(-20);
         make.centerY.equalTo(weakSelf);
         make.size.mas_equalTo(CGSizeMake(25, 25));
     }];
@@ -74,13 +74,13 @@
     [self.goodsNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.goodsImageView.mas_right).mas_equalTo(10);
         make.top.mas_equalTo(weakSelf.goodsImageView.mas_top).mas_equalTo(5);
-        make.right.mas_equalTo(weakSelf.selectedImageView.mas_left).mas_equalTo(-10);
+        make.right.mas_equalTo(weakSelf.selectedImageView.mas_left).mas_equalTo(-5);
     }];
     
     [self.sellingPointLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.goodsNameLabel.mas_left).mas_equalTo(0);
         make.bottom.mas_equalTo(weakSelf.goodsImageView.mas_bottom).mas_equalTo(-5);
-        make.right.mas_equalTo(weakSelf.selectedImageView.mas_left).mas_equalTo(-10);
+        make.right.mas_equalTo(weakSelf.selectedImageView.mas_left).mas_equalTo(-5);
     }];
     
     [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -134,7 +134,7 @@
 -(UILabel *)dotNumber {
     if (!_dotNumber) {
         _dotNumber = [[UILabel alloc]init];
-        _dotNumber.backgroundColor = [UIColor redColor];
+        _dotNumber.backgroundColor = [UIColor colorWithRed:219/255.0 green:55/255.0 blue:48/255.0 alpha:1];
         _dotNumber.textAlignment = NSTextAlignmentCenter;
         _dotNumber.font = [UIFont systemFontOfSize:12];
         _dotNumber.textColor = [UIColor whiteColor];
@@ -148,7 +148,7 @@
 -(UIButton *)detailButton {
     if (!_detailButton) {
         _detailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _detailButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        _detailButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
         _detailButton.titleLabel.numberOfLines = 2;
         [_detailButton setTitleColor:[UIColor colorWithRed:63/255.0 green:105/255.0 blue:164/255.0 alpha:1] forState:UIControlStateNormal];
         [_detailButton setTitleColor:[UIColor colorWithRed:63/255.0 green:105/255.0 blue:164/255.0 alpha:0.5]

@@ -530,12 +530,12 @@ typedef NS_ENUM(UInt64, enAppSupportContentFlag)
  *
  */
 @interface WXChooseInvoiceReq : BaseReq
-@property (nonatomic, strong) NSString *appID;
+@property (nonatomic, copy) NSString *appID;
 @property (nonatomic, assign) UInt32 shopID;
-@property (nonatomic, strong) NSString *signType;
-@property (nonatomic, strong) NSString *cardSign;
+@property (nonatomic, copy) NSString *signType;
+@property (nonatomic, copy) NSString *cardSign;
 @property (nonatomic, assign) UInt32 timeStamp;
-@property (nonatomic, strong) NSString *nonceStr;
+@property (nonatomic, copy) NSString *nonceStr;
 @end
 
 #pragma mark - WXChooseInvoiceResp
@@ -549,18 +549,18 @@ typedef NS_ENUM(UInt64, enAppSupportContentFlag)
 #pragma mark - WXSubscriptionReq
 @interface WXSubscribeMsgReq : BaseReq
 @property (nonatomic, assign) UInt32 scene;
-@property (nonatomic, strong) NSString * templateId;
-@property (nonatomic, strong) NSString * reserved;
+@property (nonatomic, copy) NSString * templateId;
+@property (nonatomic, copy) NSString * reserved;
 @end
 
 #pragma mark - WXSubscriptionReq
 @interface WXSubscribeMsgResp : BaseResp
 
-@property (nonatomic, strong) NSString *templateId;
+@property (nonatomic, copy) NSString *templateId;
 @property (nonatomic, assign) UInt32 scene;
-@property (nonatomic, strong) NSString *action;
-@property (nonatomic, strong) NSString * reserved;
-@property (nonatomic, strong) NSString * openId;
+@property (nonatomic, copy) NSString *action;
+@property (nonatomic, copy) NSString * reserved;
+@property (nonatomic, copy) NSString * openId;
 
 @end
 
@@ -832,11 +832,11 @@ typedef NS_ENUM(UInt64, enAppSupportContentFlag)
  */
 +(WXMiniProgramObject *) object;
 
-@property (nonatomic, strong) NSString *webpageUrl; //低版本网页链接
+@property (nonatomic, copy) NSString *webpageUrl; //低版本网页链接
 
-@property (nonatomic, strong) NSString *userName;   //小程序username
+@property (nonatomic, copy) NSString *userName;   //小程序username
 
-@property (nonatomic, strong) NSString *path;       //小程序页面的路径
+@property (nonatomic, copy) NSString *path;       //小程序页面的路径
 
 @property (nonatomic, strong) NSData *hdImageData;   // 小程序新版本的预览图 128k
 
@@ -854,8 +854,8 @@ typedef NS_ENUM(UInt64, enAppSupportContentFlag)
 
 +(WXLaunchMiniProgramReq *) object;
 
-@property (nonatomic, strong) NSString *userName;   //拉起的小程序的username
-@property (nonatomic, strong) NSString *path;       //拉起小程序页面的路径，不填默认拉起小程序首页
+@property (nonatomic, copy) NSString *userName;   //拉起的小程序的username
+@property (nonatomic, copy) NSString *path;       //拉起小程序页面的路径，不填默认拉起小程序首页
 
 @end
 

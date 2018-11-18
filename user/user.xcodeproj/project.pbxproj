@@ -794,6 +794,11 @@
 		E17FC6C821A1009D00D435D9 /* DJJLIMInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6C121A1009B00D435D9 /* DJJLIMInfo.m */; };
 		E17FC6C921A1009D00D435D9 /* DJJLLoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6C321A1009C00D435D9 /* DJJLLoginResponse.m */; };
 		E17FC6CA21A1009D00D435D9 /* DJJLUAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6C421A1009C00D435D9 /* DJJLUAUser.m */; };
+		E17FC6D621A1053E00D435D9 /* DJJSBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6CD21A1053B00D435D9 /* DJJSBusines.m */; };
+		E17FC6D721A1053E00D435D9 /* DJJSIMInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6CF21A1053C00D435D9 /* DJJSIMInfo.m */; };
+		E17FC6D821A1053E00D435D9 /* DJJSResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6D121A1053C00D435D9 /* DJJSResult.m */; };
+		E17FC6D921A1053E00D435D9 /* DJJSRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6D221A1053D00D435D9 /* DJJSRelation.m */; };
+		E17FC6DA21A1053E00D435D9 /* DJJSGetUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6D521A1053E00D435D9 /* DJJSGetUserModel.m */; };
 		E182E386219D102200BC5028 /* JSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E182E385219D102100BC5028 /* JSExtension.m */; };
 		E19DC893219ABB9000C86478 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD31FA817760018EC62 /* libstdc++.6.0.9.tbd */; };
 		E19DC8AC219AC28100C86478 /* release_notes_ios.txt in Resources */ = {isa = PBXBuildFile; fileRef = E19DC89D219AC28100C86478 /* release_notes_ios.txt */; };
@@ -2318,6 +2323,16 @@
 		E17FC6C321A1009C00D435D9 /* DJJLLoginResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJLLoginResponse.m; sourceTree = "<group>"; };
 		E17FC6C421A1009C00D435D9 /* DJJLUAUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJLUAUser.m; sourceTree = "<group>"; };
 		E17FC6C521A1009D00D435D9 /* DJJLLoginResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJLLoginResponse.h; sourceTree = "<group>"; };
+		E17FC6CC21A1053B00D435D9 /* DJJSGetUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJSGetUserModel.h; sourceTree = "<group>"; };
+		E17FC6CD21A1053B00D435D9 /* DJJSBusines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJSBusines.m; sourceTree = "<group>"; };
+		E17FC6CE21A1053B00D435D9 /* DJJSRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJSRelation.h; sourceTree = "<group>"; };
+		E17FC6CF21A1053C00D435D9 /* DJJSIMInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJSIMInfo.m; sourceTree = "<group>"; };
+		E17FC6D021A1053C00D435D9 /* DJJSResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJSResult.h; sourceTree = "<group>"; };
+		E17FC6D121A1053C00D435D9 /* DJJSResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJSResult.m; sourceTree = "<group>"; };
+		E17FC6D221A1053D00D435D9 /* DJJSRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJSRelation.m; sourceTree = "<group>"; };
+		E17FC6D321A1053D00D435D9 /* DJJSBusines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJSBusines.h; sourceTree = "<group>"; };
+		E17FC6D421A1053D00D435D9 /* DJJSIMInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJSIMInfo.h; sourceTree = "<group>"; };
+		E17FC6D521A1053E00D435D9 /* DJJSGetUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJSGetUserModel.m; sourceTree = "<group>"; };
 		E182E384219D102100BC5028 /* JSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSExtension.h; sourceTree = "<group>"; };
 		E182E385219D102100BC5028 /* JSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSExtension.m; sourceTree = "<group>"; };
 		E19DC89D219AC28100C86478 /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes_ios.txt; sourceTree = "<group>"; };
@@ -5737,6 +5752,7 @@
 		E17AF1E221A01D430041249C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E17FC6CB21A1051000D435D9 /* GetUserById */,
 				E17FC6BB21A1008800D435D9 /* Login */,
 				E17AF1E321A01D430041249C /* MyEnterprises */,
 			);
@@ -5781,6 +5797,23 @@
 				E17FC6C421A1009C00D435D9 /* DJJLUAUser.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		E17FC6CB21A1051000D435D9 /* GetUserById */ = {
+			isa = PBXGroup;
+			children = (
+				E17FC6D321A1053D00D435D9 /* DJJSBusines.h */,
+				E17FC6CD21A1053B00D435D9 /* DJJSBusines.m */,
+				E17FC6CC21A1053B00D435D9 /* DJJSGetUserModel.h */,
+				E17FC6D521A1053E00D435D9 /* DJJSGetUserModel.m */,
+				E17FC6D421A1053D00D435D9 /* DJJSIMInfo.h */,
+				E17FC6CF21A1053C00D435D9 /* DJJSIMInfo.m */,
+				E17FC6CE21A1053B00D435D9 /* DJJSRelation.h */,
+				E17FC6D221A1053D00D435D9 /* DJJSRelation.m */,
+				E17FC6D021A1053C00D435D9 /* DJJSResult.h */,
+				E17FC6D121A1053C00D435D9 /* DJJSResult.m */,
+			);
+			path = GetUserById;
 			sourceTree = "<group>";
 		};
 		E19DC894219AC14400C86478 /* Vender */ = {
@@ -6455,6 +6488,7 @@
 				E17AF25E21A02D480041249C /* DJJXResult.m in Sources */,
 				DEB72FE21FBD8E3D0069C581 /* JXMyBroadbandOrdersModel.m in Sources */,
 				DE8E74301FBC1D3A00426EAF /* JXMyBroadbandOrdersViewController.m in Sources */,
+				E17FC6D921A1053E00D435D9 /* DJJSRelation.m in Sources */,
 				CBA03A5D1FCFA298007098D7 /* XYOrderDetailTelephoneVC.m in Sources */,
 				CB582F9E1F723D89009E495F /* XYPayPasswordSettingTVCell.m in Sources */,
 				48D9802C1FEBB04D00246D4B /* JXClassificationTitleListModel.m in Sources */,
@@ -6668,6 +6702,7 @@
 				48B8309A1FB9F5AD0019F503 /* JXQueryConditionItem.m in Sources */,
 				E17AF25821A02D480041249C /* DJJXMembers.m in Sources */,
 				DE91100A2085DD5600BDDABF /* JXOderFootView.m in Sources */,
+				E17FC6D821A1053E00D435D9 /* DJJSResult.m in Sources */,
 				487B5CA1205FAEE1006921AC /* JXDeliverWayViewModel.m in Sources */,
 				DE3764351FDA295700D84A7B /* JXCityListViewController.m in Sources */,
 				4843205D20245F6C00468411 /* JXPiontsRuleModel.m in Sources */,
@@ -6761,6 +6796,7 @@
 				480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */,
 				CBE85ABA1F630B1C00E1E4EA /* XYMineOrderButtonVC.m in Sources */,
 				48B5737D2047E2430028A8FA /* JXElectronicInvoiceHeaderCell.m in Sources */,
+				E17FC6D721A1053E00D435D9 /* DJJSIMInfo.m in Sources */,
 				CB4287771F66AE39004C43C1 /* XYOrderDetailTitleModel.m in Sources */,
 				486BA980207B66A400FB709D /* JXRefundStateCell.m in Sources */,
 				E17AF25721A02D480041249C /* DJJXCreator.m in Sources */,
@@ -6940,6 +6976,7 @@
 				DEAB009D1FDE3D6A0007E66D /* JXHomeCommodityHeatView.m in Sources */,
 				CBFF467A1F7F271500D2AF93 /* XYOrderCommentDetailFirstCell.m in Sources */,
 				DE4FC29E20918FD80069A4B4 /* JXLocationTool.m in Sources */,
+				E17FC6DA21A1053E00D435D9 /* DJJSGetUserModel.m in Sources */,
 				CB4287451F6455C4004C43C1 /* WTReTextField.m in Sources */,
 				DE910F2B2085859C00BDDABF /* JXMyRefundAfterSaleModel.m in Sources */,
 				DE8E74451FBC223A00426EAF /* JXMyBroadbandAccountFootView.m in Sources */,
@@ -6973,6 +7010,7 @@
 				DE9110192085DD5600BDDABF /* JXOderPromptView.m in Sources */,
 				CBF74E721F8F87C300D528C2 /* XYMyBoardBandFirstChildVC.m in Sources */,
 				DEB72FDC1FBD746F0069C581 /* JXPackageDetailsViewController.m in Sources */,
+				E17FC6D621A1053E00D435D9 /* DJJSBusines.m in Sources */,
 				DE138CE31FD9280B006E5A6F /* JXHomelDataModel.m in Sources */,
 				CBFF46551F7E7ACC00D2AF93 /* UIView+XLExtension.m in Sources */,
 				DEAB00981FDE34030007E66D /* JXHomeCommodityCell.m in Sources */,

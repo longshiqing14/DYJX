@@ -83,7 +83,7 @@
 
 
 //优惠券
-@property (nonatomic, strong) NSString *totalCardPayPrice;
+@property (nonatomic, copy) NSString *totalCardPayPrice;
 @property(nonatomic,strong)NSString *totalOrderDiscount;
 //优惠积分
 @property(nonatomic,strong)NSString *integralDiscount;

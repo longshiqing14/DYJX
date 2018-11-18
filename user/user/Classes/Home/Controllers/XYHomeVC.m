@@ -84,7 +84,7 @@
 @property (nonatomic, strong) XYNoticePushModel * notiPushModel;
 
 /** 暂存的 定位的城市 */
-@property (nonatomic, strong) NSString * locationCityString;
+@property (nonatomic, copy) NSString * locationCityString;
 
 /** 数据请求 次数限制 */
 @property (nonatomic, assign) BOOL isFirstLocationNet;

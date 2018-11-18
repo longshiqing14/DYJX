@@ -13,7 +13,7 @@
 @interface XYPayOrderSuccessVC : XYBestVC
 
 /** 支付的金额 */
-@property (nonatomic, strong) NSString * paymentAmountString;
+@property (nonatomic, copy) NSString * paymentAmountString;
 @property(nonatomic,strong)NSString * paymentType;
 
 @end

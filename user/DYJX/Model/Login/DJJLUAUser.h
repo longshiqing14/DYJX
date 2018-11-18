@@ -15,14 +15,14 @@
 
 @property (nonatomic, strong) DJJLBusines * Business;
 @property (nonatomic, assign) NSInteger ContactType;
-@property (nonatomic, strong) NSString * CreateOn;
-@property (nonatomic, strong) NSString * CreateUAUrl;
+@property (nonatomic, copy) NSString * CreateOn;
+@property (nonatomic, copy) NSString * CreateUAUrl;
 @property (nonatomic, assign) BOOL Deleted;
 @property (nonatomic, assign) BOOL Disabled;
-@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, copy) NSString * IdField;
 @property (nonatomic, strong) DJJLMember * Member;
 @property (nonatomic, assign) NSInteger Number;
-@property (nonatomic, strong) NSString * NumberString;
+@property (nonatomic, copy) NSString * NumberString;
 @property (nonatomic, assign) NSInteger Status;
 @property (nonatomic, assign) NSInteger Type;
 
