@@ -18,4 +18,13 @@
     self.layer.masksToBounds = YES;
 }
 
+
+- (void)layoutSubviews {
+    WeakSelf
+    [self.content1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(weakSelf);
+        make.center.equalTo(weakSelf);
+    }];
+}
+
 @end

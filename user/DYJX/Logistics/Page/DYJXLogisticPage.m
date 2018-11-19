@@ -84,43 +84,28 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             //16888物流平台
-            cell.content1.text = @"16888";
-            cell.content2.text = @"物流";
-            cell.content3.text = @"平台";
-            
+            cell.content1.text = @"16888\n 物流\n 平台";
         }else if (indexPath.row == 1){
             //百度
-            cell.content1.text = @"百度";
-            cell.content2.text = @"";
-            cell.content3.text = @"More";
+            cell.content1.text = @"百度\nMore";
         }
     
     }else if (indexPath.section == 1){
         if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_ea"]) {
             //新泰通物流员工端
-            cell.content1.text = @"新泰通";
-            cell.content2.text = @"物流";
-            cell.content3.text = @"员工端";
+            cell.content1.text = @"新泰通\n 物流\n员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_back"]){
             //广州退货员工端
-            cell.content1.text = @"广州";
-            cell.content2.text = @"退货";
-            cell.content3.text = @"员工端";
+            cell.content1.text = @"广州\n 退货\n员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt"]){
             //新泰通报销员工端
-            cell.content1.text = @"新泰通";
-            cell.content2.text = @"报销";
-            cell.content3.text = @"员工端";
+            cell.content1.text = @"新泰通\n 报销\n员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_qcd"]){
             //全城达
-            cell.content1.text = @"全城达";
-            cell.content2.text = @"同城";
-            cell.content3.text = @"员工端";
+            cell.content1.text = @"全城达\n 同城\n员工端";
         }
 
         cell.content1.textColor = [UIColor colorWithHexString:@"#333333"];
-        cell.content2.textColor = [UIColor colorWithHexString:@"#333333"];
-        cell.content3.textColor = [UIColor colorWithHexString:@"#333333"];
 
         if (indexPath.section == 0) {
             cell.contentView.backgroundColor = [UIColor colorWithRed:254.0/255.0 green:241/255.0 blue:187/255.0 alpha:1];
@@ -185,7 +170,7 @@
 #pragma mark -UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake((self.view.frame.size.width - 15*5)/4 , (self.view.frame.size.width - 15*5)/4 );
+    return CGSizeMake((self.view.frame.size.width - 30 - 15*5)/4 , (self.view.frame.size.width - 30 - 15*5)/4 );
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
