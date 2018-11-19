@@ -821,17 +821,12 @@
 		E1B528D0219FB20E008B27A5 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528CD219FB20D008B27A5 /* libopencore-amrnb.a */; };
 		E1B528D1219FB20E008B27A5 /* RCConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B528CE219FB20D008B27A5 /* RCConfig.plist */; };
 		E1B528DD219FB295008B27A5 /* RongCallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528DC219FB295008B27A5 /* RongCallKit.framework */; };
-		E1B528E0219FB2D4008B27A5 /* Bailingquic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */; };
-		E1B528E2219FB332008B27A5 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528E1219FB332008B27A5 /* GPUImage.framework */; };
 		E1B528E4219FB33A008B27A5 /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528E3219FB33A008B27A5 /* RongCallLib.framework */; };
 		E1B528ED219FB37B008B27A5 /* RCML.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1B528E6219FB37B008B27A5 /* RCML.strings */; };
 		E1B528EE219FB37B008B27A5 /* RongMCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528E9219FB37B008B27A5 /* RongMCenter.framework */; };
 		E1B528EF219FB37B008B27A5 /* default_image_square.png in Resources */ = {isa = PBXBuildFile; fileRef = E1B528EA219FB37B008B27A5 /* default_image_square.png */; };
 		E1B528F0219FB37B008B27A5 /* default_image.png in Resources */ = {isa = PBXBuildFile; fileRef = E1B528EB219FB37B008B27A5 /* default_image.png */; };
 		E1B528F1219FB37B008B27A5 /* default_image_rectangular.png in Resources */ = {isa = PBXBuildFile; fileRef = E1B528EC219FB37B008B27A5 /* default_image_rectangular.png */; };
-		E1B528F8219FB383008B27A5 /* RongSticker.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1B528F3219FB383008B27A5 /* RongSticker.strings */; };
-		E1B528F9219FB383008B27A5 /* RongSticker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B528F6219FB383008B27A5 /* RongSticker.bundle */; };
-		E1B528FA219FB383008B27A5 /* RongSticker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528F7219FB383008B27A5 /* RongSticker.framework */; };
 		E1B528FD219FB38A008B27A5 /* RongSight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B528FC219FB38A008B27A5 /* RongSight.framework */; };
 		E1B528FF219FB38F008B27A5 /* release_notes_ios.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1B528FE219FB38F008B27A5 /* release_notes_ios.txt */; };
 		E1B52904219FB3E7008B27A5 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B52902219FB3E6008B27A5 /* AlipaySDK.bundle */; };
@@ -852,7 +847,6 @@
 		E1B5292D219FBD94008B27A5 /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52929219FBD94008B27A5 /* RongIMKit.framework */; };
 		E1B5292E219FBD94008B27A5 /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B5292A219FBD94008B27A5 /* Emoji.plist */; };
 		E1B5292F219FBD94008B27A5 /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1B5292B219FBD94008B27A5 /* RongCloud.bundle */; };
-		E1B52936219FCB6B008B27A5 /* Blink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52935219FCB6B008B27A5 /* Blink.framework */; };
 		E1B52939219FE0FC008B27A5 /* XJInfoDetailPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
@@ -2364,8 +2358,6 @@
 		E1B528CD219FB20D008B27A5 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		E1B528CE219FB20D008B27A5 /* RCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCConfig.plist; sourceTree = "<group>"; };
 		E1B528DC219FB295008B27A5 /* RongCallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallKit.framework; sourceTree = "<group>"; };
-		E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bailingquic.framework; sourceTree = "<group>"; };
-		E1B528E1219FB332008B27A5 /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPUImage.framework; sourceTree = "<group>"; };
 		E1B528E3219FB33A008B27A5 /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallLib.framework; sourceTree = "<group>"; };
 		E1B528E7219FB37B008B27A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RCML.strings"; sourceTree = "<group>"; };
 		E1B528E8219FB37B008B27A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RCML.strings; sourceTree = "<group>"; };
@@ -2373,10 +2365,6 @@
 		E1B528EA219FB37B008B27A5 /* default_image_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_image_square.png; sourceTree = "<group>"; };
 		E1B528EB219FB37B008B27A5 /* default_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_image.png; sourceTree = "<group>"; };
 		E1B528EC219FB37B008B27A5 /* default_image_rectangular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_image_rectangular.png; sourceTree = "<group>"; };
-		E1B528F4219FB383008B27A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RongSticker.strings"; sourceTree = "<group>"; };
-		E1B528F5219FB383008B27A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongSticker.strings; sourceTree = "<group>"; };
-		E1B528F6219FB383008B27A5 /* RongSticker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongSticker.bundle; sourceTree = "<group>"; };
-		E1B528F7219FB383008B27A5 /* RongSticker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongSticker.framework; sourceTree = "<group>"; };
 		E1B528FC219FB38A008B27A5 /* RongSight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongSight.framework; sourceTree = "<group>"; };
 		E1B528FE219FB38F008B27A5 /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = release_notes_ios.txt; path = "../../../../../../../../Volumes/Data_2/龙PS/rong/release_notes_ios.txt"; sourceTree = "<group>"; };
 		E1B52902219FB3E6008B27A5 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
@@ -2397,7 +2385,6 @@
 		E1B52929219FBD94008B27A5 /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
 		E1B5292A219FBD94008B27A5 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
 		E1B5292B219FBD94008B27A5 /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
-		E1B52935219FCB6B008B27A5 /* Blink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Blink.framework; sourceTree = "<group>"; };
 		E1B52937219FE0FC008B27A5 /* XJInfoDetailPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJInfoDetailPage.h; sourceTree = "<group>"; };
 		E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJInfoDetailPage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2426,7 +2413,6 @@
 				489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */,
 				E19DC8BE219AC59800C86478 /* OpenGLES.framework in Frameworks */,
 				CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */,
-				E1B52936219FCB6B008B27A5 /* Blink.framework in Frameworks */,
 				E19DC8C0219AC61D00C86478 /* Photos.framework in Frameworks */,
 				E1B52924219FB9FB008B27A5 /* SafariServices.framework in Frameworks */,
 				E1B52922219FB9EF008B27A5 /* GLKit.framework in Frameworks */,
@@ -2470,16 +2456,13 @@
 				E1B52913219FB405008B27A5 /* JrmfPacketKit.framework in Frameworks */,
 				CB123BE51F8DC85100CD4429 /* UIKit.framework in Frameworks */,
 				4804A1A621995E4C0081AB5B /* liblibStorage.a in Frameworks */,
-				E1B528FA219FB383008B27A5 /* RongSticker.framework in Frameworks */,
 				CB123BE31F8DC84800CD4429 /* Foundation.framework in Frameworks */,
 				4804A1A821995F250081AB5B /* storage.framework in Frameworks */,
-				E1B528E0219FB2D4008B27A5 /* Bailingquic.framework in Frameworks */,
 				48511D79219EC417006C6081 /* BaiduMapAPI_Location.framework in Frameworks */,
 				4804A18E21959E630081AB5B /* libcoreSupport.a in Frameworks */,
 				E1B528DD219FB295008B27A5 /* RongCallKit.framework in Frameworks */,
 				48511D1C219E9666006C6081 /* liblibZip.a in Frameworks */,
 				CBFF45971F74C33600D2AF93 /* CoreGraphics.framework in Frameworks */,
-				E1B528E2219FB332008B27A5 /* GPUImage.framework in Frameworks */,
 				CBFF458C1F74C03500D2AF93 /* UMSocialCore.framework in Frameworks */,
 				48511D14219E6CB2006C6081 /* MAMapKit.framework in Frameworks */,
 				CB123BD71F8DC40A00CD4429 /* jcore-ios-1.1.5.a in Frameworks */,
@@ -5833,7 +5816,6 @@
 				E1B528FE219FB38F008B27A5 /* release_notes_ios.txt */,
 				E1B52900219FB3E6008B27A5 /* RedPacket */,
 				E1B528FB219FB38A008B27A5 /* Sight */,
-				E1B528F2219FB383008B27A5 /* RongSticker */,
 				E1B528E5219FB37B008B27A5 /* RCMCenter */,
 				E1B528DE219FB2D4008B27A5 /* CallLib */,
 				E1B528DB219FB295008B27A5 /* CallKit */,
@@ -5899,10 +5881,7 @@
 		E1B528DE219FB2D4008B27A5 /* CallLib */ = {
 			isa = PBXGroup;
 			children = (
-				E1B52935219FCB6B008B27A5 /* Blink.framework */,
 				E1B528E3219FB33A008B27A5 /* RongCallLib.framework */,
-				E1B528E1219FB332008B27A5 /* GPUImage.framework */,
-				E1B528DF219FB2D4008B27A5 /* Bailingquic.framework */,
 			);
 			path = CallLib;
 			sourceTree = "<group>";
@@ -5917,16 +5896,6 @@
 				E1B528EC219FB37B008B27A5 /* default_image_rectangular.png */,
 			);
 			path = RCMCenter;
-			sourceTree = "<group>";
-		};
-		E1B528F2219FB383008B27A5 /* RongSticker */ = {
-			isa = PBXGroup;
-			children = (
-				E1B528F3219FB383008B27A5 /* RongSticker.strings */,
-				E1B528F6219FB383008B27A5 /* RongSticker.bundle */,
-				E1B528F7219FB383008B27A5 /* RongSticker.framework */,
-			);
-			path = RongSticker;
 			sourceTree = "<group>";
 		};
 		E1B528FB219FB38A008B27A5 /* Sight */ = {
@@ -6125,7 +6094,6 @@
 				E1B52911219FB405008B27A5 /* WalletResource.bundle in Resources */,
 				DE36FA5D1FCEBED600ED184E /* JXShopUnavailableViewController.xib in Resources */,
 				DE71B1322086E7B900467E06 /* JXMyAfterSaleDetailInformationCell.xib in Resources */,
-				E1B528F9219FB383008B27A5 /* RongSticker.bundle in Resources */,
 				48EB46442079B14000B0A736 /* JXRefundContentCell.xib in Resources */,
 				DE2E3FB61FC2E8B000481474 /* JXMyBroadbandOrdersView.xib in Resources */,
 				DE36FA441FCE5C9D00ED184E /* JXCouponHeatView.xib in Resources */,
@@ -6170,7 +6138,6 @@
 				DEF7C9B72005E7EC00B53AAC /* JXPointsDescriptionView.xib in Resources */,
 				DED76E061FD3E795009332E6 /* JXDiscountView.xib in Resources */,
 				DE277D331FBAC2EF00FE52C8 /* XYAddressViewController.xib in Resources */,
-				E1B528F8219FB383008B27A5 /* RongSticker.strings in Resources */,
 				DE9F8CC21FDFD08200D8FE8A /* JXHomeRecommendCollectionView.xib in Resources */,
 				48D980241FEB5F1700246D4B /* JXClassificationTableHeader.xib in Resources */,
 				481FE761218342F500CFE26B /* DYJXRegistePage.xib in Resources */,
@@ -7089,15 +7056,6 @@
 				E1B528E8219FB37B008B27A5 /* en */,
 			);
 			name = RCML.strings;
-			sourceTree = "<group>";
-		};
-		E1B528F3219FB383008B27A5 /* RongSticker.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1B528F4219FB383008B27A5 /* zh-Hans */,
-				E1B528F5219FB383008B27A5 /* en */,
-			);
-			name = RongSticker.strings;
 			sourceTree = "<group>";
 		};
 		E1B52907219FB405008B27A5 /* JrmfInfo.strings */ = {
