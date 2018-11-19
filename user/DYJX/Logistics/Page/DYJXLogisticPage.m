@@ -129,14 +129,13 @@
         if (indexPath.row == 0) {
             //16888物流平台
             // Webivew集成不能同时WebApp集成，需要修改AppDelegate文件的PDRCore的启动参数
+
           WebAppController  *pWebAppController = [[WebAppController alloc] init];
             pWebAppController.AppId = @"com.zlMax.lw16888Logistics";
             if (pWebAppController) {
                 self.navigationController.navigationBarHidden = YES;
                 [self.navigationController pushViewController:pWebAppController animated:YES];
-            }
-
-            
+            }            
         }else if (indexPath.row == 1){
             //百度
             DYJXBaiDuWebPage * baiDuWebPage = [[DYJXBaiDuWebPage alloc]init];
