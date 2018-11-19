@@ -818,6 +818,25 @@
 		DEF7C9BA2005F59300B53AAC /* JXPointsDescriptionHeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C9B92005F59300B53AAC /* JXPointsDescriptionHeatView.m */; };
 		DEF7C9BC2005F5A600B53AAC /* JXPointsDescriptionHeatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEF7C9BB2005F5A600B53AAC /* JXPointsDescriptionHeatView.xib */; };
 		DEFC90342088371D00FFB4F3 /* FLAnimatedImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFC90332088371D00FFB4F3 /* FLAnimatedImageView+WebCache.m */; };
+		E17AF21621A021E40041249C /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E17AF21521A021E40041249C /* UserManager.m */; };
+		E17AF25721A02D480041249C /* DJJXCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = E17AF24821A02D440041249C /* DJJXCreator.m */; };
+		E17AF25821A02D480041249C /* DJJXMembers.m in Sources */ = {isa = PBXBuildFile; fileRef = E17AF24A21A02D440041249C /* DJJXMembers.m */; };
+		E17AF25921A02D480041249C /* DJJXEnterpriseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E17AF24B21A02D450041249C /* DJJXEnterpriseInfo.m */; };
+		E17AF25A21A02D480041249C /* DJJXBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = E17AF24D21A02D450041249C /* DJJXBusines.m */; };
+		E17AF25B21A02D480041249C /* DJJXResponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E17AF25021A02D460041249C /* DJJXResponModel.m */; };
+		E17AF25C21A02D480041249C /* DJJXIMInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E17AF25221A02D470041249C /* DJJXIMInfo.m */; };
+		E17AF25D21A02D480041249C /* DJJXAdminUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = E17AF25321A02D470041249C /* DJJXAdminUsers.m */; };
+		E17AF25E21A02D480041249C /* DJJXResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E17AF25621A02D480041249C /* DJJXResult.m */; };
+		E17FC6C621A1009D00D435D9 /* DJJLBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6BC21A1009A00D435D9 /* DJJLBusines.m */; };
+		E17FC6C721A1009D00D435D9 /* DJJLMember.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6C021A1009B00D435D9 /* DJJLMember.m */; };
+		E17FC6C821A1009D00D435D9 /* DJJLIMInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6C121A1009B00D435D9 /* DJJLIMInfo.m */; };
+		E17FC6C921A1009D00D435D9 /* DJJLLoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6C321A1009C00D435D9 /* DJJLLoginResponse.m */; };
+		E17FC6CA21A1009D00D435D9 /* DJJLUAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6C421A1009C00D435D9 /* DJJLUAUser.m */; };
+		E17FC6D621A1053E00D435D9 /* DJJSBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6CD21A1053B00D435D9 /* DJJSBusines.m */; };
+		E17FC6D721A1053E00D435D9 /* DJJSIMInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6CF21A1053C00D435D9 /* DJJSIMInfo.m */; };
+		E17FC6D821A1053E00D435D9 /* DJJSResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6D121A1053C00D435D9 /* DJJSResult.m */; };
+		E17FC6D921A1053E00D435D9 /* DJJSRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6D221A1053D00D435D9 /* DJJSRelation.m */; };
+		E17FC6DA21A1053E00D435D9 /* DJJSGetUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6D521A1053E00D435D9 /* DJJSGetUserModel.m */; };
 		E182E386219D102200BC5028 /* JSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E182E385219D102100BC5028 /* JSExtension.m */; };
 		E19DC893219ABB9000C86478 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD31FA817760018EC62 /* libstdc++.6.0.9.tbd */; };
 		E19DC8B5219AC2DB00C86478 /* BaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8B4219AC2DB00C86478 /* BaseListViewController.m */; };
@@ -834,6 +853,13 @@
 		E19DC8D3219AE7E600C86478 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8D2219AE7E600C86478 /* BaseModel.m */; };
 		E1B1178B219D4F0D00C96B3E /* SCAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B11789219D4F0C00C96B3E /* SCAccountManager.m */; };
 		E1B1178D219D58A800C96B3E /* Pandora in Resources */ = {isa = PBXBuildFile; fileRef = E1B1178C219D58A800C96B3E /* Pandora */; };
+		E1B5291E219FB9B4008B27A5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B5291D219FB9B3008B27A5 /* libiconv.tbd */; };
+		E1B52920219FB9BC008B27A5 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B5291F219FB9BC008B27A5 /* libbz2.tbd */; };
+		E1B52922219FB9EF008B27A5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52921219FB9EF008B27A5 /* GLKit.framework */; };
+		E1B52924219FB9FB008B27A5 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52923219FB9FB008B27A5 /* SafariServices.framework */; };
+		E1B52925219FBA7D008B27A5 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD11FA817640018EC62 /* libc++.tbd */; };
+		E1B52936219FCB6B008B27A5 /* Blink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52935219FCB6B008B27A5 /* Blink.framework */; };
+		E1B52939219FE0FC008B27A5 /* XJInfoDetailPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -2316,6 +2342,44 @@
 		DEF7C9BB2005F5A600B53AAC /* JXPointsDescriptionHeatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JXPointsDescriptionHeatView.xib; sourceTree = "<group>"; };
 		DEFC90322088371D00FFB4F3 /* FLAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
 		DEFC90332088371D00FFB4F3 /* FLAnimatedImageView+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImageView+WebCache.m"; sourceTree = "<group>"; };
+		E17AF21421A021E40041249C /* UserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		E17AF21521A021E40041249C /* UserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		E17AF24721A02D440041249C /* DJJXCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJXCreator.h; sourceTree = "<group>"; };
+		E17AF24821A02D440041249C /* DJJXCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJXCreator.m; sourceTree = "<group>"; };
+		E17AF24921A02D440041249C /* DJJXResponModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJXResponModel.h; sourceTree = "<group>"; };
+		E17AF24A21A02D440041249C /* DJJXMembers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJXMembers.m; sourceTree = "<group>"; };
+		E17AF24B21A02D450041249C /* DJJXEnterpriseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJXEnterpriseInfo.m; sourceTree = "<group>"; };
+		E17AF24C21A02D450041249C /* DJJXBusines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJXBusines.h; sourceTree = "<group>"; };
+		E17AF24D21A02D450041249C /* DJJXBusines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJXBusines.m; sourceTree = "<group>"; };
+		E17AF24E21A02D460041249C /* DJJXIMInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJXIMInfo.h; sourceTree = "<group>"; };
+		E17AF24F21A02D460041249C /* DJJXResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJXResult.h; sourceTree = "<group>"; };
+		E17AF25021A02D460041249C /* DJJXResponModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJXResponModel.m; sourceTree = "<group>"; };
+		E17AF25121A02D470041249C /* DJJXAdminUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJXAdminUsers.h; sourceTree = "<group>"; };
+		E17AF25221A02D470041249C /* DJJXIMInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJXIMInfo.m; sourceTree = "<group>"; };
+		E17AF25321A02D470041249C /* DJJXAdminUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJXAdminUsers.m; sourceTree = "<group>"; };
+		E17AF25421A02D480041249C /* DJJXEnterpriseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJXEnterpriseInfo.h; sourceTree = "<group>"; };
+		E17AF25521A02D480041249C /* DJJXMembers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJXMembers.h; sourceTree = "<group>"; };
+		E17AF25621A02D480041249C /* DJJXResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJXResult.m; sourceTree = "<group>"; };
+		E17FC6BC21A1009A00D435D9 /* DJJLBusines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJLBusines.m; sourceTree = "<group>"; };
+		E17FC6BD21A1009A00D435D9 /* DJJLUAUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJLUAUser.h; sourceTree = "<group>"; };
+		E17FC6BE21A1009A00D435D9 /* DJJLMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJLMember.h; sourceTree = "<group>"; };
+		E17FC6BF21A1009B00D435D9 /* DJJLBusines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJLBusines.h; sourceTree = "<group>"; };
+		E17FC6C021A1009B00D435D9 /* DJJLMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJLMember.m; sourceTree = "<group>"; };
+		E17FC6C121A1009B00D435D9 /* DJJLIMInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJLIMInfo.m; sourceTree = "<group>"; };
+		E17FC6C221A1009C00D435D9 /* DJJLIMInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJLIMInfo.h; sourceTree = "<group>"; };
+		E17FC6C321A1009C00D435D9 /* DJJLLoginResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJLLoginResponse.m; sourceTree = "<group>"; };
+		E17FC6C421A1009C00D435D9 /* DJJLUAUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJLUAUser.m; sourceTree = "<group>"; };
+		E17FC6C521A1009D00D435D9 /* DJJLLoginResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJLLoginResponse.h; sourceTree = "<group>"; };
+		E17FC6CC21A1053B00D435D9 /* DJJSGetUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJSGetUserModel.h; sourceTree = "<group>"; };
+		E17FC6CD21A1053B00D435D9 /* DJJSBusines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJSBusines.m; sourceTree = "<group>"; };
+		E17FC6CE21A1053B00D435D9 /* DJJSRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJSRelation.h; sourceTree = "<group>"; };
+		E17FC6CF21A1053C00D435D9 /* DJJSIMInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJSIMInfo.m; sourceTree = "<group>"; };
+		E17FC6D021A1053C00D435D9 /* DJJSResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJSResult.h; sourceTree = "<group>"; };
+		E17FC6D121A1053C00D435D9 /* DJJSResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJSResult.m; sourceTree = "<group>"; };
+		E17FC6D221A1053D00D435D9 /* DJJSRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJSRelation.m; sourceTree = "<group>"; };
+		E17FC6D321A1053D00D435D9 /* DJJSBusines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJSBusines.h; sourceTree = "<group>"; };
+		E17FC6D421A1053D00D435D9 /* DJJSIMInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJJSIMInfo.h; sourceTree = "<group>"; };
+		E17FC6D521A1053E00D435D9 /* DJJSGetUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJSGetUserModel.m; sourceTree = "<group>"; };
 		E182E384219D102100BC5028 /* JSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSExtension.h; sourceTree = "<group>"; };
 		E182E385219D102100BC5028 /* JSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSExtension.m; sourceTree = "<group>"; };
 		E19DC8B3219AC2DB00C86478 /* BaseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseListViewController.h; sourceTree = "<group>"; };
@@ -2340,6 +2404,13 @@
 		E1B11789219D4F0C00C96B3E /* SCAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAccountManager.m; sourceTree = "<group>"; };
 		E1B1178A219D4F0D00C96B3E /* SCAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAccountManager.h; sourceTree = "<group>"; };
 		E1B1178C219D58A800C96B3E /* Pandora */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pandora; sourceTree = "<group>"; };
+		E1B5291D219FB9B3008B27A5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		E1B5291F219FB9BC008B27A5 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		E1B52921219FB9EF008B27A5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		E1B52923219FB9FB008B27A5 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		E1B52935219FCB6B008B27A5 /* Blink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Blink.framework; sourceTree = "<group>"; };
+		E1B52937219FE0FC008B27A5 /* XJInfoDetailPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJInfoDetailPage.h; sourceTree = "<group>"; };
+		E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJInfoDetailPage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2354,6 +2425,36 @@
 				488E8966219FF67A008695A7 /* libc++.tbd in Frameworks */,
 				488E8A00219FFD5A008695A7 /* JYangToolKit.framework in Frameworks */,
 				488E8931219FE94F008695A7 /* GLKit.framework in Frameworks */,
+				487C55AF2061FE44006A8071 /* StoreKit.framework in Frameworks */,
+				487352E82192EDE2001B59AB /* CoreAudioKit.framework in Frameworks */,
+				487353072192F3CF001B59AB /* QuickLook.framework in Frameworks */,
+				4873530D2192F558001B59AB /* CoreText.framework in Frameworks */,
+				CB123BDB1F8DC81000CD4429 /* CFNetwork.framework in Frameworks */,
+				487352E62192EDD7001B59AB /* CoreAudio.framework in Frameworks */,
+				4873530F2192F5C7001B59AB /* CoreLocation.framework in Frameworks */,
+				CB123BDF1F8DC82E00CD4429 /* CoreTelephony.framework in Frameworks */,
+				4873530C2192F54A001B59AB /* ImageIO.framework in Frameworks */,
+				E1B52925219FBA7D008B27A5 /* libc++.tbd in Frameworks */,
+				CBFF45991F74C34E00D2AF93 /* libsqlite3.tbd in Frameworks */,
+				E19DC893219ABB9000C86478 /* libstdc++.6.0.9.tbd in Frameworks */,
+				E19DC8BA219AC4DE00C86478 /* CoreVideo.framework in Frameworks */,
+				E19DC8BC219AC50100C86478 /* libc++abi.tbd in Frameworks */,
+				487352EA2192EE1F001B59AB /* libxml2.tbd in Frameworks */,
+				CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */,
+				489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */,
+				E19DC8BE219AC59800C86478 /* OpenGLES.framework in Frameworks */,
+				CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */,
+				E1B52936219FCB6B008B27A5 /* Blink.framework in Frameworks */,
+				E19DC8C0219AC61D00C86478 /* Photos.framework in Frameworks */,
+				E1B52924219FB9FB008B27A5 /* SafariServices.framework in Frameworks */,
+				E1B52922219FB9EF008B27A5 /* GLKit.framework in Frameworks */,
+				487352E42192EDC5001B59AB /* CoreMedia.framework in Frameworks */,
+				CB123BED1F8DC89600CD4429 /* Security.framework in Frameworks */,
+				CB123BDD1F8DC82500CD4429 /* CoreFoundation.framework in Frameworks */,
+				CB42F5FB1FAB0C4200889257 /* CoreMotion.framework in Frameworks */,
+				E1B52920219FB9BC008B27A5 /* libbz2.tbd in Frameworks */,
+				E1B5291E219FB9B4008B27A5 /* libiconv.tbd in Frameworks */,
+				CB123BEB1F8DC88000CD4429 /* libresolv.tbd in Frameworks */,
 				E19DC8C2219AC69700C86478 /* VideoToolbox.framework in Frameworks */,
 				E19DC8C0219AC61D00C86478 /* Photos.framework in Frameworks */,
 				E19DC8BE219AC59800C86478 /* OpenGLES.framework in Frameworks */,
@@ -2578,6 +2679,7 @@
 			isa = PBXGroup;
 			children = (
 				E19DC895219AC28100C86478 /* RCloudSDK */,
+				E17AF1E221A01D430041249C /* Model */,
 				48511D6C219EC376006C6081 /* MyFrameWork */,
 				E19DC894219AC14400C86478 /* Vender */,
 				487352D22192EBE8001B59AB /* HBuilderSDK */,
@@ -2649,6 +2751,8 @@
 			children = (
 				481FE7282183125600CFE26B /* DYJXUserModel.h */,
 				481FE7292183125600CFE26B /* DYJXUserModel.m */,
+				E17AF21421A021E40041249C /* UserManager.h */,
+				E17AF21521A021E40041249C /* UserManager.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2743,6 +2847,8 @@
 				487351372186F475001B59AB /* DYJXIdentitySwitchingPage.h */,
 				487351382186F475001B59AB /* DYJXIdentitySwitchingPage.m */,
 				487351392186F475001B59AB /* DYJXIdentitySwitchingPage.xib */,
+				E1B52937219FE0FC008B27A5 /* XJInfoDetailPage.h */,
+				E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -2998,6 +3104,18 @@
 				488E89E9219FFD5A008695A7 /* RongSticker.framework */,
 			);
 			path = RongSticker;
+			sourceTree = "<group>";
+		};
+		488E8A0921A24BFB008695A7 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				E1B52935219FCB6B008B27A5 /* Blink.framework */,
+				E1B52923219FB9FB008B27A5 /* SafariServices.framework */,
+				E1B52921219FB9EF008B27A5 /* GLKit.framework */,
+				E1B5291F219FB9BC008B27A5 /* libbz2.tbd */,
+				E1B5291D219FB9B3008B27A5 /* libiconv.tbd */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		489A3F2A1FB30BE50084E2BC /* API */ = {
@@ -4057,6 +4175,7 @@
 				CBD2BA221F5D23CC0057E2E7 /* userUITests */,
 				CBD2B9FC1F5D23CC0057E2E7 /* Products */,
 				0F3092B0CD1F2B700831E44D /* Pods */,
+				488E8A0921A24BFB008695A7 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -5798,6 +5917,73 @@
 			path = Viev;
 			sourceTree = "<group>";
 		};
+		E17AF1E221A01D430041249C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E17FC6CB21A1051000D435D9 /* GetUserById */,
+				E17FC6BB21A1008800D435D9 /* Login */,
+				E17AF1E321A01D430041249C /* MyEnterprises */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E17AF1E321A01D430041249C /* MyEnterprises */ = {
+			isa = PBXGroup;
+			children = (
+				E17AF25121A02D470041249C /* DJJXAdminUsers.h */,
+				E17AF25321A02D470041249C /* DJJXAdminUsers.m */,
+				E17AF24C21A02D450041249C /* DJJXBusines.h */,
+				E17AF24D21A02D450041249C /* DJJXBusines.m */,
+				E17AF24721A02D440041249C /* DJJXCreator.h */,
+				E17AF24821A02D440041249C /* DJJXCreator.m */,
+				E17AF25421A02D480041249C /* DJJXEnterpriseInfo.h */,
+				E17AF24B21A02D450041249C /* DJJXEnterpriseInfo.m */,
+				E17AF24E21A02D460041249C /* DJJXIMInfo.h */,
+				E17AF25221A02D470041249C /* DJJXIMInfo.m */,
+				E17AF25521A02D480041249C /* DJJXMembers.h */,
+				E17AF24A21A02D440041249C /* DJJXMembers.m */,
+				E17AF24921A02D440041249C /* DJJXResponModel.h */,
+				E17AF25021A02D460041249C /* DJJXResponModel.m */,
+				E17AF24F21A02D460041249C /* DJJXResult.h */,
+				E17AF25621A02D480041249C /* DJJXResult.m */,
+			);
+			path = MyEnterprises;
+			sourceTree = "<group>";
+		};
+		E17FC6BB21A1008800D435D9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E17FC6BF21A1009B00D435D9 /* DJJLBusines.h */,
+				E17FC6BC21A1009A00D435D9 /* DJJLBusines.m */,
+				E17FC6C221A1009C00D435D9 /* DJJLIMInfo.h */,
+				E17FC6C121A1009B00D435D9 /* DJJLIMInfo.m */,
+				E17FC6C521A1009D00D435D9 /* DJJLLoginResponse.h */,
+				E17FC6C321A1009C00D435D9 /* DJJLLoginResponse.m */,
+				E17FC6BE21A1009A00D435D9 /* DJJLMember.h */,
+				E17FC6C021A1009B00D435D9 /* DJJLMember.m */,
+				E17FC6BD21A1009A00D435D9 /* DJJLUAUser.h */,
+				E17FC6C421A1009C00D435D9 /* DJJLUAUser.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		E17FC6CB21A1051000D435D9 /* GetUserById */ = {
+			isa = PBXGroup;
+			children = (
+				E17FC6D321A1053D00D435D9 /* DJJSBusines.h */,
+				E17FC6CD21A1053B00D435D9 /* DJJSBusines.m */,
+				E17FC6CC21A1053B00D435D9 /* DJJSGetUserModel.h */,
+				E17FC6D521A1053E00D435D9 /* DJJSGetUserModel.m */,
+				E17FC6D421A1053D00D435D9 /* DJJSIMInfo.h */,
+				E17FC6CF21A1053C00D435D9 /* DJJSIMInfo.m */,
+				E17FC6CE21A1053B00D435D9 /* DJJSRelation.h */,
+				E17FC6D221A1053D00D435D9 /* DJJSRelation.m */,
+				E17FC6D021A1053C00D435D9 /* DJJSResult.h */,
+				E17FC6D121A1053C00D435D9 /* DJJSResult.m */,
+			);
+			path = GetUserById;
+			sourceTree = "<group>";
+		};
 		E19DC894219AC14400C86478 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
@@ -6353,8 +6539,10 @@
 				CB5AE5B61F7BA30A004846E2 /* XYOrderCommentListCell.m in Sources */,
 				CBE85ACB1F63999F00E1E4EA /* XYOrderDetailGoodsListTVCell.m in Sources */,
 				CB123C1F1F973C5700CD4429 /* XYMineAboutUsVC.m in Sources */,
+				E17AF25E21A02D480041249C /* DJJXResult.m in Sources */,
 				DEB72FE21FBD8E3D0069C581 /* JXMyBroadbandOrdersModel.m in Sources */,
 				DE8E74301FBC1D3A00426EAF /* JXMyBroadbandOrdersViewController.m in Sources */,
+				E17FC6D921A1053E00D435D9 /* DJJSRelation.m in Sources */,
 				CBA03A5D1FCFA298007098D7 /* XYOrderDetailTelephoneVC.m in Sources */,
 				CB582F9E1F723D89009E495F /* XYPayPasswordSettingTVCell.m in Sources */,
 				48D9802C1FEBB04D00246D4B /* JXClassificationTitleListModel.m in Sources */,
@@ -6369,6 +6557,7 @@
 				CBF74E4A1F8E21EB00D528C2 /* XYMyBoardBandFirstCell.m in Sources */,
 				CBD3D50B1FB58A62007FF022 /* XYClassificationGoodsRightCVCell.m in Sources */,
 				CBFF46191F7D36BA00D2AF93 /* XYGoodsDetailParameterWebVC.m in Sources */,
+				E17AF25C21A02D480041249C /* DJJXIMInfo.m in Sources */,
 				CB123C4E1F9986C900CD4429 /* XYGoodsSearchResultModel.m in Sources */,
 				CB4287551F64D79C004C43C1 /* XYOrderListCellGoodsListCVC.m in Sources */,
 				48C5E6F020590D5F00239081 /* GJOrderingForClientsMoreListCell.m in Sources */,
@@ -6381,6 +6570,7 @@
 				DEE9AA3A1FBD3AC1001FA69A /* JXRenewInInPutCell.m in Sources */,
 				489A3F391FB53A870084E2BC /* JXSearchResultPage.m in Sources */,
 				48B8309E1FBABA3F0019F503 /* JXStyleView.m in Sources */,
+				E1B52939219FE0FC008B27A5 /* XJInfoDetailPage.m in Sources */,
 				CB53FE691F695B540020F19A /* XYPreDepositSelectCVC.m in Sources */,
 				CBE85ADE1F63DB9900E1E4EA /* XYOrderDetailGoodsListModel.m in Sources */,
 				E19DC8C6219ACC5700C86478 /* DYLastestChatViewController.m in Sources */,
@@ -6393,6 +6583,7 @@
 				DE71B15D208744DD00467E06 /* PYPhotoBrowserConst.m in Sources */,
 				CB2DC80C1F6FCB310020C6E8 /* XYHomePopAdsView.m in Sources */,
 				487357A821943D3F001B59AB /* WebAppController.m in Sources */,
+				E17AF25B21A02D480041249C /* DJJXResponModel.m in Sources */,
 				CBCF836F1F72112900B20CF9 /* XYEWalletDetailTVCell.m in Sources */,
 				DE24BD8E207F5A0800A213C5 /* JXMyAfterSaleDetailViewController.m in Sources */,
 				DE94566C1FBEE82500827C08 /* JXRenewalRecordCell.m in Sources */,
@@ -6427,6 +6618,7 @@
 				CBE859A81F5E854500E1E4EA /* XYNetWorking.m in Sources */,
 				CB123C4B1F98DA6600CD4429 /* XYGoodsSearchResultTVCell.m in Sources */,
 				CBD2BAD31F5E50700057E2E7 /* XYHomeVC.m in Sources */,
+				E17AF25A21A02D480041249C /* DJJXBusines.m in Sources */,
 				CBFF46621F7E7ACC00D2AF93 /* XLZoomingScrollView.m in Sources */,
 				CBFF45751F736B4500D2AF93 /* XYPickView.m in Sources */,
 				CB4287521F64C54F004C43C1 /* XYOrderListModel.m in Sources */,
@@ -6453,6 +6645,7 @@
 				CBFF455C1F72418D00D2AF93 /* XYEWalletBalanceRecordVC.m in Sources */,
 				CBE85B041F63F09100E1E4EA /* XYOrderFromDetailModel.m in Sources */,
 				48B16C8E1FE00B4800DF8C1C /* JXAddCartAnimationModel.m in Sources */,
+				E17FC6C721A1009D00D435D9 /* DJJLMember.m in Sources */,
 				DE138CEA1FD931C5006E5A6F /* JXHomeViewController.m in Sources */,
 				CB42875C1F6630A8004C43C1 /* XYOrderDetailVC.m in Sources */,
 				48B830A11FBACD250019F503 /* JXGoodsCubeCollectionViewCell.m in Sources */,
@@ -6474,6 +6667,7 @@
 				DE2E45FE2088430300B03A88 /* JXMyAfterSaleDetailImageView.m in Sources */,
 				48B35106208F027300A9F7E4 /* DSectionIndexView.m in Sources */,
 				DE71B1362087339100467E06 /* JXMyAfterSaleDetailImageControllerCell.m in Sources */,
+				E17FC6C621A1009D00D435D9 /* DJJLBusines.m in Sources */,
 				4809D2B61FF4F6EC007319F7 /* JXOrderConfirmPaymentTypeModel.m in Sources */,
 				CBFF46091F7D2D8C00D2AF93 /* XYOrderReCommentVC.m in Sources */,
 				DE8E742D1FBC1C3100426EAF /* JXMyBroadbandAccountViewController.m in Sources */,
@@ -6487,6 +6681,7 @@
 				DEE9AA2C1FBD2F18001FA69A /* JXProcessingInformationViewController.m in Sources */,
 				48644D6A1FCED22800CE47BC /* JXFullReduceGoodsPagePromotionView.m in Sources */,
 				CB53FE6F1F69654A0020F19A /* XYPreDepositSelectModel.m in Sources */,
+				E17FC6C921A1009D00D435D9 /* DJJLLoginResponse.m in Sources */,
 				DE81A88120649F8700E8632C /* AddressModel.m in Sources */,
 				CBFF467E1F7F271500D2AF93 /* XYOrderShowImgCVCell.m in Sources */,
 				CBE85AC81F63996200E1E4EA /* XYOrderDetailGoodsListTVC.m in Sources */,
@@ -6502,6 +6697,7 @@
 				48D980291FEBA2A800246D4B /* JXClassificationViewModel.m in Sources */,
 				DE4364DB1FCBDFC0002976B0 /* JXExpiredViewController.m in Sources */,
 				48456AA51FBD31810036600B /* POViewFrameBuilder.m in Sources */,
+				E17FC6CA21A1009D00D435D9 /* DJJLUAUser.m in Sources */,
 				CBD2BAA21F5D49590057E2E7 /* XYTabbarController.m in Sources */,
 				48644D6F1FCFD70800CE47BC /* JXCouponActivityWebPage.m in Sources */,
 				CBE85A1C1F61461500E1E4EA /* XYCycleScrollViewNet.m in Sources */,
@@ -6558,7 +6754,9 @@
 				48B573802047EE860028A8FA /* JXElectronicInvoiceCheckCell.m in Sources */,
 				CBFF45CF1F7A907D00D2AF93 /* XYUMSocialShareItemCVCell.m in Sources */,
 				48B8309A1FB9F5AD0019F503 /* JXQueryConditionItem.m in Sources */,
+				E17AF25821A02D480041249C /* DJJXMembers.m in Sources */,
 				DE91100A2085DD5600BDDABF /* JXOderFootView.m in Sources */,
+				E17FC6D821A1053E00D435D9 /* DJJSResult.m in Sources */,
 				487B5CA1205FAEE1006921AC /* JXDeliverWayViewModel.m in Sources */,
 				DE3764351FDA295700D84A7B /* JXCityListViewController.m in Sources */,
 				4843205D20245F6C00468411 /* JXPiontsRuleModel.m in Sources */,
@@ -6613,6 +6811,7 @@
 				CB3872821FA455D200254263 /* XYFindBestVC.m in Sources */,
 				487C55A82060FF93006A8071 /* JXVersionUpdateView.m in Sources */,
 				48511D87219FC9C5006C6081 /* NSObject+Extension.m in Sources */,
+				E17FC6C821A1009D00D435D9 /* DJJLIMInfo.m in Sources */,
 				DE97D2481FD914F700D70F46 /* JXHomeHeatView.m in Sources */,
 				CBCF835E1F71384C00B20CF9 /* XYOrderDetailOrderBottonVC.m in Sources */,
 				481434AB1FE8EFF000E7DCD8 /* JXShareModel.m in Sources */,
@@ -6651,8 +6850,10 @@
 				480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */,
 				CBE85ABA1F630B1C00E1E4EA /* XYMineOrderButtonVC.m in Sources */,
 				48B5737D2047E2430028A8FA /* JXElectronicInvoiceHeaderCell.m in Sources */,
+				E17FC6D721A1053E00D435D9 /* DJJSIMInfo.m in Sources */,
 				CB4287771F66AE39004C43C1 /* XYOrderDetailTitleModel.m in Sources */,
 				486BA980207B66A400FB709D /* JXRefundStateCell.m in Sources */,
+				E17AF25721A02D480041249C /* DJJXCreator.m in Sources */,
 				CB4287491F64562B004C43C1 /* XYPopInputPasswordView.m in Sources */,
 				488E30C21FD9102300D4DC17 /* JXGoodsDetailCouponViewController.m in Sources */,
 				CBFF456E1F72648900D2AF93 /* XYEWalletCommon.m in Sources */,
@@ -6705,6 +6906,7 @@
 				DE9F8CC61FDFD56900D8FE8A /* JXHomeRecommendCollectionCell.m in Sources */,
 				48B740E3201EB81A0062FA33 /* UIAlertController+XYAlertController.m in Sources */,
 				CBD2BAD91F5E50C80057E2E7 /* XYShoppingCartVC.m in Sources */,
+				E17AF21621A021E40041249C /* UserManager.m in Sources */,
 				CBCF83541F7129BD00B20CF9 /* LBXScanNetAnimation.m in Sources */,
 				CBF74E5F1F8F437200D528C2 /* XYCaculateTool.m in Sources */,
 				CB063E141F9F1B2400A9395D /* XYEWalletBalanceFirstCell.m in Sources */,
@@ -6759,6 +6961,7 @@
 				CBE859CD1F5FC1E500E1E4EA /* XYHomeHotGoodsCVCHeaderView.m in Sources */,
 				CBE85AE91F63E48D00E1E4EA /* UIView+Frame.m in Sources */,
 				CBE85AEA1F63E48D00E1E4EA /* YZDisplayTitleLabel.m in Sources */,
+				E17AF25D21A02D480041249C /* DJJXAdminUsers.m in Sources */,
 				DE81A88220649F8700E8632C /* AreaView.m in Sources */,
 				DE910FD82085DD3C00BDDABF /* JXMyOderDetailsHeadView.m in Sources */,
 				48CC2C321FD9271400622935 /* YWDPopupControl+YWDBuyer.m in Sources */,
@@ -6827,6 +7030,7 @@
 				DEAB009D1FDE3D6A0007E66D /* JXHomeCommodityHeatView.m in Sources */,
 				CBFF467A1F7F271500D2AF93 /* XYOrderCommentDetailFirstCell.m in Sources */,
 				DE4FC29E20918FD80069A4B4 /* JXLocationTool.m in Sources */,
+				E17FC6DA21A1053E00D435D9 /* DJJSGetUserModel.m in Sources */,
 				CB4287451F6455C4004C43C1 /* WTReTextField.m in Sources */,
 				DE910F2B2085859C00BDDABF /* JXMyRefundAfterSaleModel.m in Sources */,
 				DE8E74451FBC223A00426EAF /* JXMyBroadbandAccountFootView.m in Sources */,
@@ -6860,6 +7064,7 @@
 				DE9110192085DD5600BDDABF /* JXOderPromptView.m in Sources */,
 				CBF74E721F8F87C300D528C2 /* XYMyBoardBandFirstChildVC.m in Sources */,
 				DEB72FDC1FBD746F0069C581 /* JXPackageDetailsViewController.m in Sources */,
+				E17FC6D621A1053E00D435D9 /* DJJSBusines.m in Sources */,
 				DE138CE31FD9280B006E5A6F /* JXHomelDataModel.m in Sources */,
 				CBFF46551F7E7ACC00D2AF93 /* UIView+XLExtension.m in Sources */,
 				DEAB00981FDE34030007E66D /* JXHomeCommodityCell.m in Sources */,
@@ -6882,6 +7087,7 @@
 				CBCF83751F72147500B20CF9 /* XYEWalletHeaderVC.m in Sources */,
 				48B830971FB9F52C0019F503 /* JXQueryConditionItemView.m in Sources */,
 				CBE85A5E1F62440700E1E4EA /* XYShoppingCartTVCell.m in Sources */,
+				E17AF25921A02D480041249C /* DJJXEnterpriseInfo.m in Sources */,
 				48CC2C311FD9271400622935 /* YWDPopupControl.m in Sources */,
 				487351A1218C1FCC001B59AB /* DYJXLogisticViewModel.m in Sources */,
 				CBFF45651F724B5900D2AF93 /* XYBestPageModel.m in Sources */,

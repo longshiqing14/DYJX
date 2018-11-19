@@ -17,6 +17,7 @@
 #import "DYJXIdentitySwitchingModel.h"
 #import "JSExtension.h"
 #import "AppDelegate.h"
+#import "XJInfoDetailPage.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -44,8 +45,6 @@ static NSString *headerID=@"headerID";
     [self.tableView setBackgroundColor:[UIColor colorWithHexString:@"FFFFFF"]];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self GetUserInfo];
-
 }
 
 - (void)initNavigation{
@@ -69,7 +68,9 @@ static NSString *headerID=@"headerID";
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
+
+    [self GetUserInfo];
+    self.selectedIdentity = [[DYJXIdentitySwitchingModel alloc] init];
     //    [self.otherTableView.mj_header beginRefreshing];
 }
 
@@ -98,20 +99,69 @@ static NSString *headerID=@"headerID";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 60;
+    return 65;
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     DYJXIdentitySwitchingCell *tableCell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    
+    NSArray *titles = @[@"本人\n详情",@"公司\n详情",@"子公司\n  详情"];
     [tableCell.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[[self.viewModel iconImageUrl:indexPath] XYImageURL]] placeholderImage:[UIImage imageNamed:@"btn_group"]];
-    
-    tableCell.goodsNameLabel.text = [self.viewModel GroupName:indexPath];
-    tableCell.sellingPointLable.text = [self.viewModel GroupNumberString:indexPath];
+    [tableCell.detailButton addTarget:self action:@selector(btnClick:)
+                     forControlEvents:UIControlEventTouchUpInside];
+    tableCell.detailButton.tag = indexPath.row;
+    DYJXIdentitySwitchingModel *identity = [self.viewModel IdentityAtIndexPath:indexPath];
+
+    if ([[UserManager shared].login.UAUser.NumberString isEqualToString:identity.NumberString]) { // 本人详情
+        [tableCell.detailButton setTitle:titles.firstObject forState:UIControlStateNormal];
+        tableCell.contentView.backgroundColor = [UIColor whiteColor];
+        tableCell.goodsImageView.layer.masksToBounds = YES;
+        tableCell.goodsImageView.layer.cornerRadius = 25.0;
+        tableCell.goodsNameLabel.textColor = [UIColor colorWithHexString:@"#333333"];
+        tableCell.sellingPointLable.textColor = [UIColor colorWithHexString:@"#333333"];
+        tableCell.sellingPointLable.text = [NSString stringWithFormat:@"%@",[self.viewModel GroupName:indexPath]];
+        tableCell.goodsNameLabel.font = [UIFont boldSystemFontOfSize:14];
+        tableCell.sellingPointLable.font = [UIFont boldSystemFontOfSize:14];
+    }
+    else {
+        tableCell.goodsNameLabel.font = [UIFont systemFontOfSize:14];
+        tableCell.sellingPointLable.font = [UIFont systemFontOfSize:14];
+        tableCell.goodsImageView.layer.masksToBounds = NO;
+        if ([self isAdmin:identity]) {
+            tableCell.sellingPointLable.text = [NSString stringWithFormat:@"%@%@",[self.viewModel GroupName:indexPath],@"(管理员)"];
+        }
+        else {
+            tableCell.sellingPointLable.text = [NSString stringWithFormat:@"%@%@",[self.viewModel GroupName:indexPath],@"(参与者)"];
+        }
+        if (!identity.IsPart) { // 公司详情
+            [tableCell.detailButton setTitle:titles[1] forState:UIControlStateNormal];
+            tableCell.contentView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
+            tableCell.goodsNameLabel.textColor = [UIColor colorWithRed:219/255.0 green:55/255.0 blue:48/255.0 alpha:1];
+            tableCell.sellingPointLable.textColor = [UIColor colorWithRed:219/255.0 green:55/255.0 blue:48/255.0 alpha:1];
+        }
+        else { // 子公司详情
+            [tableCell.detailButton setTitle:titles.lastObject forState:UIControlStateNormal];
+            tableCell.contentView.backgroundColor = [UIColor whiteColor];
+            tableCell.goodsNameLabel.textColor = [UIColor colorWithHexString:@"#333333"];
+            tableCell.sellingPointLable.textColor = [UIColor colorWithHexString:@"#333333"];
+        }
+    }
+    tableCell.goodsNameLabel.text = [NSString stringWithFormat:@"ID:%@ TEL:", [self.viewModel GroupNumberString:indexPath]];
+
+
     tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return tableCell;
+}
+
+-(BOOL)isAdmin:(DYJXIdentitySwitchingModel *)model {
+    for (int i = 0; i < model.AdminUserIds.count; i++) {
+        NSString *userId = model.AdminUserIds[i];
+        if ([userId isEqualToString:[UserManager shared].login.UserID]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -169,9 +219,25 @@ static NSString *headerID=@"headerID";
     }
 }
 
+#pragma mark - Action
+-(void)btnClick:(UIButton *)sender {
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    DYJXIdentitySwitchingModel *model  = [self.viewModel IdentityAtIndexPath:indexpath];
+    if ([[UserManager shared].login.UAUser.NumberString isEqualToString:model.NumberString]) { // 本人详情
+    }
+    else {
+        if (!model.IsPart) { // 公司详情
+        }
+        else { // 子公司详情
+        }
+    }
+    XJInfoDetailPage *target = [[XJInfoDetailPage alloc] init];
+    [self.navigationController pushViewController:target animated:true];
+}
+
 - (IBAction)logoutBTN:(UIButton *)sender {
     [self.viewModel logoutSuccess:^{
-        [YDBAlertView showToast:@"退出登录成功！"];
+//        [YDBAlertView showToast:@"退出登录成功！"];
         [XYUserDefaults deleteUserDefaultsLoginedInfoModel];
         XYKeyWindow.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXLoginPage alloc] initWithNibName:@"DYJXLoginPage" bundle:nil]];
     } failed:^(NSString *errorMsg) {
@@ -186,17 +252,12 @@ static NSString *headerID=@"headerID";
 }
 
 - (void)IdentitySwitchingCommit{
-    if ([YWDTools isNil:self.selectedIdentity.GroupNumber]) {
+    if ([YWDTools isNil:self.selectedIdentity.Id]) {
         [YDBAlertView showToast:@"请选择一个身份!"];
         return;
     }
 
     [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
-    [XYUserDefaults writeLoginedInfoRongTokenModel:self.selectedIdentity.Owner];
-    AppDelegate *appD = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (appD) {
-        [appD IMInit];
-    }
 
     DYJXLogisticPage *logisticPage = [[DYJXLogisticPage alloc]initWithNibName:@"DYJXLogisticPage" bundle:nil];
     logisticPage.IdentityModel = self.selectedIdentity;

@@ -33,14 +33,14 @@
 @property (nonatomic, strong) UILabel * needPayLB;
 
 
-@property (nonatomic, strong) NSString * totalPayString;
+@property (nonatomic, copy) NSString * totalPayString;
 /** 还需支付 */
-@property (nonatomic, strong) NSString * needTotal;
+@property (nonatomic, copy) NSString * needTotal;
 
 /** 是否使用余额 */
 @property (nonatomic, assign) BOOL isBalanceUsed;
 /** 选择的 支付方式 */
-@property (nonatomic, strong) NSString * selectPayType;
+@property (nonatomic, copy) NSString * selectPayType;
 
 @property (nonatomic, strong) NSArray *payMentArray;
 

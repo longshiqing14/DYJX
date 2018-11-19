@@ -11,6 +11,7 @@
 #import "XYPickCityModel.h"
 #import "DYJXUserModel.h"
 #import "DYJXUserInfoModel.h"
+#import "DJJLLoginResponse.h"
 
 @interface XYUserDefaults : NSObject
 
@@ -24,6 +25,14 @@
 /********************************CertificateId************************************/
 /** 读取全局变量  CertificateId  */
 + (NSString*)readAppDlegateOfCertificateId;
+
+
+
+// DJJLLoginResponse
+/** 读取 DJJLLoginResponse  */
++ (DJJLLoginResponse*)readLoginedModel;
+/** 写入 DJJLLoginResponse  */
++ (void)cacheLoginedModel:(DJJLLoginResponse*)model;
 
 
 /** 写入全局变量  CertificateId  */

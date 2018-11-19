@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  Typically, you should not use this class directly.
  */
 @interface YYKVStorageItem : NSObject
-@property (nonatomic, strong) NSString *key;                ///< key
+@property (nonatomic, copy) NSString *key;                ///< key
 @property (nonatomic, strong) NSData *value;                ///< value
 @property (nullable, nonatomic, strong) NSString *filename; ///< filename (nil if inline)
 @property (nonatomic) int size;                             ///< value's size in bytes

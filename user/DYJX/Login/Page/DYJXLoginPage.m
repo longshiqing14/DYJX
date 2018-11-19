@@ -29,6 +29,9 @@
     self.navigationController.navigationBar.titleTextAttributes=
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
       NSFontAttributeName:[UIFont systemFontOfSize:18]};
+
+    self.userNameTF.text = @"13750820441";
+    self.passwordTF.text = @"654321";
 }
 
 - (void)didReceiveMemoryWarning {

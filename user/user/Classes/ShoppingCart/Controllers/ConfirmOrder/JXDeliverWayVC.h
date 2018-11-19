@@ -19,7 +19,7 @@
 
 @interface JXDeliverWayVC : BaseViewController
 @property(assign,nonatomic) id<XYDeliveryWayPopViewDelegate> delegate;
-@property (nonatomic, strong) NSString *selectWayText;
-//@property (nonatomic, strong) NSString *AdressName;
+@property (nonatomic, copy) NSString *selectWayText;
+//@property (nonatomic, copy) NSString *AdressName;
 @property (nonatomic, strong)JXAdressModel *model;
 @end

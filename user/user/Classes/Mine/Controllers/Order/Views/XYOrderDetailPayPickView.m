@@ -24,10 +24,10 @@
 @property (nonatomic, strong) UIView * footerView;
 
 /** 支付 金额 */
-@property (nonatomic, strong) NSString * totalPayString;
+@property (nonatomic, copy) NSString * totalPayString;
 
 /** 选择的 支付方式 */
-@property (nonatomic, strong) NSString * selectPayType;
+@property (nonatomic, copy) NSString * selectPayType;
 
 @property (nonatomic, strong) NSArray *payMentArray;
 

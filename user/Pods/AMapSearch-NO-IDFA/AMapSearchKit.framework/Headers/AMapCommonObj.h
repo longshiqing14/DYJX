@@ -286,7 +286,7 @@
 ///商圈
 @interface AMapBusinessArea : AMapSearchObject
 ///名称
-@property (nonatomic, strong) NSString     *name; 
+@property (nonatomic, copy) NSString     *name; 
 ///中心坐标
 @property (nonatomic, copy)   AMapGeoPoint *location;
 @end

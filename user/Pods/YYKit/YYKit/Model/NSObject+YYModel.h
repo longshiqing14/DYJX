@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
     
      ********************** json convertor *********************
      @interface YYAuthor : NSObject
-     @property (nonatomic, strong) NSString *name;
+     @property (nonatomic, copy) NSString *name;
      @property (nonatomic, assign) NSDate *birthday;
      @end
      @implementation YYAuthor

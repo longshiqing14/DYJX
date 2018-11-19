@@ -56,6 +56,7 @@
 #import "UIAlertController+XYAlertController.h"
 #import "NSString+Tool.h"
 #import "NSObject+Extension.h"
+#import "UserManager.h"
 
 #define RETURN_CODE_  @"RETURN_CODE"
 #define RETURN_DESC_  @"RETURN_DESC"

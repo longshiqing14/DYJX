@@ -8,7 +8,9 @@
 
 #import "DYJXIdentitySwitchingViewModel.h"
 #import "DYJXUserInfoModel.h"
-
+#import "DJJXResponModel.h"
+#import "DJJSGetUserModel.h"
+#import "AppDelegate.h"
 #define kRequestPageNumber @"page"
 #define kRequestPageSize @"page_size"
 #define kStartPageIndex 1
@@ -102,11 +104,12 @@
     [reqDict setObject:@"iOS" forKey:@"Device"];
     [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
     [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
-    [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
+    [reqDict setObject:userModel.MemberID forKey:@"MemberID"];
     
     [XYNetWorking XYPOST:kDYJXAPI_user_MyEnterprises params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            
+            DJJXResponModel *responseModel = [DJJXResponModel mj_objectWithKeyValues:responseObject];
+            responseModel.Result = [NSArray modelArrayWithClass:[DJJXResult class] json:responseModel.Result];
             if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
                 [XYProgressHUD svHUDDismiss];
                     NSArray *resultArray = [NSArray modelArrayWithClass:[DYJXIdentitySwitchingModel class] json:[responseObject objectForKey:@"Result"]];
@@ -151,20 +154,30 @@
         [reqDict setObject:@"iOS" forKey:@"Device"];
         [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
         [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
-        [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
-    
+//        [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
+
     [XYNetWorking XYPOST:kDYJXAPI_user_GetUserById params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            
+            [weakSelf.dataArray removeAllObjects];
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
                 [SVProgressHUD dismiss];
+                [UserManager shared].getUserModel = [DJJSGetUserModel mj_objectWithKeyValues:responseObject];
+                [UserManager shared].getUserModel.Result = [DJJSResult mj_objectWithKeyValues:responseObject[@"Result"]];
                 weakSelf.resultUserInfoModel = [DYJXUserInfoModel modelWithJSON:[responseObject objectForKey:@"Result"]];
+                userModel.MemberID = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"MemberID"]];
+                [UserManager shared].login.MemberID = userModel.MemberID;
+                [XYUserDefaults writeUserDefaultsLoginedInfoModel:userModel];
+
                 DYJXIdentitySwitchingModel *identitySwitchingModel = [[DYJXIdentitySwitchingModel alloc]init];
                 identitySwitchingModel.NumberString = weakSelf.resultUserInfoModel.NumberString;
                 identitySwitchingModel.GroupName = weakSelf.resultUserInfoModel.Business.IMInfo.NickName;
                 identitySwitchingModel.GroupHeadImg = weakSelf.resultUserInfoModel.Business.IMInfo.HeadImgUrl;
                 [weakSelf.dataArray addObject:identitySwitchingModel];
+                AppDelegate *appD = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                if (appD) {
+                    [appD IMInit];
+                }
                 success();
                 
             }else{

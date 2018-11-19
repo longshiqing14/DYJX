@@ -13,5 +13,5 @@
 /** 发票信息 */
 @property (nonatomic, strong) JXMyInvoiceInfoModel * invoiceInfo;
 /** 订单状态 */
-@property (nonatomic, strong) NSString * processStateInfoState;
+@property (nonatomic, copy) NSString * processStateInfoState;
 @end

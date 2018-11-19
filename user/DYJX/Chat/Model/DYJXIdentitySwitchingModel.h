@@ -32,6 +32,7 @@
 @property(nonatomic, strong)NSArray *SilenceUserIds;
 @property(nonatomic, strong)DYJXIdentitySwitchingEnterpriseInfoModel *EnterpriseInfo;
 @property(nonatomic, strong)NSArray<NSString*> *AdminUserIds;
+@property(nonatomic, strong)NSArray<NSString*> *AdminUsers;
 @property(nonatomic, strong)NSArray<NSString*> *MemberIds;
 @property(nonatomic, strong)NSArray<NSString*> *AllMemberIds;
 @property(nonatomic, strong)DYJXIdentitySwitchingCreatorModel *Creator;

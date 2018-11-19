@@ -30,7 +30,7 @@
 /** 订单创建 时间 */
 @property (nonatomic, copy) NSString * createTime;
 /** 字符串形式订单创建时间 */
-@property (nonatomic, strong) NSString * formatCreateTime;
+@property (nonatomic, copy) NSString * formatCreateTime;
 
 
 /** 配送费 */
