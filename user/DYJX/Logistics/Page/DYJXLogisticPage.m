@@ -58,7 +58,7 @@
     self.collectionView.scrollEnabled = NO;
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
-    self.collectionView.backgroundColor = [UIColor colorWithRed:106/225. green:171/225. blue:206/225. alpha:1];
+    self.collectionView.backgroundColor = [UIColor colorWithRed:79/225. green:134/225. blue:209/225. alpha:1];
     [self.collectionView registerNib:[UINib nibWithNibName:@"DYJXLogisticCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"DYJXLogisticCollectionViewCell"];
      [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
 }
@@ -117,7 +117,18 @@
             cell.content2.text = @"同城";
             cell.content3.text = @"员工端";
         }
-    
+
+        cell.content1.textColor = [UIColor colorWithHexString:@"#333333"];
+        cell.content2.textColor = [UIColor colorWithHexString:@"#333333"];
+        cell.content3.textColor = [UIColor colorWithHexString:@"#333333"];
+
+        if (indexPath.section == 0) {
+            cell.contentView.backgroundColor = [UIColor colorWithRed:254.0/255.0 green:241/255.0 blue:187/255.0 alpha:1];
+        }
+        else {
+            cell.contentView.backgroundColor = [UIColor colorWithRed:221/255.0 green:238/255.0 blue:205/255.0 alpha:1];
+
+        }
     }
     return cell;
     
@@ -194,7 +205,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     if (section == 1) {
-        return CGSizeMake(kScreenWidth, 5);
+        return CGSizeMake(kScreenWidth, 2.5);
     }
     return CGSizeMake(0, 0);
 }
@@ -218,7 +229,11 @@
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForHeadViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"header" forIndexPath:indexPath];
-        view.backgroundColor = [UIColor whiteColor];
+
+        UIView *subView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth - 20, 2.5)];
+        subView.backgroundColor = [UIColor whiteColor];
+
+        [view addSubview:subView];
         return view;
     }
     return [UICollectionReusableView new];
