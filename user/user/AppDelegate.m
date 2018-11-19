@@ -94,7 +94,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
     
     [self initUMENG];
     
-    [self initGAODE];
+//    [self initGAODE];
     
 //    [self CheckAndUpgradeVersion];
     // 设置窗口
