@@ -58,7 +58,7 @@
     self.collectionView.scrollEnabled = NO;
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
-    self.collectionView.backgroundColor = [UIColor colorWithRed:106/225. green:171/225. blue:206/225. alpha:1];
+    self.collectionView.backgroundColor = [UIColor colorWithRed:79/225. green:134/225. blue:209/225. alpha:1];
     [self.collectionView registerNib:[UINib nibWithNibName:@"DYJXLogisticCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"DYJXLogisticCollectionViewCell"];
      [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
 }
@@ -84,40 +84,36 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             //16888物流平台
-            cell.content1.text = @"16888";
-            cell.content2.text = @"物流";
-            cell.content3.text = @"平台";
-            
+            cell.content1.text = @"16888\n 物流\n 平台";
         }else if (indexPath.row == 1){
             //百度
-            cell.content1.text = @"百度";
-            cell.content2.text = @"";
-            cell.content3.text = @"More";
+            cell.content1.text = @"百度\nMore";
         }
     
     }else if (indexPath.section == 1){
         if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_ea"]) {
             //新泰通物流员工端
-            cell.content1.text = @"新泰通";
-            cell.content2.text = @"物流";
-            cell.content3.text = @"员工端";
+            cell.content1.text = @"新泰通\n 物流\n员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_back"]){
             //广州退货员工端
-            cell.content1.text = @"广州";
-            cell.content2.text = @"退货";
-            cell.content3.text = @"员工端";
+            cell.content1.text = @"广州\n 退货\n员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt"]){
             //新泰通报销员工端
-            cell.content1.text = @"新泰通";
-            cell.content2.text = @"报销";
-            cell.content3.text = @"员工端";
+            cell.content1.text = @"新泰通\n 报销\n员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_qcd"]){
             //全城达
-            cell.content1.text = @"全城达";
-            cell.content2.text = @"同城";
-            cell.content3.text = @"员工端";
+            cell.content1.text = @"全城达\n 同城\n员工端";
         }
-    
+
+        cell.content1.textColor = [UIColor colorWithHexString:@"#333333"];
+
+        if (indexPath.section == 0) {
+            cell.contentView.backgroundColor = [UIColor colorWithRed:254.0/255.0 green:241/255.0 blue:187/255.0 alpha:1];
+        }
+        else {
+            cell.contentView.backgroundColor = [UIColor colorWithRed:221/255.0 green:238/255.0 blue:205/255.0 alpha:1];
+
+        }
     }
     return cell;
     
@@ -129,14 +125,13 @@
         if (indexPath.row == 0) {
             //16888物流平台
             // Webivew集成不能同时WebApp集成，需要修改AppDelegate文件的PDRCore的启动参数
+
           WebAppController  *pWebAppController = [[WebAppController alloc] init];
             pWebAppController.AppId = @"com.zlMax.lw16888Logistics";
             if (pWebAppController) {
-                self.navigationController.navigationBarHidden = YES;
+//                self.navigationController.navigationBarHidden = YES;
                 [self.navigationController pushViewController:pWebAppController animated:YES];
-            }
-
-            
+            }            
         }else if (indexPath.row == 1){
             //百度
             DYJXBaiDuWebPage * baiDuWebPage = [[DYJXBaiDuWebPage alloc]init];
@@ -175,7 +170,7 @@
 #pragma mark -UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake((self.view.frame.size.width - 15*5)/4 , (self.view.frame.size.width - 15*5)/4 );
+    return CGSizeMake((self.view.frame.size.width - 30 - 15*5)/4 , (self.view.frame.size.width - 30 - 15*5)/4 );
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
@@ -195,7 +190,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     if (section == 1) {
-        return CGSizeMake(kScreenWidth, 5);
+        return CGSizeMake(kScreenWidth, 2.5);
     }
     return CGSizeMake(0, 0);
 }
@@ -219,7 +214,11 @@
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForHeadViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"header" forIndexPath:indexPath];
-        view.backgroundColor = [UIColor whiteColor];
+
+        UIView *subView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth - 20, 2.5)];
+        subView.backgroundColor = [UIColor whiteColor];
+
+        [view addSubview:subView];
         return view;
     }
     return [UICollectionReusableView new];
