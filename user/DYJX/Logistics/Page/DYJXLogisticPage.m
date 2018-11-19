@@ -36,7 +36,7 @@
     [self initNavigation];
     [self initCollectionView];
 
-    [self.viewModel.requestDic setObject:self.IdentityModel.GroupNumber forKey:@"CertificateId"];
+    [self.viewModel.requestDic setObject:self.IdentityModel.Id forKey:@"CertificateId"];
     [self.viewModel getMyAppsSuccess:^{
         [weakSelf.collectionView reloadData];
     } failed:^(NSString *errorMsg) {
@@ -84,30 +84,38 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             //16888物流平台
-            [cell.imageView setImage:[UIImage imageNamed:@"16888wuliupingtai"]];
+            cell.content1.text = @"16888";
+            cell.content2.text = @"物流";
+            cell.content3.text = @"平台";
             
         }else if (indexPath.row == 1){
             //百度
-            [cell.imageView setImage:[UIImage imageNamed:@"baidu_more"]];
+            cell.content1.text = @"百度";
+            cell.content2.text = @"";
+            cell.content3.text = @"More";
         }
     
     }else if (indexPath.section == 1){
         if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_ea"]) {
             //新泰通物流员工端
-            [cell.imageView setImage:[UIImage imageNamed:@"xtt_baoxiao"]];
-            
+            cell.content1.text = @"新泰通";
+            cell.content2.text = @"物流";
+            cell.content3.text = @"员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_back"]){
             //广州退货员工端
-            [cell.imageView setImage:[UIImage imageNamed:@"gz_tuihuo"]];
-            
+            cell.content1.text = @"广州";
+            cell.content2.text = @"退货";
+            cell.content3.text = @"员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt"]){
             //新泰通报销员工端
-            [cell.imageView setImage:[UIImage imageNamed:@"xtt_wuliu"]];
-            
+            cell.content1.text = @"新泰通";
+            cell.content2.text = @"报销";
+            cell.content3.text = @"员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_qcd"]){
             //全城达
-            [cell.imageView setImage:[UIImage imageNamed:@"qcd_tongcheng"]];
-            
+            cell.content1.text = @"全城达";
+            cell.content2.text = @"同城";
+            cell.content3.text = @"员工端";
         }
     
     }

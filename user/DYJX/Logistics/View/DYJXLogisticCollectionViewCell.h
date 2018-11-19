@@ -10,6 +10,8 @@
 
 @interface DYJXLogisticCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *content1;
+@property (weak, nonatomic) IBOutlet UILabel *content2;
+@property (weak, nonatomic) IBOutlet UILabel *content3;
 
 @end
