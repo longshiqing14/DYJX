@@ -67,6 +67,11 @@
 +(void)plusRestart{
     
 }
++(void)popNavigation{
+    [XYCommon getCurrentVC].navigationController.navigationBarHidden = NO;
+   [[XYCommon getCurrentVC].navigationController popViewControllerAnimated:YES];
+    
+}
 //- (NSString*)getCertificateId{
 //    return @"123";
 //}

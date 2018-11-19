@@ -74,7 +74,11 @@
 				if(xtt.host != 'HB') {
 					$('#btnPlusBack').removeClass('mui-hidden');
 					document.getElementById('btnPlusBack').addEventListener('tap', function() {
-						plus.runtime.quit();
+                        if (plus.os.name == "Android") {
+                            plus.runtime.quit();
+                        } else if (plus.os.name == "iOS") {
+                            xtt.popNavigation();
+                        }
 					});
 				}
 
@@ -416,7 +420,11 @@
 					}, 1000);
 				} else {
 					if(new Date().getTime() - first < 1000) {
-						plus.runtime.quit();
+                        if (plus.os.name == "Android") {
+                            plus.runtime.quit();
+                        } else if (plus.os.name == "iOS") {
+                            xtt.popNavigation();
+                        }
 					}
 				}
 				//        }
