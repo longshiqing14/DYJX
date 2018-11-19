@@ -67,6 +67,7 @@
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>streamapp</string>
 		<string>hbuilder</string>
 		<string>wechat</string>
 		<string>weixin</string>

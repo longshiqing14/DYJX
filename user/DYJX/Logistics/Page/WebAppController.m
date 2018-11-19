@@ -79,22 +79,27 @@ static UIView* pContentVIew = nil;
     NSData* data = [[NSData alloc] init];
     data = [fm contentsAtPath:jsPath];
     NSString *JSPath = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-     NSLog(@"%@",JSPath);
+    NSLog(@"%@",JSPath);
 
     NSString *logPluginJS = [NSString stringWithContentsOfFile:JSPath
                                                       encoding:NSUTF8StringEncoding
                                                          error:&error];
     
     [core regPluginWithName:@"SCAccountManager" impClassName:@"SCAccountManager" type:PDRExendPluginTypeFrame javaScript:logPluginJS];
-    [[[PDRCore Instance] appManager] restart:pAppHandle];
+//    [[[PDRCore Instance] appManager] restart:pAppHandle];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
 
-
-
+-(BOOL)closeCore {
+    [self.navigationController popViewControllerAnimated:YES];
+    return YES;
+}
+-(BOOL)isBeingDismissed {
+    return YES;
+}
 - (void)received:(NSNotification *)noti {
     NSLog(@"原生界面收到了通知");
 }

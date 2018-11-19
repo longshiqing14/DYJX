@@ -133,7 +133,7 @@
           WebAppController  *pWebAppController = [[WebAppController alloc] init];
             pWebAppController.AppId = @"com.zlMax.lw16888Logistics";
             if (pWebAppController) {
-                self.navigationController.navigationBarHidden = YES;
+//                self.navigationController.navigationBarHidden = YES;
                 [self.navigationController pushViewController:pWebAppController animated:YES];
             }            
         }else if (indexPath.row == 1){
