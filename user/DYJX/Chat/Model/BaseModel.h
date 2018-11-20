@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface BaseModel : NSObject
+
+@property (nonatomic, copy)NSString *cellId;
+@property (nonatomic, assign)CGFloat height;
+@property (nonatomic, strong)UITableViewCell *cell;
+
+-(instancetype)initWithId:(NSString *)cellId height:(CGFloat)height cell:(UITableViewCell *)cell;
 
 @end
 
-NS_ASSUME_NONNULL_END

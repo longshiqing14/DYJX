@@ -27,6 +27,7 @@
 
     [self initNavigation];
 
+    self.isShowNetworkIndicatorView = false;
     //设置需要显示哪些类型的会话
     [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),
                                         @(ConversationType_DISCUSSION),
@@ -50,6 +51,7 @@
 
 //    self.navigationItem.leftBarButtonItem = leftItem;
 
+    self.conversationListTableView.tableHeaderView = self.headView;
 
     self.conversationListTableView.tableFooterView = [UIView new];
 }
@@ -70,6 +72,13 @@
 
 - (void)black_controller{
     XYKeyWindow.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
+}
+
+-(HeadSearchView *)headView {
+    if (!_headView) {
+        _headView = [[HeadSearchView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
+    }
+    return _headView;
 }
 
 //客服

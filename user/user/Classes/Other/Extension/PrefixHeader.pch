@@ -141,6 +141,11 @@
 
 /************************************************KEY**********************************************/
 
+typedef NS_ENUM(NSUInteger, XJGroupType) {
+    XJGroupTypePerson = 0, // 个人
+    XJGroupTypeSubCompany = 1, // 子公司
+    XJGroupTypeCompany = 2, // 公司
+};
 
 
 #endif /* PrefixHeader_pch */

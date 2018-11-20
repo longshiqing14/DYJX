@@ -10,23 +10,42 @@
 
 @interface XJInfoDetailPage ()
 
+@property (nonatomic, strong)GropuDetailViewModel *viewModel;
+
 @end
 
 @implementation XJInfoDetailPage
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [self.view addSubview:self.tableView];
+    [self.viewModel attachPage:self];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)setType:(XJGroupType *)type {
+//    if (_type != type) {
+        _type = type;
+        self.viewModel.type = type;
+    NSArray *titles = @[@"本人账户管理",@"公司账户管理",@"信息查看"];
+    self.navigationItem.title = titles[(int)type];
+//    }
 }
-*/
 
+#pragma mark - UI
+-(GropuDetailViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[GropuDetailViewModel alloc] init];
+    }
+    return _viewModel;
+}
+
+-(UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64) style:UITableViewStylePlain];
+        _tableView.delaysContentTouches = NO;
+    }
+    return _tableView;
+}
 @end
+

@@ -10,4 +10,13 @@
 
 @implementation BaseModel
 
+-(instancetype)initWithId:(NSString *)cellId height:(CGFloat)height cell:(UITableViewCell *)cell {
+    if (self = [super init]) {
+        self.height = height;
+        self.cellId = cellId;
+        self.cell = cell;
+    }
+    return self;
+}
+
 @end

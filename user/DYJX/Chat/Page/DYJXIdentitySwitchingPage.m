@@ -229,15 +229,18 @@ static NSString *headerID=@"headerID";
 -(void)btnClick:(UIButton *)sender {
     NSIndexPath *indexpath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
     DYJXIdentitySwitchingModel *model  = [self.viewModel IdentityAtIndexPath:indexpath];
+    XJInfoDetailPage *target = [[XJInfoDetailPage alloc] init];
     if ([[UserManager shared].login.UAUser.NumberString isEqualToString:model.NumberString]) { // 本人详情
+        target.type = XJGroupTypePerson;
     }
     else {
-        if (!model.IsPart) { // 公司详情
+        if (!model.IsPart) { // 子公司详情
+            target.type = XJGroupTypeSubCompany;
         }
-        else { // 子公司详情
+        else { // 公司详情
+            target.type = XJGroupTypeCompany;
         }
     }
-    XJInfoDetailPage *target = [[XJInfoDetailPage alloc] init];
     [self.navigationController pushViewController:target animated:true];
 }
 
