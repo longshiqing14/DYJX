@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="99eba093-0331-4c37-acd3-ae51b4616bad" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/xtt.js" afterPath="$PROJECT_DIR$/js/xtt.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/merchant/order.html" afterPath="$PROJECT_DIR$/merchant/order.html" />
+      <change beforePath="$PROJECT_DIR$/js/xtt.js" afterPath="$PROJECT_DIR$/js/xtt.js" />
+      <change beforePath="$PROJECT_DIR$/merchant/order.html" afterPath="$PROJECT_DIR$/merchant/order.html" />
     </list>
     <ignored path="xtt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -14,21 +14,19 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="xtt" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="xtt.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/xtt.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.48">
-              <caret line="97" column="15" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="15" />
+            <state relative-caret-position="1320">
+              <caret line="97" column="15" lean-forward="false" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="15" />
               <folding>
                 <element signature="e#883#1046#0" expanded="false" />
                 <element signature="e#1584#2357#0" expanded="false" />
@@ -38,11 +36,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="430" column="17" lean-forward="true" selection-start-line="430" selection-start-column="17" selection-end-line="430" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/merchant/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-28.16">
-              <caret line="198" column="30" selection-start-line="198" selection-start-column="30" selection-end-line="198" selection-end-column="30" />
+            <state relative-caret-position="15">
+              <caret line="198" column="30" lean-forward="false" selection-start-line="198" selection-start-column="30" selection-end-line="198" selection-end-column="30" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#button#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -55,13 +63,10 @@
       <file leaf-file-name="xtt.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/xtt.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44444445">
-              <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+            <state relative-caret-position="245">
+              <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
-                <element signature="e#7042#8021#0" expanded="false" />
-                <element signature="e#8059#17115#0" expanded="false" />
-                <element signature="e#12065#17111#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -70,16 +75,9 @@
       <file leaf-file-name="orders.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/merchant/orders.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.47826">
-              <caret line="82" column="53" selection-start-line="82" selection-start-column="53" selection-end-line="82" selection-end-column="53" />
+            <state relative-caret-position="1230">
+              <caret line="82" column="26" lean-forward="false" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
               <folding>
-                <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#0;n#div#3;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
@@ -89,8 +87,8 @@
       <file leaf-file-name="ReleaseNote.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ReleaseNote.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+            <state relative-caret-position="165">
+              <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -99,17 +97,11 @@
       <file leaf-file-name="selectCustomer.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/merchant/selectCustomer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.434783">
-              <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+            <state relative-caret-position="315">
+              <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
               <folding>
                 <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1469517362000" expanded="true" signature="3411:3447" placeholder="{...}" />
-                <marker date="1469517362000" expanded="true" signature="3977:3996" placeholder="/** 新增 ...*/" />
-                <marker date="1469517362000" expanded="true" signature="4411:4489" placeholder="/** 构建列表项 ...*/" />
-                <marker date="1469517362000" expanded="true" signature="6093:6120" placeholder="/** 下拉刷新具体业务实现 ...*/" />
-                <marker date="1469517362000" expanded="true" signature="7345:7372" placeholder="/** 上拉加载具体业务实现 ...*/" />
-                <marker date="1469517362000" expanded="true" signature="9078:9180" placeholder="/** 更新列表数据（会去重，位置会有变化，已最后取到的为准） ...*/" />
               </folding>
             </state>
           </provider>
@@ -118,8 +110,8 @@
       <file leaf-file-name="merchant.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/merchant.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2">
-              <caret line="94" column="4" selection-start-line="94" selection-start-column="4" selection-end-line="94" selection-end-column="4" />
+            <state relative-caret-position="1215">
+              <caret line="94" column="4" lean-forward="false" selection-start-line="94" selection-start-column="4" selection-end-line="94" selection-end-column="4" />
               <folding>
                 <element signature="e#1121#1359#0" expanded="false" />
                 <element signature="e#1418#1832#0" expanded="false" />
@@ -136,8 +128,8 @@
       <file leaf-file-name="order.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/merchant/order.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.26">
-              <caret line="58" column="22" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
+            <state relative-caret-position="750">
+              <caret line="58" column="22" lean-forward="false" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
               <folding>
                 <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -154,33 +146,9 @@
       <file leaf-file-name="merchant.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/merchant.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.077922">
-              <caret line="94" column="12" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
+            <state relative-caret-position="1410">
+              <caret line="94" column="12" lean-forward="false" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list-orders.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/merchant/list-orders.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.043478">
-              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-              <folding>
-                <marker date="1469431934000" expanded="true" signature="2236:2257" placeholder="/** 下拉刷新具体业务实现 ...*/" />
-                <marker date="1469431934000" expanded="true" signature="4567:4588" placeholder="/** 上拉加载具体业务实现 ...*/" />
-                <marker date="1469431934000" expanded="true" signature="7730:7821" placeholder="/** 更新列表数据（会去重，位置会有变化，已最后取到的为准） ...*/" />
-                <marker date="1469431934000" expanded="true" signature="9304:9348" placeholder="/** 更新单个货运单，用于编辑保存后的操作 ...*/" />
-                <marker date="1469431934000" expanded="true" signature="9501:9567" placeholder="/** 构建列表项 ...*/" />
-                <marker date="1469431934000" expanded="true" signature="9592:11768" placeholder="{...}" />
-                <marker date="1469431934000" expanded="true" signature="9617:9698" placeholder="{...}" />
-                <marker date="1469431934000" expanded="true" signature="9725:9818" placeholder="{...}" />
-                <marker date="1469431934000" expanded="true" signature="10127:10234" placeholder="..." />
-                <marker date="1469431934000" expanded="true" signature="12036:12143" placeholder="..." />
-                <marker date="1469431934000" expanded="true" signature="12875:12984" placeholder="..." />
-                <marker date="1469431934000" expanded="true" signature="14467:14480" placeholder="/** 新增 ...*/" />
-                <marker date="1469431934000" expanded="true" signature="14849:14883" placeholder="/** 保存后的处理 ...*/" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -194,6 +162,15 @@
         <option value="HTML File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>plus.runtime.quit</find>
+      <find>xtt</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -243,31 +220,20 @@
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" />
-  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="185" />
+    <option name="y" value="73" />
     <option name="width" value="1280" />
     <option name="height" value="732" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <OptionsSetting value="true" id="添加" />
-    <OptionsSetting value="true" id="移除" />
-    <OptionsSetting value="true" id="签出" />
-    <OptionsSetting value="true" id="更新" />
-    <OptionsSetting value="true" id="状态" />
-    <OptionsSetting value="true" id="编辑" />
     <ConfirmationsSetting value="2" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -284,42 +250,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xtt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xtt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xtt_qcd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xtt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xtt_qcd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -342,10 +275,20 @@
       <recent name="$PROJECT_DIR$/merchant" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.orders.html">
-    <configuration default="false" name="orders.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/xtt/merchant/orders.html">
-      <method />
-    </configuration>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="orders.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/xtt/merchant/orders.html" />
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -368,21 +311,22 @@
       <option name="filePath" />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run-script" />
       <scripts />
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
     <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter />
       <node-options />
       <working-directory>$PROJECT_DIR$</working-directory>
       <pass-parent-env>true</pass-parent-env>
@@ -392,18 +336,16 @@
       <test-kind>DIRECTORY</test-kind>
       <test-directory />
       <recursive>false</recursive>
-      <method />
     </configuration>
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.orders.html" />
-    </list>
     <recent_temporary>
       <list size="1">
         <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.orders.html" />
       </list>
     </recent_temporary>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="StructureViewFactory">
     <option name="ACTIVE_ACTIONS" value=",HIDE_INHERITED_FROM_OBJECT" />
   </component>
@@ -411,36 +353,19 @@
     <configuration>$USER_HOME$/.subversion</configuration>
     <supportedVersion>125</supportedVersion>
   </component>
-  <component name="SvnFileUrlMappingImpl">
-    <option name="myMappingRoots">
-      <list>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="$PROJECT_DIR$" />
-          <option name="myCopyRoot" value="$PROJECT_DIR$" />
-        </SvnCopyRootSimple>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="$PROJECT_DIR$/.idea" />
-          <option name="myCopyRoot" value="$PROJECT_DIR$/.idea" />
-        </SvnCopyRootSimple>
-      </list>
-    </option>
-    <option name="myMoreRealMappingRoots">
-      <list>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="$PROJECT_DIR$" />
-          <option name="myCopyRoot" value="$PROJECT_DIR$" />
-        </SvnCopyRootSimple>
-      </list>
-    </option>
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="99eba093-0331-4c37-acd3-ae51b4616bad" name="Default" comment="" />
       <created>1457421504011</created>
       <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
       <updated>1457421504011</updated>
+      <workItem from="1542627185243" duration="846000" />
     </task>
     <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="846000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -452,27 +377,31 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="732" extended-state="6" />
+    <frame x="185" y="73" width="1280" height="732" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25040388" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30129242" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2463651" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30129242" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -494,82 +423,66 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/merchant/index-menu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="198" column="7" selection-start-line="198" selection-start-column="7" selection-end-line="198" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#button#1;n#p#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="198" column="7" lean-forward="false" selection-start-line="198" selection-start-column="7" selection-end-line="198" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+        <state relative-caret-position="0">
+          <caret line="31" column="15" lean-forward="false" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/orders.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+        <state relative-caret-position="0">
+          <caret line="34" column="28" lean-forward="false" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/mui.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3977" column="38" selection-start-line="3977" selection-start-column="38" selection-end-line="3977" selection-end-column="38" />
+        <state relative-caret-position="0">
+          <caret line="3977" column="38" lean-forward="false" selection-start-line="3977" selection-start-column="38" selection-end-line="3977" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/list-orders.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="57" selection-start-line="69" selection-start-column="57" selection-end-line="69" selection-end-column="57" />
-          <folding>
-            <marker date="1469431934000" expanded="true" signature="2236:2257" placeholder="/** 下拉刷新具体业务实现 ...*/" />
-            <marker date="1469431934000" expanded="true" signature="4567:4588" placeholder="/** 上拉加载具体业务实现 ...*/" />
-            <marker date="1469431934000" expanded="true" signature="7730:7821" placeholder="/** 更新列表数据（会去重，位置会有变化，已最后取到的为准） ...*/" />
-            <marker date="1469431934000" expanded="true" signature="9304:9348" placeholder="/** 更新单个货运单，用于编辑保存后的操作 ...*/" />
-            <marker date="1469431934000" expanded="true" signature="9501:9567" placeholder="/** 构建列表项 ...*/" />
-            <marker date="1469431934000" expanded="true" signature="9592:11768" placeholder="{...}" />
-            <marker date="1469431934000" expanded="true" signature="9617:9698" placeholder="{...}" />
-            <marker date="1469431934000" expanded="true" signature="9725:9818" placeholder="{...}" />
-            <marker date="1469431934000" expanded="true" signature="10127:10234" placeholder="..." />
-            <marker date="1469431934000" expanded="true" signature="12036:12143" placeholder="..." />
-            <marker date="1469431934000" expanded="true" signature="12875:12984" placeholder="..." />
-            <marker date="1469431934000" expanded="true" signature="14467:14480" placeholder="/** 新增 ...*/" />
-            <marker date="1469431934000" expanded="true" signature="14849:14883" placeholder="/** 保存后的处理 ...*/" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="69" column="57" lean-forward="false" selection-start-line="69" selection-start-column="57" selection-end-line="69" selection-end-column="57" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/list-carCities.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="17" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
+        <state relative-caret-position="0">
+          <caret line="66" column="17" lean-forward="false" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/customers.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/carCities.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+        <state relative-caret-position="0">
+          <caret line="31" column="10" lean-forward="false" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/merchant.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        <state relative-caret-position="0">
+          <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
           <folding>
             <element signature="e#1121#1359#0" expanded="false" />
             <element signature="e#1418#1832#0" expanded="false" />
@@ -584,57 +497,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.project">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/xtt.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.217391">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/customer/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.652174">
-          <caret line="72" column="45" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+        <state relative-caret-position="0">
+          <caret line="72" column="45" lean-forward="false" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/guide.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3913044">
-          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+        <state relative-caret-position="0">
+          <caret line="26" column="25" lean-forward="false" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/guide.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/loading.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+        <state relative-caret-position="0">
+          <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/guide.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.76">
-          <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="48" />
+        <state relative-caret-position="0">
+          <caret line="59" column="21" lean-forward="false" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/zepto-1.1.6.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
           </folding>
@@ -643,277 +556,199 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/iconfont.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.652174">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        <state relative-caret-position="0">
+          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/selectLine.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/customers.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="16" selection-start-line="70" selection-start-column="16" selection-end-line="70" selection-end-column="16" />
+        <state relative-caret-position="0">
+          <caret line="70" column="16" lean-forward="false" selection-start-line="70" selection-start-column="16" selection-end-line="70" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/carCities.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.26087">
-          <caret line="90" column="38" selection-start-line="90" selection-start-column="38" selection-end-line="90" selection-end-column="38" />
+        <state relative-caret-position="0">
+          <caret line="90" column="38" lean-forward="false" selection-start-line="90" selection-start-column="38" selection-end-line="90" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resetPassword.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="13" column="43" lean-forward="false" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/list-carCities.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.52">
-          <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
+        <state relative-caret-position="0">
+          <caret line="80" column="32" lean-forward="false" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/outlet.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.391304">
-          <caret line="186" column="51" selection-start-line="186" selection-start-column="51" selection-end-line="186" selection-end-column="51" />
+        <state relative-caret-position="0">
+          <caret line="186" column="51" lean-forward="false" selection-start-line="186" selection-start-column="51" selection-end-line="186" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/mui.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6666665">
-          <caret line="6892" column="7" selection-start-line="6892" selection-start-column="7" selection-end-line="6892" selection-end-column="7" />
+        <state relative-caret-position="0">
+          <caret line="6892" column="7" lean-forward="false" selection-start-line="6892" selection-start-column="7" selection-end-line="6892" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.44">
-          <caret line="77" column="19" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
+        <state relative-caret-position="0">
+          <caret line="77" column="19" lean-forward="false" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/lineInstances.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.516129">
-          <caret line="98" column="16" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="53" />
+        <state relative-caret-position="0">
+          <caret line="98" column="16" lean-forward="false" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/list-lineInstances.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-62.652172">
-          <caret line="483" column="31" selection-start-line="483" selection-start-column="31" selection-end-line="483" selection-end-column="31" />
+        <state relative-caret-position="0">
+          <caret line="483" column="31" lean-forward="false" selection-start-line="483" selection-start-column="31" selection-end-line="483" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/prompt.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="56" />
+        <state relative-caret-position="0">
+          <caret line="74" column="19" lean-forward="false" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/list-customers.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="214" column="12" selection-start-line="214" selection-start-column="12" selection-end-line="214" selection-end-column="12" />
+        <state relative-caret-position="0">
+          <caret line="214" column="12" lean-forward="false" selection-start-line="214" selection-start-column="12" selection-end-line="214" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/customerListStyle.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="193" column="7" selection-start-line="193" selection-start-column="7" selection-end-line="193" selection-end-column="7" />
+        <state relative-caret-position="0">
+          <caret line="193" column="7" lean-forward="false" selection-start-line="193" selection-start-column="7" selection-end-line="193" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/selectOutlet.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+        <state relative-caret-position="0">
+          <caret line="61" column="28" lean-forward="false" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/mui.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/customer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7597293">
-          <caret line="65" column="50" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
+        <state relative-caret-position="0">
+          <caret line="65" column="50" lean-forward="false" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/orderPay.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7326565">
-          <caret line="64" column="27" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+        <state relative-caret-position="0">
+          <caret line="64" column="27" lean-forward="false" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/orderListStyle.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.001692">
-          <caret line="235" column="6" selection-start-line="235" selection-start-column="6" selection-end-line="235" selection-end-column="6" />
+        <state relative-caret-position="0">
+          <caret line="235" column="6" lean-forward="false" selection-start-line="235" selection-start-column="6" selection-end-line="235" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.10829103">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        <state relative-caret-position="0">
+          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/updatePrompt.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43316412">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+        <state relative-caret-position="0">
+          <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.521739">
-          <caret line="130" column="5" selection-start-line="130" selection-start-column="5" selection-end-line="130" selection-end-column="5" />
-          <folding>
-            <element signature="e#4593#6410#0" expanded="false" />
-            <element signature="e#6448#10242#0" expanded="false" />
-            <element signature="e#8819#9962#0" expanded="false" />
-            <element signature="e#10799#11500#0" expanded="false" />
-            <element signature="e#11580#13109#0" expanded="false" />
-            <element signature="e#13207#13647#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/index-menu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.28">
-          <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
-          <folding>
-            <element signature="n#style#0;n#button#1;n#p#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="32" column="11" lean-forward="false" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/list-outlets.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.826087">
-          <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="17" column="53" lean-forward="false" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/list-orders.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.043478">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding>
-            <marker date="1469431934000" expanded="true" signature="2236:2257" placeholder="/** 下拉刷新具体业务实现 ...*/" />
-            <marker date="1469431934000" expanded="true" signature="4567:4588" placeholder="/** 上拉加载具体业务实现 ...*/" />
-            <marker date="1469431934000" expanded="true" signature="7730:7821" placeholder="/** 更新列表数据（会去重，位置会有变化，已最后取到的为准） ...*/" />
-            <marker date="1469431934000" expanded="true" signature="9304:9348" placeholder="/** 更新单个货运单，用于编辑保存后的操作 ...*/" />
-            <marker date="1469431934000" expanded="true" signature="9501:9567" placeholder="/** 构建列表项 ...*/" />
-            <marker date="1469431934000" expanded="true" signature="9592:11768" placeholder="{...}" />
-            <marker date="1469431934000" expanded="true" signature="9617:9698" placeholder="{...}" />
-            <marker date="1469431934000" expanded="true" signature="9725:9818" placeholder="{...}" />
-            <marker date="1469431934000" expanded="true" signature="10127:10234" placeholder="..." />
-            <marker date="1469431934000" expanded="true" signature="12036:12143" placeholder="..." />
-            <marker date="1469431934000" expanded="true" signature="12875:12984" placeholder="..." />
-            <marker date="1469431934000" expanded="true" signature="14467:14480" placeholder="/** 新增 ...*/" />
-            <marker date="1469431934000" expanded="true" signature="14849:14883" placeholder="/** 保存后的处理 ...*/" />
-          </folding>
+        <state relative-caret-position="210">
+          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/selectCustomer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.434783">
-          <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+        <state relative-caret-position="315">
+          <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
           <folding>
             <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1469517362000" expanded="true" signature="3411:3447" placeholder="{...}" />
-            <marker date="1469517362000" expanded="true" signature="3977:3996" placeholder="/** 新增 ...*/" />
-            <marker date="1469517362000" expanded="true" signature="4411:4489" placeholder="/** 构建列表项 ...*/" />
-            <marker date="1469517362000" expanded="true" signature="6093:6120" placeholder="/** 下拉刷新具体业务实现 ...*/" />
-            <marker date="1469517362000" expanded="true" signature="7345:7372" placeholder="/** 上拉加载具体业务实现 ...*/" />
-            <marker date="1469517362000" expanded="true" signature="9078:9180" placeholder="/** 更新列表数据（会去重，位置会有变化，已最后取到的为准） ...*/" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/xtt.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.48">
-          <caret line="97" column="15" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="15" />
-          <folding>
-            <element signature="e#883#1046#0" expanded="false" />
-            <element signature="e#1584#2357#0" expanded="false" />
-            <element signature="e#2377#3844#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/merchant.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.077922">
-          <caret line="94" column="12" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/merchant/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.16">
-          <caret line="198" column="30" selection-start-line="198" selection-start-column="30" selection-end-line="198" selection-end-column="30" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#button#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ReleaseNote.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        <state relative-caret-position="1410">
+          <caret line="94" column="12" lean-forward="false" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/orders.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.47826">
-          <caret line="82" column="53" selection-start-line="82" selection-start-column="53" selection-end-line="82" selection-end-column="53" />
+        <state relative-caret-position="1230">
+          <caret line="82" column="26" lean-forward="false" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
           <folding>
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#3;n#div#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
@@ -921,8 +756,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/merchant.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2">
-          <caret line="94" column="4" selection-start-line="94" selection-start-column="4" selection-end-line="94" selection-end-column="4" />
+        <state relative-caret-position="1215">
+          <caret line="94" column="4" lean-forward="false" selection-start-line="94" selection-start-column="4" selection-end-line="94" selection-end-column="4" />
           <folding>
             <element signature="e#1121#1359#0" expanded="false" />
             <element signature="e#1418#1832#0" expanded="false" />
@@ -937,8 +772,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/merchant/order.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.26">
-          <caret line="58" column="22" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
+        <state relative-caret-position="750">
+          <caret line="58" column="22" lean-forward="false" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
           <folding>
             <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -951,15 +786,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ReleaseNote.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/merchant/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="198" column="30" lean-forward="false" selection-start-line="198" selection-start-column="30" selection-end-line="198" selection-end-column="30" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#button#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/xtt.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="97" column="15" lean-forward="false" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="15" />
+          <folding>
+            <element signature="e#883#1046#0" expanded="false" />
+            <element signature="e#1584#2357#0" expanded="false" />
+            <element signature="e#2377#3844#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="430" column="17" lean-forward="true" selection-start-line="430" selection-start-column="17" selection-end-line="430" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/xtt.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44444445">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        <state relative-caret-position="245">
+          <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding>
             <element signature="e#0#39#0" expanded="false" />
-            <element signature="e#7042#8021#0" expanded="false" />
-            <element signature="e#8059#17115#0" expanded="false" />
-            <element signature="e#12065#17111#0" expanded="false" />
           </folding>
         </state>
       </provider>

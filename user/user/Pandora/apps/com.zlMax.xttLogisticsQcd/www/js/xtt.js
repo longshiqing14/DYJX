@@ -80,7 +80,15 @@ var xtt = (function (document, undefined) {
 	  else
 	      plus.runtime.restart();
 	};
-	
+
+
+
+    $.popNavigation = function () {
+        if(importedClass)
+            importedClass.popNavigation();
+
+    };
+
 	$.plusBack = function () {
 		if(importedClass)
 				importedClass.plusBack();

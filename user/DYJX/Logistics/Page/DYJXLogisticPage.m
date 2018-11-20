@@ -91,13 +91,13 @@
         }
     
     }else if (indexPath.section == 1){
-        if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_ea"]) {
+        if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt"]) {
             //新泰通物流员工端
             cell.content1.text = @"新泰通\n 物流\n员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_back"]){
             //广州退货员工端
             cell.content1.text = @"广州\n 退货\n员工端";
-        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt"]){
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_ea"]){
             //新泰通报销员工端
             cell.content1.text = @"新泰通\n 报销\n员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_qcd"]){
@@ -127,9 +127,9 @@
             // Webivew集成不能同时WebApp集成，需要修改AppDelegate文件的PDRCore的启动参数
 
           WebAppController  *pWebAppController = [[WebAppController alloc] init];
-            pWebAppController.AppId = @"com.zlMax.lw16888Logistics";
+            pWebAppController.AppId = @"com.zlMax.xttlc";
             if (pWebAppController) {
-//                self.navigationController.navigationBarHidden = YES;
+                self.navigationController.navigationBarHidden = YES;
                 [self.navigationController pushViewController:pWebAppController animated:YES];
             }            
         }else if (indexPath.row == 1){
@@ -148,7 +148,7 @@
             
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_back"]){
             WebAppController  *pWebAppController = [[WebAppController alloc] init];
-            pWebAppController.AppId = @"com.zlMax.xttlc";
+            pWebAppController.AppId = @"com.zlMax.lw16888Logistics";
             self.navigationController.navigationBarHidden = YES;
                 [self.navigationController pushViewController:pWebAppController animated:YES];
             

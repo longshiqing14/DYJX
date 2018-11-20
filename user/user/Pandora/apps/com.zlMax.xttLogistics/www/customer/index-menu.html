@@ -168,9 +168,11 @@
 				mui.confirm('您确认退出应用吗？', '退出确认', btnArray, function(e) {
 					if(e.index == 1) {
 
-						if(plus.os.name == "Android") {
-							plus.runtime.quit();
-						}
+                        if (plus.os.name == "Android") {
+                            plus.runtime.quit();
+                        } else if (plus.os.name == "iOS") {
+                            xtt.popNavigation();
+                        }
 					}
 				});
 			}

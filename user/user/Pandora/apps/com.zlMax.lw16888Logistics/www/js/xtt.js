@@ -89,6 +89,12 @@ var xtt = (function(document, undefined) {
 			plus.runtime.restart();
 	};
 
+	$.popNavigation = function() {
+		if(importedClass)
+			importedClass.popNavigation();
+				
+	};
+
 	$.plusBack = function() {
 		if(importedClass)
 			importedClass.plusBack();

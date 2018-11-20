@@ -18,6 +18,7 @@
 + (NSString*)getClientId;
 +(void)plusBack;
 +(void)plusRestart;
++(void)popNavigation;
 - (void)PluginTestFunction:(PGMethod*)command;
 - (void)PluginTestFunctionArrayArgu:(PGMethod*)command;
 
