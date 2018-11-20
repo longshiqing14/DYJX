@@ -156,9 +156,6 @@
 		488E89F6219FFD5A008695A7 /* RCConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 488E89CC219FFD59008695A7 /* RCConfig.plist */; };
 		488E89F7219FFD5A008695A7 /* RongSight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E89CE219FFD59008695A7 /* RongSight.framework */; };
 		488E89F8219FFD5A008695A7 /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E89D0219FFD59008695A7 /* RongCallLib.framework */; };
-		488E89F9219FFD5A008695A7 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E89D1219FFD59008695A7 /* GPUImage.framework */; };
-		488E89FA219FFD5A008695A7 /* Bailingquic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E89D2219FFD59008695A7 /* Bailingquic.framework */; };
-		488E89FB219FFD5A008695A7 /* Blink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E89D3219FFD59008695A7 /* Blink.framework */; };
 		488E89FC219FFD5A008695A7 /* JrmfInfo.strings in Resources */ = {isa = PBXBuildFile; fileRef = 488E89D6219FFD59008695A7 /* JrmfInfo.strings */; };
 		488E89FD219FFD5A008695A7 /* WalletResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 488E89D9219FFD59008695A7 /* WalletResource.bundle */; };
 		488E89FE219FFD5A008695A7 /* jrmf.cer in Resources */ = {isa = PBXBuildFile; fileRef = 488E89DA219FFD59008695A7 /* jrmf.cer */; };
@@ -858,7 +855,6 @@
 		E1B52922219FB9EF008B27A5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52921219FB9EF008B27A5 /* GLKit.framework */; };
 		E1B52924219FB9FB008B27A5 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52923219FB9FB008B27A5 /* SafariServices.framework */; };
 		E1B52925219FBA7D008B27A5 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD11FA817640018EC62 /* libc++.tbd */; };
-		E1B52936219FCB6B008B27A5 /* Blink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52935219FCB6B008B27A5 /* Blink.framework */; };
 		E1B52939219FE0FC008B27A5 /* XJInfoDetailPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
@@ -1110,9 +1106,6 @@
 		488E89CC219FFD59008695A7 /* RCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCConfig.plist; sourceTree = "<group>"; };
 		488E89CE219FFD59008695A7 /* RongSight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongSight.framework; sourceTree = "<group>"; };
 		488E89D0219FFD59008695A7 /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallLib.framework; sourceTree = "<group>"; };
-		488E89D1219FFD59008695A7 /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPUImage.framework; sourceTree = "<group>"; };
-		488E89D2219FFD59008695A7 /* Bailingquic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bailingquic.framework; sourceTree = "<group>"; };
-		488E89D3219FFD59008695A7 /* Blink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Blink.framework; sourceTree = "<group>"; };
 		488E89D7219FFD59008695A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/JrmfInfo.strings"; sourceTree = "<group>"; };
 		488E89D8219FFD59008695A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/JrmfInfo.strings; sourceTree = "<group>"; };
 		488E89D9219FFD59008695A7 /* WalletResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WalletResource.bundle; sourceTree = "<group>"; };
@@ -2408,7 +2401,6 @@
 		E1B5291F219FB9BC008B27A5 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		E1B52921219FB9EF008B27A5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		E1B52923219FB9FB008B27A5 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
-		E1B52935219FCB6B008B27A5 /* Blink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Blink.framework; sourceTree = "<group>"; };
 		E1B52937219FE0FC008B27A5 /* XJInfoDetailPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJInfoDetailPage.h; sourceTree = "<group>"; };
 		E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJInfoDetailPage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2444,7 +2436,6 @@
 				489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */,
 				E19DC8BE219AC59800C86478 /* OpenGLES.framework in Frameworks */,
 				CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */,
-				E1B52936219FCB6B008B27A5 /* Blink.framework in Frameworks */,
 				E19DC8C0219AC61D00C86478 /* Photos.framework in Frameworks */,
 				E1B52924219FB9FB008B27A5 /* SafariServices.framework in Frameworks */,
 				E1B52922219FB9EF008B27A5 /* GLKit.framework in Frameworks */,
@@ -2458,7 +2449,6 @@
 				E19DC8C2219AC69700C86478 /* VideoToolbox.framework in Frameworks */,
 				E19DC8C0219AC61D00C86478 /* Photos.framework in Frameworks */,
 				E19DC8BE219AC59800C86478 /* OpenGLES.framework in Frameworks */,
-				488E89FA219FFD5A008695A7 /* Bailingquic.framework in Frameworks */,
 				488E8A05219FFD5A008695A7 /* RongCallKit.framework in Frameworks */,
 				489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */,
 				E19DC8BC219AC50100C86478 /* libc++abi.tbd in Frameworks */,
@@ -2487,7 +2477,6 @@
 				487352E82192EDE2001B59AB /* CoreAudioKit.framework in Frameworks */,
 				4804A19E2196B6B90081AB5B /* libssl.a in Frameworks */,
 				487352E62192EDD7001B59AB /* CoreAudio.framework in Frameworks */,
-				488E89F9219FFD5A008695A7 /* GPUImage.framework in Frameworks */,
 				4804A1882195994D0081AB5B /* liblibPDRCore.a in Frameworks */,
 				487352E22192EDA7001B59AB /* MediaPlayer.framework in Frameworks */,
 				48511D7A219EC417006C6081 /* BaiduMapAPI_Search.framework in Frameworks */,
@@ -2498,7 +2487,6 @@
 				488E89F8219FFD5A008695A7 /* RongCallLib.framework in Frameworks */,
 				CB42F5FB1FAB0C4200889257 /* CoreMotion.framework in Frameworks */,
 				CB123BED1F8DC89600CD4429 /* Security.framework in Frameworks */,
-				488E89FB219FFD5A008695A7 /* Blink.framework in Frameworks */,
 				CB123BEB1F8DC88000CD4429 /* libresolv.tbd in Frameworks */,
 				4804A1A22196B7170081AB5B /* libASIHttpRequest.a in Frameworks */,
 				CB123C211F9741F100CD4429 /* UMMobClick.framework in Frameworks */,
@@ -3049,9 +3037,6 @@
 			isa = PBXGroup;
 			children = (
 				488E89D0219FFD59008695A7 /* RongCallLib.framework */,
-				488E89D1219FFD59008695A7 /* GPUImage.framework */,
-				488E89D2219FFD59008695A7 /* Bailingquic.framework */,
-				488E89D3219FFD59008695A7 /* Blink.framework */,
 			);
 			path = CallLib;
 			sourceTree = "<group>";
@@ -3109,7 +3094,6 @@
 		488E8A0921A24BFB008695A7 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				E1B52935219FCB6B008B27A5 /* Blink.framework */,
 				E1B52923219FB9FB008B27A5 /* SafariServices.framework */,
 				E1B52921219FB9EF008B27A5 /* GLKit.framework */,
 				E1B5291F219FB9BC008B27A5 /* libbz2.tbd */,
