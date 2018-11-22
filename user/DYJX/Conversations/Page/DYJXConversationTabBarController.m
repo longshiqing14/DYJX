@@ -28,7 +28,6 @@
     if (self = [super init]) {
         self.iconUrl =  iconUrl;
         [self initSubViews];
-
     }
     return self;
     
@@ -63,7 +62,7 @@
     //原生
     [self setupChildVC:[[DJContactsChatViewController alloc] init] title:@"联系人" image:@"lianxiren" selectedImage:@"lianxiren-select"];
     [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"公司" image:@"qunzu" selectedImage:@"qunzu-select"];
-    [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"群组" image:@"qunzu" selectedImage:@"qunzu-select"];
+    [self setupChildVC:[[DJGroupChatPage alloc] init] title:@"群组" image:@"qunzu" selectedImage:@"qunzu-select"];
 
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateItemsBadge:) name:XY_notification_ItemsBadge object:nil];

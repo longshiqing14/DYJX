@@ -841,6 +841,8 @@
 		E17FC6D921A1053E00D435D9 /* DJJSRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6D221A1053D00D435D9 /* DJJSRelation.m */; };
 		E17FC6DA21A1053E00D435D9 /* DJJSGetUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E17FC6D521A1053E00D435D9 /* DJJSGetUserModel.m */; };
 		E182E386219D102200BC5028 /* JSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E182E385219D102100BC5028 /* JSExtension.m */; };
+		E18D581E21A4FA9F001FE4A0 /* ContractHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E18D581D21A4FA9F001FE4A0 /* ContractHeadView.m */; };
+		E18D582121A50A90001FE4A0 /* ConpanyHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E18D582021A50A90001FE4A0 /* ConpanyHeadView.m */; };
 		E19DC893219ABB9000C86478 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD31FA817760018EC62 /* libstdc++.6.0.9.tbd */; };
 		E19DC8B5219AC2DB00C86478 /* BaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8B4219AC2DB00C86478 /* BaseListViewController.m */; };
 		E19DC8B8219AC36400C86478 /* DYChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8B7219AC36400C86478 /* DYChatViewController.m */; };
@@ -2393,6 +2395,10 @@
 		E17FC6D521A1053E00D435D9 /* DJJSGetUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJJSGetUserModel.m; sourceTree = "<group>"; };
 		E182E384219D102100BC5028 /* JSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSExtension.h; sourceTree = "<group>"; };
 		E182E385219D102100BC5028 /* JSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSExtension.m; sourceTree = "<group>"; };
+		E18D581C21A4FA9F001FE4A0 /* ContractHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContractHeadView.h; sourceTree = "<group>"; };
+		E18D581D21A4FA9F001FE4A0 /* ContractHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContractHeadView.m; sourceTree = "<group>"; };
+		E18D581F21A50A90001FE4A0 /* ConpanyHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConpanyHeadView.h; sourceTree = "<group>"; };
+		E18D582021A50A90001FE4A0 /* ConpanyHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConpanyHeadView.m; sourceTree = "<group>"; };
 		E19DC8B3219AC2DB00C86478 /* BaseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseListViewController.h; sourceTree = "<group>"; };
 		E19DC8B4219AC2DB00C86478 /* BaseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseListViewController.m; sourceTree = "<group>"; };
 		E19DC8B6219AC36400C86478 /* DYChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYChatViewController.h; sourceTree = "<group>"; };
@@ -5927,6 +5933,10 @@
 			children = (
 				E11C423321A2D6750039A53A /* HeadSearchView.h */,
 				E11C423421A2D6750039A53A /* HeadSearchView.m */,
+				E18D581C21A4FA9F001FE4A0 /* ContractHeadView.h */,
+				E18D581D21A4FA9F001FE4A0 /* ContractHeadView.m */,
+				E18D581F21A50A90001FE4A0 /* ConpanyHeadView.h */,
+				E18D582021A50A90001FE4A0 /* ConpanyHeadView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -6762,6 +6772,7 @@
 				487351312186A35A001B59AB /* DYJXGetBackPwdAuthorizationCodeViewModel.m in Sources */,
 				CB33079F1FA1BF8F00117695 /* IQTextView.m in Sources */,
 				DE138CE01FD9258E006E5A6F /* JXHomeChannelModel.m in Sources */,
+				E18D581E21A4FA9F001FE4A0 /* ContractHeadView.m in Sources */,
 				CBE859BE1F5F99CF00E1E4EA /* XYHomeButtonCVCell.m in Sources */,
 				481434AE1FE8F13000E7DCD8 /* JXShareManager.m in Sources */,
 				CBFF455F1F7241F400D2AF93 /* XYEWalletBalanceRecordTVCell.m in Sources */,
@@ -7118,6 +7129,7 @@
 				CBFF466E1F7F270A00D2AF93 /* XYOrderCommentDetailModel.m in Sources */,
 				CB4287681F66922F004C43C1 /* XYOrderDetailSubClassOrderDetailHeaderVC.m in Sources */,
 				487351A7218C522D001B59AB /* DYJXBaiDuWebPage.m in Sources */,
+				E18D582121A50A90001FE4A0 /* ConpanyHeadView.m in Sources */,
 				DE71B16E2087454300467E06 /* DACircularProgressView.m in Sources */,
 				DE0023411FBBFC8B00C80AED /* JXMyBroadbandViewController.m in Sources */,
 				CBFF46031F7CFE3600D2AF93 /* XYGoodsSearchVC.m in Sources */,

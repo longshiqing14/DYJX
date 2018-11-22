@@ -7,8 +7,11 @@
 //
 
 #import "DJCompanyChatPage.h"
+#import "ConpanyHeadView.h"
 
 @interface DJCompanyChatPage ()
+
+@property (nonatomic, strong)ConpanyHeadView *headView;
 
 @end
 
@@ -17,17 +20,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationItem.title = @"公司";
+    self.navigationItem.title = @"我创建或参与的公司";
+    
+    self.conversationListTableView.tableHeaderView = self.headView;
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Action
+-(void)searchClick {
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
 
+#pragma mark - UI
+-(ConpanyHeadView *)headView {
+    if (!_headView) {
+        _headView = [[ConpanyHeadView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
+        [_headView.searchButton addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _headView;
+}
 @end
