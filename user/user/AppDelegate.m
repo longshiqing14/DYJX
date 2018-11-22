@@ -88,7 +88,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
 //    [NSThread sleepForTimeInterval:2.0];
     
 //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    [UIApplication sharedApplication].statusBarStyle = UIBarStyleDefault;
+    [UIApplication sharedApplication].statusBarStyle = UIBarStyleBlack;
     
     [self initKeyboardManager];
     
