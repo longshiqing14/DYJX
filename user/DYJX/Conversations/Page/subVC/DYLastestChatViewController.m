@@ -7,8 +7,11 @@
 //
 
 #import "DYLastestChatViewController.h"
+#import "HeadSearchView.h"
 
 @interface DYLastestChatViewController ()
+
+@property (nonatomic, strong)HeadSearchView *headView;
 
 @end
 
@@ -18,8 +21,22 @@
     [super viewDidLoad];
 
     self.navigationItem.title = @"最近会话";
+
+    self.conversationListTableView.tableHeaderView = self.headView;
 }
 
+#pragma mark - Action
+-(void)searchClick {
+    
+}
 
+#pragma mark - UI
+-(HeadSearchView *)headView {
+    if (!_headView) {
+        _headView = [[HeadSearchView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
+        [_headView.searchButton addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _headView;
+}
 
 @end

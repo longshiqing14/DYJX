@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseListViewController : RCConversationListViewController
 
-@property (nonatomic, strong)HeadSearchView *headView;
-
 @end
 
 NS_ASSUME_NONNULL_END

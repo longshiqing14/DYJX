@@ -18,6 +18,7 @@
 #import "JSExtension.h"
 #import "AppDelegate.h"
 #import "XJInfoDetailPage.h"
+#import "DYJXConversationTabBarController.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -267,12 +268,14 @@ static NSString *headerID=@"headerID";
     }
 
     [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
-
-    DYJXLogisticPage *logisticPage = [[DYJXLogisticPage alloc]initWithNibName:@"DYJXLogisticPage" bundle:nil];
-    logisticPage.IdentityModel = self.selectedIdentity;
-    
     [XYUserDefaults writeAppDlegateOfCertificateId:self.selectedIdentity.GroupNumber];
-    [self.navigationController pushViewController:logisticPage animated:YES];
+
+//    DYJXLogisticPage *logisticPage = [[DYJXLogisticPage alloc]initWithNibName:@"DYJXLogisticPage" bundle:nil];
+//    logisticPage.IdentityModel = self.selectedIdentity;
+//    [self.navigationController pushViewController:logisticPage animated:YES];
+
+    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[self.selectedIdentity.GroupHeadImg XYImageURL]];
+    XYKeyWindow.rootViewController = conversationTabBarController;
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
