@@ -280,6 +280,7 @@
 - (IBAction)conversationBTN:(UIButton *)sender {
 //    [self.navigationController pushViewController:[[DYJXConversationTabBarController alloc] init] animated:YES];
     DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[self.IdentityModel.GroupHeadImg XYImageURL]];
+    [XYUserDefaults writeAppDlegateOfCurrentUserIconURL:[self.IdentityModel.GroupHeadImg XYImageURL]];
     XYKeyWindow.rootViewController = conversationTabBarController;
     
 }

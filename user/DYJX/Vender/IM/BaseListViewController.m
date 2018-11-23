@@ -53,9 +53,19 @@
 //    self.navigationItem.leftBarButtonItem = leftItem;
 
     self.conversationListTableView.tableFooterView = [UIView new];
-    RCConversationModel *model = [[RCConversationModel alloc] init];
-    [self.conversationListDataSource addObject:model];
-    [self.conversationListTableView reloadData];
+//    RCConversationModel *model = [[RCConversationModel alloc] init];
+//    [self.conversationListDataSource addObject:model];
+//    [self.conversationListTableView reloadData];
+
+    if (([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0)) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
+    self.conversationListTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+
 }
 
 - (void)initNavigation{

@@ -71,7 +71,18 @@
     delegate.certificateId = str;
 }
 
+/** 写入全局变量  currentUserIconURL  */
++ (void)writeAppDlegateOfCurrentUserIconURL:(NSString *)str
+{
+    AppDelegate * delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    delegate.currentUserIconURL = str;
+}
 
+/** 读取全局变量  currentUserIconURL  */
++ (NSString*)readAppDlegateOfCurrentUserIconURL{
+    AppDelegate * delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    return  delegate.currentUserIconURL;
+}
 
 /** 读取 Registered  */
 + (NSDictionary*)readUserDefaultsRegistered
