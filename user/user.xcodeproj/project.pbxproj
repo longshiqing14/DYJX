@@ -819,6 +819,7 @@
 		E11C423921A2E19B0039A53A /* GropuDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E11C423821A2E19B0039A53A /* GropuDetailViewModel.m */; };
 		E11C423C21A2E5DC0039A53A /* GroupDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E11C423B21A2E5DC0039A53A /* GroupDetailModel.m */; };
 		E1307FE221A7ABC50014C220 /* GroupHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1307FE121A7ABC50014C220 /* GroupHeadView.m */; };
+		E1307FE821A7DDAF0014C220 /* DYJXLatestListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1307FE721A7DDAF0014C220 /* DYJXLatestListCell.m */; };
 		E16657B521A411FD00BAC552 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E16657B421A411FD00BAC552 /* BaseTableViewCell.m */; };
 		E16657B821A413AA00BAC552 /* OwnerImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E16657B721A413AA00BAC552 /* OwnerImageCell.m */; };
 		E16657BB21A41C0800BAC552 /* SampleButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E16657BA21A41C0800BAC552 /* SampleButtonTableViewCell.m */; };
@@ -2352,6 +2353,8 @@
 		E11C423B21A2E5DC0039A53A /* GroupDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupDetailModel.m; sourceTree = "<group>"; };
 		E1307FE021A7ABC50014C220 /* GroupHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupHeadView.h; sourceTree = "<group>"; };
 		E1307FE121A7ABC50014C220 /* GroupHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupHeadView.m; sourceTree = "<group>"; };
+		E1307FE621A7DDAF0014C220 /* DYJXLatestListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXLatestListCell.h; sourceTree = "<group>"; };
+		E1307FE721A7DDAF0014C220 /* DYJXLatestListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXLatestListCell.m; sourceTree = "<group>"; };
 		E16657B321A411FD00BAC552 /* BaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		E16657B421A411FD00BAC552 /* BaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		E16657B621A413AA00BAC552 /* OwnerImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OwnerImageCell.h; sourceTree = "<group>"; };
@@ -5934,6 +5937,7 @@
 		E11C423221A2D6600039A53A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E1307FE521A7DD730014C220 /* Cells */,
 				E11C423321A2D6750039A53A /* HeadSearchView.h */,
 				E11C423421A2D6750039A53A /* HeadSearchView.m */,
 				E18D581C21A4FA9F001FE4A0 /* ContractHeadView.h */,
@@ -5944,6 +5948,15 @@
 				E1307FE121A7ABC50014C220 /* GroupHeadView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E1307FE521A7DD730014C220 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E1307FE621A7DDAF0014C220 /* DYJXLatestListCell.h */,
+				E1307FE721A7DDAF0014C220 /* DYJXLatestListCell.m */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		E17AF1E221A01D430041249C /* Model */ = {
@@ -6733,6 +6746,7 @@
 				E17FC6CA21A1009D00D435D9 /* DJJLUAUser.m in Sources */,
 				CBD2BAA21F5D49590057E2E7 /* XYTabbarController.m in Sources */,
 				48644D6F1FCFD70800CE47BC /* JXCouponActivityWebPage.m in Sources */,
+				E1307FE821A7DDAF0014C220 /* DYJXLatestListCell.m in Sources */,
 				CBE85A1C1F61461500E1E4EA /* XYCycleScrollViewNet.m in Sources */,
 				CBE85A0C1F60F68B00E1E4EA /* UIColor+Extension.m in Sources */,
 				DE910FCA2085DD3C00BDDABF /* JXMyOrderDetailsCell.m in Sources */,

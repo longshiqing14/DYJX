@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "NaviViewController.h"
 #import "DYJXIdentitySwitchingPage.h"
+#import "DYJXLatestListCell.h"
 
 @interface BaseListViewController()<RCIMReceiveMessageDelegate,UNUserNotificationCenterDelegate>
 
@@ -52,6 +53,9 @@
 //    self.navigationItem.leftBarButtonItem = leftItem;
 
     self.conversationListTableView.tableFooterView = [UIView new];
+    RCConversationModel *model = [[RCConversationModel alloc] init];
+    [self.conversationListDataSource addObject:model];
+    [self.conversationListTableView reloadData];
 }
 
 - (void)initNavigation{
@@ -82,10 +86,14 @@
 //    [self.navigationController pushViewController :chatService animated:YES];
 //}
 
-//- (RCConversationBaseCell *)rcConversationListTableView:(UITableView *)tableView
-//                                  cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//
-//}
+- (RCConversationBaseCell *)rcConversationListTableView:(UITableView *)tableView
+                                  cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    RCConversationBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"11"];
+    if (!cell) {
+        cell = [[DYJXLatestListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"11"];
+    }
+    return cell;
+}
 
 ///*!
 // 自定义会话Cell显示时的回调
@@ -94,9 +102,9 @@
 // @param indexPath       该Cell对应的会话Cell数据模型在数据源中的索引值
 // @return                自定义会话需要显示的Cell的高度
 // */
-//- (CGFloat)rcConversationListTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 60;
-//}
+- (CGFloat)rcConversationListTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
 
 //新建聊天
 -(void)newChar{

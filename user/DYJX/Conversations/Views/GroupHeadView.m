@@ -88,6 +88,7 @@
         [_innerButton setTitleColor:[UIColor colorWithRed:59/255.0 green:59/255.0 blue:59/255.0 alpha:1] forState:UIControlStateNormal];
         [_innerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [_innerButton setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+        [_innerButton setSelected:YES];
         [_innerButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:30/255.0 green:38/255.0 blue:58/255.0 alpha:1]] forState:UIControlStateSelected];
         _innerButton.tag = 1;
     }
