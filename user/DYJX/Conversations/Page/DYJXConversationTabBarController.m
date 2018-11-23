@@ -61,7 +61,9 @@
     [self setupChildVC:[[DYLastestChatViewController alloc]init] title:@"最近会话" image:@"huihua" selectedImage:@"huihua-select"];
     //原生
     [self setupChildVC:[[DJContactsChatViewController alloc] init] title:@"联系人" image:@"lianxiren" selectedImage:@"lianxiren-select"];
-    [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"公司" image:@"qunzu" selectedImage:@"qunzu-select"];
+    [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"公司" image:@"gongsi-normal" selectedImage:@"gongsi-select"];
+//    [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"群组" image:@"qunzu" selectedImage:@"qunzu-select"];
+//    [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"公司" image:@"qunzu" selectedImage:@"qunzu-select"];
     [self setupChildVC:[[DJGroupChatPage alloc] init] title:@"群组" image:@"qunzu" selectedImage:@"qunzu-select"];
 
 

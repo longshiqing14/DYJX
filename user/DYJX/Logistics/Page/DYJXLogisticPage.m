@@ -135,7 +135,7 @@
         }else if (indexPath.row == 1){
             //百度
             DYJXBaiDuWebPage * baiDuWebPage = [[DYJXBaiDuWebPage alloc]init];
-            self.navigationController.navigationBarHidden = YES;
+//            self.navigationController.navigationBarHidden = YES;
             baiDuWebPage.webURLstr = @"https://m.baidu.com/usrprofile?action=square";
             [self.navigationController pushViewController:baiDuWebPage animated:YES];
         }
@@ -235,11 +235,11 @@
 
     [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
 
-    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [iconImage setContentMode:UIViewContentModeScaleAspectFill];
     iconImage.clipsToBounds = YES;
     [iconImage setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
-    self.navigationItem.rightBarButtonItem.width = 30;
+    self.navigationItem.rightBarButtonItem.width = 25;
     
     UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
     [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
