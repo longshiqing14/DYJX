@@ -270,12 +270,12 @@ static NSString *headerID=@"headerID";
     [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
     [XYUserDefaults writeAppDlegateOfCertificateId:self.selectedIdentity.GroupNumber];
 
-//    DYJXLogisticPage *logisticPage = [[DYJXLogisticPage alloc]initWithNibName:@"DYJXLogisticPage" bundle:nil];
-//    logisticPage.IdentityModel = self.selectedIdentity;
-//    [self.navigationController pushViewController:logisticPage animated:YES];
+    DYJXLogisticPage *logisticPage = [[DYJXLogisticPage alloc]initWithNibName:@"DYJXLogisticPage" bundle:nil];
+    logisticPage.IdentityModel = self.selectedIdentity;
+    [self.navigationController pushViewController:logisticPage animated:YES];
 
-    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[self.selectedIdentity.GroupHeadImg XYImageURL]];
-    XYKeyWindow.rootViewController = conversationTabBarController;
+//    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[self.selectedIdentity.GroupHeadImg XYImageURL]];
+//    XYKeyWindow.rootViewController = conversationTabBarController;
 }
 
 - (void)viewDidDisappear:(BOOL)animated{

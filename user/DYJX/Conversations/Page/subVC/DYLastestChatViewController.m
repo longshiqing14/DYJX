@@ -23,6 +23,8 @@
     self.navigationItem.title = @"最近会话";
 
     self.conversationListTableView.tableHeaderView = self.headView;
+    
+   
 }
 
 #pragma mark - Action
