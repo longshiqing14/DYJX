@@ -29,12 +29,16 @@
 -(void)searchClick {
 
 }
+-(void)addClick {
+
+}
 
 #pragma mark - UI
 -(ConpanyHeadView *)headView {
     if (!_headView) {
         _headView = [[ConpanyHeadView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
         [_headView.searchButton addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
+        [_headView.addButton addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _headView;
 }

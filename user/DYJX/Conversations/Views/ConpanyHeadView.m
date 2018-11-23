@@ -13,7 +13,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.addButton];
     }
     return self;
@@ -27,7 +26,7 @@
     }];
 
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.top.equalTo(weakSelf).insets(UIEdgeInsetsMake(60, 20, 10, 20));
+        make.left.bottom.top.equalTo(weakSelf).insets(UIEdgeInsetsMake(10, 20, 10, 20));
         make.right.equalTo(weakSelf.addButton.mas_left).offset(-10);
     }];
 
