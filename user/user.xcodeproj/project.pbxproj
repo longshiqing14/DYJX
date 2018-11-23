@@ -818,6 +818,7 @@
 		E11C423521A2D6750039A53A /* HeadSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E11C423421A2D6750039A53A /* HeadSearchView.m */; };
 		E11C423921A2E19B0039A53A /* GropuDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E11C423821A2E19B0039A53A /* GropuDetailViewModel.m */; };
 		E11C423C21A2E5DC0039A53A /* GroupDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E11C423B21A2E5DC0039A53A /* GroupDetailModel.m */; };
+		E1307FE221A7ABC50014C220 /* GroupHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1307FE121A7ABC50014C220 /* GroupHeadView.m */; };
 		E16657B521A411FD00BAC552 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E16657B421A411FD00BAC552 /* BaseTableViewCell.m */; };
 		E16657B821A413AA00BAC552 /* OwnerImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E16657B721A413AA00BAC552 /* OwnerImageCell.m */; };
 		E16657BB21A41C0800BAC552 /* SampleButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E16657BA21A41C0800BAC552 /* SampleButtonTableViewCell.m */; };
@@ -2349,6 +2350,8 @@
 		E11C423821A2E19B0039A53A /* GropuDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GropuDetailViewModel.m; sourceTree = "<group>"; };
 		E11C423A21A2E5DC0039A53A /* GroupDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupDetailModel.h; sourceTree = "<group>"; };
 		E11C423B21A2E5DC0039A53A /* GroupDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupDetailModel.m; sourceTree = "<group>"; };
+		E1307FE021A7ABC50014C220 /* GroupHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupHeadView.h; sourceTree = "<group>"; };
+		E1307FE121A7ABC50014C220 /* GroupHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupHeadView.m; sourceTree = "<group>"; };
 		E16657B321A411FD00BAC552 /* BaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		E16657B421A411FD00BAC552 /* BaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		E16657B621A413AA00BAC552 /* OwnerImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OwnerImageCell.h; sourceTree = "<group>"; };
@@ -5937,6 +5940,8 @@
 				E18D581D21A4FA9F001FE4A0 /* ContractHeadView.m */,
 				E18D581F21A50A90001FE4A0 /* ConpanyHeadView.h */,
 				E18D582021A50A90001FE4A0 /* ConpanyHeadView.m */,
+				E1307FE021A7ABC50014C220 /* GroupHeadView.h */,
+				E1307FE121A7ABC50014C220 /* GroupHeadView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -6678,6 +6683,7 @@
 				DE1A5F4C1FCFFE2A00EA8AE8 /* JXHhopAvailableModel.m in Sources */,
 				DE71B17C2087522900467E06 /* JXMyAfterSaleDetailFootView.m in Sources */,
 				48644D5A1FCE48EC00CE47BC /* JXNotUsedViewModel.m in Sources */,
+				E1307FE221A7ABC50014C220 /* GroupHeadView.m in Sources */,
 				CB582FAB1F736FF4009E495F /* XYDeliveryAddressListTVCell.m in Sources */,
 				CBF74E621F8F46BF00D528C2 /* XYBoardBandEditDetailVC.m in Sources */,
 				48EB463A2074C75800B0A736 /* JXRefundCashPage.m in Sources */,
