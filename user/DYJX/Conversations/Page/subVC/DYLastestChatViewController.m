@@ -24,9 +24,20 @@
 
     self.conversationListTableView.tableHeaderView = self.headView;
     
-   
+    [self initNavigator];
 }
 
+- (void)initNavigator{
+    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [iconImage setImageWithURL:[NSURL URLWithString:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
+    self.navigationItem.rightBarButtonItem.width = 25;
+    
+    UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
+//    [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
+    [rightCustomView addSubview: iconImage];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightCustomView];
+}
 #pragma mark - Action
 -(void)searchClick {
     

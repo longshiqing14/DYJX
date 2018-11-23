@@ -25,8 +25,10 @@
 /********************************CertificateId************************************/
 /** 读取全局变量  CertificateId  */
 + (NSString*)readAppDlegateOfCertificateId;
-
-
+/** 写入全局变量  currentUserIconURL  */
++ (void)writeAppDlegateOfCurrentUserIconURL:(NSString *)str;
+/** 读取全局变量  currentUserIconURL  */
++ (NSString*)readAppDlegateOfCurrentUserIconURL;
 
 // DJJLLoginResponse
 /** 读取 DJJLLoginResponse  */

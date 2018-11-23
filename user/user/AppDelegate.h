@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, copy) NSString *certificateId;
+@property (nonatomic, copy) NSString *currentUserIconURL;
 /** cart count */
 @property (nonatomic, copy) NSString * cartCountStr;
 /** order count */
