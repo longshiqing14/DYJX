@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self baseUI];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -23,6 +24,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)baseUI{
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:18]};
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
+    
+}
 /*
 #pragma mark - Navigation
 

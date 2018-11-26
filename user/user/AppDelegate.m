@@ -113,6 +113,8 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
         //已登录
         [JSExtension shared].myClientId = userModel.ClientId;
         self.window.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
+         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        appDelegate.rootViewController = self.window.rootViewController;
     }
     
     

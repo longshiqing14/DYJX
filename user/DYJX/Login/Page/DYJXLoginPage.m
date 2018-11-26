@@ -53,7 +53,6 @@
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         appDelegate.rootViewController = [[NaviViewController alloc]initWithRootViewController:identitySwitchingPage];
         XYKeyWindow.rootViewController = appDelegate.rootViewController;
-        
     } failed:^(NSString *errorMsg) {
         
     }];
