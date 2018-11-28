@@ -85,4 +85,13 @@
     NSString *secondString = [self substringWithRange:NSMakeRange(1, 2)];
     return [NSString stringWithFormat:@"%@%@/%@/%@",BEST_IMAGE_URL,firstString,secondString,self];
 }
+
++ (NSString *)imageURLWithTargetId:(NSString *)targetId type:(NSInteger)type{
+    return [NSString stringWithFormat:@"%@Id=%@&Type=%ld",BEST_GET_URL,targetId,(long)type];
+}
+
+-(NSDictionary *)stringToDictionary {
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+   return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+}
 @end

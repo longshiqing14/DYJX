@@ -65,7 +65,13 @@
     }
     
     self.conversationListTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+}
 
+-(DYJXInterface *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[DYJXInterface alloc] init];
+    }
+    return _viewModel;
 }
 
 - (void)initNavigation{

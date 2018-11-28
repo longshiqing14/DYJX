@@ -49,4 +49,8 @@
 -(NSAttributedString *)attributedStringHTML;
 
 - (NSString*)XYImageURL;
+
+-(NSDictionary *)stringToDictionary;
++ (NSString *)imageURLWithTargetId:(NSString *)targetId type:(NSInteger)type;
+
 @end
