@@ -11,10 +11,12 @@
 @interface BaseModel : NSObject
 
 @property (nonatomic, copy)NSString *cellId;
+@property (nonatomic, copy)NSString *iconName;
+@property (nonatomic, copy)NSString *placeHolder;
 @property (nonatomic, assign)CGFloat height;
 @property (nonatomic, strong)UITableViewCell *cell;
 
--(instancetype)initWithId:(NSString *)cellId height:(CGFloat)height cell:(UITableViewCell *)cell;
+-(instancetype)initWithId:(NSString *)cellId height:(CGFloat)height iconName:(NSString*)iconName placeHolder:(NSString*)placeHolder cell:(UITableViewCell *)cell;
 
 @end
 

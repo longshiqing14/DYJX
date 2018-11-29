@@ -8,7 +8,14 @@
 
 #import "BaseTableViewCell.h"
 
+@interface BaseTableViewCell()
+@end
+
 @implementation BaseTableViewCell
+
+- (void)setModel:(GroupDetailModel *)model{
+    
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

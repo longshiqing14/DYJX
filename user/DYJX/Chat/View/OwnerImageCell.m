@@ -18,10 +18,12 @@
     return self;
 }
 
+- (void)setModel:(GroupDetailModel *)model{
+//    _model = (GroupDetailModel *)model;
 
--(void)setModel:(id)model {
-    self.model = (GroupDetailModel *)model;
 }
+//-(void)setModel:(id)model {
+//}
 
 -(void)layoutSubviews {
     WeakSelf
@@ -46,6 +48,7 @@
     }
     return _porityImageView;
 }
+
 -(UIImageView *)qcoreImageView {
     if (!_qcoreImageView) {
         _qcoreImageView = [[UIImageView alloc] init];

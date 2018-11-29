@@ -180,6 +180,11 @@
 		489A3F481FB544CA0084E2BC /* JXMaximumInteritemSpacingFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 489A3F471FB544C90084E2BC /* JXMaximumInteritemSpacingFlowLayout.m */; };
 		489A3F851FB5567F0084E2BC /* YDBAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 489A3F7D1FB5523E0084E2BC /* YDBAlertView.m */; };
 		489A3F861FB556D40084E2BC /* YWDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 489A3F811FB5523E0084E2BC /* YWDTools.m */; };
+		48A3707421ABF406002861DD /* TitleAndContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3707321ABF406002861DD /* TitleAndContentCell.m */; };
+		48A3707721AE3B64002861DD /* SpaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3707621AE3B64002861DD /* SpaceCell.m */; };
+		48A3709121AFCE4F002861DD /* BusinessLicenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3709021AFCE4F002861DD /* BusinessLicenceCell.m */; };
+		48A370AB21AFED44002861DD /* TipsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370AA21AFED44002861DD /* TipsCell.m */; };
+		48A370AE21AFF176002861DD /* ImageUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370AD21AFF176002861DD /* ImageUploadCell.m */; };
 		48B16C8E1FE00B4800DF8C1C /* JXAddCartAnimationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B16C8D1FE00B4800DF8C1C /* JXAddCartAnimationModel.m */; };
 		48B35106208F027300A9F7E4 /* DSectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35102208F027300A9F7E4 /* DSectionIndexView.m */; };
 		48B35107208F027300A9F7E4 /* DSectionIndexItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35105208F027300A9F7E4 /* DSectionIndexItemView.m */; };
@@ -1202,6 +1207,16 @@
 		489A3F811FB5523E0084E2BC /* YWDTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWDTools.m; sourceTree = "<group>"; };
 		489A3F831FB5523E0084E2BC /* KLCPopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLCPopup.h; sourceTree = "<group>"; };
 		489A3F841FB5523E0084E2BC /* KLCPopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
+		48A3707221ABF406002861DD /* TitleAndContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TitleAndContentCell.h; sourceTree = "<group>"; };
+		48A3707321ABF406002861DD /* TitleAndContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitleAndContentCell.m; sourceTree = "<group>"; };
+		48A3707521AE3B64002861DD /* SpaceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpaceCell.h; sourceTree = "<group>"; };
+		48A3707621AE3B64002861DD /* SpaceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpaceCell.m; sourceTree = "<group>"; };
+		48A3708F21AFCE4F002861DD /* BusinessLicenceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessLicenceCell.h; sourceTree = "<group>"; };
+		48A3709021AFCE4F002861DD /* BusinessLicenceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessLicenceCell.m; sourceTree = "<group>"; };
+		48A370A921AFED44002861DD /* TipsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TipsCell.h; sourceTree = "<group>"; };
+		48A370AA21AFED44002861DD /* TipsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TipsCell.m; sourceTree = "<group>"; };
+		48A370AC21AFF176002861DD /* ImageUploadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageUploadCell.h; sourceTree = "<group>"; };
+		48A370AD21AFF176002861DD /* ImageUploadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageUploadCell.m; sourceTree = "<group>"; };
 		48B16C8C1FE00B4800DF8C1C /* JXAddCartAnimationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXAddCartAnimationModel.h; sourceTree = "<group>"; };
 		48B16C8D1FE00B4800DF8C1C /* JXAddCartAnimationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXAddCartAnimationModel.m; sourceTree = "<group>"; };
 		48B35102208F027300A9F7E4 /* DSectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSectionIndexView.m; sourceTree = "<group>"; };
@@ -2857,6 +2872,16 @@
 				4873518E2189A73D001B59AB /* DYJXIdentitySwitchingHeader.m */,
 				E16657B321A411FD00BAC552 /* BaseTableViewCell.h */,
 				E16657B421A411FD00BAC552 /* BaseTableViewCell.m */,
+				48A3707221ABF406002861DD /* TitleAndContentCell.h */,
+				48A3707321ABF406002861DD /* TitleAndContentCell.m */,
+				48A3707521AE3B64002861DD /* SpaceCell.h */,
+				48A3707621AE3B64002861DD /* SpaceCell.m */,
+				48A3708F21AFCE4F002861DD /* BusinessLicenceCell.h */,
+				48A3709021AFCE4F002861DD /* BusinessLicenceCell.m */,
+				48A370AC21AFF176002861DD /* ImageUploadCell.h */,
+				48A370AD21AFF176002861DD /* ImageUploadCell.m */,
+				48A370A921AFED44002861DD /* TipsCell.h */,
+				48A370AA21AFED44002861DD /* TipsCell.m */,
 				E16657B621A413AA00BAC552 /* OwnerImageCell.h */,
 				E16657B721A413AA00BAC552 /* OwnerImageCell.m */,
 				E16657B921A41C0800BAC552 /* SampleButtonTableViewCell.h */,
@@ -6561,6 +6586,7 @@
 				481FE76721838CD700CFE26B /* NaviViewController.m in Sources */,
 				489245071FD7D9A7005A0FE0 /* UIImage+Tool.m in Sources */,
 				DED74DD51FC57A2200346AD0 /* UIViewController+Tool.m in Sources */,
+				48A370AB21AFED44002861DD /* TipsCell.m in Sources */,
 				48D9801D1FEB5E5D00246D4B /* JXClassificationTableHeader.m in Sources */,
 				48CC2C071FD9205600622935 /* JXGoodsDetailCouponViewModel.m in Sources */,
 				DED6BD8D1FC54E9F0004EA72 /* NetWorkTool.m in Sources */,
@@ -6602,6 +6628,7 @@
 				CBFF46191F7D36BA00D2AF93 /* XYGoodsDetailParameterWebVC.m in Sources */,
 				E17AF25C21A02D480041249C /* DJJXIMInfo.m in Sources */,
 				CB123C4E1F9986C900CD4429 /* XYGoodsSearchResultModel.m in Sources */,
+				48A3707421ABF406002861DD /* TitleAndContentCell.m in Sources */,
 				CB4287551F64D79C004C43C1 /* XYOrderListCellGoodsListCVC.m in Sources */,
 				48C5E6F020590D5F00239081 /* GJOrderingForClientsMoreListCell.m in Sources */,
 				DE4364C61FCBADFB002976B0 /* JXMyCouponsViewController.m in Sources */,
@@ -6649,6 +6676,7 @@
 				E1B1178B219D4F0D00C96B3E /* SCAccountManager.m in Sources */,
 				DEA1D4231FFC6D4F00B4E6BD /* JXPreDepositSelectModel.m in Sources */,
 				CB53FE721F6A0FAC0020F19A /* XYPreDepositVCell.m in Sources */,
+				48A3707721AE3B64002861DD /* SpaceCell.m in Sources */,
 				CB123C131F9592BE00CD4429 /* XYConfirmOrderInvoiceOrNotVC.m in Sources */,
 				CBFFFCBA1FA9A8C9003A4EA6 /* XYBindingBoardBandVC.m in Sources */,
 				48F3F46720849144005D5D0C /* JXRefundCashSelectAddressPage.m in Sources */,
@@ -6871,6 +6899,7 @@
 				CBE85A161F61236400E1E4EA /* XYHomeHotGoodsModel.m in Sources */,
 				CB063E111F9EEABF00A9395D /* XYEWalletBalanceRecordSiftVC.m in Sources */,
 				DE71B15E208744DD00467E06 /* PYPhotosViewController.m in Sources */,
+				48A370AE21AFF176002861DD /* ImageUploadCell.m in Sources */,
 				CBFF46101F7D2D9F00D2AF93 /* XYAddCommentImgCVCell.m in Sources */,
 				CB3307AB1FA32FD200117695 /* XYOrderDetailPayRecsVC.m in Sources */,
 				DEB72FE91FBDABAC0069C581 /* JXDetailsCell.m in Sources */,
@@ -7133,6 +7162,7 @@
 				DEA083872021CE53003A492C /* JXSpecialOfferView1.m in Sources */,
 				DE8E74291FBC19A200426EAF /* JXMyBroadCell.m in Sources */,
 				4804A1C4219D64E90081AB5B /* DYJXConversionViewModel.m in Sources */,
+				48A3709121AFCE4F002861DD /* BusinessLicenceCell.m in Sources */,
 				48B830881FB941C60019F503 /* JXGoToShopCartControl.m in Sources */,
 				CB53FED11F6BEFEC0020F19A /* XYWebViewJavaScript.m in Sources */,
 				CBCF83751F72147500B20CF9 /* XYEWalletHeaderVC.m in Sources */,
