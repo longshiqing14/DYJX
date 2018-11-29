@@ -823,6 +823,11 @@
 		E11C423521A2D6750039A53A /* HeadSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E11C423421A2D6750039A53A /* HeadSearchView.m */; };
 		E11C423921A2E19B0039A53A /* GropuDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E11C423821A2E19B0039A53A /* GropuDetailViewModel.m */; };
 		E11C423C21A2E5DC0039A53A /* GroupDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E11C423B21A2E5DC0039A53A /* GroupDetailModel.m */; };
+		E12DBDAE21ACF6340011E3A4 /* DYJXInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = E12DBDAD21ACF6330011E3A4 /* DYJXInterface.m */; };
+		E12DBDB621AD1ED60011E3A4 /* DYJOLastMg.m in Sources */ = {isa = PBXBuildFile; fileRef = E12DBDB221AD1ED50011E3A4 /* DYJOLastMg.m */; };
+		E12DBDB721AD1ED60011E3A4 /* DYJOLatestListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E12DBDB321AD1ED50011E3A4 /* DYJOLatestListModel.m */; };
+		E12DBDB821AD1ED60011E3A4 /* DYJOResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E12DBDB521AD1ED50011E3A4 /* DYJOResult.m */; };
+		E12DBDBC21AD48560011E3A4 /* DYJXLasterListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E12DBDBB21AD48560011E3A4 /* DYJXLasterListCell.m */; };
 		E1307FE221A7ABC50014C220 /* GroupHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1307FE121A7ABC50014C220 /* GroupHeadView.m */; };
 		E1307FE821A7DDAF0014C220 /* DYJXLatestListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1307FE721A7DDAF0014C220 /* DYJXLatestListCell.m */; };
 		E16657B521A411FD00BAC552 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E16657B421A411FD00BAC552 /* BaseTableViewCell.m */; };
@@ -2366,6 +2371,16 @@
 		E11C423821A2E19B0039A53A /* GropuDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GropuDetailViewModel.m; sourceTree = "<group>"; };
 		E11C423A21A2E5DC0039A53A /* GroupDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupDetailModel.h; sourceTree = "<group>"; };
 		E11C423B21A2E5DC0039A53A /* GroupDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupDetailModel.m; sourceTree = "<group>"; };
+		E12DBDAC21ACF6330011E3A4 /* DYJXInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXInterface.h; sourceTree = "<group>"; };
+		E12DBDAD21ACF6330011E3A4 /* DYJXInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXInterface.m; sourceTree = "<group>"; };
+		E12DBDB021AD1ED40011E3A4 /* DYJOResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJOResult.h; sourceTree = "<group>"; };
+		E12DBDB121AD1ED40011E3A4 /* DYJOLatestListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJOLatestListModel.h; sourceTree = "<group>"; };
+		E12DBDB221AD1ED50011E3A4 /* DYJOLastMg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJOLastMg.m; sourceTree = "<group>"; };
+		E12DBDB321AD1ED50011E3A4 /* DYJOLatestListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJOLatestListModel.m; sourceTree = "<group>"; };
+		E12DBDB421AD1ED50011E3A4 /* DYJOLastMg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJOLastMg.h; sourceTree = "<group>"; };
+		E12DBDB521AD1ED50011E3A4 /* DYJOResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJOResult.m; sourceTree = "<group>"; };
+		E12DBDBA21AD48560011E3A4 /* DYJXLasterListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXLasterListCell.h; sourceTree = "<group>"; };
+		E12DBDBB21AD48560011E3A4 /* DYJXLasterListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXLasterListCell.m; sourceTree = "<group>"; };
 		E1307FE021A7ABC50014C220 /* GroupHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupHeadView.h; sourceTree = "<group>"; };
 		E1307FE121A7ABC50014C220 /* GroupHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupHeadView.m; sourceTree = "<group>"; };
 		E1307FE621A7DDAF0014C220 /* DYJXLatestListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXLatestListCell.h; sourceTree = "<group>"; };
@@ -3004,6 +3019,8 @@
 		487351AB218D4ED2001B59AB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E12DBDAC21ACF6330011E3A4 /* DYJXInterface.h */,
+				E12DBDAD21ACF6330011E3A4 /* DYJXInterface.m */,
 				4804A1C2219D64E80081AB5B /* DYJXConversionViewModel.h */,
 				4804A1C3219D64E80081AB5B /* DYJXConversionViewModel.m */,
 			);
@@ -5975,6 +5992,28 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		E12DBDAF21AD1EBC0011E3A4 /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				E12DBDB421AD1ED50011E3A4 /* DYJOLastMg.h */,
+				E12DBDB221AD1ED50011E3A4 /* DYJOLastMg.m */,
+				E12DBDB121AD1ED40011E3A4 /* DYJOLatestListModel.h */,
+				E12DBDB321AD1ED50011E3A4 /* DYJOLatestListModel.m */,
+				E12DBDB021AD1ED40011E3A4 /* DYJOResult.h */,
+				E12DBDB521AD1ED50011E3A4 /* DYJOResult.m */,
+			);
+			path = Conversations;
+			sourceTree = "<group>";
+		};
+		E12DBDB921AD482B0011E3A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E12DBDBA21AD48560011E3A4 /* DYJXLasterListCell.h */,
+				E12DBDBB21AD48560011E3A4 /* DYJXLasterListCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E1307FE521A7DD730014C220 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -5987,6 +6026,7 @@
 		E17AF1E221A01D430041249C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E12DBDAF21AD1EBC0011E3A4 /* Conversations */,
 				E17FC6CB21A1051000D435D9 /* GetUserById */,
 				E17FC6BB21A1008800D435D9 /* Login */,
 				E17AF1E321A01D430041249C /* MyEnterprises */,
@@ -6090,6 +6130,7 @@
 		E19DC8C3219AC94100C86478 /* subVC */ = {
 			isa = PBXGroup;
 			children = (
+				E12DBDB921AD482B0011E3A4 /* Views */,
 				E19DC8C4219ACC5700C86478 /* DYLastestChatViewController.h */,
 				E19DC8C5219ACC5700C86478 /* DYLastestChatViewController.m */,
 				E19DC8C7219ACC6A00C86478 /* DJContactsChatViewController.h */,
@@ -6619,6 +6660,7 @@
 				48B830851FB9368E0019F503 /* JXGoodsTableCollectionViewCell.m in Sources */,
 				4873519D218BF19E001B59AB /* DYJXLogisticCollectionViewCell.m in Sources */,
 				CB33079B1FA1BF8F00117695 /* IQUIViewController+Additions.m in Sources */,
+				E12DBDB821AD1ED60011E3A4 /* DYJOResult.m in Sources */,
 				DE71B166208744DD00467E06 /* PYPhotoView.m in Sources */,
 				48EDA2231FFCBF50006D889A /* JXAddressModel.m in Sources */,
 				DE36FA611FCEDE5900ED184E /* PPNumberButton.m in Sources */,
@@ -6726,6 +6768,7 @@
 				48644D5A1FCE48EC00CE47BC /* JXNotUsedViewModel.m in Sources */,
 				E1307FE221A7ABC50014C220 /* GroupHeadView.m in Sources */,
 				CB582FAB1F736FF4009E495F /* XYDeliveryAddressListTVCell.m in Sources */,
+				E12DBDB621AD1ED60011E3A4 /* DYJOLastMg.m in Sources */,
 				CBF74E621F8F46BF00D528C2 /* XYBoardBandEditDetailVC.m in Sources */,
 				48EB463A2074C75800B0A736 /* JXRefundCashPage.m in Sources */,
 				CBFF46121F7D2D9F00D2AF93 /* XYOrderReAddCommentFirstCell.m in Sources */,
@@ -6833,6 +6876,7 @@
 				48B8309A1FB9F5AD0019F503 /* JXQueryConditionItem.m in Sources */,
 				E17AF25821A02D480041249C /* DJJXMembers.m in Sources */,
 				E16657B521A411FD00BAC552 /* BaseTableViewCell.m in Sources */,
+				E12DBDBC21AD48560011E3A4 /* DYJXLasterListCell.m in Sources */,
 				DE91100A2085DD5600BDDABF /* JXOderFootView.m in Sources */,
 				E17FC6D821A1053E00D435D9 /* DJJSResult.m in Sources */,
 				487B5CA1205FAEE1006921AC /* JXDeliverWayViewModel.m in Sources */,
@@ -6897,6 +6941,7 @@
 				DEAB008E1FDE30700007E66D /* JXHomeRecommendView.m in Sources */,
 				CBE85A641F62848200E1E4EA /* XYShoppingCartBottomVC.m in Sources */,
 				CBE85A161F61236400E1E4EA /* XYHomeHotGoodsModel.m in Sources */,
+				E12DBDB721AD1ED60011E3A4 /* DYJOLatestListModel.m in Sources */,
 				CB063E111F9EEABF00A9395D /* XYEWalletBalanceRecordSiftVC.m in Sources */,
 				DE71B15E208744DD00467E06 /* PYPhotosViewController.m in Sources */,
 				48A370AE21AFF176002861DD /* ImageUploadCell.m in Sources */,
@@ -6953,6 +6998,7 @@
 				CBD2BA651F5D36B40057E2E7 /* XYBestNavigationVC.m in Sources */,
 				CBFF46591F7E7ACC00D2AF93 /* FSActionSheetItem.m in Sources */,
 				DE277D3F1FBAC38F00FE52C8 /* XYSystemLocation.m in Sources */,
+				E12DBDAE21ACF6340011E3A4 /* DYJXInterface.m in Sources */,
 				CBE85ACE1F63B5E100E1E4EA /* XYOrderConfirmOrderBottomVC.m in Sources */,
 				CB53FE7B1F6A23250020F19A /* XYPreDepositOrderPaySuccessVC.m in Sources */,
 				489A3F3F1FB53B530084E2BC /* JXSearchHistoryCollectionReusableHeaderView.m in Sources */,

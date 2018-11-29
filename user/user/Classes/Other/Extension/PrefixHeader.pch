@@ -57,6 +57,7 @@
 #import "NSString+Tool.h"
 #import "NSObject+Extension.h"
 #import "UserManager.h"
+#import "NSString+Tool.h"
 
 #define RETURN_CODE_  @"RETURN_CODE"
 #define RETURN_DESC_  @"RETURN_DESC"
@@ -74,6 +75,8 @@
 #define XYLog(...)
 #endif
 
+
+#define imageHost @"http://www.xtt168.com:9000/Files/Images/"
 
 /************************************************color**********************************************/
 #define XYRGBAColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
