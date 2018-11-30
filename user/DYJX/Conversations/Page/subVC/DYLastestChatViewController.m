@@ -45,7 +45,8 @@
 
 
 - (void)onRCIMReceiveMessage:(RCMessage *)message
-                        left:(int)left{
+                        left:(int)left {
+
 }
 
 
@@ -107,7 +108,7 @@
             [dictory setObject:@"[位置]" forKey:@"Keywords"];
         }
         else if (type == 6) { // 图片
-            [dictory setObject:@"[位置]" forKey:@"Keywords"];
+            [dictory setObject:@"撤销了一条消息" forKey:@"Keywords"];
         }
 
         if (result.LastMsg[@"RowData"]) {
@@ -135,7 +136,12 @@
             content.senderUserInfo.portraitUri = [result.TargetHeadImg XYImageURL];
         }
         else {
-            content.senderUserInfo.portraitUri = [NSString imageURLWithTargetId:result.TargetId type:result.Type];
+            if ([result.FromId isEqualToString:[UserManager shared].login.UserID]) { // 来源如果是自己，那就取targetId，如果不是就去fromId作为targetId
+                content.senderUserInfo.portraitUri = [NSString imageURLWithTargetId:result.TargetId type:result.Type];
+            }
+            else {
+                content.senderUserInfo.portraitUri = [NSString imageURLWithTargetId:result.FromId type:result.Type];
+            }
         }
         if (result.Type == 1) {
             [dictory setObject:@"1" forKey:@"type"];
@@ -143,6 +149,7 @@
         else if (result.Type == 0){
             [dictory setObject:@"0" forKey:@"type"];
         }
+
         model.lastestMessage = content;
         model.jsonDict = result.LastMsg;
         [dataSource addObject:model];
@@ -221,7 +228,7 @@
 //    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 //    XYKeyWindow.rootViewController = appDelegate.rootViewController;
 //    [appDelegate.rootViewController.navigationController popViewControllerAnimated:YES];
-    XYKeyWindow.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
+    XYKeyWindow.rootViewController = [[NaviViewController alloc] initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
     
 }
 

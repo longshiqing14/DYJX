@@ -60,7 +60,7 @@
 
 - (UITapGestureRecognizer *)tapGestureRecognizer{
     if (!_tapGestureRecognizer) {
-        _tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goBackPage)];
+        _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goBackPage)];
     }
     return _tapGestureRecognizer;
 }
@@ -70,6 +70,5 @@
 //    XYKeyWindow.rootViewController = appDelegate.rootViewController;
 //    [appDelegate.rootViewController.navigationController popViewControllerAnimated:YES];
     XYKeyWindow.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
-    
 }
 @end
