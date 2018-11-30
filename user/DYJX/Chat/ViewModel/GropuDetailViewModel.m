@@ -48,7 +48,7 @@
 //    [self.dataArray addObject:node1];
     
     
-    GroupDetailModel *node2 = [self.baseModel titleAndContentModelWithIconName:@"phone" placeHolder:nil ];
+    GroupDetailModel *node2 = [self.baseModel titleAndContentModelWithIconName:@"shanghao" placeHolder:@"请输入商号" ];
     [self.dataArray addObject:node2];
     
     GroupDetailModel *node3 = [self.baseModel titleAndContentModelWithIconName:@"phone" placeHolder:@"电话号码" ];
@@ -128,6 +128,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GroupDetailModel *model = self.dataArray[indexPath.row];
     BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:model.cellId];
@@ -135,11 +136,12 @@
         cell = (BaseTableViewCell *)model.cell;
     }
     [cell setModel:model];
-//    cell.callBack = ^(id data, NSInteger type) {
-//        [self callBack:data type:type];
-//    };
+    cell.callBack = ^(id data, NSInteger type) {
+        [self callBack:data type:type];
+    };
     return cell;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     GroupDetailModel *model = self.dataArray[indexPath.row];
     return model.height;

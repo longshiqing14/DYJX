@@ -32,17 +32,17 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
 
 -(void)initSubViews{
     [self layoutIfNeeded];
-    [self.contentLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(XY_Left_Margin);
-        make.right.mas_equalTo(XY_Right_Margin);
-        make.top.mas_equalTo(14);
-        
-    }];
+//    [self.contentLab mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(XY_Left_Margin);
+//        make.right.mas_equalTo(XY_Right_Margin);
+//        make.top.mas_equalTo(14);
+//
+//    }];
     
     [self.photoImgCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(XY_Left_Margin);
         make.right.mas_equalTo(XY_Right_Margin);
-        make.top.mas_equalTo(_contentLab.mas_bottom).offset(14);
+        make.top.mas_equalTo(14);
         make.bottom.mas_equalTo(-15);
         //        make.height.mas_equalTo([self cellWidth] + 10 * 2);
     }];
@@ -54,13 +54,8 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
 -(void)setModel:(XYOrderCommentDetailModel *)model
 {
     _model =model;
-    self.contentLab.text = @"123456";
     CGSize size = [self sizeWithString:@"_model.comment" fontOfSize:14 viewWidth:(XYScreenW -20)];
     
-    [self.contentLab mas_updateConstraints:^(MASConstraintMaker *make) {
-        
-        make.height.mas_equalTo(size.height);
-    }];
     
     [self.photoImgCollectionView reloadData];
     
@@ -110,19 +105,19 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
     }
 }
 
--(UILabel *)contentLab
-{
-    if (!_contentLab) {
-        _contentLab = [UILabel new];
-        _contentLab.font = XYFont_14;
-        _contentLab.numberOfLines = 0;
-        _contentLab.lineBreakMode = NSLineBreakByWordWrapping;
-        _contentLab.textColor = XYRGBColor(51, 51, 51);
-        [self.contentView addSubview:_contentLab];
-    }
-    
-    return _contentLab;
-}
+//-(UILabel *)contentLab
+//{
+//    if (!_contentLab) {
+//        _contentLab = [UILabel new];
+//        _contentLab.font = XYFont_14;
+//        _contentLab.numberOfLines = 0;
+//        _contentLab.lineBreakMode = NSLineBreakByWordWrapping;
+//        _contentLab.textColor = XYRGBColor(51, 51, 51);
+//        [self.contentView addSubview:_contentLab];
+//    }
+//
+//    return _contentLab;
+//}
 
 #pragma mark -
 
@@ -186,7 +181,7 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
         
         if (indexPath.row == self.imagesArray.count) {
             JXRefumdImageCameraCollectionCell *ImageCameraCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCameraCollectionCell forIndexPath:indexPath];
-            ImageCameraCollectioncell.countLb.text = [NSString stringWithFormat:@"%ld/8",self.imagesArray.count];
+            ImageCameraCollectioncell.countLb.text = [NSString stringWithFormat:@"%ld/4",self.imagesArray.count];
             cell = ImageCameraCollectioncell;
             
         }else{

@@ -12,8 +12,8 @@
 @interface ImageUploadCell : BaseTableViewCell
 @property (copy, nonatomic) void(^addPicturesBlock)();
 @property (copy, nonatomic) void (^deleteImageBlock)(NSInteger index);
-/** 内容标签 */
-@property(strong,nonatomic) UILabel *contentLab ;
+///** 内容标签 */
+//@property(strong,nonatomic) UILabel *contentLab ;
 
 /** 评论图片 */
 @property(strong,nonatomic) UICollectionView *photoImgCollectionView ;
