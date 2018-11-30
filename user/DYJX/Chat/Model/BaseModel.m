@@ -10,11 +10,13 @@
 
 @implementation BaseModel
 
--(instancetype)initWithId:(NSString *)cellId height:(CGFloat)height cell:(UITableViewCell *)cell {
+-(instancetype)initWithId:(NSString *)cellId height:(CGFloat)height iconName:(NSString*)iconName placeHolder:(NSString*)placeHolder cell:(UITableViewCell *)cell {
     if (self = [super init]) {
         self.height = height;
         self.cellId = cellId;
         self.cell = cell;
+        self.iconName = iconName;
+        self.placeHolder = placeHolder;
     }
     return self;
 }

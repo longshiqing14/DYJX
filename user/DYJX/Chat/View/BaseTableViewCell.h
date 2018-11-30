@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GroupDetailModel.h"
 
 typedef void(^CallBack)(id data, NSInteger type);
 
@@ -15,8 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BaseTableViewCell : UITableViewCell
 
 @property (nonatomic, copy)CallBack callBack;
+//@property (nonatomic, strong)GroupDetailModel *model;
 
--(void)setModel:(id)model;
+-(void)setModel:( GroupDetailModel *)model;
 
 @end
 

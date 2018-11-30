@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)attachPage:(id)page;
 
-@property (nonatomic, assign)XJGroupType *type;
+@property (nonatomic, assign)XJGroupType type;
 
 @end
 
