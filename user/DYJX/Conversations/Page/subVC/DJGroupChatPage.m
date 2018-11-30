@@ -52,10 +52,8 @@
     [self.headView.outsideButton setSelected:NO];
     [sender setSelected:YES];
     if (sender.tag == 1) {
-
     }
     else {
-
     }
 }
 
