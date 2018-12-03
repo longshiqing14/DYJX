@@ -21,7 +21,7 @@
 #import "DYJXConversationTabBarController.h"
 #import "DYJXUserInfoDetailPage.h"
 #import "DYJXCompanyInfoDetailPage.h"
-
+#import "DYJXUserInfoModel.h"
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -116,7 +116,7 @@ static NSString *headerID=@"headerID";
     tableCell.detailButton.tag = indexPath.row;
     DYJXIdentitySwitchingModel *identity = [self.viewModel IdentityAtIndexPath:indexPath];
 
-    if ([[UserManager shared].login.UAUser.NumberString isEqualToString:identity.NumberString]) { // 本人详情
+    if ([[UserManager shared].getUserModel.Result.NumberString isEqualToString:identity.NumberString]) { // 本人详情
         [tableCell.detailButton setTitle:titles.firstObject forState:UIControlStateNormal];
         tableCell.contentView.backgroundColor = [UIColor whiteColor];
         tableCell.goodsImageView.layer.masksToBounds = YES;
@@ -233,19 +233,23 @@ static NSString *headerID=@"headerID";
     NSIndexPath *indexpath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
     DYJXIdentitySwitchingModel *model  = [self.viewModel IdentityAtIndexPath:indexpath];
 //    XJInfoDetailPage *target = [[XJInfoDetailPage alloc] init];
-    if ([[UserManager shared].login.UAUser.NumberString isEqualToString:model.NumberString]) { // 本人详情
+     [XYUserDefaults readLoginedModel];
+    if ([[UserManager shared].getUserModel.Result.NumberString isEqualToString:model.NumberString]) { // 本人详情
         DYJXUserInfoDetailPage *page = [[DYJXUserInfoDetailPage alloc]init];
+        page.userIconImageURL = [model.GroupHeadImg XYImageURL];
         [self.navigationController pushViewController:page animated:YES];
 //        target.type = XJGroupTypePerson;
     }
     else {
         if (model.IsPart) { // 子公司详情
             DYJXCompanyInfoDetailPage *page = [[DYJXCompanyInfoDetailPage alloc]init];
+            page.userIconImageURL = [model.GroupHeadImg XYImageURL];
             [self.navigationController pushViewController:page animated:YES];
 //            target.type = XJGroupTypeSubCompany;
         }
         else { // 公司详情
             DYJXCompanyInfoDetailPage *page = [[DYJXCompanyInfoDetailPage alloc]init];
+            page.userIconImageURL = [model.GroupHeadImg XYImageURL];
             [self.navigationController pushViewController:page animated:YES];
 //            target.type = XJGroupTypeCompany;
         }

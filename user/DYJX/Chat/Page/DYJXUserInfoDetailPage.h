@@ -11,4 +11,5 @@
 @interface DYJXUserInfoDetailPage : BaseViewController
 @property (nonatomic, assign)XJGroupType type;
 @property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic, copy)NSString *userIconImageURL;
 @end

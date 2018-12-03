@@ -29,12 +29,12 @@
     WeakSelf
     [self.porityImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(weakSelf).insets(UIEdgeInsetsMake(20, 30, 0, 0));
-        make.size.mas_equalTo(CGSizeMake(110, 110));
+        make.size.mas_equalTo(CGSizeMake(120, 120));
     }];
 
     [self.qcoreImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.top.equalTo(weakSelf).insets(UIEdgeInsetsMake(20, 0, 0, 30));
-        make.size.mas_equalTo(CGSizeMake(110, 110));
+        make.size.mas_equalTo(CGSizeMake(120, 120));
     }];
 }
 
@@ -43,8 +43,8 @@
     if (!_porityImageView) {
         _porityImageView = [[UIImageView alloc] init];
         _porityImageView.layer.masksToBounds = YES;
-        _porityImageView.layer.cornerRadius = 55;
-        [_porityImageView setImage:[UIImage imageNamed:@"ic_prolist_1"]];
+        _porityImageView.layer.cornerRadius = 60;
+        [_porityImageView setImage:[UIImage imageNamed:@"btn_group"]];
     }
     return _porityImageView;
 }
@@ -52,7 +52,7 @@
 -(UIImageView *)qcoreImageView {
     if (!_qcoreImageView) {
         _qcoreImageView = [[UIImageView alloc] init];
-        [_qcoreImageView setImage:[UIImage imageNamed:@"ic_prolist_1"]];
+        [_qcoreImageView setImage:[UIImage imageNamed:@"myqrcode"]];
     }
     return _qcoreImageView;
 }

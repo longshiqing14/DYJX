@@ -10,4 +10,5 @@
 
 @interface DYJXCompanyInfoDetailPage : BaseViewController
 @property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic, copy)NSString *userIconImageURL;
 @end

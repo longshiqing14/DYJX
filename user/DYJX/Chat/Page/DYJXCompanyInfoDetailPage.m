@@ -92,6 +92,7 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
             case 0:
             {
                 OwnerImageCell *ownerImageCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelPorityCellId forIndexPath:indexPath];
+                [ownerImageCell.porityImageView setImageWithURL:[NSURL URLWithString:self.userIconImageURL] placeholder:[UIImage imageNamed:@"btn_group"]];
                 cell = ownerImageCell;
             }
                 break;
