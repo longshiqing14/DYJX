@@ -20,6 +20,7 @@
 #import "XJInfoDetailPage.h"
 #import "DYJXConversationTabBarController.h"
 #import "DYJXUserInfoDetailPage.h"
+#import "DYJXCompanyInfoDetailPage.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -238,13 +239,13 @@ static NSString *headerID=@"headerID";
 //        target.type = XJGroupTypePerson;
     }
     else {
-        if (!model.IsPart) { // 子公司详情
-            DYJXUserInfoDetailPage *page = [[DYJXUserInfoDetailPage alloc]init];
+        if (model.IsPart) { // 子公司详情
+            DYJXCompanyInfoDetailPage *page = [[DYJXCompanyInfoDetailPage alloc]init];
             [self.navigationController pushViewController:page animated:YES];
 //            target.type = XJGroupTypeSubCompany;
         }
         else { // 公司详情
-            DYJXUserInfoDetailPage *page = [[DYJXUserInfoDetailPage alloc]init];
+            DYJXCompanyInfoDetailPage *page = [[DYJXCompanyInfoDetailPage alloc]init];
             [self.navigationController pushViewController:page animated:YES];
 //            target.type = XJGroupTypeCompany;
         }

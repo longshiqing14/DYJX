@@ -190,6 +190,9 @@
 		48A370F721B4C833002861DD /* SpaceFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370F621B4C833002861DD /* SpaceFooter.m */; };
 		48A370FA21B4C8B9002861DD /* BusinessLicenceFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370F921B4C8B9002861DD /* BusinessLicenceFooter.m */; };
 		48A370FD21B4CC34002861DD /* TipsFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370FC21B4CC34002861DD /* TipsFooter.m */; };
+		48A3710021B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370FF21B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.m */; };
+		48A3710321B500B9002861DD /* DYJXCompanyInfoDetailPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3710221B500B9002861DD /* DYJXCompanyInfoDetailPage.m */; };
+		48A3710621B50133002861DD /* CompanyTitleAndContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3710521B50133002861DD /* CompanyTitleAndContentCell.m */; };
 		48B16C8E1FE00B4800DF8C1C /* JXAddCartAnimationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B16C8D1FE00B4800DF8C1C /* JXAddCartAnimationModel.m */; };
 		48B35106208F027300A9F7E4 /* DSectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35102208F027300A9F7E4 /* DSectionIndexView.m */; };
 		48B35107208F027300A9F7E4 /* DSectionIndexItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35105208F027300A9F7E4 /* DSectionIndexItemView.m */; };
@@ -1237,6 +1240,12 @@
 		48A370F921B4C8B9002861DD /* BusinessLicenceFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessLicenceFooter.m; sourceTree = "<group>"; };
 		48A370FB21B4CC34002861DD /* TipsFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TipsFooter.h; sourceTree = "<group>"; };
 		48A370FC21B4CC34002861DD /* TipsFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TipsFooter.m; sourceTree = "<group>"; };
+		48A370FE21B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXCompanyInfoDetailViewModel.h; sourceTree = "<group>"; };
+		48A370FF21B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXCompanyInfoDetailViewModel.m; sourceTree = "<group>"; };
+		48A3710121B500B9002861DD /* DYJXCompanyInfoDetailPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXCompanyInfoDetailPage.h; sourceTree = "<group>"; };
+		48A3710221B500B9002861DD /* DYJXCompanyInfoDetailPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXCompanyInfoDetailPage.m; sourceTree = "<group>"; };
+		48A3710421B50133002861DD /* CompanyTitleAndContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndContentCell.h; sourceTree = "<group>"; };
+		48A3710521B50133002861DD /* CompanyTitleAndContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyTitleAndContentCell.m; sourceTree = "<group>"; };
 		48B16C8C1FE00B4800DF8C1C /* JXAddCartAnimationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXAddCartAnimationModel.h; sourceTree = "<group>"; };
 		48B16C8D1FE00B4800DF8C1C /* JXAddCartAnimationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXAddCartAnimationModel.m; sourceTree = "<group>"; };
 		48B35102208F027300A9F7E4 /* DSectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSectionIndexView.m; sourceTree = "<group>"; };
@@ -2904,6 +2913,8 @@
 				E16657B421A411FD00BAC552 /* BaseTableViewCell.m */,
 				48A3707221ABF406002861DD /* TitleAndContentCell.h */,
 				48A3707321ABF406002861DD /* TitleAndContentCell.m */,
+				48A3710421B50133002861DD /* CompanyTitleAndContentCell.h */,
+				48A3710521B50133002861DD /* CompanyTitleAndContentCell.m */,
 				48A3707521AE3B64002861DD /* SpaceCell.h */,
 				48A3707621AE3B64002861DD /* SpaceCell.m */,
 				48A370F521B4C833002861DD /* SpaceFooter.h */,
@@ -2936,6 +2947,8 @@
 				E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */,
 				48A370EF21B13A47002861DD /* DYJXUserInfoDetailPage.h */,
 				48A370F021B13A47002861DD /* DYJXUserInfoDetailPage.m */,
+				48A3710121B500B9002861DD /* DYJXCompanyInfoDetailPage.h */,
+				48A3710221B500B9002861DD /* DYJXCompanyInfoDetailPage.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -2949,6 +2962,8 @@
 				E11C423821A2E19B0039A53A /* GropuDetailViewModel.m */,
 				48A370F221B13AA8002861DD /* DYJXUserInfoDetailViewModel.h */,
 				48A370F321B13AA8002861DD /* DYJXUserInfoDetailViewModel.m */,
+				48A370FE21B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.h */,
+				48A370FF21B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6801,6 +6816,7 @@
 				CBE85A681F62896B00E1E4EA /* UIButton+touch.m in Sources */,
 				48B830821FB934910019F503 /* JXsearchResultViewModel.m in Sources */,
 				CB123C3E1F98A30F00CD4429 /* XYEWalletPreDepositReturnListTVCell.m in Sources */,
+				48A3710021B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.m in Sources */,
 				48EB46432079B14000B0A736 /* JXRefundContentCell.m in Sources */,
 				481FE76A218567CF00CFE26B /* DYJXRegisteViewModel.m in Sources */,
 				DE9110052085DD5600BDDABF /* JXOrderSettlementViewController.m in Sources */,
@@ -7172,6 +7188,7 @@
 				DE36FA571FCEBEAD00ED184E /* JXHhopAvailableViewController.m in Sources */,
 				CBE85AF21F63E57100E1E4EA /* XYMineOrderListVCViewController.m in Sources */,
 				CB123C031F920DBB00CD4429 /* XYOrderConfirmInvoiceSubTVC.m in Sources */,
+				48A3710621B50133002861DD /* CompanyTitleAndContentCell.m in Sources */,
 				DE277D481FBAF95C00FE52C8 /* BadgeView.m in Sources */,
 				DED76E041FD3E784009332E6 /* JXDiscountView.m in Sources */,
 				481FE76521835AEF00CFE26B /* DYJXFindPasswordPage.m in Sources */,
@@ -7212,6 +7229,7 @@
 				CBFF467C1F7F271500D2AF93 /* XYOrderReAddCommentSecondCell.m in Sources */,
 				DEDA7CFE1FCD0D3C008A362A /* JXNotUsedHeatView.m in Sources */,
 				48A370F421B13AA8002861DD /* DYJXUserInfoDetailViewModel.m in Sources */,
+				48A3710321B500B9002861DD /* DYJXCompanyInfoDetailPage.m in Sources */,
 				DE24BD85207F39AE00A213C5 /* JXMyRefundAfterSaleViewController.m in Sources */,
 				48C5E706205B742E00239081 /* JXSelectAdressListModel.m in Sources */,
 				CB3307711FA16D0700117695 /* UITableView+WLEmptyPlaceHolder.m in Sources */,
