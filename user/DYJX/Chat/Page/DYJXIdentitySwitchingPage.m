@@ -19,6 +19,7 @@
 #import "AppDelegate.h"
 #import "XJInfoDetailPage.h"
 #import "DYJXConversationTabBarController.h"
+#import "DYJXUserInfoDetailPage.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -230,19 +231,24 @@ static NSString *headerID=@"headerID";
 -(void)btnClick:(UIButton *)sender {
     NSIndexPath *indexpath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
     DYJXIdentitySwitchingModel *model  = [self.viewModel IdentityAtIndexPath:indexpath];
-    XJInfoDetailPage *target = [[XJInfoDetailPage alloc] init];
+//    XJInfoDetailPage *target = [[XJInfoDetailPage alloc] init];
     if ([[UserManager shared].login.UAUser.NumberString isEqualToString:model.NumberString]) { // 本人详情
-        target.type = XJGroupTypePerson;
+        DYJXUserInfoDetailPage *page = [[DYJXUserInfoDetailPage alloc]init];
+        [self.navigationController pushViewController:page animated:YES];
+//        target.type = XJGroupTypePerson;
     }
     else {
         if (!model.IsPart) { // 子公司详情
-            target.type = XJGroupTypeSubCompany;
+            DYJXUserInfoDetailPage *page = [[DYJXUserInfoDetailPage alloc]init];
+            [self.navigationController pushViewController:page animated:YES];
+//            target.type = XJGroupTypeSubCompany;
         }
         else { // 公司详情
-            target.type = XJGroupTypeCompany;
+            DYJXUserInfoDetailPage *page = [[DYJXUserInfoDetailPage alloc]init];
+            [self.navigationController pushViewController:page animated:YES];
+//            target.type = XJGroupTypeCompany;
         }
     }
-    [self.navigationController pushViewController:target animated:true];
 }
 
 - (IBAction)logoutBTN:(UIButton *)sender {

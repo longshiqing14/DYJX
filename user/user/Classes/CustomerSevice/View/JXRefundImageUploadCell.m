@@ -73,15 +73,15 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
 
 -(void)setImagesArray:(NSMutableArray *)imagesArray{
     _imagesArray = imagesArray;
-    if (imagesArray.count / 4 == 0) {
+//    if (imagesArray.count / 4 == 0) {
         [self.photoImgCollectionView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo([self cellWidth]  );
         }];
-    }else if (imagesArray.count / 4 == 1) {
-        [self.photoImgCollectionView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo([self cellWidth]*2 + 15 * 1);
-        }];
-    }
+//    }else if (imagesArray.count / 4 == 1) {
+//        [self.photoImgCollectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.height.mas_equalTo([self cellWidth]*2 + 15 * 1);
+//        }];
+//    }
     [self.photoImgCollectionView reloadData];
 }
 

@@ -185,6 +185,11 @@
 		48A3709121AFCE4F002861DD /* BusinessLicenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3709021AFCE4F002861DD /* BusinessLicenceCell.m */; };
 		48A370AB21AFED44002861DD /* TipsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370AA21AFED44002861DD /* TipsCell.m */; };
 		48A370AE21AFF176002861DD /* ImageUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370AD21AFF176002861DD /* ImageUploadCell.m */; };
+		48A370F121B13A47002861DD /* DYJXUserInfoDetailPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370F021B13A47002861DD /* DYJXUserInfoDetailPage.m */; };
+		48A370F421B13AA8002861DD /* DYJXUserInfoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370F321B13AA8002861DD /* DYJXUserInfoDetailViewModel.m */; };
+		48A370F721B4C833002861DD /* SpaceFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370F621B4C833002861DD /* SpaceFooter.m */; };
+		48A370FA21B4C8B9002861DD /* BusinessLicenceFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370F921B4C8B9002861DD /* BusinessLicenceFooter.m */; };
+		48A370FD21B4CC34002861DD /* TipsFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370FC21B4CC34002861DD /* TipsFooter.m */; };
 		48B16C8E1FE00B4800DF8C1C /* JXAddCartAnimationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B16C8D1FE00B4800DF8C1C /* JXAddCartAnimationModel.m */; };
 		48B35106208F027300A9F7E4 /* DSectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35102208F027300A9F7E4 /* DSectionIndexView.m */; };
 		48B35107208F027300A9F7E4 /* DSectionIndexItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35105208F027300A9F7E4 /* DSectionIndexItemView.m */; };
@@ -1222,6 +1227,16 @@
 		48A370AA21AFED44002861DD /* TipsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TipsCell.m; sourceTree = "<group>"; };
 		48A370AC21AFF176002861DD /* ImageUploadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageUploadCell.h; sourceTree = "<group>"; };
 		48A370AD21AFF176002861DD /* ImageUploadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageUploadCell.m; sourceTree = "<group>"; };
+		48A370EF21B13A47002861DD /* DYJXUserInfoDetailPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXUserInfoDetailPage.h; sourceTree = "<group>"; };
+		48A370F021B13A47002861DD /* DYJXUserInfoDetailPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXUserInfoDetailPage.m; sourceTree = "<group>"; };
+		48A370F221B13AA8002861DD /* DYJXUserInfoDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXUserInfoDetailViewModel.h; sourceTree = "<group>"; };
+		48A370F321B13AA8002861DD /* DYJXUserInfoDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXUserInfoDetailViewModel.m; sourceTree = "<group>"; };
+		48A370F521B4C833002861DD /* SpaceFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpaceFooter.h; sourceTree = "<group>"; };
+		48A370F621B4C833002861DD /* SpaceFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpaceFooter.m; sourceTree = "<group>"; };
+		48A370F821B4C8B9002861DD /* BusinessLicenceFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessLicenceFooter.h; sourceTree = "<group>"; };
+		48A370F921B4C8B9002861DD /* BusinessLicenceFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessLicenceFooter.m; sourceTree = "<group>"; };
+		48A370FB21B4CC34002861DD /* TipsFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TipsFooter.h; sourceTree = "<group>"; };
+		48A370FC21B4CC34002861DD /* TipsFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TipsFooter.m; sourceTree = "<group>"; };
 		48B16C8C1FE00B4800DF8C1C /* JXAddCartAnimationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXAddCartAnimationModel.h; sourceTree = "<group>"; };
 		48B16C8D1FE00B4800DF8C1C /* JXAddCartAnimationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXAddCartAnimationModel.m; sourceTree = "<group>"; };
 		48B35102208F027300A9F7E4 /* DSectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSectionIndexView.m; sourceTree = "<group>"; };
@@ -2891,12 +2906,18 @@
 				48A3707321ABF406002861DD /* TitleAndContentCell.m */,
 				48A3707521AE3B64002861DD /* SpaceCell.h */,
 				48A3707621AE3B64002861DD /* SpaceCell.m */,
+				48A370F521B4C833002861DD /* SpaceFooter.h */,
+				48A370F621B4C833002861DD /* SpaceFooter.m */,
 				48A3708F21AFCE4F002861DD /* BusinessLicenceCell.h */,
 				48A3709021AFCE4F002861DD /* BusinessLicenceCell.m */,
+				48A370F821B4C8B9002861DD /* BusinessLicenceFooter.h */,
+				48A370F921B4C8B9002861DD /* BusinessLicenceFooter.m */,
 				48A370AC21AFF176002861DD /* ImageUploadCell.h */,
 				48A370AD21AFF176002861DD /* ImageUploadCell.m */,
 				48A370A921AFED44002861DD /* TipsCell.h */,
 				48A370AA21AFED44002861DD /* TipsCell.m */,
+				48A370FB21B4CC34002861DD /* TipsFooter.h */,
+				48A370FC21B4CC34002861DD /* TipsFooter.m */,
 				E16657B621A413AA00BAC552 /* OwnerImageCell.h */,
 				E16657B721A413AA00BAC552 /* OwnerImageCell.m */,
 				E16657B921A41C0800BAC552 /* SampleButtonTableViewCell.h */,
@@ -2913,6 +2934,8 @@
 				487351392186F475001B59AB /* DYJXIdentitySwitchingPage.xib */,
 				E1B52937219FE0FC008B27A5 /* XJInfoDetailPage.h */,
 				E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */,
+				48A370EF21B13A47002861DD /* DYJXUserInfoDetailPage.h */,
+				48A370F021B13A47002861DD /* DYJXUserInfoDetailPage.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -2924,6 +2947,8 @@
 				4873513D2186F5A5001B59AB /* DYJXIdentitySwitchingViewModel.m */,
 				E11C423721A2E19B0039A53A /* GropuDetailViewModel.h */,
 				E11C423821A2E19B0039A53A /* GropuDetailViewModel.m */,
+				48A370F221B13AA8002861DD /* DYJXUserInfoDetailViewModel.h */,
+				48A370F321B13AA8002861DD /* DYJXUserInfoDetailViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6681,6 +6706,7 @@
 				CBE859861F5E75C700E1E4EA /* XYCycleScrollView.m in Sources */,
 				DEE9AA3A1FBD3AC1001FA69A /* JXRenewInInPutCell.m in Sources */,
 				489A3F391FB53A870084E2BC /* JXSearchResultPage.m in Sources */,
+				48A370F121B13A47002861DD /* DYJXUserInfoDetailPage.m in Sources */,
 				48B8309E1FBABA3F0019F503 /* JXStyleView.m in Sources */,
 				E1B52939219FE0FC008B27A5 /* XJInfoDetailPage.m in Sources */,
 				CB53FE691F695B540020F19A /* XYPreDepositSelectCVC.m in Sources */,
@@ -6934,6 +6960,7 @@
 				487C55A82060FF93006A8071 /* JXVersionUpdateView.m in Sources */,
 				48511D87219FC9C5006C6081 /* NSObject+Extension.m in Sources */,
 				E17FC6C821A1009D00D435D9 /* DJJLIMInfo.m in Sources */,
+				48A370F721B4C833002861DD /* SpaceFooter.m in Sources */,
 				DE97D2481FD914F700D70F46 /* JXHomeHeatView.m in Sources */,
 				CBCF835E1F71384C00B20CF9 /* XYOrderDetailOrderBottonVC.m in Sources */,
 				481434AB1FE8EFF000E7DCD8 /* JXShareModel.m in Sources */,
@@ -6974,6 +7001,7 @@
 				480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */,
 				CBE85ABA1F630B1C00E1E4EA /* XYMineOrderButtonVC.m in Sources */,
 				48B5737D2047E2430028A8FA /* JXElectronicInvoiceHeaderCell.m in Sources */,
+				48A370FA21B4C8B9002861DD /* BusinessLicenceFooter.m in Sources */,
 				E17FC6D721A1053E00D435D9 /* DJJSIMInfo.m in Sources */,
 				CB4287771F66AE39004C43C1 /* XYOrderDetailTitleModel.m in Sources */,
 				486BA980207B66A400FB709D /* JXRefundStateCell.m in Sources */,
@@ -7011,6 +7039,7 @@
 				CB582F9B1F723A55009E495F /* XYPayPasswordSettingVC.m in Sources */,
 				48644D671FCE5ED700CE47BC /* JXAlreadyUsedViewModel.m in Sources */,
 				CBFF45D21F7A939900D2AF93 /* XYUMSocialShareItemModel.m in Sources */,
+				48A370FD21B4CC34002861DD /* TipsFooter.m in Sources */,
 				CBD2BA681F5D39E90057E2E7 /* XYCommon.m in Sources */,
 				E19DC8D3219AE7E600C86478 /* BaseModel.m in Sources */,
 				CBFF459C1F74E56B00D2AF93 /* XYOrderCommon.m in Sources */,
@@ -7182,6 +7211,7 @@
 				E19DC8C9219ACC6A00C86478 /* DJContactsChatViewController.m in Sources */,
 				CBFF467C1F7F271500D2AF93 /* XYOrderReAddCommentSecondCell.m in Sources */,
 				DEDA7CFE1FCD0D3C008A362A /* JXNotUsedHeatView.m in Sources */,
+				48A370F421B13AA8002861DD /* DYJXUserInfoDetailViewModel.m in Sources */,
 				DE24BD85207F39AE00A213C5 /* JXMyRefundAfterSaleViewController.m in Sources */,
 				48C5E706205B742E00239081 /* JXSelectAdressListModel.m in Sources */,
 				CB3307711FA16D0700117695 /* UITableView+WLEmptyPlaceHolder.m in Sources */,

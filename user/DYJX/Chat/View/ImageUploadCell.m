@@ -169,7 +169,9 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    
+    if (self.imagesArray.count == 4) {
+        return self.imagesArray.count;
+    }
     return self.imagesArray.count + 1;
 }
 
@@ -177,7 +179,7 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
 {
     UICollectionViewCell *cell = nil;
     
-    if (self.imagesArray.count <= 7) {
+    if (self.imagesArray.count <= 3) {
         
         if (indexPath.row == self.imagesArray.count) {
             JXRefumdImageCameraCollectionCell *ImageCameraCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCameraCollectionCell forIndexPath:indexPath];
