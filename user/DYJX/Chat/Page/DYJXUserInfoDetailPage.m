@@ -16,11 +16,12 @@
 #import "BusinessLicenceFooter.h"
 #import "TipsFooter.h"
 #import "XYSelectIconPopView.h"
+#import "TitleAndContentArrowCell.h"
 
 static NSString *kGroupDetailModelTipsFooter = @"kGroupDetailModelTipsFooter";
 static NSString *kGroupDetailModelBusinessLicenceFooter = @"kGroupDetailModelBusinessLicenceFooter";
 static NSString *kGroupDetailModelSpaceFooter = @"kGroupDetailModelSpaceFooter";
-
+static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailModelTitleAndContentArrowCell";
 @interface DYJXUserInfoDetailPage ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,XYSelectIconPopViewDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong)DYJXUserInfoDetailViewModel *viewModel;
 @property(strong,nonatomic) NSMutableArray *imgArr ;
@@ -50,6 +51,8 @@ static NSString *kGroupDetailModelSpaceFooter = @"kGroupDetailModelSpaceFooter";
     [self.tableView registerClass:[SampleButtonTableViewCell class] forCellReuseIdentifier:kGroupDetailModelSampleCellId];
     [self.tableView registerClass:[TitleAndContentCell class] forCellReuseIdentifier:kGroupDetailModelTitleAndContentCell];
     [self.tableView registerClass:[ImageUploadCell class] forCellReuseIdentifier:kGroupDetailModelImageUploadCell];
+    [self.tableView registerClass:[TitleAndContentArrowCell class] forCellReuseIdentifier:kGroupDetailModelTitleAndContentArrowCell];
+    
     
     [self.tableView registerClass:[TipsFooter class] forHeaderFooterViewReuseIdentifier:kGroupDetailModelTipsFooter];
     [self.tableView registerClass:[BusinessLicenceFooter class] forHeaderFooterViewReuseIdentifier:kGroupDetailModelBusinessLicenceFooter];
@@ -153,10 +156,10 @@ static NSString *kGroupDetailModelSpaceFooter = @"kGroupDetailModelSpaceFooter";
                 
             case 3:
             {
-                TitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentCell forIndexPath:indexPath];
-                [titleAndContentCell.iconImage setImage:[UIImage imageNamed:@"location_blue"]];
-                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                cell = titleAndContentCell;
+                TitleAndContentArrowCell *titleAndContentArrowCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentArrowCell forIndexPath:indexPath];
+                [titleAndContentArrowCell.iconImage setImage:[UIImage imageNamed:@"location_blue"]];
+                titleAndContentArrowCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                cell = titleAndContentArrowCell;
             }
                 break;
                 
@@ -171,10 +174,10 @@ static NSString *kGroupDetailModelSpaceFooter = @"kGroupDetailModelSpaceFooter";
                 
             case 5:
             {
-                TitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentCell forIndexPath:indexPath];
-                [titleAndContentCell.iconImage setImage:[UIImage imageNamed:@"location_blue"]];
-                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                cell = titleAndContentCell;
+                TitleAndContentArrowCell *titleAndContentArrowCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentArrowCell forIndexPath:indexPath];
+                [titleAndContentArrowCell.iconImage setImage:[UIImage imageNamed:@"location_blue"]];
+                titleAndContentArrowCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                cell = titleAndContentArrowCell;
             }
                 break;
                 

@@ -193,6 +193,8 @@
 		48A3710021B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A370FF21B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.m */; };
 		48A3710321B500B9002861DD /* DYJXCompanyInfoDetailPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3710221B500B9002861DD /* DYJXCompanyInfoDetailPage.m */; };
 		48A3710621B50133002861DD /* CompanyTitleAndContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3710521B50133002861DD /* CompanyTitleAndContentCell.m */; };
+		48A3710921B5270E002861DD /* CompanyBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3710821B5270E002861DD /* CompanyBottomView.m */; };
+		48A3710C21B527D6002861DD /* TitleAndContentArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3710B21B527D6002861DD /* TitleAndContentArrowCell.m */; };
 		48B16C8E1FE00B4800DF8C1C /* JXAddCartAnimationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B16C8D1FE00B4800DF8C1C /* JXAddCartAnimationModel.m */; };
 		48B35106208F027300A9F7E4 /* DSectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35102208F027300A9F7E4 /* DSectionIndexView.m */; };
 		48B35107208F027300A9F7E4 /* DSectionIndexItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35105208F027300A9F7E4 /* DSectionIndexItemView.m */; };
@@ -1246,6 +1248,10 @@
 		48A3710221B500B9002861DD /* DYJXCompanyInfoDetailPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXCompanyInfoDetailPage.m; sourceTree = "<group>"; };
 		48A3710421B50133002861DD /* CompanyTitleAndContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndContentCell.h; sourceTree = "<group>"; };
 		48A3710521B50133002861DD /* CompanyTitleAndContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyTitleAndContentCell.m; sourceTree = "<group>"; };
+		48A3710721B5270E002861DD /* CompanyBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyBottomView.h; sourceTree = "<group>"; };
+		48A3710821B5270E002861DD /* CompanyBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyBottomView.m; sourceTree = "<group>"; };
+		48A3710A21B527D6002861DD /* TitleAndContentArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TitleAndContentArrowCell.h; sourceTree = "<group>"; };
+		48A3710B21B527D6002861DD /* TitleAndContentArrowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitleAndContentArrowCell.m; sourceTree = "<group>"; };
 		48B16C8C1FE00B4800DF8C1C /* JXAddCartAnimationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXAddCartAnimationModel.h; sourceTree = "<group>"; };
 		48B16C8D1FE00B4800DF8C1C /* JXAddCartAnimationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXAddCartAnimationModel.m; sourceTree = "<group>"; };
 		48B35102208F027300A9F7E4 /* DSectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSectionIndexView.m; sourceTree = "<group>"; };
@@ -2913,6 +2919,8 @@
 				E16657B421A411FD00BAC552 /* BaseTableViewCell.m */,
 				48A3707221ABF406002861DD /* TitleAndContentCell.h */,
 				48A3707321ABF406002861DD /* TitleAndContentCell.m */,
+				48A3710A21B527D6002861DD /* TitleAndContentArrowCell.h */,
+				48A3710B21B527D6002861DD /* TitleAndContentArrowCell.m */,
 				48A3710421B50133002861DD /* CompanyTitleAndContentCell.h */,
 				48A3710521B50133002861DD /* CompanyTitleAndContentCell.m */,
 				48A3707521AE3B64002861DD /* SpaceCell.h */,
@@ -2933,6 +2941,8 @@
 				E16657B721A413AA00BAC552 /* OwnerImageCell.m */,
 				E16657B921A41C0800BAC552 /* SampleButtonTableViewCell.h */,
 				E16657BA21A41C0800BAC552 /* SampleButtonTableViewCell.m */,
+				48A3710721B5270E002861DD /* CompanyBottomView.h */,
+				48A3710821B5270E002861DD /* CompanyBottomView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6743,6 +6753,7 @@
 				487351412186F626001B59AB /* DYJXIdentitySwitchingModel.m in Sources */,
 				E11C423921A2E19B0039A53A /* GropuDetailViewModel.m in Sources */,
 				CB123C001F91BCA600CD4429 /* XYFindVC.m in Sources */,
+				48A3710921B5270E002861DD /* CompanyBottomView.m in Sources */,
 				DE06F19A1FABFE1D00C3ECD9 /* XYPlayModel.m in Sources */,
 				CBD3D50E1FB594C1007FF022 /* XYClassificationNet.m in Sources */,
 				48644D5E1FCE4C5800CE47BC /* JXCouponBaseModel.m in Sources */,
@@ -6782,6 +6793,7 @@
 				DE4FC2AC2091C1EC0069A4B4 /* JXMyAfterSaleDetailsReasonsCell.m in Sources */,
 				DE8E74411FBC1F4200426EAF /* JXMyBroadbandOrdersCell.m in Sources */,
 				48D47A4E1FF4878D00B280DE /* JXPointsVC.m in Sources */,
+				48A3710C21B527D6002861DD /* TitleAndContentArrowCell.m in Sources */,
 				489A3F451FB53FEE0084E2BC /* JXSearchHistoryViewModel.m in Sources */,
 				DE24BD92207F5DCB00A213C5 /* JXMyAfterSaleDetailCell.m in Sources */,
 				DEB72FE51FBDA8660069C581 /* JXDetailsModel.m in Sources */,
