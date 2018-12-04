@@ -133,6 +133,8 @@
 		487C55C120638AE4006A8071 /* JXAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487C55BE20638AB8006A8071 /* JXAddressCell.xib */; };
 		488003931FBD36CB00FEBBDB /* JXHotSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 488003921FBD36CB00FEBBDB /* JXHotSearchModel.m */; };
 		488003961FBD37CD00FEBBDB /* JXHotSearchListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 488003951FBD37CD00FEBBDB /* JXHotSearchListModel.m */; };
+		488B092F21B6230C00DAA97E /* CompanyAdminBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 488B092E21B6230C00DAA97E /* CompanyAdminBottomView.m */; };
+		488B093121B6232300DAA97E /* CompanyAdminBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 488B093021B6232300DAA97E /* CompanyAdminBottomView.xib */; };
 		488E30C21FD9102300D4DC17 /* JXGoodsDetailCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 488E30C01FD9102300D4DC17 /* JXGoodsDetailCouponViewController.m */; };
 		488E30C31FD9102300D4DC17 /* JXGoodsDetailCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 488E30C11FD9102300D4DC17 /* JXGoodsDetailCouponViewController.xib */; };
 		488E8931219FE94F008695A7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E8930219FE94F008695A7 /* GLKit.framework */; };
@@ -195,6 +197,8 @@
 		48A3710621B50133002861DD /* CompanyTitleAndContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3710521B50133002861DD /* CompanyTitleAndContentCell.m */; };
 		48A3710921B5270E002861DD /* CompanyBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3710821B5270E002861DD /* CompanyBottomView.m */; };
 		48A3710C21B527D6002861DD /* TitleAndContentArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3710B21B527D6002861DD /* TitleAndContentArrowCell.m */; };
+		48A3710F21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3710E21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.m */; };
+		48A3711121B61369002861DD /* CompanyBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A3711021B61369002861DD /* CompanyBottomView.xib */; };
 		48B16C8E1FE00B4800DF8C1C /* JXAddCartAnimationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B16C8D1FE00B4800DF8C1C /* JXAddCartAnimationModel.m */; };
 		48B35106208F027300A9F7E4 /* DSectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35102208F027300A9F7E4 /* DSectionIndexView.m */; };
 		48B35107208F027300A9F7E4 /* DSectionIndexItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35105208F027300A9F7E4 /* DSectionIndexItemView.m */; };
@@ -1112,6 +1116,9 @@
 		488003921FBD36CB00FEBBDB /* JXHotSearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXHotSearchModel.m; sourceTree = "<group>"; };
 		488003941FBD37CD00FEBBDB /* JXHotSearchListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXHotSearchListModel.h; sourceTree = "<group>"; };
 		488003951FBD37CD00FEBBDB /* JXHotSearchListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXHotSearchListModel.m; sourceTree = "<group>"; };
+		488B092D21B6230C00DAA97E /* CompanyAdminBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyAdminBottomView.h; sourceTree = "<group>"; };
+		488B092E21B6230C00DAA97E /* CompanyAdminBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyAdminBottomView.m; sourceTree = "<group>"; };
+		488B093021B6232300DAA97E /* CompanyAdminBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyAdminBottomView.xib; sourceTree = "<group>"; };
 		488E30BF1FD9102300D4DC17 /* JXGoodsDetailCouponViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXGoodsDetailCouponViewController.h; sourceTree = "<group>"; };
 		488E30C01FD9102300D4DC17 /* JXGoodsDetailCouponViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXGoodsDetailCouponViewController.m; sourceTree = "<group>"; };
 		488E30C11FD9102300D4DC17 /* JXGoodsDetailCouponViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JXGoodsDetailCouponViewController.xib; sourceTree = "<group>"; };
@@ -1252,6 +1259,9 @@
 		48A3710821B5270E002861DD /* CompanyBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyBottomView.m; sourceTree = "<group>"; };
 		48A3710A21B527D6002861DD /* TitleAndContentArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TitleAndContentArrowCell.h; sourceTree = "<group>"; };
 		48A3710B21B527D6002861DD /* TitleAndContentArrowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitleAndContentArrowCell.m; sourceTree = "<group>"; };
+		48A3710D21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXSubcompanyInfoDetailViewModel.h; sourceTree = "<group>"; };
+		48A3710E21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXSubcompanyInfoDetailViewModel.m; sourceTree = "<group>"; };
+		48A3711021B61369002861DD /* CompanyBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyBottomView.xib; sourceTree = "<group>"; };
 		48B16C8C1FE00B4800DF8C1C /* JXAddCartAnimationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXAddCartAnimationModel.h; sourceTree = "<group>"; };
 		48B16C8D1FE00B4800DF8C1C /* JXAddCartAnimationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXAddCartAnimationModel.m; sourceTree = "<group>"; };
 		48B35102208F027300A9F7E4 /* DSectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSectionIndexView.m; sourceTree = "<group>"; };
@@ -2943,6 +2953,10 @@
 				E16657BA21A41C0800BAC552 /* SampleButtonTableViewCell.m */,
 				48A3710721B5270E002861DD /* CompanyBottomView.h */,
 				48A3710821B5270E002861DD /* CompanyBottomView.m */,
+				48A3711021B61369002861DD /* CompanyBottomView.xib */,
+				488B092D21B6230C00DAA97E /* CompanyAdminBottomView.h */,
+				488B092E21B6230C00DAA97E /* CompanyAdminBottomView.m */,
+				488B093021B6232300DAA97E /* CompanyAdminBottomView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2974,6 +2988,8 @@
 				48A370F321B13AA8002861DD /* DYJXUserInfoDetailViewModel.m */,
 				48A370FE21B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.h */,
 				48A370FF21B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.m */,
+				48A3710D21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.h */,
+				48A3710E21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6347,6 +6363,7 @@
 				DE910FCE2085DD3C00BDDABF /* JXMyOderDetailsDistributionHeatView.xib in Resources */,
 				DEA083842021BFD8003A492C /* JXSpecialOfferView.xib in Resources */,
 				48F3F45420843A58005D5D0C /* JXRefumdImageCameraCollectionCell.xib in Resources */,
+				48A3711121B61369002861DD /* CompanyBottomView.xib in Resources */,
 				481FE70C2182170600CFE26B /* DYJXLoginPage.xib in Resources */,
 				486BA977207A1ACE00FB709D /* JXRefundFooterView.xib in Resources */,
 				DE910FD92085DD3C00BDDABF /* JXMyOderClockFootView.xib in Resources */,
@@ -6390,6 +6407,7 @@
 				DE71B167208744DD00467E06 /* PYPhotosView.bundle in Resources */,
 				DE910FC82085DD3C00BDDABF /* JXMyOrderDetailsCell.xib in Resources */,
 				CB42F5FD1FAC655000889257 /* new_feature_1.png in Resources */,
+				488B093121B6232300DAA97E /* CompanyAdminBottomView.xib in Resources */,
 				CB3307A51FA1BF8F00117695 /* IQKeyboardManager.bundle in Resources */,
 				4804A186219593170081AB5B /* native-bundle-main.js in Resources */,
 				4804A14A21957D5D0081AB5B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -6854,6 +6872,7 @@
 				E17FC6C921A1009D00D435D9 /* DJJLLoginResponse.m in Sources */,
 				DE81A88120649F8700E8632C /* AddressModel.m in Sources */,
 				CBFF467E1F7F271500D2AF93 /* XYOrderShowImgCVCell.m in Sources */,
+				488B092F21B6230C00DAA97E /* CompanyAdminBottomView.m in Sources */,
 				E11C423C21A2E5DC0039A53A /* GroupDetailModel.m in Sources */,
 				CBE85AC81F63996200E1E4EA /* XYOrderDetailGoodsListTVC.m in Sources */,
 				CBF74E311F8C972E00D528C2 /* XYCartDeliveryWayModel.m in Sources */,
@@ -7183,6 +7202,7 @@
 				CB42875F1F663259004C43C1 /* XYOrderDetailSubClassOrderStatusVC.m in Sources */,
 				CB3872851FA4573000254263 /* XYFindVideoVC.m in Sources */,
 				CBE859BB1F5F99A300E1E4EA /* XYHomeButtonCVC.m in Sources */,
+				48A3710F21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.m in Sources */,
 				CB42876E1F66961E004C43C1 /* XYOrderDetailSubClassOrderDetailAddressVC.m in Sources */,
 				CBE85B071F63F4EC00E1E4EA /* XYMineAllNet.m in Sources */,
 				CBE85AD81F63D44B00E1E4EA /* XYOrderPaymentRemarkSectionFooterVC.m in Sources */,

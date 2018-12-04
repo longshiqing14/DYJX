@@ -10,5 +10,16 @@
 
 @implementation CompanyBottomView
 
+- (IBAction)enterConversion:(UIButton *)sender {
+    if (self.enterConversionBlock) {
+        self.enterConversionBlock();
+    }
+}
+
+- (IBAction)exitCompany:(UIButton *)sender {
+    if (self.exitCompanyBlock) {
+        self.exitCompanyBlock();
+    }
+}
 
 @end

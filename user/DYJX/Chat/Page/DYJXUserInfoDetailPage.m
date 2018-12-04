@@ -279,7 +279,7 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
     }else if (section == 2){
         return 60;
     }else{
-        return 160;
+        return 120;
     }
 }
 

@@ -15,6 +15,8 @@
 #import "BusinessLicenceFooter.h"
 #import "TipsFooter.h"
 #import "XYSelectIconPopView.h"
+#import "CompanyBottomView.h"
+#import "CompanyAdminBottomView.h"
 
 static NSString *kGroupDetailModelTipsFooter = @"kGroupDetailModelTipsFooter";
 static NSString *kGroupDetailModelBusinessLicenceFooter = @"kGroupDetailModelBusinessLicenceFooter";
@@ -23,7 +25,7 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
 @interface DYJXCompanyInfoDetailPage ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,XYSelectIconPopViewDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong)DYJXCompanyInfoDetailViewModel *viewModel;
 @property(strong,nonatomic) NSMutableArray *imgArr ;
-
+@property(strong, nonatomic) CompanyBottomView *bottomView;
 @end
 
 @implementation DYJXCompanyInfoDetailPage
@@ -31,10 +33,21 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavigation];
+    [self initBottomView];
     [self.view addSubview:self.tableView];
     [self registerTableViewCell];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.bottomView.mas_top).mas_equalTo(0);
+    }];
+}
+
+- (void)initBottomView{
+   
+    [self.view addSubview:self.bottomView];
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(80);
         if (@available(iOS 11.0, *)) {
             make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
         } else {
@@ -338,7 +351,7 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
     }else if (section == 3){
         return 60;
     }else{
-        return 160;
+        return 120;
     }
 }
 
@@ -474,5 +487,16 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
         _imgArr = [NSMutableArray array];
     }
     return _imgArr;
+}
+
+- (CompanyBottomView *)bottomView{
+    if (!_bottomView) {
+        if (self.isAdmin) {
+            _bottomView = [[NSBundle mainBundle] loadNibNamed:@"CompanyAdminBottomView" owner:self options:nil].firstObject;
+        }else{
+            _bottomView = [[NSBundle mainBundle] loadNibNamed:@"CompanyBottomView" owner:self options:nil].firstObject;
+        }
+    }
+    return _bottomView;
 }
 @end

@@ -244,12 +244,14 @@ static NSString *headerID=@"headerID";
         if (model.IsPart) { // 子公司详情
             DYJXCompanyInfoDetailPage *page = [[DYJXCompanyInfoDetailPage alloc]init];
             page.userIconImageURL = [model.GroupHeadImg XYImageURL];
+            page.isAdmin = [self isAdmin:model];
             [self.navigationController pushViewController:page animated:YES];
 //            target.type = XJGroupTypeSubCompany;
         }
         else { // 公司详情
             DYJXCompanyInfoDetailPage *page = [[DYJXCompanyInfoDetailPage alloc]init];
             page.userIconImageURL = [model.GroupHeadImg XYImageURL];
+             page.isAdmin = [self isAdmin:model];
             [self.navigationController pushViewController:page animated:YES];
 //            target.type = XJGroupTypeCompany;
         }

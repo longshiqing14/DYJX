@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CompanyBottomView : UIView
+typedef void(^EnterConversionBlock)(void);
+typedef void(^ExitCompanyBlock)(void);
 
+@interface CompanyBottomView : UIView
+@property (nonatomic,copy)EnterConversionBlock enterConversionBlock;
+@property (nonatomic,copy)ExitCompanyBlock exitCompanyBlock;
 @end
