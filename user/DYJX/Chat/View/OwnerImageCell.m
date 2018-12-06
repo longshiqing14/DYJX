@@ -8,12 +8,18 @@
 
 #import "OwnerImageCell.h"
 
+@interface OwnerImageCell()
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@end
+
 @implementation OwnerImageCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self addSubview:self.porityImageView];
+        [self.porityImageView addGestureRecognizer:self.tapGestureRecognizer];
         [self addSubview:self.qcoreImageView];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
@@ -38,10 +44,17 @@
     }];
 }
 
+- (void)tapPorityImageView{
+    if (self.block) {
+        self.block();
+    }
+}
+
 #pragma mark - UI
 -(UIImageView *)porityImageView {
     if (!_porityImageView) {
         _porityImageView = [[UIImageView alloc] init];
+        _porityImageView.userInteractionEnabled = YES;
         _porityImageView.layer.masksToBounds = YES;
         _porityImageView.layer.cornerRadius = 60;
         [_porityImageView setImage:[UIImage imageNamed:@"btn_group"]];
@@ -57,4 +70,11 @@
     return _qcoreImageView;
 }
 
+- (UITapGestureRecognizer *)tapGestureRecognizer{
+    if (!_tapGestureRecognizer) {
+        _tapGestureRecognizer = [[UITapGestureRecognizer alloc]init];
+        [_tapGestureRecognizer addTarget:self action:@selector(tapPorityImageView)];
+    }
+    return _tapGestureRecognizer;
+}
 @end

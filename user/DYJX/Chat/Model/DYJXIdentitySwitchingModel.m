@@ -31,9 +31,16 @@
 @end
 
 @implementation DYJXIdentitySwitchingCreatorBusinessIMInfoModel
-
+//+(NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass {
+//    return @{
+//             @"Images":[PersonZhiZhaoModel class],
+//             };
+//}
 @end
 
+@implementation PersonZhiZhaoModel
+
+@end
 //@implementation DYJXIdentitySwitchingChildrenModel
 //+ (NSDictionary *)modelContainerPropertyGenericClass {
 //    return @{@"AdminUserIds" : [NSString class],

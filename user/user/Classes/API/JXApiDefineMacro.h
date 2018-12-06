@@ -59,6 +59,16 @@ static NSString * const kDYJXAPI_user_MyApps = @"MyApps";
 //最近会话
 static NSString * const kDYJXAPI_user_Conversations = @"Conversations";
 
+//上传图片
+static NSString * const kDYJXAPI_user_UploadFile = @"UploadFile";
+
+//编辑个人信息
+static NSString * const kDYJXAPI_user_UpdateIMUserInfo = @"UpdateIMUserInfo";
+
+
+
+
+
 
 
 

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^EnterConversionBlock)(void);
+typedef void(^ExitCompanyBlock)(void);
+typedef void(^DeleteCompanyBlock)(void);
 
 @interface CompanyAdminBottomView : UIView
-
+@property (nonatomic,copy)EnterConversionBlock enterConversionBlock;
+@property (nonatomic,copy)ExitCompanyBlock exitCompanyBlock;
+@property (nonatomic,copy)DeleteCompanyBlock deleteCompanyBlock;
 @end

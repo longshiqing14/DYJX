@@ -11,7 +11,7 @@
 @class DYJXIdentitySwitchingCreatorModel;
 @class DYJXIdentitySwitchingCreatorBusinessModel;
 @class DYJXIdentitySwitchingCreatorBusinessIMInfoModel;
-//@class DYJXIdentitySwitchingChildrenModel;
+@class PersonZhiZhaoModel;
 
 @interface DYJXIdentitySwitchingModel : NSObject
 @property(nonatomic, assign)int Number;
@@ -121,11 +121,27 @@
 @end
 
 @interface DYJXIdentitySwitchingCreatorBusinessIMInfoModel : NSObject
-@property(nonatomic, assign)BOOL AdminSay;
-@property(nonatomic, assign)BOOL CanNotSearch;
-@property(nonatomic, copy)NSString *NickName;
-@property(nonatomic, copy)NSString *PersonRemark;
-@property(nonatomic, copy)NSString *HeadImgUrl;
-@property(nonatomic, strong)NSArray *Images;
-@property(nonatomic, copy)NSString *Id;
+@property (nonatomic, copy) NSString *Address;
+@property (nonatomic, assign) BOOL *AdminSay;
+@property (nonatomic, assign) BOOL *CanNotSearch;
+@property (nonatomic, copy) NSString *GPSAddress;
+@property (nonatomic, copy) NSString *HeadImgUrl;
+@property (nonatomic, copy) NSString *Latitude;
+@property (nonatomic, copy) NSString *Longitude;
+@property (nonatomic, copy) NSString *NickName;
+@property (nonatomic, copy) NSString *PCDName;
+@property (nonatomic, copy) NSString *PersonAlipay;
+@property (nonatomic, copy) NSString *PersonBank;
+@property (nonatomic, copy) NSString *PersonBankCardNo;
+@property (nonatomic, copy) NSString *PersonBankName;
+@property (nonatomic, copy) NSString *PersonQQ;
+@property (nonatomic, copy) NSString *PersonRemark;
+@property (nonatomic, copy) NSString *PersonWeiXin;
+@property (nonatomic, copy) NSString *TrueName;
+@property (nonatomic, copy)NSString *Images;
+@end
+
+@interface PersonZhiZhaoModel : NSObject
+@property (nonatomic, copy) NSString *Name;
+@property (nonatomic, copy) NSString *Title;
 @end

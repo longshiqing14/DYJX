@@ -10,12 +10,23 @@
 
 @implementation CompanyAdminBottomView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+
+- (IBAction)enterConversion:(UIButton *)sender {
+    if (self.enterConversionBlock) {
+        self.enterConversionBlock();
+    }
 }
-*/
+
+- (IBAction)deleteCompany:(UIButton *)sender {
+    if (self.deleteCompanyBlock) {
+        self.deleteCompanyBlock();
+    }
+}
+
+- (IBAction)exitCompany:(UIButton *)sender {
+    if (self.exitCompanyBlock) {
+        self.exitCompanyBlock();
+    }
+}
 
 @end

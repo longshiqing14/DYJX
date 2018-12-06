@@ -11,13 +11,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^TapPorityImageViewBlock)(void);
+
 @interface OwnerImageCell : BaseTableViewCell
 
 @property (nonatomic, strong)UIImageView *porityImageView;
 @property (nonatomic, strong)UIImageView *qcoreImageView;
 
 @property (nonatomic, strong)GroupDetailModel *model;
-
+@property (nonatomic, copy)TapPorityImageViewBlock block;
 @end
 
 NS_ASSUME_NONNULL_END
