@@ -17,14 +17,22 @@
 #import "XYSelectIconPopView.h"
 #import "CompanyBottomView.h"
 #import "CompanyAdminBottomView.h"
+#import "CompanyTitleAndSelcetedArrowCell.h"
+#import "CompanyTitleAndArrowCell.h"
 
 static NSString *kGroupDetailModelTipsFooter = @"kGroupDetailModelTipsFooter";
 static NSString *kGroupDetailModelBusinessLicenceFooter = @"kGroupDetailModelBusinessLicenceFooter";
 static NSString *kGroupDetailModelSpaceFooter = @"kGroupDetailModelSpaceFooter";
 static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailModelCompanyTitleAndContentCell";
+static NSString *kGroupDetailModelCompanyTitleAndSelcetedArrowCell = @"kGroupDetailModelCompanyTitleAndSelcetedArrowCell";
+static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModelCompanyTitleAndArrowCell";
+
+
 @interface DYJXCompanyInfoDetailPage ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,XYSelectIconPopViewDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong)DYJXCompanyInfoDetailViewModel *viewModel;
 @property(strong,nonatomic) NSMutableArray *imgArr ;
+@property(nonatomic, assign) BOOL isSelectHeader;
+@property(nonatomic, strong) UIImage *headerImage;
 @property(strong, nonatomic) CompanyBottomView *bottomView;
 @end
 
@@ -32,6 +40,7 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isSelectHeader = NO;
     [self initNavigation];
     [self initBottomView];
     [self.view addSubview:self.tableView];
@@ -60,6 +69,9 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
     [self.tableView registerClass:[OwnerImageCell class] forCellReuseIdentifier:kGroupDetailModelPorityCellId];
     [self.tableView registerClass:[CompanyTitleAndContentCell class] forCellReuseIdentifier:kGroupDetailModelCompanyTitleAndContentCell];
     [self.tableView registerClass:[ImageUploadCell class] forCellReuseIdentifier:kGroupDetailModelImageUploadCell];
+    [self.tableView registerClass:[CompanyTitleAndSelcetedArrowCell class] forCellReuseIdentifier:kGroupDetailModelCompanyTitleAndSelcetedArrowCell];
+    [self.tableView registerClass:[CompanyTitleAndArrowCell class] forCellReuseIdentifier:kGroupDetailModelCompanyTitleAndArrowCell];
+    
     
     [self.tableView registerClass:[TipsFooter class] forHeaderFooterViewReuseIdentifier:kGroupDetailModelTipsFooter];
     [self.tableView registerClass:[BusinessLicenceFooter class] forHeaderFooterViewReuseIdentifier:kGroupDetailModelBusinessLicenceFooter];
@@ -75,7 +87,11 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
 }
 
 - (void)initNavigation{
+    if (self.isAdmin) {
     self.title = @"公司账号管理";
+    }else{
+    self.title = @"信息查看";
+    }
     UIButton *rightBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [rightBarButton addTarget:self action:@selector(getBackPwd) forControlEvents:UIControlEventTouchUpInside];
     rightBarButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10);
@@ -106,6 +122,14 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
             {
                 OwnerImageCell *ownerImageCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelPorityCellId forIndexPath:indexPath];
                 [ownerImageCell.porityImageView setImageWithURL:[NSURL URLWithString:self.userIconImageURL] placeholder:[UIImage imageNamed:@"btn_group"]];
+                
+                if (self.isAdmin) {
+                ownerImageCell.block = ^{
+                    weakSelf.isSelectHeader = YES;
+                    [weakSelf showActionForPhoto];
+                };
+                }
+                
                 cell = ownerImageCell;
             }
                 break;
@@ -113,6 +137,7 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
             {
                 CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
+                
                 cell = titleAndContentCell;
             }
                 break;
@@ -138,7 +163,7 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
                 
             case 4:
             {
-                CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
+                CompanyTitleAndArrowCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndArrowCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
                 //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
@@ -148,7 +173,7 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
                 
             case 5:
             {
-                CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
+                CompanyTitleAndArrowCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndArrowCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
                 //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
@@ -158,7 +183,7 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
                 
             case 6:
             {
-                CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
+                CompanyTitleAndSelcetedArrowCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndSelcetedArrowCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
                 //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
@@ -168,7 +193,7 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
                 
             case 7:
             {
-                CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
+                CompanyTitleAndSelcetedArrowCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndSelcetedArrowCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
                 //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
@@ -420,11 +445,18 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
     [self dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    
-    [self.imgArr addObject:image];
-    
-    NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:3] ;
-    [self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+    if (self.isSelectHeader) {
+        self.headerImage = image;
+        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:0];
+        OwnerImageCell *ownerImageCell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [ownerImageCell.porityImageView setImage:image];
+        
+    }else{
+        [self.imgArr addObject:image];
+        
+        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:3] ;
+        [self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+    }
 }
 
 
@@ -498,5 +530,12 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
         }
     }
     return _bottomView;
+}
+
+- (UIImage *)headerImage{
+    if (!_headerImage) {
+        _headerImage = [[UIImage alloc]init];
+    }
+    return _headerImage;
 }
 @end

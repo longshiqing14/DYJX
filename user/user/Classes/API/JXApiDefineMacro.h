@@ -65,8 +65,8 @@ static NSString * const kDYJXAPI_user_UploadFile = @"UploadFile";
 //编辑个人信息
 static NSString * const kDYJXAPI_user_UpdateIMUserInfo = @"UpdateIMUserInfo";
 
-
-
+//获取（子）公司信息
+static NSString * const kDYJXAPI_user_GetGroupById = @"GetGroupById";
 
 
 
