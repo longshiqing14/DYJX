@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SubcompanyTopView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="将该联系人设为" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQX-TL-p7b">
+                    <rect key="frame" x="10" y="10" width="107.5" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ViN-fp-Z2m">
+                    <rect key="frame" x="10" y="40" width="89" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="好友" image="register_checkbox">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="friendBTNSelect:" destination="iN0-l3-epB" eventType="touchUpInside" id="gfi-TU-gLl"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xc-mc-ayY">
+                    <rect key="frame" x="99" y="40" width="88.5" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="普通" image="register_checkbox">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="normalBTNSelect:" destination="iN0-l3-epB" eventType="touchUpInside" id="zYG-J8-5YQ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zz-QC-bSy">
+                    <rect key="frame" x="276.5" y="40" width="88.5" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="删除" image="register_checkbox">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="deleteBTNSelect:" destination="iN0-l3-epB" eventType="touchUpInside" id="GJb-Xj-t0T"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wsg-bf-JRa">
+                    <rect key="frame" x="187.5" y="40" width="89" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="黑名单" image="register_checkbox">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="blackBTNSelect:" destination="iN0-l3-epB" eventType="touchUpInside" id="BBL-d9-jc9"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Wsg-bf-JRa" firstAttribute="width" secondItem="ViN-fp-Z2m" secondAttribute="width" id="2a9-mg-m8n"/>
+                <constraint firstItem="ViN-fp-Z2m" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="3sq-Je-R2c"/>
+                <constraint firstItem="8Xc-mc-ayY" firstAttribute="width" secondItem="ViN-fp-Z2m" secondAttribute="width" id="4tj-lX-S8J"/>
+                <constraint firstItem="8Xc-mc-ayY" firstAttribute="leading" secondItem="ViN-fp-Z2m" secondAttribute="trailing" id="AdE-YH-hAE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8zz-QC-bSy" secondAttribute="trailing" constant="10" id="C8S-9C-5sC"/>
+                <constraint firstItem="8zz-QC-bSy" firstAttribute="leading" secondItem="Wsg-bf-JRa" secondAttribute="trailing" id="LRe-gv-bcz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="8Xc-mc-ayY" secondAttribute="bottom" constant="20" id="QbK-f8-n8c"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ViN-fp-Z2m" secondAttribute="bottom" constant="20" id="YLr-nY-tXS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="8zz-QC-bSy" secondAttribute="bottom" constant="20" id="f3L-TJ-6WF"/>
+                <constraint firstItem="Wsg-bf-JRa" firstAttribute="leading" secondItem="8Xc-mc-ayY" secondAttribute="trailing" id="otH-2V-7mD"/>
+                <constraint firstItem="8zz-QC-bSy" firstAttribute="width" secondItem="ViN-fp-Z2m" secondAttribute="width" id="rFt-51-qr1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Wsg-bf-JRa" secondAttribute="bottom" constant="20" id="riZ-s5-05c"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="BlackBTN" destination="Wsg-bf-JRa" id="gza-2E-Hqe"/>
+                <outlet property="NormalBTN" destination="8Xc-mc-ayY" id="wbH-5Q-Hbw"/>
+                <outlet property="deleteBTN" destination="8zz-QC-bSy" id="lpq-cN-a3b"/>
+                <outlet property="friendBTN" destination="ViN-fp-Z2m" id="2sq-j5-ln1"/>
+            </connections>
+            <point key="canvasLocation" x="-12.5" y="-171"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="register_checkbox" width="20" height="20"/>
+    </resources>
+</document>

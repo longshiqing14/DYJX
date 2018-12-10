@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DYJXUserInfoModel.h"
+#import "DYJXXYGroupByIdResponse.h"
 
 @interface DYJXCompanyInfoDetailViewModel : NSObject
 @property (nonatomic,strong) NSMutableDictionary *requestDic;
@@ -16,7 +16,8 @@
 - (NSString *)content:(NSIndexPath *)indexPath;
 - (NSInteger)numberOfCell:(NSInteger)indexPath;
 //获取用户信息
-- (void)getGroupInfoSuccess:(void(^)(DYJXUserInfoModel*))success failed:(void(^)(NSString *errorMsg))fail;
+- (void)getGroupInfoWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail;
 //上传图片
 - (void)uploadFile:(UIImage*)image Success:(void(^)(id  _Nullable responseObject))success failed:(void(^)(NSString *errorMsg))fail;
+
 @end

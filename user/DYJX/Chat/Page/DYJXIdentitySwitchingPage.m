@@ -22,6 +22,8 @@
 #import "DYJXUserInfoDetailPage.h"
 #import "DYJXCompanyInfoDetailPage.h"
 #import "DYJXUserInfoModel.h"
+#import "DYJXSubcompanyInfoDetailPage.h"
+
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -242,8 +244,9 @@ static NSString *headerID=@"headerID";
     }
     else {
         if (model.IsPart) { // 子公司详情
-            DYJXCompanyInfoDetailPage *page = [[DYJXCompanyInfoDetailPage alloc]init];
+            DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
             page.userIconImageURL = [model.GroupHeadImg XYImageURL];
+            page.groupNumber = model.GroupNumber;
             page.isAdmin = [self isAdmin:model];
             [self.navigationController pushViewController:page animated:YES];
 //            target.type = XJGroupTypeSubCompany;

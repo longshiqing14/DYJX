@@ -9,7 +9,7 @@
 #import "DYJXCompanyInfoDetailViewModel.h"
 
 @interface DYJXCompanyInfoDetailViewModel()
-@property(nonatomic, strong) DYJXUserInfoModel *personInfoModel;
+@property(nonatomic, strong) DYJXXYGroupByIdResponse *groupByIdModel;
 @end
 
 @implementation DYJXCompanyInfoDetailViewModel
@@ -68,8 +68,8 @@
     }];
 }
 
-//获取用户信息
-- (void)getGroupInfoSuccess:(void(^)(DYJXUserInfoModel*))success failed:(void(^)(NSString *errorMsg))fail{
+//获取公司信息
+- (void)getGroupInfoWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail{
     WeakSelf;
     [SVProgressHUD show];
     DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
@@ -88,8 +88,8 @@
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
                 [SVProgressHUD dismiss];
                 
-                weakSelf.personInfoModel = [DYJXUserInfoModel modelWithJSON:[responseObject objectForKey:@"Result"]];
-                success(weakSelf.personInfoModel);
+                weakSelf.groupByIdModel = [DYJXXYGroupByIdResponse modelWithJSON:[responseObject objectForKey:@"Result"]];
+                success(weakSelf.groupByIdModel);
                 
             }else{
                 
@@ -125,10 +125,10 @@
     return _requestDic;
 }
 
-- (DYJXUserInfoModel *)personInfoModel{
-    if (!_personInfoModel) {
-        _personInfoModel = [[DYJXUserInfoModel alloc]init];
+- (DYJXXYGroupByIdResponse *)groupByIdModel{
+    if (!_groupByIdModel) {
+        _groupByIdModel = [[DYJXXYGroupByIdResponse alloc]init];
     }
-    return _personInfoModel;
+    return _groupByIdModel;
 }
 @end

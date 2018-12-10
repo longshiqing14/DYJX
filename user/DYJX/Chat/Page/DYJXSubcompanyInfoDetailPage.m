@@ -1,13 +1,13 @@
 //
-//  DYJXCompanyInfoDetailPage.m
+//  DYJXSubcompanyInfoDetailPage.m
 //  user
 //
-//  Created by 岩  熊 on 2018/12/3.
+//  Created by 岩  熊 on 2018/12/10.
 //  Copyright © 2018年 xiaopenglive. All rights reserved.
 //
 
-#import "DYJXCompanyInfoDetailPage.h"
-#import "DYJXCompanyInfoDetailViewModel.h"
+#import "DYJXSubcompanyInfoDetailPage.h"
+#import "DYJXSubcompanyInfoDetailViewModel.h"
 #import "OwnerImageCell.h"
 #import "CompanyTitleAndContentCell.h"
 #import "SpaceFooter.h"
@@ -15,12 +15,12 @@
 #import "BusinessLicenceFooter.h"
 #import "TipsFooter.h"
 #import "XYSelectIconPopView.h"
-#import "CompanyBottomView.h"
+#import "SubcompanyBottomView.h"
 #import "CompanyAdminBottomView.h"
 #import "CompanyTitleAndSelcetedArrowCell.h"
 #import "CompanyTitleAndArrowCell.h"
 #import "DYJXXYGroupByIdResponse.h"
-
+#import "SubcompanyTopView.h"
 
 static NSString *kGroupDetailModelTipsFooter = @"kGroupDetailModelTipsFooter";
 static NSString *kGroupDetailModelBusinessLicenceFooter = @"kGroupDetailModelBusinessLicenceFooter";
@@ -29,27 +29,29 @@ static NSString *kGroupDetailModelCompanyTitleAndContentCell = @"kGroupDetailMod
 static NSString *kGroupDetailModelCompanyTitleAndSelcetedArrowCell = @"kGroupDetailModelCompanyTitleAndSelcetedArrowCell";
 static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModelCompanyTitleAndArrowCell";
 
-
-@interface DYJXCompanyInfoDetailPage ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,XYSelectIconPopViewDelegate,UINavigationControllerDelegate>
-@property (nonatomic, strong)DYJXCompanyInfoDetailViewModel *viewModel;
+@interface DYJXSubcompanyInfoDetailPage ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,XYSelectIconPopViewDelegate,UINavigationControllerDelegate>
+@property (nonatomic, strong)DYJXSubcompanyInfoDetailViewModel *viewModel;
 @property(strong,nonatomic) NSMutableArray *imgArr ;
 @property(nonatomic, assign) BOOL isSelectHeader;
 @property(nonatomic, strong) UIImage *headerImage;
-@property(strong, nonatomic) CompanyBottomView *bottomView;
+@property(strong, nonatomic) SubcompanyBottomView *bottomView;
+@property(strong, nonatomic) SubcompanyTopView *topView;
+
 @property(nonatomic, strong) DYJXXYGroupByIdResponse *groupByIdResponse;
 @end
 
-@implementation DYJXCompanyInfoDetailPage
+@implementation DYJXSubcompanyInfoDetailPage
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.isSelectHeader = NO;
     [self initNavigation];
-    [self initBottomView];
+    [self initTopAndBottomView];
     [self.view addSubview:self.tableView];
     [self registerTableViewCell];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(self.topView.mas_bottom).mas_equalTo(0);
         make.bottom.mas_equalTo(self.bottomView.mas_top).mas_equalTo(0);
     }];
     [self getGroupInfo];
@@ -83,8 +85,14 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
     
 }
 
-- (void)initBottomView{
-   
+- (void)initTopAndBottomView{
+    
+    [self.view addSubview:self.topView];
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.height.mas_equalTo(80);
+    }];
+    
     [self.view addSubview:self.bottomView];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -119,11 +127,9 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
 }
 
 - (void)initNavigation{
-    if (self.isAdmin) {
-    self.title = @"公司账号管理";
-    }else{
+
     self.title = @"信息查看";
-    }
+    
     UIButton *rightBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [rightBarButton addTarget:self action:@selector(getBackPwd) forControlEvents:UIControlEventTouchUpInside];
     rightBarButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10);
@@ -156,10 +162,10 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
                 [ownerImageCell.porityImageView setImageWithURL:[NSURL URLWithString:self.userIconImageURL] placeholder:[UIImage imageNamed:@"btn_group"]];
                 
                 if (self.isAdmin) {
-                ownerImageCell.block = ^{
-                    weakSelf.isSelectHeader = YES;
-                    [weakSelf showActionForPhoto];
-                };
+                    ownerImageCell.block = ^{
+                        weakSelf.isSelectHeader = YES;
+                        [weakSelf showActionForPhoto];
+                    };
                 }
                 
                 cell = ownerImageCell;
@@ -177,7 +183,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             {
                 CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-//                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
                 
             }
@@ -195,26 +201,6 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
                 
             case 4:
             {
-                CompanyTitleAndArrowCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndArrowCell forIndexPath:indexPath];
-                titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-                //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                cell = titleAndContentCell;
-                
-            }
-                break;
-                
-            case 5:
-            {
-                CompanyTitleAndArrowCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndArrowCell forIndexPath:indexPath];
-                titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-                //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                cell = titleAndContentCell;
-                
-            }
-                break;
-                
-            case 6:
-            {
                 CompanyTitleAndSelcetedArrowCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndSelcetedArrowCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
                 //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
@@ -223,7 +209,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             }
                 break;
                 
-            case 7:
+            case 5:
             {
                 CompanyTitleAndSelcetedArrowCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndSelcetedArrowCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
@@ -244,7 +230,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             {
                 CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-//                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
             }
                 break;
@@ -252,7 +238,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             {
                 CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-//                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
             }
                 break;
@@ -261,7 +247,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             {
                 CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-//                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
             }
                 break;
@@ -270,7 +256,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             {
                 CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-//                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
             }
                 break;
@@ -279,7 +265,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             {
                 CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-//                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
             }
                 break;
@@ -290,61 +276,61 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
     }else if(indexPath.section == 2){
         CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
         titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-//        titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+        //        titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
         cell = titleAndContentCell;
     }else if(indexPath.section == 3){
         switch (indexPath.row) {
-        
+                
             case 0:
-                {
-                    CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
-                    titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-                    //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                    cell = titleAndContentCell;
-                }
+            {
+                CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
+                titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
+                //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                cell = titleAndContentCell;
+            }
                 break;
                 
             case 1:
-                {
-                    CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
-                    titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-//                    titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                    cell = titleAndContentCell;
-                }
+            {
+                CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
+                titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
+                //                    titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                cell = titleAndContentCell;
+            }
                 break;
                 
             case 2:
-                {
-                    CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
-                    titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-                    //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                    cell = titleAndContentCell;
-                }
+            {
+                CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
+                titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
+                //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                cell = titleAndContentCell;
+            }
                 break;
                 
             case 3:
-                {
-                    CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
-                    titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-//                    titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                    cell = titleAndContentCell;
-                }
+            {
+                CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
+                titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
+                //                    titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                cell = titleAndContentCell;
+            }
                 break;
                 
             case 4:
             {
                 CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-//                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
             }
                 break;
                 
-                default:
-                    break;
+            default:
+                break;
         }
         
-       
+        
     }else if (indexPath.section == 4){
         ImageUploadCell *imageUploadCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelImageUploadCell forIndexPath:indexPath];
         //        imageUploadCell.contentLab.text = [self.viewModel contentWithIndexPath:indexPath];
@@ -527,9 +513,9 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
 }
 
 #pragma mark - UI
--(DYJXCompanyInfoDetailViewModel *)viewModel {
+-(DYJXSubcompanyInfoDetailViewModel *)viewModel {
     if (!_viewModel) {
-        _viewModel = [[DYJXCompanyInfoDetailViewModel alloc] init];
+        _viewModel = [[DYJXSubcompanyInfoDetailViewModel alloc] init];
     }
     return _viewModel;
 }
@@ -553,15 +539,18 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
     return _imgArr;
 }
 
-- (CompanyBottomView *)bottomView{
+- (SubcompanyBottomView *)bottomView{
     if (!_bottomView) {
-        if (self.isAdmin) {
-            _bottomView = [[NSBundle mainBundle] loadNibNamed:@"CompanyAdminBottomView" owner:self options:nil].firstObject;
-        }else{
-            _bottomView = [[NSBundle mainBundle] loadNibNamed:@"CompanyBottomView" owner:self options:nil].firstObject;
-        }
+        _bottomView = [[NSBundle mainBundle] loadNibNamed:@"SubcompanyBottomView" owner:self options:nil].firstObject;
     }
     return _bottomView;
+}
+
+- (SubcompanyTopView *)topView{
+    if (!_topView) {
+        _topView = [[NSBundle mainBundle] loadNibNamed:@"SubcompanyTopView" owner:self options:nil].firstObject;
+    }
+    return _topView;
 }
 
 - (UIImage *)headerImage{
