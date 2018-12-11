@@ -21,6 +21,7 @@
 #import "CompanyTitleAndArrowCell.h"
 #import "DYJXXYGroupByIdResponse.h"
 #import "DYJXQRCodePage.h"
+#import "DYJXAddMemberPage.h"
 
 static NSString *kGroupDetailModelTipsFooter = @"kGroupDetailModelTipsFooter";
 static NSString *kGroupDetailModelBusinessLicenceFooter = @"kGroupDetailModelBusinessLicenceFooter";
@@ -419,6 +420,14 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 4) {
+            DYJXAddMemberPage *addMemberPage = [[DYJXAddMemberPage alloc]init];
+            [self.navigationController pushViewController:addMemberPage animated:YES];
+        }
+    }
+}
 
 //弹出选择框
 -(void)showActionForPhoto

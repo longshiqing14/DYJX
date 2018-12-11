@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DYJXAddMemberTopView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WBb-HU-81k">
+                    <rect key="frame" x="30" y="20" width="56.5" height="56.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="WBb-HU-81k" secondAttribute="height" multiplier="1:1" id="4gW-CU-EOv"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="addfriend"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOL-IW-Y4L">
+                    <rect key="frame" x="116.5" y="20" width="56" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="xOL-IW-Y4L" secondAttribute="height" multiplier="1:1" id="jTk-wJ-NET"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="removefriend"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZX-9L-pCa">
+                    <rect key="frame" x="202.5" y="20" width="56.5" height="56.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="WZX-9L-pCa" secondAttribute="height" multiplier="1:1" id="TMM-uz-Qpa"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="addfriend"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CiW-AM-uQo">
+                    <rect key="frame" x="289" y="20" width="56" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="CiW-AM-uQo" secondAttribute="height" multiplier="1:1" id="ZWC-hD-nId"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="removefriend"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加成员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V44-rJ-Hp2">
+                    <rect key="frame" x="29.5" y="81.5" width="57.5" height="29.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="删除成员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEr-Q5-ZC5">
+                    <rect key="frame" x="116" y="81.5" width="57.5" height="29.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="授予管理员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZb-F2-09W">
+                    <rect key="frame" x="195" y="81.5" width="71.5" height="29.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="解除管理员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ux-I1-vM2">
+                    <rect key="frame" x="281.5" y="81.5" width="71.5" height="29.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="WBb-HU-81k" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="3XG-RC-wK8"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="CiW-AM-uQo" secondAttribute="trailing" constant="30" id="4a5-OS-hMX"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="V44-rJ-Hp2" secondAttribute="bottom" constant="5" id="B8J-NB-UoP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="gZb-F2-09W" secondAttribute="bottom" constant="5" id="CZ7-4V-E72"/>
+                <constraint firstItem="EEr-Q5-ZC5" firstAttribute="centerX" secondItem="xOL-IW-Y4L" secondAttribute="centerX" id="Fd2-at-6cq"/>
+                <constraint firstItem="V44-rJ-Hp2" firstAttribute="centerX" secondItem="WBb-HU-81k" secondAttribute="centerX" id="G4j-uF-YkR"/>
+                <constraint firstItem="gZb-F2-09W" firstAttribute="top" secondItem="WZX-9L-pCa" secondAttribute="bottom" constant="5" id="J29-Ec-GxV"/>
+                <constraint firstItem="xOL-IW-Y4L" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="Jcc-zJ-ugt"/>
+                <constraint firstItem="CiW-AM-uQo" firstAttribute="leading" secondItem="WZX-9L-pCa" secondAttribute="trailing" constant="30" id="QYq-CK-IXQ"/>
+                <constraint firstItem="CiW-AM-uQo" firstAttribute="width" secondItem="WBb-HU-81k" secondAttribute="width" id="Sff-3p-jB8"/>
+                <constraint firstItem="xOL-IW-Y4L" firstAttribute="leading" secondItem="WBb-HU-81k" secondAttribute="trailing" constant="30" id="TZa-ey-Vbe"/>
+                <constraint firstItem="CiW-AM-uQo" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="UZ6-UU-06C"/>
+                <constraint firstItem="xOL-IW-Y4L" firstAttribute="width" secondItem="WBb-HU-81k" secondAttribute="width" id="W4z-6O-nZj"/>
+                <constraint firstItem="gZb-F2-09W" firstAttribute="centerX" secondItem="WZX-9L-pCa" secondAttribute="centerX" id="XGr-HV-1KM"/>
+                <constraint firstItem="EEr-Q5-ZC5" firstAttribute="top" secondItem="xOL-IW-Y4L" secondAttribute="bottom" constant="5" id="e59-OK-0L6"/>
+                <constraint firstItem="2ux-I1-vM2" firstAttribute="centerX" secondItem="CiW-AM-uQo" secondAttribute="centerX" id="fSy-wI-3rA"/>
+                <constraint firstItem="WZX-9L-pCa" firstAttribute="leading" secondItem="xOL-IW-Y4L" secondAttribute="trailing" constant="30" id="gft-4d-Qrn"/>
+                <constraint firstItem="WZX-9L-pCa" firstAttribute="width" secondItem="WBb-HU-81k" secondAttribute="width" id="jYs-hk-8ju"/>
+                <constraint firstItem="WBb-HU-81k" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="jtx-Iz-8fz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="2ux-I1-vM2" secondAttribute="bottom" constant="5" id="jyX-E1-tLI"/>
+                <constraint firstItem="V44-rJ-Hp2" firstAttribute="top" secondItem="WBb-HU-81k" secondAttribute="bottom" constant="5" id="nNC-Ds-OC7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="EEr-Q5-ZC5" secondAttribute="bottom" constant="5" id="oSu-Ph-WCU"/>
+                <constraint firstItem="2ux-I1-vM2" firstAttribute="top" secondItem="CiW-AM-uQo" secondAttribute="bottom" constant="5" id="voE-Z8-y66"/>
+                <constraint firstItem="WZX-9L-pCa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="zeI-rQ-UUa"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-107.5" y="109"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="addfriend" width="410" height="410"/>
+        <image name="removefriend" width="410" height="410"/>
+    </resources>
+</document>
