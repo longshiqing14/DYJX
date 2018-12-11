@@ -7,6 +7,9 @@
 //
 
 #import "CompanyTitleAndSelcetedArrowCell.h"
+@interface CompanyTitleAndSelcetedArrowCell()
+@property (nonatomic, assign) BOOL isSelect;
+@end
 
 @implementation CompanyTitleAndSelcetedArrowCell
 
@@ -23,6 +26,22 @@
     [self.contentView addSubview:self.ArrowBTN];
     [self.contentView addSubview:self.separatorLineView];
     [self layoutIfNeeded];
+}
+
+- (void)selectorType:(UIButton*) sender{
+    self.isSelect = !self.isSelect;
+    if (self.isSelect) {
+      [sender setImage:[UIImage imageNamed:@"register_checkbox_active"] forState:(UIControlStateNormal)];
+        if (self.block) {
+            self.block(SelcetedTypeActive);
+        }
+    }else{
+      [sender setImage:[UIImage imageNamed:@"register_checkbox"] forState:(UIControlStateNormal)];
+        if (self.block) {
+            self.block(SelcetedTypeNone);
+        }
+    }
+    
 }
 
 - (void)layoutSubviews{
@@ -66,6 +85,7 @@
 - (UIButton *)ArrowBTN{
     if (!_ArrowBTN) {
         _ArrowBTN  = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_ArrowBTN addTarget:self action:@selector(selectorType:) forControlEvents:(UIControlEventTouchUpInside)];
         [_ArrowBTN setBackgroundImage:[UIImage imageNamed:@"register_checkbox"] forState:(UIControlStateNormal)];
     }
     return _ArrowBTN;

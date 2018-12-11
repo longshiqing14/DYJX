@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, SelcetedType) {
+    SelcetedTypeNone,
+    SelcetedTypeActive,
+};
+
+typedef void(^SelcetedTypeBlcok)(NSInteger);
+
 @interface CompanyTitleAndSelcetedArrowCell : UITableViewCell
 @property(nonatomic, strong) UILabel *titleLb;
 @property(nonatomic, strong) UIButton *ArrowBTN;
 @property (nonatomic, strong) UIView *separatorLineView;
+@property (nonatomic, copy) SelcetedTypeBlcok block;
 @end
