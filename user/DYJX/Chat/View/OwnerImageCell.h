@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^TapPorityImageViewBlock)(void);
-
+typedef void(^TapQRCodeViewBlock)(void);
 @interface OwnerImageCell : BaseTableViewCell
 
 @property (nonatomic, strong)UIImageView *porityImageView;
@@ -20,6 +20,8 @@ typedef void(^TapPorityImageViewBlock)(void);
 
 @property (nonatomic, strong)GroupDetailModel *model;
 @property (nonatomic, copy)TapPorityImageViewBlock block;
+@property (nonatomic, copy)TapQRCodeViewBlock qrCcodeblock;
+
 @end
 
 NS_ASSUME_NONNULL_END

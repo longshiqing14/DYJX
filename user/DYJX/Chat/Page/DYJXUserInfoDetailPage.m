@@ -18,6 +18,7 @@
 #import "XYSelectIconPopView.h"
 #import "TitleAndContentArrowCell.h"
 #import "DYJXUserInfoModel.h"
+#import "DYJXQRCodePage.h"
 
 static NSString *kGroupDetailModelTipsFooter = @"kGroupDetailModelTipsFooter";
 static NSString *kGroupDetailModelBusinessLicenceFooter = @"kGroupDetailModelBusinessLicenceFooter";
@@ -157,6 +158,14 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
                 ownerImageCell.block = ^{
                     weakSelf.isSelectHeader = YES;
                     [weakSelf showActionForPhoto];
+                };
+                ownerImageCell.qrCcodeblock = ^{
+                    DYJXQRCodePage *qrCodePage = [[DYJXQRCodePage alloc]init];
+                    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+                    qrCodePage.userIdOrCompanyId = userModel.UserID;
+                    qrCodePage.companyNumber = self.personInfoModel.NumberString;
+                    qrCodePage.companyName = self.personInfoModel.NumberString;
+                    [weakSelf.navigationController pushViewController:qrCodePage animated:YES];
                 };
                 cell = ownerImageCell;
             }

@@ -10,6 +10,7 @@
 
 @interface OwnerImageCell()
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *tapQRCodeGestureRecognizer;
 @end
 
 @implementation OwnerImageCell
@@ -19,6 +20,7 @@
         [self addSubview:self.porityImageView];
         [self.porityImageView addGestureRecognizer:self.tapGestureRecognizer];
         [self addSubview:self.qcoreImageView];
+        [self.qcoreImageView addGestureRecognizer:self.tapQRCodeGestureRecognizer];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
@@ -50,6 +52,12 @@
     }
 }
 
+- (void)tapQRCodeImageView{
+    if (self.qrCcodeblock) {
+        self.qrCcodeblock();
+    }
+}
+
 #pragma mark - UI
 -(UIImageView *)porityImageView {
     if (!_porityImageView) {
@@ -65,6 +73,7 @@
 -(UIImageView *)qcoreImageView {
     if (!_qcoreImageView) {
         _qcoreImageView = [[UIImageView alloc] init];
+        _qcoreImageView.userInteractionEnabled = YES;
         [_qcoreImageView setImage:[UIImage imageNamed:@"myqrcode"]];
     }
     return _qcoreImageView;
@@ -77,4 +86,13 @@
     }
     return _tapGestureRecognizer;
 }
+
+- (UITapGestureRecognizer *)tapQRCodeGestureRecognizer{
+    if (!_tapQRCodeGestureRecognizer) {
+        _tapQRCodeGestureRecognizer = [[UITapGestureRecognizer alloc]init];
+        [_tapQRCodeGestureRecognizer addTarget:self action:@selector(tapQRCodeImageView)];
+    }
+    return _tapQRCodeGestureRecognizer;
+}
+
 @end

@@ -21,6 +21,7 @@
 #import "CompanyTitleAndArrowCell.h"
 #import "DYJXXYGroupByIdResponse.h"
 #import "SubcompanyTopView.h"
+#import "DYJXQRCodePage.h"
 
 static NSString *kGroupDetailModelTipsFooter = @"kGroupDetailModelTipsFooter";
 static NSString *kGroupDetailModelBusinessLicenceFooter = @"kGroupDetailModelBusinessLicenceFooter";
@@ -168,6 +169,10 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
                     };
                 }
                 
+                ownerImageCell.qrCcodeblock = ^{
+                    DYJXQRCodePage *qrCodePage = [[DYJXQRCodePage alloc]init];
+                    [weakSelf.navigationController pushViewController:qrCodePage animated:YES];
+                };
                 cell = ownerImageCell;
             }
                 break;

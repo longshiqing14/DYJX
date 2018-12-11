@@ -49,6 +49,7 @@
 		481FE76621835AF000CFE26B /* DYJXFindPasswordPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481FE76421835AEF00CFE26B /* DYJXFindPasswordPage.xib */; };
 		481FE76721838CD700CFE26B /* NaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CD9E531FB2AF210040136B /* NaviViewController.m */; };
 		481FE76A218567CF00CFE26B /* DYJXRegisteViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 481FE769218567CF00CFE26B /* DYJXRegisteViewModel.m */; };
+		4826A47B21BF552400EAF963 /* DYJXQRCodePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826A47A21BF552400EAF963 /* DYJXQRCodePage.m */; };
 		4843205620243C6C00468411 /* JXPiontsRuleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4843205520243C6C00468411 /* JXPiontsRuleVC.m */; };
 		48432059202455E400468411 /* JXPiontsRuleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48432058202455E400468411 /* JXPiontsRuleViewModel.m */; };
 		4843205D20245F6C00468411 /* JXPiontsRuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4843205C20245F6C00468411 /* JXPiontsRuleModel.m */; };
@@ -1007,6 +1008,8 @@
 		481FE76421835AEF00CFE26B /* DYJXFindPasswordPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DYJXFindPasswordPage.xib; sourceTree = "<group>"; };
 		481FE768218567CF00CFE26B /* DYJXRegisteViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXRegisteViewModel.h; sourceTree = "<group>"; };
 		481FE769218567CF00CFE26B /* DYJXRegisteViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXRegisteViewModel.m; sourceTree = "<group>"; };
+		4826A47921BF552400EAF963 /* DYJXQRCodePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXQRCodePage.h; sourceTree = "<group>"; };
+		4826A47A21BF552400EAF963 /* DYJXQRCodePage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXQRCodePage.m; sourceTree = "<group>"; };
 		4843205420243C6C00468411 /* JXPiontsRuleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXPiontsRuleVC.h; sourceTree = "<group>"; };
 		4843205520243C6C00468411 /* JXPiontsRuleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXPiontsRuleVC.m; sourceTree = "<group>"; };
 		48432057202455E400468411 /* JXPiontsRuleViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXPiontsRuleViewModel.h; sourceTree = "<group>"; };
@@ -3028,6 +3031,8 @@
 				48A3710221B500B9002861DD /* DYJXCompanyInfoDetailPage.m */,
 				48E8A4C421BE40EA0046EA0E /* DYJXSubcompanyInfoDetailPage.h */,
 				48E8A4C521BE40EA0046EA0E /* DYJXSubcompanyInfoDetailPage.m */,
+				4826A47921BF552400EAF963 /* DYJXQRCodePage.h */,
+				4826A47A21BF552400EAF963 /* DYJXQRCodePage.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -7226,6 +7231,7 @@
 				DE910FC72085DD3C00BDDABF /* JXMyOrderDetailsModel.m in Sources */,
 				CBE859A71F5E854500E1E4EA /* XYAppDotNetAPIClient.m in Sources */,
 				CB123BF91F91A8B800CD4429 /* XYNoticePushModel.m in Sources */,
+				4826A47B21BF552400EAF963 /* DYJXQRCodePage.m in Sources */,
 				DE9F8CBD1FDFB5F200D8FE8A /* JXCommodityListViewController.m in Sources */,
 				DE910FCF2085DD3C00BDDABF /* JXMyGoodsFootView.m in Sources */,
 				DE06F19D1FAC03DF00C3ECD9 /* XYBaseModel.m in Sources */,
