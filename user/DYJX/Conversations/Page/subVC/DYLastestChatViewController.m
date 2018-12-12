@@ -12,6 +12,8 @@
 #import "DYJXIdentitySwitchingPage.h"
 #import "NaviViewController.h"
 #import "DYJXLasterListCell.h"
+#import "JSExtension.h"
+#import "DYChatViewController.h"
 
 @interface DYLastestChatViewController ()
 
@@ -46,7 +48,27 @@
 
 - (void)onRCIMReceiveMessage:(RCMessage *)message
                         left:(int)left {
+    NSLog(@"最近会话列表 %@",message);
+}
 
+//重写RCConversationListViewController的onSelectedTableRow事件
+- (void)onSelectedTableRow:(RCConversationModelType)conversationModelType
+         conversationModel:(RCConversationModel *)model
+               atIndexPath:(NSIndexPath *)indexPath {
+    RCConversationModel *conversationModel = self.conversationListDataSource[indexPath.row];
+    NSDictionary *dict = (NSDictionary *)model.extend;
+
+    DYChatViewController *conversationVC = [[DYChatViewController alloc]init];
+    if ([dict[@"type"] isEqualToString:@"1"]) {
+        conversationVC.conversationType = ConversationType_GROUP;
+    }
+    else if ([dict[@"type"] isEqualToString:@"0"]) {
+        conversationVC.conversationType = ConversationType_PRIVATE;
+    }
+    conversationVC.chatModel = conversationModel;
+    conversationVC.targetId = conversationModel.targetId;
+    conversationVC.title = model.targetId;
+    [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
 
@@ -74,6 +96,9 @@
 }
 
 - (NSMutableArray *)willReloadTableData:(NSMutableArray *)dataSource {
+    [dataSource removeAllObjects];
+    NSString *myIdentityId = [[JSExtension shared] myIdentityId];
+
     for (int i = 0; i<self.viewModel.lasterList.Result.count; i++) {
         DYJOResult *result = self.viewModel.lasterList.Result[i];
         RCConversationModel *model = [[RCConversationModel alloc]init];
@@ -152,6 +177,7 @@
 
         model.lastestMessage = content;
         model.jsonDict = result.LastMsg;
+
         [dataSource addObject:model];
     }
     return dataSource;

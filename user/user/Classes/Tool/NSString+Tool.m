@@ -80,6 +80,9 @@
 }
 
 - (NSString *)XYImageURL{
+    if (!self.length) {
+        return @"";
+    }
     NSString *firstString = [self substringWithRange:NSMakeRange(0, 1)];
     
     NSString *secondString = [self substringWithRange:NSMakeRange(1, 2)];
