@@ -284,15 +284,25 @@ static NSString *headerID=@"headerID";
         return;
     }
 
+    [UserManager shared].swichModel = self.selectedIdentity;
+    if ([[UserManager shared].getUserModel.Result.NumberString isEqualToString:self.selectedIdentity.NumberString]) { // 本人详情
+        [UserManager shared].isCompany = 1;
+    }
+    else {
+        if (self.selectedIdentity.IsPart) { // 子公司详情
+           [UserManager shared].isCompany = 2;
+        }
+        else { // 公司详情
+            [UserManager shared].isCompany = 3;
+        }
+    }
+
     [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
     [XYUserDefaults writeAppDlegateOfCertificateId:self.selectedIdentity.GroupNumber];
 
     DYJXLogisticPage *logisticPage = [[DYJXLogisticPage alloc]initWithNibName:@"DYJXLogisticPage" bundle:nil];
     logisticPage.IdentityModel = self.selectedIdentity;
     [self.navigationController pushViewController:logisticPage animated:YES];
-
-//    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[self.selectedIdentity.GroupHeadImg XYImageURL]];
-//    XYKeyWindow.rootViewController = conversationTabBarController;
 }
 
 - (void)viewDidDisappear:(BOOL)animated{

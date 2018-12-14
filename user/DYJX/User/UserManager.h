@@ -26,6 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 // 获取当前用户信息 rongTaken等
 @property (nonatomic, strong)DJJSGetUserModel *getUserModel;
 
+// 本人详情: 1 子公司详情: 2  公司详情: 3
+@property (nonatomic, assign)NSInteger isCompany;
+
+// 选择身份的model
+@property (nonatomic, strong)DYJXIdentitySwitchingModel *swichModel;
+
 @end
 
 NS_ASSUME_NONNULL_END
