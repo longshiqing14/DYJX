@@ -63,7 +63,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
     
     [self.viewModel getGroupInfoWithGroupId:self.groupNumber Success:^(DYJXXYGroupByIdResponse *groupByIdResponse) {
         weakSelf.groupByIdResponse = groupByIdResponse;
-        NSArray *imageNamearray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:groupByIdResponse.result.enterpriseInfo.images];
+        NSArray *imageNamearray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:groupByIdResponse.Result.EnterpriseInfo.Images];
         [imageNamearray enumerateObjectsUsingBlock:^(PersonZhiZhaoModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             dispatch_async(dispatch_get_global_queue(0, 0), ^{

@@ -74,21 +74,22 @@
     [SVProgressHUD show];
     DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
     NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
-    [reqDict setObject:userModel.UserID forKey:@"Data"];
+    [reqDict setObject:groupId forKey:@"Data"];
     [reqDict setObject:userModel.UserID forKey:@"UserID"];
     [reqDict setObject:@"iOS" forKey:@"Device"];
     [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
     [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
-    //        [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
+//    [reqDict setObject:userModel.CertificateId forKey:@"CertificateId"];
+    [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
     
-    [XYNetWorking XYPOST:kDYJXAPI_user_GetUserById params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
+    [XYNetWorking XYPOST:kDYJXAPI_user_GetGroupById params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             //            [weakSelf.dataArray removeAllObjects];
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
                 [SVProgressHUD dismiss];
                 
-                weakSelf.groupByIdModel = [DYJXXYGroupByIdResponse modelWithJSON:[responseObject objectForKey:@"Result"]];
+                weakSelf.groupByIdModel = [DYJXXYGroupByIdResponse modelWithJSON:responseObject];
                 success(weakSelf.groupByIdModel);
                 
             }else{

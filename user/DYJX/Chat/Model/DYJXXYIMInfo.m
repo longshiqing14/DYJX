@@ -1,7 +1,7 @@
 //
 //	DYJXXYIMInfo.m
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
@@ -34,33 +34,33 @@ NSString *const kDYJXXYIMInfoPersonRemark = @"PersonRemark";
 {
 	self = [super init];
 	if(![dictionary[kDYJXXYIMInfoAdminSay] isKindOfClass:[NSNull class]]){
-		self.adminSay = [dictionary[kDYJXXYIMInfoAdminSay] boolValue];
+		self.AdminSay = [dictionary[kDYJXXYIMInfoAdminSay] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYIMInfoCanNotSearch] isKindOfClass:[NSNull class]]){
-		self.canNotSearch = [dictionary[kDYJXXYIMInfoCanNotSearch] boolValue];
+		self.CanNotSearch = [dictionary[kDYJXXYIMInfoCanNotSearch] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYIMInfoHeadImgUrl] isKindOfClass:[NSNull class]]){
-		self.headImgUrl = dictionary[kDYJXXYIMInfoHeadImgUrl];
+		self.HeadImgUrl = dictionary[kDYJXXYIMInfoHeadImgUrl];
 	}	
 	if(![dictionary[kDYJXXYIMInfoIdField] isKindOfClass:[NSNull class]]){
-		self.idField = dictionary[kDYJXXYIMInfoIdField];
+		self.IdField = dictionary[kDYJXXYIMInfoIdField];
 	}	
 	if(![dictionary[kDYJXXYIMInfoImages] isKindOfClass:[NSNull class]]){
-		self.images = dictionary[kDYJXXYIMInfoImages];
+		self.Images = dictionary[kDYJXXYIMInfoImages];
 	}	
 	if(![dictionary[kDYJXXYIMInfoPersonBank] isKindOfClass:[NSNull class]]){
-		self.personBank = dictionary[kDYJXXYIMInfoPersonBank];
+		self.PersonBank = dictionary[kDYJXXYIMInfoPersonBank];
 	}	
 	if(![dictionary[kDYJXXYIMInfoPersonBankCardNo] isKindOfClass:[NSNull class]]){
-		self.personBankCardNo = dictionary[kDYJXXYIMInfoPersonBankCardNo];
+		self.PersonBankCardNo = dictionary[kDYJXXYIMInfoPersonBankCardNo];
 	}	
 	if(![dictionary[kDYJXXYIMInfoNickName] isKindOfClass:[NSNull class]]){
-		self.nickName = dictionary[kDYJXXYIMInfoNickName];
+		self.NickName = dictionary[kDYJXXYIMInfoNickName];
 	}	
 	if(![dictionary[kDYJXXYIMInfoPersonRemark] isKindOfClass:[NSNull class]]){
-		self.personRemark = dictionary[kDYJXXYIMInfoPersonRemark];
+		self.PersonRemark = dictionary[kDYJXXYIMInfoPersonRemark];
 	}	
 	return self;
 }
@@ -72,28 +72,28 @@ NSString *const kDYJXXYIMInfoPersonRemark = @"PersonRemark";
 -(NSDictionary *)toDictionary
 {
 	NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
-	dictionary[kDYJXXYIMInfoAdminSay] = @(self.adminSay);
-	dictionary[kDYJXXYIMInfoCanNotSearch] = @(self.canNotSearch);
-	if(self.headImgUrl != nil){
-		dictionary[kDYJXXYIMInfoHeadImgUrl] = self.headImgUrl;
+	dictionary[kDYJXXYIMInfoAdminSay] = @(self.AdminSay);
+	dictionary[kDYJXXYIMInfoCanNotSearch] = @(self.CanNotSearch);
+	if(self.HeadImgUrl != nil){
+		dictionary[kDYJXXYIMInfoHeadImgUrl] = self.HeadImgUrl;
 	}
-	if(self.idField != nil){
-		dictionary[kDYJXXYIMInfoIdField] = self.idField;
+	if(self.IdField != nil){
+		dictionary[kDYJXXYIMInfoIdField] = self.IdField;
 	}
-	if(self.images != nil){
-		dictionary[kDYJXXYIMInfoImages] = self.images;
+	if(self.Images != nil){
+		dictionary[kDYJXXYIMInfoImages] = self.Images;
 	}
-	if(self.personBank != nil){
-		dictionary[kDYJXXYIMInfoPersonBank] = self.personBank;
+	if(self.PersonBank != nil){
+		dictionary[kDYJXXYIMInfoPersonBank] = self.PersonBank;
 	}
-	if(self.personBankCardNo != nil){
-		dictionary[kDYJXXYIMInfoPersonBankCardNo] = self.personBankCardNo;
+	if(self.PersonBankCardNo != nil){
+		dictionary[kDYJXXYIMInfoPersonBankCardNo] = self.PersonBankCardNo;
 	}
-	if(self.nickName != nil){
-		dictionary[kDYJXXYIMInfoNickName] = self.nickName;
+	if(self.NickName != nil){
+		dictionary[kDYJXXYIMInfoNickName] = self.NickName;
 	}
-	if(self.personRemark != nil){
-		dictionary[kDYJXXYIMInfoPersonRemark] = self.personRemark;
+	if(self.PersonRemark != nil){
+		dictionary[kDYJXXYIMInfoPersonRemark] = self.PersonRemark;
 	}
 	return dictionary;
 
@@ -107,26 +107,26 @@ NSString *const kDYJXXYIMInfoPersonRemark = @"PersonRemark";
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-	[aCoder encodeObject:@(self.adminSay) forKey:kDYJXXYIMInfoAdminSay];	[aCoder encodeObject:@(self.canNotSearch) forKey:kDYJXXYIMInfoCanNotSearch];	if(self.headImgUrl != nil){
-		[aCoder encodeObject:self.headImgUrl forKey:kDYJXXYIMInfoHeadImgUrl];
+	[aCoder encodeObject:@(self.AdminSay) forKey:kDYJXXYIMInfoAdminSay];	[aCoder encodeObject:@(self.CanNotSearch) forKey:kDYJXXYIMInfoCanNotSearch];	if(self.HeadImgUrl != nil){
+		[aCoder encodeObject:self.HeadImgUrl forKey:kDYJXXYIMInfoHeadImgUrl];
 	}
-	if(self.idField != nil){
-		[aCoder encodeObject:self.idField forKey:kDYJXXYIMInfoIdField];
+	if(self.IdField != nil){
+		[aCoder encodeObject:self.IdField forKey:kDYJXXYIMInfoIdField];
 	}
-	if(self.images != nil){
-		[aCoder encodeObject:self.images forKey:kDYJXXYIMInfoImages];
+	if(self.Images != nil){
+		[aCoder encodeObject:self.Images forKey:kDYJXXYIMInfoImages];
 	}
-	if(self.personBank != nil){
-		[aCoder encodeObject:self.personBank forKey:kDYJXXYIMInfoPersonBank];
+	if(self.PersonBank != nil){
+		[aCoder encodeObject:self.PersonBank forKey:kDYJXXYIMInfoPersonBank];
 	}
-	if(self.personBankCardNo != nil){
-		[aCoder encodeObject:self.personBankCardNo forKey:kDYJXXYIMInfoPersonBankCardNo];
+	if(self.PersonBankCardNo != nil){
+		[aCoder encodeObject:self.PersonBankCardNo forKey:kDYJXXYIMInfoPersonBankCardNo];
 	}
-	if(self.nickName != nil){
-		[aCoder encodeObject:self.nickName forKey:kDYJXXYIMInfoNickName];
+	if(self.NickName != nil){
+		[aCoder encodeObject:self.NickName forKey:kDYJXXYIMInfoNickName];
 	}
-	if(self.personRemark != nil){
-		[aCoder encodeObject:self.personRemark forKey:kDYJXXYIMInfoPersonRemark];
+	if(self.PersonRemark != nil){
+		[aCoder encodeObject:self.PersonRemark forKey:kDYJXXYIMInfoPersonRemark];
 	}
 
 }
@@ -137,15 +137,15 @@ NSString *const kDYJXXYIMInfoPersonRemark = @"PersonRemark";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super init];
-	self.adminSay = [[aDecoder decodeObjectForKey:kDYJXXYIMInfoAdminSay] boolValue];
-	self.canNotSearch = [[aDecoder decodeObjectForKey:kDYJXXYIMInfoCanNotSearch] boolValue];
-	self.headImgUrl = [aDecoder decodeObjectForKey:kDYJXXYIMInfoHeadImgUrl];
-	self.idField = [aDecoder decodeObjectForKey:kDYJXXYIMInfoIdField];
-	self.images = [aDecoder decodeObjectForKey:kDYJXXYIMInfoImages];
-	self.personBank = [aDecoder decodeObjectForKey:kDYJXXYIMInfoPersonBank];
-	self.personBankCardNo = [aDecoder decodeObjectForKey:kDYJXXYIMInfoPersonBankCardNo];
-	self.nickName = [aDecoder decodeObjectForKey:kDYJXXYIMInfoNickName];
-	self.personRemark = [aDecoder decodeObjectForKey:kDYJXXYIMInfoPersonRemark];
+	self.AdminSay = [[aDecoder decodeObjectForKey:kDYJXXYIMInfoAdminSay] boolValue];
+	self.CanNotSearch = [[aDecoder decodeObjectForKey:kDYJXXYIMInfoCanNotSearch] boolValue];
+	self.HeadImgUrl = [aDecoder decodeObjectForKey:kDYJXXYIMInfoHeadImgUrl];
+	self.IdField = [aDecoder decodeObjectForKey:kDYJXXYIMInfoIdField];
+	self.Images = [aDecoder decodeObjectForKey:kDYJXXYIMInfoImages];
+	self.PersonBank = [aDecoder decodeObjectForKey:kDYJXXYIMInfoPersonBank];
+	self.PersonBankCardNo = [aDecoder decodeObjectForKey:kDYJXXYIMInfoPersonBankCardNo];
+	self.NickName = [aDecoder decodeObjectForKey:kDYJXXYIMInfoNickName];
+	self.PersonRemark = [aDecoder decodeObjectForKey:kDYJXXYIMInfoPersonRemark];
 	return self;
 
 }
@@ -157,15 +157,15 @@ NSString *const kDYJXXYIMInfoPersonRemark = @"PersonRemark";
 {
 	DYJXXYIMInfo *copy = [DYJXXYIMInfo new];
 
-	copy.adminSay = self.adminSay;
-	copy.canNotSearch = self.canNotSearch;
-	copy.headImgUrl = [self.headImgUrl copy];
-	copy.idField = [self.idField copy];
-	copy.images = [self.images copy];
-	copy.personBank = [self.personBank copy];
-	copy.personBankCardNo = [self.personBankCardNo copy];
-	copy.nickName = [self.nickName copy];
-	copy.personRemark = [self.personRemark copy];
+	copy.AdminSay = self.AdminSay;
+	copy.CanNotSearch = self.CanNotSearch;
+	copy.HeadImgUrl = [self.HeadImgUrl copy];
+	copy.IdField = [self.IdField copy];
+	copy.Images = [self.Images copy];
+	copy.PersonBank = [self.PersonBank copy];
+	copy.PersonBankCardNo = [self.PersonBankCardNo copy];
+	copy.NickName = [self.NickName copy];
+	copy.PersonRemark = [self.PersonRemark copy];
 
 	return copy;
 }

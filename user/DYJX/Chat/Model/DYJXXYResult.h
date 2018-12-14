@@ -1,7 +1,7 @@
 //
 //	DYJXXYResult.h
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //
 
@@ -17,39 +17,39 @@
 
 @interface DYJXXYResult : NSObject
 
-@property (nonatomic, strong) NSArray * adminUserIds;
-@property (nonatomic, strong) NSArray * adminUsers;
-@property (nonatomic, strong) NSArray * allMemberIds;
-@property (nonatomic, assign) BOOL canNotSearch;
-@property (nonatomic, strong) NSArray * children;
-@property (nonatomic, strong) NSString * createBy;
-@property (nonatomic, strong) NSString * createOn;
-@property (nonatomic, strong) DYJXXYCreator * creator;
-@property (nonatomic, strong) NSString * creatorId;
-@property (nonatomic, assign) BOOL deleted;
-@property (nonatomic, assign) BOOL disabled;
-@property (nonatomic, strong) DYJXXYEnterpriseInfo * enterpriseInfo;
-@property (nonatomic, strong) NSString * groupHeadImg;
-@property (nonatomic, strong) NSString * groupName;
-@property (nonatomic, strong) NSString * groupNumber;
-@property (nonatomic, assign) NSInteger groupType;
-@property (nonatomic, strong) NSString * idField;
-@property (nonatomic, assign) BOOL isPart;
-@property (nonatomic, strong) NSArray * memberIds;
-@property (nonatomic, strong) NSArray * members;
-@property (nonatomic, assign) BOOL notAllowJoinFree;
-@property (nonatomic, assign) BOOL notAllowMemberInvite;
-@property (nonatomic, assign) BOOL notAllowSay;
-@property (nonatomic, assign) NSInteger number;
-@property (nonatomic, strong) NSString * numberString;
-@property (nonatomic, strong) DYJXXYCreator * owner;
-@property (nonatomic, strong) NSString * ownerId;
-@property (nonatomic, assign) NSInteger partType;
-@property (nonatomic, strong) DYJXXYRelation * relation;
-@property (nonatomic, strong) NSArray * silenceUserIds;
-@property (nonatomic, strong) NSString * updateBy;
-@property (nonatomic, strong) NSString * updateOn;
-@property (nonatomic, assign) NSInteger wildType;
+@property (nonatomic, strong) NSArray * AdminUserIds;
+@property (nonatomic, strong) NSArray * AdminUsers;
+@property (nonatomic, strong) NSArray * AllMemberIds;
+@property (nonatomic, assign) BOOL CanNotSearch;
+@property (nonatomic, strong) NSArray * Children;
+@property (nonatomic, strong) NSString * CreateBy;
+@property (nonatomic, strong) NSString * CreateOn;
+@property (nonatomic, strong) DYJXXYCreator * Creator;
+@property (nonatomic, strong) NSString * CreatorId;
+@property (nonatomic, assign) BOOL Deleted;
+@property (nonatomic, assign) BOOL Disabled;
+@property (nonatomic, strong) DYJXXYEnterpriseInfo * EnterpriseInfo;
+@property (nonatomic, strong) NSString * GroupHeadImg;
+@property (nonatomic, strong) NSString * GroupName;
+@property (nonatomic, strong) NSString * GroupNumber;
+@property (nonatomic, assign) NSInteger GroupType;
+@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, assign) BOOL IsPart;
+@property (nonatomic, strong) NSArray * MemberIds;
+@property (nonatomic, strong) NSArray * Members;
+@property (nonatomic, assign) BOOL NotAllowJoinFree;
+@property (nonatomic, assign) BOOL NotAllowMemberInvite;
+@property (nonatomic, assign) BOOL NotAllowSay;
+@property (nonatomic, assign) NSInteger Number;
+@property (nonatomic, strong) NSString * NumberString;
+@property (nonatomic, strong) DYJXXYCreator * Owner;
+@property (nonatomic, strong) NSString * OwnerId;
+@property (nonatomic, assign) NSInteger PartType;
+@property (nonatomic, strong) DYJXXYRelation * Relation;
+@property (nonatomic, strong) NSArray * SilenceUserIds;
+@property (nonatomic, strong) NSString * UpdateBy;
+@property (nonatomic, strong) NSString * UpdateOn;
+@property (nonatomic, assign) NSInteger WildType;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

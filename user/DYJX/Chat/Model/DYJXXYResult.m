@@ -1,7 +1,7 @@
 //
 //	DYJXXYResult.m
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
@@ -58,129 +58,129 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 {
 	self = [super init];
 	if(![dictionary[kDYJXXYResultAdminUserIds] isKindOfClass:[NSNull class]]){
-		self.adminUserIds = dictionary[kDYJXXYResultAdminUserIds];
+		self.AdminUserIds = dictionary[kDYJXXYResultAdminUserIds];
 	}	
 	if(dictionary[kDYJXXYResultAdminUsers] != nil && [dictionary[kDYJXXYResultAdminUsers] isKindOfClass:[NSArray class]]){
-		NSArray * adminUsersDictionaries = dictionary[kDYJXXYResultAdminUsers];
-		NSMutableArray * adminUsersItems = [NSMutableArray array];
-		for(NSDictionary * adminUsersDictionary in adminUsersDictionaries){
-			DYJXXYAdminUsers * adminUsersItem = [[DYJXXYAdminUsers alloc] initWithDictionary:adminUsersDictionary];
-			[adminUsersItems addObject:adminUsersItem];
+		NSArray * AdminUsersDictionaries = dictionary[kDYJXXYResultAdminUsers];
+		NSMutableArray * AdminUsersItems = [NSMutableArray array];
+		for(NSDictionary * AdminUsersDictionary in AdminUsersDictionaries){
+			DYJXXYAdminUsers * AdminUsersItem = [[DYJXXYAdminUsers alloc] initWithDictionary:AdminUsersDictionary];
+			[AdminUsersItems addObject:AdminUsersItem];
 		}
-		self.adminUsers = adminUsersItems;
+		self.AdminUsers = AdminUsersItems;
 	}
 	if(![dictionary[kDYJXXYResultAllMemberIds] isKindOfClass:[NSNull class]]){
-		self.allMemberIds = dictionary[kDYJXXYResultAllMemberIds];
+		self.AllMemberIds = dictionary[kDYJXXYResultAllMemberIds];
 	}	
 	if(![dictionary[kDYJXXYResultCanNotSearch] isKindOfClass:[NSNull class]]){
-		self.canNotSearch = [dictionary[kDYJXXYResultCanNotSearch] boolValue];
+		self.CanNotSearch = [dictionary[kDYJXXYResultCanNotSearch] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYResultChildren] isKindOfClass:[NSNull class]]){
-		self.children = dictionary[kDYJXXYResultChildren];
+		self.Children = dictionary[kDYJXXYResultChildren];
 	}	
 	if(![dictionary[kDYJXXYResultCreateBy] isKindOfClass:[NSNull class]]){
-		self.createBy = dictionary[kDYJXXYResultCreateBy];
+		self.CreateBy = dictionary[kDYJXXYResultCreateBy];
 	}	
 	if(![dictionary[kDYJXXYResultCreateOn] isKindOfClass:[NSNull class]]){
-		self.createOn = dictionary[kDYJXXYResultCreateOn];
+		self.CreateOn = dictionary[kDYJXXYResultCreateOn];
 	}	
 	if(![dictionary[kDYJXXYResultCreator] isKindOfClass:[NSNull class]]){
-		self.creator = [[DYJXXYCreator alloc] initWithDictionary:dictionary[kDYJXXYResultCreator]];
+		self.Creator = [[DYJXXYCreator alloc] initWithDictionary:dictionary[kDYJXXYResultCreator]];
 	}
 
 	if(![dictionary[kDYJXXYResultCreatorId] isKindOfClass:[NSNull class]]){
-		self.creatorId = dictionary[kDYJXXYResultCreatorId];
+		self.CreatorId = dictionary[kDYJXXYResultCreatorId];
 	}	
 	if(![dictionary[kDYJXXYResultDeleted] isKindOfClass:[NSNull class]]){
-		self.deleted = [dictionary[kDYJXXYResultDeleted] boolValue];
+		self.Deleted = [dictionary[kDYJXXYResultDeleted] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYResultDisabled] isKindOfClass:[NSNull class]]){
-		self.disabled = [dictionary[kDYJXXYResultDisabled] boolValue];
+		self.Disabled = [dictionary[kDYJXXYResultDisabled] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYResultEnterpriseInfo] isKindOfClass:[NSNull class]]){
-		self.enterpriseInfo = [[DYJXXYEnterpriseInfo alloc] initWithDictionary:dictionary[kDYJXXYResultEnterpriseInfo]];
+		self.EnterpriseInfo = [[DYJXXYEnterpriseInfo alloc] initWithDictionary:dictionary[kDYJXXYResultEnterpriseInfo]];
 	}
 
 	if(![dictionary[kDYJXXYResultGroupHeadImg] isKindOfClass:[NSNull class]]){
-		self.groupHeadImg = dictionary[kDYJXXYResultGroupHeadImg];
+		self.GroupHeadImg = dictionary[kDYJXXYResultGroupHeadImg];
 	}	
 	if(![dictionary[kDYJXXYResultGroupName] isKindOfClass:[NSNull class]]){
-		self.groupName = dictionary[kDYJXXYResultGroupName];
+		self.GroupName = dictionary[kDYJXXYResultGroupName];
 	}	
 	if(![dictionary[kDYJXXYResultGroupNumber] isKindOfClass:[NSNull class]]){
-		self.groupNumber = dictionary[kDYJXXYResultGroupNumber];
+		self.GroupNumber = dictionary[kDYJXXYResultGroupNumber];
 	}	
 	if(![dictionary[kDYJXXYResultGroupType] isKindOfClass:[NSNull class]]){
-		self.groupType = [dictionary[kDYJXXYResultGroupType] integerValue];
+		self.GroupType = [dictionary[kDYJXXYResultGroupType] integerValue];
 	}
 
 	if(![dictionary[kDYJXXYResultIdField] isKindOfClass:[NSNull class]]){
-		self.idField = dictionary[kDYJXXYResultIdField];
+		self.IdField = dictionary[kDYJXXYResultIdField];
 	}	
 	if(![dictionary[kDYJXXYResultIsPart] isKindOfClass:[NSNull class]]){
-		self.isPart = [dictionary[kDYJXXYResultIsPart] boolValue];
+		self.IsPart = [dictionary[kDYJXXYResultIsPart] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYResultMemberIds] isKindOfClass:[NSNull class]]){
-		self.memberIds = dictionary[kDYJXXYResultMemberIds];
+		self.MemberIds = dictionary[kDYJXXYResultMemberIds];
 	}	
 	if(dictionary[kDYJXXYResultMembers] != nil && [dictionary[kDYJXXYResultMembers] isKindOfClass:[NSArray class]]){
-		NSArray * membersDictionaries = dictionary[kDYJXXYResultMembers];
-		NSMutableArray * membersItems = [NSMutableArray array];
-		for(NSDictionary * membersDictionary in membersDictionaries){
-			DYJXXYAdminUsers * membersItem = [[DYJXXYAdminUsers alloc] initWithDictionary:membersDictionary];
-			[membersItems addObject:membersItem];
+		NSArray * MembersDictionaries = dictionary[kDYJXXYResultMembers];
+		NSMutableArray * MembersItems = [NSMutableArray array];
+		for(NSDictionary * MembersDictionary in MembersDictionaries){
+			DYJXXYAdminUsers * MembersItem = [[DYJXXYAdminUsers alloc] initWithDictionary:MembersDictionary];
+			[MembersItems addObject:MembersItem];
 		}
-		self.members = membersItems;
+		self.Members = MembersItems;
 	}
 	if(![dictionary[kDYJXXYResultNotAllowJoinFree] isKindOfClass:[NSNull class]]){
-		self.notAllowJoinFree = [dictionary[kDYJXXYResultNotAllowJoinFree] boolValue];
+		self.NotAllowJoinFree = [dictionary[kDYJXXYResultNotAllowJoinFree] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYResultNotAllowMemberInvite] isKindOfClass:[NSNull class]]){
-		self.notAllowMemberInvite = [dictionary[kDYJXXYResultNotAllowMemberInvite] boolValue];
+		self.NotAllowMemberInvite = [dictionary[kDYJXXYResultNotAllowMemberInvite] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYResultNotAllowSay] isKindOfClass:[NSNull class]]){
-		self.notAllowSay = [dictionary[kDYJXXYResultNotAllowSay] boolValue];
+		self.NotAllowSay = [dictionary[kDYJXXYResultNotAllowSay] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYResultNumber] isKindOfClass:[NSNull class]]){
-		self.number = [dictionary[kDYJXXYResultNumber] integerValue];
+		self.Number = [dictionary[kDYJXXYResultNumber] integerValue];
 	}
 
 	if(![dictionary[kDYJXXYResultNumberString] isKindOfClass:[NSNull class]]){
-		self.numberString = dictionary[kDYJXXYResultNumberString];
+		self.NumberString = dictionary[kDYJXXYResultNumberString];
 	}	
 	if(![dictionary[kDYJXXYResultOwner] isKindOfClass:[NSNull class]]){
-		self.owner = [[DYJXXYCreator alloc] initWithDictionary:dictionary[kDYJXXYResultOwner]];
+		self.Owner = [[DYJXXYCreator alloc] initWithDictionary:dictionary[kDYJXXYResultOwner]];
 	}
 
 	if(![dictionary[kDYJXXYResultOwnerId] isKindOfClass:[NSNull class]]){
-		self.ownerId = dictionary[kDYJXXYResultOwnerId];
+		self.OwnerId = dictionary[kDYJXXYResultOwnerId];
 	}	
 	if(![dictionary[kDYJXXYResultPartType] isKindOfClass:[NSNull class]]){
-		self.partType = [dictionary[kDYJXXYResultPartType] integerValue];
+		self.PartType = [dictionary[kDYJXXYResultPartType] integerValue];
 	}
 
 	if(![dictionary[kDYJXXYResultRelation] isKindOfClass:[NSNull class]]){
-		self.relation = [[DYJXXYRelation alloc] initWithDictionary:dictionary[kDYJXXYResultRelation]];
+		self.Relation = [[DYJXXYRelation alloc] initWithDictionary:dictionary[kDYJXXYResultRelation]];
 	}
 
 	if(![dictionary[kDYJXXYResultSilenceUserIds] isKindOfClass:[NSNull class]]){
-		self.silenceUserIds = dictionary[kDYJXXYResultSilenceUserIds];
+		self.SilenceUserIds = dictionary[kDYJXXYResultSilenceUserIds];
 	}	
 	if(![dictionary[kDYJXXYResultUpdateBy] isKindOfClass:[NSNull class]]){
-		self.updateBy = dictionary[kDYJXXYResultUpdateBy];
+		self.UpdateBy = dictionary[kDYJXXYResultUpdateBy];
 	}	
 	if(![dictionary[kDYJXXYResultUpdateOn] isKindOfClass:[NSNull class]]){
-		self.updateOn = dictionary[kDYJXXYResultUpdateOn];
+		self.UpdateOn = dictionary[kDYJXXYResultUpdateOn];
 	}	
 	if(![dictionary[kDYJXXYResultWildType] isKindOfClass:[NSNull class]]){
-		self.wildType = [dictionary[kDYJXXYResultWildType] integerValue];
+		self.WildType = [dictionary[kDYJXXYResultWildType] integerValue];
 	}
 
 	return self;
@@ -193,91 +193,91 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 -(NSDictionary *)toDictionary
 {
 	NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
-	if(self.adminUserIds != nil){
-		dictionary[kDYJXXYResultAdminUserIds] = self.adminUserIds;
+	if(self.AdminUserIds != nil){
+		dictionary[kDYJXXYResultAdminUserIds] = self.AdminUserIds;
 	}
-	if(self.adminUsers != nil){
+	if(self.AdminUsers != nil){
 		NSMutableArray * dictionaryElements = [NSMutableArray array];
-		for(DYJXXYAdminUsers * adminUsersElement in self.adminUsers){
-			[dictionaryElements addObject:[adminUsersElement toDictionary]];
+		for(DYJXXYAdminUsers * AdminUsersElement in self.AdminUsers){
+			[dictionaryElements addObject:[AdminUsersElement toDictionary]];
 		}
 		dictionary[kDYJXXYResultAdminUsers] = dictionaryElements;
 	}
-	if(self.allMemberIds != nil){
-		dictionary[kDYJXXYResultAllMemberIds] = self.allMemberIds;
+	if(self.AllMemberIds != nil){
+		dictionary[kDYJXXYResultAllMemberIds] = self.AllMemberIds;
 	}
-	dictionary[kDYJXXYResultCanNotSearch] = @(self.canNotSearch);
-	if(self.children != nil){
-		dictionary[kDYJXXYResultChildren] = self.children;
+	dictionary[kDYJXXYResultCanNotSearch] = @(self.CanNotSearch);
+	if(self.Children != nil){
+		dictionary[kDYJXXYResultChildren] = self.Children;
 	}
-	if(self.createBy != nil){
-		dictionary[kDYJXXYResultCreateBy] = self.createBy;
+	if(self.CreateBy != nil){
+		dictionary[kDYJXXYResultCreateBy] = self.CreateBy;
 	}
-	if(self.createOn != nil){
-		dictionary[kDYJXXYResultCreateOn] = self.createOn;
+	if(self.CreateOn != nil){
+		dictionary[kDYJXXYResultCreateOn] = self.CreateOn;
 	}
-	if(self.creator != nil){
-		dictionary[kDYJXXYResultCreator] = [self.creator toDictionary];
+	if(self.Creator != nil){
+		dictionary[kDYJXXYResultCreator] = [self.Creator toDictionary];
 	}
-	if(self.creatorId != nil){
-		dictionary[kDYJXXYResultCreatorId] = self.creatorId;
+	if(self.CreatorId != nil){
+		dictionary[kDYJXXYResultCreatorId] = self.CreatorId;
 	}
-	dictionary[kDYJXXYResultDeleted] = @(self.deleted);
-	dictionary[kDYJXXYResultDisabled] = @(self.disabled);
-	if(self.enterpriseInfo != nil){
-		dictionary[kDYJXXYResultEnterpriseInfo] = [self.enterpriseInfo toDictionary];
+	dictionary[kDYJXXYResultDeleted] = @(self.Deleted);
+	dictionary[kDYJXXYResultDisabled] = @(self.Disabled);
+	if(self.EnterpriseInfo != nil){
+		dictionary[kDYJXXYResultEnterpriseInfo] = [self.EnterpriseInfo toDictionary];
 	}
-	if(self.groupHeadImg != nil){
-		dictionary[kDYJXXYResultGroupHeadImg] = self.groupHeadImg;
+	if(self.GroupHeadImg != nil){
+		dictionary[kDYJXXYResultGroupHeadImg] = self.GroupHeadImg;
 	}
-	if(self.groupName != nil){
-		dictionary[kDYJXXYResultGroupName] = self.groupName;
+	if(self.GroupName != nil){
+		dictionary[kDYJXXYResultGroupName] = self.GroupName;
 	}
-	if(self.groupNumber != nil){
-		dictionary[kDYJXXYResultGroupNumber] = self.groupNumber;
+	if(self.GroupNumber != nil){
+		dictionary[kDYJXXYResultGroupNumber] = self.GroupNumber;
 	}
-	dictionary[kDYJXXYResultGroupType] = @(self.groupType);
-	if(self.idField != nil){
-		dictionary[kDYJXXYResultIdField] = self.idField;
+	dictionary[kDYJXXYResultGroupType] = @(self.GroupType);
+	if(self.IdField != nil){
+		dictionary[kDYJXXYResultIdField] = self.IdField;
 	}
-	dictionary[kDYJXXYResultIsPart] = @(self.isPart);
-	if(self.memberIds != nil){
-		dictionary[kDYJXXYResultMemberIds] = self.memberIds;
+	dictionary[kDYJXXYResultIsPart] = @(self.IsPart);
+	if(self.MemberIds != nil){
+		dictionary[kDYJXXYResultMemberIds] = self.MemberIds;
 	}
-	if(self.members != nil){
+	if(self.Members != nil){
 		NSMutableArray * dictionaryElements = [NSMutableArray array];
-		for(DYJXXYAdminUsers * membersElement in self.members){
-			[dictionaryElements addObject:[membersElement toDictionary]];
+		for(DYJXXYAdminUsers * MembersElement in self.Members){
+			[dictionaryElements addObject:[MembersElement toDictionary]];
 		}
 		dictionary[kDYJXXYResultMembers] = dictionaryElements;
 	}
-	dictionary[kDYJXXYResultNotAllowJoinFree] = @(self.notAllowJoinFree);
-	dictionary[kDYJXXYResultNotAllowMemberInvite] = @(self.notAllowMemberInvite);
-	dictionary[kDYJXXYResultNotAllowSay] = @(self.notAllowSay);
-	dictionary[kDYJXXYResultNumber] = @(self.number);
-	if(self.numberString != nil){
-		dictionary[kDYJXXYResultNumberString] = self.numberString;
+	dictionary[kDYJXXYResultNotAllowJoinFree] = @(self.NotAllowJoinFree);
+	dictionary[kDYJXXYResultNotAllowMemberInvite] = @(self.NotAllowMemberInvite);
+	dictionary[kDYJXXYResultNotAllowSay] = @(self.NotAllowSay);
+	dictionary[kDYJXXYResultNumber] = @(self.Number);
+	if(self.NumberString != nil){
+		dictionary[kDYJXXYResultNumberString] = self.NumberString;
 	}
-	if(self.owner != nil){
-		dictionary[kDYJXXYResultOwner] = [self.owner toDictionary];
+	if(self.Owner != nil){
+		dictionary[kDYJXXYResultOwner] = [self.Owner toDictionary];
 	}
-	if(self.ownerId != nil){
-		dictionary[kDYJXXYResultOwnerId] = self.ownerId;
+	if(self.OwnerId != nil){
+		dictionary[kDYJXXYResultOwnerId] = self.OwnerId;
 	}
-	dictionary[kDYJXXYResultPartType] = @(self.partType);
-	if(self.relation != nil){
-		dictionary[kDYJXXYResultRelation] = [self.relation toDictionary];
+	dictionary[kDYJXXYResultPartType] = @(self.PartType);
+	if(self.Relation != nil){
+		dictionary[kDYJXXYResultRelation] = [self.Relation toDictionary];
 	}
-	if(self.silenceUserIds != nil){
-		dictionary[kDYJXXYResultSilenceUserIds] = self.silenceUserIds;
+	if(self.SilenceUserIds != nil){
+		dictionary[kDYJXXYResultSilenceUserIds] = self.SilenceUserIds;
 	}
-	if(self.updateBy != nil){
-		dictionary[kDYJXXYResultUpdateBy] = self.updateBy;
+	if(self.UpdateBy != nil){
+		dictionary[kDYJXXYResultUpdateBy] = self.UpdateBy;
 	}
-	if(self.updateOn != nil){
-		dictionary[kDYJXXYResultUpdateOn] = self.updateOn;
+	if(self.UpdateOn != nil){
+		dictionary[kDYJXXYResultUpdateOn] = self.UpdateOn;
 	}
-	dictionary[kDYJXXYResultWildType] = @(self.wildType);
+	dictionary[kDYJXXYResultWildType] = @(self.WildType);
 	return dictionary;
 
 }
@@ -290,73 +290,73 @@ NSString *const kDYJXXYResultWildType = @"WildType";
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-	if(self.adminUserIds != nil){
-		[aCoder encodeObject:self.adminUserIds forKey:kDYJXXYResultAdminUserIds];
+	if(self.AdminUserIds != nil){
+		[aCoder encodeObject:self.AdminUserIds forKey:kDYJXXYResultAdminUserIds];
 	}
-	if(self.adminUsers != nil){
-		[aCoder encodeObject:self.adminUsers forKey:kDYJXXYResultAdminUsers];
+	if(self.AdminUsers != nil){
+		[aCoder encodeObject:self.AdminUsers forKey:kDYJXXYResultAdminUsers];
 	}
-	if(self.allMemberIds != nil){
-		[aCoder encodeObject:self.allMemberIds forKey:kDYJXXYResultAllMemberIds];
+	if(self.AllMemberIds != nil){
+		[aCoder encodeObject:self.AllMemberIds forKey:kDYJXXYResultAllMemberIds];
 	}
-	[aCoder encodeObject:@(self.canNotSearch) forKey:kDYJXXYResultCanNotSearch];	if(self.children != nil){
-		[aCoder encodeObject:self.children forKey:kDYJXXYResultChildren];
+	[aCoder encodeObject:@(self.CanNotSearch) forKey:kDYJXXYResultCanNotSearch];	if(self.Children != nil){
+		[aCoder encodeObject:self.Children forKey:kDYJXXYResultChildren];
 	}
-	if(self.createBy != nil){
-		[aCoder encodeObject:self.createBy forKey:kDYJXXYResultCreateBy];
+	if(self.CreateBy != nil){
+		[aCoder encodeObject:self.CreateBy forKey:kDYJXXYResultCreateBy];
 	}
-	if(self.createOn != nil){
-		[aCoder encodeObject:self.createOn forKey:kDYJXXYResultCreateOn];
+	if(self.CreateOn != nil){
+		[aCoder encodeObject:self.CreateOn forKey:kDYJXXYResultCreateOn];
 	}
-	if(self.creator != nil){
-		[aCoder encodeObject:self.creator forKey:kDYJXXYResultCreator];
+	if(self.Creator != nil){
+		[aCoder encodeObject:self.Creator forKey:kDYJXXYResultCreator];
 	}
-	if(self.creatorId != nil){
-		[aCoder encodeObject:self.creatorId forKey:kDYJXXYResultCreatorId];
+	if(self.CreatorId != nil){
+		[aCoder encodeObject:self.CreatorId forKey:kDYJXXYResultCreatorId];
 	}
-	[aCoder encodeObject:@(self.deleted) forKey:kDYJXXYResultDeleted];	[aCoder encodeObject:@(self.disabled) forKey:kDYJXXYResultDisabled];	if(self.enterpriseInfo != nil){
-		[aCoder encodeObject:self.enterpriseInfo forKey:kDYJXXYResultEnterpriseInfo];
+	[aCoder encodeObject:@(self.Deleted) forKey:kDYJXXYResultDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kDYJXXYResultDisabled];	if(self.EnterpriseInfo != nil){
+		[aCoder encodeObject:self.EnterpriseInfo forKey:kDYJXXYResultEnterpriseInfo];
 	}
-	if(self.groupHeadImg != nil){
-		[aCoder encodeObject:self.groupHeadImg forKey:kDYJXXYResultGroupHeadImg];
+	if(self.GroupHeadImg != nil){
+		[aCoder encodeObject:self.GroupHeadImg forKey:kDYJXXYResultGroupHeadImg];
 	}
-	if(self.groupName != nil){
-		[aCoder encodeObject:self.groupName forKey:kDYJXXYResultGroupName];
+	if(self.GroupName != nil){
+		[aCoder encodeObject:self.GroupName forKey:kDYJXXYResultGroupName];
 	}
-	if(self.groupNumber != nil){
-		[aCoder encodeObject:self.groupNumber forKey:kDYJXXYResultGroupNumber];
+	if(self.GroupNumber != nil){
+		[aCoder encodeObject:self.GroupNumber forKey:kDYJXXYResultGroupNumber];
 	}
-	[aCoder encodeObject:@(self.groupType) forKey:kDYJXXYResultGroupType];	if(self.idField != nil){
-		[aCoder encodeObject:self.idField forKey:kDYJXXYResultIdField];
+	[aCoder encodeObject:@(self.GroupType) forKey:kDYJXXYResultGroupType];	if(self.IdField != nil){
+		[aCoder encodeObject:self.IdField forKey:kDYJXXYResultIdField];
 	}
-	[aCoder encodeObject:@(self.isPart) forKey:kDYJXXYResultIsPart];	if(self.memberIds != nil){
-		[aCoder encodeObject:self.memberIds forKey:kDYJXXYResultMemberIds];
+	[aCoder encodeObject:@(self.IsPart) forKey:kDYJXXYResultIsPart];	if(self.MemberIds != nil){
+		[aCoder encodeObject:self.MemberIds forKey:kDYJXXYResultMemberIds];
 	}
-	if(self.members != nil){
-		[aCoder encodeObject:self.members forKey:kDYJXXYResultMembers];
+	if(self.Members != nil){
+		[aCoder encodeObject:self.Members forKey:kDYJXXYResultMembers];
 	}
-	[aCoder encodeObject:@(self.notAllowJoinFree) forKey:kDYJXXYResultNotAllowJoinFree];	[aCoder encodeObject:@(self.notAllowMemberInvite) forKey:kDYJXXYResultNotAllowMemberInvite];	[aCoder encodeObject:@(self.notAllowSay) forKey:kDYJXXYResultNotAllowSay];	[aCoder encodeObject:@(self.number) forKey:kDYJXXYResultNumber];	if(self.numberString != nil){
-		[aCoder encodeObject:self.numberString forKey:kDYJXXYResultNumberString];
+	[aCoder encodeObject:@(self.NotAllowJoinFree) forKey:kDYJXXYResultNotAllowJoinFree];	[aCoder encodeObject:@(self.NotAllowMemberInvite) forKey:kDYJXXYResultNotAllowMemberInvite];	[aCoder encodeObject:@(self.NotAllowSay) forKey:kDYJXXYResultNotAllowSay];	[aCoder encodeObject:@(self.Number) forKey:kDYJXXYResultNumber];	if(self.NumberString != nil){
+		[aCoder encodeObject:self.NumberString forKey:kDYJXXYResultNumberString];
 	}
-	if(self.owner != nil){
-		[aCoder encodeObject:self.owner forKey:kDYJXXYResultOwner];
+	if(self.Owner != nil){
+		[aCoder encodeObject:self.Owner forKey:kDYJXXYResultOwner];
 	}
-	if(self.ownerId != nil){
-		[aCoder encodeObject:self.ownerId forKey:kDYJXXYResultOwnerId];
+	if(self.OwnerId != nil){
+		[aCoder encodeObject:self.OwnerId forKey:kDYJXXYResultOwnerId];
 	}
-	[aCoder encodeObject:@(self.partType) forKey:kDYJXXYResultPartType];	if(self.relation != nil){
-		[aCoder encodeObject:self.relation forKey:kDYJXXYResultRelation];
+	[aCoder encodeObject:@(self.PartType) forKey:kDYJXXYResultPartType];	if(self.Relation != nil){
+		[aCoder encodeObject:self.Relation forKey:kDYJXXYResultRelation];
 	}
-	if(self.silenceUserIds != nil){
-		[aCoder encodeObject:self.silenceUserIds forKey:kDYJXXYResultSilenceUserIds];
+	if(self.SilenceUserIds != nil){
+		[aCoder encodeObject:self.SilenceUserIds forKey:kDYJXXYResultSilenceUserIds];
 	}
-	if(self.updateBy != nil){
-		[aCoder encodeObject:self.updateBy forKey:kDYJXXYResultUpdateBy];
+	if(self.UpdateBy != nil){
+		[aCoder encodeObject:self.UpdateBy forKey:kDYJXXYResultUpdateBy];
 	}
-	if(self.updateOn != nil){
-		[aCoder encodeObject:self.updateOn forKey:kDYJXXYResultUpdateOn];
+	if(self.UpdateOn != nil){
+		[aCoder encodeObject:self.UpdateOn forKey:kDYJXXYResultUpdateOn];
 	}
-	[aCoder encodeObject:@(self.wildType) forKey:kDYJXXYResultWildType];
+	[aCoder encodeObject:@(self.WildType) forKey:kDYJXXYResultWildType];
 }
 
 /**
@@ -365,39 +365,39 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super init];
-	self.adminUserIds = [aDecoder decodeObjectForKey:kDYJXXYResultAdminUserIds];
-	self.adminUsers = [aDecoder decodeObjectForKey:kDYJXXYResultAdminUsers];
-	self.allMemberIds = [aDecoder decodeObjectForKey:kDYJXXYResultAllMemberIds];
-	self.canNotSearch = [[aDecoder decodeObjectForKey:kDYJXXYResultCanNotSearch] boolValue];
-	self.children = [aDecoder decodeObjectForKey:kDYJXXYResultChildren];
-	self.createBy = [aDecoder decodeObjectForKey:kDYJXXYResultCreateBy];
-	self.createOn = [aDecoder decodeObjectForKey:kDYJXXYResultCreateOn];
-	self.creator = [aDecoder decodeObjectForKey:kDYJXXYResultCreator];
-	self.creatorId = [aDecoder decodeObjectForKey:kDYJXXYResultCreatorId];
-	self.deleted = [[aDecoder decodeObjectForKey:kDYJXXYResultDeleted] boolValue];
-	self.disabled = [[aDecoder decodeObjectForKey:kDYJXXYResultDisabled] boolValue];
-	self.enterpriseInfo = [aDecoder decodeObjectForKey:kDYJXXYResultEnterpriseInfo];
-	self.groupHeadImg = [aDecoder decodeObjectForKey:kDYJXXYResultGroupHeadImg];
-	self.groupName = [aDecoder decodeObjectForKey:kDYJXXYResultGroupName];
-	self.groupNumber = [aDecoder decodeObjectForKey:kDYJXXYResultGroupNumber];
-	self.groupType = [[aDecoder decodeObjectForKey:kDYJXXYResultGroupType] integerValue];
-	self.idField = [aDecoder decodeObjectForKey:kDYJXXYResultIdField];
-	self.isPart = [[aDecoder decodeObjectForKey:kDYJXXYResultIsPart] boolValue];
-	self.memberIds = [aDecoder decodeObjectForKey:kDYJXXYResultMemberIds];
-	self.members = [aDecoder decodeObjectForKey:kDYJXXYResultMembers];
-	self.notAllowJoinFree = [[aDecoder decodeObjectForKey:kDYJXXYResultNotAllowJoinFree] boolValue];
-	self.notAllowMemberInvite = [[aDecoder decodeObjectForKey:kDYJXXYResultNotAllowMemberInvite] boolValue];
-	self.notAllowSay = [[aDecoder decodeObjectForKey:kDYJXXYResultNotAllowSay] boolValue];
-	self.number = [[aDecoder decodeObjectForKey:kDYJXXYResultNumber] integerValue];
-	self.numberString = [aDecoder decodeObjectForKey:kDYJXXYResultNumberString];
-	self.owner = [aDecoder decodeObjectForKey:kDYJXXYResultOwner];
-	self.ownerId = [aDecoder decodeObjectForKey:kDYJXXYResultOwnerId];
-	self.partType = [[aDecoder decodeObjectForKey:kDYJXXYResultPartType] integerValue];
-	self.relation = [aDecoder decodeObjectForKey:kDYJXXYResultRelation];
-	self.silenceUserIds = [aDecoder decodeObjectForKey:kDYJXXYResultSilenceUserIds];
-	self.updateBy = [aDecoder decodeObjectForKey:kDYJXXYResultUpdateBy];
-	self.updateOn = [aDecoder decodeObjectForKey:kDYJXXYResultUpdateOn];
-	self.wildType = [[aDecoder decodeObjectForKey:kDYJXXYResultWildType] integerValue];
+	self.AdminUserIds = [aDecoder decodeObjectForKey:kDYJXXYResultAdminUserIds];
+	self.AdminUsers = [aDecoder decodeObjectForKey:kDYJXXYResultAdminUsers];
+	self.AllMemberIds = [aDecoder decodeObjectForKey:kDYJXXYResultAllMemberIds];
+	self.CanNotSearch = [[aDecoder decodeObjectForKey:kDYJXXYResultCanNotSearch] boolValue];
+	self.Children = [aDecoder decodeObjectForKey:kDYJXXYResultChildren];
+	self.CreateBy = [aDecoder decodeObjectForKey:kDYJXXYResultCreateBy];
+	self.CreateOn = [aDecoder decodeObjectForKey:kDYJXXYResultCreateOn];
+	self.Creator = [aDecoder decodeObjectForKey:kDYJXXYResultCreator];
+	self.CreatorId = [aDecoder decodeObjectForKey:kDYJXXYResultCreatorId];
+	self.Deleted = [[aDecoder decodeObjectForKey:kDYJXXYResultDeleted] boolValue];
+	self.Disabled = [[aDecoder decodeObjectForKey:kDYJXXYResultDisabled] boolValue];
+	self.EnterpriseInfo = [aDecoder decodeObjectForKey:kDYJXXYResultEnterpriseInfo];
+	self.GroupHeadImg = [aDecoder decodeObjectForKey:kDYJXXYResultGroupHeadImg];
+	self.GroupName = [aDecoder decodeObjectForKey:kDYJXXYResultGroupName];
+	self.GroupNumber = [aDecoder decodeObjectForKey:kDYJXXYResultGroupNumber];
+	self.GroupType = [[aDecoder decodeObjectForKey:kDYJXXYResultGroupType] integerValue];
+	self.IdField = [aDecoder decodeObjectForKey:kDYJXXYResultIdField];
+	self.IsPart = [[aDecoder decodeObjectForKey:kDYJXXYResultIsPart] boolValue];
+	self.MemberIds = [aDecoder decodeObjectForKey:kDYJXXYResultMemberIds];
+	self.Members = [aDecoder decodeObjectForKey:kDYJXXYResultMembers];
+	self.NotAllowJoinFree = [[aDecoder decodeObjectForKey:kDYJXXYResultNotAllowJoinFree] boolValue];
+	self.NotAllowMemberInvite = [[aDecoder decodeObjectForKey:kDYJXXYResultNotAllowMemberInvite] boolValue];
+	self.NotAllowSay = [[aDecoder decodeObjectForKey:kDYJXXYResultNotAllowSay] boolValue];
+	self.Number = [[aDecoder decodeObjectForKey:kDYJXXYResultNumber] integerValue];
+	self.NumberString = [aDecoder decodeObjectForKey:kDYJXXYResultNumberString];
+	self.Owner = [aDecoder decodeObjectForKey:kDYJXXYResultOwner];
+	self.OwnerId = [aDecoder decodeObjectForKey:kDYJXXYResultOwnerId];
+	self.PartType = [[aDecoder decodeObjectForKey:kDYJXXYResultPartType] integerValue];
+	self.Relation = [aDecoder decodeObjectForKey:kDYJXXYResultRelation];
+	self.SilenceUserIds = [aDecoder decodeObjectForKey:kDYJXXYResultSilenceUserIds];
+	self.UpdateBy = [aDecoder decodeObjectForKey:kDYJXXYResultUpdateBy];
+	self.UpdateOn = [aDecoder decodeObjectForKey:kDYJXXYResultUpdateOn];
+	self.WildType = [[aDecoder decodeObjectForKey:kDYJXXYResultWildType] integerValue];
 	return self;
 
 }
@@ -409,39 +409,39 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 {
 	DYJXXYResult *copy = [DYJXXYResult new];
 
-	copy.adminUserIds = [self.adminUserIds copy];
-	copy.adminUsers = [self.adminUsers copy];
-	copy.allMemberIds = [self.allMemberIds copy];
-	copy.canNotSearch = self.canNotSearch;
-	copy.children = [self.children copy];
-	copy.createBy = [self.createBy copy];
-	copy.createOn = [self.createOn copy];
-	copy.creator = [self.creator copy];
-	copy.creatorId = [self.creatorId copy];
-	copy.deleted = self.deleted;
-	copy.disabled = self.disabled;
-	copy.enterpriseInfo = [self.enterpriseInfo copy];
-	copy.groupHeadImg = [self.groupHeadImg copy];
-	copy.groupName = [self.groupName copy];
-	copy.groupNumber = [self.groupNumber copy];
-	copy.groupType = self.groupType;
-	copy.idField = [self.idField copy];
-	copy.isPart = self.isPart;
-	copy.memberIds = [self.memberIds copy];
-	copy.members = [self.members copy];
-	copy.notAllowJoinFree = self.notAllowJoinFree;
-	copy.notAllowMemberInvite = self.notAllowMemberInvite;
-	copy.notAllowSay = self.notAllowSay;
-	copy.number = self.number;
-	copy.numberString = [self.numberString copy];
-	copy.owner = [self.owner copy];
-	copy.ownerId = [self.ownerId copy];
-	copy.partType = self.partType;
-	copy.relation = [self.relation copy];
-	copy.silenceUserIds = [self.silenceUserIds copy];
-	copy.updateBy = [self.updateBy copy];
-	copy.updateOn = [self.updateOn copy];
-	copy.wildType = self.wildType;
+	copy.AdminUserIds = [self.AdminUserIds copy];
+	copy.AdminUsers = [self.AdminUsers copy];
+	copy.AllMemberIds = [self.AllMemberIds copy];
+	copy.CanNotSearch = self.CanNotSearch;
+	copy.Children = [self.Children copy];
+	copy.CreateBy = [self.CreateBy copy];
+	copy.CreateOn = [self.CreateOn copy];
+	copy.Creator = [self.Creator copy];
+	copy.CreatorId = [self.CreatorId copy];
+	copy.Deleted = self.Deleted;
+	copy.Disabled = self.Disabled;
+	copy.EnterpriseInfo = [self.EnterpriseInfo copy];
+	copy.GroupHeadImg = [self.GroupHeadImg copy];
+	copy.GroupName = [self.GroupName copy];
+	copy.GroupNumber = [self.GroupNumber copy];
+	copy.GroupType = self.GroupType;
+	copy.IdField = [self.IdField copy];
+	copy.IsPart = self.IsPart;
+	copy.MemberIds = [self.MemberIds copy];
+	copy.Members = [self.Members copy];
+	copy.NotAllowJoinFree = self.NotAllowJoinFree;
+	copy.NotAllowMemberInvite = self.NotAllowMemberInvite;
+	copy.NotAllowSay = self.NotAllowSay;
+	copy.Number = self.Number;
+	copy.NumberString = [self.NumberString copy];
+	copy.Owner = [self.Owner copy];
+	copy.OwnerId = [self.OwnerId copy];
+	copy.PartType = self.PartType;
+	copy.Relation = [self.Relation copy];
+	copy.SilenceUserIds = [self.SilenceUserIds copy];
+	copy.UpdateBy = [self.UpdateBy copy];
+	copy.UpdateOn = [self.UpdateOn copy];
+	copy.WildType = self.WildType;
 
 	return copy;
 }

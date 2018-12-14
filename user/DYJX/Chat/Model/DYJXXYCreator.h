@@ -1,7 +1,7 @@
 //
 //	DYJXXYCreator.h
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //
 
@@ -12,20 +12,20 @@
 
 @interface DYJXXYCreator : NSObject
 
-@property (nonatomic, strong) NSString * belongEnterprise;
-@property (nonatomic, strong) DYJXXYBusines * business;
-@property (nonatomic, strong) NSString * cellphone;
-@property (nonatomic, strong) NSString * createOn;
-@property (nonatomic, assign) BOOL deleted;
-@property (nonatomic, assign) BOOL disabled;
-@property (nonatomic, strong) NSString * displayName;
-@property (nonatomic, strong) NSString * displayTel;
-@property (nonatomic, strong) NSString * idField;
-@property (nonatomic, assign) NSInteger number;
-@property (nonatomic, strong) NSString * numberString;
-@property (nonatomic, strong) NSString * rongCloudToken;
-@property (nonatomic, assign) NSInteger type;
-@property (nonatomic, strong) NSString * userName;
+@property (nonatomic, strong) NSString * BelongEnterprise;
+@property (nonatomic, strong) DYJXXYBusines * Business;
+@property (nonatomic, strong) NSString * Cellphone;
+@property (nonatomic, strong) NSString * CreateOn;
+@property (nonatomic, assign) BOOL Deleted;
+@property (nonatomic, assign) BOOL Disabled;
+@property (nonatomic, strong) NSString * DisplayName;
+@property (nonatomic, strong) NSString * DisplayTel;
+@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, assign) NSInteger Number;
+@property (nonatomic, strong) NSString * NumberString;
+@property (nonatomic, strong) NSString * RongCloudToken;
+@property (nonatomic, assign) NSInteger Type;
+@property (nonatomic, strong) NSString * UserName;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

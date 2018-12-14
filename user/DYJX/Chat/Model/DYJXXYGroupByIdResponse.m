@@ -1,7 +1,7 @@
 //
 //	DYJXXYGroupByIdResponse.m
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
@@ -33,31 +33,31 @@ NSString *const kDYJXXYGroupByIdResponseUserID = @"UserID";
 {
 	self = [super init];
 	if(![dictionary[kDYJXXYGroupByIdResponseClientId] isKindOfClass:[NSNull class]]){
-		self.clientId = dictionary[kDYJXXYGroupByIdResponseClientId];
+		self.ClientId = dictionary[kDYJXXYGroupByIdResponseClientId];
 	}	
 	if(![dictionary[kDYJXXYGroupByIdResponseDebugMessages] isKindOfClass:[NSNull class]]){
-		self.debugMessages = dictionary[kDYJXXYGroupByIdResponseDebugMessages];
+		self.DebugMessages = dictionary[kDYJXXYGroupByIdResponseDebugMessages];
 	}	
 	if(![dictionary[kDYJXXYGroupByIdResponseKicked] isKindOfClass:[NSNull class]]){
-		self.kicked = [dictionary[kDYJXXYGroupByIdResponseKicked] boolValue];
+		self.Kicked = [dictionary[kDYJXXYGroupByIdResponseKicked] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYGroupByIdResponseMemberID] isKindOfClass:[NSNull class]]){
-		self.memberID = dictionary[kDYJXXYGroupByIdResponseMemberID];
+		self.MemberID = dictionary[kDYJXXYGroupByIdResponseMemberID];
 	}	
 	if(![dictionary[kDYJXXYGroupByIdResponseMessage] isKindOfClass:[NSNull class]]){
-		self.message = dictionary[kDYJXXYGroupByIdResponseMessage];
+		self.Message = dictionary[kDYJXXYGroupByIdResponseMessage];
 	}	
 	if(![dictionary[kDYJXXYGroupByIdResponseResult] isKindOfClass:[NSNull class]]){
-		self.result = [[DYJXXYResult alloc] initWithDictionary:dictionary[kDYJXXYGroupByIdResponseResult]];
+		self.Result = [[DYJXXYResult alloc] initWithDictionary:dictionary[kDYJXXYGroupByIdResponseResult]];
 	}
 
 	if(![dictionary[kDYJXXYGroupByIdResponseSucceed] isKindOfClass:[NSNull class]]){
-		self.succeed = [dictionary[kDYJXXYGroupByIdResponseSucceed] boolValue];
+		self.Succeed = [dictionary[kDYJXXYGroupByIdResponseSucceed] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYGroupByIdResponseUserID] isKindOfClass:[NSNull class]]){
-		self.userID = dictionary[kDYJXXYGroupByIdResponseUserID];
+		self.UserID = dictionary[kDYJXXYGroupByIdResponseUserID];
 	}	
 	return self;
 }
@@ -69,25 +69,25 @@ NSString *const kDYJXXYGroupByIdResponseUserID = @"UserID";
 -(NSDictionary *)toDictionary
 {
 	NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
-	if(self.clientId != nil){
-		dictionary[kDYJXXYGroupByIdResponseClientId] = self.clientId;
+	if(self.ClientId != nil){
+		dictionary[kDYJXXYGroupByIdResponseClientId] = self.ClientId;
 	}
-	if(self.debugMessages != nil){
-		dictionary[kDYJXXYGroupByIdResponseDebugMessages] = self.debugMessages;
+	if(self.DebugMessages != nil){
+		dictionary[kDYJXXYGroupByIdResponseDebugMessages] = self.DebugMessages;
 	}
-	dictionary[kDYJXXYGroupByIdResponseKicked] = @(self.kicked);
-	if(self.memberID != nil){
-		dictionary[kDYJXXYGroupByIdResponseMemberID] = self.memberID;
+	dictionary[kDYJXXYGroupByIdResponseKicked] = @(self.Kicked);
+	if(self.MemberID != nil){
+		dictionary[kDYJXXYGroupByIdResponseMemberID] = self.MemberID;
 	}
-	if(self.message != nil){
-		dictionary[kDYJXXYGroupByIdResponseMessage] = self.message;
+	if(self.Message != nil){
+		dictionary[kDYJXXYGroupByIdResponseMessage] = self.Message;
 	}
-	if(self.result != nil){
-		dictionary[kDYJXXYGroupByIdResponseResult] = [self.result toDictionary];
+	if(self.Result != nil){
+		dictionary[kDYJXXYGroupByIdResponseResult] = [self.Result toDictionary];
 	}
-	dictionary[kDYJXXYGroupByIdResponseSucceed] = @(self.succeed);
-	if(self.userID != nil){
-		dictionary[kDYJXXYGroupByIdResponseUserID] = self.userID;
+	dictionary[kDYJXXYGroupByIdResponseSucceed] = @(self.Succeed);
+	if(self.UserID != nil){
+		dictionary[kDYJXXYGroupByIdResponseUserID] = self.UserID;
 	}
 	return dictionary;
 
@@ -101,23 +101,23 @@ NSString *const kDYJXXYGroupByIdResponseUserID = @"UserID";
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-	if(self.clientId != nil){
-		[aCoder encodeObject:self.clientId forKey:kDYJXXYGroupByIdResponseClientId];
+	if(self.ClientId != nil){
+		[aCoder encodeObject:self.ClientId forKey:kDYJXXYGroupByIdResponseClientId];
 	}
-	if(self.debugMessages != nil){
-		[aCoder encodeObject:self.debugMessages forKey:kDYJXXYGroupByIdResponseDebugMessages];
+	if(self.DebugMessages != nil){
+		[aCoder encodeObject:self.DebugMessages forKey:kDYJXXYGroupByIdResponseDebugMessages];
 	}
-	[aCoder encodeObject:@(self.kicked) forKey:kDYJXXYGroupByIdResponseKicked];	if(self.memberID != nil){
-		[aCoder encodeObject:self.memberID forKey:kDYJXXYGroupByIdResponseMemberID];
+	[aCoder encodeObject:@(self.Kicked) forKey:kDYJXXYGroupByIdResponseKicked];	if(self.MemberID != nil){
+		[aCoder encodeObject:self.MemberID forKey:kDYJXXYGroupByIdResponseMemberID];
 	}
-	if(self.message != nil){
-		[aCoder encodeObject:self.message forKey:kDYJXXYGroupByIdResponseMessage];
+	if(self.Message != nil){
+		[aCoder encodeObject:self.Message forKey:kDYJXXYGroupByIdResponseMessage];
 	}
-	if(self.result != nil){
-		[aCoder encodeObject:self.result forKey:kDYJXXYGroupByIdResponseResult];
+	if(self.Result != nil){
+		[aCoder encodeObject:self.Result forKey:kDYJXXYGroupByIdResponseResult];
 	}
-	[aCoder encodeObject:@(self.succeed) forKey:kDYJXXYGroupByIdResponseSucceed];	if(self.userID != nil){
-		[aCoder encodeObject:self.userID forKey:kDYJXXYGroupByIdResponseUserID];
+	[aCoder encodeObject:@(self.Succeed) forKey:kDYJXXYGroupByIdResponseSucceed];	if(self.UserID != nil){
+		[aCoder encodeObject:self.UserID forKey:kDYJXXYGroupByIdResponseUserID];
 	}
 
 }
@@ -128,14 +128,14 @@ NSString *const kDYJXXYGroupByIdResponseUserID = @"UserID";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super init];
-	self.clientId = [aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseClientId];
-	self.debugMessages = [aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseDebugMessages];
-	self.kicked = [[aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseKicked] boolValue];
-	self.memberID = [aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseMemberID];
-	self.message = [aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseMessage];
-	self.result = [aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseResult];
-	self.succeed = [[aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseSucceed] boolValue];
-	self.userID = [aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseUserID];
+	self.ClientId = [aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseClientId];
+	self.DebugMessages = [aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseDebugMessages];
+	self.Kicked = [[aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseKicked] boolValue];
+	self.MemberID = [aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseMemberID];
+	self.Message = [aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseMessage];
+	self.Result = [aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseResult];
+	self.Succeed = [[aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseSucceed] boolValue];
+	self.UserID = [aDecoder decodeObjectForKey:kDYJXXYGroupByIdResponseUserID];
 	return self;
 
 }
@@ -147,14 +147,14 @@ NSString *const kDYJXXYGroupByIdResponseUserID = @"UserID";
 {
 	DYJXXYGroupByIdResponse *copy = [DYJXXYGroupByIdResponse new];
 
-	copy.clientId = [self.clientId copy];
-	copy.debugMessages = [self.debugMessages copy];
-	copy.kicked = self.kicked;
-	copy.memberID = [self.memberID copy];
-	copy.message = [self.message copy];
-	copy.result = [self.result copy];
-	copy.succeed = self.succeed;
-	copy.userID = [self.userID copy];
+	copy.ClientId = [self.ClientId copy];
+	copy.DebugMessages = [self.DebugMessages copy];
+	copy.Kicked = self.Kicked;
+	copy.MemberID = [self.MemberID copy];
+	copy.Message = [self.Message copy];
+	copy.Result = [self.Result copy];
+	copy.Succeed = self.Succeed;
+	copy.UserID = [self.UserID copy];
 
 	return copy;
 }
