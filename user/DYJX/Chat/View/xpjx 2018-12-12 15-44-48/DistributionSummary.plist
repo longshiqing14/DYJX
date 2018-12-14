@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>xpjx.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>27297271DF46029EC4AA14D3375CA2A39F5CAB0C</string>
+				<key>dateExpires</key>
+				<string>2019/10/25</string>
+				<key>type</key>
+				<string>iOS Development</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>V6XD378PG9.com.xiaopenglive.xpjx</string>
+				<key>aps-environment</key>
+				<string>development</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>V6XD378PG9</string>
+				<key>get-task-allow</key>
+				<true/>
+			</dict>
+			<key>name</key>
+			<string>xpjx.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>1efe11ea-8c20-4f61-ac96-930d03010b56</string>
+				<key>name</key>
+				<string>iOS Team Provisioning Profile: com.xiaopenglive.xpjx</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>V6XD378PG9</string>
+				<key>name</key>
+				<string>Shenzhen City Xiaopeng interconnection Technology Information Co., Ltd</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

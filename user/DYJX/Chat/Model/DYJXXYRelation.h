@@ -1,7 +1,7 @@
 //
 //	DYJXXYRelation.h
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //
 
@@ -11,15 +11,15 @@
 
 @interface DYJXXYRelation : NSObject
 
-@property (nonatomic, assign) BOOL inBlacklist;
-@property (nonatomic, assign) BOOL isAdmin;
-@property (nonatomic, assign) BOOL isContact;
-@property (nonatomic, assign) BOOL isFriend;
-@property (nonatomic, assign) BOOL isMember;
-@property (nonatomic, assign) BOOL isOwner;
-@property (nonatomic, assign) BOOL isParentAdmin;
-@property (nonatomic, assign) BOOL isParentOwner;
-@property (nonatomic, assign) BOOL managed;
+@property (nonatomic, assign) BOOL InBlacklist;
+@property (nonatomic, assign) BOOL IsAdmin;
+@property (nonatomic, assign) BOOL IsContact;
+@property (nonatomic, assign) BOOL IsFriend;
+@property (nonatomic, assign) BOOL IsMember;
+@property (nonatomic, assign) BOOL IsOwner;
+@property (nonatomic, assign) BOOL IsParentAdmin;
+@property (nonatomic, assign) BOOL IsParentOwner;
+@property (nonatomic, assign) BOOL Managed;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

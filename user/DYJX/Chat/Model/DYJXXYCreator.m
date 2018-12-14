@@ -1,7 +1,7 @@
 //
 //	DYJXXYCreator.m
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
@@ -39,51 +39,51 @@ NSString *const kDYJXXYCreatorUserName = @"UserName";
 {
 	self = [super init];
 	if(![dictionary[kDYJXXYCreatorBelongEnterprise] isKindOfClass:[NSNull class]]){
-		self.belongEnterprise = dictionary[kDYJXXYCreatorBelongEnterprise];
+		self.BelongEnterprise = dictionary[kDYJXXYCreatorBelongEnterprise];
 	}	
 	if(![dictionary[kDYJXXYCreatorBusiness] isKindOfClass:[NSNull class]]){
-		self.business = [[DYJXXYBusines alloc] initWithDictionary:dictionary[kDYJXXYCreatorBusiness]];
+		self.Business = [[DYJXXYBusines alloc] initWithDictionary:dictionary[kDYJXXYCreatorBusiness]];
 	}
 
 	if(![dictionary[kDYJXXYCreatorCellphone] isKindOfClass:[NSNull class]]){
-		self.cellphone = dictionary[kDYJXXYCreatorCellphone];
+		self.Cellphone = dictionary[kDYJXXYCreatorCellphone];
 	}	
 	if(![dictionary[kDYJXXYCreatorCreateOn] isKindOfClass:[NSNull class]]){
-		self.createOn = dictionary[kDYJXXYCreatorCreateOn];
+		self.CreateOn = dictionary[kDYJXXYCreatorCreateOn];
 	}	
 	if(![dictionary[kDYJXXYCreatorDeleted] isKindOfClass:[NSNull class]]){
-		self.deleted = [dictionary[kDYJXXYCreatorDeleted] boolValue];
+		self.Deleted = [dictionary[kDYJXXYCreatorDeleted] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYCreatorDisabled] isKindOfClass:[NSNull class]]){
-		self.disabled = [dictionary[kDYJXXYCreatorDisabled] boolValue];
+		self.Disabled = [dictionary[kDYJXXYCreatorDisabled] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYCreatorDisplayName] isKindOfClass:[NSNull class]]){
-		self.displayName = dictionary[kDYJXXYCreatorDisplayName];
+		self.DisplayName = dictionary[kDYJXXYCreatorDisplayName];
 	}	
 	if(![dictionary[kDYJXXYCreatorDisplayTel] isKindOfClass:[NSNull class]]){
-		self.displayTel = dictionary[kDYJXXYCreatorDisplayTel];
+		self.DisplayTel = dictionary[kDYJXXYCreatorDisplayTel];
 	}	
 	if(![dictionary[kDYJXXYCreatorIdField] isKindOfClass:[NSNull class]]){
-		self.idField = dictionary[kDYJXXYCreatorIdField];
+		self.IdField = dictionary[kDYJXXYCreatorIdField];
 	}	
 	if(![dictionary[kDYJXXYCreatorNumber] isKindOfClass:[NSNull class]]){
-		self.number = [dictionary[kDYJXXYCreatorNumber] integerValue];
+		self.Number = [dictionary[kDYJXXYCreatorNumber] integerValue];
 	}
 
 	if(![dictionary[kDYJXXYCreatorNumberString] isKindOfClass:[NSNull class]]){
-		self.numberString = dictionary[kDYJXXYCreatorNumberString];
+		self.NumberString = dictionary[kDYJXXYCreatorNumberString];
 	}	
 	if(![dictionary[kDYJXXYCreatorRongCloudToken] isKindOfClass:[NSNull class]]){
-		self.rongCloudToken = dictionary[kDYJXXYCreatorRongCloudToken];
+		self.RongCloudToken = dictionary[kDYJXXYCreatorRongCloudToken];
 	}	
 	if(![dictionary[kDYJXXYCreatorType] isKindOfClass:[NSNull class]]){
-		self.type = [dictionary[kDYJXXYCreatorType] integerValue];
+		self.Type = [dictionary[kDYJXXYCreatorType] integerValue];
 	}
 
 	if(![dictionary[kDYJXXYCreatorUserName] isKindOfClass:[NSNull class]]){
-		self.userName = dictionary[kDYJXXYCreatorUserName];
+		self.UserName = dictionary[kDYJXXYCreatorUserName];
 	}	
 	return self;
 }
@@ -95,39 +95,39 @@ NSString *const kDYJXXYCreatorUserName = @"UserName";
 -(NSDictionary *)toDictionary
 {
 	NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
-	if(self.belongEnterprise != nil){
-		dictionary[kDYJXXYCreatorBelongEnterprise] = self.belongEnterprise;
+	if(self.BelongEnterprise != nil){
+		dictionary[kDYJXXYCreatorBelongEnterprise] = self.BelongEnterprise;
 	}
-	if(self.business != nil){
-		dictionary[kDYJXXYCreatorBusiness] = [self.business toDictionary];
+	if(self.Business != nil){
+		dictionary[kDYJXXYCreatorBusiness] = [self.Business toDictionary];
 	}
-	if(self.cellphone != nil){
-		dictionary[kDYJXXYCreatorCellphone] = self.cellphone;
+	if(self.Cellphone != nil){
+		dictionary[kDYJXXYCreatorCellphone] = self.Cellphone;
 	}
-	if(self.createOn != nil){
-		dictionary[kDYJXXYCreatorCreateOn] = self.createOn;
+	if(self.CreateOn != nil){
+		dictionary[kDYJXXYCreatorCreateOn] = self.CreateOn;
 	}
-	dictionary[kDYJXXYCreatorDeleted] = @(self.deleted);
-	dictionary[kDYJXXYCreatorDisabled] = @(self.disabled);
-	if(self.displayName != nil){
-		dictionary[kDYJXXYCreatorDisplayName] = self.displayName;
+	dictionary[kDYJXXYCreatorDeleted] = @(self.Deleted);
+	dictionary[kDYJXXYCreatorDisabled] = @(self.Disabled);
+	if(self.DisplayName != nil){
+		dictionary[kDYJXXYCreatorDisplayName] = self.DisplayName;
 	}
-	if(self.displayTel != nil){
-		dictionary[kDYJXXYCreatorDisplayTel] = self.displayTel;
+	if(self.DisplayTel != nil){
+		dictionary[kDYJXXYCreatorDisplayTel] = self.DisplayTel;
 	}
-	if(self.idField != nil){
-		dictionary[kDYJXXYCreatorIdField] = self.idField;
+	if(self.IdField != nil){
+		dictionary[kDYJXXYCreatorIdField] = self.IdField;
 	}
-	dictionary[kDYJXXYCreatorNumber] = @(self.number);
-	if(self.numberString != nil){
-		dictionary[kDYJXXYCreatorNumberString] = self.numberString;
+	dictionary[kDYJXXYCreatorNumber] = @(self.Number);
+	if(self.NumberString != nil){
+		dictionary[kDYJXXYCreatorNumberString] = self.NumberString;
 	}
-	if(self.rongCloudToken != nil){
-		dictionary[kDYJXXYCreatorRongCloudToken] = self.rongCloudToken;
+	if(self.RongCloudToken != nil){
+		dictionary[kDYJXXYCreatorRongCloudToken] = self.RongCloudToken;
 	}
-	dictionary[kDYJXXYCreatorType] = @(self.type);
-	if(self.userName != nil){
-		dictionary[kDYJXXYCreatorUserName] = self.userName;
+	dictionary[kDYJXXYCreatorType] = @(self.Type);
+	if(self.UserName != nil){
+		dictionary[kDYJXXYCreatorUserName] = self.UserName;
 	}
 	return dictionary;
 
@@ -141,35 +141,35 @@ NSString *const kDYJXXYCreatorUserName = @"UserName";
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-	if(self.belongEnterprise != nil){
-		[aCoder encodeObject:self.belongEnterprise forKey:kDYJXXYCreatorBelongEnterprise];
+	if(self.BelongEnterprise != nil){
+		[aCoder encodeObject:self.BelongEnterprise forKey:kDYJXXYCreatorBelongEnterprise];
 	}
-	if(self.business != nil){
-		[aCoder encodeObject:self.business forKey:kDYJXXYCreatorBusiness];
+	if(self.Business != nil){
+		[aCoder encodeObject:self.Business forKey:kDYJXXYCreatorBusiness];
 	}
-	if(self.cellphone != nil){
-		[aCoder encodeObject:self.cellphone forKey:kDYJXXYCreatorCellphone];
+	if(self.Cellphone != nil){
+		[aCoder encodeObject:self.Cellphone forKey:kDYJXXYCreatorCellphone];
 	}
-	if(self.createOn != nil){
-		[aCoder encodeObject:self.createOn forKey:kDYJXXYCreatorCreateOn];
+	if(self.CreateOn != nil){
+		[aCoder encodeObject:self.CreateOn forKey:kDYJXXYCreatorCreateOn];
 	}
-	[aCoder encodeObject:@(self.deleted) forKey:kDYJXXYCreatorDeleted];	[aCoder encodeObject:@(self.disabled) forKey:kDYJXXYCreatorDisabled];	if(self.displayName != nil){
-		[aCoder encodeObject:self.displayName forKey:kDYJXXYCreatorDisplayName];
+	[aCoder encodeObject:@(self.Deleted) forKey:kDYJXXYCreatorDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kDYJXXYCreatorDisabled];	if(self.DisplayName != nil){
+		[aCoder encodeObject:self.DisplayName forKey:kDYJXXYCreatorDisplayName];
 	}
-	if(self.displayTel != nil){
-		[aCoder encodeObject:self.displayTel forKey:kDYJXXYCreatorDisplayTel];
+	if(self.DisplayTel != nil){
+		[aCoder encodeObject:self.DisplayTel forKey:kDYJXXYCreatorDisplayTel];
 	}
-	if(self.idField != nil){
-		[aCoder encodeObject:self.idField forKey:kDYJXXYCreatorIdField];
+	if(self.IdField != nil){
+		[aCoder encodeObject:self.IdField forKey:kDYJXXYCreatorIdField];
 	}
-	[aCoder encodeObject:@(self.number) forKey:kDYJXXYCreatorNumber];	if(self.numberString != nil){
-		[aCoder encodeObject:self.numberString forKey:kDYJXXYCreatorNumberString];
+	[aCoder encodeObject:@(self.Number) forKey:kDYJXXYCreatorNumber];	if(self.NumberString != nil){
+		[aCoder encodeObject:self.NumberString forKey:kDYJXXYCreatorNumberString];
 	}
-	if(self.rongCloudToken != nil){
-		[aCoder encodeObject:self.rongCloudToken forKey:kDYJXXYCreatorRongCloudToken];
+	if(self.RongCloudToken != nil){
+		[aCoder encodeObject:self.RongCloudToken forKey:kDYJXXYCreatorRongCloudToken];
 	}
-	[aCoder encodeObject:@(self.type) forKey:kDYJXXYCreatorType];	if(self.userName != nil){
-		[aCoder encodeObject:self.userName forKey:kDYJXXYCreatorUserName];
+	[aCoder encodeObject:@(self.Type) forKey:kDYJXXYCreatorType];	if(self.UserName != nil){
+		[aCoder encodeObject:self.UserName forKey:kDYJXXYCreatorUserName];
 	}
 
 }
@@ -180,20 +180,20 @@ NSString *const kDYJXXYCreatorUserName = @"UserName";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super init];
-	self.belongEnterprise = [aDecoder decodeObjectForKey:kDYJXXYCreatorBelongEnterprise];
-	self.business = [aDecoder decodeObjectForKey:kDYJXXYCreatorBusiness];
-	self.cellphone = [aDecoder decodeObjectForKey:kDYJXXYCreatorCellphone];
-	self.createOn = [aDecoder decodeObjectForKey:kDYJXXYCreatorCreateOn];
-	self.deleted = [[aDecoder decodeObjectForKey:kDYJXXYCreatorDeleted] boolValue];
-	self.disabled = [[aDecoder decodeObjectForKey:kDYJXXYCreatorDisabled] boolValue];
-	self.displayName = [aDecoder decodeObjectForKey:kDYJXXYCreatorDisplayName];
-	self.displayTel = [aDecoder decodeObjectForKey:kDYJXXYCreatorDisplayTel];
-	self.idField = [aDecoder decodeObjectForKey:kDYJXXYCreatorIdField];
-	self.number = [[aDecoder decodeObjectForKey:kDYJXXYCreatorNumber] integerValue];
-	self.numberString = [aDecoder decodeObjectForKey:kDYJXXYCreatorNumberString];
-	self.rongCloudToken = [aDecoder decodeObjectForKey:kDYJXXYCreatorRongCloudToken];
-	self.type = [[aDecoder decodeObjectForKey:kDYJXXYCreatorType] integerValue];
-	self.userName = [aDecoder decodeObjectForKey:kDYJXXYCreatorUserName];
+	self.BelongEnterprise = [aDecoder decodeObjectForKey:kDYJXXYCreatorBelongEnterprise];
+	self.Business = [aDecoder decodeObjectForKey:kDYJXXYCreatorBusiness];
+	self.Cellphone = [aDecoder decodeObjectForKey:kDYJXXYCreatorCellphone];
+	self.CreateOn = [aDecoder decodeObjectForKey:kDYJXXYCreatorCreateOn];
+	self.Deleted = [[aDecoder decodeObjectForKey:kDYJXXYCreatorDeleted] boolValue];
+	self.Disabled = [[aDecoder decodeObjectForKey:kDYJXXYCreatorDisabled] boolValue];
+	self.DisplayName = [aDecoder decodeObjectForKey:kDYJXXYCreatorDisplayName];
+	self.DisplayTel = [aDecoder decodeObjectForKey:kDYJXXYCreatorDisplayTel];
+	self.IdField = [aDecoder decodeObjectForKey:kDYJXXYCreatorIdField];
+	self.Number = [[aDecoder decodeObjectForKey:kDYJXXYCreatorNumber] integerValue];
+	self.NumberString = [aDecoder decodeObjectForKey:kDYJXXYCreatorNumberString];
+	self.RongCloudToken = [aDecoder decodeObjectForKey:kDYJXXYCreatorRongCloudToken];
+	self.Type = [[aDecoder decodeObjectForKey:kDYJXXYCreatorType] integerValue];
+	self.UserName = [aDecoder decodeObjectForKey:kDYJXXYCreatorUserName];
 	return self;
 
 }
@@ -205,20 +205,20 @@ NSString *const kDYJXXYCreatorUserName = @"UserName";
 {
 	DYJXXYCreator *copy = [DYJXXYCreator new];
 
-	copy.belongEnterprise = [self.belongEnterprise copy];
-	copy.business = [self.business copy];
-	copy.cellphone = [self.cellphone copy];
-	copy.createOn = [self.createOn copy];
-	copy.deleted = self.deleted;
-	copy.disabled = self.disabled;
-	copy.displayName = [self.displayName copy];
-	copy.displayTel = [self.displayTel copy];
-	copy.idField = [self.idField copy];
-	copy.number = self.number;
-	copy.numberString = [self.numberString copy];
-	copy.rongCloudToken = [self.rongCloudToken copy];
-	copy.type = self.type;
-	copy.userName = [self.userName copy];
+	copy.BelongEnterprise = [self.BelongEnterprise copy];
+	copy.Business = [self.Business copy];
+	copy.Cellphone = [self.Cellphone copy];
+	copy.CreateOn = [self.CreateOn copy];
+	copy.Deleted = self.Deleted;
+	copy.Disabled = self.Disabled;
+	copy.DisplayName = [self.DisplayName copy];
+	copy.DisplayTel = [self.DisplayTel copy];
+	copy.IdField = [self.IdField copy];
+	copy.Number = self.Number;
+	copy.NumberString = [self.NumberString copy];
+	copy.RongCloudToken = [self.RongCloudToken copy];
+	copy.Type = self.Type;
+	copy.UserName = [self.UserName copy];
 
 	return copy;
 }

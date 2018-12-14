@@ -61,18 +61,22 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
     
     [self.viewModel getGroupInfoWithGroupId:self.groupNumber Success:^(DYJXXYGroupByIdResponse *groupByIdResponse) {
         weakSelf.groupByIdResponse = groupByIdResponse;
-        NSArray *imageNamearray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:groupByIdResponse.result.enterpriseInfo.images];
+        NSArray *imageNamearray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:groupByIdResponse.Result.EnterpriseInfo.Images];
         [imageNamearray enumerateObjectsUsingBlock:^(PersonZhiZhaoModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                // 处理耗时操作的代码块...
-                UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[obj.Name XYImageURL]]]];
-                [weakSelf.imgArr addObject:image];
-                //通知主线程刷新
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    //回调或者说是通知主线程刷新，
-                    [weakSelf.tableView reloadData];
-                });
+                
+                if (![YWDTools isNil:obj.Name]) {
+                    // 处理耗时操作的代码块...
+                    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[obj.Name XYImageURL]]]];
+                    [weakSelf.imgArr addObject:image];
+                    //通知主线程刷新
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        //回调或者说是通知主线程刷新，
+                        [weakSelf.tableView reloadData];
+                    });
+                    
+                }
                 
             });
             
@@ -166,8 +170,8 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
                 ownerImageCell.qrCcodeblock = ^{
                     DYJXQRCodePage *qrCodePage = [[DYJXQRCodePage alloc]init];
                     qrCodePage.userIdOrCompanyId = self.groupNumber;
-//                    qrCodePage.companyNumber = self.personInfoModel.NumberString;
-//                    qrCodePage.companyName = self.personInfoModel.NumberString;
+                    qrCodePage.companyNumber = self.groupByIdResponse.Result.NumberString;
+                    qrCodePage.companyName = self.groupByIdResponse.Result.GroupName;
                     [weakSelf.navigationController pushViewController:qrCodePage animated:YES];
                 };
                 cell = ownerImageCell;
@@ -177,7 +181,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             {
                 CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-                
+                titleAndContentCell.contentLb.text = self.groupByIdResponse.Result.EnterpriseInfo.CompanyName;
                 cell = titleAndContentCell;
             }
                 break;
@@ -185,7 +189,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             {
                 CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-//                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+                titleAndContentCell.contentLb.text = self.groupByIdResponse.Result.NumberString;
                 cell = titleAndContentCell;
                 
             }
@@ -195,7 +199,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             {
                 CompanyTitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndContentCell forIndexPath:indexPath];
                 titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
-                //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
+//                titleAndContentCell.contentLb.text = self.groupByIdResponse.Result.NumberString;
                 cell = titleAndContentCell;
                 
             }

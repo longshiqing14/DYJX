@@ -1,7 +1,7 @@
 //
 //	DYJXXYGroupByIdResponse.h
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //
 
@@ -12,14 +12,14 @@
 
 @interface DYJXXYGroupByIdResponse : NSObject
 
-@property (nonatomic, strong) NSString * clientId;
-@property (nonatomic, strong) NSArray * debugMessages;
-@property (nonatomic, assign) BOOL kicked;
-@property (nonatomic, strong) NSString * memberID;
-@property (nonatomic, strong) NSString * message;
-@property (nonatomic, strong) DYJXXYResult * result;
-@property (nonatomic, assign) BOOL succeed;
-@property (nonatomic, strong) NSString * userID;
+@property (nonatomic, strong) NSString * ClientId;
+@property (nonatomic, strong) NSArray * DebugMessages;
+@property (nonatomic, assign) BOOL Kicked;
+@property (nonatomic, strong) NSString * MemberID;
+@property (nonatomic, strong) NSString * Message;
+@property (nonatomic, strong) DYJXXYResult * Result;
+@property (nonatomic, assign) BOOL Succeed;
+@property (nonatomic, strong) NSString * UserID;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

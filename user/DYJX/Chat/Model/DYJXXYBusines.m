@@ -1,7 +1,7 @@
 //
 //	DYJXXYBusines.m
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
@@ -30,22 +30,22 @@ NSString *const kDYJXXYBusinesIdField = @"Id";
 {
 	self = [super init];
 	if(![dictionary[kDYJXXYBusinesCreateOn] isKindOfClass:[NSNull class]]){
-		self.createOn = dictionary[kDYJXXYBusinesCreateOn];
+		self.CreateOn = dictionary[kDYJXXYBusinesCreateOn];
 	}	
 	if(![dictionary[kDYJXXYBusinesDeleted] isKindOfClass:[NSNull class]]){
-		self.deleted = [dictionary[kDYJXXYBusinesDeleted] boolValue];
+		self.Deleted = [dictionary[kDYJXXYBusinesDeleted] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYBusinesDisabled] isKindOfClass:[NSNull class]]){
-		self.disabled = [dictionary[kDYJXXYBusinesDisabled] boolValue];
+		self.Disabled = [dictionary[kDYJXXYBusinesDisabled] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYBusinesIMInfo] isKindOfClass:[NSNull class]]){
-		self.iMInfo = [[DYJXXYIMInfo alloc] initWithDictionary:dictionary[kDYJXXYBusinesIMInfo]];
+		self.IMInfo = [[DYJXXYIMInfo alloc] initWithDictionary:dictionary[kDYJXXYBusinesIMInfo]];
 	}
 
 	if(![dictionary[kDYJXXYBusinesIdField] isKindOfClass:[NSNull class]]){
-		self.idField = dictionary[kDYJXXYBusinesIdField];
+		self.IdField = dictionary[kDYJXXYBusinesIdField];
 	}	
 	return self;
 }
@@ -57,16 +57,16 @@ NSString *const kDYJXXYBusinesIdField = @"Id";
 -(NSDictionary *)toDictionary
 {
 	NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
-	if(self.createOn != nil){
-		dictionary[kDYJXXYBusinesCreateOn] = self.createOn;
+	if(self.CreateOn != nil){
+		dictionary[kDYJXXYBusinesCreateOn] = self.CreateOn;
 	}
-	dictionary[kDYJXXYBusinesDeleted] = @(self.deleted);
-	dictionary[kDYJXXYBusinesDisabled] = @(self.disabled);
-	if(self.iMInfo != nil){
-		dictionary[kDYJXXYBusinesIMInfo] = [self.iMInfo toDictionary];
+	dictionary[kDYJXXYBusinesDeleted] = @(self.Deleted);
+	dictionary[kDYJXXYBusinesDisabled] = @(self.Disabled);
+	if(self.IMInfo != nil){
+		dictionary[kDYJXXYBusinesIMInfo] = [self.IMInfo toDictionary];
 	}
-	if(self.idField != nil){
-		dictionary[kDYJXXYBusinesIdField] = self.idField;
+	if(self.IdField != nil){
+		dictionary[kDYJXXYBusinesIdField] = self.IdField;
 	}
 	return dictionary;
 
@@ -80,14 +80,14 @@ NSString *const kDYJXXYBusinesIdField = @"Id";
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-	if(self.createOn != nil){
-		[aCoder encodeObject:self.createOn forKey:kDYJXXYBusinesCreateOn];
+	if(self.CreateOn != nil){
+		[aCoder encodeObject:self.CreateOn forKey:kDYJXXYBusinesCreateOn];
 	}
-	[aCoder encodeObject:@(self.deleted) forKey:kDYJXXYBusinesDeleted];	[aCoder encodeObject:@(self.disabled) forKey:kDYJXXYBusinesDisabled];	if(self.iMInfo != nil){
-		[aCoder encodeObject:self.iMInfo forKey:kDYJXXYBusinesIMInfo];
+	[aCoder encodeObject:@(self.Deleted) forKey:kDYJXXYBusinesDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kDYJXXYBusinesDisabled];	if(self.IMInfo != nil){
+		[aCoder encodeObject:self.IMInfo forKey:kDYJXXYBusinesIMInfo];
 	}
-	if(self.idField != nil){
-		[aCoder encodeObject:self.idField forKey:kDYJXXYBusinesIdField];
+	if(self.IdField != nil){
+		[aCoder encodeObject:self.IdField forKey:kDYJXXYBusinesIdField];
 	}
 
 }
@@ -98,11 +98,11 @@ NSString *const kDYJXXYBusinesIdField = @"Id";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super init];
-	self.createOn = [aDecoder decodeObjectForKey:kDYJXXYBusinesCreateOn];
-	self.deleted = [[aDecoder decodeObjectForKey:kDYJXXYBusinesDeleted] boolValue];
-	self.disabled = [[aDecoder decodeObjectForKey:kDYJXXYBusinesDisabled] boolValue];
-	self.iMInfo = [aDecoder decodeObjectForKey:kDYJXXYBusinesIMInfo];
-	self.idField = [aDecoder decodeObjectForKey:kDYJXXYBusinesIdField];
+	self.CreateOn = [aDecoder decodeObjectForKey:kDYJXXYBusinesCreateOn];
+	self.Deleted = [[aDecoder decodeObjectForKey:kDYJXXYBusinesDeleted] boolValue];
+	self.Disabled = [[aDecoder decodeObjectForKey:kDYJXXYBusinesDisabled] boolValue];
+	self.IMInfo = [aDecoder decodeObjectForKey:kDYJXXYBusinesIMInfo];
+	self.IdField = [aDecoder decodeObjectForKey:kDYJXXYBusinesIdField];
 	return self;
 
 }
@@ -114,11 +114,11 @@ NSString *const kDYJXXYBusinesIdField = @"Id";
 {
 	DYJXXYBusines *copy = [DYJXXYBusines new];
 
-	copy.createOn = [self.createOn copy];
-	copy.deleted = self.deleted;
-	copy.disabled = self.disabled;
-	copy.iMInfo = [self.iMInfo copy];
-	copy.idField = [self.idField copy];
+	copy.CreateOn = [self.CreateOn copy];
+	copy.Deleted = self.Deleted;
+	copy.Disabled = self.Disabled;
+	copy.IMInfo = [self.IMInfo copy];
+	copy.IdField = [self.IdField copy];
 
 	return copy;
 }

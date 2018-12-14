@@ -1,7 +1,7 @@
 //
 //	DYJXXYEnterpriseInfo.h
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //
 
@@ -11,13 +11,13 @@
 
 @interface DYJXXYEnterpriseInfo : NSObject
 
-@property (nonatomic, assign) BOOL adminSay;
-@property (nonatomic, assign) BOOL canNotSearch;
-@property (nonatomic, strong) NSString * companyName;
-@property (nonatomic, strong) NSString * companyShortName;
-@property (nonatomic, strong) NSString * headImgUrl;
-@property (nonatomic, strong) NSString * idField;
-@property (nonatomic, strong) NSString * images;
+@property (nonatomic, assign) BOOL AdminSay;
+@property (nonatomic, assign) BOOL CanNotSearch;
+@property (nonatomic, strong) NSString * CompanyName;
+@property (nonatomic, strong) NSString * CompanyShortName;
+@property (nonatomic, strong) NSString * HeadImgUrl;
+@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, strong) NSString * Images;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

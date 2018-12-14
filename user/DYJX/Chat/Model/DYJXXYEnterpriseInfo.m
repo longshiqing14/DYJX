@@ -1,7 +1,7 @@
 //
 //	DYJXXYEnterpriseInfo.m
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
@@ -32,27 +32,27 @@ NSString *const kDYJXXYEnterpriseInfoImages = @"Images";
 {
 	self = [super init];
 	if(![dictionary[kDYJXXYEnterpriseInfoAdminSay] isKindOfClass:[NSNull class]]){
-		self.adminSay = [dictionary[kDYJXXYEnterpriseInfoAdminSay] boolValue];
+		self.AdminSay = [dictionary[kDYJXXYEnterpriseInfoAdminSay] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYEnterpriseInfoCanNotSearch] isKindOfClass:[NSNull class]]){
-		self.canNotSearch = [dictionary[kDYJXXYEnterpriseInfoCanNotSearch] boolValue];
+		self.CanNotSearch = [dictionary[kDYJXXYEnterpriseInfoCanNotSearch] boolValue];
 	}
 
 	if(![dictionary[kDYJXXYEnterpriseInfoCompanyName] isKindOfClass:[NSNull class]]){
-		self.companyName = dictionary[kDYJXXYEnterpriseInfoCompanyName];
+		self.CompanyName = dictionary[kDYJXXYEnterpriseInfoCompanyName];
 	}	
 	if(![dictionary[kDYJXXYEnterpriseInfoCompanyShortName] isKindOfClass:[NSNull class]]){
-		self.companyShortName = dictionary[kDYJXXYEnterpriseInfoCompanyShortName];
+		self.CompanyShortName = dictionary[kDYJXXYEnterpriseInfoCompanyShortName];
 	}	
 	if(![dictionary[kDYJXXYEnterpriseInfoHeadImgUrl] isKindOfClass:[NSNull class]]){
-		self.headImgUrl = dictionary[kDYJXXYEnterpriseInfoHeadImgUrl];
+		self.HeadImgUrl = dictionary[kDYJXXYEnterpriseInfoHeadImgUrl];
 	}	
 	if(![dictionary[kDYJXXYEnterpriseInfoIdField] isKindOfClass:[NSNull class]]){
-		self.idField = dictionary[kDYJXXYEnterpriseInfoIdField];
+		self.IdField = dictionary[kDYJXXYEnterpriseInfoIdField];
 	}	
 	if(![dictionary[kDYJXXYEnterpriseInfoImages] isKindOfClass:[NSNull class]]){
-		self.images = dictionary[kDYJXXYEnterpriseInfoImages];
+		self.Images = dictionary[kDYJXXYEnterpriseInfoImages];
 	}	
 	return self;
 }
@@ -64,22 +64,22 @@ NSString *const kDYJXXYEnterpriseInfoImages = @"Images";
 -(NSDictionary *)toDictionary
 {
 	NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
-	dictionary[kDYJXXYEnterpriseInfoAdminSay] = @(self.adminSay);
-	dictionary[kDYJXXYEnterpriseInfoCanNotSearch] = @(self.canNotSearch);
-	if(self.companyName != nil){
-		dictionary[kDYJXXYEnterpriseInfoCompanyName] = self.companyName;
+	dictionary[kDYJXXYEnterpriseInfoAdminSay] = @(self.AdminSay);
+	dictionary[kDYJXXYEnterpriseInfoCanNotSearch] = @(self.CanNotSearch);
+	if(self.CompanyName != nil){
+		dictionary[kDYJXXYEnterpriseInfoCompanyName] = self.CompanyName;
 	}
-	if(self.companyShortName != nil){
-		dictionary[kDYJXXYEnterpriseInfoCompanyShortName] = self.companyShortName;
+	if(self.CompanyShortName != nil){
+		dictionary[kDYJXXYEnterpriseInfoCompanyShortName] = self.CompanyShortName;
 	}
-	if(self.headImgUrl != nil){
-		dictionary[kDYJXXYEnterpriseInfoHeadImgUrl] = self.headImgUrl;
+	if(self.HeadImgUrl != nil){
+		dictionary[kDYJXXYEnterpriseInfoHeadImgUrl] = self.HeadImgUrl;
 	}
-	if(self.idField != nil){
-		dictionary[kDYJXXYEnterpriseInfoIdField] = self.idField;
+	if(self.IdField != nil){
+		dictionary[kDYJXXYEnterpriseInfoIdField] = self.IdField;
 	}
-	if(self.images != nil){
-		dictionary[kDYJXXYEnterpriseInfoImages] = self.images;
+	if(self.Images != nil){
+		dictionary[kDYJXXYEnterpriseInfoImages] = self.Images;
 	}
 	return dictionary;
 
@@ -93,20 +93,20 @@ NSString *const kDYJXXYEnterpriseInfoImages = @"Images";
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-	[aCoder encodeObject:@(self.adminSay) forKey:kDYJXXYEnterpriseInfoAdminSay];	[aCoder encodeObject:@(self.canNotSearch) forKey:kDYJXXYEnterpriseInfoCanNotSearch];	if(self.companyName != nil){
-		[aCoder encodeObject:self.companyName forKey:kDYJXXYEnterpriseInfoCompanyName];
+	[aCoder encodeObject:@(self.AdminSay) forKey:kDYJXXYEnterpriseInfoAdminSay];	[aCoder encodeObject:@(self.CanNotSearch) forKey:kDYJXXYEnterpriseInfoCanNotSearch];	if(self.CompanyName != nil){
+		[aCoder encodeObject:self.CompanyName forKey:kDYJXXYEnterpriseInfoCompanyName];
 	}
-	if(self.companyShortName != nil){
-		[aCoder encodeObject:self.companyShortName forKey:kDYJXXYEnterpriseInfoCompanyShortName];
+	if(self.CompanyShortName != nil){
+		[aCoder encodeObject:self.CompanyShortName forKey:kDYJXXYEnterpriseInfoCompanyShortName];
 	}
-	if(self.headImgUrl != nil){
-		[aCoder encodeObject:self.headImgUrl forKey:kDYJXXYEnterpriseInfoHeadImgUrl];
+	if(self.HeadImgUrl != nil){
+		[aCoder encodeObject:self.HeadImgUrl forKey:kDYJXXYEnterpriseInfoHeadImgUrl];
 	}
-	if(self.idField != nil){
-		[aCoder encodeObject:self.idField forKey:kDYJXXYEnterpriseInfoIdField];
+	if(self.IdField != nil){
+		[aCoder encodeObject:self.IdField forKey:kDYJXXYEnterpriseInfoIdField];
 	}
-	if(self.images != nil){
-		[aCoder encodeObject:self.images forKey:kDYJXXYEnterpriseInfoImages];
+	if(self.Images != nil){
+		[aCoder encodeObject:self.Images forKey:kDYJXXYEnterpriseInfoImages];
 	}
 
 }
@@ -117,13 +117,13 @@ NSString *const kDYJXXYEnterpriseInfoImages = @"Images";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super init];
-	self.adminSay = [[aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoAdminSay] boolValue];
-	self.canNotSearch = [[aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoCanNotSearch] boolValue];
-	self.companyName = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoCompanyName];
-	self.companyShortName = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoCompanyShortName];
-	self.headImgUrl = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoHeadImgUrl];
-	self.idField = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoIdField];
-	self.images = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoImages];
+	self.AdminSay = [[aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoAdminSay] boolValue];
+	self.CanNotSearch = [[aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoCanNotSearch] boolValue];
+	self.CompanyName = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoCompanyName];
+	self.CompanyShortName = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoCompanyShortName];
+	self.HeadImgUrl = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoHeadImgUrl];
+	self.IdField = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoIdField];
+	self.Images = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoImages];
 	return self;
 
 }
@@ -135,13 +135,13 @@ NSString *const kDYJXXYEnterpriseInfoImages = @"Images";
 {
 	DYJXXYEnterpriseInfo *copy = [DYJXXYEnterpriseInfo new];
 
-	copy.adminSay = self.adminSay;
-	copy.canNotSearch = self.canNotSearch;
-	copy.companyName = [self.companyName copy];
-	copy.companyShortName = [self.companyShortName copy];
-	copy.headImgUrl = [self.headImgUrl copy];
-	copy.idField = [self.idField copy];
-	copy.images = [self.images copy];
+	copy.AdminSay = self.AdminSay;
+	copy.CanNotSearch = self.CanNotSearch;
+	copy.CompanyName = [self.CompanyName copy];
+	copy.CompanyShortName = [self.CompanyShortName copy];
+	copy.HeadImgUrl = [self.HeadImgUrl copy];
+	copy.IdField = [self.IdField copy];
+	copy.Images = [self.Images copy];
 
 	return copy;
 }

@@ -1,7 +1,7 @@
 //
 //	DYJXXYIMInfo.h
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //
 
@@ -11,16 +11,15 @@
 
 @interface DYJXXYIMInfo : NSObject
 
-@property (nonatomic, assign) BOOL adminSay;
-@property (nonatomic, assign) BOOL canNotSearch;
-@property (nonatomic, strong) NSString * headImgUrl;
-@property (nonatomic, strong) NSString * idField;
-@property (nonatomic, strong) NSString * images;
-@property (nonatomic, strong) NSString * personBank;
-@property (nonatomic, strong) NSString * personBankCardNo;
-@property (nonatomic, strong) NSString * nickName;
-@property (nonatomic, strong) NSString * personRemark;
-
+@property (nonatomic, assign) BOOL AdminSay;
+@property (nonatomic, assign) BOOL CanNotSearch;
+@property (nonatomic, strong) NSString * HeadImgUrl;
+@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, strong) NSString * Images;
+@property (nonatomic, strong) NSString * PersonBank;
+@property (nonatomic, strong) NSString * PersonBankCardNo;
+@property (nonatomic, strong) NSString * PersonRemark;
+@property (nonatomic, strong) NSString * NickName;
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 -(NSDictionary *)toDictionary;

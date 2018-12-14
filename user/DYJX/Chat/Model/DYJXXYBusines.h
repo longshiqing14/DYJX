@@ -1,7 +1,7 @@
 //
 //	DYJXXYBusines.h
 //
-//	Create by 岩 熊 on 7/12/2018
+//	Create by 岩 熊 on 12/12/2018
 //	Copyright © 2018. All rights reserved.
 //
 
@@ -12,11 +12,11 @@
 
 @interface DYJXXYBusines : NSObject
 
-@property (nonatomic, strong) NSString * createOn;
-@property (nonatomic, assign) BOOL deleted;
-@property (nonatomic, assign) BOOL disabled;
-@property (nonatomic, strong) DYJXXYIMInfo * iMInfo;
-@property (nonatomic, strong) NSString * idField;
+@property (nonatomic, strong) NSString * CreateOn;
+@property (nonatomic, assign) BOOL Deleted;
+@property (nonatomic, assign) BOOL Disabled;
+@property (nonatomic, strong) DYJXXYIMInfo * IMInfo;
+@property (nonatomic, strong) NSString * IdField;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
