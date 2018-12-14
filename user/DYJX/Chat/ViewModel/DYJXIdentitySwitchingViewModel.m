@@ -18,7 +18,6 @@
 @property (nonatomic,assign) NSInteger pageNum;
 @property (nonatomic, strong) DYJXUserInfoModel *resultUserInfoModel;
 @property (nonatomic, strong) DYJXIdentitySwitchingModel *resultModel;
-@property (nonatomic, strong) NSMutableArray<DYJXIdentitySwitchingModel*> *dataArray;
 @end
 @implementation DYJXIdentitySwitchingViewModel
 - (NSMutableDictionary *)requestDic{

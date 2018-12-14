@@ -77,7 +77,7 @@ UIKIT_EXTERN NSString *const KNotificationMessageBaseCellUpdateSendingStatus;
 /*!
  时间Label是否显示
  */
-@property(nonatomic, readonly) BOOL isDisplayMessageTime;
+@property(nonatomic, assign) BOOL isDisplayMessageTime;
 
 /*!
  是否显示阅读状态

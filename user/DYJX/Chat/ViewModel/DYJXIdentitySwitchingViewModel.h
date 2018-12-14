@@ -12,6 +12,8 @@
 
 @interface DYJXIdentitySwitchingViewModel : NSObject
 
+@property (nonatomic, strong) NSMutableArray<DYJXIdentitySwitchingModel*> *dataArray;
+
 @property (nonatomic,strong) NSMutableDictionary *requestDic;
 - (DYJXIdentitySwitchingModel*)IdentityAtIndexPath:(NSIndexPath *)indexPath;
 - (NSInteger)numberOfSection;

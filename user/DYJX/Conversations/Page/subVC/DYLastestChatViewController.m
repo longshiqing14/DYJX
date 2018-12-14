@@ -57,14 +57,17 @@
                atIndexPath:(NSIndexPath *)indexPath {
     RCConversationModel *conversationModel = self.conversationListDataSource[indexPath.row];
     NSDictionary *dict = (NSDictionary *)model.extend;
-
-    DYChatViewController *conversationVC = [[DYChatViewController alloc]init];
+    RCConversationType conversationType = ConversationType_PRIVATE;
     if ([dict[@"type"] isEqualToString:@"1"]) {
-        conversationVC.conversationType = ConversationType_GROUP;
+        conversationType = ConversationType_GROUP;
     }
     else if ([dict[@"type"] isEqualToString:@"0"]) {
-        conversationVC.conversationType = ConversationType_PRIVATE;
+        conversationType = ConversationType_PRIVATE;
     }
+    conversationType = RC_CONVERSATION_MODEL_TYPE_PUBLIC_SERVICE;
+
+    DYChatViewController *conversationVC = [[DYChatViewController alloc] initWithConversationType:conversationType targetId:conversationModel.targetId];
+    conversationVC.conversationType = conversationType;
     conversationVC.chatModel = conversationModel;
     conversationVC.targetId = conversationModel.targetId;
     conversationVC.title = model.targetId;

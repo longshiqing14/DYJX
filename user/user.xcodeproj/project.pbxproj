@@ -866,6 +866,24 @@
 		E12DBDBC21AD48560011E3A4 /* DYJXLasterListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E12DBDBB21AD48560011E3A4 /* DYJXLasterListCell.m */; };
 		E1307FE221A7ABC50014C220 /* GroupHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1307FE121A7ABC50014C220 /* GroupHeadView.m */; };
 		E1307FE821A7DDAF0014C220 /* DYJXLatestListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1307FE721A7DDAF0014C220 /* DYJXLatestListCell.m */; };
+		E13E60CB21C35A7100D0C4B3 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60C121C35A7100D0C4B3 /* FMDatabaseQueue.m */; };
+		E13E60CC21C35A7100D0C4B3 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60C421C35A7100D0C4B3 /* FMDatabaseAdditions.m */; };
+		E13E60CD21C35A7100D0C4B3 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60C521C35A7100D0C4B3 /* FMDatabase.m */; };
+		E13E60CE21C35A7100D0C4B3 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60C921C35A7100D0C4B3 /* FMDatabasePool.m */; };
+		E13E60CF21C35A7100D0C4B3 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60CA21C35A7100D0C4B3 /* FMResultSet.m */; };
+		E13E60D321C35AD200D0C4B3 /* AFHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60D221C35AD100D0C4B3 /* AFHttpTool.m */; };
+		E13E60D621C35B7800D0C4B3 /* RCDSettingUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60D521C35B7800D0C4B3 /* RCDSettingUserDefaults.m */; };
+		E13E60D921C360CD00D0C4B3 /* RCDHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60D821C360CD00D0C4B3 /* RCDHttpTool.m */; };
+		E13E60DC21C3610400D0C4B3 /* RCDGroupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60DA21C3610400D0C4B3 /* RCDGroupInfo.m */; };
+		E13E60DF21C3611700D0C4B3 /* RCDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60DE21C3611600D0C4B3 /* RCDUserInfo.m */; };
+		E13E60E221C3614500D0C4B3 /* RCDRCIMDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60E021C3614400D0C4B3 /* RCDRCIMDataSource.m */; };
+		E13E60E421C362A200D0C4B3 /* RongContactCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13E60E321C362A200D0C4B3 /* RongContactCard.framework */; };
+		E13E60E721C362FB00D0C4B3 /* RCDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60E621C362FA00D0C4B3 /* RCDUtilities.m */; };
+		E13E60EA21C3632000D0C4B3 /* RCDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60E921C3631F00D0C4B3 /* RCDataBaseManager.m */; };
+		E13E60ED21C3634800D0C4B3 /* SortForTime.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60EB21C3634700D0C4B3 /* SortForTime.m */; };
+		E13E60F021C363D300D0C4B3 /* DefaultPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60EE21C363D200D0C4B3 /* DefaultPortraitView.m */; };
+		E13E60F621C364C600D0C4B3 /* RCDUserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60F521C364C500D0C4B3 /* RCDUserInfoManager.m */; };
+		E13E60FA21C3C79C00D0C4B3 /* DYJXExtraModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60F821C3C79B00D0C4B3 /* DYJXExtraModel.m */; };
 		E16657B521A411FD00BAC552 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E16657B421A411FD00BAC552 /* BaseTableViewCell.m */; };
 		E16657B821A413AA00BAC552 /* OwnerImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E16657B721A413AA00BAC552 /* OwnerImageCell.m */; };
 		E16657BB21A41C0800BAC552 /* SampleButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E16657BA21A41C0800BAC552 /* SampleButtonTableViewCell.m */; };
@@ -912,6 +930,9 @@
 		E1B52924219FB9FB008B27A5 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52923219FB9FB008B27A5 /* SafariServices.framework */; };
 		E1B52925219FBA7D008B27A5 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD11FA817640018EC62 /* libc++.tbd */; };
 		E1B52939219FE0FC008B27A5 /* XJInfoDetailPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */; };
+		E1C1A40621C2B0DE0050407D /* MyTextMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C1A40521C2B0DE0050407D /* MyTextMessageCell.m */; };
+		E1D913B721C0C24B0006B171 /* SimpleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D913B621C0C24B0006B171 /* SimpleMessage.m */; };
+		E1D913BA21C0C3020006B171 /* SimpleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D913B921C0C3020006B171 /* SimpleMessageCell.m */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
 /* End PBXBuildFile section */
 
@@ -2487,6 +2508,42 @@
 		E1307FE121A7ABC50014C220 /* GroupHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupHeadView.m; sourceTree = "<group>"; };
 		E1307FE621A7DDAF0014C220 /* DYJXLatestListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXLatestListCell.h; sourceTree = "<group>"; };
 		E1307FE721A7DDAF0014C220 /* DYJXLatestListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXLatestListCell.m; sourceTree = "<group>"; };
+		E13E60C021C35A7100D0C4B3 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		E13E60C121C35A7100D0C4B3 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		E13E60C221C35A7100D0C4B3 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		E13E60C321C35A7100D0C4B3 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		E13E60C421C35A7100D0C4B3 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		E13E60C521C35A7100D0C4B3 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		E13E60C621C35A7100D0C4B3 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		E13E60C721C35A7100D0C4B3 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		E13E60C821C35A7100D0C4B3 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		E13E60C921C35A7100D0C4B3 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		E13E60CA21C35A7100D0C4B3 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		E13E60D121C35AD100D0C4B3 /* AFHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHttpTool.h; sourceTree = "<group>"; };
+		E13E60D221C35AD100D0C4B3 /* AFHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHttpTool.m; sourceTree = "<group>"; };
+		E13E60D421C35B7800D0C4B3 /* RCDSettingUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDSettingUserDefaults.h; sourceTree = "<group>"; };
+		E13E60D521C35B7800D0C4B3 /* RCDSettingUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDSettingUserDefaults.m; sourceTree = "<group>"; };
+		E13E60D721C360CC00D0C4B3 /* RCDHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDHttpTool.h; sourceTree = "<group>"; };
+		E13E60D821C360CD00D0C4B3 /* RCDHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDHttpTool.m; sourceTree = "<group>"; };
+		E13E60DA21C3610400D0C4B3 /* RCDGroupInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDGroupInfo.m; sourceTree = "<group>"; };
+		E13E60DB21C3610400D0C4B3 /* RCDGroupInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDGroupInfo.h; sourceTree = "<group>"; };
+		E13E60DD21C3611600D0C4B3 /* RCDUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDUserInfo.h; sourceTree = "<group>"; };
+		E13E60DE21C3611600D0C4B3 /* RCDUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDUserInfo.m; sourceTree = "<group>"; };
+		E13E60E021C3614400D0C4B3 /* RCDRCIMDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDRCIMDataSource.m; sourceTree = "<group>"; };
+		E13E60E121C3614500D0C4B3 /* RCDRCIMDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDRCIMDataSource.h; sourceTree = "<group>"; };
+		E13E60E321C362A200D0C4B3 /* RongContactCard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongContactCard.framework; sourceTree = "<group>"; };
+		E13E60E521C362FA00D0C4B3 /* RCDUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDUtilities.h; sourceTree = "<group>"; };
+		E13E60E621C362FA00D0C4B3 /* RCDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDUtilities.m; sourceTree = "<group>"; };
+		E13E60E821C3631F00D0C4B3 /* RCDataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDataBaseManager.h; sourceTree = "<group>"; };
+		E13E60E921C3631F00D0C4B3 /* RCDataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDataBaseManager.m; sourceTree = "<group>"; };
+		E13E60EB21C3634700D0C4B3 /* SortForTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortForTime.m; sourceTree = "<group>"; };
+		E13E60EC21C3634800D0C4B3 /* SortForTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortForTime.h; sourceTree = "<group>"; };
+		E13E60EE21C363D200D0C4B3 /* DefaultPortraitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultPortraitView.m; sourceTree = "<group>"; };
+		E13E60EF21C363D200D0C4B3 /* DefaultPortraitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultPortraitView.h; sourceTree = "<group>"; };
+		E13E60F421C364C400D0C4B3 /* RCDUserInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDUserInfoManager.h; sourceTree = "<group>"; };
+		E13E60F521C364C500D0C4B3 /* RCDUserInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDUserInfoManager.m; sourceTree = "<group>"; };
+		E13E60F821C3C79B00D0C4B3 /* DYJXExtraModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXExtraModel.m; sourceTree = "<group>"; };
+		E13E60F921C3C79C00D0C4B3 /* DYJXExtraModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXExtraModel.h; sourceTree = "<group>"; };
 		E16657B321A411FD00BAC552 /* BaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		E16657B421A411FD00BAC552 /* BaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		E16657B621A413AA00BAC552 /* OwnerImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OwnerImageCell.h; sourceTree = "<group>"; };
@@ -2565,6 +2622,12 @@
 		E1B52923219FB9FB008B27A5 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		E1B52937219FE0FC008B27A5 /* XJInfoDetailPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJInfoDetailPage.h; sourceTree = "<group>"; };
 		E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJInfoDetailPage.m; sourceTree = "<group>"; };
+		E1C1A40421C2B0DE0050407D /* MyTextMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTextMessageCell.h; sourceTree = "<group>"; };
+		E1C1A40521C2B0DE0050407D /* MyTextMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTextMessageCell.m; sourceTree = "<group>"; };
+		E1D913B521C0C24B0006B171 /* SimpleMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleMessage.h; sourceTree = "<group>"; };
+		E1D913B621C0C24B0006B171 /* SimpleMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleMessage.m; sourceTree = "<group>"; };
+		E1D913B821C0C3020006B171 /* SimpleMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleMessageCell.h; sourceTree = "<group>"; };
+		E1D913B921C0C3020006B171 /* SimpleMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleMessageCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2683,6 +2746,7 @@
 				488E89F7219FFD5A008695A7 /* RongSight.framework in Frameworks */,
 				4804A1AD219981030081AB5B /* liblibNativeUI.a in Frameworks */,
 				4804A19A21968B0D0081AB5B /* liblibIO.a in Frameworks */,
+				E13E60E421C362A200D0C4B3 /* RongContactCard.framework in Frameworks */,
 				CBFF458D1F74C03500D2AF93 /* UMSocialNetwork.framework in Frameworks */,
 				48511D18219E7343006C6081 /* libbmapimp.a in Frameworks */,
 				48511D77219EC417006C6081 /* BaiduMapAPI_Utils.framework in Frameworks */,
@@ -6191,9 +6255,66 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		E13E60BF21C35A7100D0C4B3 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				E13E60C021C35A7100D0C4B3 /* FMDatabase.h */,
+				E13E60C121C35A7100D0C4B3 /* FMDatabaseQueue.m */,
+				E13E60C221C35A7100D0C4B3 /* FMResultSet.h */,
+				E13E60C321C35A7100D0C4B3 /* FMDatabasePool.h */,
+				E13E60C421C35A7100D0C4B3 /* FMDatabaseAdditions.m */,
+				E13E60C521C35A7100D0C4B3 /* FMDatabase.m */,
+				E13E60C621C35A7100D0C4B3 /* FMDatabaseQueue.h */,
+				E13E60C721C35A7100D0C4B3 /* FMDB.h */,
+				E13E60C821C35A7100D0C4B3 /* FMDatabaseAdditions.h */,
+				E13E60C921C35A7100D0C4B3 /* FMDatabasePool.m */,
+				E13E60CA21C35A7100D0C4B3 /* FMResultSet.m */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		E13E60D021C35AC300D0C4B3 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				E13E60F421C364C400D0C4B3 /* RCDUserInfoManager.h */,
+				E13E60F521C364C500D0C4B3 /* RCDUserInfoManager.m */,
+				E13E60EF21C363D200D0C4B3 /* DefaultPortraitView.h */,
+				E13E60EE21C363D200D0C4B3 /* DefaultPortraitView.m */,
+				E13E60EC21C3634800D0C4B3 /* SortForTime.h */,
+				E13E60EB21C3634700D0C4B3 /* SortForTime.m */,
+				E13E60E521C362FA00D0C4B3 /* RCDUtilities.h */,
+				E13E60E621C362FA00D0C4B3 /* RCDUtilities.m */,
+				E13E60D421C35B7800D0C4B3 /* RCDSettingUserDefaults.h */,
+				E13E60D521C35B7800D0C4B3 /* RCDSettingUserDefaults.m */,
+				E13E60D121C35AD100D0C4B3 /* AFHttpTool.h */,
+				E13E60D221C35AD100D0C4B3 /* AFHttpTool.m */,
+				E13E60D721C360CC00D0C4B3 /* RCDHttpTool.h */,
+				E13E60D821C360CD00D0C4B3 /* RCDHttpTool.m */,
+				E13E60DB21C3610400D0C4B3 /* RCDGroupInfo.h */,
+				E13E60DA21C3610400D0C4B3 /* RCDGroupInfo.m */,
+				E13E60DD21C3611600D0C4B3 /* RCDUserInfo.h */,
+				E13E60DE21C3611600D0C4B3 /* RCDUserInfo.m */,
+				E13E60E121C3614500D0C4B3 /* RCDRCIMDataSource.h */,
+				E13E60E021C3614400D0C4B3 /* RCDRCIMDataSource.m */,
+				E13E60E821C3631F00D0C4B3 /* RCDataBaseManager.h */,
+				E13E60E921C3631F00D0C4B3 /* RCDataBaseManager.m */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		E13E60F721C3C79000D0C4B3 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				E13E60F921C3C79C00D0C4B3 /* DYJXExtraModel.h */,
+				E13E60F821C3C79B00D0C4B3 /* DYJXExtraModel.m */,
+			);
+			path = Extra;
+			sourceTree = "<group>";
+		};
 		E17AF1E221A01D430041249C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E13E60F721C3C79000D0C4B3 /* Extra */,
 				E12DBDAF21AD1EBC0011E3A4 /* Conversations */,
 				E17FC6CB21A1051000D435D9 /* GetUserById */,
 				E17FC6BB21A1008800D435D9 /* Login */,
@@ -6262,6 +6383,8 @@
 		E19DC894219AC14400C86478 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				E13E60D021C35AC300D0C4B3 /* Store */,
+				E13E60BF21C35A7100D0C4B3 /* DB */,
 				48511D84219FC9C4006C6081 /* Category */,
 				E19DC8B2219AC29800C86478 /* IM */,
 			);
@@ -6271,6 +6394,7 @@
 		E19DC895219AC28100C86478 /* RCloudSDK */ = {
 			isa = PBXGroup;
 			children = (
+				E13E60E321C362A200D0C4B3 /* RongContactCard.framework */,
 				488E89E2219FFD59008695A7 /* CallKit */,
 				488E89CF219FFD59008695A7 /* CallLib */,
 				488E89BB219FFD58008695A7 /* IMKit */,
@@ -6287,6 +6411,7 @@
 		E19DC8B2219AC29800C86478 /* IM */ = {
 			isa = PBXGroup;
 			children = (
+				E1D913B121C0C15A0006B171 /* Views */,
 				E19DC8B3219AC2DB00C86478 /* BaseListViewController.h */,
 				E19DC8B4219AC2DB00C86478 /* BaseListViewController.m */,
 				E19DC8B6219AC36400C86478 /* DYChatViewController.h */,
@@ -6309,6 +6434,19 @@
 				E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */,
 			);
 			path = subVC;
+			sourceTree = "<group>";
+		};
+		E1D913B121C0C15A0006B171 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E1D913B521C0C24B0006B171 /* SimpleMessage.h */,
+				E1D913B621C0C24B0006B171 /* SimpleMessage.m */,
+				E1D913B821C0C3020006B171 /* SimpleMessageCell.h */,
+				E1D913B921C0C3020006B171 /* SimpleMessageCell.m */,
+				E1C1A40421C2B0DE0050407D /* MyTextMessageCell.h */,
+				E1C1A40521C2B0DE0050407D /* MyTextMessageCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6887,11 +7025,13 @@
 				DE1815511FFB8BA700B35722 /* JXAppyChinaPayModel.m in Sources */,
 				DEE9AA2F1FBD309A001FA69A /* JXRenewViewController.m in Sources */,
 				48C5E6ED2058BF2300239081 /* JXDeliverWayVC.m in Sources */,
+				E13E60D921C360CD00D0C4B3 /* RCDHttpTool.m in Sources */,
 				CB123BF61F91A85D00CD4429 /* XYNoticePush.m in Sources */,
 				DEF678B91FDA682B00F7525D /* JXGetSetCityModel.m in Sources */,
 				DE36FA481FCE889C00ED184E /* JXShopCouponHeatView.m in Sources */,
 				CB53FE781F6A132B0020F19A /* XYPaymentListModel.m in Sources */,
 				CBF74E2E1F8B6CDB00D528C2 /* XYNotificationCenterWebVC.m in Sources */,
+				E13E60CF21C35A7100D0C4B3 /* FMResultSet.m in Sources */,
 				CBE85A6B1F628C6E00E1E4EA /* XYShopingCartListModel.m in Sources */,
 				CB123C3B1F989A4D00CD4429 /* XYEWalletPreDepositReturnListVC.m in Sources */,
 				E1B1178B219D4F0D00C96B3E /* SCAccountManager.m in Sources */,
@@ -6929,6 +7069,7 @@
 				4826A47E21BFA78D00EAF963 /* DYJXAddMemberPage.m in Sources */,
 				DE71B162208744DD00467E06 /* PYPhoto.m in Sources */,
 				DE71B1752087455200467E06 /* FLAnimatedImageView.m in Sources */,
+				E13E60CE21C35A7100D0C4B3 /* FMDatabasePool.m in Sources */,
 				CB063E291FA036BC00A9395D /* XYEWalletPreDepositDetailModel.m in Sources */,
 				48D830F9201829CD00A67F0F /* JXClassificationCollectionCell.m in Sources */,
 				CB123C511F99880E00CD4429 /* XYGoodsSearchResultNet.m in Sources */,
@@ -7012,6 +7153,7 @@
 				CB3307991FA1BF8F00117695 /* IQUITextFieldView+Additions.m in Sources */,
 				CBFF46561F7E7ACC00D2AF93 /* FSActionSheet.m in Sources */,
 				CBE85AC11F63846200E1E4EA /* XYMineTVCell.m in Sources */,
+				E13E60FA21C3C79C00D0C4B3 /* DYJXExtraModel.m in Sources */,
 				48B35107208F027300A9F7E4 /* DSectionIndexItemView.m in Sources */,
 				48D47A5B1FF4AEDA00B280DE /* JXPointsRecordVCSiftVC.m in Sources */,
 				DE277D341FBAC2EF00FE52C8 /* XYAddressViewController.m in Sources */,
@@ -7020,6 +7162,7 @@
 				481FE72A2183125600CFE26B /* DYJXUserModel.m in Sources */,
 				CB123C101F94632000CD4429 /* XYConfirmOrderInvoiceVC.m in Sources */,
 				CBF74E531F8F081000D528C2 /* XYBoardBandListModel.m in Sources */,
+				E13E60D321C35AD200D0C4B3 /* AFHttpTool.m in Sources */,
 				CBD98F9F1FB050400051C477 /* XYClassificationGoodsRightCVC.m in Sources */,
 				488003961FBD37CD00FEBBDB /* JXHotSearchListModel.m in Sources */,
 				48DE38E11FDF71290006528C /* JXClassificationByWebVC.m in Sources */,
@@ -7031,6 +7174,7 @@
 				48EB464C2079BD3F00B0A736 /* JXRefundViewModel.m in Sources */,
 				DE7773F9201C21E400876F4F /* JXConfirmSuccessViewController.m in Sources */,
 				DE277D421FBAC39C00FE52C8 /* XYLocationModel.m in Sources */,
+				E13E60D621C35B7800D0C4B3 /* RCDSettingUserDefaults.m in Sources */,
 				48DE38D01FDA37AD0006528C /* JXCouponDetailHeaderView.m in Sources */,
 				CB3307A11FA1BF8F00117695 /* IQPreviousNextView.m in Sources */,
 				DEE9AA351FBD358E001FA69A /* JXSuccessAccountViewController.m in Sources */,
@@ -7111,6 +7255,7 @@
 				CB53FE751F6A0FC80020F19A /* XYPreDepositTVCHeaderView.m in Sources */,
 				CB582F981F721CBA009E495F /* XYSelectIconPopView.m in Sources */,
 				CBFF46111F7D2D9F00D2AF93 /* XYOrderAlreadyCommentCell.m in Sources */,
+				E13E60F621C364C600D0C4B3 /* RCDUserInfoManager.m in Sources */,
 				CB42877D1F66BBAD004C43C1 /* XYOrderDetailSubClassOrderDetailAddressFooterView.m in Sources */,
 				DE1DF2B21FDE25400042D3AC /* JXHomeActivityCell.m in Sources */,
 				DE36FA531FCEBE0300ED184E /* JXShopCouponViewController.m in Sources */,
@@ -7149,6 +7294,7 @@
 				E19DC8B8219AC36400C86478 /* DYChatViewController.m in Sources */,
 				DE71B15C208744DD00467E06 /* PYProgressView.m in Sources */,
 				CBE85AC51F63943A00E1E4EA /* XYOrderConfirmOrderVC.m in Sources */,
+				E13E60CC21C35A7100D0C4B3 /* FMDatabaseAdditions.m in Sources */,
 				48DE38DE1FDE35160006528C /* JXFoodCell.m in Sources */,
 				CBFF46571F7E7ACC00D2AF93 /* FSActionSheetCell.m in Sources */,
 				DE9456641FBEE7CF00827C08 /* JXMyBroadbandAccountModel.m in Sources */,
@@ -7174,6 +7320,7 @@
 				E17AF25721A02D480041249C /* DJJXCreator.m in Sources */,
 				CB4287491F64562B004C43C1 /* XYPopInputPasswordView.m in Sources */,
 				488E30C21FD9102300D4DC17 /* JXGoodsDetailCouponViewController.m in Sources */,
+				E13E60F021C363D300D0C4B3 /* DefaultPortraitView.m in Sources */,
 				CBFF456E1F72648900D2AF93 /* XYEWalletCommon.m in Sources */,
 				CBE85A061F604CA300E1E4EA /* XYHomeTVCell.m in Sources */,
 				CBCF83511F7129BD00B20CF9 /* LBXScanTypes.m in Sources */,
@@ -7182,6 +7329,7 @@
 				DE4364D11FCBDF37002976B0 /* JXAlreadyUsedViewController.m in Sources */,
 				488003931FBD36CB00FEBBDB /* JXHotSearchModel.m in Sources */,
 				CB582FB11F73B78E009E495F /* XYAddressNet.m in Sources */,
+				E1D913B721C0C24B0006B171 /* SimpleMessage.m in Sources */,
 				4843205620243C6C00468411 /* JXPiontsRuleVC.m in Sources */,
 				CBFF467B1F7F271500D2AF93 /* XYOrderCommentDetailSecondCell.m in Sources */,
 				4826A48121BFA87500EAF963 /* DYJXAddMemberViewModel.m in Sources */,
@@ -7221,6 +7369,7 @@
 				DED74DD91FC57C2C00346AD0 /* NoNetworkView.m in Sources */,
 				CB123C191F95D32200CD4429 /* XYConfirmOrderInvoiceInfoTVC.m in Sources */,
 				CB4287441F6455C4004C43C1 /* WTReParser.m in Sources */,
+				E13E60CB21C35A7100D0C4B3 /* FMDatabaseQueue.m in Sources */,
 				DE71B163208744DD00467E06 /* PYPhotosView.m in Sources */,
 				CB3307A81FA2C18E00117695 /* XYMineListModel.m in Sources */,
 				DE06FF721FD17F7D003D76BD /* JXShopOpenCell.m in Sources */,
@@ -7229,6 +7378,7 @@
 				CBD2BAD91F5E50C80057E2E7 /* XYShoppingCartVC.m in Sources */,
 				E17AF21621A021E40041249C /* UserManager.m in Sources */,
 				CBCF83541F7129BD00B20CF9 /* LBXScanNetAnimation.m in Sources */,
+				E13E60CD21C35A7100D0C4B3 /* FMDatabase.m in Sources */,
 				CBF74E5F1F8F437200D528C2 /* XYCaculateTool.m in Sources */,
 				CB063E141F9F1B2400A9395D /* XYEWalletBalanceFirstCell.m in Sources */,
 				CB063E201FA027EA00A9395D /* XYEWalletPreDepositThirdCell.m in Sources */,
@@ -7238,6 +7388,7 @@
 				DE9F8CCA1FDFF5C600D8FE8A /* JXSeachCityModel.m in Sources */,
 				CBE85A101F60FC4600E1E4EA /* XYUserDefaults.m in Sources */,
 				CBE8598D1F5E81E100E1E4EA /* XYCycleImageModel.m in Sources */,
+				E1D913BA21C0C3020006B171 /* SimpleMessageCell.m in Sources */,
 				CB3307A41FA1BF8F00117695 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				487351AF218D5115001B59AB /* DYJXConversationTabBarController.m in Sources */,
 				CB42874F1F6466BF004C43C1 /* XYMineOrderListTVCell.m in Sources */,
@@ -7332,9 +7483,11 @@
 				CBE85AD81F63D44B00E1E4EA /* XYOrderPaymentRemarkSectionFooterVC.m in Sources */,
 				DE71B1742087455200467E06 /* FLAnimatedImage.m in Sources */,
 				CB582FA81F7358D4009E495F /* XYDelieveryAddressVC.m in Sources */,
+				E13E60DC21C3610400D0C4B3 /* RCDGroupInfo.m in Sources */,
 				DE9110142085DD5600BDDABF /* JXOderCell.m in Sources */,
 				CB123C411F98A86E00CD4429 /* XYEWalletPreDepositReturnListModel.m in Sources */,
 				DEFC90342088371D00FFB4F3 /* FLAnimatedImageView+WebCache.m in Sources */,
+				E13E60DF21C3611700D0C4B3 /* RCDUserInfo.m in Sources */,
 				48D5DD262004703100633E9C /* JXShareImageView.m in Sources */,
 				DE1DF2AD1FDE1EA30042D3AC /* JXHomeRechargeCell.m in Sources */,
 				CBE85AEB1F63E48D00E1E4EA /* YZDisplayViewController.m in Sources */,
@@ -7380,15 +7533,19 @@
 				CBE85AB41F62CBB100E1E4EA /* XYShoppingCartCommon.m in Sources */,
 				481FE70F2182EB3B00CFE26B /* DYJXLoginViewModel.m in Sources */,
 				DE2C53D61FAC67230015A84C /* XYOrderConfirmModel.m in Sources */,
+				E13E60ED21C3634800D0C4B3 /* SortForTime.m in Sources */,
 				DE4364C91FCBBA93002976B0 /* BaseTableView.m in Sources */,
 				E19DC8C9219ACC6A00C86478 /* DJContactsChatViewController.m in Sources */,
 				CBFF467C1F7F271500D2AF93 /* XYOrderReAddCommentSecondCell.m in Sources */,
 				DEDA7CFE1FCD0D3C008A362A /* JXNotUsedHeatView.m in Sources */,
 				48A370F421B13AA8002861DD /* DYJXUserInfoDetailViewModel.m in Sources */,
 				48A3710321B500B9002861DD /* DYJXCompanyInfoDetailPage.m in Sources */,
+				E1C1A40621C2B0DE0050407D /* MyTextMessageCell.m in Sources */,
 				DE24BD85207F39AE00A213C5 /* JXMyRefundAfterSaleViewController.m in Sources */,
+				E13E60E721C362FB00D0C4B3 /* RCDUtilities.m in Sources */,
 				48C5E706205B742E00239081 /* JXSelectAdressListModel.m in Sources */,
 				CB3307711FA16D0700117695 /* UITableView+WLEmptyPlaceHolder.m in Sources */,
+				E13E60EA21C3632000D0C4B3 /* RCDataBaseManager.m in Sources */,
 				CBFF459F1F753F2D00D2AF93 /* XYOrderDetailOrderStatusTVCell.m in Sources */,
 				DE4E685F1FFF684B0057FAF3 /* JXSettlementView.m in Sources */,
 				DE9110192085DD5600BDDABF /* JXOderPromptView.m in Sources */,
@@ -7402,6 +7559,7 @@
 				48644D611FCE4DD900CE47BC /* JXCouponDetailModel.m in Sources */,
 				CB582FB41F73B911009E495F /* XYAddressListModel.m in Sources */,
 				480B97372085D5F800EF09C2 /* JXRefundReasonsModel.m in Sources */,
+				E13E60E221C3614500D0C4B3 /* RCDRCIMDataSource.m in Sources */,
 				48CC2C351FD927DB00622935 /* FXBlurView.m in Sources */,
 				CBCF83581F7129BD00B20CF9 /* LBXScanViewStyle.m in Sources */,
 				487351B3218D598B001B59AB /* DYJXConversionPage.m in Sources */,
@@ -7634,6 +7792,7 @@
 					"$(PROJECT_DIR)/DYJX/RCloudSDK/RedPacket/AlipaySDK",
 					"$(PROJECT_DIR)/DYJX/RCloudSDK/CallKit",
 					"$(PROJECT_DIR)/DYJX/RCloudSDK/RongSticker",
+					"$(PROJECT_DIR)/DYJX/RCloudSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/user/Classes/Other/Extension/PrefixHeader.pch";
@@ -7725,6 +7884,7 @@
 					"$(PROJECT_DIR)/DYJX/RCloudSDK/RedPacket/AlipaySDK",
 					"$(PROJECT_DIR)/DYJX/RCloudSDK/CallKit",
 					"$(PROJECT_DIR)/DYJX/RCloudSDK/RongSticker",
+					"$(PROJECT_DIR)/DYJX/RCloudSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/user/Classes/Other/Extension/PrefixHeader.pch";
