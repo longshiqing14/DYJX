@@ -23,6 +23,9 @@
                         <constraint firstAttribute="width" secondItem="WBb-HU-81k" secondAttribute="height" multiplier="1:1" id="4gW-CU-EOv"/>
                     </constraints>
                     <state key="normal" title="Button" image="addfriend"/>
+                    <connections>
+                        <action selector="addMemberClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="ZGg-xP-eNC"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOL-IW-Y4L">
                     <rect key="frame" x="116.5" y="20" width="56" height="56"/>
@@ -30,6 +33,9 @@
                         <constraint firstAttribute="width" secondItem="xOL-IW-Y4L" secondAttribute="height" multiplier="1:1" id="jTk-wJ-NET"/>
                     </constraints>
                     <state key="normal" title="Button" image="removefriend"/>
+                    <connections>
+                        <action selector="deleteMemberClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Fxh-dj-WF8"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZX-9L-pCa">
                     <rect key="frame" x="202.5" y="20" width="56.5" height="56.5"/>
@@ -37,6 +43,9 @@
                         <constraint firstAttribute="width" secondItem="WZX-9L-pCa" secondAttribute="height" multiplier="1:1" id="TMM-uz-Qpa"/>
                     </constraints>
                     <state key="normal" title="Button" image="addfriend"/>
+                    <connections>
+                        <action selector="giveAccsessAdminClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="zAU-dE-9vS"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CiW-AM-uQo">
                     <rect key="frame" x="289" y="20" width="56" height="56"/>
@@ -44,6 +53,9 @@
                         <constraint firstAttribute="width" secondItem="CiW-AM-uQo" secondAttribute="height" multiplier="1:1" id="ZWC-hD-nId"/>
                     </constraints>
                     <state key="normal" title="Button" image="removefriend"/>
+                    <connections>
+                        <action selector="fireAdminClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Set-PM-Qnb"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加成员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V44-rJ-Hp2">
                     <rect key="frame" x="29.5" y="81.5" width="57.5" height="29.5"/>

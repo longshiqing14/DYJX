@@ -35,7 +35,7 @@
 @property (nonatomic, assign) NSInteger GroupType;
 @property (nonatomic, strong) NSString * IdField;
 @property (nonatomic, assign) BOOL IsPart;
-@property (nonatomic, strong) NSArray * MemberIds;
+@property (nonatomic, strong) NSArray<NSString*> * MemberIds;
 @property (nonatomic, strong) NSArray * Members;
 @property (nonatomic, assign) BOOL NotAllowJoinFree;
 @property (nonatomic, assign) BOOL NotAllowMemberInvite;

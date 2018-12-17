@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DYJXAddMemberCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
+@property (weak, nonatomic) IBOutlet UILabel *nickName;
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "DJJXMembers.h"
 
 @interface DYJXAddMemberPage : BaseViewController
-
+@property (nonatomic, strong) NSMutableArray<DJJXMembers*> *membersArray;
 @end
