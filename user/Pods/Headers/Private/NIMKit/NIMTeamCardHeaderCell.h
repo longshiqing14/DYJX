@@ -1,1 +1,0 @@
-../../../../../NIMKit/NIMKit/Classes/Sections/Team/View/NIMTeamCardHeaderCell.h

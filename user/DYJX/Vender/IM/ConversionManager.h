@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithIdentity:(DYJXIdentitySwitchingModel *)identity;
 
 @property(nonatomic, strong)DYJXIdentitySwitchingModel *identity;
-@property(nonatomic,weak) id<NIMConversationManagerDelegate> delegate;
+//@property(nonatomic,weak) id<NIMConversationManagerDelegate> delegate;
 
 @end
 

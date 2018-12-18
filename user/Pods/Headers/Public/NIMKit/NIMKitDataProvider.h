@@ -1,1 +1,0 @@
-../../../../../NIMKit/NIMKit/Classes/Protocols/NIMKitDataProvider.h

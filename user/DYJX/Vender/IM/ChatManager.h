@@ -7,6 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RCIMMessage.h"
+
+@protocol IMChatDelegate <NSObject>
+
+- (void)onRecvMessages:(RCIMMessage *)message;
+
+@end
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,8 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong)NIMSession *session;
 
-@property(nonatomic,weak) id<NIMChatManagerDelegate> delegate;
-
+@property(nonatomic,weak) id<IMChatDelegate> delegate;
 
 @end
 

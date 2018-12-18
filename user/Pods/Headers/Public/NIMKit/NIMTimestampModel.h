@@ -1,1 +1,0 @@
-../../../../../NIMKit/NIMKit/Classes/Sections/Model/NIMTimestampModel.h

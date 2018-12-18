@@ -8,6 +8,7 @@
 
 #import "DataBaseManager.h"
 #import "YTKKeyValueStore.h"
+#import "JSExtension.h"
 
 #define firstString @"my"
 #define lockSemaphore dispatch_semaphore_wait([DataBaseManager shared].semaphore, 5.0)
@@ -154,7 +155,6 @@
     }
     dictory[@"targetId"] = message.targetId;
     dictory[@"messageId"] = @(message.messageId);
-    dictory[@"messageDirection"] = @(message.messageDirection);
     dictory[@"senderUserId"] = message.senderUserId;
     if (message.receivedStatus == ReceivedStatus_UNREAD) {
         dictory[@"receivedStatus"] = @0; // 未读
@@ -164,11 +164,12 @@
     }
     dictory[@"sentStatus"] = @(message.sentStatus);
     dictory[@"objectName"] = message.objectName;
+    NSDictionary *extraDic = nil;
     //  针对content的解析
     if ([message.content isKindOfClass:[RCTextMessage class]]) {
         RCTextMessage *textMessage = (RCTextMessage *)(message.content);
         dictory[@"content"] = textMessage.content;
-        NSDictionary *extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
         dictory[@"extraId"] = extraDic[@"Id"];
         dictory[@"extraConversationId"] = extraDic[@"ConversationId"];
         dictory[@"extraFromId"] = extraDic[@"FromId"];
@@ -191,7 +192,7 @@
     else if ([message.content isKindOfClass:[RCImageMessage class]]) {
         RCImageMessage *textMessage = (RCImageMessage *)(message.content);
         dictory[@"content"] = textMessage.imageUrl;
-        NSDictionary *extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
         dictory[@"extraId"] = extraDic[@"Id"];
         dictory[@"extraConversationId"] = extraDic[@"ConversationId"];
         dictory[@"extraFromId"] = extraDic[@"FromId"];
@@ -215,7 +216,7 @@
         RCVoiceMessage *textMessage = (RCVoiceMessage *)(message.content);
         dictory[@"content"] = textMessage.amrBase64Content;
         dictory[@"contentDuration"] = @(textMessage.duration);
-        NSDictionary *extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
         dictory[@"extraId"] = extraDic[@"Id"];
         dictory[@"extraConversationId"] = extraDic[@"ConversationId"];
         dictory[@"extraFromId"] = extraDic[@"FromId"];
@@ -238,7 +239,7 @@
     else if ([message.content isKindOfClass:[RCLocationMessage class]]) {
         RCLocationMessage *textMessage = (RCLocationMessage *)(message.content);
         dictory[@"contentLocationName"] = textMessage.locationName;
-        NSDictionary *extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
         dictory[@"latitude"] = @(textMessage.location.latitude);
         dictory[@"longitude"] = @(textMessage.location.longitude);
         dictory[@"extraId"] = extraDic[@"Id"];
@@ -261,6 +262,48 @@
         dictory[@"extraMsgTime"] = extraDic[@"MsgTime"];
     }
     dictory[@"messageUId"] = message.messageUId;
+
+    if ([NSString stringWithFormat:@"%@",extraDic[@"TargetType"]].integerValue == 0) {
+        if (![extraDic[@"TargetId"] isEqualToString:[JSExtension shared].myIdentityId]) {
+            if (![[UserManager shared].getUserModel.UserID isEqualToString:[JSExtension shared].myIdentityId]) {
+                if ([[UserManager shared].getUserModel.UserID isEqualToString:extraDic[@"FromId"]]) { // 用户发送
+                    dictory[@"messageDirection"] = @(MessageDirection_SEND);
+                    dictory[@"mySend"] = @(1);
+                }
+                else {
+                    dictory[@"messageDirection"] = @(MessageDirection_SEND);
+                    dictory[@"mySend"] = @(0);
+                }
+            }
+            else {
+                dictory[@"messageDirection"] = @(MessageDirection_RECEIVE);
+            }
+        }
+        else {
+            dictory[@"messageDirection"] = @(MessageDirection_RECEIVE);
+
+        }
+    }
+    else {
+        if ([extraDic[@"FromCertifyId"] isEqualToString:[JSExtension shared].myIdentityId]) {
+            if (![[UserManager shared].getUserModel.UserID isEqualToString:[JSExtension shared].myIdentityId]) {
+                if ([[UserManager shared].getUserModel.UserID isEqualToString:extraDic[@"FromId"]]) { // 用户发送
+                    dictory[@"messageDirection"] = @(MessageDirection_SEND);
+                    dictory[@"mySend"] = @(1);
+                }
+                else {
+                    dictory[@"messageDirection"] = @(MessageDirection_SEND);
+                    dictory[@"mySend"] = @(0);
+                }
+            }
+            else {
+                dictory[@"messageDirection"] = @(MessageDirection_RECEIVE);
+            }
+        }
+        else {
+            dictory[@"messageDirection"] = @(MessageDirection_RECEIVE);
+        }
+    }
 
     dictory[@"isReceiptRequestMessage"] = @(message.readReceiptInfo.isReceiptRequestMessage);
     dictory[@"hasRespond"] = @(message.readReceiptInfo.hasRespond);

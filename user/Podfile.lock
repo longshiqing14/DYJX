@@ -41,17 +41,6 @@ PODS:
   - MJExtension (3.0.15.1)
   - MJRefresh (3.1.15.7)
   - MLTransition (2.1.3)
-  - NIMKit (2.11.2):
-    - NIMKit/Lite (= 2.11.2)
-  - NIMKit/Core (2.11.2):
-    - M80AttributedLabel (~> 1.6.3)
-    - SDWebImage (~> 4.2.2)
-    - Toast (~> 3.0)
-    - TZImagePickerController (~> 1.9.0)
-  - NIMKit/Lite (2.11.2):
-    - NIMKit/Core
-    - NIMSDK_LITE (~> 5.9.0)
-  - NIMSDK_LITE (5.9.0)
   - SDCycleScrollView (1.75):
     - SDWebImage (>= 4.0.0)
   - SDWebImage (4.2.3):
@@ -81,8 +70,6 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - MLTransition
-  - NIMKit (from `../`)
-  - NIMSDK_LITE
   - SDCycleScrollView
   - SDWebImage (~> 4.2.2)
   - SVProgressHUD
@@ -109,7 +96,6 @@ SPEC REPOS:
     - MJExtension
     - MJRefresh
     - MLTransition
-    - NIMSDK_LITE
     - SDCycleScrollView
     - SDWebImage
     - SVProgressHUD
@@ -121,10 +107,6 @@ SPEC REPOS:
     - WMPageController
     - YYKit
     - ZWLimitCounter
-
-EXTERNAL SOURCES:
-  NIMKit:
-    :path: "../"
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -139,8 +121,6 @@ SPEC CHECKSUMS:
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   MLTransition: 8ebe393aedfb61507202085a5bb16c7b17363e43
-  NIMKit: a06e0153dd90021f461f86ab3d425d7eaf2e4653
-  NIMSDK_LITE: da1d1f853542f0cb5a9d8cbf7d6f706e161eb606
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
@@ -153,6 +133,6 @@ SPEC CHECKSUMS:
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZWLimitCounter: 382d8a4f063980f18022749672b89e0558087007
 
-PODFILE CHECKSUM: 4a4864b3338256b900431105b4f45608e3713b02
+PODFILE CHECKSUM: 23e4dcda4565d0393657e0946fd35ed34ebdbd55
 
 COCOAPODS: 1.5.3

@@ -1,1 +1,0 @@
-../../../../../NIMKit/NIMKit/Classes/Global/NIMKitIndependentModeExtraInfo.h
