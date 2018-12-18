@@ -72,7 +72,12 @@
 -(void)setNumber:(NSInteger)number {
     if (number && number > 0) {
         [self.dotLabel setHidden:false];
-        self.dotLabel.text = [NSString stringWithFormat:@"%ld",(long)number];
+        if (number > 99) {
+            self.dotLabel.text = @"99";
+        }
+        else {
+            self.dotLabel.text = [NSString stringWithFormat:@"%ld",(long)number];
+        }
     }
     else {
         [self.dotLabel setHidden:true];

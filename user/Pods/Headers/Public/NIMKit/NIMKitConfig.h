@@ -1,0 +1,1 @@
+../../../../../NIMKit/NIMKit/Classes/Global/NIMKitConfig.h

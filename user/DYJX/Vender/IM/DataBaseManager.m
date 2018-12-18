@@ -1,0 +1,348 @@
+//
+//  DataBaseManager.m
+//  YTKKeyValueStore
+//
+//  Created by longshiqing on 2018/12/16.
+//  Copyright © 2018年 TangQiao. All rights reserved.
+//
+
+#import "DataBaseManager.h"
+#import "YTKKeyValueStore.h"
+
+#define firstString @"my"
+#define lockSemaphore dispatch_semaphore_wait([DataBaseManager shared].semaphore, 5.0)
+#define unlockSemaphore dispatch_semaphore_signal([DataBaseManager shared].semaphore)
+
+@interface DataBaseManager()
+
+@property (nonatomic, strong)YTKKeyValueStore *store;
+
+@end
+
+@implementation DataBaseManager
+
++ (DataBaseManager *)shared {
+    static DataBaseManager *singler;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (singler == NULL) {
+            singler = [[DataBaseManager alloc] init];
+            singler.semaphore = dispatch_semaphore_create(1);
+        }
+    });
+    return singler;
+}
+
+-(NSArray *)getModel:(RCMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
+    NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+
+    YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
+    NSString *tableName = [NSString stringWithFormat:@"%@%@%@",firstString,tempIdentifyId,tempConversionId];
+    [store createTableWithName:tableName];
+    lockSemaphore;
+    NSMutableArray *array = [store getObjectById:tableName fromTable:tableName];
+    if (!array || !array.count) {
+        array = [[NSMutableArray alloc] init];
+    }
+    unlockSemaphore;
+    return array;
+}
+
+-(void)insertModel:(RCMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
+    NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
+    NSString *tableName = [NSString stringWithFormat:@"%@%@%@",firstString,tempIdentifyId,tempConversionId];
+    [store createTableWithName:tableName];
+    lockSemaphore;
+    NSMutableArray *array = [store getObjectById:tableName fromTable:tableName];
+    if (array && array.count) {
+        array = [array mutableCopy];
+    }
+    else {
+        array = [[NSMutableArray alloc] init];
+    }
+    [array addObject:[self fromModel:model]];
+    [store putObject:array withId:tableName intoTable:tableName];
+    [self saveUnreadConversionId:tempConversionId byIdentityId:tempIdentifyId]; // 标记未读
+    unlockSemaphore;
+}
+
+-(void)delegateModel:(RCMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
+    NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
+    NSString *tableName = [NSString stringWithFormat:@"%@%@%@",firstString,tempIdentifyId,tempConversionId];
+    [store createTableWithName:tableName];
+    lockSemaphore;
+    NSMutableArray *array = [store getObjectById:tableName fromTable:tableName];
+
+    if (array && array.count) {
+        array = [array mutableCopy];
+    }
+    else {
+        array = [[NSMutableArray alloc] init];
+    }
+    NSArray *models = [array copy];
+    int count = 0;
+    for (NSDictionary *dic in models) {
+        if ([dic[@"messageUId"] isEqualToString:model.messageUId]) {
+            [array removeObjectAtIndex:count];
+        }
+        count++;
+    }
+    [store putObject:array withId:tableName intoTable:tableName];
+    unlockSemaphore;
+}
+-(void)saveUnreadConversionId:(NSString *)conversionId byIdentityId:(NSString *)identityId {
+    NSString *tempIdentifyId = [identityId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
+    NSString *tableName = [NSString stringWithFormat:@"%@%@",firstString,tempIdentifyId];
+    [store createTableWithName:tableName];
+    lockSemaphore;
+    NSMutableDictionary *dictory = [store getObjectById:tempIdentifyId fromTable:tableName];
+    if (dictory && dictory.count) {
+        dictory = [dictory mutableCopy];
+    }
+    else {
+        dictory = [[NSMutableDictionary alloc] init];
+    }
+    if (dictory[tempConversionId]) { // 存在
+        long long unreadCount = [NSString stringWithFormat:@"%@",dictory[tempConversionId]].longLongValue;
+        unreadCount++;
+        dictory[tempConversionId] = @(unreadCount);
+    }
+    else {
+        dictory[tempConversionId] = @(1);
+    }
+    NSLog(@"%@",dictory);
+    [store putObject:dictory withId:tempIdentifyId intoTable:tableName];
+    unlockSemaphore;
+}
+
+-(void)remarkAllReadIdentifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
+    NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
+    NSString *tableName = [NSString stringWithFormat:@"%@%@",firstString,tempIdentifyId];
+    [store createTableWithName:tableName];
+    lockSemaphore;
+    NSMutableDictionary *dictory = [store getObjectById:tempIdentifyId fromTable:tableName];
+    if (dictory && dictory.count) {
+        dictory = [dictory mutableCopy];
+    }
+    else {
+        dictory = [[NSMutableDictionary alloc] init];
+    }
+    dictory[tempConversionId] = @(0);
+    [store putObject:dictory withId:tempIdentifyId intoTable:tableName];
+    unlockSemaphore;
+    [[NSNotificationCenter defaultCenter] postNotificationName:XY_IM_AlreadRead object:nil];
+}
+
+-(NSDictionary *)fromModel:(RCMessage *)message {
+    NSMutableDictionary *dictory = [[NSMutableDictionary alloc] init];
+    dictory[@"sendTime"] = @(message.sentTime);
+    dictory[@"receivedTime"] = @(message.receivedTime);
+    if (message.conversationType == ConversationType_GROUP) {
+        dictory[@"conversationType"] = @1; // 组聊
+    }
+    else {
+        dictory[@"conversationType"] = @2;
+    }
+    dictory[@"targetId"] = message.targetId;
+    dictory[@"messageId"] = @(message.messageId);
+    dictory[@"messageDirection"] = @(message.messageDirection);
+    dictory[@"senderUserId"] = message.senderUserId;
+    if (message.receivedStatus == ReceivedStatus_UNREAD) {
+        dictory[@"receivedStatus"] = @0; // 未读
+    }
+    else {
+        dictory[@"receivedStatus"] = @1;
+    }
+    dictory[@"sentStatus"] = @(message.sentStatus);
+    dictory[@"objectName"] = message.objectName;
+    //  针对content的解析
+    if ([message.content isKindOfClass:[RCTextMessage class]]) {
+        RCTextMessage *textMessage = (RCTextMessage *)(message.content);
+        dictory[@"content"] = textMessage.content;
+        NSDictionary *extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        dictory[@"extraId"] = extraDic[@"Id"];
+        dictory[@"extraConversationId"] = extraDic[@"ConversationId"];
+        dictory[@"extraFromId"] = extraDic[@"FromId"];
+        dictory[@"extraFromName"] = extraDic[@"FromName"];
+        dictory[@"extraFromHeadImg"] = extraDic[@"FromHeadImg"];
+        dictory[@"extraFromCertifyId"] = extraDic[@"FromCertifyId"];
+        dictory[@"extraFromCertifyName"] = extraDic[@"FromCertifyName"];
+        dictory[@"extraFromCertifyHeadImg"] = extraDic[@"FromCertifyHeadImg"];
+        dictory[@"extraTargetId"] = extraDic[@"TargetId"];
+        dictory[@"extraTargetName"] = extraDic[@"TargetName"];
+        dictory[@"extraTargetHeadImg"] = extraDic[@"TargetHeadImg"];
+        dictory[@"extraTargetType"] = extraDic[@"TargetType"];
+        dictory[@"extraGType"] = extraDic[@"GType"];
+        dictory[@"extraGMembers"] = extraDic[@"GMembers"];
+        dictory[@"extraMessageType"] = extraDic[@"MessageType"];
+        dictory[@"extraImKey"] = extraDic[@"ImKey"];
+        dictory[@"extraKeywords"] = extraDic[@"Keywords"];
+        dictory[@"extraMsgTime"] = extraDic[@"MsgTime"];
+    }
+    else if ([message.content isKindOfClass:[RCImageMessage class]]) {
+        RCImageMessage *textMessage = (RCImageMessage *)(message.content);
+        dictory[@"content"] = textMessage.imageUrl;
+        NSDictionary *extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        dictory[@"extraId"] = extraDic[@"Id"];
+        dictory[@"extraConversationId"] = extraDic[@"ConversationId"];
+        dictory[@"extraFromId"] = extraDic[@"FromId"];
+        dictory[@"extraFromName"] = extraDic[@"FromName"];
+        dictory[@"extraFromHeadImg"] = extraDic[@"FromHeadImg"];
+        dictory[@"extraFromCertifyId"] = extraDic[@"FromCertifyId"];
+        dictory[@"extraFromCertifyName"] = extraDic[@"FromCertifyName"];
+        dictory[@"extraFromCertifyHeadImg"] = extraDic[@"FromCertifyHeadImg"];
+        dictory[@"extraTargetId"] = extraDic[@"TargetId"];
+        dictory[@"extraTargetName"] = extraDic[@"TargetName"];
+        dictory[@"extraTargetHeadImg"] = extraDic[@"TargetHeadImg"];
+        dictory[@"extraTargetType"] = extraDic[@"TargetType"];
+        dictory[@"extraGType"] = extraDic[@"GType"];
+        dictory[@"extraGMembers"] = extraDic[@"GMembers"];
+        dictory[@"extraMessageType"] = extraDic[@"MessageType"];
+        dictory[@"extraImKey"] = extraDic[@"ImKey"];
+        dictory[@"extraKeywords"] = extraDic[@"Keywords"];
+        dictory[@"extraMsgTime"] = extraDic[@"MsgTime"];
+    }
+    else if ([message.content isKindOfClass:[RCVoiceMessage class]]) {
+        RCVoiceMessage *textMessage = (RCVoiceMessage *)(message.content);
+        dictory[@"content"] = textMessage.amrBase64Content;
+        dictory[@"contentDuration"] = @(textMessage.duration);
+        NSDictionary *extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        dictory[@"extraId"] = extraDic[@"Id"];
+        dictory[@"extraConversationId"] = extraDic[@"ConversationId"];
+        dictory[@"extraFromId"] = extraDic[@"FromId"];
+        dictory[@"extraFromName"] = extraDic[@"FromName"];
+        dictory[@"extraFromHeadImg"] = extraDic[@"FromHeadImg"];
+        dictory[@"extraFromCertifyId"] = extraDic[@"FromCertifyId"];
+        dictory[@"extraFromCertifyName"] = extraDic[@"FromCertifyName"];
+        dictory[@"extraFromCertifyHeadImg"] = extraDic[@"FromCertifyHeadImg"];
+        dictory[@"extraTargetId"] = extraDic[@"TargetId"];
+        dictory[@"extraTargetName"] = extraDic[@"TargetName"];
+        dictory[@"extraTargetHeadImg"] = extraDic[@"TargetHeadImg"];
+        dictory[@"extraTargetType"] = extraDic[@"TargetType"];
+        dictory[@"extraGType"] = extraDic[@"GType"];
+        dictory[@"extraGMembers"] = extraDic[@"GMembers"];
+        dictory[@"extraMessageType"] = extraDic[@"MessageType"];
+        dictory[@"extraImKey"] = extraDic[@"ImKey"];
+        dictory[@"extraKeywords"] = extraDic[@"Keywords"];
+        dictory[@"extraMsgTime"] = extraDic[@"MsgTime"];
+    }
+    else if ([message.content isKindOfClass:[RCLocationMessage class]]) {
+        RCLocationMessage *textMessage = (RCLocationMessage *)(message.content);
+        dictory[@"contentLocationName"] = textMessage.locationName;
+        NSDictionary *extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        dictory[@"latitude"] = @(textMessage.location.latitude);
+        dictory[@"longitude"] = @(textMessage.location.longitude);
+        dictory[@"extraId"] = extraDic[@"Id"];
+        dictory[@"extraConversationId"] = extraDic[@"ConversationId"];
+        dictory[@"extraFromId"] = extraDic[@"FromId"];
+        dictory[@"extraFromName"] = extraDic[@"FromName"];
+        dictory[@"extraFromHeadImg"] = extraDic[@"FromHeadImg"];
+        dictory[@"extraFromCertifyId"] = extraDic[@"FromCertifyId"];
+        dictory[@"extraFromCertifyName"] = extraDic[@"FromCertifyName"];
+        dictory[@"extraFromCertifyHeadImg"] = extraDic[@"FromCertifyHeadImg"];
+        dictory[@"extraTargetId"] = extraDic[@"TargetId"];
+        dictory[@"extraTargetName"] = extraDic[@"TargetName"];
+        dictory[@"extraTargetHeadImg"] = extraDic[@"TargetHeadImg"];
+        dictory[@"extraTargetType"] = extraDic[@"TargetType"];
+        dictory[@"extraGType"] = extraDic[@"GType"];
+        dictory[@"extraGMembers"] = extraDic[@"GMembers"];
+        dictory[@"extraMessageType"] = extraDic[@"MessageType"];
+        dictory[@"extraImKey"] = extraDic[@"ImKey"];
+        dictory[@"extraKeywords"] = extraDic[@"Keywords"];
+        dictory[@"extraMsgTime"] = extraDic[@"MsgTime"];
+    }
+    dictory[@"messageUId"] = message.messageUId;
+
+    dictory[@"isReceiptRequestMessage"] = @(message.readReceiptInfo.isReceiptRequestMessage);
+    dictory[@"hasRespond"] = @(message.readReceiptInfo.hasRespond);
+    dictory[@"userIdList"] = message.readReceiptInfo.userIdList;
+    return dictory;
+}
+
+-(NSInteger)unreadCountIdentifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
+    NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
+    long count = 0;
+    lockSemaphore;
+    NSString *tableName = [NSString stringWithFormat:@"%@%@",firstString,tempIdentifyId];
+    [store createTableWithName:tableName];
+    NSMutableDictionary *dictory = [store getObjectById:tempIdentifyId fromTable:tableName];
+    if (dictory[tempConversionId]) {
+        count += [NSString stringWithFormat:@"%@",dictory[tempConversionId]].longValue;
+    }
+    unlockSemaphore;
+    return count;
+}
+
+-(NSInteger)unreadCountIdentifyId:(NSString *)identifyId {
+    NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
+    long count = 0;
+    lockSemaphore;
+    NSString *tableName = [NSString stringWithFormat:@"%@%@",firstString,tempIdentifyId];
+    [store createTableWithName:tableName];
+    NSMutableDictionary *dictory = [store getObjectById:tempIdentifyId fromTable:tableName];
+    for (NSString *identId in dictory.allKeys) {
+        NSString *tempyId = [identId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+        if (dictory[tempyId]) {
+            count += [NSString stringWithFormat:@"%@",dictory[tempyId]].longValue;
+        }
+    }
+    unlockSemaphore;
+    return count;
+}
+
+-(NSInteger)allUnreadCount {
+    YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
+    long count = 0;
+    lockSemaphore;
+    for (DYJXIdentitySwitchingModel *model in [UserManager shared].dataArray) {
+        NSString *tempIdentifyId = [model.Id stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+        NSString *tableName = [NSString stringWithFormat:@"%@%@",firstString,tempIdentifyId];
+        [store createTableWithName:tableName];
+        NSMutableDictionary *dictory = [store getObjectById:tempIdentifyId fromTable:tableName];
+        for (NSString *identifyId in dictory.allKeys) {
+            NSString *tempyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+            if (dictory[tempyId]) {
+                count += [NSString stringWithFormat:@"%@",dictory[tempyId]].longValue;
+            }
+        }
+    }
+    unlockSemaphore;
+    return count;
+}
+
+-(NSString *)getKey:(RCMessage *)message {
+    return [NSString stringWithFormat:@"%lld",message.receivedTime];
+}
+
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
+
+@end

@@ -1,0 +1,1 @@
+../../../../../NIMKit/NIMKit/Classes/NIMKit.h

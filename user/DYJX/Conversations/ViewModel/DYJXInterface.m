@@ -18,7 +18,7 @@
 
 - (void)getLasterContractsNumer:(NSInteger)pageNumber Success:(void(^)(BOOL isLastPage,BOOL doHaveData))success failed:(void(^)(NSString *errorMsg))fail{
     WeakSelf;
-    [XYProgressHUD show];
+//    [XYProgressHUD show];
     NSMutableDictionary *requestDic = [[NSMutableDictionary alloc] init];
     [requestDic setValue:[[JSExtension shared] myClientId] forKey:@"ClientId"];
     [requestDic setValue:[UserManager shared].getUserModel.MemberID forKey:@"MemberID"];
@@ -33,7 +33,7 @@
 //    NSMutableDictionary * dict = [XYBestRequest requestAllDataWithApi_ID:@"Conversations" request_data:requestDic];
 
     [XYNetWorking XYPOST:@"Conversations" params:requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
-        [XYProgressHUD svHUDDismiss];
+//        [XYProgressHUD svHUDDismiss];
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             self.lasterList = [DYJOLatestListModel mj_objectWithKeyValues:responseObject];
             self.lasterList.Result = [NSArray modelArrayWithClass:[DYJOResult class] json:[responseObject objectForKey:@"Result"]];
@@ -43,7 +43,7 @@
             [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [XYProgressHUD svHUDDismiss];
+//        [XYProgressHUD svHUDDismiss];
         [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
     }];
 }

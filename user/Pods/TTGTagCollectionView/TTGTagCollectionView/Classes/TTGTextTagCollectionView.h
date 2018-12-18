@@ -8,7 +8,7 @@
 
 /// TTGTextTagConfig
 
-@interface TTGTextTagConfig : NSObject
+@interface TTGTextTagConfig : NSObject;
 // Text font
 @property (strong, nonatomic) UIFont *tagTextFont;
 
@@ -32,6 +32,10 @@
 // Corner radius
 @property (assign, nonatomic) CGFloat tagCornerRadius;
 @property (assign, nonatomic) CGFloat tagSelectedCornerRadius;
+@property (assign, nonatomic) Boolean roundTopRight;
+@property (assign, nonatomic) Boolean roundTopLeft;
+@property (assign, nonatomic) Boolean roundBottomRight;
+@property (assign, nonatomic) Boolean roundBottomLeft;
 
 // Border
 @property (assign, nonatomic) CGFloat tagBorderWidth;
@@ -54,6 +58,7 @@
 
 // Extra data. You can use this to bind any object you want to each tag.
 @property (nonatomic, strong) NSObject *extraData;
+
 @end
 
 /// TTGTextTagCollectionView
@@ -135,6 +140,11 @@
 // Scroll indicator
 @property (nonatomic, assign) BOOL showsHorizontalScrollIndicator;
 @property (nonatomic, assign) BOOL showsVerticalScrollIndicator;
+
+// Tap blank area callback
+@property (nonatomic, copy) void (^onTapBlankArea)(CGPoint location);
+// Tap all area callback
+@property (nonatomic, copy) void (^onTapAllArea)(CGPoint location);
 
 // Reload
 - (void)reload;

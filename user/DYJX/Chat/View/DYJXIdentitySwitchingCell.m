@@ -97,7 +97,12 @@
 -(void)setNumber:(NSInteger)number {
     if (number && number > 0) {
         [self.dotNumber setHidden:false];
-        self.dotNumber.text = [NSString stringWithFormat:@"%ld",(long)number];
+        if (number > 99) {
+            self.dotNumber.text = @"99";
+        }
+        else {
+            self.dotNumber.text = [NSString stringWithFormat:@"%ld",(long)number];
+        }
     }
     else {
         [self.dotNumber setHidden:true];

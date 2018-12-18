@@ -55,7 +55,21 @@ static NSString *headerID=@"headerID";
                                              selector:@selector(didReceiveMessageNotification:)
                                                  name:RCKitDispatchMessageNotification
                                                object:nil];
+
+    // 已读
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:XY_IM_AlreadRead object:nil];
+
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)reloadTableView {
+    [self.tableView reloadData];
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [delegate updataBadgeNumber];
 }
 
 - (void)initNavigation{
@@ -101,65 +115,90 @@ static NSString *headerID=@"headerID";
 
 #pragma mark - 收到消息监听
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
-    __weak typeof(self) blockSelf_ = self;
+    dispatch_semaphore_wait([JSExtension shared].semaphore, 2);
+
     //处理好友请求
     RCMessage *message = notification.object;
-    NSLog(@"%ld",message.conversationType);
-//    if ([message.content isMemberOfClass:[RCContactNotificationMessage class]]) {
-//
-//        if (message.conversationType != ConversationType_SYSTEM) {
-//            NSLog(@"好友消息要发系统消息！！！");
-//#if DEBUG
-//            @throw [[NSException alloc] initWithName:@"error" reason:@"好友消息要发系统消息！！！" userInfo:nil];
-//#endif
-//        }
-//        RCContactNotificationMessage *_contactNotificationMsg = (RCContactNotificationMessage *)message.content;
-//        if (_contactNotificationMsg.sourceUserId == nil || _contactNotificationMsg.sourceUserId.length == 0) {
-//            return;
-//        }
-        //该接口需要替换为从消息体获取好友请求的用户信息
-//        [RCDHTTPTOOL getUserInfoByUserID:_contactNotificationMsg.sourceUserId
-//                              completion:^(RCUserInfo *user) {
-//                                  RCDUserInfo *rcduserinfo_ = [RCDUserInfo new];
-//                                  rcduserinfo_.name = user.name;
-//                                  rcduserinfo_.userId = user.userId;
-//                                  rcduserinfo_.portraitUri = user.portraitUri;
-//
-//                                  RCConversationModel *customModel = [RCConversationModel new];
-//                                  customModel.conversationModelType = RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION;
-//                                  customModel.extend = rcduserinfo_;
-//                                  customModel.conversationType = message.conversationType;
-//                                  customModel.targetId = message.targetId;
-//                                  customModel.sentTime = message.sentTime;
-//                                  customModel.receivedTime = message.receivedTime;
-//                                  customModel.senderUserId = message.senderUserId;
-//                                  customModel.lastestMessage = _contactNotificationMsg;
-//                                  //[_myDataSource insertObject:customModel atIndex:0];
-//
-//                                  // local cache for userInfo
-//                                  NSDictionary *userinfoDic =
-//                                  @{@"username" : rcduserinfo_.name, @"portraitUri" : rcduserinfo_.portraitUri};
-//                                  [[NSUserDefaults standardUserDefaults]
-//                                   setObject:userinfoDic
-//                                   forKey:_contactNotificationMsg.sourceUserId];
-//                                  [[NSUserDefaults standardUserDefaults] synchronize];
-//
-//                                  dispatch_async(dispatch_get_main_queue(), ^{
-//                                      //调用父类刷新未读消息数
-//                                      [blockSelf_ refreshConversationTableViewWithConversationModel:customModel];
-//                                      [blockSelf_ notifyUpdateUnreadMessageCount];
-//
-//                                      //当消息为RCContactNotificationMessage时，没有调用super，如果是最后一条消息，可能需要刷新一下整个列表。
-//                                      //原因请查看super didReceiveMessageNotification的注释。
-//                                      NSNumber *left = [notification.userInfo objectForKey:@"left"];
-//                                      if (0 == left.integerValue) {
-//                                          [super refreshConversationTableViewIfNeeded];
-//                                      }
-//                                  });
-//                              }];
-//    } else {
-//        //调用父类刷新未读消息数
-//    }
+    NSDictionary *extraDic = nil;
+    NSLog(@"%@",([UserManager shared].dataArray.firstObject.Id));
+    // 处理未读消息
+    if ([message.content isKindOfClass:[RCTextMessage class]]) {
+        RCTextMessage *textMessage = (RCTextMessage *)(message.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+    }
+    else if ([message.content isKindOfClass:[RCImageMessage class]]) {
+        RCImageMessage *textMessage = (RCImageMessage *)(message.content);
+         extraDic = [self dictionaryWithJsonString:textMessage.extra];
+    }
+    else if ([message.content isKindOfClass:[RCVoiceMessage class]]) {
+        RCVoiceMessage *textMessage = (RCVoiceMessage *)(message.content);
+         extraDic = [self dictionaryWithJsonString:textMessage.extra];
+    }
+    else if ([message.content isKindOfClass:[RCLocationMessage class]]) {
+        RCLocationMessage *textMessage = (RCLocationMessage *)(message.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+    }
+
+    if ([NSString stringWithFormat:@"%@",extraDic[@"TargetType"]].integerValue == 0) { // 单聊
+        if ([extraDic[@"TargetId"] isEqualToString:[UserManager shared].getUserModel.UserID]) {
+            for (DYJXIdentitySwitchingModel *model in [UserManager shared].dataArray) {
+                if ([model.Id isEqualToString:extraDic[@"TargetId"]]) {
+                    [[DataBaseManager shared] insertModel:message identifyId:model.Id conversionId:extraDic[@"ConversationId"]];
+                }
+            }
+        }
+        else { // 身份收到消息
+            for (DYJXIdentitySwitchingModel *model in [UserManager shared].dataArray) {
+                if ([model.Id isEqualToString:extraDic[@"TargetId"]] || [model.Id isEqualToString:extraDic[@"FromCertifyId"]]) {
+                    [[DataBaseManager shared] insertModel:message identifyId:model.Id conversionId:extraDic[@"ConversationId"]];
+                }
+            }
+        }
+    }
+    else {
+        if ([NSString stringWithFormat:@"%@",extraDic[@"GType"]].integerValue == 1) { // 公司群群聊
+            for (DYJXIdentitySwitchingModel *model in [UserManager shared].dataArray) {
+                if ([model.Id isEqualToString:[UserManager shared].getUserModel.UserID]) {
+                    [[DataBaseManager shared] insertModel:message identifyId:model.Id conversionId:extraDic[@"ConversationId"]];
+                }
+            }
+        }
+        else { // 外部群群聊
+            for (DYJXIdentitySwitchingModel *model in [UserManager shared].dataArray) {
+                if ([model.Id isEqualToString:extraDic[@"GMembers"]]) {
+                    [[DataBaseManager shared] insertModel:message identifyId:model.Id conversionId:extraDic[@"ConversationId"]];
+                }
+            }
+        }
+    }
+
+    dispatch_semaphore_signal([JSExtension shared].semaphore);
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate updataBadgeNumber];
+    });
+}
+
+
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -222,8 +261,7 @@ static NSString *headerID=@"headerID";
         }
     }
     tableCell.goodsNameLabel.text = [NSString stringWithFormat:@"ID:%@ TEL:", [self.viewModel GroupNumberString:indexPath]];
-
-
+    [tableCell setNumber:[[DataBaseManager shared] unreadCountIdentifyId:identity.Id]];
     tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return tableCell;
 }
@@ -237,22 +275,6 @@ static NSString *headerID=@"headerID";
     }
     return NO;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    return 60;
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    DYJXIdentitySwitchingHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerID];
-//    if (header == nil) {
-//        header = [[DYJXIdentitySwitchingHeader alloc] initWithReuseIdentifier:headerID];
-//    }
-//
-//    [header.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[self.viewModel sectionHeadericonImageUrl:section]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-//    header.goodsNameLabel.text = [self.viewModel sectionHeaderGroupName:section];
-//    header.sellingPointLable.text = [self.viewModel sectionHeaderGroupNumberString:section];
-//    return header;
-//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];

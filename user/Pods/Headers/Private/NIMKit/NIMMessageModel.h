@@ -1,0 +1,1 @@
+../../../../../NIMKit/NIMKit/Classes/Sections/Model/NIMMessageModel.h

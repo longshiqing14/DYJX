@@ -12,7 +12,6 @@
 @implementation NSObject (Extension)
 
 +(void)setModel:(id)model forKey:(NSString *)key {
-    dispatch_semaphore_wait([JSExtension shared].semaphore, 2);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (model == nil) {
         [defaults removeObjectForKey:key];
@@ -23,11 +22,9 @@
         [defaults setObject:data forKey:key];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    dispatch_semaphore_signal([JSExtension shared].semaphore);
 }
 
 +(id)getModelWithKey:(NSString *)key Class:(Class)classA {
-    dispatch_semaphore_wait([JSExtension shared].semaphore, 2);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *data = [defaults objectForKey:key];
     [defaults synchronize];
@@ -36,7 +33,6 @@
         return [classA modelWithJSON:modelJson];
     }
     return nil;
-    dispatch_semaphore_signal([JSExtension shared].semaphore);
 }
 
 @end
