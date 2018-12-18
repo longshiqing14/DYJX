@@ -1,0 +1,1 @@
+../../../../../NIMKit/NIMKit/Classes/Sections/Contact/NIMContactDataItem.h

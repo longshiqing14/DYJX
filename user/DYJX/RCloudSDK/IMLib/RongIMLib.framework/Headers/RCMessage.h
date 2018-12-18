@@ -25,6 +25,11 @@
 @interface RCMessage : NSObject <NSCopying, NSCoding>
 
 /*!
+ 地理位置的二维坐标
+ */
+@property(nonatomic, assign) CLLocationCoordinate2D location;
+
+/*!
  会话类型
  */
 @property(nonatomic, assign) RCConversationType conversationType;

@@ -9,6 +9,7 @@
 #import "BaseListViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "DYChatViewController.h"
+#import "JXChatViewController.h"
 #import <UserNotifications/UserNotifications.h>
 #import <RongIMKit/RongIMKit.h>
 #import "AppDelegate.h"
@@ -125,18 +126,21 @@
 //新建聊天
 -(void)newChar{
     //新建一个聊天会话View Controller对象,建议这样初始化
-    DYChatViewController *chat = [[DYChatViewController alloc] initWithConversationType:ConversationType_PRIVATE
-                                                     targetId:@"user001"];
+//    DYChatViewController *chat = [[DYChatViewController alloc] initWithConversationType:ConversationType_PRIVATE
+//                                                     targetId:@"user001"];
+//
+//    //    //设置会话的类型，如单聊、讨论组、群聊、聊天室、客服、公众服务会话等
+//    //    chat.conversationType = ConversationType_PRIVATE;
+//    //    //设置会话的目标会话ID。（单聊、客服、公众服务会话为对方的ID，讨论组、群聊、聊天室为会话的ID）
+//    //
+//    //
+//    //    //设置聊天会话界面要显示的标题
+//    //    chat.title = @"user001";
+//    //显示聊天会话界面
+//    [self.navigationController pushViewController:chat animated:YES];
 
-    //    //设置会话的类型，如单聊、讨论组、群聊、聊天室、客服、公众服务会话等
-    //    chat.conversationType = ConversationType_PRIVATE;
-    //    //设置会话的目标会话ID。（单聊、客服、公众服务会话为对方的ID，讨论组、群聊、聊天室为会话的ID）
-    //
-    //
-    //    //设置聊天会话界面要显示的标题
-    //    chat.title = @"user001";
-    //显示聊天会话界面
-    [self.navigationController pushViewController:chat animated:YES];
+//    JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:[NIMSession ]];
+//    [self.navigationController pushViewControlle[NIMSession ]:chatVC animated:YES];
 }
 
 //重写RCConversationListViewController的onSelectedTableRow事件

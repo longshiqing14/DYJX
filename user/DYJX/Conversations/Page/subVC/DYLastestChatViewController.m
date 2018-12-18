@@ -14,6 +14,7 @@
 #import "DYJXLasterListCell.h"
 #import "JSExtension.h"
 #import "DYChatViewController.h"
+#import "JXChatViewController.h"
 
 @interface DYLastestChatViewController ()
 
@@ -43,8 +44,26 @@
     }];
 
     [self reloadData];
+
+    //设置接收消息代理
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveMessageNotification:)
+                                                 name:RCKitDispatchMessageNotification
+                                               object:nil];
+
+    // 已读
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:XY_IM_AlreadRead object:nil];
 }
 
+- (void)didReceiveMessageNotification:(NSNotification *)notification {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self reloadData];
+    });
+}
+
+-(void)reloadTableView {
+    [self.conversationListTableView reloadData];
+}
 
 - (void)onRCIMReceiveMessage:(RCMessage *)message
                         left:(int)left {
@@ -58,20 +77,21 @@
     RCConversationModel *conversationModel = self.conversationListDataSource[indexPath.row];
     NSDictionary *dict = (NSDictionary *)model.extend;
     RCConversationType conversationType = ConversationType_PRIVATE;
+    NIMSessionType type = NIMSessionTypeP2P;
     if ([dict[@"type"] isEqualToString:@"1"]) {
         conversationType = ConversationType_GROUP;
+        type = NIMSessionTypeTeam;
     }
     else if ([dict[@"type"] isEqualToString:@"0"]) {
         conversationType = ConversationType_PRIVATE;
+        type = NIMSessionTypeP2P;
     }
-    conversationType = RC_CONVERSATION_MODEL_TYPE_PUBLIC_SERVICE;
 
-    DYChatViewController *conversationVC = [[DYChatViewController alloc] initWithConversationType:conversationType targetId:conversationModel.targetId];
-    conversationVC.conversationType = conversationType;
-    conversationVC.chatModel = conversationModel;
-    conversationVC.targetId = conversationModel.targetId;
-    conversationVC.title = model.targetId;
-    [self.navigationController pushViewController:conversationVC animated:YES];
+    [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:model.targetId];
+
+    NIMSession *session = [NIMSession session:model.targetId type:type];
+    JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+    [self.navigationController pushViewController:chatVC animated:YES];
 }
 
 
@@ -107,7 +127,29 @@
         RCConversationModel *model = [[RCConversationModel alloc]init];
         model.conversationModelType = RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION;
         model.conversationTitle = result.TargetName;
-        model.targetId = result.TargetId;
+        if (result.LastMsg[@"RowData"]) {
+            NSString *body = [NSString stringWithFormat:@"%@",result.LastMsg[@"RowData"]];
+            NSDictionary *dic = [body stringToDictionary];
+            if (dic[@"extra"]) {
+                NSDictionary *dict = [dic[@"extra"] stringToDictionary];
+                model.targetId = dict[@"ConversationId"];
+                if (model.targetId) {
+                    NSArray *array = [[DataBaseManager shared] getModel:[RCMessage new] identifyId:[JSExtension shared].myIdentityId conversionId:model.targetId];
+                    if (!array || !array.count) {
+                        continue;
+                    }
+                }
+                else {
+                    continue;
+                }
+            }
+            else {
+                continue;
+            }
+        }
+        else {
+            continue;
+        }
         model.unreadMessageCount = 1;
         NSMutableDictionary *dictory = [[NSMutableDictionary alloc] init];
         if (result.LastMsg[@"CreateOn"]) {
@@ -197,6 +239,9 @@
     RCConversationModel *model = self.conversationListDataSource[indexPath.row];
     cell.title.text = model.conversationTitle;
     NSDictionary *dict = (NSDictionary *)model.extend;
+
+
+    [cell setNumber:[[DataBaseManager shared] unreadCountIdentifyId:[JSExtension shared].myIdentityId conversionId:model.targetId]];
 
     if (dict[@"UpdateOn"]) {
         cell.timeLabel.text = dict[@"UpdateOn"];

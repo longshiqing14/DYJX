@@ -1,0 +1,1 @@
+../../../../../NIMKit/NIMKit/Classes/Sections/Contact/ContactGroup/NIMGroupedUsrInfo.h

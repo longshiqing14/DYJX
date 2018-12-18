@@ -1,0 +1,1 @@
+../../../../../NIMKit/NIMKit/Classes/Sections/Session/Config/Content/NIMTextContentConfig.h

@@ -32,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 // 选择身份的model
 @property (nonatomic, strong)DYJXIdentitySwitchingModel *swichModel;
 
+// 所有的身份
+@property (nonatomic, strong) NSMutableArray<DYJXIdentitySwitchingModel*> *dataArray;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

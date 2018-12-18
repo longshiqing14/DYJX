@@ -58,6 +58,9 @@
 #import "NSObject+Extension.h"
 #import "UserManager.h"
 #import "NSString+Tool.h"
+#import <NIMSDK/NIMSDK.h>
+#import <RongIMKit/RongIMKit.h>
+#import "DataBaseManager.h"
 
 #define RETURN_CODE_  @"RETURN_CODE"
 #define RETURN_DESC_  @"RETURN_DESC"

@@ -121,6 +121,8 @@
                     
                 }];
 
+                [UserManager shared].dataArray = self.dataArray;
+
                 success();
                 
             }else{
@@ -172,6 +174,7 @@
                 identitySwitchingModel.NumberString = weakSelf.resultUserInfoModel.NumberString;
                 identitySwitchingModel.GroupName = weakSelf.resultUserInfoModel.Business.IMInfo.NickName;
                 identitySwitchingModel.GroupHeadImg = weakSelf.resultUserInfoModel.Business.IMInfo.HeadImgUrl;
+                identitySwitchingModel.Id = userModel.UserID;
                 [weakSelf.dataArray addObject:identitySwitchingModel];
                 AppDelegate *appD = (AppDelegate *)[UIApplication sharedApplication].delegate;
                 if (appD) {
