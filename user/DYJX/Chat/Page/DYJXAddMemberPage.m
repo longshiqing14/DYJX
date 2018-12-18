@@ -10,6 +10,7 @@
 #import "DYJXAddMemberTopView.h"
 #import "DYJXAddMemberViewModel.h"
 #import "DYJXAddMemberCollectionViewCell.h"
+#import "DYJXSelectMemberPage.h"
 
 @interface DYJXAddMemberPage ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) DYJXAddMemberTopView *addMemberTopView;
@@ -72,17 +73,17 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
 //    return [self.viewModel numberOfCellectionItem];
-    return 13;
+    return self.membersArray.count;
 
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     DYJXAddMemberCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"DYJXAddMemberCollectionViewCell" forIndexPath:indexPath];
-    cell.layer.cornerRadius = (self.view.frame.size.width - 30 - 15*4)/5/2;
-    cell.layer.masksToBounds = YES;
-    
-    
+    cell.iconImage.layer.cornerRadius = (self.view.frame.size.width - 30 - 15*4)/5/2;
+    cell.iconImage.layer.masksToBounds = YES;
+    [cell.iconImage setImageWithURL:[NSURL URLWithString:[self.membersArray[indexPath.row].Business.IMInfo.HeadImgUrl XYImageURL]] placeholder:[UIImage imageNamed:@"btn_user_small"]];
+    cell.nickName.text = self.membersArray[indexPath.row].DisplayName;
     return cell;
     
 }
@@ -94,7 +95,7 @@
 #pragma mark -UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake((self.view.frame.size.width - 30 - 15*4)/5 , (self.view.frame.size.width - 30 - 15*4)/5 );
+    return CGSizeMake((self.view.frame.size.width - 30 - 15*4)/5 , (self.view.frame.size.width - 30 - 15*4)/5 + 15 );
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
@@ -132,10 +133,22 @@
 }
 
 - (DYJXAddMemberTopView *)addMemberTopView{
+    WeakSelf;
     if (!_addMemberTopView) {
        _addMemberTopView = [[NSBundle mainBundle] loadNibNamed:@"DYJXAddMemberTopView" owner:self options:nil].firstObject;
+        _addMemberTopView.block = ^(NSInteger OperatorType) {
+            DYJXSelectMemberPage *selectMemberPage = [[DYJXSelectMemberPage alloc]init];
+            [weakSelf.navigationController pushViewController:selectMemberPage animated:YES];
+        };
     }
     return _addMemberTopView;
+}
+
+- (NSMutableArray<DJJXMembers *> *)membersArray{
+    if (!_membersArray) {
+        _membersArray = [NSMutableArray array];
+    }
+    return _membersArray;
 }
 
 - (void)didReceiveMemoryWarning {

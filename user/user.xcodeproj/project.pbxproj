@@ -267,6 +267,7 @@
 		48DE38DA1FDE20FC0006528C /* JXFoodheaderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DE38D91FDE20FC0006528C /* JXFoodheaderViewModel.m */; };
 		48DE38DE1FDE35160006528C /* JXFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DE38DD1FDE35160006528C /* JXFoodCell.m */; };
 		48DE38E11FDF71290006528C /* JXClassificationByWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DE38E01FDF71290006528C /* JXClassificationByWebVC.m */; };
+		48E24FB321C75C9700CC7D9E /* DYJXSelectMemberPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E24FB221C75C9700CC7D9E /* DYJXSelectMemberPage.m */; };
 		48E8A4A821B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */; };
 		48E8A4AB21B90ED50046EA0E /* CompanyTitleAndArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AA21B90ED50046EA0E /* CompanyTitleAndArrowCell.m */; };
 		48E8A4BC21BA1F8A0046EA0E /* DYJXXYBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AC21BA1F850046EA0E /* DYJXXYBusines.m */; };
@@ -1587,6 +1588,8 @@
 		48DE38DD1FDE35160006528C /* JXFoodCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXFoodCell.m; sourceTree = "<group>"; };
 		48DE38DF1FDF71290006528C /* JXClassificationByWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXClassificationByWebVC.h; sourceTree = "<group>"; };
 		48DE38E01FDF71290006528C /* JXClassificationByWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXClassificationByWebVC.m; sourceTree = "<group>"; };
+		48E24FB121C75C9700CC7D9E /* DYJXSelectMemberPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXSelectMemberPage.h; sourceTree = "<group>"; };
+		48E24FB221C75C9700CC7D9E /* DYJXSelectMemberPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXSelectMemberPage.m; sourceTree = "<group>"; };
 		48E8A4A621B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndSelcetedArrowCell.h; sourceTree = "<group>"; };
 		48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyTitleAndSelcetedArrowCell.m; sourceTree = "<group>"; };
 		48E8A4A921B90ED50046EA0E /* CompanyTitleAndArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndArrowCell.h; sourceTree = "<group>"; };
@@ -3583,6 +3586,8 @@
 				4826A47A21BF552400EAF963 /* DYJXQRCodePage.m */,
 				4826A47C21BFA78D00EAF963 /* DYJXAddMemberPage.h */,
 				4826A47D21BFA78D00EAF963 /* DYJXAddMemberPage.m */,
+				48E24FB121C75C9700CC7D9E /* DYJXSelectMemberPage.h */,
+				48E24FB221C75C9700CC7D9E /* DYJXSelectMemberPage.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -8028,6 +8033,7 @@
 			files = (
 				48B5737420479DC00028A8FA /* JXElectronicInvoicePage.m in Sources */,
 				DE1E34B720107A2E0031C59D /* NSString+Tool.m in Sources */,
+				48E24FB321C75C9700CC7D9E /* DYJXSelectMemberPage.m in Sources */,
 				DEF7C9B22005BEDB00B53AAC /* KLCPopup.m in Sources */,
 				E1BD200421C4A75D00C6B3D9 /* NIMInputMoreContainerView.m in Sources */,
 				DE9110082085DD5600BDDABF /* JXOderGoodsHeadView.m in Sources */,

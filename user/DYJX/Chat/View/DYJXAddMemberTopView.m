@@ -10,12 +10,27 @@
 
 @implementation DYJXAddMemberTopView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (IBAction)addMemberClick:(UIButton *)sender {
+    if (self.block) {
+        self.block(OperatorMemberAdd);
+    }
 }
-*/
+
+- (IBAction)deleteMemberClick:(UIButton *)sender {
+    if (self.block) {
+        self.block(OperatorMemberDelete);
+    }
+}
+
+- (IBAction)giveAccsessAdminClick:(UIButton *)sender {
+    if (self.block) {
+        self.block(OperatorMemberAccessAdmin);
+    }
+}
+- (IBAction)fireAdminClick:(UIButton *)sender {
+    if (self.block) {
+        self.block(OperatorMemberFireAdmin);
+    }
+}
 
 @end

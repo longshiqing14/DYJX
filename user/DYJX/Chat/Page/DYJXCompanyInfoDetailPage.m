@@ -22,6 +22,7 @@
 #import "DYJXXYGroupByIdResponse.h"
 #import "DYJXQRCodePage.h"
 #import "DYJXAddMemberPage.h"
+#import "DJJXMembers.h"
 
 static NSString *kGroupDetailModelTipsFooter = @"kGroupDetailModelTipsFooter";
 static NSString *kGroupDetailModelBusinessLicenceFooter = @"kGroupDetailModelBusinessLicenceFooter";
@@ -208,7 +209,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             case 4:
             {
                 CompanyTitleAndArrowCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndArrowCell forIndexPath:indexPath];
-                titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
+                titleAndContentCell.titleLb.text = [NSString stringWithFormat:@"%@(%ld人)",[self.viewModel content:indexPath],self.groupByIdResponse.Result.Members.count];
                 //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
                 
@@ -218,7 +219,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             case 5:
             {
                 CompanyTitleAndArrowCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelCompanyTitleAndArrowCell forIndexPath:indexPath];
-                titleAndContentCell.titleLb.text = [self.viewModel content:indexPath];
+                titleAndContentCell.titleLb.text = [NSString stringWithFormat:@"%@(%ld个)",[self.viewModel content:indexPath],self.groupByIdResponse.Result.Children.count];
                 //                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
                 cell = titleAndContentCell;
                 
@@ -428,6 +429,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
     if (indexPath.section == 0) {
         if (indexPath.row == 4) {
             DYJXAddMemberPage *addMemberPage = [[DYJXAddMemberPage alloc]init];
+            addMemberPage.membersArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.Members] mutableCopy];
             [self.navigationController pushViewController:addMemberPage animated:YES];
         }
     }
