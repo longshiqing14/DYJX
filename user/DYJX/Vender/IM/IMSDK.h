@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong)ChatManager *chatManager;
 @property (nonatomic, strong)ConversionManager *conversionManager;
+@property (nonatomic, strong)UIImageView *imageView;
+
+@property (nonatomic) dispatch_semaphore_t semaphore;
 
 @end
 

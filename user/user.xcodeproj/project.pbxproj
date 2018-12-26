@@ -888,6 +888,8 @@
 		E13E60FA21C3C79C00D0C4B3 /* DYJXExtraModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E60F821C3C79B00D0C4B3 /* DYJXExtraModel.m */; };
 		E13E861421C7327600B4875D /* DataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E861221C7327500B4875D /* DataBaseManager.m */; };
 		E13E861721C7328200B4875D /* YTKKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E13E861521C7328100B4875D /* YTKKeyValueStore.m */; };
+		E1419A0021CCDC7D0067AE2E /* DYJXSendMsgReq.m in Sources */ = {isa = PBXBuildFile; fileRef = E14199FE21CCDC7C0067AE2E /* DYJXSendMsgReq.m */; };
+		E1419A0121CCDC7D0067AE2E /* DYJXData.m in Sources */ = {isa = PBXBuildFile; fileRef = E14199FF21CCDC7D0067AE2E /* DYJXData.m */; };
 		E15766B421C91098003A5C25 /* NIMSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15766B321C91098003A5C25 /* NIMSDK.framework */; };
 		E15766B521C911BE003A5C25 /* NIMSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15766B321C91098003A5C25 /* NIMSDK.framework */; };
 		E15766B621C911BE003A5C25 /* NIMSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E15766B321C91098003A5C25 /* NIMSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1056,6 +1058,7 @@
 		E19DC8CC219ACC7B00C86478 /* DJCompanyChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8CB219ACC7B00C86478 /* DJCompanyChatPage.m */; };
 		E19DC8CF219ACC9100C86478 /* DJGroupChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */; };
 		E19DC8D3219AE7E600C86478 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8D2219AE7E600C86478 /* BaseModel.m */; };
+		E1ACF2F121D39BEC0045F655 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACF2F021D39BEC0045F655 /* UIImage+fixOrientation.m */; };
 		E1B1178B219D4F0D00C96B3E /* SCAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B11789219D4F0C00C96B3E /* SCAccountManager.m */; };
 		E1B1178D219D58A800C96B3E /* Pandora in Resources */ = {isa = PBXBuildFile; fileRef = E1B1178C219D58A800C96B3E /* Pandora */; };
 		E1B5291E219FB9B4008B27A5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B5291D219FB9B3008B27A5 /* libiconv.tbd */; };
@@ -2704,6 +2707,10 @@
 		E13E861321C7327500B4875D /* DataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseManager.h; sourceTree = "<group>"; };
 		E13E861521C7328100B4875D /* YTKKeyValueStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKKeyValueStore.m; sourceTree = "<group>"; };
 		E13E861621C7328200B4875D /* YTKKeyValueStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKKeyValueStore.h; sourceTree = "<group>"; };
+		E14199FC21CCDC7B0067AE2E /* DYJXData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXData.h; sourceTree = "<group>"; };
+		E14199FD21CCDC7C0067AE2E /* DYJXSendMsgReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXSendMsgReq.h; sourceTree = "<group>"; };
+		E14199FE21CCDC7C0067AE2E /* DYJXSendMsgReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXSendMsgReq.m; sourceTree = "<group>"; };
+		E14199FF21CCDC7D0067AE2E /* DYJXData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXData.m; sourceTree = "<group>"; };
 		E15766B321C91098003A5C25 /* NIMSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NIMSDK.framework; sourceTree = "<group>"; };
 		E15766BA21C9122C003A5C25 /* NIMKitResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NIMKitResource.bundle; sourceTree = "<group>"; };
 		E15766BB21C9122C003A5C25 /* NIMKitEmoticon.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NIMKitEmoticon.bundle; sourceTree = "<group>"; };
@@ -3043,6 +3050,8 @@
 		E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGroupChatPage.m; sourceTree = "<group>"; };
 		E19DC8D1219AE7E600C86478 /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		E19DC8D2219AE7E600C86478 /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		E1ACF2EF21D39BEC0045F655 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		E1ACF2F021D39BEC0045F655 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		E1B11789219D4F0C00C96B3E /* SCAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAccountManager.m; sourceTree = "<group>"; };
 		E1B1178A219D4F0D00C96B3E /* SCAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAccountManager.h; sourceTree = "<group>"; };
 		E1B1178C219D58A800C96B3E /* Pandora */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pandora; sourceTree = "<group>"; };
@@ -6746,6 +6755,17 @@
 			path = Extra;
 			sourceTree = "<group>";
 		};
+		E14199FB21CCDC640067AE2E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E14199FC21CCDC7B0067AE2E /* DYJXData.h */,
+				E14199FF21CCDC7D0067AE2E /* DYJXData.m */,
+				E14199FD21CCDC7C0067AE2E /* DYJXSendMsgReq.h */,
+				E14199FE21CCDC7C0067AE2E /* DYJXSendMsgReq.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E15766B121C91098003A5C25 /* NIMSDK_LITE */ = {
 			isa = PBXGroup;
 			children = (
@@ -7374,6 +7394,7 @@
 		E19DC8B2219AC29800C86478 /* IM */ = {
 			isa = PBXGroup;
 			children = (
+				E14199FB21CCDC640067AE2E /* Models */,
 				E15766B821C9122C003A5C25 /* NIMKit */,
 				E15766B121C91098003A5C25 /* NIMSDK_LITE */,
 				E13E861621C7328200B4875D /* YTKKeyValueStore.h */,
@@ -7395,6 +7416,8 @@
 				E1203C0C21C64D6900418055 /* ConversionManager.m */,
 				E13E861321C7327500B4875D /* DataBaseManager.h */,
 				E13E861221C7327500B4875D /* DataBaseManager.m */,
+				E1ACF2EF21D39BEC0045F655 /* UIImage+fixOrientation.h */,
+				E1ACF2F021D39BEC0045F655 /* UIImage+fixOrientation.m */,
 			);
 			path = IM;
 			sourceTree = "<group>";
@@ -7863,6 +7886,7 @@
 				489A3F861FB556D40084E2BC /* YWDTools.m in Sources */,
 				48B8308F1FB9AF9E0019F503 /* JXBaseGoodsModel.m in Sources */,
 				DE51B1471FF24F7B0036258B /* JXOrderDetailSubClassOrderStatusHeatView.m in Sources */,
+				E1419A0121CCDC7D0067AE2E /* DYJXData.m in Sources */,
 				489A3F851FB5567F0084E2BC /* YDBAlertView.m in Sources */,
 				E157685621C9122D003A5C25 /* NIMCommonTableDelegate.m in Sources */,
 				CBE85A131F6112C800E1E4EA /* XYHomeAllNet.m in Sources */,
@@ -8255,6 +8279,7 @@
 				DE71B15B208744DD00467E06 /* MBProgressHUD+PYExtension.m in Sources */,
 				4848B7A1208888440093D8C4 /* JXRefundTextModel.m in Sources */,
 				CB4287621F66326E004C43C1 /* XYOrderDetailSubClassOrderDetailVC.m in Sources */,
+				E1419A0021CCDC7D0067AE2E /* DYJXSendMsgReq.m in Sources */,
 				E157683A21C9122D003A5C25 /* NIMKitMessageAtModel.m in Sources */,
 				CB4287711F66AB5C004C43C1 /* XYOrderDetailSubClassOrderDetailPayTVCell.m in Sources */,
 				E15767F121C9122D003A5C25 /* NIMKitDevice.m in Sources */,
@@ -8389,6 +8414,7 @@
 				CB123C451F98D10A00CD4429 /* ShoppingCartTool.m in Sources */,
 				E157681D21C9122D003A5C25 /* NIMTimestampModel.m in Sources */,
 				DE4364D61FCBDF66002976B0 /* JXNotUsedViewController.m in Sources */,
+				E1ACF2F121D39BEC0045F655 /* UIImage+fixOrientation.m in Sources */,
 				DE36FA421FCE5C9100ED184E /* JXCouponHeatView.m in Sources */,
 				CB063E171F9F1F9300A9395D /* XYDatePickerView.m in Sources */,
 				489A3F3C1FB53B140084E2BC /* JXSearchHistoryCollectionReusableFooterView.m in Sources */,

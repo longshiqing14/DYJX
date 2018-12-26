@@ -13,13 +13,13 @@
 
 @property (nonatomic, assign) BOOL AdminSay;
 @property (nonatomic, assign) BOOL CanNotSearch;
-@property (nonatomic, strong) NSString * HeadImgUrl;
-@property (nonatomic, strong) NSString * IdField;
-@property (nonatomic, strong) NSString * Images;
-@property (nonatomic, strong) NSString * PersonBank;
-@property (nonatomic, strong) NSString * PersonBankCardNo;
-@property (nonatomic, strong) NSString * PersonRemark;
-@property (nonatomic, strong) NSString * NickName;
+@property (nonatomic, copy) NSString * HeadImgUrl;
+@property (nonatomic, copy) NSString * IdField;
+@property (nonatomic, copy) NSString * Images;
+@property (nonatomic, copy) NSString * PersonBank;
+@property (nonatomic, copy) NSString * PersonBankCardNo;
+@property (nonatomic, copy) NSString * PersonRemark;
+@property (nonatomic, copy) NSString * NickName;
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 -(NSDictionary *)toDictionary;

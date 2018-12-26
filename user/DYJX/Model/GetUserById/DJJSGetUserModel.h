@@ -12,13 +12,13 @@
 
 @interface DJJSGetUserModel : NSObject
 
-@property (nonatomic, strong) NSString * ClientId;
+@property (nonatomic, copy) NSString * ClientId;
 @property (nonatomic, strong) NSArray * DebugMessages;
 @property (nonatomic, assign) BOOL Kicked;
-@property (nonatomic, strong) NSString * MemberID;
+@property (nonatomic, copy) NSString * MemberID;
 @property (nonatomic, strong) DJJSResult * Result;
 @property (nonatomic, assign) BOOL Succeed;
-@property (nonatomic, strong) NSString * UserID;
+@property (nonatomic, copy) NSString * UserID;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

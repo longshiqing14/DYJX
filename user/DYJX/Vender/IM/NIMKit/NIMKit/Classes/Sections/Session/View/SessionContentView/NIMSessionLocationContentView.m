@@ -28,9 +28,10 @@
         self.opaque = YES;
         UIImage *image = [UIImage nim_imageInKit:@"icon_map"];
         _imageView  = [[UIImageView alloc] initWithImage:image];
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         CALayer *maskLayer = [CALayer layer];
-        maskLayer.cornerRadius = 13.0;
+        maskLayer.cornerRadius = 0;
         maskLayer.backgroundColor = [UIColor blackColor].CGColor;
         maskLayer.frame = _imageView.bounds;
         _imageView.layer.mask = maskLayer;
@@ -40,6 +41,7 @@
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.numberOfLines = 0;
+        _titleLabel.hidden = YES;
         [self addSubview:_titleLabel];
         
     }
@@ -51,11 +53,14 @@
     [super refresh:data];
     double latitude = [NSString stringWithFormat:@"%@",data.message.extraDic[@"latitude"]].doubleValue;
     double longitude = [NSString stringWithFormat:@"%@",data.message.extraDic[@"longitude"]].doubleValue;
+    self.bubbleImageView.hidden = YES;
     if ([NSString stringWithFormat:@"%@",data.message.extraDic[@"MessageType"]].integerValue == 4) {
         self.titleLabel.text = @"位置";
+        self.imageView.image = [UIImage imageNamed:@"dyjx_location_side"];
     }
     else if ([NSString stringWithFormat:@"%@",data.message.extraDic[@"MessageType"]].integerValue == 5){
         self.titleLabel.text = @"考勤位置";
+        self.imageView.image = [UIImage imageNamed:@"dyjx_location_work"];
     }
 //    NIMLocationObject * locationObject =  (NIMLocationObject*)self.model.message.messageObject;
 //    self.titleLabel.text = locationObject.title;

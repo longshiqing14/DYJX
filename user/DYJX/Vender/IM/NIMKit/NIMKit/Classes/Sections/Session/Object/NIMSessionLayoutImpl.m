@@ -76,14 +76,14 @@
 - (void)layoutAfterRefresh
 {
     [self.refreshControl endRefreshing];
-    [self.tableView reloadData];
+    [self.tableView reloadSection:0 withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)adjustOffset:(NSInteger)row {
     if (row >= 0) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         });
     }
 }

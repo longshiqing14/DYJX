@@ -81,16 +81,29 @@
     if ([dict[@"type"] isEqualToString:@"1"]) {
         conversationType = ConversationType_GROUP;
         type = NIMSessionTypeTeam;
+        [JSExtension shared].type = 1;
+        [JSExtension shared].targetId = conversationModel.targetId;
+        [JSExtension shared].targetName = conversationModel.extend[@"targetName"];
+        [JSExtension shared].targetImg = conversationModel.extend[@"targetImg"];
     }
     else if ([dict[@"type"] isEqualToString:@"0"]) {
         conversationType = ConversationType_PRIVATE;
         type = NIMSessionTypeP2P;
+        [JSExtension shared].type = 0;
+        [JSExtension shared].targetId = conversationModel.extend[@"targetId"];
+        [JSExtension shared].targetName = conversationModel.extend[@"targetName"];
+        [JSExtension shared].targetImg = conversationModel.extend[@"targetImg"];
     }
+
+    [JSExtension shared].conversionId = conversationModel.targetId;
 
     [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:model.targetId];
 
     NIMSession *session = [NIMSession session:model.targetId type:type];
+    [JSExtension shared].session = session;
     JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+    chatVC.naviTitle = model.conversationTitle;
+    chatVC.chatModel = model;
     [self.navigationController pushViewController:chatVC animated:YES];
 }
 
@@ -100,7 +113,7 @@
     [self.viewModel getLasterContractsNumer:1 Success:^(BOOL isLastPage, BOOL doHaveData) {
         [weakSelf.conversationListTableView.mj_header endRefreshing];
         weakSelf.conversationListDataSource = [weakSelf willReloadTableData:[[NSMutableArray alloc] init]];
-        [weakSelf refreshConversationTableViewIfNeeded];
+        [weakSelf reloadTableView];
     } failed:^(NSString * _Nonnull errorMsg) {
         [weakSelf.conversationListTableView.mj_header endRefreshing];
     }];
@@ -150,6 +163,7 @@
         else {
             continue;
         }
+
         model.unreadMessageCount = 1;
         NSMutableDictionary *dictory = [[NSMutableDictionary alloc] init];
         if (result.LastMsg[@"CreateOn"]) {
@@ -189,7 +203,6 @@
                 [dictory setObject:[NSString stringWithFormat:@"%@",result.LastMsg[@"Keywords"]] forKey:@"extra"];
             }
         }
-        model.extend = dictory;
         model.senderUserId = [NSString stringWithFormat:@"%@",result.LastMsg[@"FromId"]];
         if (result.LastMsg[@"CreateBy"]) {
             model.draft = [NSString stringWithFormat:@"%@",result.LastMsg[@"CreateBy"]];
@@ -220,8 +233,40 @@
             [dictory setObject:@"0" forKey:@"type"];
         }
 
+        if ([result.TargetId isEqualToString:[UserManager shared].getUserModel.UserID]) {
+            dictory[@"targetId"] = result.FromId;
+            dictory[@"targetName"] = result.FromName;
+            dictory[@"targetImg"] = result.FromHeadImg;
+        }
+        else {
+            dictory[@"targetId"] = result.TargetId;
+            dictory[@"targetName"] = result.TargetName;
+            dictory[@"targetImg"] = result.TargetHeadImg;
+        }
+
+        model.extend = dictory;
         model.lastestMessage = content;
         model.jsonDict = result.LastMsg;
+
+//        int j = 0;
+//        BOOL isFlag = YES;
+//        NSArray *datas = [dataSource copy];
+//        for (RCConversationModel *item in datas) { // 去重
+//            if ([model.targetId isEqualToString:item.targetId]) {
+//                if ([model.extend[@"UpdateOn"] caseInsensitiveCompare:item.extend[@"UpdateOn"]] == NSOrderedDescending) {
+//                    [dataSource removeObjectAtIndex:j];
+//                    break;
+//                }
+//                else { // 小于那个时间
+//                    isFlag = NO;
+//                }
+//            }
+//            j++;
+//        }
+
+//        if (!isFlag) {
+//            continue;
+//        }
 
         [dataSource addObject:model];
     }
@@ -265,10 +310,10 @@
     }
 
     if (model.lastestMessage.senderUserInfo.portraitUri) { // 外面有图片就取外面第一层
-        [cell.porityImage sd_setImageWithURL:[NSURL URLWithString:model.lastestMessage.senderUserInfo.portraitUri] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageRetryFailed];
+        [cell.porityImage sd_setImageWithURL:[NSURL URLWithString:model.lastestMessage.senderUserInfo.portraitUri] placeholderImage:[UIImage imageNamed:@"dyjx_default_img"] options:SDWebImageRetryFailed];
     }
     else if (dict[@"extra"]) {
-        [cell.porityImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dict[@"extra"]]] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageRetryFailed];
+        [cell.porityImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dict[@"extra"]]] placeholderImage:[UIImage imageNamed:@"dyjx_default_img"] options:SDWebImageRetryFailed];
     }
     else {
 

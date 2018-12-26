@@ -25,6 +25,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,weak) id<IMChatDelegate> delegate;
 
+/**
+ *  传输消息的进度 (发送/接受附件)
+ *
+ *  @param message 消息
+ *
+ *  @return 正在传输的消息进度,如果消息不在传输,则返回0
+ */
+- (float)messageTransportProgress:(RCIMMessage *)message;
+
+-(RCIMMessage *)defaultSendMessage:(NSInteger)type sendObject:(id)sender;
+
+-(void)sendMessage:(RCIMMessage *)message success:(void(^)(id  _Nullable responseObject))success failed:(void(^)(NSString *errorMsg))fail;
+
+- (void)uploadFile:(UIImage*)image model:(RCIMMessage *)model progress:(nullable void (^)(NSProgress * _Nonnull progress))Progress Success:(void(^)(id  _Nullable responseObject))success failed:(void(^)(NSString *errorMsg))fail;
+
 @end
 
 NS_ASSUME_NONNULL_END

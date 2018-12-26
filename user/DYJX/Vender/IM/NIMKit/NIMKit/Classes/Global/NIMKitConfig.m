@@ -38,20 +38,45 @@
 - (NSArray *)defaultMediaItems
 {
     return @[[NIMMediaItem item:@"onTapMediaItemPicture:"
-                    normalImage:[UIImage nim_imageInKit:@"bk_media_picture_normal"]
-                  selectedImage:[UIImage nim_imageInKit:@"bk_media_picture_nomal_pressed"]
+                    normalImage:[UIImage imageNamed:@"dyjx_photos"]
+                  selectedImage:[UIImage imageNamed:@"dyjx_photos"]
                           title:@"相册"],
-             
+
              [NIMMediaItem item:@"onTapMediaItemShoot:"
-                    normalImage:[UIImage nim_imageInKit:@"bk_media_shoot_normal"]
-                  selectedImage:[UIImage nim_imageInKit:@"bk_media_shoot_pressed"]
+                    normalImage:[UIImage imageNamed:@"dyjx_take_photo"]
+                  selectedImage:[UIImage imageNamed:@"dyjx_take_photo"]
                           title:@"拍摄"],
-             
+
              [NIMMediaItem item:@"onTapMediaItemLocation:"
-                    normalImage:[UIImage nim_imageInKit:@"bk_media_position_normal"]
-                  selectedImage:[UIImage nim_imageInKit:@"bk_media_position_pressed"]
+                    normalImage:[UIImage imageNamed:@"dyjx_location"]
+                  selectedImage:[UIImage imageNamed:@"dyjx_location"]
                           title:@"位置"],
+
+             [NIMMediaItem item:@"onTapWorkLocation:"
+                    normalImage:[UIImage imageNamed:@"dyjx_location"]
+                  selectedImage:[UIImage imageNamed:@"dyjx_location"]
+                          title:@"考勤位置"]
              ];
+//    return @[[NIMMediaItem item:@"onTapMediaItemPicture:"
+//                    normalImage:[UIImage nim_imageInKit:@"bk_media_picture_normal"]
+//                  selectedImage:[UIImage nim_imageInKit:@"bk_media_picture_nomal_pressed"]
+//                          title:@"相册"],
+//
+//             [NIMMediaItem item:@"onTapMediaItemShoot:"
+//                    normalImage:[UIImage nim_imageInKit:@"bk_media_shoot_normal"]
+//                  selectedImage:[UIImage nim_imageInKit:@"bk_media_shoot_pressed"]
+//                          title:@"拍摄"],
+//
+//             [NIMMediaItem item:@"onTapMediaItemLocation:"
+//                    normalImage:[UIImage nim_imageInKit:@"bk_media_position_normal"]
+//                  selectedImage:[UIImage nim_imageInKit:@"bk_media_position_pressed"]
+//                          title:@"位置"],
+//
+//             [NIMMediaItem item:@"onTapMediaItemLocation:"
+//                    normalImage:[UIImage nim_imageInKit:@"bk_media_position_normal"]
+//                  selectedImage:[UIImage nim_imageInKit:@"bk_media_position_pressed"]
+//                          title:@"考勤位置"]
+//             ];
 }
 
 

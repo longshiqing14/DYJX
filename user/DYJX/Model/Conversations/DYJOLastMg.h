@@ -11,21 +11,21 @@
 
 @interface DYJOLastMg : NSObject
 
-@property (nonatomic, strong) NSString * Body;
-@property (nonatomic, strong) NSString * ConversationId;
-@property (nonatomic, strong) NSString * CreateBy;
-@property (nonatomic, strong) NSString * CreateOn;
+@property (nonatomic, copy) NSString * Body;
+@property (nonatomic, copy) NSString * ConversationId;
+@property (nonatomic, copy) NSString * CreateBy;
+@property (nonatomic, copy) NSString * CreateOn;
 @property (nonatomic, assign) BOOL Deleted;
 @property (nonatomic, assign) BOOL Disabled;
-@property (nonatomic, strong) NSString * FromCertifyId;
-@property (nonatomic, strong) NSString * FromId;
-@property (nonatomic, strong) NSString * IdField;
-@property (nonatomic, strong) NSString * ImKey;
+@property (nonatomic, copy) NSString * FromCertifyId;
+@property (nonatomic, copy) NSString * FromId;
+@property (nonatomic, copy) NSString * IdField;
+@property (nonatomic, copy) NSString * ImKey;
 @property (nonatomic, assign) NSInteger MessageType;
-@property (nonatomic, strong) NSString * RowData;
+@property (nonatomic, copy) NSString * RowData;
 @property (nonatomic, assign) NSInteger SendType;
-@property (nonatomic, strong) NSString * Target;
-@property (nonatomic, strong) NSString * TargetId;
+@property (nonatomic, copy) NSString * Target;
+@property (nonatomic, copy) NSString * TargetId;
 @property (nonatomic, assign) NSInteger TargetType;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;

@@ -34,7 +34,7 @@
     return singler;
 }
 
--(NSArray *)getModel:(RCMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
+-(NSArray *)getModel:(RCIMMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
     NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
     NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
 
@@ -50,7 +50,63 @@
     return array;
 }
 
--(void)insertModel:(RCMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
+-(BOOL)findModel:(RCIMMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
+    NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
+    NSString *tableName = [NSString stringWithFormat:@"%@%@%@",firstString,tempIdentifyId,tempConversionId];
+    [store createTableWithName:tableName];
+    lockSemaphore;
+    NSMutableArray *array = [store getObjectById:tableName fromTable:tableName];
+    if (array && array.count) {
+        array = [array mutableCopy];
+    }
+    else {
+        array = [[NSMutableArray alloc] init];
+    }
+    NSArray *models = [array copy];
+    int count = 0;
+    for (NSDictionary *dic in models) {
+        if ([dic[@"messageUId"] isEqualToString:model.messageUId]) {
+            return YES;
+        }
+        count++;
+    }
+    return NO;
+    unlockSemaphore;
+}
+
+
+-(void)playModel:(RCIMMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
+    NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
+    NSString *tableName = [NSString stringWithFormat:@"%@%@%@",firstString,tempIdentifyId,tempConversionId];
+    [store createTableWithName:tableName];
+    lockSemaphore;
+    NSMutableArray *array = [store getObjectById:tableName fromTable:tableName];
+    if (array && array.count) {
+        array = [array mutableCopy];
+    }
+    else {
+        array = [[NSMutableArray alloc] init];
+    }
+    NSArray *models = [array copy];
+    int count = 0;
+    for (NSDictionary *dic in models) {
+        if ([dic[@"messageUId"] isEqualToString:model.messageUId]) {
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:dic];
+            dict[@"isPlayed"] = @(YES);
+            [array replaceObjectAtIndex:count withObject:dict];
+        }
+        count++;
+    }
+
+    [store putObject:array withId:tableName intoTable:tableName];
+    unlockSemaphore;
+}
+
+-(void)insertModel:(RCIMMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
     NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
     NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
     YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
@@ -65,12 +121,24 @@
         array = [[NSMutableArray alloc] init];
     }
     [array addObject:[self fromModel:model]];
+    if (array.count >= 2) { // 去重
+        for (int j = 0; j < array.count - 1; j++) {
+            NSDictionary *someDic = [array objectAtIndex:j];
+            if ([someDic[@"messageUId"] isEqualToString:array.lastObject[@"messageUId"]]) {
+                [array removeObjectAtIndex:j];
+            }
+        }
+    }
+
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:XY_IM_InsertModel object:model];
+//    });
     [store putObject:array withId:tableName intoTable:tableName];
     [self saveUnreadConversionId:tempConversionId byIdentityId:tempIdentifyId]; // 标记未读
     unlockSemaphore;
 }
 
--(void)delegateModel:(RCMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
+-(void)delegateModel:(RCIMMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
     NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
     NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
     YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
@@ -143,15 +211,25 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:XY_IM_AlreadRead object:nil];
 }
 
--(NSDictionary *)fromModel:(RCMessage *)message {
+-(NSDictionary *)fromModel:(RCIMMessage *)message {
     NSMutableDictionary *dictory = [[NSMutableDictionary alloc] init];
     dictory[@"sendTime"] = @(message.sentTime);
     dictory[@"receivedTime"] = @(message.receivedTime);
+    if (message.amrBase64Content.length) {
+        dictory[@"amrBase64Content"] = message.amrBase64Content;
+    }
+    if (message.LocalPath.length) {
+        dictory[@"LocalPath"] = message.LocalPath;
+    }
+    dictory[@"isMySend"] = @(message.isMySend);
+    dictory[@"isPlayed"] = @(message.isPlayed);
+    dictory[@"isOutgoingMsg"] = @(message.isOutgoingMsg);
+    dictory[@"conversionId"] = message.conversionId;
     if (message.conversationType == ConversationType_GROUP) {
         dictory[@"conversationType"] = @1; // 组聊
     }
     else {
-        dictory[@"conversationType"] = @2;
+        dictory[@"conversationType"] = @0;
     }
     dictory[@"targetId"] = message.targetId;
     dictory[@"messageId"] = @(message.messageId);
@@ -211,6 +289,8 @@
         dictory[@"extraImKey"] = extraDic[@"ImKey"];
         dictory[@"extraKeywords"] = extraDic[@"Keywords"];
         dictory[@"extraMsgTime"] = extraDic[@"MsgTime"];
+        dictory[@"width"] = @(message.imageSize.width);
+        dictory[@"height"] = @(message.imageSize.height);
     }
     else if ([message.content isKindOfClass:[RCVoiceMessage class]]) {
         RCVoiceMessage *textMessage = (RCVoiceMessage *)(message.content);
@@ -304,6 +384,9 @@
             dictory[@"messageDirection"] = @(MessageDirection_RECEIVE);
         }
     }
+
+    dictory[@"sentStatus"] = @(message.sentStatus);
+    dictory[@"deliveryState"] = @(message.deliveryState);
 
     dictory[@"isReceiptRequestMessage"] = @(message.readReceiptInfo.isReceiptRequestMessage);
     dictory[@"hasRespond"] = @(message.readReceiptInfo.hasRespond);

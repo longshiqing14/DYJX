@@ -16,6 +16,7 @@
     dispatch_once(&onceToken, ^{
         if (singler == NULL) {
             singler = [[IMSDK alloc] init];
+            singler.semaphore = dispatch_semaphore_create(1);
         }
     });
     return singler;
@@ -34,6 +35,14 @@
         _conversionManager = [[ConversionManager alloc] init];
     }
     return _conversionManager;
+}
+
+
+-(UIImageView *)imageView {
+    if (!_imageView) {
+        _imageView = [[UIImageView alloc] init];
+    }
+    return _imageView;
 }
 
 @end

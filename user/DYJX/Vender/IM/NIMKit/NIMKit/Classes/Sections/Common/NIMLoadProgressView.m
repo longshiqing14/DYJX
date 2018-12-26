@@ -74,18 +74,29 @@
 }
 
 - (void)setProgress:(CGFloat)progress {
-    if (progress > self.maxProgress) {
-        _progressLabel.text = [NSString stringWithFormat:@"%d%%", (int)(self.maxProgress*100)];
-        [_activity stopAnimating];
+    if (progress >= self.maxProgress) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _progressLabel.text = [NSString stringWithFormat:@"%d%%", (int)(self.maxProgress*100)];
+            _progressLabel.hidden = YES;
+            [_activity stopAnimating];
+        });
     }else if (progress <= 0) {
-        _progressLabel.text = @"0%";
-        [_activity startAnimating];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _progressLabel.text = @"0%";
+            _progressLabel.hidden = NO;
+            [_activity startAnimating];
+        });
     }else {
-        _progressLabel.text = [NSString stringWithFormat:@"%d%%", (int)(progress*100)];
-        [_activity startAnimating];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _progressLabel.text = [NSString stringWithFormat:@"%d%%", (int)(progress*100)];
+            _progressLabel.hidden = NO;
+            [_activity startAnimating];
+        });
     }
-    
-    [self setNeedsLayout];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setNeedsLayout];
+    });
 }
 
 @end

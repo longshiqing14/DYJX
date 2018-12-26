@@ -36,7 +36,7 @@ typedef enum : NSUInteger {
 @class PHFetchResult;
 @interface TZAlbumModel : NSObject
 
-@property (nonatomic, strong) NSString *name;        ///< The album name
+@property (nonatomic, copy) NSString *name;        ///< The album name
 @property (nonatomic, assign) NSInteger count;       ///< Count of photos the album contain
 @property (nonatomic, strong) id result;             ///< PHFetchResult<PHAsset> or ALAssetsGroup<ALAsset>
 

@@ -36,7 +36,7 @@ NSString *const NIMTextMessageLabelLinkData = @"NIMTextMessageLabelLinkData";
 
 - (void)refresh:(NIMMessageModel *)data{
     [super refresh:data];
-    NSString *text = self.model.message.extraDic[@"content"];
+    NSString *text = [NSString stringWithFormat:@"%@",self.model.message.extraDic[@"Keywords"]];
     
     NIMKitSetting *setting = [[NIMKit sharedKit].config setting:data.message];
 

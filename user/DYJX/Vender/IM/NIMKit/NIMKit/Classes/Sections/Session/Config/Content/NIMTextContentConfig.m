@@ -21,7 +21,7 @@
 
 - (CGSize)contentSize:(CGFloat)cellWidth message:(RCIMMessage *)message
 {
-    NSString *text = message.extraDic[@"content"];
+    NSString *text = message.extraDic[@"Keywords"];
     self.label.font = [[NIMKit sharedKit].config setting:message].font;
     
     [self.label nim_setText:text];    

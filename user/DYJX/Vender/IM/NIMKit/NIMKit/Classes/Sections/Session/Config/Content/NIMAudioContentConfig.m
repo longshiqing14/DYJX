@@ -18,7 +18,7 @@
     NSAssert([audioContent isKindOfClass:[NIMAudioObject class]], @"message should be audio");
     
     
-    CGFloat value  = 2*atan((audioContent.duration/1000.0-1)/10.0)/M_PI;
+    CGFloat value  = 2*atan((audioContent.duration-1)/10.0)/M_PI;
     NSInteger audioContentMinWidth = (cellWidth - 280);
     NSInteger audioContentMaxWidth = (cellWidth - 170);
     NSInteger audioContentHeight   = 30;

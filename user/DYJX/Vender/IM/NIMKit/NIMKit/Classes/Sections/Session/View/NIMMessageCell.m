@@ -202,7 +202,7 @@
         _bubbleView = contentView;
         _bubbleView.delegate = self;
         NSInteger messageType = [NSString stringWithFormat:@"%@",self.model.message.extraDic[@"MessageType"]].integerValue;
-        if (messageType == 2) {
+        if (messageType == 3) {
             ((NIMSessionAudioContentView *)_bubbleView).audioUIDelegate = self;
         }
         [self.contentView addSubview:_bubbleView];
@@ -437,7 +437,7 @@
 
 - (BOOL)unreadHidden {
     NSInteger messageType = [NSString stringWithFormat:@"%@",self.model.message.extraDic[@"MessageType"]].integerValue;
-    if (messageType == 2)
+    if (messageType == 3)
     { //音频
         BOOL disable = NO;
         if ([self.delegate respondsToSelector:@selector(disableAudioPlayedStatusIcon:)]) {
@@ -445,8 +445,9 @@
         }
         
         //BOOL hideIcon = self.model.message.attachmentDownloadState != NIMMessageAttachmentDownloadStateDownloaded || disable;
+        return self.model.message.isPlayed;
 
-        return (disable || self.model.message.isOutgoingMsg || [self.model.message isPlayed]);
+//        return (disable || self.model.message.isOutgoingMsg || [self.model.message isPlayed]);
     }
     return YES;
 }

@@ -146,8 +146,24 @@ static char imageURLKey;
 //        from = message.from;
 //    }
 //    NIMKitInfo *info = [[NIMKit sharedKit] infoByUser:from option:option];
-    NSURL *url = message.extraDic[@"content"] ? [NSURL URLWithString:message.extraDic[@"content"]] : nil;
-    [self nim_setImageWithURL:url placeholderImage:message.extraDic[@"content"]];
+
+    NSString *urlString = nil;
+//    if (message.extraDic[@"TargetHeadImg"] ) {
+//        urlString = [message.extraDic[@"TargetHeadImg"] XYImageURL];
+//    }
+//    else {
+//        if (message.isMySend) { // 来源如果是自己，那就取targetId，如果不是就去fromId作为targetId
+//            urlString = [[UserManager shared].getUserModel.Result.Business.IMInfo.HeadImgUrl XYImageURL];
+//        }
+//        else {
+    NSString *fromHeadImg = [NSString stringWithFormat:@"%@",message.extraDic[@"FromHeadImg"]];
+    if (![fromHeadImg isEqualToString:@"<null>"] && ![fromHeadImg isKindOfClass:[NSNull class]]) {
+        urlString = [message.extraDic[@"FromHeadImg"] XYImageURL];
+    }
+//        }
+//    }
+    NSURL *url = urlString  ? [NSURL URLWithString:urlString] : nil;
+    [self nim_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"dyjx_default_im_por"]];
 }
 
 @end

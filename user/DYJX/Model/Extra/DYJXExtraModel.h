@@ -11,23 +11,23 @@
 
 @interface DYJXExtraModel : NSObject
 
-@property (nonatomic, strong) NSString * conversationId;
+@property (nonatomic, copy) NSString * conversationId;
 @property (nonatomic, strong) NSObject * fromCertifyHeadImg;
-@property (nonatomic, strong) NSString * fromCertifyId;
-@property (nonatomic, strong) NSString * fromCertifyName;
+@property (nonatomic, copy) NSString * fromCertifyId;
+@property (nonatomic, copy) NSString * fromCertifyName;
 @property (nonatomic, strong) NSObject * fromHeadImg;
-@property (nonatomic, strong) NSString * fromId;
-@property (nonatomic, strong) NSString * fromName;
+@property (nonatomic, copy) NSString * fromId;
+@property (nonatomic, copy) NSString * fromName;
 @property (nonatomic, strong) NSObject * gMembers;
 @property (nonatomic, assign) NSInteger gType;
-@property (nonatomic, strong) NSString * idField;
-@property (nonatomic, strong) NSString * imKey;
-@property (nonatomic, strong) NSString * keywords;
+@property (nonatomic, copy) NSString * idField;
+@property (nonatomic, copy) NSString * imKey;
+@property (nonatomic, copy) NSString * keywords;
 @property (nonatomic, assign) NSInteger messageType;
-@property (nonatomic, strong) NSString * msgTime;
-@property (nonatomic, strong) NSString * targetHeadImg;
-@property (nonatomic, strong) NSString * targetId;
-@property (nonatomic, strong) NSString * targetName;
+@property (nonatomic, copy) NSString * msgTime;
+@property (nonatomic, copy) NSString * targetHeadImg;
+@property (nonatomic, copy) NSString * targetId;
+@property (nonatomic, copy) NSString * targetName;
 @property (nonatomic, assign) NSInteger targetType;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;

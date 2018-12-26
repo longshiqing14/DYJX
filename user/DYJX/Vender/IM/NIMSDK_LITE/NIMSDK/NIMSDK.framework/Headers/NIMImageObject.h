@@ -127,29 +127,29 @@ typedef NS_ENUM(NSInteger, NIMImageFormat)
  *  图片本地路径
  *  @discussion 目前 SDK 没有提供下载大图的方法,但推荐使用这个地址作为图片下载地址,APP 可以使用自己的下载类或者 SDWebImage 做图片的下载和管理
  */
-@property (nullable, nonatomic, copy, readonly) NSString *path;
+@property (nullable, nonatomic, copy) NSString *path;
 
 /**
  *  缩略图本地路径
  */
-@property (nullable, nonatomic, copy, readonly) NSString *thumbPath;
+@property (nullable, nonatomic, copy) NSString *thumbPath;
 
 
 /**
  *  图片远程路径
  */
-@property (nullable, nonatomic, copy, readonly) NSString *url;
+@property (nullable, nonatomic, copy) NSString *url;
 
 /**
  *  缩略图远程路径
  *  @discussion 仅适用于使用云信上传服务进行上传的资源，否则无效。
  */
-@property (nullable, nonatomic, copy, readonly) NSString *thumbUrl;
+@property (nullable, nonatomic, copy) NSString *thumbUrl;
 
 /**
  *  图片尺寸
  */
-@property (nonatomic, assign, readonly) CGSize size;
+@property (nonatomic, assign) CGSize size;
 
 /**
  *  图片选项

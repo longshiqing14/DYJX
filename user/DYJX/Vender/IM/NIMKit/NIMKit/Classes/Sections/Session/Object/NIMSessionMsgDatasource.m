@@ -12,6 +12,7 @@
 #import "NIMTimestampModel.h"
 #import "NIMGlobalMacro.h"
 #import "NIMKit.h"
+#import "JSExtension.h"
 
 @interface NIMSessionMsgDatasource()
 
@@ -42,11 +43,46 @@
         _messageLimit      = limit;
         _showTimeInterval  = showTimestampInterval;
         _items             = [NSMutableArray array];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSArray <RCIMMessage *> *array = [JSExtension shared].dataArray;
+            if (array.count <= 20) {
+                [self appendMessageModels:[self modelsWithMessages:array]];
+            }
+            else {
+                NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+                for (int i = (int)array.count - 1; i > array.count - 21; i--) {
+                    RCIMMessage *message = array[i];
+                    [dataArray insertObject:message atIndex:0];
+                }
+                [self appendMessageModels:[self modelsWithMessages:dataArray]];
+            }
+        });
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveData:) name:XY_IM_InsertModel object:nil];
+
         _msgIdDict         = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
+-(void)receiveData:(NSNotification *)nofi {
+//    RCIMMessage *message = (RCIMMessage *)nofi.object;
+//    NSMutableArray *array = [NSMutableArray arrayWithArray:self.items];
+//    for (int i = 0; i < self.items.count; i++) {
+//        if ([self.items[i] isKindOfClass:[NIMMessageModel class]]) {
+//            NIMMessageModel *model = self.items[i];
+//            if ([model.message.messageUId isEqualToString:message.messageUId]) {
+//                NIMMessageModel * messageModel = [[NIMMessageModel alloc] initWithMessage:message];
+//                [array replaceObjectAtIndex:i withObject:messageModel];
+//            }
+//        }
+//    }
+//    self.items = [array mutableCopy];
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)resetMessages:(void(^)(NSError *error)) handler
 {
@@ -180,32 +216,59 @@
             *stop = YES;
         }
     }];
-    NSInteger index = 0;
-    if ([self.dataProvider respondsToSelector:@selector(pullDown:handler:)])
-    {
-        __weak typeof(self) wself = self;
-        [self.dataProvider pullDown:currentOldestMsg.message handler:^(NSError *error, NSArray *messages) {
-            NIMKit_Dispatch_Async_Main(^{
-                NSInteger index = [wself insertMessages:messages];
-                if (handler) {
-                    handler(index,messages,error);
-                }
-            });
-        }];
-        return;
+    NSArray *jsDataArray = [JSExtension shared].dataArray;
+    if (jsDataArray.count && self.items.count) {
+        __block NSInteger index = 0;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger minSub = MIN(self.items.count + 20, jsDataArray.count);
+            NSInteger totalCount = jsDataArray.count;
+            NSMutableArray <RCIMMessage *> *mutArray = [[NSMutableArray alloc] init];
+            NSInteger j = self.items.count - 1;
+            for (int i = 0; j < minSub; j++, i++) {
+                RCIMMessage * model = jsDataArray[totalCount - j - 1];
+                [mutArray insertObject:model atIndex:0];
+            }
+            index = [self insertMessages:mutArray];
+            if (handler) {
+                NIMKit_Dispatch_Async_Main(^{
+                    handler(index,mutArray,nil);
+                });
+            }
+        });
     }
-    else
-    {
-        NSArray *messages = [[[NIMSDK sharedSDK] conversationManager] messagesInSession:_currentSession
-                                                                                message:currentOldestMsg.message
-                                                                                  limit:self.messageLimit];
-        index = [self insertMessages:messages];
+    else {
         if (handler) {
             NIMKit_Dispatch_Async_Main(^{
-                handler(index,messages,nil);
+                handler(index,[NSMutableArray array],nil);
             });
         }
     }
+
+//    if ([self.dataProvider respondsToSelector:@selector(pullDown:handler:)])
+//    {
+//        __weak typeof(self) wself = self;
+//        [self.dataProvider pullDown:currentOldestMsg.message handler:^(NSError *error, NSArray *messages) {
+//            NIMKit_Dispatch_Async_Main(^{
+//                NSInteger index = [wself insertMessages:messages];
+//                if (handler) {
+//                    handler(index,messages,error);
+//                }
+//            });
+//        }];
+//        return;
+//    }
+//    else
+//    {
+//        NSArray *messages = [[[NIMSDK sharedSDK] conversationManager] messagesInSession:_currentSession
+//                                                                                message:currentOldestMsg.message
+//                                                                                  limit:self.messageLimit];
+//        index = [self insertMessages:messages];
+//        if (handler) {
+//            NIMKit_Dispatch_Async_Main(^{
+//                handler(index,messages,nil);
+//            });
+//        }
+//    }
 }
 
 - (void)loadPullUpMessagesWithComplete:(void (^)(NSInteger, NSArray *, NSError *))handler {
@@ -217,6 +280,8 @@
     option.allMessageTypes = YES;
     option.order = NIMMessageSearchOrderAsc;
     __weak typeof(self) wself = self;
+
+
     [[NIMSDK sharedSDK].conversationManager searchMessages:_currentSession
                                                     option:option
                                                     result:^(NSError * _Nullable error, NSArray<NIMMessage *> * _Nullable messages) {
@@ -350,7 +415,7 @@
     }
 }
 
-- (NSArray<NIMMessageModel *> *)modelsWithMessages:(NSArray<NIMMessage *> *)messages
+- (NSArray<NIMMessageModel *> *)modelsWithMessages:(NSArray<RCIMMessage *> *)messages
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (NIMMessage *message in messages) {

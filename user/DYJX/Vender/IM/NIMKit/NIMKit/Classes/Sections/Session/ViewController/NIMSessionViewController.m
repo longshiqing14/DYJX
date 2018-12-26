@@ -52,7 +52,8 @@
 {
     [self removeListener];
     [[NIMKit sharedKit].robotTemplateParser clean];
-    
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     _tableView.delegate = nil;
     _tableView.dataSource = nil;
 }
@@ -73,18 +74,34 @@
     [self markRead];
     //更新已读位置
     [self uiCheckReceipts:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:XY_IM_InsertModel object:nil];
+
 }
+
+-(void)refreshData {
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self.tableView reloadData];
+//    });
+}
+
 
 - (void)setupNav
 {
     [self setUpTitleView];
-    NIMCustomLeftBarView *leftBarView = [[NIMCustomLeftBarView alloc] init];
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarView];
+//    NIMCustomLeftBarView *leftBarView = [[NIMCustomLeftBarView alloc] init];
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarView];
+//    UIBarButtonItem *leftItem=[[UIBarButtonItem alloc]initWithImage:SETIMAGENAME(@"btn_top_back") style:(UIBarButtonItemStylePlain) target:self action:@selector(black_controller)];
     if (@available(iOS 11.0, *)) {
-        leftBarView.translatesAutoresizingMaskIntoConstraints = NO;
+//        leftBarView.translatesAutoresizingMaskIntoConstraints = NO;
     }
-    self.navigationItem.leftBarButtonItems = @[leftItem];
-    self.navigationItem.leftItemsSupplementBackButton = YES;
+//    self.navigationItem.leftBarButtonItems = @[leftItem];
+//    self.navigationItem.leftItemsSupplementBackButton = NO;
+}
+
+-(void)black_controller{
+
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)setupTableView
@@ -358,7 +375,13 @@
 - (void)recordAudio:(NSString *)filePath didCompletedWithError:(NSError *)error {
     if(!error) {
         if ([self recordFileCanBeSend:filePath]) {
-            [self sendMessage:[NIMMessageMaker msgWithAudio:filePath]];
+            RCIMMessage *message = [[IMSDK sharedManager].chatManager defaultSendMessage:3 sendObject:filePath];
+            if ([message.content isKindOfClass:[RCVoiceMessage class]]) {
+                RCVoiceMessage *textMessage = (RCVoiceMessage *)(message.content);
+                textMessage.duration = self.currentTime;
+            }
+            [self sendMessage:message];
+//            [self sendMessage:[NIMMessageMaker msgWithAudio:filePath]];
         }else{
             [self showRecordFileNotSendReason];
         }
@@ -373,8 +396,10 @@
 }
 
 - (void)recordAudioProgress:(NSTimeInterval)currentTime {
+    _currentTime = (int)currentTime;
     [_sessionInputView updateAudioRecordTime:currentTime];
 }
+
 
 - (void)recordAudioInterruptionBegin {
     [[NIMSDK sharedSDK].mediaManager cancelRecord];
@@ -419,36 +444,37 @@
 //  点击发送的时候响应
 - (void)onSendText:(NSString *)text atUsers:(NSArray *)atUsers
 {
-    NSMutableArray *users = [NSMutableArray arrayWithArray:atUsers];
-    if (self.session.sessionType == NIMSessionTypeP2P)
-    {
-        [users addObject:self.session.sessionId];
-    }
-    NSString *robotsToSend = [self robotsToSend:users];
-    
-    NIMMessage *message = nil;
-    if (robotsToSend.length)
-    {
-        message = [NIMMessageMaker msgWithRobotQuery:text toRobot:robotsToSend];
-    }
-    else
-    {
-        message = [NIMMessageMaker msgWithText:text];
-    }
-    
-    if (atUsers.count)
-    {
-        NIMMessageApnsMemberOption *apnsOption = [[NIMMessageApnsMemberOption alloc] init];
-        apnsOption.userIds = atUsers;
-        apnsOption.forcePush = YES;
-        
-        NIMKitInfoFetchOption *option = [[NIMKitInfoFetchOption alloc] init];
-        option.session = self.session;
-        
-        NSString *me = [[NIMKit sharedKit].provider infoByUser:[NIMSDK sharedSDK].loginManager.currentAccount option:option].showName;
-        apnsOption.apnsContent = [NSString stringWithFormat:@"%@在群里@了你",me];
-        message.apnsMemberOption = apnsOption;
-    }
+//    NSMutableArray *users = [NSMutableArray arrayWithArray:atUsers];
+//    if (self.session.sessionType == NIMSessionTypeP2P)
+//    {
+//        [users addObject:self.session.sessionId];
+//    }
+//    NSString *robotsToSend = [self robotsToSend:users];
+//
+//    NIMMessage *message = nil;
+//    if (robotsToSend.length)
+//    {
+//        message = [NIMMessageMaker msgWithRobotQuery:text toRobot:robotsToSend];
+//    }
+//    else
+//    {
+//        message = [NIMMessageMaker msgWithText:text];
+//    }
+//
+//    if (atUsers.count)
+//    {
+//        NIMMessageApnsMemberOption *apnsOption = [[NIMMessageApnsMemberOption alloc] init];
+//        apnsOption.userIds = atUsers;
+//        apnsOption.forcePush = YES;
+//
+//        NIMKitInfoFetchOption *option = [[NIMKitInfoFetchOption alloc] init];
+//        option.session = self.session;
+//
+//        NSString *me = [[NIMKit sharedKit].provider infoByUser:[NIMSDK sharedSDK].loginManager.currentAccount option:option].showName;
+//        apnsOption.apnsContent = [NSString stringWithFormat:@"%@在群里@了你",me];
+//        message.apnsMemberOption = apnsOption;
+//    }
+    RCIMMessage *message = [[IMSDK sharedManager].chatManager defaultSendMessage:0 sendObject:text];
     [self sendMessage:message];
 }
 
@@ -596,7 +622,7 @@
 //当前录音格式 : NIMSDK 支持 aac 和 amr 两种格式
 - (NIMAudioType)recordAudioType
 {
-    NIMAudioType type = NIMAudioTypeAAC;
+    NIMAudioType type = NIMAudioTypeAMR;
     if ([self.sessionConfig respondsToSelector:@selector(recordType)]) {
         type = [self.sessionConfig recordType];
     }
@@ -667,7 +693,7 @@
     RCIMMessage *message = [self messageForMenu];
     if ([NSString stringWithFormat:@"%@",message.extraDic[@"MessageType"]].integerValue == 0) {
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-        [pasteboard setString:message.extraDic[@"content"]];
+        [pasteboard setString:message.extraDic[@"Keywords"]];
     }
 }
 
@@ -731,6 +757,12 @@
     [self.interactor mediaLocationPressed];
 }
 
+//  发送考勤位置
+- (void)onTapWorkLocation:(NIMMediaItem *)item
+{
+    [self.interactor mediaLocationPressed];
+}
+
 #pragma mark - 旋转处理 (iOS8 or above)
 - (void)viewWillTransitionToSize:(CGSize)size
        withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -786,9 +818,9 @@
 
 - (void)changeLeftBarBadge:(NSInteger)unreadCount
 {
-    NIMCustomLeftBarView *leftBarView = (NIMCustomLeftBarView *)self.navigationItem.leftBarButtonItem.customView;
-    leftBarView.badgeView.badgeValue = @(unreadCount).stringValue;
-    leftBarView.badgeView.hidden = !unreadCount;
+//    NIMCustomLeftBarView *leftBarView = (NIMCustomLeftBarView *)self.navigationItem.leftBarButtonItem.customView;
+//    leftBarView.badgeView.badgeValue = @(unreadCount).stringValue;
+//    leftBarView.badgeView.hidden = !unreadCount;
 }
 
 

@@ -31,12 +31,12 @@
     if (self = [self init])
     {
         _message = message;
-        if (message.messageDirection == MessageDirection_RECEIVE) {
-            _messageTime = message.receivedTime;
-        }
-        else {
-            _messageTime = message.sentTime;
-        }
+//        if (message.isMySend == NO) {
+//            _messageTime = (message.receivedTime/1000.0);
+//        }
+//        else {
+            _messageTime = (message.sentTime/1000.0);
+//        }
         _contentSizeInfo = [[NSMutableDictionary alloc] init];
     }
     return self;
@@ -50,7 +50,7 @@
 }
 
 - (NSString*)description{
-    return self.message.extraDic[@"content"];
+    return self.message.extraDic[@"Keywords"];
 }
 
 - (BOOL)isEqual:(id)object

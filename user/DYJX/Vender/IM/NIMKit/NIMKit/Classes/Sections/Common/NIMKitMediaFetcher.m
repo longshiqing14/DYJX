@@ -133,7 +133,7 @@
         });
         
     }else{
-        UIImage *image = info[UIImagePickerControllerOriginalImage];
+        UIImage *image = info[UIImagePickerControllerEditedImage];
         self.cameraResultHandler(nil,image);
         self.cameraResultHandler = nil;
     }
@@ -318,6 +318,7 @@
     self.imagePicker.delegate = self;
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
     self.imagePicker.mediaTypes = self.mediaTypes;
+    self.imagePicker.allowsEditing = YES;
     return YES;
 }
 

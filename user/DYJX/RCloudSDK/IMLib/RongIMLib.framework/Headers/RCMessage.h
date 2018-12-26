@@ -24,7 +24,10 @@
  */
 @interface RCMessage : NSObject <NSCopying, NSCoding>
 
-
+/**
+ *  消息附件内容
+ */
+@property (nullable,nonatomic,strong)                id<NIMMessageObject> messageObject;
 
 /*!
  地理位置的二维坐标

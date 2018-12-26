@@ -45,13 +45,13 @@
 
 - (void)play:(RCIMMessage *)message
 {
-//    NIMAudioObject *audioObject = (NIMAudioObject *)message.messageObject;
-//    if ([audioObject isKindOfClass:[NIMAudioObject class]]) {
-//        self.currentPlayingMessage = message;
-//        message.isPlayed = YES;
-//        
-//        [[NIMSDK sharedSDK].mediaManager play:audioObject.path];
-//    }
+    NIMAudioObject *audioObject = (NIMAudioObject *)message.messageObject;
+    if ([audioObject isKindOfClass:[NIMAudioObject class]]) {
+        self.currentPlayingMessage = message;
+        message.isPlayed = YES;
+
+        [[NIMSDK sharedSDK].mediaManager play:message.LocalPath];
+    }
 }
 
 

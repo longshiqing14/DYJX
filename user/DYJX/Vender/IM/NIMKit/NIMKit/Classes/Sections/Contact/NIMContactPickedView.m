@@ -23,7 +23,7 @@ enum RefreshType
 
 @interface NIMContactSelectAvatarView : NIMAvatarImageView
 
-@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, copy) NSString *userId;
 
 @end
 

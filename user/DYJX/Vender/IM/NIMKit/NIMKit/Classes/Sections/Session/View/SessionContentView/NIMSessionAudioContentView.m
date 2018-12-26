@@ -12,6 +12,8 @@
 #import "UIImage+NIMKit.h"
 #import "NIMKitAudioCenter.h"
 #import "NIMKit.h"
+#import <AVFoundation/AVFoundation.h>
+#import "JSExtension.h"
 
 @interface NIMSessionAudioContentView()<NIMMediaManagerDelegate>
 
@@ -67,9 +69,8 @@
 
 - (void)refresh:(NIMMessageModel *)data{
     [super refresh:data];
-//    NIMAudioObject *object = self.model.message.messageObject;
-    NSUInteger duration = [NSString stringWithFormat:@"%@",self.model.message.extraDic[@"contentDuration"]].unsignedIntegerValue;
-    self.durationLabel.text = [NSString stringWithFormat:@"%zd\"",(duration+500)/1000];//四舍五入
+    NIMAudioObject *object = (NIMAudioObject *)self.model.message.messageObject;
+    self.durationLabel.text = [NSString stringWithFormat:@"%zd\"",(object.duration)];//四舍五入
     
     NIMKitSetting *setting = [[NIMKit sharedKit].config setting:data.message];
 
@@ -99,25 +100,33 @@
 
 -(void)onTouchUpInside:(id)sender
 {
-    if ([self.model.message attachmentDownloadState]== NIMMessageAttachmentDownloadStateFailed
-        || [self.model.message attachmentDownloadState] == NIMMessageAttachmentDownloadStateNeedDownload) {
-        if (self.audioUIDelegate && [self.audioUIDelegate respondsToSelector:@selector(retryDownloadMsg)]) {
-            [self.audioUIDelegate retryDownloadMsg];
-        }
-        return;
-    }
-    if ([self.model.message attachmentDownloadState] == NIMMessageAttachmentDownloadStateDownloaded) {
-        
+//    if ([self.model.message.messageObject isKindOfClass:[NIMAudioObject class]]) {
+//        NIMAudioObject *audioObject = (NIMAudioObject *)self.model.message.messageObject;
+//        AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData:[NSData dataWithBase64EncodedString:self.model.message.amrBase64Content] error:nil];
+//        [player prepareToPlay];
+//        [player play];
+//    }
+//    if ([self.model.message attachmentDownloadState]== NIMMessageAttachmentDownloadStateFailed
+//        || [self.model.message attachmentDownloadState] == NIMMessageAttachmentDownloadStateNeedDownload) {
+//        if (self.audioUIDelegate && [self.audioUIDelegate respondsToSelector:@selector(retryDownloadMsg)]) {
+//            [self.audioUIDelegate retryDownloadMsg];
+//        }
+//        return;
+//    }
+//    if ([self.model.message attachmentDownloadState] == NIMMessageAttachmentDownloadStateDownloaded) {
+
         if ([[NIMSDK sharedSDK].mediaManager isPlaying]) {
             [self stopPlayingUI];
         }
-        
+
+    [[DataBaseManager shared] playModel:self.model.message identifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+
         NIMKitEvent *event = [[NIMKitEvent alloc] init];
         event.eventName = NIMKitEventNameTapAudio;
         event.messageModel = self.model;
         [self.delegate onCatchEvent:event];
 
-    }
+//    }
 }
 
 #pragma mark - NIMMediaManagerDelegate

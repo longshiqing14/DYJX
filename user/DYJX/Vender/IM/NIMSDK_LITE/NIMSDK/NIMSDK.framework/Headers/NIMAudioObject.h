@@ -61,12 +61,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  语音的本地路径
  */
-@property (nullable, nonatomic, copy, readonly) NSString *path;
+@property (nullable, nonatomic, copy) NSString *path;
 
 /**
  *  语音的远程路径
  */
-@property (nullable, nonatomic, copy, readonly) NSString *url;
+@property (nullable, nonatomic, copy) NSString *url;
 
 /**
  *  语音时长，毫秒为单位
@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  音频MD5
  */
-@property (nullable,nonatomic, copy, readonly) NSString *md5;
+@property (nullable,nonatomic, copy) NSString *md5;
 
 @end
 

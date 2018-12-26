@@ -89,9 +89,9 @@
 //    }
 //    else//显示日期
 //    {
-        NSString *day = [NSString stringWithFormat:@"%zd-%zd-%zd", msgDateComponents.year, msgDateComponents.month, msgDateComponents.day];
+        NSString *day = [NSString stringWithFormat:@"%zd-%02d-%02d", msgDateComponents.year, (int)msgDateComponents.month, (int)msgDateComponents.day];
 //        result = showDetail? [day stringByAppendingFormat:@"%@ %zd:%02d",result,hour,(int)msgDateComponents.minute]:day;
-        result = [day stringByAppendingFormat:@" %zd:%02d:%02d",hour,(int)msgDateComponents.minute,(int)msgDateComponents.second];
+        result = [day stringByAppendingFormat:@" %02d:%02d:%02d",(int)hour,(int)msgDateComponents.minute,(int)msgDateComponents.second];
 //    }
     return result;
 }

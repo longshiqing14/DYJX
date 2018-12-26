@@ -57,8 +57,11 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
 }
 
 
+
+
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NIMSDK sharedSDK].mediaManager stopPlay];
     [self removeListenner];
 }
@@ -96,7 +99,8 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
     NSMutableArray *models = [[NSMutableArray alloc] init];
     for (NIMMessage *message in messages) {
         NIMMessageModel *model = [[NIMMessageModel alloc] initWithMessage:message];
-        [models addObject:model];
+        [models insertObject:model atIndex:0];
+//        [models addObject:model];
     }
     NIMSessionMessageOperateResult *result = [self.dataSource insertMessageModels:models];
     [self.layout insert:result.indexpaths animated:YES];
@@ -232,8 +236,8 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
         if (messages.count) {
             [wself.layout layoutAfterRefresh];
             NSInteger firstRow = [self findMessageIndex:messages[0]] - 1;
-            [wself.layout adjustOffset:firstRow];
-            
+            [wself.layout adjustOffset:index+2];
+
             if (![self.sessionConfig respondsToSelector:@selector(autoFetchAttachment)]
                 || self.sessionConfig.autoFetchAttachment) {
                 [wself.dataSource checkAttachmentState:messages];
@@ -310,6 +314,11 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
 #pragma mark - 消息收发接口
 - (void)sendMessage:(RCIMMessage *)message
 {
+    [[IMSDK sharedManager].chatManager sendMessage:message success:^(id  _Nullable responseObject) {
+        RCIMMessage *message = (RCIMMessage *)responseObject;
+        [self addMessages:@[message]];
+    } failed:^(NSString * _Nonnull errorMsg) {
+    }];
 //    [[[NIMSDK sharedSDK] chatManager] sendMessage:message toSession:_session error:nil];
 }
 
@@ -378,24 +387,44 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
             case PHAssetMediaTypeImage:
             {
                 for (UIImage *image in images) {
-                    NIMMessage *message = [NIMMessageMaker msgWithImage:image];
-                    [[NIMSDK sharedSDK].chatManager sendMessage:message toSession:weakSelf.session error:nil];
+                    RCIMMessage *message = [[IMSDK sharedManager].chatManager defaultSendMessage:1 sendObject:image];
+                    message.image = image.fixOrientation;
+                    message.imageSize = image.size;
+                    [self addMessages:@[message]];
+
+                    [[IMSDK sharedManager].chatManager uploadFile:image model:message progress:^(NSProgress * _Nonnull progress) {
+//                        [self.progressView setProgress:progress.fractionCompleted];
+                    } Success:^(id  _Nullable responseObject) {
+                    } failed:^(NSString * _Nonnull errorMsg) {
+                    }];
+
+//                    __block RCIMMessage *uploadMessage = message;
+//                    [[IMSDK sharedManager].chatManager uploadFile:image progress:^(NSProgress * _Nonnull progress) {
+//                        uploadMessage.progress = progress.fractionCompleted;
+//                    } Success:^(id  _Nullable responseObject) {
+//                        RCIMMessage *message = (RCIMMessage *)responseObject;
+//                        [self addMessages:@[message]];
+//                    } failed:^(NSString * _Nonnull errorMsg) {
+//                    }];
+
+//                    NIMMessage *message = [NIMMessageMaker msgWithImage:image];
+//                    [[NIMSDK sharedSDK].chatManager sendMessage:message toSession:weakSelf.session error:nil];
                 }
-                if (path) {
-                    NIMMessage *message;
-                    if ([path.pathExtension isEqualToString:@"HEIC"])
-                    {
-                        //iOS 11 苹果采用了新的图片格式 HEIC ，如果采用原图会导致其他设备的兼容问题，在上层做好格式的兼容转换,压成 jpeg
-                        UIImage *image = [UIImage imageWithContentsOfFile:path];
-                        message = [NIMMessageMaker msgWithImage:image];
-                    }
-                    else
-                    {
-                        message = [NIMMessageMaker msgWithImagePath:path];
-                    }
-                    
-                    [[NIMSDK sharedSDK].chatManager sendMessage:message toSession:weakSelf.session error:nil];
-                }
+//                if (path) {
+//                    NIMMessage *message;
+//                    if ([path.pathExtension isEqualToString:@"HEIC"])
+//                    {
+//                        //iOS 11 苹果采用了新的图片格式 HEIC ，如果采用原图会导致其他设备的兼容问题，在上层做好格式的兼容转换,压成 jpeg
+//                        UIImage *image = [UIImage imageWithContentsOfFile:path];
+//                        message = [NIMMessageMaker msgWithImage:image];
+//                    }
+//                    else
+//                    {
+//                        message = [NIMMessageMaker msgWithImagePath:path];
+//                    }
+//
+//                    [[NIMSDK sharedSDK].chatManager sendMessage:message toSession:weakSelf.session error:nil];
+//                }
             }
                 break;
             case PHAssetMediaTypeVideo:
@@ -413,15 +442,27 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
 
 - (void)mediaShootPressed
 {
+
+
     __weak typeof(self) weakSelf = self;
     [self.mediaFetcher fetchMediaFromCamera:^(NSString *path, UIImage *image) {
-        NIMMessage *message;
-        if (image) {
-            message = [NIMMessageMaker msgWithImage:image];
-        }else{
-            message = [NIMMessageMaker msgWithVideo:path];
-        }
-        [[NIMSDK sharedSDK].chatManager sendMessage:message toSession:weakSelf.session error:nil];
+        RCIMMessage *message = [[IMSDK sharedManager].chatManager defaultSendMessage:1 sendObject:image];
+        message.image = image;
+        message.imageSize = image.size;
+        [self addMessages:@[message]];
+
+        [[IMSDK sharedManager].chatManager uploadFile:image model:message progress:^(NSProgress * _Nonnull progress) {
+            //                        [self.progressView setProgress:progress.fractionCompleted];
+        } Success:^(id  _Nullable responseObject) {
+        } failed:^(NSString * _Nonnull errorMsg) {
+        }];
+
+//        if (image) {
+//            message = [NIMMessageMaker msgWithImage:image];
+//        }else{
+//            message = [NIMMessageMaker msgWithVideo:path];
+//        }
+//        [[NIMSDK sharedSDK].chatManager sendMessage:message toSession:weakSelf.session error:nil];
     }];
 }
 
@@ -434,8 +475,11 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
 }
 
 - (void)onSendLocation:(NIMKitLocationPoint *)locationPoint{ 
-    NIMMessage *message = [NIMMessageMaker msgWithLocation:locationPoint];
-    [[NIMSDK sharedSDK].chatManager sendMessage:message toSession:self.session error:nil];
+//    NIMMessage *message = [NIMMessageMaker msgWithLocation:locationPoint];
+
+//    [[NIMSDK sharedSDK].chatManager sendMessage:message toSession:self.session error:nil];
+
+//    []
 }
 
 
@@ -464,7 +508,8 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
         [wself.layout layoutAfterRefresh];
         if (messages.count) {
             NSInteger row = [self findMessageIndex:messages[0]] - 1;
-            [wself.layout adjustOffset:row];
+//            [wself.layout adjustOffset:row];
+            [self insertMessages:messages];
         }
         if (messages.count)
         {

@@ -10,6 +10,9 @@
 #import "NIMMessageModel.h"
 #import "UIView+NIM.h"
 #import "NIMLoadProgressView.h"
+#import "IMSDK.h"
+#import "JSExtension.h"
+#import "UIImage+fixOrientation.h"
 
 @interface NIMSessionImageContentView()
 
@@ -31,6 +34,7 @@
         [self addSubview:_imageView];
         _progressView = [[NIMLoadProgressView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
         _progressView.maxProgress = 1.0f;
+        self.bubbleImageView.hidden = YES;
         [self addSubview:_progressView];
     }
     return self;
@@ -39,9 +43,58 @@
 - (void)refresh:(NIMMessageModel *)data
 {
     [super refresh:data];
-//    NIMImageObject * imageObject = (NIMImageObject*)self.model.message.messageObject;
+    NIMImageObject * imageObject = (NIMImageObject*)self.model.message.messageObject;
 //    UIImage * image              = [UIImage imageWithContentsOfFile:imageObject.thumbPath];
 //    self.imageView.image         = image;
+    if (self.model.message.isMySend) {
+        self.progressView.hidden = NO;
+        if ([self.model.message.content isKindOfClass:[RCImageMessage class]]) {
+            RCImageMessage *textMessage = (RCImageMessage *)self.model.message.content;
+            if (self.model.message.image) {
+                self.imageView.image = self.model.message.image.fixOrientation;
+            }
+            else if (textMessage.imageUrl.length) {
+                NSData *data = [NSData dataWithContentsOfFile:self.model.message.LocalPath];
+                if (data) {
+                    self.imageView.image = [UIImage imageWithData:data].fixOrientation;
+                }
+                else {
+                    self.imageView.image = [UIImage imageNamed:@"dyjx_default_img"];
+                }
+            }
+            else {
+                if (self.model.message.image) {
+                    self.imageView.image = self.model.message.image.fixOrientation;
+                }
+                
+               if ([[DataBaseManager shared] findModel:self.model.message identifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId]) {
+                    [self.progressView setProgress:1];
+                }
+                else {
+                    // 网络请求，上传图片并保存到数据库
+                    [[IMSDK sharedManager].chatManager uploadFile:self.model.message.image model:self.model.message progress:^(NSProgress * _Nonnull progress) {
+                        [self.progressView setProgress:progress.fractionCompleted];
+                    } Success:^(id  _Nullable responseObject) {
+                    } failed:^(NSString * _Nonnull errorMsg) {
+                    }];
+                }
+            }
+        }
+
+    }
+    else {
+        NSData *data = [NSData dataWithContentsOfFile:self.model.message.LocalPath];
+        if (data) {
+            self.imageView.image = [UIImage imageWithData:data];
+        }
+        else {
+            self.imageView.image = [UIImage imageNamed:@"dyjx_default_img"];
+        }
+//        self.imageView.image =
+//        [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageObject.url] placeholderImage:[UIImage imageNamed:@"dyjx_default_img"]];
+        self.progressView.hidden = YES;
+    }
+
 //    self.progressView.hidden     = self.model.message.isOutgoingMsg ? (self.model.message.deliveryState != NIMMessageDeliveryStateDelivering) : (self.model.message.attachmentDownloadState != NIMMessageAttachmentDownloadStateDownloading);
 //    if (!self.progressView.hidden) {
 //        [self.progressView setProgress:[[[NIMSDK sharedSDK] chatManager] messageTransportProgress:self.model.message]];

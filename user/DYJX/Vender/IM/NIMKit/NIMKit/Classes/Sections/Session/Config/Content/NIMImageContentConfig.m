@@ -11,8 +11,9 @@
 #import "NIMKit.h"
 
 @implementation NIMImageContentConfig
-- (CGSize)contentSize:(CGFloat)cellWidth message:(NIMMessage *)message
+- (CGSize)contentSize:(CGFloat)cellWidth message:(RCIMMessage *)message
 {
+    
     NIMImageObject *imageObject = (NIMImageObject*)[message messageObject];
     NSAssert([imageObject isKindOfClass:[NIMImageObject class]], @"message should be image");
     
@@ -20,7 +21,12 @@
     CGFloat attachmentImageMinHeight = (cellWidth / 4.0);
     CGFloat attachmemtImageMaxWidth  = (cellWidth - 184);
     CGFloat attachmentImageMaxHeight = (cellWidth - 184);
-    
+
+    UIImage *image = message.image;
+    if (!image) {
+        image = [UIImage imageNamed:@"dyjx_default_img"];
+    }
+    imageObject.size = image.size;
 
     CGSize imageSize;
     if (!CGSizeEqualToSize(imageObject.size, CGSizeZero)) {
@@ -28,8 +34,10 @@
     }
     else
     {
-        UIImage *image = [UIImage imageWithContentsOfFile:imageObject.thumbPath];
-        imageSize = image ? image.size : CGSizeZero;
+        UIImageView *imageView = [[UIImageView alloc] init];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:imageObject.url] placeholderImage:[UIImage imageNamed:@"dyjx_default_img"] options:SDWebImageRetryFailed];
+//        UIImage *image = [UIImage imageWithContentsOfFile:imageObject.thumbPath];
+        imageSize = imageView.image ? imageView.image.size : CGSizeZero;
     }
     CGSize contentSize = [UIImage nim_sizeWithImageOriginSize:imageSize
                                                    minSize:CGSizeMake(attachmentImageMinWidth, attachmentImageMinHeight)

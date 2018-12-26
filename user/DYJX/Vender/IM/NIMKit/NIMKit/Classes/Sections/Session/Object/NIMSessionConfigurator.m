@@ -46,8 +46,6 @@
 
 @interface NIMSessionConfigurator()
 
-@property (nonatomic,strong) NIMSessionInteractorImpl   *interactor;
-
 @property (nonatomic,strong) NIMSessionTableAdapter     *tableAdapter;
 
 @end
@@ -80,9 +78,9 @@
     vc.tableView.delegate = _tableAdapter;
     vc.tableView.dataSource = _tableAdapter;
     
-    
     [vc setInteractor:_interactor];
 }
+
 
 
 @end

@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong)  NIMSession *session;
 
+@property (nonatomic, strong)RCConversationModel *chatModel;
+
 /**
  *  当前当初的菜单所关联的消息
  *
@@ -42,6 +44,8 @@
  *  @discussion 可以更改文字的大小，颜色等属性，文案内容请使用 - (NSString *)sessionSubTitle 接口
  */
 @property (nonatomic, strong, readonly)    UILabel *subTitleLabel;
+
+@property (nonatomic, assign)NSInteger currentTime;
 
 
 /**

@@ -12,9 +12,9 @@
 #import "UIView+NIM.h"
 #import "NIMKit.h"
 
-NSInteger NIMMaxItemCountInPage = 8;
-NSInteger NIMButtonItemWidth = 75;
-NSInteger NIMButtonItemHeight = 85;
+NSInteger NIMMaxItemCountInPage = 4;
+NSInteger NIMButtonItemWidth = 70;
+NSInteger NIMButtonItemHeight = 90;
 NSInteger NIMPageRowCount     = 2;
 NSInteger NIMPageColumnCount  = 4;
 NSInteger NIMButtonBegintLeftX = 11;
@@ -55,7 +55,7 @@ NSInteger NIMButtonBegintLeftX = 11;
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
-    return CGSizeMake(size.width, 216.f);
+    return CGSizeMake(size.width, 120.f);
 }
 
 
@@ -81,7 +81,8 @@ NSInteger NIMButtonBegintLeftX = 11;
         [btn setImage:item.selectedImage forState:UIControlStateHighlighted];
         [btn setTitle:item.title forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btn setTitleEdgeInsets:UIEdgeInsetsMake(76, -75, 0, 0)];
+        [btn setTitleEdgeInsets:UIEdgeInsetsMake(65, -105, 0, 5)];
+        [btn setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 25, 5)];
         [btn.titleLabel setFont:[UIFont systemFontOfSize:14.0]];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [mediaButtons addObject:btn];

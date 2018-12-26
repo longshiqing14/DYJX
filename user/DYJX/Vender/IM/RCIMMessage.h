@@ -15,11 +15,33 @@ NS_ASSUME_NONNULL_BEGIN
 +(instancetype)copyRCModel:(RCMessage *)message;
 
 @property (nonatomic, strong)RCMessage *message;
+/**
+ *  消息附件内容
+ */
+@property (nullable,nonatomic,strong)                id<NIMMessageObject> messageObject;
 
 /*!
  地理位置的二维坐标
  */
 @property(nonatomic, assign) CLLocationCoordinate2D location;
+
+@property (nonatomic,strong)UIImage *image;
+
+/*!
+ wav格式的音频数据
+ */
+@property(nonatomic, copy) NSString *amrBase64Content;
+
+
+/*!
+ wav格式的音频数据
+ */
+@property (nonatomic, assign) CGSize imageSize;
+
+/*!
+本地的数据
+ */
+@property(nonatomic, copy) NSString *LocalPath;
 
 /*!
  会话类型
@@ -61,7 +83,12 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  目标会话ID
  */
-@property(nonatomic, strong) NSString *targetId;
+@property(nonatomic, copy) NSString *conversionId;
+
+/*!
+ 目标会话ID
+ */
+@property(nonatomic, copy) NSString *targetId;
 
 /*!
  消息的ID
@@ -78,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  消息的发送者ID
  */
-@property(nonatomic, strong) NSString *senderUserId;
+@property(nonatomic, copy) NSString *senderUserId;
 
 /*!
  消息的接收状态
@@ -103,7 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  消息的类型名
  */
-@property(nonatomic, strong) NSString *objectName;
+@property(nonatomic, copy) NSString *objectName;
 
 /*!
  消息的内容
@@ -113,8 +140,13 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  消息的附加字段
  */
-@property(nonatomic, strong) NSString *extra;
+@property(nonatomic, copy) NSString *extra;
 
+
+/*!
+ 发送进度
+ */
+@property(nonatomic, assign) CGFloat progress;
 /*!
  消息的附加字段
  */
@@ -126,6 +158,10 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion 服务器消息唯一ID（在同一个Appkey下全局唯一）
  */
 @property(nonatomic, copy) NSString *messageUId;
+
+// 是否删除操作
+@property (nonatomic, assign) BOOL isDeleted;
+
 
 /*!
  阅读回执状态

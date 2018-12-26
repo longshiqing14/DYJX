@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #include "PGPlugin.h"
+#import "NIMMessageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,6 +26,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (JSExtension *)shared;
 @property (nonatomic, copy)NSString *myClientId;
 @property (nonatomic, copy)NSString *myIdentityId;
+
+@property (nonatomic, copy)NSString *targetId;
+@property (nonatomic, assign)NSInteger type;
+@property (nonatomic, assign)NSString *conversionId;
+@property (nonatomic, strong)  NIMSession *session;
+@property (nonatomic, copy)NSString *targetName;
+@property (nonatomic, copy)NSString *targetImg;
+
+@property (nonatomic, strong)NSArray <RCIMMessage *> *dataArray;
 
 @property (nonatomic) dispatch_semaphore_t semaphore;
 

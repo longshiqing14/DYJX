@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RCIMMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,12 +15,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (DataBaseManager *)shared;
 
+// 标记播放过
+-(void)playModel:(RCIMMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId;
 
--(NSArray *)getModel:(RCMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId;
+-(NSArray *)getModel:(RCIMMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId;
 
--(void)insertModel:(RCMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId;
+-(BOOL)findModel:(RCIMMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId;
 
--(void)delegateModel:(RCMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId;
+-(void)insertModel:(RCIMMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId;
+
+-(void)delegateModel:(RCIMMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId;
 
 -(void)remarkAllReadIdentifyId:(NSString *)identifyId conversionId:(NSString *)conversionId;
 -(void)saveUnreadConversionId:(NSString *)conversionId byIdentityId:(NSString *)identityId;
