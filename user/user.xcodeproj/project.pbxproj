@@ -51,7 +51,7 @@
 		481FE76A218567CF00CFE26B /* DYJXRegisteViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 481FE769218567CF00CFE26B /* DYJXRegisteViewModel.m */; };
 		4826A47B21BF552400EAF963 /* DYJXQRCodePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826A47A21BF552400EAF963 /* DYJXQRCodePage.m */; };
 		4826A47E21BFA78D00EAF963 /* DYJXAddMemberPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826A47D21BFA78D00EAF963 /* DYJXAddMemberPage.m */; };
-		4826A48121BFA87500EAF963 /* DYJXAddMemberViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826A48021BFA87500EAF963 /* DYJXAddMemberViewModel.m */; };
+		4826A48121BFA87500EAF963 /* DYJXSelectMemberViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826A48021BFA87500EAF963 /* DYJXSelectMemberViewModel.m */; };
 		4826A48421BFA9AA00EAF963 /* DYJXAddMemberTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826A48321BFA9AA00EAF963 /* DYJXAddMemberTopView.m */; };
 		4826A48621BFA9E000EAF963 /* DYJXAddMemberTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4826A48521BFA9E000EAF963 /* DYJXAddMemberTopView.xib */; };
 		4826A48A21BFC43500EAF963 /* DYJXAddMemberCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826A48821BFC43500EAF963 /* DYJXAddMemberCollectionViewCell.m */; };
@@ -268,6 +268,14 @@
 		48DE38DE1FDE35160006528C /* JXFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DE38DD1FDE35160006528C /* JXFoodCell.m */; };
 		48DE38E11FDF71290006528C /* JXClassificationByWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DE38E01FDF71290006528C /* JXClassificationByWebVC.m */; };
 		48E24FB321C75C9700CC7D9E /* DYJXSelectMemberPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E24FB221C75C9700CC7D9E /* DYJXSelectMemberPage.m */; };
+		48E2501D21C7BBE800CC7D9E /* DYJXSelectMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2501B21C7BBE800CC7D9E /* DYJXSelectMemberCell.m */; };
+		48E2501E21C7BBE800CC7D9E /* DYJXSelectMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E2501C21C7BBE800CC7D9E /* DYJXSelectMemberCell.xib */; };
+		48E2502921C8922500CC7D9E /* XYDYJXIMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2501F21C8922100CC7D9E /* XYDYJXIMUser.m */; };
+		48E2502A21C8922500CC7D9E /* XYDYJXResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2502221C8922200CC7D9E /* XYDYJXResponse.m */; };
+		48E2502B21C8922500CC7D9E /* XYDYJXResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2502321C8922300CC7D9E /* XYDYJXResult.m */; };
+		48E2502C21C8922500CC7D9E /* XYDYJXBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2502421C8922300CC7D9E /* XYDYJXBusines.m */; };
+		48E2502D21C8922500CC7D9E /* XYDYJXIMInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2502821C8922500CC7D9E /* XYDYJXIMInfo.m */; };
+		48E2503021C9D84700CC7D9E /* DYJXDeleteMemberPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2502F21C9D84700CC7D9E /* DYJXDeleteMemberPage.m */; };
 		48E8A4A821B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */; };
 		48E8A4AB21B90ED50046EA0E /* CompanyTitleAndArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AA21B90ED50046EA0E /* CompanyTitleAndArrowCell.m */; };
 		48E8A4BC21BA1F8A0046EA0E /* DYJXXYBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AC21BA1F850046EA0E /* DYJXXYBusines.m */; };
@@ -1068,8 +1076,8 @@
 		4826A47A21BF552400EAF963 /* DYJXQRCodePage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXQRCodePage.m; sourceTree = "<group>"; };
 		4826A47C21BFA78D00EAF963 /* DYJXAddMemberPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXAddMemberPage.h; sourceTree = "<group>"; };
 		4826A47D21BFA78D00EAF963 /* DYJXAddMemberPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXAddMemberPage.m; sourceTree = "<group>"; };
-		4826A47F21BFA87500EAF963 /* DYJXAddMemberViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXAddMemberViewModel.h; sourceTree = "<group>"; };
-		4826A48021BFA87500EAF963 /* DYJXAddMemberViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXAddMemberViewModel.m; sourceTree = "<group>"; };
+		4826A47F21BFA87500EAF963 /* DYJXSelectMemberViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXSelectMemberViewModel.h; sourceTree = "<group>"; };
+		4826A48021BFA87500EAF963 /* DYJXSelectMemberViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXSelectMemberViewModel.m; sourceTree = "<group>"; };
 		4826A48221BFA9AA00EAF963 /* DYJXAddMemberTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXAddMemberTopView.h; sourceTree = "<group>"; };
 		4826A48321BFA9AA00EAF963 /* DYJXAddMemberTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXAddMemberTopView.m; sourceTree = "<group>"; };
 		4826A48521BFA9E000EAF963 /* DYJXAddMemberTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DYJXAddMemberTopView.xib; sourceTree = "<group>"; };
@@ -1467,6 +1475,21 @@
 		48DE38E01FDF71290006528C /* JXClassificationByWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXClassificationByWebVC.m; sourceTree = "<group>"; };
 		48E24FB121C75C9700CC7D9E /* DYJXSelectMemberPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXSelectMemberPage.h; sourceTree = "<group>"; };
 		48E24FB221C75C9700CC7D9E /* DYJXSelectMemberPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXSelectMemberPage.m; sourceTree = "<group>"; };
+		48E2501A21C7BBE800CC7D9E /* DYJXSelectMemberCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXSelectMemberCell.h; sourceTree = "<group>"; };
+		48E2501B21C7BBE800CC7D9E /* DYJXSelectMemberCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXSelectMemberCell.m; sourceTree = "<group>"; };
+		48E2501C21C7BBE800CC7D9E /* DYJXSelectMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DYJXSelectMemberCell.xib; sourceTree = "<group>"; };
+		48E2501F21C8922100CC7D9E /* XYDYJXIMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDYJXIMUser.m; sourceTree = "<group>"; };
+		48E2502021C8922200CC7D9E /* XYDYJXBusines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDYJXBusines.h; sourceTree = "<group>"; };
+		48E2502121C8922200CC7D9E /* XYDYJXResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDYJXResponse.h; sourceTree = "<group>"; };
+		48E2502221C8922200CC7D9E /* XYDYJXResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDYJXResponse.m; sourceTree = "<group>"; };
+		48E2502321C8922300CC7D9E /* XYDYJXResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDYJXResult.m; sourceTree = "<group>"; };
+		48E2502421C8922300CC7D9E /* XYDYJXBusines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDYJXBusines.m; sourceTree = "<group>"; };
+		48E2502521C8922300CC7D9E /* XYDYJXIMInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDYJXIMInfo.h; sourceTree = "<group>"; };
+		48E2502621C8922400CC7D9E /* XYDYJXIMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDYJXIMUser.h; sourceTree = "<group>"; };
+		48E2502721C8922400CC7D9E /* XYDYJXResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDYJXResult.h; sourceTree = "<group>"; };
+		48E2502821C8922500CC7D9E /* XYDYJXIMInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDYJXIMInfo.m; sourceTree = "<group>"; };
+		48E2502E21C9D84700CC7D9E /* DYJXDeleteMemberPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXDeleteMemberPage.h; sourceTree = "<group>"; };
+		48E2502F21C9D84700CC7D9E /* DYJXDeleteMemberPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXDeleteMemberPage.m; sourceTree = "<group>"; };
 		48E8A4A621B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndSelcetedArrowCell.h; sourceTree = "<group>"; };
 		48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyTitleAndSelcetedArrowCell.m; sourceTree = "<group>"; };
 		48E8A4A921B90ED50046EA0E /* CompanyTitleAndArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndArrowCell.h; sourceTree = "<group>"; };
@@ -3178,6 +3201,9 @@
 				4826A48721BFC43500EAF963 /* DYJXAddMemberCollectionViewCell.h */,
 				4826A48821BFC43500EAF963 /* DYJXAddMemberCollectionViewCell.m */,
 				4826A48921BFC43500EAF963 /* DYJXAddMemberCollectionViewCell.xib */,
+				48E2501A21C7BBE800CC7D9E /* DYJXSelectMemberCell.h */,
+				48E2501B21C7BBE800CC7D9E /* DYJXSelectMemberCell.m */,
+				48E2501C21C7BBE800CC7D9E /* DYJXSelectMemberCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3202,6 +3228,8 @@
 				4826A47D21BFA78D00EAF963 /* DYJXAddMemberPage.m */,
 				48E24FB121C75C9700CC7D9E /* DYJXSelectMemberPage.h */,
 				48E24FB221C75C9700CC7D9E /* DYJXSelectMemberPage.m */,
+				48E2502E21C9D84700CC7D9E /* DYJXDeleteMemberPage.h */,
+				48E2502F21C9D84700CC7D9E /* DYJXDeleteMemberPage.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -3219,8 +3247,8 @@
 				48A370FF21B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.m */,
 				48A3710D21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.h */,
 				48A3710E21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.m */,
-				4826A47F21BFA87500EAF963 /* DYJXAddMemberViewModel.h */,
-				4826A48021BFA87500EAF963 /* DYJXAddMemberViewModel.m */,
+				4826A47F21BFA87500EAF963 /* DYJXSelectMemberViewModel.h */,
+				4826A48021BFA87500EAF963 /* DYJXSelectMemberViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -3228,6 +3256,16 @@
 		487351362186F2D9001B59AB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				48E2502021C8922200CC7D9E /* XYDYJXBusines.h */,
+				48E2502421C8922300CC7D9E /* XYDYJXBusines.m */,
+				48E2502521C8922300CC7D9E /* XYDYJXIMInfo.h */,
+				48E2502821C8922500CC7D9E /* XYDYJXIMInfo.m */,
+				48E2502621C8922400CC7D9E /* XYDYJXIMUser.h */,
+				48E2501F21C8922100CC7D9E /* XYDYJXIMUser.m */,
+				48E2502121C8922200CC7D9E /* XYDYJXResponse.h */,
+				48E2502221C8922200CC7D9E /* XYDYJXResponse.m */,
+				48E2502721C8922400CC7D9E /* XYDYJXResult.h */,
+				48E2502321C8922300CC7D9E /* XYDYJXResult.m */,
 				48E8A4BA21BA1F890046EA0E /* DYJXXYAdminUsers.h */,
 				48E8A4B321BA1F880046EA0E /* DYJXXYAdminUsers.m */,
 				48E8A4B621BA1F880046EA0E /* DYJXXYBusines.h */,
@@ -6787,6 +6825,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48E2501E21C7BBE800CC7D9E /* DYJXSelectMemberCell.xib in Resources */,
 				4826A48621BFA9E000EAF963 /* DYJXAddMemberTopView.xib in Resources */,
 				487C55C120638AE4006A8071 /* JXAddressCell.xib in Resources */,
 				DE9110122085DD5600BDDABF /* JXOderIntegralCell.xib in Resources */,
@@ -7278,6 +7317,7 @@
 				CBD2BAD31F5E50700057E2E7 /* XYHomeVC.m in Sources */,
 				48E8A4C221BA1F8A0046EA0E /* DYJXXYResult.m in Sources */,
 				E17AF25A21A02D480041249C /* DJJXBusines.m in Sources */,
+				48E2501D21C7BBE800CC7D9E /* DYJXSelectMemberCell.m in Sources */,
 				CBFF46621F7E7ACC00D2AF93 /* XLZoomingScrollView.m in Sources */,
 				CBFF45751F736B4500D2AF93 /* XYPickView.m in Sources */,
 				E1BD1E8A21C4A3BE00C6B3D9 /* M80AttributedLabelAttachment.m in Sources */,
@@ -7356,6 +7396,7 @@
 				CBFF467E1F7F271500D2AF93 /* XYOrderShowImgCVCell.m in Sources */,
 				488B092F21B6230C00DAA97E /* CompanyAdminBottomView.m in Sources */,
 				E11C423C21A2E5DC0039A53A /* GroupDetailModel.m in Sources */,
+				48E2502C21C8922500CC7D9E /* XYDYJXBusines.m in Sources */,
 				CBE85AC81F63996200E1E4EA /* XYOrderDetailGoodsListTVC.m in Sources */,
 				CBF74E311F8C972E00D528C2 /* XYCartDeliveryWayModel.m in Sources */,
 				CB582FAE1F73A5BF009E495F /* XYAddAddressVC.m in Sources */,
@@ -7405,6 +7446,7 @@
 				CB3307A11FA1BF8F00117695 /* IQPreviousNextView.m in Sources */,
 				DEE9AA351FBD358E001FA69A /* JXSuccessAccountViewController.m in Sources */,
 				CB33076D1FA0966F00117695 /* XYOrderDetailInvoiceInfoTVCell.m in Sources */,
+				48E2502D21C8922500CC7D9E /* XYDYJXIMInfo.m in Sources */,
 				CBFF45781F736C6900D2AF93 /* XYPickCityModel.m in Sources */,
 				CBE85AF51F63E73300E1E4EA /* XYMineOrderListVC.m in Sources */,
 				48B5737A2047A1710028A8FA /* JXElectronicInvoiceCell.m in Sources */,
@@ -7453,6 +7495,7 @@
 				DEB72FDF1FBD77470069C581 /* JXDetailsViewController.m in Sources */,
 				CB5AE5AD1F7B82A7004846E2 /* XYOrderCommentVC.m in Sources */,
 				E1BD1E9621C4A3D700C6B3D9 /* UIView+Toast.m in Sources */,
+				48E2502921C8922500CC7D9E /* XYDYJXIMUser.m in Sources */,
 				CBF74E391F8DBA6600D528C2 /* XYLanuchGuideVC.m in Sources */,
 				DE71B165208744DD00467E06 /* PYPhotoCell.m in Sources */,
 				48B8308C1FB9AEBB0019F503 /* JXBaseModel.m in Sources */,
@@ -7520,6 +7563,7 @@
 				4848B7A1208888440093D8C4 /* JXRefundTextModel.m in Sources */,
 				E1BD1EBF21C4A3E700C6B3D9 /* NSBundle+TZImagePicker.m in Sources */,
 				CB4287621F66326E004C43C1 /* XYOrderDetailSubClassOrderDetailVC.m in Sources */,
+				48E2502A21C8922500CC7D9E /* XYDYJXResponse.m in Sources */,
 				CB4287711F66AB5C004C43C1 /* XYOrderDetailSubClassOrderDetailPayTVCell.m in Sources */,
 				481FE70B2182170600CFE26B /* DYJXLoginPage.m in Sources */,
 				E19DC8B8219AC36400C86478 /* DYChatViewController.m in Sources */,
@@ -7537,6 +7581,7 @@
 				CB123C481F98D94600CD4429 /* XYGoodsSearchResultVC.m in Sources */,
 				DE71B160208744DD00467E06 /* PYPhotosNavigationController.m in Sources */,
 				DE8E74371FBC1E3E00426EAF /* JXMyBroadbandAccountCell.m in Sources */,
+				48E2503021C9D84700CC7D9E /* DYJXDeleteMemberPage.m in Sources */,
 				CB3307A01FA1BF8F00117695 /* IQBarButtonItem.m in Sources */,
 				CB42874C1F645A7A004C43C1 /* XYPayOrderSuccessVC.m in Sources */,
 				48D980161FEB5C5B00246D4B /* JXClassificationFoldPage.m in Sources */,
@@ -7564,7 +7609,7 @@
 				4843205620243C6C00468411 /* JXPiontsRuleVC.m in Sources */,
 				E1BD1EC721C4A3E700C6B3D9 /* TZImagePickerController.m in Sources */,
 				CBFF467B1F7F271500D2AF93 /* XYOrderCommentDetailSecondCell.m in Sources */,
-				4826A48121BFA87500EAF963 /* DYJXAddMemberViewModel.m in Sources */,
+				4826A48121BFA87500EAF963 /* DYJXSelectMemberViewModel.m in Sources */,
 				CBE85A091F604CD700E1E4EA /* XYHomeTVCHeaderView.m in Sources */,
 				CBE85A6E1F628CB600E1E4EA /* XYShoppingCartTotalModel.m in Sources */,
 				CBF74E471F8E1EA000D528C2 /* XYMyBoardBandVC.m in Sources */,
@@ -7578,6 +7623,7 @@
 				CBE85ACE1F63B5E100E1E4EA /* XYOrderConfirmOrderBottomVC.m in Sources */,
 				CB53FE7B1F6A23250020F19A /* XYPreDepositOrderPaySuccessVC.m in Sources */,
 				489A3F3F1FB53B530084E2BC /* JXSearchHistoryCollectionReusableHeaderView.m in Sources */,
+				48E2502B21C8922500CC7D9E /* XYDYJXResult.m in Sources */,
 				CBF74E751F8F87DF00D528C2 /* XYMyBoardBandSecondChildVC.m in Sources */,
 				CBF8DDD81FA896160018EC62 /* XYTableViewFooterIntervalView.m in Sources */,
 				CB4287651F66417E004C43C1 /* XYOrderDetailModel.m in Sources */,

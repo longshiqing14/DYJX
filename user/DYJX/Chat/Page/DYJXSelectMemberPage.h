@@ -8,8 +8,13 @@
 
 #import "BaseViewController.h"
 #import "DYJXAddMemberTopView.h"
+#import "XYDYJXResult.h"
 
+typedef void(^CommitBlock)(NSMutableArray<XYDYJXResult*> *);
 
 @interface DYJXSelectMemberPage : BaseViewController
-@property (nonatomic, assign) OperatorMember *operatorType;
+@property (nonatomic, assign) OperatorMember operatorType;
+@property (nonatomic, copy) CommitBlock block;
+
+
 @end

@@ -8,14 +8,15 @@
 
 #import "DYJXAddMemberPage.h"
 #import "DYJXAddMemberTopView.h"
-#import "DYJXAddMemberViewModel.h"
+
 #import "DYJXAddMemberCollectionViewCell.h"
 #import "DYJXSelectMemberPage.h"
+#import "XYDYJXResult.h"
+#import "DYJXDeleteMemberPage.h"
 
 @interface DYJXAddMemberPage ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) DYJXAddMemberTopView *addMemberTopView;
 @property (nonatomic, strong)UICollectionView *collectionView;
-@property (nonatomic, strong)DYJXAddMemberViewModel *viewModel;
 @end
 
 @implementation DYJXAddMemberPage
@@ -136,11 +137,60 @@
     WeakSelf;
     if (!_addMemberTopView) {
        _addMemberTopView = [[NSBundle mainBundle] loadNibNamed:@"DYJXAddMemberTopView" owner:self options:nil].firstObject;
-        _addMemberTopView.block = ^(NSInteger OperatorType) {
-            DYJXSelectMemberPage *selectMemberPage = [[DYJXSelectMemberPage alloc]init];
-            [weakSelf.navigationController pushViewController:selectMemberPage animated:YES];
+        _addMemberTopView.block = ^(OperatorMember OperatorType) {
+            
+            if (OperatorType == OperatorMemberAdd) {
+                
+                DYJXSelectMemberPage *selectMemberPage = [[DYJXSelectMemberPage alloc]init];
+                selectMemberPage.operatorType = OperatorType;
+                selectMemberPage.block = ^(NSMutableArray<XYDYJXResult *> *membersArray) {
+                    for (XYDYJXResult *obj in membersArray) {
+                        DJJXMembers *member = [[DJJXMembers alloc]init];
+                        member.Business = (DJJXBusines*)obj.IMUser.Business;
+                        member.DisplayName = obj.IMUser.DisplayName;
+                        [weakSelf.membersArray addObject:member];
+                    }
+                    [weakSelf.collectionView reloadData];
+                };
+                [weakSelf.navigationController pushViewController:selectMemberPage animated:YES];
+                
+            }else if (OperatorType == OperatorMemberDelete){
+                DYJXDeleteMemberPage *deleteMemberPage = [[DYJXDeleteMemberPage alloc]init];
+                deleteMemberPage.operatorType = OperatorType;
+                
+                DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+                __block NSMutableArray<DJJXMembers*> *deleteMembersArray = [NSMutableArray array];
+                [weakSelf.membersArray enumerateObjectsUsingBlock:^(DJJXMembers * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (![obj.Id isEqualToString:userModel.UserID]) {
+                       [deleteMembersArray addObject:obj];
+                    }
+                }];
+                deleteMemberPage.deleteMembersArray = deleteMembersArray;
+                
+                [weakSelf.navigationController pushViewController:deleteMemberPage animated:YES];
+                
+                deleteMemberPage.block = ^(NSMutableArray<DJJXMembers *> *membersArray) {
+                    for (DJJXMembers *obj in membersArray) {
+                        for (DJJXMembers *memberObj in weakSelf.membersArray) {
+                            if ([memberObj.NumberString isEqualToString:obj.NumberString]) {
+                                [weakSelf.membersArray removeObject:memberObj];
+                            }
+                        }
+                    }
+                    [weakSelf.collectionView reloadData];
+                };
+                
+            }else if (OperatorType == OperatorMemberAccessAdmin){
+                
+            }else if (OperatorType == OperatorMemberFireAdmin){
+                
+            }
+            
+            
+            
+            };
+        
         };
-    }
     return _addMemberTopView;
 }
 

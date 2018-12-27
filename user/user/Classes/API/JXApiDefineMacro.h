@@ -68,6 +68,8 @@ static NSString * const kDYJXAPI_user_UpdateIMUserInfo = @"UpdateIMUserInfo";
 //获取（子）公司信息
 static NSString * const kDYJXAPI_user_GetGroupById = @"GetGroupById";
 
+//好友联系人
+static NSString * const kDYJXAPI_user_SearchContact = @"SearchContact";
 
 
 

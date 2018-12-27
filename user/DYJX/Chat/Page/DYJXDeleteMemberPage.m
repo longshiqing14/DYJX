@@ -1,24 +1,22 @@
 //
-//  DYJXSelectMemberPage.m
+//  DYJXDeleteMemberPage.m
 //  user
 //
-//  Created by 岩  熊 on 2018/12/17.
+//  Created by 岩  熊 on 2018/12/19.
 //  Copyright © 2018年 xiaopenglive. All rights reserved.
 //
 
-#import "DYJXSelectMemberPage.h"
+#import "DYJXDeleteMemberPage.h"
 #import "HeadSearchView.h"
-#import "DYJXSelectMemberViewModel.h"
 #import "DYJXSelectMemberCell.h"
 
-@interface DYJXSelectMemberPage ()<UITableViewDelegate,UITableViewDataSource>
+@interface DYJXDeleteMemberPage ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)HeadSearchView *headView;
 @property (nonatomic, strong)UITableView *tableView;
-@property (nonatomic, strong)DYJXSelectMemberViewModel *viewModel;
 @property (strong, nonatomic) NSMutableArray<NSString*> *selectIndexsArray;//多选，当前选中
 @end
 
-@implementation DYJXSelectMemberPage
+@implementation DYJXDeleteMemberPage
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,29 +24,20 @@
     self.title = @"选择成员";
     [self initNavigation];
     [self initSubView];
-
+    
     if (self.operatorType == OperatorMemberAdd) {
         
-        [self.viewModel.requestDic setObject:@2 forKey:@"ContactType"];
-        [self.viewModel.requestDic setObject:@0 forKey:@"UserType"];
-        [self.viewModel.requestDic setObject:@"" forKey:@"Keyword"];
-        [self.viewModel.requestDic setObject:@1 forKey:@"PageIndex"];
-        [self.viewModel.requestDic setObject:@50 forKey:@"PageSize"];
-        [self.viewModel getGroupInfoWithGroupId:@"" Success:^{
-            [weakSelf initSelectIndexArray:self.viewModel.dataArray];
-            [weakSelf.tableView reloadData];
-        } failed:^(NSString *errorMsg) {
-            
-        }];
-        
     }else if (self.operatorType == OperatorMemberDelete){
+        
+        [weakSelf initSelectIndexArray:self.deleteMembersArray];
+        [weakSelf.tableView reloadData];
         
     }else if (self.operatorType == OperatorMemberAccessAdmin){
         
     }else if (self.operatorType == OperatorMemberFireAdmin){
         
     }
-
+    
     
 }
 
@@ -82,16 +71,16 @@
         make.left.right.mas_equalTo(0);
         make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
         if (@available(iOS 11.0, *)) {
-        make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
         } else {
-        make.bottom.mas_equalTo(self.view);
+            make.bottom.mas_equalTo(self.view);
         }
     }];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return [self.viewModel numberOfCell];
+    return self.deleteMembersArray.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
@@ -103,11 +92,10 @@
     return 60;
 }
 
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     DYJXSelectMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DYJXSelectMemberCell" forIndexPath:indexPath];
-    [cell.userIcon setImageWithURL:[NSURL URLWithString:[[self.viewModel userIcon:indexPath] XYImageURL]] placeholder:[UIImage imageNamed:@"person_orange"]];
-    cell.userName.text = [self.viewModel userName:indexPath];
+    [cell.userIcon setImageWithURL:[NSURL URLWithString:[self.deleteMembersArray[indexPath.row].Business.IMInfo.HeadImgUrl XYImageURL]] placeholder:[UIImage imageNamed:@"person_orange"]];
+    cell.userName.text = self.deleteMembersArray[indexPath.row].DisplayName;
     if ([self.selectIndexsArray[indexPath.row] isEqualToString:@"1"]) { //如果为选中状态
         [cell.selectIcon setImage:[UIImage imageNamed:@"register_checkbox_active"]];
     }else {
@@ -118,7 +106,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     if ([self.selectIndexsArray[indexPath.row] isEqualToString:@"1"]) { //如果为选中状态
         //切换为未选中
         [self.selectIndexsArray replaceObjectAtIndex:indexPath.row withObject:@"0"]; //数据改为未选中
@@ -131,19 +119,19 @@
     
 }
 
-- (void)initSelectIndexArray:(NSMutableArray<XYDYJXResult*> *)dataArray{
+- (void)initSelectIndexArray:(NSMutableArray<DJJXMembers*> *)dataArray{
     
     for (int i = 0; i< dataArray.count; i++) {
-         [self.selectIndexsArray addObject:@"0"];
+        [self.selectIndexsArray addObject:@"0"];
     }
 }
 
 - (void)commitSelectMember{
     WeakSelf;
-   __block NSMutableArray<XYDYJXResult*> *membersArray = [NSMutableArray array];
+    __block NSMutableArray<DJJXMembers*> *membersArray = [NSMutableArray array];
     [self.selectIndexsArray enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if([obj isEqualToString:@"1"]){
-            [membersArray addObject:weakSelf.viewModel.dataArray[idx]];
+            [membersArray addObject:weakSelf.deleteMembersArray[idx]];
         };
     }];
     
@@ -169,22 +157,6 @@
         return;
     }
     
-    [self.viewModel.requestDic setObject:@2 forKey:@"ContactType"];
-    [self.viewModel.requestDic setObject:@0 forKey:@"UserType"];
-    if ([YWDTools isNil:self.headView.textField.text]) {
-      [self.viewModel.requestDic setObject:@"" forKey:@"Keyword"];
-    }else{
-      [self.viewModel.requestDic setObject:self.headView.textField.text forKey:@"Keyword"];
-    }
-    
-    [self.viewModel.requestDic setObject:@1 forKey:@"PageIndex"];
-    [self.viewModel.requestDic setObject:@50 forKey:@"PageSize"];
-    [self.viewModel getGroupInfoWithGroupId:@"" Success:^{
-        [weakSelf initSelectIndexArray:self.viewModel.dataArray];
-        [weakSelf.tableView reloadData];
-    } failed:^(NSString *errorMsg) {
-        
-    }];
 }
 
 - (UITableView *)tableView{
@@ -196,13 +168,6 @@
     return _tableView;
 }
 
-- (DYJXSelectMemberViewModel *)viewModel{
-    if (!_viewModel) {
-        _viewModel = [[DYJXSelectMemberViewModel alloc]init];
-    }
-    return _viewModel;
-}
-
 - (NSMutableArray<NSString *> *)selectIndexsArray{
     if (!_selectIndexsArray) {
         _selectIndexsArray = [NSMutableArray array];
@@ -210,20 +175,5 @@
     return _selectIndexsArray;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
