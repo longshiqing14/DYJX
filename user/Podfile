@@ -18,12 +18,17 @@ target 'user' do
     pod 'TYPagerController'
     pod 'MLTransition'
     pod 'MJExtension'
-    pod 'SDWebImage'
+    pod 'SDWebImage', '~> 4.2.2'
     pod 'SVProgressHUD'
     pod 'SDCycleScrollView'
     pod 'AMapLocation-NO-IDFA'
     pod 'AMapSearch-NO-IDFA'
     pod 'TTGTagCollectionView'
+#    pod 'NIMKit', :path =>'../'
+    pod 'Toast', '~> 3.0'
+    pod 'M80AttributedLabel', '~> 1.6.3'
+    pod 'TZImagePickerController', '~> 1.9.0'
+#    pod 'NIMSDK_LITE'
   target 'userTests' do
     inherit! :search_paths
     # Pods for testing

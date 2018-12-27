@@ -26,6 +26,10 @@
 
 #define XY_Network_Status_NotReachable              @"XY_Network_Status_NotReachable"  // 没有网络
 
+#define XY_IM_AlreadRead              @"XY_IM_AlreadRead"  // 更新已读刷新UI
+
+#define XY_IM_InsertModel              @"XY_IM_InsertModel"  // 增加model通知
+
 @interface XYCommon : NSObject
 
 extern const  CGFloat XY_Left_Margin;

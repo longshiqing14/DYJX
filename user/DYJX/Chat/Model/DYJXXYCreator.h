@@ -12,20 +12,20 @@
 
 @interface DYJXXYCreator : NSObject
 
-@property (nonatomic, strong) NSString * BelongEnterprise;
+@property (nonatomic, copy) NSString * BelongEnterprise;
 @property (nonatomic, strong) DYJXXYBusines * Business;
-@property (nonatomic, strong) NSString * Cellphone;
-@property (nonatomic, strong) NSString * CreateOn;
+@property (nonatomic, copy) NSString * Cellphone;
+@property (nonatomic, copy) NSString * CreateOn;
 @property (nonatomic, assign) BOOL Deleted;
 @property (nonatomic, assign) BOOL Disabled;
-@property (nonatomic, strong) NSString * DisplayName;
-@property (nonatomic, strong) NSString * DisplayTel;
-@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, copy) NSString * DisplayName;
+@property (nonatomic, copy) NSString * DisplayTel;
+@property (nonatomic, copy) NSString * IdField;
 @property (nonatomic, assign) NSInteger Number;
-@property (nonatomic, strong) NSString * NumberString;
-@property (nonatomic, strong) NSString * RongCloudToken;
+@property (nonatomic, copy) NSString * NumberString;
+@property (nonatomic, copy) NSString * RongCloudToken;
 @property (nonatomic, assign) NSInteger Type;
-@property (nonatomic, strong) NSString * UserName;
+@property (nonatomic, copy) NSString * UserName;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

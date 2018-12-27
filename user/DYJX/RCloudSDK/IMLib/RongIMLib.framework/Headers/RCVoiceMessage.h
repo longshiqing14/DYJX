@@ -30,6 +30,11 @@
 @property(nonatomic, strong) NSData *wavAudioData;
 
 /*!
+ wav格式的音频数据
+ */
+@property(nonatomic, strong) NSString *amrBase64Content;
+
+/*!
  语音消息的时长
  */
 @property(nonatomic, assign) long duration;

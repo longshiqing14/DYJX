@@ -58,6 +58,11 @@
 #import "NSObject+Extension.h"
 #import "UserManager.h"
 #import "NSString+Tool.h"
+#import <NIMSDK/NIMSDK.h>
+#import <RongIMKit/RongIMKit.h>
+#import "DataBaseManager.h"
+#import "RCIMMessage.h"
+#import "UIImage+fixOrientation.h"
 
 #define RETURN_CODE_  @"RETURN_CODE"
 #define RETURN_DESC_  @"RETURN_DESC"

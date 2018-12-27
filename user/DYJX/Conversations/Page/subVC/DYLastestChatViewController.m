@@ -14,6 +14,7 @@
 #import "DYJXLasterListCell.h"
 #import "JSExtension.h"
 #import "DYChatViewController.h"
+#import "JXChatViewController.h"
 
 @interface DYLastestChatViewController ()
 
@@ -43,8 +44,26 @@
     }];
 
     [self reloadData];
+
+    //设置接收消息代理
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveMessageNotification:)
+                                                 name:RCKitDispatchMessageNotification
+                                               object:nil];
+
+    // 已读
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:XY_IM_AlreadRead object:nil];
 }
 
+- (void)didReceiveMessageNotification:(NSNotification *)notification {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self reloadData];
+    });
+}
+
+-(void)reloadTableView {
+    [self.conversationListTableView reloadData];
+}
 
 - (void)onRCIMReceiveMessage:(RCMessage *)message
                         left:(int)left {
@@ -58,20 +77,34 @@
     RCConversationModel *conversationModel = self.conversationListDataSource[indexPath.row];
     NSDictionary *dict = (NSDictionary *)model.extend;
     RCConversationType conversationType = ConversationType_PRIVATE;
+    NIMSessionType type = NIMSessionTypeP2P;
     if ([dict[@"type"] isEqualToString:@"1"]) {
         conversationType = ConversationType_GROUP;
+        type = NIMSessionTypeTeam;
+        [JSExtension shared].type = 1;
+        [JSExtension shared].targetId = conversationModel.targetId;
+        [JSExtension shared].targetName = conversationModel.extend[@"targetName"];
+        [JSExtension shared].targetImg = conversationModel.extend[@"targetImg"];
     }
     else if ([dict[@"type"] isEqualToString:@"0"]) {
         conversationType = ConversationType_PRIVATE;
+        type = NIMSessionTypeP2P;
+        [JSExtension shared].type = 0;
+        [JSExtension shared].targetId = conversationModel.extend[@"targetId"];
+        [JSExtension shared].targetName = conversationModel.extend[@"targetName"];
+        [JSExtension shared].targetImg = conversationModel.extend[@"targetImg"];
     }
-    conversationType = RC_CONVERSATION_MODEL_TYPE_PUBLIC_SERVICE;
 
-    DYChatViewController *conversationVC = [[DYChatViewController alloc] initWithConversationType:conversationType targetId:conversationModel.targetId];
-    conversationVC.conversationType = conversationType;
-    conversationVC.chatModel = conversationModel;
-    conversationVC.targetId = conversationModel.targetId;
-    conversationVC.title = model.targetId;
-    [self.navigationController pushViewController:conversationVC animated:YES];
+    [JSExtension shared].conversionId = conversationModel.targetId;
+
+    [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:model.targetId];
+
+    NIMSession *session = [NIMSession session:model.targetId type:type];
+    [JSExtension shared].session = session;
+    JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+    chatVC.naviTitle = model.conversationTitle;
+    chatVC.chatModel = model;
+    [self.navigationController pushViewController:chatVC animated:YES];
 }
 
 
@@ -80,7 +113,7 @@
     [self.viewModel getLasterContractsNumer:1 Success:^(BOOL isLastPage, BOOL doHaveData) {
         [weakSelf.conversationListTableView.mj_header endRefreshing];
         weakSelf.conversationListDataSource = [weakSelf willReloadTableData:[[NSMutableArray alloc] init]];
-        [weakSelf refreshConversationTableViewIfNeeded];
+        [weakSelf reloadTableView];
     } failed:^(NSString * _Nonnull errorMsg) {
         [weakSelf.conversationListTableView.mj_header endRefreshing];
     }];
@@ -107,7 +140,30 @@
         RCConversationModel *model = [[RCConversationModel alloc]init];
         model.conversationModelType = RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION;
         model.conversationTitle = result.TargetName;
-        model.targetId = result.TargetId;
+        if (result.LastMsg[@"RowData"]) {
+            NSString *body = [NSString stringWithFormat:@"%@",result.LastMsg[@"RowData"]];
+            NSDictionary *dic = [body stringToDictionary];
+            if (dic[@"extra"]) {
+                NSDictionary *dict = [dic[@"extra"] stringToDictionary];
+                model.targetId = dict[@"ConversationId"];
+                if (model.targetId) {
+                    NSArray *array = [[DataBaseManager shared] getModel:[RCMessage new] identifyId:[JSExtension shared].myIdentityId conversionId:model.targetId];
+                    if (!array || !array.count) {
+                        continue;
+                    }
+                }
+                else {
+                    continue;
+                }
+            }
+            else {
+                continue;
+            }
+        }
+        else {
+            continue;
+        }
+
         model.unreadMessageCount = 1;
         NSMutableDictionary *dictory = [[NSMutableDictionary alloc] init];
         if (result.LastMsg[@"CreateOn"]) {
@@ -147,7 +203,6 @@
                 [dictory setObject:[NSString stringWithFormat:@"%@",result.LastMsg[@"Keywords"]] forKey:@"extra"];
             }
         }
-        model.extend = dictory;
         model.senderUserId = [NSString stringWithFormat:@"%@",result.LastMsg[@"FromId"]];
         if (result.LastMsg[@"CreateBy"]) {
             model.draft = [NSString stringWithFormat:@"%@",result.LastMsg[@"CreateBy"]];
@@ -178,8 +233,40 @@
             [dictory setObject:@"0" forKey:@"type"];
         }
 
+        if ([result.TargetId isEqualToString:[UserManager shared].getUserModel.UserID]) {
+            dictory[@"targetId"] = result.FromId;
+            dictory[@"targetName"] = result.FromName;
+            dictory[@"targetImg"] = result.FromHeadImg;
+        }
+        else {
+            dictory[@"targetId"] = result.TargetId;
+            dictory[@"targetName"] = result.TargetName;
+            dictory[@"targetImg"] = result.TargetHeadImg;
+        }
+
+        model.extend = dictory;
         model.lastestMessage = content;
         model.jsonDict = result.LastMsg;
+
+//        int j = 0;
+//        BOOL isFlag = YES;
+//        NSArray *datas = [dataSource copy];
+//        for (RCConversationModel *item in datas) { // 去重
+//            if ([model.targetId isEqualToString:item.targetId]) {
+//                if ([model.extend[@"UpdateOn"] caseInsensitiveCompare:item.extend[@"UpdateOn"]] == NSOrderedDescending) {
+//                    [dataSource removeObjectAtIndex:j];
+//                    break;
+//                }
+//                else { // 小于那个时间
+//                    isFlag = NO;
+//                }
+//            }
+//            j++;
+//        }
+
+//        if (!isFlag) {
+//            continue;
+//        }
 
         [dataSource addObject:model];
     }
@@ -197,6 +284,9 @@
     RCConversationModel *model = self.conversationListDataSource[indexPath.row];
     cell.title.text = model.conversationTitle;
     NSDictionary *dict = (NSDictionary *)model.extend;
+
+
+    [cell setNumber:[[DataBaseManager shared] unreadCountIdentifyId:[JSExtension shared].myIdentityId conversionId:model.targetId]];
 
     if (dict[@"UpdateOn"]) {
         cell.timeLabel.text = dict[@"UpdateOn"];
@@ -220,10 +310,10 @@
     }
 
     if (model.lastestMessage.senderUserInfo.portraitUri) { // 外面有图片就取外面第一层
-        [cell.porityImage sd_setImageWithURL:[NSURL URLWithString:model.lastestMessage.senderUserInfo.portraitUri] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageRetryFailed];
+        [cell.porityImage sd_setImageWithURL:[NSURL URLWithString:model.lastestMessage.senderUserInfo.portraitUri] placeholderImage:[UIImage imageNamed:@"dyjx_default_img"] options:SDWebImageRetryFailed];
     }
     else if (dict[@"extra"]) {
-        [cell.porityImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dict[@"extra"]]] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageRetryFailed];
+        [cell.porityImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dict[@"extra"]]] placeholderImage:[UIImage imageNamed:@"dyjx_default_img"] options:SDWebImageRetryFailed];
     }
     else {
 

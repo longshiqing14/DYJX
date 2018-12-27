@@ -42,6 +42,7 @@
 #import "DYJXIdentitySwitchingPage.h"
 #import "JSExtension.h"
 #import "SimpleMessage.h"
+#import "IMSDK.h"
 
 // 账号密码： 18778399213 123456
 // 账号密码： 13750820441 654321
@@ -51,6 +52,7 @@
 
 #import <RongIMKit/RongIMKit.h>
 #define RongAppKey @"qf3d5gbjqs03h"
+#define NIMSDKAppKey @"8fc95f505b6cbaedf613677c8e08fc0b"
 
 #endif
 
@@ -81,6 +83,10 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"%@",launchOptions);
+
+    // 为了用音频
+    [[NIMSDK sharedSDK] registerWithAppID:NIMSDKAppKey cerName:nil];
+    ChatManager *chatManagert = [IMSDK sharedManager].chatManager; // 监听
     
 //    [self getSessionId];
 //    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
@@ -202,7 +208,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
     [[RCIMClient sharedRCIMClient] connectWithToken:[UserManager shared].getUserModel.Result.RongCloudToken
                                             success:^(NSString *userId) {
                                                 NSLog(@"登陆成功。当前登录的用户ID：%@", userId);
-
+                                                [self updataBadgeNumber];
                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                     [[RCIM sharedRCIM] setUserInfoDataSource:self];
                                                 });
@@ -312,11 +318,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // OpenGL ES frame rates. Games should use this method to pause the game.
     RCConnectionStatus status = [[RCIMClient sharedRCIMClient] getConnectionStatus];
     if (status != ConnectionStatus_SignUp) {
-        int unreadMsgCount = [[RCIMClient sharedRCIMClient] getUnreadCount:@[
-                                                                             @(ConversationType_PRIVATE), @(ConversationType_DISCUSSION), @(ConversationType_APPSERVICE),
-                                                                             @(ConversationType_PUBLICSERVICE), @(ConversationType_GROUP)
-                                                                             ]];
-        application.applicationIconBadgeNumber = unreadMsgCount;
+//        int unreadMsgCount = [[RCIMClient sharedRCIMClient] getUnreadCount:@[
+//                                                                             @(ConversationType_PRIVATE), @(ConversationType_DISCUSSION), @(ConversationType_APPSERVICE),
+//                                                                             @(ConversationType_PUBLICSERVICE), @(ConversationType_GROUP)
+//                                                                             ]];
+//        application.applicationIconBadgeNumber = unreadMsgCount;
     }
 }
 
@@ -334,16 +340,17 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 #pragma mark - 消息接收监听器
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
-    NSNumber *left = [notification.userInfo objectForKey:@"left"];
-    if ([RCIMClient sharedRCIMClient].sdkRunningMode == RCSDKRunningMode_Background && 0 == left.integerValue) {
-        int unreadMsgCount = [[RCIMClient sharedRCIMClient] getUnreadCount:@[
-                                                                             @(ConversationType_PRIVATE), @(ConversationType_DISCUSSION), @(ConversationType_APPSERVICE),
-                                                                             @(ConversationType_PUBLICSERVICE), @(ConversationType_GROUP)
-                                                                             ]];
-        dispatch_async(dispatch_get_main_queue(),^{
-            [UIApplication sharedApplication].applicationIconBadgeNumber = unreadMsgCount;
-        });
-    }
+    [self updataBadgeNumber];
+//    NSNumber *left = [notification.userInfo objectForKey:@"left"];
+//    if ([RCIMClient sharedRCIMClient].sdkRunningMode == RCSDKRunningMode_Background && 0 == left.integerValue) {
+//        int unreadMsgCount = [[RCIMClient sharedRCIMClient] getUnreadCount:@[
+//                                                                             @(ConversationType_PRIVATE), @(ConversationType_DISCUSSION), @(ConversationType_APPSERVICE),
+//                                                                             @(ConversationType_PUBLICSERVICE), @(ConversationType_GROUP)
+//                                                                             ]];
+//        dispatch_async(dispatch_get_main_queue(),^{
+//            [UIApplication sharedApplication].applicationIconBadgeNumber = unreadMsgCount;
+//        });
+//    }
 }
 
 - (void)onRCIMReceiveMessage:(RCMessage *)message left:(int)left {
@@ -454,27 +461,35 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 #pragma mark - 更新BadgeNumber
 -(void)updataBadgeNumber{
-    int unreadMsgCount = [[RCIMClient sharedRCIMClient] getUnreadCount:@[
-                                                                         @(ConversationType_PRIVATE),
-                                                                         @(ConversationType_DISCUSSION),
-                                                                         @(ConversationType_APPSERVICE),
-                                                                         @(ConversationType_PUBLICSERVICE),
-                                                                         @(ConversationType_GROUP)
-                                                                         ]];
+//    int unreadMsgCount = [[RCIMClient sharedRCIMClient] getUnreadCount:@[
+//                                                                         @(ConversationType_PRIVATE),
+//                                                                         @(ConversationType_DISCUSSION),
+//                                                                         @(ConversationType_APPSERVICE),
+//                                                                         @(ConversationType_PUBLICSERVICE),
+//                                                                         @(ConversationType_GROUP)
+//                                                                         ]];
+//
+//    NSString * unreadNum = [NSString stringWithFormat:@"%d",unreadMsgCount];
+//    NSDictionary * dict = @{@"unreadNum":unreadNum};
+//
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageUnreadNum" object:nil userInfo:dict];
+//
+//    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+//
+//    if (version >= 8.0) {
+//        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+//        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+//    }
 
-    NSString * unreadNum = [NSString stringWithFormat:@"%d",unreadMsgCount];
-    NSDictionary * dict = @{@"unreadNum":unreadNum};
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageUnreadNum" object:nil userInfo:dict];
-
-    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-
-    if (version >= 8.0) {
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    }
-    UIApplication *app = [UIApplication sharedApplication];
-    app.applicationIconBadgeNumber = unreadMsgCount;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIApplication *app = [UIApplication sharedApplication];
+        if ([[DataBaseManager shared] allUnreadCount] > 99) {
+            app.applicationIconBadgeNumber = 99;
+        }
+        else {
+            app.applicationIconBadgeNumber = [[DataBaseManager shared] allUnreadCount];
+        }
+    });
 }
 
 #pragma mark - 用户信息提供者、群组信息提供者、群名片信息提供者
@@ -546,10 +561,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"playUNC" object:nil userInfo:nil];
             }
         });
-    
-    
-    
-    [application setApplicationIconBadgeNumber:0];
 }
 
 

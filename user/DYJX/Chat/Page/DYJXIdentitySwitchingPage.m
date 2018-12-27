@@ -24,6 +24,7 @@
 #import "DYJXUserInfoModel.h"
 #import "DYJXSubcompanyInfoDetailPage.h"
 #import <RongIMKit/RongIMKit.h>
+#import "IMSDK.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -55,7 +56,23 @@ static NSString *headerID=@"headerID";
                                              selector:@selector(didReceiveMessageNotification:)
                                                  name:RCKitDispatchMessageNotification
                                                object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMessageNotification:) name:RCKitDispatchRecallMessageNotification object:nil];
+
+    // 已读
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:XY_IM_AlreadRead object:nil];
+
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)reloadTableView {
+    [self.tableView reloadData];
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [delegate updataBadgeNumber];
 }
 
 - (void)initNavigation{
@@ -101,65 +118,285 @@ static NSString *headerID=@"headerID";
 
 #pragma mark - 收到消息监听
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
-    __weak typeof(self) blockSelf_ = self;
+    dispatch_semaphore_wait([JSExtension shared].semaphore, 2);
+
     //处理好友请求
+    NSLog(@"%@",notification.object);
     RCMessage *message = notification.object;
-    NSLog(@"%ld",message.conversationType);
-//    if ([message.content isMemberOfClass:[RCContactNotificationMessage class]]) {
-//
-//        if (message.conversationType != ConversationType_SYSTEM) {
-//            NSLog(@"好友消息要发系统消息！！！");
-//#if DEBUG
-//            @throw [[NSException alloc] initWithName:@"error" reason:@"好友消息要发系统消息！！！" userInfo:nil];
-//#endif
-//        }
-//        RCContactNotificationMessage *_contactNotificationMsg = (RCContactNotificationMessage *)message.content;
-//        if (_contactNotificationMsg.sourceUserId == nil || _contactNotificationMsg.sourceUserId.length == 0) {
-//            return;
-//        }
-        //该接口需要替换为从消息体获取好友请求的用户信息
-//        [RCDHTTPTOOL getUserInfoByUserID:_contactNotificationMsg.sourceUserId
-//                              completion:^(RCUserInfo *user) {
-//                                  RCDUserInfo *rcduserinfo_ = [RCDUserInfo new];
-//                                  rcduserinfo_.name = user.name;
-//                                  rcduserinfo_.userId = user.userId;
-//                                  rcduserinfo_.portraitUri = user.portraitUri;
-//
-//                                  RCConversationModel *customModel = [RCConversationModel new];
-//                                  customModel.conversationModelType = RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION;
-//                                  customModel.extend = rcduserinfo_;
-//                                  customModel.conversationType = message.conversationType;
-//                                  customModel.targetId = message.targetId;
-//                                  customModel.sentTime = message.sentTime;
-//                                  customModel.receivedTime = message.receivedTime;
-//                                  customModel.senderUserId = message.senderUserId;
-//                                  customModel.lastestMessage = _contactNotificationMsg;
-//                                  //[_myDataSource insertObject:customModel atIndex:0];
-//
-//                                  // local cache for userInfo
-//                                  NSDictionary *userinfoDic =
-//                                  @{@"username" : rcduserinfo_.name, @"portraitUri" : rcduserinfo_.portraitUri};
-//                                  [[NSUserDefaults standardUserDefaults]
-//                                   setObject:userinfoDic
-//                                   forKey:_contactNotificationMsg.sourceUserId];
-//                                  [[NSUserDefaults standardUserDefaults] synchronize];
-//
-//                                  dispatch_async(dispatch_get_main_queue(), ^{
-//                                      //调用父类刷新未读消息数
-//                                      [blockSelf_ refreshConversationTableViewWithConversationModel:customModel];
-//                                      [blockSelf_ notifyUpdateUnreadMessageCount];
-//
-//                                      //当消息为RCContactNotificationMessage时，没有调用super，如果是最后一条消息，可能需要刷新一下整个列表。
-//                                      //原因请查看super didReceiveMessageNotification的注释。
-//                                      NSNumber *left = [notification.userInfo objectForKey:@"left"];
-//                                      if (0 == left.integerValue) {
-//                                          [super refreshConversationTableViewIfNeeded];
-//                                      }
-//                                  });
-//                              }];
-//    } else {
-//        //调用父类刷新未读消息数
-//    }
+    RCIMMessage *model = [RCIMMessage copyRCModel:message];
+
+    NSDictionary *extraDic = nil;
+    NSMutableDictionary *mutDic = nil;
+    NSString *type = nil;
+    NSLog(@"%@",([UserManager shared].dataArray.firstObject.Id));
+    // 处理未读消息
+    if ([model.content isKindOfClass:[RCTextMessage class]]) {
+        RCTextMessage *textMessage = (RCTextMessage *)(model.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        mutDic = [[NSMutableDictionary alloc] initWithDictionary:extraDic];
+        mutDic[@"content"] = textMessage.content;
+    }
+    else if ([model.content isKindOfClass:[RCImageMessage class]]) {
+        RCImageMessage *textMessage = (RCImageMessage *)(model.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        mutDic = [[NSMutableDictionary alloc] initWithDictionary:extraDic];
+        mutDic[@"imageUri"] = textMessage.imageUrl;
+        UIImage *image = [self synDownloadImage:[textMessage.imageUrl XYImageURL]];
+        NIMImageObject *imageObject = [[NIMImageObject alloc] initWithImage:image];
+        imageObject.url = textMessage.imageUrl;
+        NSArray *typeArray = [textMessage.imageUrl componentsSeparatedByString:@"."];
+        type = typeArray.lastObject;
+        if(image) {
+            model.image = image;
+        }
+        imageObject.size = image.size;
+        model.imageSize = image.size;
+        model.messageObject = imageObject;
+    }
+    else if ([model.content isKindOfClass:[RCVoiceMessage class]]) {
+        RCVoiceMessage *textMessage = (RCVoiceMessage *)(model.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        mutDic = [[NSMutableDictionary alloc] initWithDictionary:extraDic];
+        NSData *data = [[NSData alloc]initWithBase64EncodedString:textMessage.amrBase64Content options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        NIMAudioObject *audioObject = [[NIMAudioObject alloc] initWithData:data extension:@""];
+        model.amrBase64Content = textMessage.amrBase64Content;
+        mutDic[@"contentDuration"] = @(textMessage.duration);
+        audioObject.duration = (NSInteger)textMessage.duration;
+        model.messageObject = audioObject;
+        type = @"amr";
+    }
+    else if ([model.content isKindOfClass:[RCLocationMessage class]] || [message.objectName isEqualToString:@"DY:LBS"]) {
+        RCLocationMessage *textMessage = (RCLocationMessage *)(model.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        mutDic = [[NSMutableDictionary alloc] initWithDictionary:extraDic];
+        mutDic[@"contentLocationName"] = textMessage.locationName;
+        mutDic[@"latitude"] = @(textMessage.location.latitude);
+        mutDic[@"longitude"] = @(textMessage.location.longitude);
+    }
+
+    model.messageUId = extraDic[@"Id"];
+    model.session = [[NIMSession alloc] init];
+
+    model.extraDic = [NSDictionary dictionaryWithDictionary:extraDic];
+    model.isPlayed = NO;
+    model.isMySend = NO;
+    model.isDeleted = NO;
+    
+    if ([NSString stringWithFormat:@"%@",extraDic[@"TargetType"]].integerValue == 0) {
+        model.session.sessionType = NIMSessionTypeP2P;
+        model.session.sessionId = extraDic[@"ConversationId"];
+        if (![extraDic[@"TargetId"] isEqualToString:[JSExtension shared].myIdentityId]) {
+            if (![[UserManager shared].getUserModel.UserID isEqualToString:[JSExtension shared].myIdentityId]) {
+                if ([[UserManager shared].getUserModel.UserID isEqualToString:extraDic[@"FromId"]]) { // 用户发送
+                    model.messageDirection = MessageDirection_SEND;
+                    model.isMySend = YES;
+                }
+                else {
+                    model.messageDirection = MessageDirection_SEND;
+                    model.isMySend = NO;
+                }
+            }
+            else {
+                model.messageDirection = MessageDirection_RECEIVE;
+            }
+        }
+        else {
+            model.messageDirection = MessageDirection_RECEIVE;
+        }
+    }
+    else {
+        model.session.sessionType = NIMSessionTypeTeam;
+        model.session.sessionId = extraDic[@"ConversationId"];
+        if ([extraDic[@"FromCertifyId"] isEqualToString:[JSExtension shared].myIdentityId]) {
+            if (![[UserManager shared].getUserModel.UserID isEqualToString:[JSExtension shared].myIdentityId]) {
+                if ([[UserManager shared].getUserModel.UserID isEqualToString:extraDic[@"FromId"]]) { // 用户发送
+                    model.messageDirection = MessageDirection_SEND;
+                    model.isMySend = YES;
+                }
+                else {
+                    model.messageDirection = MessageDirection_SEND;
+                    model.isMySend = NO;
+                }
+            }
+            else {
+                model.messageDirection = MessageDirection_RECEIVE;
+            }
+        }
+        else {
+            model.messageDirection = MessageDirection_RECEIVE;
+        }
+    }
+
+    if (model.messageDirection == MessageDirection_RECEIVE) {
+        model.isOutgoingMsg = NO;
+    }
+    else {
+        model.isOutgoingMsg = YES;
+    }
+
+    if ([NSString stringWithFormat:@"%@",extraDic[@"TargetType"]].integerValue == 0) {
+        model.isOutgoingMsg = NO;
+    }
+
+    model.sentStatus = SentStatus_SENT;
+    model.deliveryState = NIMMessageDeliveryStateDeliveried;
+
+    if ([NSString stringWithFormat:@"%@",extraDic[@"TargetType"]].integerValue == 0) { // 单聊
+        if ([extraDic[@"TargetId"] isEqualToString:[UserManager shared].getUserModel.UserID]) {
+            for (DYJXIdentitySwitchingModel *item in [UserManager shared].dataArray) {
+                if ([item.Id isEqualToString:extraDic[@"TargetId"]]) {
+                    if ([model.content isKindOfClass:[RCImageMessage class]]) {
+                        NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                        NSString *imagePath = [NSString stringWithFormat:@"%@/%@%@%@.%@",docDir,item.Id,extraDic[@"ConversationId"],model.messageUId,type];
+                        model.LocalPath = imagePath;
+                    }
+                    else if ([model.content isKindOfClass:[RCVoiceMessage class]]) {
+                        model.LocalPath = [self getPathFromModel:model identifyId:item.Id conversationId:extraDic[@"ConversationId"]];
+                    }
+                    [self storeSourceWithContent:model identifyId:item.Id conversationId:extraDic[@"ConversationId"]];
+                    [[DataBaseManager shared] insertModel:model identifyId:item.Id conversionId:extraDic[@"ConversationId"]];
+                }
+            }
+        }
+        else { // 身份收到消息
+            for (DYJXIdentitySwitchingModel *item in [UserManager shared].dataArray) {
+                if ([item.Id isEqualToString:extraDic[@"TargetId"]] || [item.Id isEqualToString:extraDic[@"FromCertifyId"]]) {
+                    if ([model.content isKindOfClass:[RCImageMessage class]]) {
+                        NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                        NSString *imagePath = [NSString stringWithFormat:@"%@/%@%@%@.%@",docDir,item.Id,extraDic[@"ConversationId"],model.messageUId,type];
+                        model.LocalPath = imagePath;
+                    }
+                    else if ([model.content isKindOfClass:[RCVoiceMessage class]]) {
+                        model.LocalPath = [self getPathFromModel:model identifyId:item.Id conversationId:extraDic[@"ConversationId"]];
+                    }
+                    [self storeSourceWithContent:model identifyId:item.Id conversationId:extraDic[@"ConversationId"]];
+                    [[DataBaseManager shared] insertModel:model identifyId:item.Id conversionId:extraDic[@"ConversationId"]];
+                }
+            }
+        }
+    }
+    else {
+        if ([NSString stringWithFormat:@"%@",extraDic[@"GType"]].integerValue == 1) { // 公司群群聊
+            for (DYJXIdentitySwitchingModel *item in [UserManager shared].dataArray) {
+                if ([item.Id isEqualToString:[UserManager shared].getUserModel.UserID]) {
+                    if ([model.content isKindOfClass:[RCImageMessage class]]) {
+                        NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                        NSString *imagePath = [NSString stringWithFormat:@"%@/%@%@%@.%@",docDir,item.Id,extraDic[@"ConversationId"],model.messageUId,type];
+                        model.LocalPath = imagePath;
+                    }
+                    else if ([model.content isKindOfClass:[RCVoiceMessage class]]) {
+                        model.LocalPath = [self getPathFromModel:model identifyId:item.Id conversationId:extraDic[@"ConversationId"]];
+                    }
+                    [self storeSourceWithContent:model identifyId:item.Id conversationId:extraDic[@"ConversationId"]];
+                    [[DataBaseManager shared] insertModel:model identifyId:item.Id conversionId:extraDic[@"ConversationId"]];
+                }
+            }
+        }
+        else { // 外部群群聊
+            for (DYJXIdentitySwitchingModel *item in [UserManager shared].dataArray) {
+                if ([item.Id isEqualToString:extraDic[@"GMembers"]]) {
+                    if ([model.content isKindOfClass:[RCImageMessage class]]) {
+                        NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                        NSString *imagePath = [NSString stringWithFormat:@"%@/%@%@%@.%@",docDir,item.Id,extraDic[@"ConversationId"],model.messageUId,type];
+                        model.LocalPath = imagePath;
+                    }
+                    else if ([model.content isKindOfClass:[RCVoiceMessage class]]) {
+                        model.LocalPath = [self getPathFromModel:model identifyId:item.Id conversationId:extraDic[@"ConversationId"]];
+                    }
+                    [self storeSourceWithContent:model identifyId:item.Id conversationId:extraDic[@"ConversationId"]];
+                    [[DataBaseManager shared] insertModel:model identifyId:item.Id conversionId:extraDic[@"ConversationId"]];
+                }
+            }
+        }
+    }
+
+    dispatch_semaphore_signal([JSExtension shared].semaphore);
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate updataBadgeNumber];
+    });
+}
+
+-(void)storeSourceWithContent:(RCIMMessage *)message identifyId:(NSString *)identifyId conversationId:(NSString *)conversationId {
+    NSDictionary *extraDic = nil;
+    NSData * data = nil;
+    // 处理未读消息
+    if ([message.content isKindOfClass:[RCTextMessage class]]) {
+        RCTextMessage *textMessage = (RCTextMessage *)(message.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+    }
+    else if ([message.content isKindOfClass:[RCImageMessage class]]) {
+        RCImageMessage *textMessage = (RCImageMessage *)(message.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        UIImage *image = message.image;
+        if (image) {
+            data = UIImagePNGRepresentation(image);
+        }
+        NSArray *typeArray = [textMessage.imageUrl componentsSeparatedByString:@"."];
+        if (data && data.length) {
+            NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+            NSString *imagePath = [NSString stringWithFormat:@"%@/%@%@%@.%@",docDir,identifyId,conversationId,message.messageUId,typeArray.lastObject];
+            BOOL isFinish = [data writeToFile:imagePath atomically:YES];
+            NSLog(@"成功保存图片");
+        }
+    }
+    else if ([message.content isKindOfClass:[RCVoiceMessage class]]) {
+        RCVoiceMessage *textMessage = (RCVoiceMessage *)(message.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        NSData *data = [[NSData alloc]initWithBase64EncodedString:textMessage.amrBase64Content options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        if (data && data.length) {
+            NSString *path = [self getPathFromModel:message identifyId:identifyId conversationId:conversationId];
+            BOOL isFinish = [data writeToFile:path atomically:YES];
+            NSLog(@"成功保存语音");
+        }
+    }
+    else if ([message.content isKindOfClass:[RCLocationMessage class]]) {
+        RCLocationMessage *textMessage = (RCLocationMessage *)(message.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+    }
+}
+
+
+-(NSString *)getPathFromModel:(RCIMMessage *)message identifyId:(NSString *)identifyId conversationId:(NSString *)ConversationId{
+    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    return [NSString stringWithFormat:@"%@/%@%@%@.amr",docDir,identifyId,ConversationId,message.messageUId];
+}
+
+-(UIImage *)synDownloadImage:(NSString *)url {
+    if (!url) {
+        return nil;
+    }
+    __block UIImage *tempImage = nil;
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [[IMSDK sharedManager].imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"dyjx_default_img"] options:SDWebImageRetryFailed completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            tempImage = image;
+            dispatch_semaphore_signal(sema);
+        }];
+    });
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    return tempImage;
+}
+
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -222,8 +459,7 @@ static NSString *headerID=@"headerID";
         }
     }
     tableCell.goodsNameLabel.text = [NSString stringWithFormat:@"ID:%@ TEL:", [self.viewModel GroupNumberString:indexPath]];
-
-
+    [tableCell setNumber:[[DataBaseManager shared] unreadCountIdentifyId:identity.Id]];
     tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return tableCell;
 }
@@ -237,22 +473,6 @@ static NSString *headerID=@"headerID";
     }
     return NO;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    return 60;
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    DYJXIdentitySwitchingHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerID];
-//    if (header == nil) {
-//        header = [[DYJXIdentitySwitchingHeader alloc] initWithReuseIdentifier:headerID];
-//    }
-//
-//    [header.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[self.viewModel sectionHeadericonImageUrl:section]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-//    header.goodsNameLabel.text = [self.viewModel sectionHeaderGroupName:section];
-//    header.sellingPointLable.text = [self.viewModel sectionHeaderGroupNumberString:section];
-//    return header;
-//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
