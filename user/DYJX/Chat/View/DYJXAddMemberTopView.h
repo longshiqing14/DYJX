@@ -8,14 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, OperatorMember) {
-    OperatorMemberAdd,//添加成员
-    OperatorMemberDelete,//删除成员
-    OperatorMemberAccessAdmin,//授予管理员
-    OperatorMemberFireAdmin,//解除管理员
-};
 
-typedef void(^OperatorBlock)(NSInteger);
+typedef void(^OperatorBlock)(OperatorMember);
 
 @interface DYJXAddMemberTopView : UIView
 @property (nonatomic, copy) OperatorBlock block;

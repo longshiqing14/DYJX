@@ -25,6 +25,7 @@ NSString *const kDJJXMembersType = @"Type";
 NSString *const kDJJXMembersUpdateBy = @"UpdateBy";
 NSString *const kDJJXMembersUpdateOn = @"UpdateOn";
 NSString *const kDJJXMembersUserName = @"UserName";
+NSString *const kDJJXMembersId = @"Id";
 
 @interface DJJXMembers ()
 @end
@@ -92,7 +93,10 @@ NSString *const kDJJXMembersUserName = @"UserName";
 	}	
 	if(![dictionary[kDJJXMembersUserName] isKindOfClass:[NSNull class]]){
 		self.UserName = dictionary[kDJJXMembersUserName];
-	}	
+	}
+    if(![dictionary[kDJJXMembersId] isKindOfClass:[NSNull class]]){
+        self.Id = dictionary[kDJJXMembersId];
+    }
 	return self;
 }
 
@@ -143,6 +147,9 @@ NSString *const kDJJXMembersUserName = @"UserName";
 	if(self.UserName != nil){
 		dictionary[kDJJXMembersUserName] = self.UserName;
 	}
+    if(self.Id != nil){
+        dictionary[kDJJXMembersId] = self.Id;
+    }
 	return dictionary;
 
 }
@@ -191,6 +198,9 @@ NSString *const kDJJXMembersUserName = @"UserName";
 	if(self.UserName != nil){
 		[aCoder encodeObject:self.UserName forKey:kDJJXMembersUserName];
 	}
+    if(self.Id != nil){
+        [aCoder encodeObject:self.Id forKey:kDJJXMembersId];
+    }
 
 }
 
@@ -216,6 +226,7 @@ NSString *const kDJJXMembersUserName = @"UserName";
 	self.UpdateBy = [aDecoder decodeObjectForKey:kDJJXMembersUpdateBy];
 	self.UpdateOn = [aDecoder decodeObjectForKey:kDJJXMembersUpdateOn];
 	self.UserName = [aDecoder decodeObjectForKey:kDJJXMembersUserName];
+    self.Id = [aDecoder decodeObjectForKey:kDJJXMembersId];
 	return self;
 
 }
@@ -243,7 +254,7 @@ NSString *const kDJJXMembersUserName = @"UserName";
 	copy.UpdateBy = [self.UpdateBy copy];
 	copy.UpdateOn = [self.UpdateOn copy];
 	copy.UserName = [self.UserName copy];
-
+    copy.Id = [self.Id copy];
 	return copy;
 }
 @end

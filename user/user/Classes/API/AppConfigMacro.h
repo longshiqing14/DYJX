@@ -31,6 +31,12 @@ typedef NS_ENUM(NSInteger, Payment_Type) {
 
 } ;
 
+typedef NS_ENUM(NSUInteger, OperatorMember) {
+    OperatorMemberAdd,//添加成员
+    OperatorMemberDelete,//删除成员
+    OperatorMemberAccessAdmin,//授予管理员
+    OperatorMemberFireAdmin,//解除管理员
+};
 
 //订单状态
 //待付款
