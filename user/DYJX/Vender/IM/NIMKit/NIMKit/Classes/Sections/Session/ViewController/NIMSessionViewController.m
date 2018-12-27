@@ -760,7 +760,7 @@
 //  发送考勤位置
 - (void)onTapWorkLocation:(NIMMediaItem *)item
 {
-    [self.interactor mediaLocationPressed];
+    [self.interactor workLocationPressed];
 }
 
 #pragma mark - 旋转处理 (iOS8 or above)

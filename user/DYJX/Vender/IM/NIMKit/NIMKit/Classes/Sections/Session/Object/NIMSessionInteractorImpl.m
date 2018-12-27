@@ -14,6 +14,8 @@
 #import "NIMMessageMaker.h"
 #import "NIMLocationViewController.h"
 #import "NIMKitAudioCenter.h"
+#import "JXLocationTool.h"
+#import "DYLocationViewController.h"
 
 static const void * const NTESDispatchMessageDataPrepareSpecificKey = &NTESDispatchMessageDataPrepareSpecificKey;
 dispatch_queue_t NTESMessageDataPrepareQueue()
@@ -442,8 +444,6 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
 
 - (void)mediaShootPressed
 {
-
-
     __weak typeof(self) weakSelf = self;
     [self.mediaFetcher fetchMediaFromCamera:^(NSString *path, UIImage *image) {
         RCIMMessage *message = [[IMSDK sharedManager].chatManager defaultSendMessage:1 sendObject:image];
@@ -468,13 +468,33 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
 
 - (void)mediaLocationPressed
 {
-    NIMLocationViewController *vc = [[NIMLocationViewController alloc] initWithNibName:nil bundle:nil];
+//    NIMLocationViewController *vc = [[NIMLocationViewController alloc] initWithNibName:nil bundle:nil];
+    DYLocationViewController *vc = [[DYLocationViewController alloc] init];
     vc.delegate = self;
+    vc.isSubmit = YES;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:nav animated:YES completion:nil];
 }
 
-- (void)onSendLocation:(NIMKitLocationPoint *)locationPoint{ 
+-(void)workLocationPressed {
+    [JXLocationTool shar].LocationLaLn = ^(XYlatModel *latModel) {
+        NSArray *lanArray = @[@(latModel.lat),@(latModel.lon)];
+        RCIMMessage *message = [[IMSDK sharedManager].chatManager defaultSendMessage:5 sendObject:lanArray];
+        [[IMSDK sharedManager].chatManager sendMessage:message success:^(id  _Nullable responseObject) {
+            RCIMMessage *model = (RCIMMessage *)responseObject;
+            [self addMessages:@[model]];
+        } failed:^(NSString * _Nonnull errorMsg) {
+        }];
+    };
+}
+
+- (void)onSendLocation:(NIMKitLocationPoint *)locationPoint{
+    NSArray *array = @[@(locationPoint.coordinate.latitude),@(locationPoint.coordinate.longitude)];
+    RCIMMessage *message = [[IMSDK sharedManager].chatManager defaultSendMessage:4 sendObject:array];
+    [[IMSDK sharedManager].chatManager sendMessage:message success:^(id  _Nullable responseObject) {
+        [self addMessages:@[message]];
+    } failed:^(NSString * _Nonnull errorMsg) {
+    }];
 //    NIMMessage *message = [NIMMessageMaker msgWithLocation:locationPoint];
 
 //    [[NIMSDK sharedSDK].chatManager sendMessage:message toSession:self.session error:nil];

@@ -37,7 +37,8 @@
 {
     self = [super init];
     if (self) {
-        _mediaTypes = @[(NSString *)kUTTypeMovie,(NSString *)kUTTypeImage];
+//        _mediaTypes = @[(NSString *)kUTTypeMovie,(NSString *)kUTTypeImage];
+        _mediaTypes = @[(NSString *)kUTTypeImage];
         _limit = 9;
     }
     return self;
@@ -142,6 +143,36 @@
 
 
 #pragma mark - 相册回调
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if ([UIDevice currentDevice].systemVersion.floatValue < 11) {
+        return;
+    }
+    if ([viewController isKindOfClass:NSClassFromString(@"PUPhotoPickerHostViewController")]) {
+        [viewController.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.frame.size.width < 42) {
+                [viewController.view sendSubviewToBack:obj];
+                *stop = YES;
+            }
+        }];
+    }
+
+//    if ([UIDevice currentDevice].systemVersion.floatValue < 11) {
+//        return;
+//    }
+//    if ([viewController isKindOfClass:NSClassFromString(@"PUPhotoPickerHostViewController")]) {
+//        __weak typeof(UIViewController) *weakController = viewController;
+//        [weakController.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            if (obj.frame.size.width < 42 && obj.frame.size.height == [[UIScreen mainScreen] bounds].size.height) {
+//                __strong typeof(UIViewController) *strongController = weakController;
+//                [strongController.view sendSubviewToBack:obj];
+//                *stop = YES;
+//            }
+//        }];
+//    }
+}
+- (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker {
+    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
 {
     if (isSelectOriginalPhoto)
@@ -232,7 +263,7 @@
 {
     _mediaTypes = mediaTypes;
     _imagePicker.mediaTypes = mediaTypes;
-    _assetsPicker.allowPickingVideo = [mediaTypes containsObject:(NSString *)kUTTypeMovie];
+    _assetsPicker.allowPickingVideo = NO;
 }
 
 - (AVMutableVideoComposition *)getVideoComposition:(AVAsset *)asset
@@ -319,6 +350,7 @@
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
     self.imagePicker.mediaTypes = self.mediaTypes;
     self.imagePicker.allowsEditing = YES;
+    self.imagePicker.interactivePopGestureRecognizer.delegate = self;
     return YES;
 }
 

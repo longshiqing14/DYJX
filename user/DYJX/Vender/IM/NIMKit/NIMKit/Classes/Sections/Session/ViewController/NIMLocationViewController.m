@@ -10,6 +10,7 @@
 #import "NIMKitLocationPoint.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import <CoreLocation/CoreLocation.h>
+#import "NIMKitTitleView.h"
 
 @interface NIMLocationViewController () <CLLocationManagerDelegate>
 {
@@ -47,10 +48,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"位置";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss:)];
+//    self.navigationItem.title = @"GPS定位";
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss:)];
+
+    _isSubmit = NO;
     self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
     self.mapView.delegate = self;
+    self.mapView.showsCompass = YES;
+    self.mapView.showsScale = YES;
+    self.mapView.showsBuildings = YES;
+    self.mapView.showsPointsOfInterest = YES;
+    self.mapView.mapType = MKMapTypeMutedStandard;
     [self.view addSubview:self.mapView];
     
     if (self.locationPoint) {
@@ -61,7 +69,7 @@
         [self.mapView addAnnotation:self.locationPoint];
         [self.mapView setRegion:theRegion animated:YES];
     }else{
-        [self setUpRightNavButton];
+//        [self setUpRightNavButton];
         self.locationPoint   = [[NIMKitLocationPoint alloc] init];
         self.locationManager = [CLLocationManager new];
         [self.locationManager requestWhenInUseAuthorization];
@@ -82,7 +90,37 @@
                         position:CSToastPositionCenter];
         }
     }
-    
+
+    [self setUpTitleView];
+    [self baseUI];
+}
+
+-(void)baseUI{
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithImage:SETIMAGENAME(@"btn_top_back") style:(UIBarButtonItemStylePlain) target:self action:@selector(dismiss:)];
+    UIBarButtonItem *rightitem=[[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(onSend:)];
+
+    self.navigationItem.leftBarButtonItem=item;
+    if (self.isSubmit) {
+        self.navigationItem.rightBarButtonItem=rightitem;
+    }
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithHexString:@"#F2A73B"]];
+
+}
+
+- (void)setUpTitleView
+{
+    NIMKitTitleView *titleView = (NIMKitTitleView *)self.navigationItem.titleView;
+    if (!titleView || ![titleView isKindOfClass:[NIMKitTitleView class]])
+    {
+        titleView = [[NIMKitTitleView alloc] initWithFrame:CGRectZero];
+        self.navigationItem.titleView = titleView;
+
+        titleView.titleLabel.text = @"GPS定位";
+    }
+
+    [titleView sizeToFit];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {

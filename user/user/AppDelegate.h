@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define TencentKey @"KMTBZ-AJN3K-MWSJW-A5FV6-ZVDCQ-JIF33"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 @property (nonatomic, strong) UIViewController *rootViewController;
 

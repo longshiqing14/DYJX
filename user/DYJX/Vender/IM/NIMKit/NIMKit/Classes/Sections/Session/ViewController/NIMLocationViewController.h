@@ -19,6 +19,8 @@
 
 @interface NIMLocationViewController : UIViewController<MKMapViewDelegate>
 
+@property (nonatomic, assign)BOOL isSubmit; // 是否显示提交按钮
+
 @property(nonatomic,strong) MKMapView *mapView;
 
 @property(nonatomic,weak)   id<NIMLocationViewControllerDelegate> delegate;

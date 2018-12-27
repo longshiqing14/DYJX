@@ -43,6 +43,8 @@
 #import "JSExtension.h"
 #import "SimpleMessage.h"
 #import "IMSDK.h"
+#import <QMapKit/QMapKit.h>
+#import <QMapSearchKit/QMapSearchKit.h>
 
 // 账号密码： 18778399213 123456
 // 账号密码： 13750820441 654321
@@ -87,6 +89,9 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
     // 为了用音频
     [[NIMSDK sharedSDK] registerWithAppID:NIMSDKAppKey cerName:nil];
     ChatManager *chatManagert = [IMSDK sharedManager].chatManager; // 监听
+
+    [QMapServices sharedServices].apiKey = TencentKey;
+    [[QMSSearchServices sharedServices] setApiKey:TencentKey];
     
 //    [self getSessionId];
 //    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
