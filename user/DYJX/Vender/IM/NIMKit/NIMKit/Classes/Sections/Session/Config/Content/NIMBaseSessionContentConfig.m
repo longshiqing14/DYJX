@@ -76,6 +76,9 @@
             case 5:
             messageType = NIMMessageTypeLocation;
             break;
+            case 6:
+            messageType = NIMMessageTypeTip;
+            break;
         default:
             messageType = 102;
             break;

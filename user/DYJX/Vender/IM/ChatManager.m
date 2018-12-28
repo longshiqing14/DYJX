@@ -168,6 +168,12 @@
         RCLocationMessage *textMessage = (RCLocationMessage *)(model.content);
         extraDic = [self dictionaryWithJsonString:textMessage.extra];
     }
+    else  {
+        RCMessage *textMessage = (RCMessage *)(model.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        model.sentTime = 0;
+        model.receivedTime = 0;
+    }
 
     if ([NSString stringWithFormat:@"%@",extraDic[@"TargetType"]].integerValue == 0) { // 单聊
         if ([extraDic[@"TargetId"] isEqualToString:[UserManager shared].getUserModel.UserID]) {
@@ -283,6 +289,13 @@
         RCLocationMessage *textMessage = (RCLocationMessage *)(model.content);
         extraDic = [self dictionaryWithJsonString:textMessage.extra];
     }
+    else  {
+        RCMessage *textMessage = (RCMessage *)(model.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        model.sentTime = 0;
+        model.receivedTime = 0;
+    }
+
 
     return model;
 }
@@ -291,6 +304,173 @@
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     return [NSString stringWithFormat:@"%@/%@%@%@.amr",docDir,identifyId,ConversationId,message.messageUId];
 }
+
+-(void)resetMessage:(RCIMMessage *)message success:(void(^)(id  _Nullable responseObject))success failed:(void(^)(NSString *errorMsg))fail {
+    RCIMMessage *model = (RCIMMessage *)message;
+    NSMutableDictionary *extraDic = nil;
+    NSMutableDictionary *mutDic = nil;
+    NSString *type = nil;
+    DYJXSendMsgReq *request = [[DYJXSendMsgReq alloc] init];
+    request.ClientId = [JSExtension shared].myClientId;
+    request.Device = @"iOS";
+    request.DeviceToken = [UserManager shared].login.ObjResult;
+    request.CertificateId = [JSExtension shared].myIdentityId;
+    DYJXData *sendData = [[DYJXData alloc] init];
+    sendData.MessageType = 6;
+    NSMutableDictionary *bodyDictory = [[NSMutableDictionary alloc] init];
+    bodyDictory[@"content"] = message.messageUId;
+    if ([model.content isKindOfClass:[RCTextMessage class]]) {
+        RCTextMessage *textMessage = (RCTextMessage *)(model.content);
+        extraDic = [[self dictionaryWithJsonString:textMessage.extra] mutableCopy];
+        extraDic[@"MessageType"] = @(6);
+        textMessage.extra = extraDic.mj_JSONString;
+    }
+    else if ([model.content isKindOfClass:[RCImageMessage class]]) {
+        RCImageMessage *textMessage = (RCImageMessage *)(model.content);
+        extraDic = [[self dictionaryWithJsonString:textMessage.extra] mutableCopy];
+        bodyDictory[@"imageUri"] = textMessage.imageUrl;
+        extraDic[@"MessageType"] = @(6);
+        textMessage.extra = extraDic.mj_JSONString;
+    }
+    else if ([model.content isKindOfClass:[RCVoiceMessage class]]) {
+        RCVoiceMessage *textMessage = (RCVoiceMessage *)(model.content);
+        extraDic = [[self dictionaryWithJsonString:textMessage.extra] mutableCopy];
+        bodyDictory[@"duration"] = @(textMessage.duration);
+        extraDic[@"MessageType"] = @(6);
+        textMessage.extra = extraDic.mj_JSONString;
+    }
+    else if ([model.content isKindOfClass:[RCLocationMessage class]] || [message.objectName isEqualToString:@"DY:LBS"]) {
+        RCLocationMessage *textMessage = (RCLocationMessage *)(model.content);
+        extraDic = [[self dictionaryWithJsonString:textMessage.extra] mutableCopy];
+        bodyDictory[@"contentLocationName"] = textMessage.locationName;
+        bodyDictory[@"latitude"] = @(textMessage.location.latitude);
+        bodyDictory[@"longitude"] = @(textMessage.location.longitude);
+        extraDic[@"MessageType"] = @(6);
+        textMessage.extra = extraDic.mj_JSONString;
+    }
+    else  {
+        RCMessage *textMessage = (RCMessage *)(model.content);
+        extraDic = [[self dictionaryWithJsonString:textMessage.extra] mutableCopy];
+        extraDic[@"MessageType"] = @(6);
+        textMessage.extra = extraDic.mj_JSONString;
+        model.sentTime = 0;
+        model.receivedTime = 0;
+    }
+    model.extraDic = extraDic;
+    sendData.Body =  bodyDictory.modelToJSONString;
+    sendData.ConversationId = extraDic[@"ConversationId"];
+    sendData.CreateBy = extraDic[@"FromName"];
+    sendData.DeleteBy = extraDic[@"FromName"];
+    sendData.UpdateBy = extraDic[@"FromName"];
+    sendData.Deleted = YES;
+    sendData.ConversationId = extraDic[@"ConversationId"];
+    sendData.ConversationId = extraDic[@"ConversationId"];
+    sendData.FromCertifyId = [JSExtension shared].myIdentityId;
+    sendData.FromId = [UserManager shared].getUserModel.UserID;
+    sendData.IdField = extraDic[@"Id"];
+    sendData.SendType = 4;
+    sendData.Target = [JSExtension shared].targetId;
+    sendData.TargetId = [JSExtension shared].targetId;
+    sendData.TargetType = [JSExtension shared].type;
+
+    model.session = [[NIMSession alloc] init];
+    model.extraDic = [NSDictionary dictionaryWithDictionary:extraDic];
+    model.isPlayed = YES;
+    model.isMySend = YES;
+    model.messageDirection = MessageDirection_SEND;
+    model.isOutgoingMsg = YES;
+    model.conversionId = [JSExtension shared].conversionId;
+
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    params[@"Data"] = sendData.toDictionary;
+    params[@"ClientId"] = request.ClientId;
+    params[@"Device"] = request.Device;
+    params[@"DeviceToken"] = request.DeviceToken;
+    params[@"CertificateId"] = request.CertificateId;
+
+    __block RCIMMessage *blockMessage = model;
+    [XYNetWorking XYPOST:@"SendMsg" params:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([NSString stringWithFormat:@"%@",responseObject[@"Succeed"]].boolValue) {
+            NSDictionary *dics = [self dictionaryWithJsonString:responseObject[@"Result"][@"RowData"] ? responseObject[@"Result"][@"RowData"] : @""];
+//            if ([blockMessage.content isKindOfClass:[RCTextMessage class]]) {
+//                RCTextMessage *textMessage = (RCTextMessage *)(model.content);
+//                textMessage.extra = [NSString stringWithFormat:@"%@",dics[@"extra"]];
+//                blockMessage.extraDic = [self dictionaryWithJsonString:textMessage.extra];
+//            }
+//            else if ([blockMessage.content isKindOfClass:[RCImageMessage class]]) {
+//                RCImageMessage *textMessage = (RCImageMessage *)(model.content);
+//                textMessage.extra = [NSString stringWithFormat:@"%@",dics[@"extra"]];
+//                blockMessage.extraDic = [self dictionaryWithJsonString:textMessage.extra];
+//            }
+//            else if ([blockMessage.content isKindOfClass:[RCVoiceMessage class]]) {
+//                RCVoiceMessage *textMessage = (RCVoiceMessage *)(model.content);
+//                textMessage.extra = [NSString stringWithFormat:@"%@",dics[@"extra"]];
+//                blockMessage.extraDic = [self dictionaryWithJsonString:textMessage.extra];
+//                bodyDictory[@"duration"] = @(textMessage.duration);
+//            }
+//            else if ([blockMessage.content isKindOfClass:[RCLocationMessage class]] || [message.objectName isEqualToString:@"DY:LBS"]) {
+//                RCLocationMessage *textMessage = (RCLocationMessage *)(model.content);
+//                textMessage.extra = [NSString stringWithFormat:@"%@",dics[@"extra"]];
+//                blockMessage.extraDic = [self dictionaryWithJsonString:textMessage.extra];
+//            }
+//            blockMessage.messageUId = blockMessage.extraDic[@"Id"];
+            blockMessage.sentTime = [[NSDate date] timeIntervalSince1970]*1000;
+            blockMessage.sentStatus = SentStatus_SENT;
+            blockMessage.deliveryState = NIMMessageDeliveryStateDeliveried;
+            if ([blockMessage.content isKindOfClass:[RCImageMessage class]]) {
+                RCImageMessage *textMessage = (RCImageMessage *)(message.content);
+                NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                NSArray *imageTypes = [textMessage.imageUrl componentsSeparatedByString:@"."];
+                NSString *type = imageTypes.lastObject;
+                NSString *imagePath = [NSString stringWithFormat:@"%@/%@%@%@.%@",docDir,[JSExtension shared].myIdentityId,[JSExtension shared].conversionId,blockMessage.messageUId,type];
+                blockMessage.LocalPath = imagePath;
+            }
+            else if ([blockMessage.content isKindOfClass:[RCVoiceMessage class]]) {
+                //                RCVoiceMessage *textMessage = (RCVoiceMessage *)(message.content);
+                //                blockMessage.LocalPath = [self getPathFromModel:blockMessage identifyId:[JSExtension shared].myIdentityId conversationId:[JSExtension shared].conversionId];
+            }
+        }
+        else {
+            blockMessage.messageUId = [NSString stringWithFormat:@"%lf",[[NSDate date] timeIntervalSince1970]*1000];
+            blockMessage.sentTime = [[NSDate date] timeIntervalSince1970]*1000;
+            blockMessage.sentStatus = SentStatus_FAILED;
+            blockMessage.deliveryState = NIMMessageDeliveryStateFailed;
+        }
+        [self storeSourceWithContent:blockMessage identifyId:[JSExtension shared].myIdentityId conversationId:[JSExtension shared].conversionId];
+        [[DataBaseManager shared] insertModel:blockMessage identifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+        if (success) {
+            blockMessage.sentTime = 0;
+            blockMessage.receivedTime = 0;
+            success([self changeObject:blockMessage]);
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+        });
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        blockMessage.sentTime = [[NSDate date] timeIntervalSince1970]*1000;
+        blockMessage.sentStatus = SentStatus_FAILED;
+        blockMessage.deliveryState = NIMMessageDeliveryStateFailed;
+        if ([blockMessage.content isKindOfClass:[RCImageMessage class]]) {
+            RCImageMessage *textMessage = (RCImageMessage *)(message.content);
+            NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+            NSArray *imageTypes = [textMessage.imageUrl componentsSeparatedByString:@"."];
+            NSString *type = imageTypes.lastObject;
+            NSString *imagePath = [NSString stringWithFormat:@"%@/%@%@%@.%@",docDir,[JSExtension shared].myIdentityId,[JSExtension shared].conversionId,blockMessage.messageUId,type];
+            blockMessage.LocalPath = imagePath;
+        }
+        [self storeSourceWithContent:blockMessage identifyId:[JSExtension shared].myIdentityId conversationId:[JSExtension shared].conversionId];
+        [[DataBaseManager shared] insertModel:blockMessage identifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+        if (success) {
+            blockMessage.sentTime = 0;
+            blockMessage.receivedTime = 0;
+            success([self changeObject:blockMessage]);
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+        });
+    }];
+}
+
 
 -(void)sendMessage:(RCIMMessage *)message success:(void(^)(id  _Nullable responseObject))success failed:(void(^)(NSString *errorMsg))fail {
     RCIMMessage *model = (RCIMMessage *)message;
@@ -343,9 +523,14 @@
             sendData.MessageType = 4;
         }
     }
-    else {
+    else  {
+        RCMessage *textMessage = (RCMessage *)(model.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
         sendData.MessageType = 6;
+        model.sentTime = 0;
+        model.receivedTime = 0;
     }
+
 
     sendData.Body =  bodyDictory.modelToJSONString;
     sendData.ConversationId = extraDic[@"ConversationId"];

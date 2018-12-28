@@ -135,21 +135,27 @@
 }
 
 
-+ (NSString *)messageTipContent:(NIMMessage *)message{
++ (NSString *)messageTipContent:(RCIMMessage *)message{
     
     NSString *text = nil;
-    
-    if (text == nil) {
-        switch (message.messageType) {
-            case NIMMessageTypeNotification:
-                text =  [NIMKitUtil notificationMessage:message];
-                break;
-            case NIMMessageTypeTip:
-                text = message.text;
-                break;
-            default:
-                break;
-        }
+    NSInteger messageType = [NSString stringWithFormat:@"%@",message.extraDic[@"MessageType"]].integerValue;
+    NSString *fromId = [NSString stringWithFormat:@"%@",message.extraDic[@"FromId"]];
+    NSString *fromName = [NSString stringWithFormat:@"%@",message.extraDic[@"FromName"]];
+
+    switch (messageType) {
+        case 6:
+            if ([[UserManager shared].getUserModel.UserID isEqualToString:fromId]) {
+                text = @"你撤回了一条信息";
+            }
+            else {
+                text = [NSString stringWithFormat:@"%@撤回了一条信息",fromName];
+            }
+            break;
+        case 16:
+            text =  [NIMKitUtil notificationMessage:message];
+            break;
+        default:
+            break;
     }
     return text;
 }

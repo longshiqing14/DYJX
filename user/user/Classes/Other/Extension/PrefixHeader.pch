@@ -63,6 +63,7 @@
 #import "DataBaseManager.h"
 #import "RCIMMessage.h"
 #import "UIImage+fixOrientation.h"
+#import "UIView+Toast.h"
 
 #define RETURN_CODE_  @"RETURN_CODE"
 #define RETURN_DESC_  @"RETURN_DESC"

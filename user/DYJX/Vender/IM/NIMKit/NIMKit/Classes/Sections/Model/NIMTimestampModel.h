@@ -11,6 +11,8 @@
 
 @interface NIMTimestampModel : NSObject
 
+@property (nonatomic, strong)RCIMMessage *message;
+
 - (CGFloat)height;
 
 /**

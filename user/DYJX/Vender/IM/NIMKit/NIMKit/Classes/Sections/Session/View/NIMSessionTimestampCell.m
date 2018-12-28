@@ -52,7 +52,20 @@
     self.model = data;
     if([self checkData]){
         NIMTimestampModel *model = (NIMTimestampModel *)data;
-        [_timeLabel setText:[NIMKitUtil showTime:model.messageTime showDetail:YES]];
+        NSInteger messageType = [NSString stringWithFormat:@"%@",model.message.extraDic[@"MessageType"]].integerValue;
+        NSString *fromId = [NSString stringWithFormat:@"%@",model.message.extraDic[@"FromId"]];
+        NSString *fromName = [NSString stringWithFormat:@"%@",model.message.extraDic[@"FromName"]];
+        if (messageType == 6) {
+            if ([[UserManager shared].getUserModel.UserID isEqualToString:fromId]) {
+                [_timeLabel setText:@"你撤回了一条信息"];
+            }
+            else {
+                [_timeLabel setText:[NSString stringWithFormat:@"%@撤回了一条信息",fromName]];
+            }
+        }
+        else {
+            [_timeLabel setText:[NIMKitUtil showTime:model.messageTime showDetail:YES]];
+        }
     }
 }
 

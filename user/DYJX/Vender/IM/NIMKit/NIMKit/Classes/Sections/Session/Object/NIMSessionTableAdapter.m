@@ -43,10 +43,20 @@
     UITableViewCell *cell = nil;
     id model = [[self.interactor items] objectAtIndex:indexPath.row];
     if ([model isKindOfClass:[NIMMessageModel class]]) {
-        cell = [self.cellFactory cellInTable:tableView
-                                   forMessageMode:model];
-        [(NIMMessageCell *)cell setDelegate:self.delegate];
-        [(NIMMessageCell *)cell refreshData:model];
+        NIMMessageModel *messageModel = (NIMMessageModel *)model;
+        NSInteger messageType = [NSString stringWithFormat:@"%@",messageModel.message.extraDic[@"MessageType"]].integerValue;
+        if (messageType == 6) {
+            NIMTimestampModel *timeModel = [[NIMTimestampModel alloc] init];
+            timeModel.message = messageModel.message;
+            cell = [self.cellFactory cellInTable:tableView
+                                    forTimeModel:timeModel];
+        }
+        else {
+            cell = [self.cellFactory cellInTable:tableView
+                                  forMessageMode:model];
+            [(NIMMessageCell *)cell setDelegate:self.delegate];
+            [(NIMMessageCell *)cell refreshData:model];
+        }
     }
     else if ([model isKindOfClass:[NIMTimestampModel class]])
     {
@@ -84,7 +94,13 @@
     }
     else if ([modelInArray isKindOfClass:[NIMTimestampModel class]])
     {
-        cellHeight = [(NIMTimestampModel *)modelInArray height];
+        NIMTimestampModel *model = (NIMTimestampModel *)modelInArray;
+        if (model.messageTime > 0) {
+            cellHeight = [(NIMTimestampModel *)modelInArray height];
+        }
+        else {
+            cellHeight = 0;
+        }
     }
     else
     {
