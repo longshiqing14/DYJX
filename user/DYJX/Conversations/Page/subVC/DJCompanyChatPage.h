@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DJCompanyChatPage : BaseListViewController
+@interface DJCompanyChatPage : UIViewController
 
 @end
 

@@ -173,6 +173,13 @@ static NSString *headerID=@"headerID";
         mutDic[@"latitude"] = @(textMessage.location.latitude);
         mutDic[@"longitude"] = @(textMessage.location.longitude);
     }
+    else {
+        RCMessage *textMessage = (RCMessage *)(model.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        mutDic = [[NSMutableDictionary alloc] initWithDictionary:extraDic];
+        model.sentTime = 0;
+        model.receivedTime = 0;
+    }
 
     model.messageUId = extraDic[@"Id"];
     model.session = [[NIMSession alloc] init];
@@ -355,6 +362,12 @@ static NSString *headerID=@"headerID";
     else if ([message.content isKindOfClass:[RCLocationMessage class]]) {
         RCLocationMessage *textMessage = (RCLocationMessage *)(message.content);
         extraDic = [self dictionaryWithJsonString:textMessage.extra];
+    }
+    else {
+        RCMessage *textMessage = (RCMessage *)(message.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        message.sentTime = 0;
+        message.receivedTime = 0;
     }
 }
 

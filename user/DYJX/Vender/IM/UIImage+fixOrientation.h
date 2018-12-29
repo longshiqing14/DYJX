@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
  - (UIImage *)fixOrientation;
 
++ (UIImage *)compressImage:(UIImage *)image toByte:(NSUInteger)maxLength;
+
 @end
 
 NS_ASSUME_NONNULL_END

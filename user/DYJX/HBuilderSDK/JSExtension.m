@@ -74,6 +74,12 @@
         RCLocationMessage *textMessage = (RCLocationMessage *)(model.content);
         extraDic = [self dictionaryWithJsonString:textMessage.extra];
     }
+    else {
+        RCMessage *textMessage = (RCMessage *)(model.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        model.sentTime = 0;
+        model.receivedTime = 0;
+    }
 
     return model;
 }
@@ -227,6 +233,30 @@
             RCLocationMessage *textMessage = [[RCLocationMessage alloc] init];
             textMessage.locationName = dictory[@"contentLocationName"];
             textMessage.location = CLLocationCoordinate2DMake([NSString stringWithFormat:@"%@",dictory[@"latitude"]].doubleValue, [NSString stringWithFormat:@"%@",dictory[@"longitude"]].doubleValue);
+            extraDic[@"Id"] = dictory[@"extraId"];
+            extraDic[@"ConversationId"] = dictory[@"extraConversationId"];
+            extraDic[@"FromId"] = dictory[@"extraFromId"];
+            extraDic[@"FromName"] = dictory[@"extraFromName"];
+            extraDic[@"FromHeadImg"] = dictory[@"extraFromHeadImg"];
+            extraDic[@"FromCertifyId"] = dictory[@"extraFromCertifyId"];
+            extraDic[@"FromCertifyName"] = dictory[@"extraFromCertifyName"];
+            extraDic[@"FromCertifyHeadImg"] = dictory[@"extraFromCertifyHeadImg"];
+            extraDic[@"TargetId"] = dictory[@"extraTargetId"];
+            extraDic[@"TargetName"] = dictory[@"extraTargetName"];
+            extraDic[@"TargetHeadImg"] = dictory[@"extraTargetHeadImg"];
+            extraDic[@"TargetType"] = dictory[@"extraTargetType"];
+            extraDic[@"GType"] = dictory[@"extraGType"];
+            extraDic[@"GMembers"] = dictory[@"extraGMembers"];
+            extraDic[@"MessageType"] = dictory[@"extraMessageType"];
+            extraDic[@"ImKey"] = dictory[@"extraImKey"];
+            extraDic[@"Keywords"] = dictory[@"extraKeywords"];
+            extraDic[@"MsgTime"] = dictory[@"extraMsgTime"];
+            textMessage.extra = extraDic.mj_JSONString;
+            message.content = textMessage;
+            message.extraDic = extraDic;
+        }
+        else {
+            RCMessage *textMessage = [[RCMessage alloc] init];
             extraDic[@"Id"] = dictory[@"extraId"];
             extraDic[@"ConversationId"] = dictory[@"extraConversationId"];
             extraDic[@"FromId"] = dictory[@"extraFromId"];

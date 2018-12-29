@@ -81,6 +81,8 @@
 
 - (void)mediaLocationPressed;
 
+- (void)workLocationPressed;
+
 //页面状态同步接口
 
 - (void)onViewWillAppear;

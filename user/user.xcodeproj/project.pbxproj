@@ -1068,6 +1068,11 @@
 		E19DC8CC219ACC7B00C86478 /* DJCompanyChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8CB219ACC7B00C86478 /* DJCompanyChatPage.m */; };
 		E19DC8CF219ACC9100C86478 /* DJGroupChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */; };
 		E19DC8D3219AE7E600C86478 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8D2219AE7E600C86478 /* BaseModel.m */; };
+		E1A34B3121D5F775002D4690 /* DYRotateSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3021D5F775002D4690 /* DYRotateSendViewController.m */; };
+		E1A34B3421D5F865002D4690 /* MutableSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3321D5F865002D4690 /* MutableSelectCell.m */; };
+		E1A34B3721D6132D002D4690 /* DYSelecteContractsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3621D6132D002D4690 /* DYSelecteContractsPage.m */; };
+		E1A34B3A21D64A4D002D4690 /* UIButton+CQBlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3921D64A4D002D4690 /* UIButton+CQBlockSupport.m */; };
+		E1A34B3D21D64A6F002D4690 /* CQColorfulAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3C21D64A6F002D4690 /* CQColorfulAlertView.m */; };
 		E1ACF2F121D39BEC0045F655 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACF2F021D39BEC0045F655 /* UIImage+fixOrientation.m */; };
 		E1B1178B219D4F0D00C96B3E /* SCAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B11789219D4F0C00C96B3E /* SCAccountManager.m */; };
 		E1B1178D219D58A800C96B3E /* Pandora in Resources */ = {isa = PBXBuildFile; fileRef = E1B1178C219D58A800C96B3E /* Pandora */; };
@@ -1077,6 +1082,13 @@
 		E1B52924219FB9FB008B27A5 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B52923219FB9FB008B27A5 /* SafariServices.framework */; };
 		E1B52925219FBA7D008B27A5 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD11FA817640018EC62 /* libc++.tbd */; };
 		E1B52939219FE0FC008B27A5 /* XJInfoDetailPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */; };
+		E1BC7B1021D47DAD00017C39 /* DYLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BC7B0F21D47DAD00017C39 /* DYLocationViewController.m */; };
+		E1BC7B1321D47DE400017C39 /* SearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BC7B1121D47DE400017C39 /* SearchResultsController.m */; };
+		E1BC7B1521D47E0800017C39 /* QMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BC7B1421D47E0800017C39 /* QMapKit.framework */; };
+		E1BC7B1721D47E1200017C39 /* QMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BC7B1621D47E1200017C39 /* QMapSearchKit.framework */; };
+		E1BC7B1A21D4826000017C39 /* QMapKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1BC7B1921D4826000017C39 /* QMapKit.bundle */; };
+		E1BC7B1C21D4827C00017C39 /* greenPin_lift.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BC7B1B21D4827C00017C39 /* greenPin_lift.png */; };
+		E1BC7B1F21D4B7D900017C39 /* DYLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BC7B1E21D4B7D900017C39 /* DYLocationTableViewCell.m */; };
 		E1BD207A21C4B5EC00C6B3D9 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BD207921C4B5EB00C6B3D9 /* libcrypto.a */; };
 		E1C1A40621C2B0DE0050407D /* MyTextMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C1A40521C2B0DE0050407D /* MyTextMessageCell.m */; };
 		E1D913B721C0C24B0006B171 /* SimpleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D913B621C0C24B0006B171 /* SimpleMessage.m */; };
@@ -3079,6 +3091,16 @@
 		E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGroupChatPage.m; sourceTree = "<group>"; };
 		E19DC8D1219AE7E600C86478 /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		E19DC8D2219AE7E600C86478 /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		E1A34B2F21D5F775002D4690 /* DYRotateSendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYRotateSendViewController.h; sourceTree = "<group>"; };
+		E1A34B3021D5F775002D4690 /* DYRotateSendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYRotateSendViewController.m; sourceTree = "<group>"; };
+		E1A34B3221D5F865002D4690 /* MutableSelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MutableSelectCell.h; sourceTree = "<group>"; };
+		E1A34B3321D5F865002D4690 /* MutableSelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MutableSelectCell.m; sourceTree = "<group>"; };
+		E1A34B3521D6132D002D4690 /* DYSelecteContractsPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYSelecteContractsPage.h; sourceTree = "<group>"; };
+		E1A34B3621D6132D002D4690 /* DYSelecteContractsPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYSelecteContractsPage.m; sourceTree = "<group>"; };
+		E1A34B3821D64A4C002D4690 /* UIButton+CQBlockSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CQBlockSupport.h"; sourceTree = "<group>"; };
+		E1A34B3921D64A4D002D4690 /* UIButton+CQBlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CQBlockSupport.m"; sourceTree = "<group>"; };
+		E1A34B3B21D64A6E002D4690 /* CQColorfulAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQColorfulAlertView.h; sourceTree = "<group>"; };
+		E1A34B3C21D64A6F002D4690 /* CQColorfulAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQColorfulAlertView.m; sourceTree = "<group>"; };
 		E1ACF2EF21D39BEC0045F655 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
 		E1ACF2F021D39BEC0045F655 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		E1B11789219D4F0C00C96B3E /* SCAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAccountManager.m; sourceTree = "<group>"; };
@@ -3090,6 +3112,16 @@
 		E1B52923219FB9FB008B27A5 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		E1B52937219FE0FC008B27A5 /* XJInfoDetailPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJInfoDetailPage.h; sourceTree = "<group>"; };
 		E1B52938219FE0FC008B27A5 /* XJInfoDetailPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJInfoDetailPage.m; sourceTree = "<group>"; };
+		E1BC7B0E21D47DAD00017C39 /* DYLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYLocationViewController.h; sourceTree = "<group>"; };
+		E1BC7B0F21D47DAD00017C39 /* DYLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYLocationViewController.m; sourceTree = "<group>"; };
+		E1BC7B1121D47DE400017C39 /* SearchResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsController.m; sourceTree = "<group>"; };
+		E1BC7B1221D47DE400017C39 /* SearchResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsController.h; sourceTree = "<group>"; };
+		E1BC7B1421D47E0800017C39 /* QMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QMapKit.framework; sourceTree = "<group>"; };
+		E1BC7B1621D47E1200017C39 /* QMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QMapSearchKit.framework; sourceTree = "<group>"; };
+		E1BC7B1921D4826000017C39 /* QMapKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QMapKit.bundle; sourceTree = "<group>"; };
+		E1BC7B1B21D4827C00017C39 /* greenPin_lift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenPin_lift.png; sourceTree = "<group>"; };
+		E1BC7B1D21D4B7D900017C39 /* DYLocationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYLocationTableViewCell.h; sourceTree = "<group>"; };
+		E1BC7B1E21D4B7D900017C39 /* DYLocationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYLocationTableViewCell.m; sourceTree = "<group>"; };
 		E1BD207921C4B5EB00C6B3D9 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		E1C1A40421C2B0DE0050407D /* MyTextMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTextMessageCell.h; sourceTree = "<group>"; };
 		E1C1A40521C2B0DE0050407D /* MyTextMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTextMessageCell.m; sourceTree = "<group>"; };
@@ -3104,6 +3136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */,
 				E1B52925219FBA7D008B27A5 /* libc++.tbd in Frameworks */,
 				E19DC8C2219AC69700C86478 /* VideoToolbox.framework in Frameworks */,
 				CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */,
@@ -3117,6 +3150,7 @@
 				CBFF45971F74C33600D2AF93 /* CoreGraphics.framework in Frameworks */,
 				487353132192F5E5001B59AB /* AVFoundation.framework in Frameworks */,
 				487352E02192ED8C001B59AB /* AudioToolbox.framework in Frameworks */,
+				E1BC7B1521D47E0800017C39 /* QMapKit.framework in Frameworks */,
 				487353152192F5F5001B59AB /* AssetsLibrary.framework in Frameworks */,
 				488E896E219FF8CD008695A7 /* libiconv.tbd in Frameworks */,
 				488E896C219FF8AF008695A7 /* libbz2.tbd in Frameworks */,
@@ -3136,7 +3170,6 @@
 				E19DC8BA219AC4DE00C86478 /* CoreVideo.framework in Frameworks */,
 				E19DC8BC219AC50100C86478 /* libc++abi.tbd in Frameworks */,
 				487352EA2192EE1F001B59AB /* libxml2.tbd in Frameworks */,
-				CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */,
 				489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */,
 				E19DC8BE219AC59800C86478 /* OpenGLES.framework in Frameworks */,
 				E1B52924219FB9FB008B27A5 /* SafariServices.framework in Frameworks */,
@@ -3153,6 +3186,7 @@
 				489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */,
 				E19DC8BC219AC50100C86478 /* libc++abi.tbd in Frameworks */,
 				E19DC8BA219AC4DE00C86478 /* CoreVideo.framework in Frameworks */,
+				E1BC7B1721D47E1200017C39 /* QMapSearchKit.framework in Frameworks */,
 				48511D7D219EC4E0006C6081 /* liblibMap.a in Frameworks */,
 				487352E42192EDC5001B59AB /* CoreMedia.framework in Frameworks */,
 				E19DC893219ABB9000C86478 /* libstdc++.6.0.9.tbd in Frameworks */,
@@ -7442,6 +7476,11 @@
 		E19DC8B2219AC29800C86478 /* IM */ = {
 			isa = PBXGroup;
 			children = (
+				E1A34B3821D64A4C002D4690 /* UIButton+CQBlockSupport.h */,
+				E1A34B3921D64A4D002D4690 /* UIButton+CQBlockSupport.m */,
+				E1A34B3B21D64A6E002D4690 /* CQColorfulAlertView.h */,
+				E1A34B3C21D64A6F002D4690 /* CQColorfulAlertView.m */,
+				E1BC7B0A21D47D7900017C39 /* Location */,
 				E14199FB21CCDC640067AE2E /* Models */,
 				E15766B821C9122C003A5C25 /* NIMKit */,
 				E15766B121C91098003A5C25 /* NIMSDK_LITE */,
@@ -7454,6 +7493,10 @@
 				E19DC8B7219AC36400C86478 /* DYChatViewController.m */,
 				E16104E321C4E7A00062E120 /* JXChatViewController.h */,
 				E16104E421C4E7A00062E120 /* JXChatViewController.m */,
+				E1A34B2F21D5F775002D4690 /* DYRotateSendViewController.h */,
+				E1A34B3021D5F775002D4690 /* DYRotateSendViewController.m */,
+				E1A34B3521D6132D002D4690 /* DYSelecteContractsPage.h */,
+				E1A34B3621D6132D002D4690 /* DYSelecteContractsPage.m */,
 				E1203C0821C64CFB00418055 /* IMSDK.h */,
 				E1203C0921C64CFB00418055 /* IMSDK.m */,
 				E1203C0521C64B8200418055 /* ChatManager.h */,
@@ -7486,6 +7529,31 @@
 			path = subVC;
 			sourceTree = "<group>";
 		};
+		E1BC7B0A21D47D7900017C39 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				E1BC7B1821D4826000017C39 /* Resources */,
+				E1BC7B1621D47E1200017C39 /* QMapSearchKit.framework */,
+				E1BC7B1421D47E0800017C39 /* QMapKit.framework */,
+				E1BC7B0E21D47DAD00017C39 /* DYLocationViewController.h */,
+				E1BC7B0F21D47DAD00017C39 /* DYLocationViewController.m */,
+				E1BC7B1221D47DE400017C39 /* SearchResultsController.h */,
+				E1BC7B1121D47DE400017C39 /* SearchResultsController.m */,
+				E1BC7B1D21D4B7D900017C39 /* DYLocationTableViewCell.h */,
+				E1BC7B1E21D4B7D900017C39 /* DYLocationTableViewCell.m */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		E1BC7B1821D4826000017C39 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E1BC7B1B21D4827C00017C39 /* greenPin_lift.png */,
+				E1BC7B1921D4826000017C39 /* QMapKit.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		E1D913B121C0C15A0006B171 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -7495,6 +7563,8 @@
 				E1D913B921C0C3020006B171 /* SimpleMessageCell.m */,
 				E1C1A40421C2B0DE0050407D /* MyTextMessageCell.h */,
 				E1C1A40521C2B0DE0050407D /* MyTextMessageCell.m */,
+				E1A34B3221D5F865002D4690 /* MutableSelectCell.h */,
+				E1A34B3321D5F865002D4690 /* MutableSelectCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -7629,6 +7699,7 @@
 				487C55C120638AE4006A8071 /* JXAddressCell.xib in Resources */,
 				DE9110122085DD5600BDDABF /* JXOderIntegralCell.xib in Resources */,
 				DEC5C0E61FD81314000E8788 /* loading@3x.gif in Resources */,
+				E1BC7B1A21D4826000017C39 /* QMapKit.bundle in Resources */,
 				488E89EA219FFD5A008695A7 /* RCColor.plist in Resources */,
 				DEC5C0E51FD8130B000E8788 /* loading@2x.gif in Resources */,
 				DE9456731FBF00B900827C08 /* JXMyAccountManagementCell.xib in Resources */,
@@ -7792,6 +7863,7 @@
 				4804A14C21957D5D0081AB5B /* PandoraApi.bundle in Resources */,
 				DE94566B1FBEE82500827C08 /* JXRenewalRecordCell.xib in Resources */,
 				DE910FCB2085DD3C00BDDABF /* JXMyGoodsFootView.xib in Resources */,
+				E1BC7B1C21D4827C00017C39 /* greenPin_lift.png in Resources */,
 				48735199218ADFF5001B59AB /* DYJXLogisticPage.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7924,6 +7996,7 @@
 				E157684E21C9122D003A5C25 /* NSString+NIMKit.m in Sources */,
 				48D9801D1FEB5E5D00246D4B /* JXClassificationTableHeader.m in Sources */,
 				48CC2C071FD9205600622935 /* JXGoodsDetailCouponViewModel.m in Sources */,
+				E1A34B3421D5F865002D4690 /* MutableSelectCell.m in Sources */,
 				DED6BD8D1FC54E9F0004EA72 /* NetWorkTool.m in Sources */,
 				DE9F8CBA1FDFACCE00D8FE8A /* JXCitySeachViewController.m in Sources */,
 				DEDA7D041FCD5C07008A362A /* JXShoppingCartHeatView.m in Sources */,
@@ -8010,6 +8083,7 @@
 				CBCB72051FA03B6A009BA93E /* XYOrderDetailPayPickView.m in Sources */,
 				DE71B15D208744DD00467E06 /* PYPhotoBrowserConst.m in Sources */,
 				CB2DC80C1F6FCB310020C6E8 /* XYHomePopAdsView.m in Sources */,
+				E1BC7B1021D47DAD00017C39 /* DYLocationViewController.m in Sources */,
 				487357A821943D3F001B59AB /* WebAppController.m in Sources */,
 				E17AF25B21A02D480041249C /* DJJXResponModel.m in Sources */,
 				CBCF836F1F72112900B20CF9 /* XYEWalletDetailTVCell.m in Sources */,
@@ -8232,6 +8306,7 @@
 				CBFF45621F7248D100D2AF93 /* XYEWalletAllNet.m in Sources */,
 				4826A48A21BFC43500EAF963 /* DYJXAddMemberCollectionViewCell.m in Sources */,
 				DEE9AA3E1FBD3AEC001FA69A /* JXRenewInFootView.m in Sources */,
+				E1A34B3721D6132D002D4690 /* DYSelecteContractsPage.m in Sources */,
 				E16657B821A413AA00BAC552 /* OwnerImageCell.m in Sources */,
 				DE910FDA2085DD3C00BDDABF /* JXMyOrderDetailsViewController.m in Sources */,
 				48B573802047EE860028A8FA /* JXElectronicInvoiceCheckCell.m in Sources */,
@@ -8366,6 +8441,7 @@
 				48D980161FEB5C5B00246D4B /* JXClassificationFoldPage.m in Sources */,
 				480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */,
 				CBE85ABA1F630B1C00E1E4EA /* XYMineOrderButtonVC.m in Sources */,
+				E1BC7B1321D47DE400017C39 /* SearchResultsController.m in Sources */,
 				48B5737D2047E2430028A8FA /* JXElectronicInvoiceHeaderCell.m in Sources */,
 				48A370FA21B4C8B9002861DD /* BusinessLicenceFooter.m in Sources */,
 				E157680C21C9122D003A5C25 /* NIMNormalTeamCardViewController.m in Sources */,
@@ -8429,6 +8505,7 @@
 				48C5E6F320590FCB00239081 /* JXSelectDeliverToShopPage.m in Sources */,
 				CB123C541F999A6400CD4429 /* XYLanuchGuideVideoVC.m in Sources */,
 				DE277D381FBAC2FB00FE52C8 /* XYAddressCell.m in Sources */,
+				E1A34B3A21D64A4D002D4690 /* UIButton+CQBlockSupport.m in Sources */,
 				48EB46552079F15F00B0A736 /* JXRefundReasonCell.m in Sources */,
 				CBE85ADB1F63D6ED00E1E4EA /* XYOrderDetailBalanceVC.m in Sources */,
 				48432059202455E400468411 /* JXPiontsRuleViewModel.m in Sources */,
@@ -8457,6 +8534,7 @@
 				CB063E201FA027EA00A9395D /* XYEWalletPreDepositThirdCell.m in Sources */,
 				E19DC8CC219ACC7B00C86478 /* DJCompanyChatPage.m in Sources */,
 				CB063E1A1FA0279800A9395D /* XYEWalletPreDepositFirstCell.m in Sources */,
+				E1BC7B1F21D4B7D900017C39 /* DYLocationTableViewCell.m in Sources */,
 				DE9110132085DD5600BDDABF /* JXOderInvoiceView.m in Sources */,
 				DE9F8CCA1FDFF5C600D8FE8A /* JXSeachCityModel.m in Sources */,
 				CBE85A101F60FC4600E1E4EA /* XYUserDefaults.m in Sources */,
@@ -8518,6 +8596,7 @@
 				48B389471FD394AF009A0F13 /* JXTagCouponView.m in Sources */,
 				48E8A4C321BA1F8A0046EA0E /* DYJXXYRelation.m in Sources */,
 				E157682121C9122D003A5C25 /* NIMMessageModel.m in Sources */,
+				E1A34B3D21D64A6F002D4690 /* CQColorfulAlertView.m in Sources */,
 				CB3872771FA333F000254263 /* XYPreDepositNet.m in Sources */,
 				E15767EF21C9122D003A5C25 /* NIMKitRobotDefaultTemplateParser.m in Sources */,
 				CBE85AB71F6304DF00E1E4EA /* XYMineHeaderVC.m in Sources */,
@@ -8636,6 +8715,7 @@
 				DE910FC92085DD3C00BDDABF /* JXMyDetailsGoodsCell.m in Sources */,
 				E15767E621C9122D003A5C25 /* NIMContactDataCell.m in Sources */,
 				CBE859CA1F5FAD1000E1E4EA /* XYHomeHotGoodsCVCell.m in Sources */,
+				E1A34B3121D5F775002D4690 /* DYRotateSendViewController.m in Sources */,
 				48B389401FD39328009A0F13 /* JXTagNormalView.m in Sources */,
 				DE81A88320649F8700E8632C /* AddressAreaModel.m in Sources */,
 				CB53FEEF1F6BFF870020F19A /* XYQRCodePushCommon.m in Sources */,
@@ -8917,6 +8997,7 @@
 					"$(PROJECT_DIR)/DYJX/RCloudSDK/RongSticker",
 					"$(PROJECT_DIR)/DYJX/RCloudSDK",
 					"$(PROJECT_DIR)/DYJX/Vender/IM/NIMSDK_LITE/NIMSDK",
+					"$(PROJECT_DIR)/DYJX/Vender/IM/Location",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/user/Classes/Other/Extension/PrefixHeader.pch";
@@ -9000,6 +9081,7 @@
 					"$(PROJECT_DIR)/DYJX/RCloudSDK/RongSticker",
 					"$(PROJECT_DIR)/DYJX/RCloudSDK",
 					"$(PROJECT_DIR)/DYJX/Vender/IM/NIMSDK_LITE/NIMSDK",
+					"$(PROJECT_DIR)/DYJX/Vender/IM/Location",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/user/Classes/Other/Extension/PrefixHeader.pch";

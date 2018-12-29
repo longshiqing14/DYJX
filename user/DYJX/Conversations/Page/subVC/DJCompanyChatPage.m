@@ -26,7 +26,7 @@
 
     self.navigationItem.title = @"我创建或参与的公司";
     [self initNavigator];
-    self.conversationListTableView.tableHeaderView = self.headView;
+    [self.view addSubview:self.headView];
 }
 
 - (void)initNavigator{

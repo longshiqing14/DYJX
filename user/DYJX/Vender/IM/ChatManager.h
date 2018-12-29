@@ -38,6 +38,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)sendMessage:(RCIMMessage *)message success:(void(^)(id  _Nullable responseObject))success failed:(void(^)(NSString *errorMsg))fail;
 
+-(void)sendMessage:(RCIMMessage *)message ToConversion:(RCConversationModel *)conversion success:(void(^)(id  _Nullable responseObject))success failed:(void(^)(NSString *errorMsg))fail;
+
+
+// 撤销
+-(void)resetMessage:(RCIMMessage *)message success:(void(^)(id  _Nullable responseObject))success failed:(void(^)(NSString *errorMsg))fail;
+
 - (void)uploadFile:(UIImage*)image model:(RCIMMessage *)model progress:(nullable void (^)(NSProgress * _Nonnull progress))Progress Success:(void(^)(id  _Nullable responseObject))success failed:(void(^)(NSString *errorMsg))fail;
 
 @end

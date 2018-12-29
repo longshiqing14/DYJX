@@ -43,6 +43,9 @@
 #import "JSExtension.h"
 #import "SimpleMessage.h"
 #import "IMSDK.h"
+#import <QMapKit/QMapKit.h>
+#import <QMapSearchKit/QMapSearchKit.h>
+#import <WXApi.h>
 
 // 账号密码： 18778399213 123456
 // 账号密码： 13750820441 654321
@@ -56,7 +59,7 @@
 
 #endif
 
-@interface AppDelegate ()<JPUSHRegisterDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,RCIMGroupUserInfoDataSource,RCIMReceiveMessageDelegate,RCIMConnectionStatusDelegate>
+@interface AppDelegate ()<JPUSHRegisterDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,RCIMGroupUserInfoDataSource,RCIMReceiveMessageDelegate,RCIMConnectionStatusDelegate,WXApiDelegate>
 
 @property (nonatomic, strong) UIImageView *photoIV;
 @property (nonatomic, strong) JXShareImageView *shareImageView;
@@ -84,9 +87,15 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"%@",launchOptions);
 
+    // 微信分享
+    [WXApi registerApp:@"wxfba72eb585ced789"];
+
     // 为了用音频
     [[NIMSDK sharedSDK] registerWithAppID:NIMSDKAppKey cerName:nil];
     ChatManager *chatManagert = [IMSDK sharedManager].chatManager; // 监听
+
+    [QMapServices sharedServices].apiKey = TencentKey;
+    [[QMSSearchServices sharedServices] setApiKey:TencentKey];
     
 //    [self getSessionId];
 //    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
@@ -238,6 +247,25 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
     //设置Log级别，开发阶段打印详细logsetReceiveMessageDelegate
     //    [RCIMClient sharedRCIMClient].logLevel = RC_Log_Level_Error;
 
+}
+
+//-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+//
+//    return [WXApi handleOpenURL:url delegate:self];
+//}
+//
+//-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+//
+//    return [WXApi handleOpenURL:url delegate:self];
+//}
+
+-(void) onResp:(BaseResp*)resp {
+    if (!resp.errStr.length) {
+        [self.window.rootViewController.view makeToast:@"分享成功"];
+    }
+    else {
+        [self.window.rootViewController.view makeToast:@"分享失败"];
+    }
 }
 
 /**
@@ -739,9 +767,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > 100000
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
 {
+    return [WXApi handleOpenURL:url delegate:self];
     NSLog(@"Calling Application Bundle ID: %@", url);
     NSLog(@"URL scheme:%@", [url scheme]);
     NSLog(@"URL query: %@", [url query]);
+
    if ([url.query containsString:@"type="]) {
 //       &&[url.query containsString:@"product_id="]&&[url.query containsString:@"merchant="]&&[url.query containsString:@"cityId="]
         if (url.query.length>0) {
@@ -842,6 +872,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"Calling Application Bundle ID: %@", sourceApplication);
     NSLog(@"URL scheme:%@", [url scheme]);
     NSLog(@"URL query: %@", [url query]);
+    return [WXApi handleOpenURL:url delegate:self];
+
     if ([url.host isEqualToString:@"safepay"]) {
         // 支付跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
@@ -913,7 +945,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    
+    return [WXApi handleOpenURL:url delegate:self];
     NSString *str = [url absoluteString];
     [YDBAlertView showToast:str];
     BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];

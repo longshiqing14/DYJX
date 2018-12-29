@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DJContactsChatViewController : BaseListViewController
+@interface DJContactsChatViewController : UIViewController
 
 @end
 

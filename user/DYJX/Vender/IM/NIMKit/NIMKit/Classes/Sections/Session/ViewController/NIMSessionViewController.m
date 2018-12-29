@@ -21,6 +21,10 @@
 #import "NIMKitTitleView.h"
 #import "NIMKitKeyboardInfo.h"
 #import <AVFoundation/AVFoundation.h>
+#import "JSExtension.h"
+#import <WXApi.h>
+#import "UIImage+fixOrientation.h"
+#import "DYRotateSendViewController.h"
 
 @interface NIMSessionViewController ()<NIMMediaManagerDelegate,NIMInputDelegate>
 
@@ -655,12 +659,68 @@
 //        NIMRobotObject *robotObject = (NIMRobotObject *)message.messageObject;
 //        copyText = !robotObject.isFromRobot;
 //    }
-    if (copyText) {
-        [items addObject:[[UIMenuItem alloc] initWithTitle:@"复制"
-                                                    action:@selector(copyText:)]];
+    NSInteger type = [NSString stringWithFormat:@"%@",message.extraDic[@"MessageType"]].integerValue;
+    switch (type) {
+        case 0:
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"复制"
+                                                        action:@selector(copyText:)]];
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"转发"
+                                                        action:@selector(rotateSend:)]];
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"分享到微信"
+                                                        action:@selector(shareWebChat:)]];
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"分享到其它"
+                                                        action:@selector(shareAll:)]];
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"删除"
+                                                        action:@selector(deleteMsg:)]];
+            if (message.isMySend) {
+                [items addObject:[[UIMenuItem alloc] initWithTitle:@"撤回"
+                                                            action:@selector(resetBack:)]];
+            }
+            break;
+        case 1:
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"下载"
+                                                        action:@selector(copyText:)]];
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"转发"
+                                                        action:@selector(rotateSend:)]];
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"分享到微信"
+                                                        action:@selector(shareWebChat:)]];
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"分享到其它"
+                                                        action:@selector(shareAll:)]];
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"删除"
+                                                        action:@selector(deleteMsg:)]];
+            if (message.isMySend) {
+                [items addObject:[[UIMenuItem alloc] initWithTitle:@"撤回"
+                                                            action:@selector(resetBack:)]];
+            }
+            break;
+        case 3:
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"删除"
+                                                        action:@selector(deleteMsg:)]];
+            if (message.isMySend) {
+                [items addObject:[[UIMenuItem alloc] initWithTitle:@"撤回"
+                                                            action:@selector(resetBack:)]];
+            }
+            break;
+        case 4:
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"删除"
+                                                        action:@selector(deleteMsg:)]];
+            if (message.isMySend) {
+                [items addObject:[[UIMenuItem alloc] initWithTitle:@"撤回"
+                                                            action:@selector(resetBack:)]];
+            }
+            break;
+        case 5:
+            [items addObject:[[UIMenuItem alloc] initWithTitle:@"删除"
+                                                        action:@selector(deleteMsg:)]];
+            if (message.isMySend) {
+                [items addObject:[[UIMenuItem alloc] initWithTitle:@"撤回"
+                                                            action:@selector(resetBack:)]];
+            }
+            break;
+
+        default:
+            break;
     }
-    [items addObject:[[UIMenuItem alloc] initWithTitle:@"删除"
-                                                action:@selector(deleteMsg:)]];
     return items;
     
 }
@@ -688,6 +748,13 @@
 }
 
 
+-(void)rotateSend:(id)sender {
+    RCIMMessage *message = [self messageForMenu];
+    DYRotateSendViewController *target = [[DYRotateSendViewController alloc] init];
+    target.message = message;
+    [self.navigationController pushViewController:target animated:YES];
+}
+
 - (void)copyText:(id)sender
 {
     RCIMMessage *message = [self messageForMenu];
@@ -702,8 +769,125 @@
     RCIMMessage *message    = [self messageForMenu];
     [self uiDeleteMessage:message];
     //TODO: 通知撤销了消息，本地更改
+    [[DataBaseManager shared] delegateModel:message identifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
 //    [self.conversationManager deleteMessage:message];
 }
+
+- (void)resetBack:(id)sender
+{
+    RCIMMessage *message = [self messageForMenu];
+
+    [self uiDeleteMessage:message];
+    //TODO: 通知撤销了消息，本地更改
+    [[DataBaseManager shared] delegateModel:message identifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+
+    [[IMSDK sharedManager].chatManager resetMessage:message success:^(id  _Nullable responseObject) {
+        [self uiAddMessages:@[(RCIMMessage *)responseObject]];
+    } failed:^(NSString * _Nonnull errorMsg) {
+    }];
+}
+
+-(void)shareWebChat:(id)sender {
+    RCIMMessage *model = [self messageForMenu];
+    NSInteger messageType = [NSString stringWithFormat:@"%@",model.extraDic[@"MessageType"]].integerValue;
+    if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+        if (messageType == 0) {
+            NSString *textToShare = [NSString stringWithFormat:@"%@",model.extraDic[@"Keywords"]];
+            SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+            req.text                = textToShare;
+            req.bText               = YES;
+            // 目标场景
+            // 发送到聊天界面  WXSceneSession
+            // 发送到朋友圈    WXSceneTimeline
+            // 发送到微信收藏  WXSceneFavorite
+            req.scene               = WXSceneSession;
+            [WXApi sendReq:req];
+
+        }
+        else if (messageType == 1) {
+            WXMediaMessage *message = [WXMediaMessage message];
+            UIImage *imageToShare = nil;
+            if (model.image) {
+                imageToShare = model.image;
+            }
+            else {
+                imageToShare = [UIImage imageWithContentsOfFile:model.LocalPath];
+            }
+            if (!imageToShare) {
+                imageToShare = [UIImage imageNamed:@"dyjx_default_img"];
+            }
+            // 设置消息缩略图的方法
+            [message setThumbImage:[UIImage compressImage:imageToShare toByte:32000]];
+            // 多媒体消息中包含的图片数据对象
+            WXImageObject *imageObject = [WXImageObject object];
+            // 图片真实数据内容
+            NSData *data = UIImageJPEGRepresentation(imageToShare, 0.2);
+            imageObject.imageData = data;
+            // 多媒体数据对象，可以为WXImageObject，WXMusicObject，WXVideoObject，WXWebpageObject等。
+            message.mediaObject = imageObject;
+
+            SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+            req.bText = NO;
+            req.message = message;
+            req.scene = WXSceneSession;// 分享到朋友圈
+            [WXApi sendReq:req];
+        }
+    }
+    else {
+        [self.view makeToast:@"你还没有安装微信"];
+    }
+
+}
+
+- (void)shareAll:(id)sender {
+    RCIMMessage *message = [self messageForMenu];
+
+    NSInteger messageType = [NSString stringWithFormat:@"%@",message.extraDic[@"MessageType"]].integerValue;
+    if (messageType == 0) {
+        NSString *textToShare = [NSString stringWithFormat:@"%@",message.extraDic[@"Keywords"]];
+        NSArray *activityItems = @[textToShare];
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+        //不出现在活动项目
+        activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll];
+        [self presentViewController:activityVC animated:YES completion:nil];
+        // 分享之后的回调
+        activityVC.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
+            if (completed) {
+                [self.view makeToast:@"分享成功"];
+                //分享 成功
+            } else  {
+                [self.view makeToast:@"分享失败"];
+                //分享 取消
+            }
+        };
+    }
+    else if (messageType == 1) {
+        UIImage *imageToShare = nil;
+        if (message.LocalPath.length) {
+            imageToShare = [UIImage imageWithContentsOfFile:message.LocalPath];
+        }
+        if (!imageToShare) {
+            imageToShare = [UIImage imageNamed:@"dyjx_default_img"];
+        }
+        //在这里呢 如果想分享图片 就把图片添加进去  文字什么的通上
+        NSArray *activityItems = @[imageToShare];
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+        //不出现在活动项目
+        activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll];
+        [self presentViewController:activityVC animated:YES completion:nil];
+        // 分享之后的回调
+        activityVC.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
+            if (completed) {
+                [self.view makeToast:@"分享成功"];
+                //分享 成功
+            } else  {
+                [self.view makeToast:@"分享失败"];
+                //分享 取消
+            }
+        };
+    }
+}
+
 
 - (void)menuDidHide:(NSNotification *)notification
 {
@@ -760,7 +944,7 @@
 //  发送考勤位置
 - (void)onTapWorkLocation:(NIMMediaItem *)item
 {
-    [self.interactor mediaLocationPressed];
+    [self.interactor workLocationPressed];
 }
 
 #pragma mark - 旋转处理 (iOS8 or above)

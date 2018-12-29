@@ -341,6 +341,32 @@
         dictory[@"extraKeywords"] = extraDic[@"Keywords"];
         dictory[@"extraMsgTime"] = extraDic[@"MsgTime"];
     }
+    else  {
+        RCMessage *textMessage = (RCMessage *)(message.content);
+        extraDic = [self dictionaryWithJsonString:textMessage.extra];
+        dictory[@"latitude"] = @(textMessage.location.latitude);
+        dictory[@"longitude"] = @(textMessage.location.longitude);
+        dictory[@"extraId"] = extraDic[@"Id"];
+        dictory[@"extraConversationId"] = extraDic[@"ConversationId"];
+        dictory[@"extraFromId"] = extraDic[@"FromId"];
+        dictory[@"extraFromName"] = extraDic[@"FromName"];
+        dictory[@"extraFromHeadImg"] = extraDic[@"FromHeadImg"];
+        dictory[@"extraFromCertifyId"] = extraDic[@"FromCertifyId"];
+        dictory[@"extraFromCertifyName"] = extraDic[@"FromCertifyName"];
+        dictory[@"extraFromCertifyHeadImg"] = extraDic[@"FromCertifyHeadImg"];
+        dictory[@"extraTargetId"] = extraDic[@"TargetId"];
+        dictory[@"extraTargetName"] = extraDic[@"TargetName"];
+        dictory[@"extraTargetHeadImg"] = extraDic[@"TargetHeadImg"];
+        dictory[@"extraTargetType"] = extraDic[@"TargetType"];
+        dictory[@"extraGType"] = extraDic[@"GType"];
+        dictory[@"extraGMembers"] = extraDic[@"GMembers"];
+        dictory[@"extraMessageType"] = extraDic[@"MessageType"];
+        dictory[@"extraImKey"] = extraDic[@"ImKey"];
+        dictory[@"extraKeywords"] = extraDic[@"Keywords"];
+        dictory[@"extraMsgTime"] = extraDic[@"MsgTime"];
+        dictory[@"sendTime"] = @(0);
+        dictory[@"receivedTime"] = @(0);
+    }
     dictory[@"messageUId"] = message.messageUId;
 
     if ([NSString stringWithFormat:@"%@",extraDic[@"TargetType"]].integerValue == 0) {

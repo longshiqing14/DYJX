@@ -53,6 +53,13 @@
 
     // 已读
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:XY_IM_AlreadRead object:nil];
+
+    // 已读
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:XY_IM_AlreadUpdateData object:nil];
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
@@ -82,7 +89,7 @@
         conversationType = ConversationType_GROUP;
         type = NIMSessionTypeTeam;
         [JSExtension shared].type = 1;
-        [JSExtension shared].targetId = conversationModel.targetId;
+        [JSExtension shared].targetId = conversationModel.extend[@"targetId"];
         [JSExtension shared].targetName = conversationModel.extend[@"targetName"];
         [JSExtension shared].targetImg = conversationModel.extend[@"targetImg"];
     }
@@ -102,6 +109,7 @@
     NIMSession *session = [NIMSession session:model.targetId type:type];
     [JSExtension shared].session = session;
     JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+    [JSExtension shared].chatVC = chatVC;
     chatVC.naviTitle = model.conversationTitle;
     chatVC.chatModel = model;
     [self.navigationController pushViewController:chatVC animated:YES];
@@ -270,6 +278,8 @@
 
         [dataSource addObject:model];
     }
+
+    [JSExtension shared].conversionArray = dataSource;
     return dataSource;
 }
 
