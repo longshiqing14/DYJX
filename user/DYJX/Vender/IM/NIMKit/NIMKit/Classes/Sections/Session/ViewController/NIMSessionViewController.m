@@ -25,6 +25,9 @@
 #import <WXApi.h>
 #import "UIImage+fixOrientation.h"
 #import "DYRotateSendViewController.h"
+#import "ImageZoomView.h"
+#import "DYLocationViewController.h"
+#import "LocationInfoViewController.h"
 
 @interface NIMSessionViewController ()<NIMMediaManagerDelegate,NIMInputDelegate>
 
@@ -526,34 +529,97 @@
 #pragma mark - NIMMessageCellDelegate
 - (BOOL)onTapCell:(NIMKitEvent *)event{
     BOOL handle = NO;
+    RCIMMessage *message = event.messageModel.message;
+    NSInteger messageType = [NSString stringWithFormat:@"%@",message.extraDic[@"MessageType"]].integerValue;
     NSString *eventName = event.eventName;
-    if ([eventName isEqualToString:NIMKitEventNameTapAudio])
-    {
-        [self.interactor mediaAudioPressed:event.messageModel];
-        handle = YES;
-    }
-    if ([eventName isEqualToString:NIMKitEventNameTapRobotBlock]) {
-        NSDictionary *param = event.data;
-//        NIMMessage *message = [NIMMessageMaker msgWithRobotSelect:param[@"text"] target:param[@"target"] params:param[@"param"] toRobot:param[@"robotId"]];
-//        [self sendMessage:message];
-        handle = YES;
-    }
-    if ([eventName isEqualToString:NIMKitEventNameTapRobotContinueSession]) {
-//        NIMRobotObject *robotObject = (NIMRobotObject *)event.messageModel.message.messageObject;
-//        NIMRobot *robot = [[NIMSDK sharedSDK].robotManager robotInfo:robotObject.robotId];
-//        NSString *text = [NSString stringWithFormat:@"%@%@%@",NIMInputAtStartChar,robot.nickname,NIMInputAtEndChar];
-//
-//        NIMInputAtItem *item = [[NIMInputAtItem alloc] init];
-//        item.uid  = robot.userId;
-//        item.name = robot.nickname;
-//        [self.sessionInputView.atCache addAtItem:item];
-//
-//        [self.sessionInputView.toolBar insertText:text];
+    if (messageType == 1) { // 图片
+        UIImage *image = nil;
+        if (message.image) {
+            image = message.image;
+        }
+
+        if (!image) {
+            image = [UIImage imageWithContentsOfFile:message.LocalPath];
+        }
+
+        if (!image) {
+            image = [UIImage imageNamed:@"dyjx_default_img"];
+        }
+
+        //点击事件
+        ImageZoomView *img=[[ImageZoomView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) andWithImage:[[UIImageView alloc] initWithImage:image]];
+        //当前视图
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        [window addSubview:img];
 
         handle = YES;
     }
-    
+    else if (messageType == 4) { // 图片
+        LocationInfoViewController *vc = [[LocationInfoViewController alloc] init];
+        if ([message.content isKindOfClass:[RCLocationMessage class]]) {
+            RCLocationMessage *textMessage = (RCLocationMessage *)(message.content);
+            vc.centerPoint.coordinate = CLLocationCoordinate2DMake(textMessage.location.latitude, textMessage.location.longitude);
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:nav animated:YES completion:nil];
+        }
+        handle = YES;
+    }
+    else if (messageType == 5) { // 图片
+        LocationInfoViewController *vc = [[LocationInfoViewController alloc] init];
+        if ([message.content isKindOfClass:[RCLocationMessage class]]) {
+            RCLocationMessage *textMessage = (RCLocationMessage *)(message.content);
+            vc.centerPoint.coordinate = CLLocationCoordinate2DMake(textMessage.location.latitude, textMessage.location.longitude);
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:nav animated:YES completion:nil];
+        }
+        handle = YES;
+    }
+//    if ([eventName isEqualToString:NIMKitEventNameTapAudio])
+//    {
+//        [self.interactor mediaAudioPressed:event.messageModel];
+//        handle = YES;
+//    }
+//    if ([eventName isEqualToString:NIMKitEventNameTapRobotBlock]) {
+//        NSDictionary *param = event.data;
+////        NIMMessage *message = [NIMMessageMaker msgWithRobotSelect:param[@"text"] target:param[@"target"] params:param[@"param"] toRobot:param[@"robotId"]];
+////        [self sendMessage:message];
+//        handle = YES;
+//    }
+//    if ([eventName isEqualToString:NIMKitEventNameTapRobotContinueSession]) {
+////        NIMRobotObject *robotObject = (NIMRobotObject *)event.messageModel.message.messageObject;
+////        NIMRobot *robot = [[NIMSDK sharedSDK].robotManager robotInfo:robotObject.robotId];
+////        NSString *text = [NSString stringWithFormat:@"%@%@%@",NIMInputAtStartChar,robot.nickname,NIMInputAtEndChar];
+////
+////        NIMInputAtItem *item = [[NIMInputAtItem alloc] init];
+////        item.uid  = robot.userId;
+////        item.name = robot.nickname;
+////        [self.sessionInputView.atCache addAtItem:item];
+////
+////        [self.sessionInputView.toolBar insertText:text];
+//
+//        handle = YES;
+//    }
+//
     return handle;
+}
+
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
 }
 
 - (void)onRetryMessage:(RCIMMessage *)message

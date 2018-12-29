@@ -34,8 +34,12 @@
         [self addSubview:_imageView];
         _progressView = [[NIMLoadProgressView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
         _progressView.maxProgress = 1.0f;
-        self.bubbleImageView.hidden = YES;
+//        self.bubbleImageView.hidden = YES;
         [self addSubview:_progressView];
+
+        _imageView.userInteractionEnabled = YES;
+        [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTouchUpInside:)]];
+//        [_imageView addGestureRecognizer:];
     }
     return self;
 }

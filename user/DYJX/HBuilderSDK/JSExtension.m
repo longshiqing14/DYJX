@@ -233,6 +233,7 @@
             RCLocationMessage *textMessage = [[RCLocationMessage alloc] init];
             textMessage.locationName = dictory[@"contentLocationName"];
             textMessage.location = CLLocationCoordinate2DMake([NSString stringWithFormat:@"%@",dictory[@"latitude"]].doubleValue, [NSString stringWithFormat:@"%@",dictory[@"longitude"]].doubleValue);
+            message.location = textMessage.location;
             extraDic[@"Id"] = dictory[@"extraId"];
             extraDic[@"ConversationId"] = dictory[@"extraConversationId"];
             extraDic[@"FromId"] = dictory[@"extraFromId"];

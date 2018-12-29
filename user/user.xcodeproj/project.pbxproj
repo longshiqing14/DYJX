@@ -1089,6 +1089,10 @@
 		E1BC7B1F21D4B7D900017C39 /* DYLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BC7B1E21D4B7D900017C39 /* DYLocationTableViewCell.m */; };
 		E1BD207A21C4B5EC00C6B3D9 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BD207921C4B5EB00C6B3D9 /* libcrypto.a */; };
 		E1C1A40621C2B0DE0050407D /* MyTextMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C1A40521C2B0DE0050407D /* MyTextMessageCell.m */; };
+		E1CDB23621D754F30049B124 /* ImageZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB23521D754F30049B124 /* ImageZoomView.m */; };
+		E1CDB23921D77EEC0049B124 /* LocationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB23821D77EEC0049B124 /* LocationInfoViewController.m */; };
+		E1CDB23C21D799F00049B124 /* myAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB23B21D799F00049B124 /* myAnnotation.m */; };
+		E1CDB23F21D79AE20049B124 /* MyAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB23E21D79AE20049B124 /* MyAnnotationView.m */; };
 		E1D913B721C0C24B0006B171 /* SimpleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D913B621C0C24B0006B171 /* SimpleMessage.m */; };
 		E1D913BA21C0C3020006B171 /* SimpleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D913B921C0C3020006B171 /* SimpleMessageCell.m */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
@@ -3119,6 +3123,14 @@
 		E1BD207921C4B5EB00C6B3D9 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		E1C1A40421C2B0DE0050407D /* MyTextMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTextMessageCell.h; sourceTree = "<group>"; };
 		E1C1A40521C2B0DE0050407D /* MyTextMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTextMessageCell.m; sourceTree = "<group>"; };
+		E1CDB23421D754F30049B124 /* ImageZoomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageZoomView.h; sourceTree = "<group>"; };
+		E1CDB23521D754F30049B124 /* ImageZoomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageZoomView.m; sourceTree = "<group>"; };
+		E1CDB23721D77EEC0049B124 /* LocationInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationInfoViewController.h; sourceTree = "<group>"; };
+		E1CDB23821D77EEC0049B124 /* LocationInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationInfoViewController.m; sourceTree = "<group>"; };
+		E1CDB23A21D799F00049B124 /* myAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myAnnotation.h; sourceTree = "<group>"; };
+		E1CDB23B21D799F00049B124 /* myAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myAnnotation.m; sourceTree = "<group>"; };
+		E1CDB23D21D79AE20049B124 /* MyAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAnnotationView.h; sourceTree = "<group>"; };
+		E1CDB23E21D79AE20049B124 /* MyAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAnnotationView.m; sourceTree = "<group>"; };
 		E1D913B521C0C24B0006B171 /* SimpleMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleMessage.h; sourceTree = "<group>"; };
 		E1D913B621C0C24B0006B171 /* SimpleMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleMessage.m; sourceTree = "<group>"; };
 		E1D913B821C0C3020006B171 /* SimpleMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleMessageCell.h; sourceTree = "<group>"; };
@@ -7487,6 +7499,8 @@
 				E1A34B3021D5F775002D4690 /* DYRotateSendViewController.m */,
 				E1A34B3521D6132D002D4690 /* DYSelecteContractsPage.h */,
 				E1A34B3621D6132D002D4690 /* DYSelecteContractsPage.m */,
+				E1CDB23421D754F30049B124 /* ImageZoomView.h */,
+				E1CDB23521D754F30049B124 /* ImageZoomView.m */,
 				E1203C0821C64CFB00418055 /* IMSDK.h */,
 				E1203C0921C64CFB00418055 /* IMSDK.m */,
 				E1203C0521C64B8200418055 /* ChatManager.h */,
@@ -7527,10 +7541,16 @@
 				E1BC7B1421D47E0800017C39 /* QMapKit.framework */,
 				E1BC7B0E21D47DAD00017C39 /* DYLocationViewController.h */,
 				E1BC7B0F21D47DAD00017C39 /* DYLocationViewController.m */,
+				E1CDB23721D77EEC0049B124 /* LocationInfoViewController.h */,
+				E1CDB23821D77EEC0049B124 /* LocationInfoViewController.m */,
 				E1BC7B1221D47DE400017C39 /* SearchResultsController.h */,
 				E1BC7B1121D47DE400017C39 /* SearchResultsController.m */,
 				E1BC7B1D21D4B7D900017C39 /* DYLocationTableViewCell.h */,
 				E1BC7B1E21D4B7D900017C39 /* DYLocationTableViewCell.m */,
+				E1CDB23A21D799F00049B124 /* myAnnotation.h */,
+				E1CDB23B21D799F00049B124 /* myAnnotation.m */,
+				E1CDB23D21D79AE20049B124 /* MyAnnotationView.h */,
+				E1CDB23E21D79AE20049B124 /* MyAnnotationView.m */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -8092,6 +8112,7 @@
 				E13E60D921C360CD00D0C4B3 /* RCDHttpTool.m in Sources */,
 				CB123BF61F91A85D00CD4429 /* XYNoticePush.m in Sources */,
 				DEF678B91FDA682B00F7525D /* JXGetSetCityModel.m in Sources */,
+				E1CDB23621D754F30049B124 /* ImageZoomView.m in Sources */,
 				DE36FA481FCE889C00ED184E /* JXShopCouponHeatView.m in Sources */,
 				CB53FE781F6A132B0020F19A /* XYPaymentListModel.m in Sources */,
 				CBF74E2E1F8B6CDB00D528C2 /* XYNotificationCenterWebVC.m in Sources */,
@@ -8167,6 +8188,7 @@
 				E157681221C9122D003A5C25 /* NIMCardMemberItem.m in Sources */,
 				CBF74E621F8F46BF00D528C2 /* XYBoardBandEditDetailVC.m in Sources */,
 				E157680821C9122D003A5C25 /* NIMKitKeyboardInfo.m in Sources */,
+				E1CDB23C21D799F00049B124 /* myAnnotation.m in Sources */,
 				48EB463A2074C75800B0A736 /* JXRefundCashPage.m in Sources */,
 				E157685721C9122D003A5C25 /* NIMCommonTableData.m in Sources */,
 				CBFF46121F7D2D9F00D2AF93 /* XYOrderReAddCommentFirstCell.m in Sources */,
@@ -8241,6 +8263,7 @@
 				DE277D341FBAC2EF00FE52C8 /* XYAddressViewController.m in Sources */,
 				DE71B15A208744DD00467E06 /* UIView+PYExtension.m in Sources */,
 				CBFF466F1F7F270A00D2AF93 /* XYOrderCommentTools.m in Sources */,
+				E1CDB23921D77EEC0049B124 /* LocationInfoViewController.m in Sources */,
 				481FE72A2183125600CFE26B /* DYJXUserModel.m in Sources */,
 				CB123C101F94632000CD4429 /* XYConfirmOrderInvoiceVC.m in Sources */,
 				E157684621C9122D003A5C25 /* NIMSessionUnknowContentView.m in Sources */,
@@ -8589,6 +8612,7 @@
 				E15767EF21C9122D003A5C25 /* NIMKitRobotDefaultTemplateParser.m in Sources */,
 				CBE85AB71F6304DF00E1E4EA /* XYMineHeaderVC.m in Sources */,
 				48DE38D51FDE1D560006528C /* JXFoodheaderView.m in Sources */,
+				E1CDB23F21D79AE20049B124 /* MyAnnotationView.m in Sources */,
 				CBE859CD1F5FC1E500E1E4EA /* XYHomeHotGoodsCVCHeaderView.m in Sources */,
 				CBE85AE91F63E48D00E1E4EA /* UIView+Frame.m in Sources */,
 				CBE85AEA1F63E48D00E1E4EA /* YZDisplayTitleLabel.m in Sources */,
