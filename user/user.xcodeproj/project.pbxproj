@@ -279,6 +279,8 @@
 		48E2503921D76F7F00CC7D9E /* DJCompanyChatViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2503821D76F7F00CC7D9E /* DJCompanyChatViewModel.m */; };
 		48E2503D21D774A800CC7D9E /* DJCompanyChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2503B21D774A800CC7D9E /* DJCompanyChatCell.m */; };
 		48E2503E21D774A800CC7D9E /* DJCompanyChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E2503C21D774A800CC7D9E /* DJCompanyChatCell.xib */; };
+		48E2504121D7AFA400CC7D9E /* DJCompanyChatHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2504021D7AFA400CC7D9E /* DJCompanyChatHeader.m */; };
+		48E2504321D7AFB900CC7D9E /* DJCompanyChatHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E2504221D7AFB900CC7D9E /* DJCompanyChatHeader.xib */; };
 		48E8A4A821B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */; };
 		48E8A4AB21B90ED50046EA0E /* CompanyTitleAndArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AA21B90ED50046EA0E /* CompanyTitleAndArrowCell.m */; };
 		48E8A4BC21BA1F8A0046EA0E /* DYJXXYBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AC21BA1F850046EA0E /* DYJXXYBusines.m */; };
@@ -1638,6 +1640,9 @@
 		48E2503A21D774A800CC7D9E /* DJCompanyChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJCompanyChatCell.h; sourceTree = "<group>"; };
 		48E2503B21D774A800CC7D9E /* DJCompanyChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJCompanyChatCell.m; sourceTree = "<group>"; };
 		48E2503C21D774A800CC7D9E /* DJCompanyChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJCompanyChatCell.xib; sourceTree = "<group>"; };
+		48E2503F21D7AFA400CC7D9E /* DJCompanyChatHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJCompanyChatHeader.h; sourceTree = "<group>"; };
+		48E2504021D7AFA400CC7D9E /* DJCompanyChatHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJCompanyChatHeader.m; sourceTree = "<group>"; };
+		48E2504221D7AFB900CC7D9E /* DJCompanyChatHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJCompanyChatHeader.xib; sourceTree = "<group>"; };
 		48E8A4A621B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndSelcetedArrowCell.h; sourceTree = "<group>"; };
 		48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyTitleAndSelcetedArrowCell.m; sourceTree = "<group>"; };
 		48E8A4A921B90ED50046EA0E /* CompanyTitleAndArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndArrowCell.h; sourceTree = "<group>"; };
@@ -6781,6 +6786,9 @@
 				48E2503A21D774A800CC7D9E /* DJCompanyChatCell.h */,
 				48E2503B21D774A800CC7D9E /* DJCompanyChatCell.m */,
 				48E2503C21D774A800CC7D9E /* DJCompanyChatCell.xib */,
+				48E2503F21D7AFA400CC7D9E /* DJCompanyChatHeader.h */,
+				48E2504021D7AFA400CC7D9E /* DJCompanyChatHeader.m */,
+				48E2504221D7AFB900CC7D9E /* DJCompanyChatHeader.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -7788,6 +7796,7 @@
 				488B093121B6232300DAA97E /* CompanyAdminBottomView.xib in Resources */,
 				CB3307A51FA1BF8F00117695 /* IQKeyboardManager.bundle in Resources */,
 				4804A186219593170081AB5B /* native-bundle-main.js in Resources */,
+				48E2504321D7AFB900CC7D9E /* DJCompanyChatHeader.xib in Resources */,
 				4804A14A21957D5D0081AB5B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				DED76E0B1FD3E930009332E6 /* JXDiscountCell.xib in Resources */,
 				4804A14B21957D5D0081AB5B /* TZImagePickerController.bundle in Resources */,
@@ -8746,6 +8755,7 @@
 				489A3F361FB53A150084E2BC /* JXSearchHistoryPage.m in Sources */,
 				CB42875F1F663259004C43C1 /* XYOrderDetailSubClassOrderStatusVC.m in Sources */,
 				CB3872851FA4573000254263 /* XYFindVideoVC.m in Sources */,
+				48E2504121D7AFA400CC7D9E /* DJCompanyChatHeader.m in Sources */,
 				48E8A4BC21BA1F8A0046EA0E /* DYJXXYBusines.m in Sources */,
 				CBE859BB1F5F99A300E1E4EA /* XYHomeButtonCVC.m in Sources */,
 				48A3710F21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.m in Sources */,
