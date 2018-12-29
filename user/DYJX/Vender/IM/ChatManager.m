@@ -119,6 +119,7 @@
         RCLocationMessage *textMessage = [[RCLocationMessage alloc] init];
         NSArray *array = (NSArray *)sender;
         message.location = CLLocationCoordinate2DMake([NSString stringWithFormat:@"%@",array.firstObject].doubleValue, [NSString stringWithFormat:@"%@",array.lastObject].doubleValue);
+        textMessage.location = message.location;
         textMessage.extra = dictory.mj_JSONString;
         message.content = textMessage;
     }
@@ -126,6 +127,7 @@
         RCLocationMessage *textMessage = [[RCLocationMessage alloc] init];
         NSArray *array = (NSArray *)sender;
         message.location = CLLocationCoordinate2DMake([NSString stringWithFormat:@"%@",array.firstObject].doubleValue, [NSString stringWithFormat:@"%@",array.lastObject].doubleValue);
+        textMessage.location = message.location;
         textMessage.extra = dictory.mj_JSONString;
         message.content = textMessage;
     }
