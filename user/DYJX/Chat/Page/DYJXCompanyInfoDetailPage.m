@@ -430,6 +430,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
         if (indexPath.row == 4) {
             DYJXAddMemberPage *addMemberPage = [[DYJXAddMemberPage alloc]init];
             addMemberPage.membersArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.Members] mutableCopy];
+            addMemberPage.adminArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.AdminUsers] mutableCopy];
             [self.navigationController pushViewController:addMemberPage animated:YES];
         }
     }

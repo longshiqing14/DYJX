@@ -274,6 +274,8 @@
 		48E2502C21C8922500CC7D9E /* XYDYJXBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2502421C8922300CC7D9E /* XYDYJXBusines.m */; };
 		48E2502D21C8922500CC7D9E /* XYDYJXIMInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2502821C8922500CC7D9E /* XYDYJXIMInfo.m */; };
 		48E2503021C9D84700CC7D9E /* DYJXDeleteMemberPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2502F21C9D84700CC7D9E /* DYJXDeleteMemberPage.m */; };
+		48E2503321D4F9A800CC7D9E /* DYJXAccessAdminPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2503221D4F9A800CC7D9E /* DYJXAccessAdminPage.m */; };
+		48E2503621D6528400CC7D9E /* DYJXFireAdminPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2503521D6528400CC7D9E /* DYJXFireAdminPage.m */; };
 		48E8A4A821B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */; };
 		48E8A4AB21B90ED50046EA0E /* CompanyTitleAndArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AA21B90ED50046EA0E /* CompanyTitleAndArrowCell.m */; };
 		48E8A4BC21BA1F8A0046EA0E /* DYJXXYBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AC21BA1F850046EA0E /* DYJXXYBusines.m */; };
@@ -1612,6 +1614,10 @@
 		48E2502821C8922500CC7D9E /* XYDYJXIMInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDYJXIMInfo.m; sourceTree = "<group>"; };
 		48E2502E21C9D84700CC7D9E /* DYJXDeleteMemberPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXDeleteMemberPage.h; sourceTree = "<group>"; };
 		48E2502F21C9D84700CC7D9E /* DYJXDeleteMemberPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXDeleteMemberPage.m; sourceTree = "<group>"; };
+		48E2503121D4F9A800CC7D9E /* DYJXAccessAdminPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXAccessAdminPage.h; sourceTree = "<group>"; };
+		48E2503221D4F9A800CC7D9E /* DYJXAccessAdminPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXAccessAdminPage.m; sourceTree = "<group>"; };
+		48E2503421D6528400CC7D9E /* DYJXFireAdminPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXFireAdminPage.h; sourceTree = "<group>"; };
+		48E2503521D6528400CC7D9E /* DYJXFireAdminPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXFireAdminPage.m; sourceTree = "<group>"; };
 		48E8A4A621B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndSelcetedArrowCell.h; sourceTree = "<group>"; };
 		48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyTitleAndSelcetedArrowCell.m; sourceTree = "<group>"; };
 		48E8A4A921B90ED50046EA0E /* CompanyTitleAndArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndArrowCell.h; sourceTree = "<group>"; };
@@ -3593,6 +3599,10 @@
 				48E24FB221C75C9700CC7D9E /* DYJXSelectMemberPage.m */,
 				48E2502E21C9D84700CC7D9E /* DYJXDeleteMemberPage.h */,
 				48E2502F21C9D84700CC7D9E /* DYJXDeleteMemberPage.m */,
+				48E2503121D4F9A800CC7D9E /* DYJXAccessAdminPage.h */,
+				48E2503221D4F9A800CC7D9E /* DYJXAccessAdminPage.m */,
+				48E2503421D6528400CC7D9E /* DYJXFireAdminPage.h */,
+				48E2503521D6528400CC7D9E /* DYJXFireAdminPage.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -7990,6 +8000,7 @@
 				E19DC8C6219ACC5700C86478 /* DYLastestChatViewController.m in Sources */,
 				DEB72FEE1FBDB8D20069C581 /* JXMyBroadbandAccountHeatView.m in Sources */,
 				E157685821C9122D003A5C25 /* NIMKitSwitcherCell.m in Sources */,
+				48E2503621D6528400CC7D9E /* DYJXFireAdminPage.m in Sources */,
 				CBFF45951F74C26700D2AF93 /* XYUMSocialShareView.m in Sources */,
 				E19DC8CF219ACC9100C86478 /* DJGroupChatPage.m in Sources */,
 				48E8A4C121BA1F8A0046EA0E /* DYJXXYAdminUsers.m in Sources */,
@@ -8141,6 +8152,7 @@
 				CBF74E311F8C972E00D528C2 /* XYCartDeliveryWayModel.m in Sources */,
 				CB582FAE1F73A5BF009E495F /* XYAddAddressVC.m in Sources */,
 				4873514421870F8F001B59AB /* DYJXIdentitySwitchingCell.m in Sources */,
+				48E2503321D4F9A800CC7D9E /* DYJXAccessAdminPage.m in Sources */,
 				DEE9AA291FBD2AD6001FA69A /* JXRechargeSuccessViewController.m in Sources */,
 				CB53FE661F694DDE0020F19A /* XYPreDepositVC.m in Sources */,
 				DEAB00931FDE31F10007E66D /* JXHomeRecommendCell.m in Sources */,
@@ -8248,7 +8260,6 @@
 				CBCF83561F7129BD00B20CF9 /* LBXScanView.m in Sources */,
 				DEB72FDF1FBD77470069C581 /* JXDetailsViewController.m in Sources */,
 				CB5AE5AD1F7B82A7004846E2 /* XYOrderCommentVC.m in Sources */,
-				E1BD1E9621C4A3D700C6B3D9 /* UIView+Toast.m in Sources */,
 				48E2502921C8922500CC7D9E /* XYDYJXIMUser.m in Sources */,
 				CBF74E391F8DBA6600D528C2 /* XYLanuchGuideVC.m in Sources */,
 				DE71B165208744DD00467E06 /* PYPhotoCell.m in Sources */,

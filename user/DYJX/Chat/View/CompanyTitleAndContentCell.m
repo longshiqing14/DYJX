@@ -29,8 +29,10 @@
     [self.contentLb mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.left.mas_equalTo(self.titleLb.mas_right).mas_equalTo(5);
         make.right.mas_equalTo(-10);
-        make.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(1);
+//        make.top.mas_equalTo(0);
+//        make.bottom.mas_equalTo(1);
+        make.centerY.mas_equalTo(0);
+        make.height.mas_equalTo(15);
     }];
     
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -38,6 +40,7 @@
         make.right.mas_equalTo(self.contentLb.mas_left).mas_equalTo(-5);
         make.top.mas_equalTo(0);
         make.bottom.mas_equalTo(1);
+        
     }];
     
     [self.separatorLineView mas_makeConstraints:^(MASConstraintMaker *make) {
