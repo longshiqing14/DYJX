@@ -13,6 +13,8 @@
 #import "DYJXSelectMemberPage.h"
 #import "XYDYJXResult.h"
 #import "DYJXDeleteMemberPage.h"
+#import "DYJXAccessAdminPage.h"
+#import "DYJXFireAdminPage.h"
 
 @interface DYJXAddMemberPage ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) DYJXAddMemberTopView *addMemberTopView;
@@ -182,7 +184,66 @@
                 
             }else if (OperatorType == OperatorMemberAccessAdmin){
                 
+                DYJXAccessAdminPage *accessAdminPage = [[DYJXAccessAdminPage alloc]init];
+                accessAdminPage.operatorType = OperatorType;
+                
+                __block NSMutableArray<DJJXMembers*> *accessAdminArray = [weakSelf.membersArray mutableCopy];
+                
+                for (int i=0; i<weakSelf.adminArray.count; i++) {
+                    for (int j=0; j<weakSelf.membersArray.count; j++) {
+                        if ([weakSelf.membersArray[j].NumberString isEqualToString:weakSelf.adminArray[i].NumberString]) {
+                            [accessAdminArray removeObject:weakSelf.membersArray[j]];
+                        }
+                    }
+                }
+                
+                accessAdminPage.accessAdminArray = accessAdminArray;
+                
+                [weakSelf.navigationController pushViewController:accessAdminPage animated:YES];
+                
+                accessAdminPage.block = ^(NSMutableArray<DJJXMembers *> *membersArray) {
+                    __block NSMutableArray<DJJXMembers*> *tempMembersArray = [weakSelf.membersArray mutableCopy];
+                    
+                    for (DJJXMembers *obj in membersArray) {
+                        for (DJJXMembers *memberObj in weakSelf.membersArray) {
+                            if ([memberObj.NumberString isEqualToString:obj.NumberString]) {
+                                [tempMembersArray removeObject:memberObj];
+                            }
+                        }
+                    }
+                    weakSelf.membersArray = [tempMembersArray mutableCopy];
+                    [weakSelf.collectionView reloadData];
+                };
+                
             }else if (OperatorType == OperatorMemberFireAdmin){
+                
+                DYJXFireAdminPage *fireAdminPage = [[DYJXFireAdminPage alloc]init];
+                fireAdminPage.operatorType = OperatorType;
+                
+                DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+                __block NSMutableArray<DJJXMembers*> *fireAdminArray = [NSMutableArray array];
+                [weakSelf.adminArray enumerateObjectsUsingBlock:^(DJJXMembers * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (![obj.Id isEqualToString:userModel.UserID]) {
+                        [fireAdminArray addObject:obj];
+                    }
+                }];
+                fireAdminPage.fireAdminArray = fireAdminArray;
+                
+                [weakSelf.navigationController pushViewController:fireAdminPage animated:YES];
+                
+                fireAdminPage.block = ^(NSMutableArray<DJJXMembers *> *membersArray) {
+                    __block NSMutableArray<DJJXMembers*> *tempMembersArray = [weakSelf.membersArray mutableCopy];
+                    
+                    for (DJJXMembers *obj in membersArray) {
+                        for (DJJXMembers *memberObj in weakSelf.membersArray) {
+                            if ([memberObj.NumberString isEqualToString:obj.NumberString]) {
+                                [tempMembersArray removeObject:memberObj];
+                            }
+                        }
+                    }
+                    weakSelf.membersArray = [tempMembersArray mutableCopy];
+                    [weakSelf.collectionView reloadData];
+                };
                 
             }
             
@@ -199,6 +260,13 @@
         _membersArray = [NSMutableArray array];
     }
     return _membersArray;
+}
+
+- (NSMutableArray<DJJXMembers *> *)adminArray{
+    if (!_adminArray) {
+        _adminArray = [NSMutableArray array];
+    }
+    return _adminArray;
 }
 
 - (void)didReceiveMemoryWarning {

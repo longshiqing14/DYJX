@@ -11,4 +11,5 @@
 
 @interface DYJXAddMemberPage : BaseViewController
 @property (nonatomic, strong) NSMutableArray<DJJXMembers*> *membersArray;
+@property (nonatomic, strong) NSMutableArray<DJJXMembers*> *adminArray;
 @end

@@ -171,6 +171,9 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
                 
                 ownerImageCell.qrCcodeblock = ^{
                     DYJXQRCodePage *qrCodePage = [[DYJXQRCodePage alloc]init];
+                    qrCodePage.userIdOrCompanyId = self.groupNumber;
+                    qrCodePage.companyNumber = self.groupByIdResponse.Result.NumberString;
+                    qrCodePage.companyName = self.groupByIdResponse.Result.GroupName;
                     [weakSelf.navigationController pushViewController:qrCodePage animated:YES];
                 };
                 cell = ownerImageCell;

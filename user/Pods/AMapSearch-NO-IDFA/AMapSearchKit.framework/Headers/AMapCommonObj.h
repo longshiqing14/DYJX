@@ -286,7 +286,7 @@
 ///商圈
 @interface AMapBusinessArea : AMapSearchObject
 ///名称
-@property (nonatomic, copy) NSString     *name; 
+@property (nonatomic, strong) NSString     *name; 
 ///中心坐标
 @property (nonatomic, copy)   AMapGeoPoint *location;
 @end
@@ -677,7 +677,7 @@
 
 #pragma mark - 天气查询
 
-///实况天气，仅支持中国大陆、香港、澳门的数据返回
+///实况天气，仅支持中国部分地区数据(台湾省目前没有数据)返回
 @interface AMapLocalWeatherLive : AMapSearchObject
 ///区域编码
 @property (nonatomic, copy) NSString *adcode; 
