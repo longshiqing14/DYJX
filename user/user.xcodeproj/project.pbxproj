@@ -276,6 +276,9 @@
 		48E2503021C9D84700CC7D9E /* DYJXDeleteMemberPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2502F21C9D84700CC7D9E /* DYJXDeleteMemberPage.m */; };
 		48E2503321D4F9A800CC7D9E /* DYJXAccessAdminPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2503221D4F9A800CC7D9E /* DYJXAccessAdminPage.m */; };
 		48E2503621D6528400CC7D9E /* DYJXFireAdminPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2503521D6528400CC7D9E /* DYJXFireAdminPage.m */; };
+		48E2503921D76F7F00CC7D9E /* DJCompanyChatViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2503821D76F7F00CC7D9E /* DJCompanyChatViewModel.m */; };
+		48E2503D21D774A800CC7D9E /* DJCompanyChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2503B21D774A800CC7D9E /* DJCompanyChatCell.m */; };
+		48E2503E21D774A800CC7D9E /* DJCompanyChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E2503C21D774A800CC7D9E /* DJCompanyChatCell.xib */; };
 		48E8A4A821B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */; };
 		48E8A4AB21B90ED50046EA0E /* CompanyTitleAndArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AA21B90ED50046EA0E /* CompanyTitleAndArrowCell.m */; };
 		48E8A4BC21BA1F8A0046EA0E /* DYJXXYBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AC21BA1F850046EA0E /* DYJXXYBusines.m */; };
@@ -1630,6 +1633,11 @@
 		48E2503221D4F9A800CC7D9E /* DYJXAccessAdminPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXAccessAdminPage.m; sourceTree = "<group>"; };
 		48E2503421D6528400CC7D9E /* DYJXFireAdminPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXFireAdminPage.h; sourceTree = "<group>"; };
 		48E2503521D6528400CC7D9E /* DYJXFireAdminPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXFireAdminPage.m; sourceTree = "<group>"; };
+		48E2503721D76F7F00CC7D9E /* DJCompanyChatViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJCompanyChatViewModel.h; sourceTree = "<group>"; };
+		48E2503821D76F7F00CC7D9E /* DJCompanyChatViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJCompanyChatViewModel.m; sourceTree = "<group>"; };
+		48E2503A21D774A800CC7D9E /* DJCompanyChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJCompanyChatCell.h; sourceTree = "<group>"; };
+		48E2503B21D774A800CC7D9E /* DJCompanyChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJCompanyChatCell.m; sourceTree = "<group>"; };
+		48E2503C21D774A800CC7D9E /* DJCompanyChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJCompanyChatCell.xib; sourceTree = "<group>"; };
 		48E8A4A621B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndSelcetedArrowCell.h; sourceTree = "<group>"; };
 		48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyTitleAndSelcetedArrowCell.m; sourceTree = "<group>"; };
 		48E8A4A921B90ED50046EA0E /* CompanyTitleAndArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndArrowCell.h; sourceTree = "<group>"; };
@@ -3781,6 +3789,8 @@
 				E12DBDAD21ACF6330011E3A4 /* DYJXInterface.m */,
 				4804A1C2219D64E80081AB5B /* DYJXConversionViewModel.h */,
 				4804A1C3219D64E80081AB5B /* DYJXConversionViewModel.m */,
+				48E2503721D76F7F00CC7D9E /* DJCompanyChatViewModel.h */,
+				48E2503821D76F7F00CC7D9E /* DJCompanyChatViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6768,6 +6778,9 @@
 			children = (
 				E12DBDBA21AD48560011E3A4 /* DYJXLasterListCell.h */,
 				E12DBDBB21AD48560011E3A4 /* DYJXLasterListCell.m */,
+				48E2503A21D774A800CC7D9E /* DJCompanyChatCell.h */,
+				48E2503B21D774A800CC7D9E /* DJCompanyChatCell.m */,
+				48E2503C21D774A800CC7D9E /* DJCompanyChatCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -7583,6 +7596,7 @@
 				CB123C251F9745BD00CD4429 /* ShellScript */,
 				69F7F38DA70DA580D042439E /* [CP] Copy Pods Resources */,
 				E15766B721C911BE003A5C25 /* Embed Frameworks */,
+				45738C3567ACCFACD1BA41FD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -7601,6 +7615,8 @@
 				CBD2BA101F5D23CC0057E2E7 /* Sources */,
 				CBD2BA111F5D23CC0057E2E7 /* Frameworks */,
 				CBD2BA121F5D23CC0057E2E7 /* Resources */,
+				247E11F3DFE6A2CC232C832C /* [CP] Embed Pods Frameworks */,
+				81FF171EDAD247D2A2550A7C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -7620,6 +7636,8 @@
 				CBD2BA1B1F5D23CC0057E2E7 /* Sources */,
 				CBD2BA1C1F5D23CC0057E2E7 /* Frameworks */,
 				CBD2BA1D1F5D23CC0057E2E7 /* Resources */,
+				948DDEAD3E8C59041FCC7333 /* [CP] Embed Pods Frameworks */,
+				C66C1645277DD1045CAB9D88 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -7845,6 +7863,7 @@
 				DE91101C2085DD5600BDDABF /* JXOderFootView.xib in Resources */,
 				DE9110102085DD5600BDDABF /* JXOderPromptView.xib in Resources */,
 				488E89F1219FFD5A008695A7 /* default_image_square.png in Resources */,
+				48E2503E21D774A800CC7D9E /* DJCompanyChatCell.xib in Resources */,
 				488E89F3219FFD5A008695A7 /* default_image_rectangular.png in Resources */,
 				DE910FD02085DD3C00BDDABF /* JXMyOderDetailsHeadView.xib in Resources */,
 				4804A14921957D5D0081AB5B /* Pingpp.bundle in Resources */,
@@ -7885,6 +7904,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		247E11F3DFE6A2CC232C832C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-userTests/Pods-userTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45738C3567ACCFACD1BA41FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-user/Pods-user-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		69F7F38DA70DA580D042439E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -7898,9 +7947,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7925,6 +7972,36 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		81FF171EDAD247D2A2550A7C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-userTests/Pods-userTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		948DDEAD3E8C59041FCC7333 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-userUITests/Pods-userUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A3429EA342480F28CE278E07 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -7941,6 +8018,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C66C1645277DD1045CAB9D88 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-userUITests/Pods-userUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CB123C251F9745BD00CD4429 /* ShellScript */ = {
@@ -8232,6 +8324,7 @@
 				DEAB00931FDE31F10007E66D /* JXHomeRecommendCell.m in Sources */,
 				CB063E261FA0305000A9395D /* XYEWalletPreDepositChildVC.m in Sources */,
 				CBFF45681F724C5700D2AF93 /* XYEWalletBalanceRecordModel.m in Sources */,
+				48E2503D21D774A800CC7D9E /* DJCompanyChatCell.m in Sources */,
 				486BA985207C937D00FB709D /* JXRefumdImageCollectionCell.m in Sources */,
 				48D980291FEBA2A800246D4B /* JXClassificationViewModel.m in Sources */,
 				DE4364DB1FCBDFC0002976B0 /* JXExpiredViewController.m in Sources */,
@@ -8605,6 +8698,7 @@
 				CBE85AE91F63E48D00E1E4EA /* UIView+Frame.m in Sources */,
 				CBE85AEA1F63E48D00E1E4EA /* YZDisplayTitleLabel.m in Sources */,
 				E17AF25D21A02D480041249C /* DJJXAdminUsers.m in Sources */,
+				48E2503921D76F7F00CC7D9E /* DJCompanyChatViewModel.m in Sources */,
 				DE81A88220649F8700E8632C /* AreaView.m in Sources */,
 				DE910FD82085DD3C00BDDABF /* JXMyOderDetailsHeadView.m in Sources */,
 				48CC2C321FD9271400622935 /* YWDPopupControl+YWDBuyer.m in Sources */,

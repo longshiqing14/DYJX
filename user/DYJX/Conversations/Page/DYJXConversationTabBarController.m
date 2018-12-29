@@ -43,27 +43,11 @@
     [DYJXConversationTabBarController setTabBarItemsTitleColor];
     
     [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"15293B"]]];
-
-//    // 添加子控制器
-//    [self setupChildVC:[[DYJXConversionPage alloc]init] title:@"最近会话" image:@"huihua" selectedImage:@"huihua-select"];
-//    //原生
-//    [self setupChildVC:[[DYJXContacterPage alloc] init] title:@"联系人" image:@"lianxiren" selectedImage:@"lianxiren-select"];
-//
-//
-//
-//
-//    //    [self setupChildVC:[[JXActivityPage alloc] init] title:@"活动" image:@"tabbar_activity_n" selectedImage:@"tabbar_activity_s"];
-//
-//    [self setupChildVC:[[DYJXGroupPage alloc] init] title:@"群组" image:@"qunzu" selectedImage:@"qunzu-select"];
-    //    [self setupChildVC:[[JXActivityPage alloc] init] title:@"活动" image:@"tabbar_activity_n" selectedImage:@"tabbar_activity_s"];
     
     // 添加子控制器
     [self setupChildVC:[[DYLastestChatViewController alloc]init] title:@"最近会话" image:@"huihua" selectedImage:@"huihua-select"];
-    //原生
     [self setupChildVC:[[DJContactsChatViewController alloc] init] title:@"联系人" image:@"lianxiren" selectedImage:@"lianxiren-select"];
     [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"公司" image:@"gongsi-normal" selectedImage:@"gongsi-select"];
-//    [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"群组" image:@"qunzu" selectedImage:@"qunzu-select"];
-//    [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"公司" image:@"qunzu" selectedImage:@"qunzu-select"];
     [self setupChildVC:[[DJGroupChatPage alloc] init] title:@"群组" image:@"qunzu" selectedImage:@"qunzu-select"];
 
 

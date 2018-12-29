@@ -11,7 +11,7 @@
 #ifndef AMapFoundationVersion_h
 #define AMapFoundationVersion_h
 
-#define AMapFoundationVersionNumber    10505
+#define AMapFoundationVersionNumber    10506
 
 FOUNDATION_EXTERN NSString * const AMapFoundationVersion;
 FOUNDATION_EXTERN NSString * const AMapFoundationName;

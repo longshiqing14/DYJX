@@ -30,6 +30,11 @@
 }
 
 - (void)initNavigator{
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:18]};
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
+    
     UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [iconImage setImageWithURL:[NSURL URLWithString:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
     self.navigationItem.rightBarButtonItem.width = 25;
