@@ -52,6 +52,7 @@ PODS:
   - TYPagerController (2.1.2)
   - TZImagePickerController (1.9.8)
   - "UITableView+FDTemplateLayoutCell (1.6)"
+  - WechatOpenSDK (1.8.3)
   - WMPageController (2.5.2)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
@@ -78,6 +79,7 @@ DEPENDENCIES:
   - TYPagerController
   - TZImagePickerController (~> 1.9.0)
   - "UITableView+FDTemplateLayoutCell"
+  - WechatOpenSDK
   - WMPageController
   - YYKit
   - ZWLimitCounter (~> 0.0.4)
@@ -104,6 +106,7 @@ SPEC REPOS:
     - TYPagerController
     - TZImagePickerController
     - "UITableView+FDTemplateLayoutCell"
+    - WechatOpenSDK
     - WMPageController
     - YYKit
     - ZWLimitCounter
@@ -129,10 +132,11 @@ SPEC CHECKSUMS:
   TYPagerController: 262556ecef99986d26ed77fb1288a198ed42f4af
   TZImagePickerController: 3b9413ae5d049b1fdc5b0c720ad283f35b679a50
   "UITableView+FDTemplateLayoutCell": 5c949b4a5059c404b442926c0e80f81d10a2d66f
+  WechatOpenSDK: 3117412f8aafde4758cac1e8d20b93c67cafcfef
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZWLimitCounter: 382d8a4f063980f18022749672b89e0558087007
 
-PODFILE CHECKSUM: 23e4dcda4565d0393657e0946fd35ed34ebdbd55
+PODFILE CHECKSUM: 7447bdea2e5f154554b813290d742eac6fafc90a
 
 COCOAPODS: 1.5.3

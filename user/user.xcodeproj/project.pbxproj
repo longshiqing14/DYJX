@@ -1066,6 +1066,11 @@
 		E19DC8CC219ACC7B00C86478 /* DJCompanyChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8CB219ACC7B00C86478 /* DJCompanyChatPage.m */; };
 		E19DC8CF219ACC9100C86478 /* DJGroupChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */; };
 		E19DC8D3219AE7E600C86478 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8D2219AE7E600C86478 /* BaseModel.m */; };
+		E1A34B3121D5F775002D4690 /* DYRotateSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3021D5F775002D4690 /* DYRotateSendViewController.m */; };
+		E1A34B3421D5F865002D4690 /* MutableSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3321D5F865002D4690 /* MutableSelectCell.m */; };
+		E1A34B3721D6132D002D4690 /* DYSelecteContractsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3621D6132D002D4690 /* DYSelecteContractsPage.m */; };
+		E1A34B3A21D64A4D002D4690 /* UIButton+CQBlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3921D64A4D002D4690 /* UIButton+CQBlockSupport.m */; };
+		E1A34B3D21D64A6F002D4690 /* CQColorfulAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3C21D64A6F002D4690 /* CQColorfulAlertView.m */; };
 		E1ACF2F121D39BEC0045F655 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACF2F021D39BEC0045F655 /* UIImage+fixOrientation.m */; };
 		E1B1178B219D4F0D00C96B3E /* SCAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B11789219D4F0C00C96B3E /* SCAccountManager.m */; };
 		E1B1178D219D58A800C96B3E /* Pandora in Resources */ = {isa = PBXBuildFile; fileRef = E1B1178C219D58A800C96B3E /* Pandora */; };
@@ -3080,6 +3085,16 @@
 		E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGroupChatPage.m; sourceTree = "<group>"; };
 		E19DC8D1219AE7E600C86478 /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		E19DC8D2219AE7E600C86478 /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		E1A34B2F21D5F775002D4690 /* DYRotateSendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYRotateSendViewController.h; sourceTree = "<group>"; };
+		E1A34B3021D5F775002D4690 /* DYRotateSendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYRotateSendViewController.m; sourceTree = "<group>"; };
+		E1A34B3221D5F865002D4690 /* MutableSelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MutableSelectCell.h; sourceTree = "<group>"; };
+		E1A34B3321D5F865002D4690 /* MutableSelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MutableSelectCell.m; sourceTree = "<group>"; };
+		E1A34B3521D6132D002D4690 /* DYSelecteContractsPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYSelecteContractsPage.h; sourceTree = "<group>"; };
+		E1A34B3621D6132D002D4690 /* DYSelecteContractsPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYSelecteContractsPage.m; sourceTree = "<group>"; };
+		E1A34B3821D64A4C002D4690 /* UIButton+CQBlockSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CQBlockSupport.h"; sourceTree = "<group>"; };
+		E1A34B3921D64A4D002D4690 /* UIButton+CQBlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CQBlockSupport.m"; sourceTree = "<group>"; };
+		E1A34B3B21D64A6E002D4690 /* CQColorfulAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQColorfulAlertView.h; sourceTree = "<group>"; };
+		E1A34B3C21D64A6F002D4690 /* CQColorfulAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQColorfulAlertView.m; sourceTree = "<group>"; };
 		E1ACF2EF21D39BEC0045F655 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
 		E1ACF2F021D39BEC0045F655 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		E1B11789219D4F0C00C96B3E /* SCAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAccountManager.m; sourceTree = "<group>"; };
@@ -7451,6 +7466,10 @@
 		E19DC8B2219AC29800C86478 /* IM */ = {
 			isa = PBXGroup;
 			children = (
+				E1A34B3821D64A4C002D4690 /* UIButton+CQBlockSupport.h */,
+				E1A34B3921D64A4D002D4690 /* UIButton+CQBlockSupport.m */,
+				E1A34B3B21D64A6E002D4690 /* CQColorfulAlertView.h */,
+				E1A34B3C21D64A6F002D4690 /* CQColorfulAlertView.m */,
 				E1BC7B0A21D47D7900017C39 /* Location */,
 				E14199FB21CCDC640067AE2E /* Models */,
 				E15766B821C9122C003A5C25 /* NIMKit */,
@@ -7464,6 +7483,10 @@
 				E19DC8B7219AC36400C86478 /* DYChatViewController.m */,
 				E16104E321C4E7A00062E120 /* JXChatViewController.h */,
 				E16104E421C4E7A00062E120 /* JXChatViewController.m */,
+				E1A34B2F21D5F775002D4690 /* DYRotateSendViewController.h */,
+				E1A34B3021D5F775002D4690 /* DYRotateSendViewController.m */,
+				E1A34B3521D6132D002D4690 /* DYSelecteContractsPage.h */,
+				E1A34B3621D6132D002D4690 /* DYSelecteContractsPage.m */,
 				E1203C0821C64CFB00418055 /* IMSDK.h */,
 				E1203C0921C64CFB00418055 /* IMSDK.m */,
 				E1203C0521C64B8200418055 /* ChatManager.h */,
@@ -7530,6 +7553,8 @@
 				E1D913B921C0C3020006B171 /* SimpleMessageCell.m */,
 				E1C1A40421C2B0DE0050407D /* MyTextMessageCell.h */,
 				E1C1A40521C2B0DE0050407D /* MyTextMessageCell.m */,
+				E1A34B3221D5F865002D4690 /* MutableSelectCell.h */,
+				E1A34B3321D5F865002D4690 /* MutableSelectCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -7961,6 +7986,7 @@
 				E157684E21C9122D003A5C25 /* NSString+NIMKit.m in Sources */,
 				48D9801D1FEB5E5D00246D4B /* JXClassificationTableHeader.m in Sources */,
 				48CC2C071FD9205600622935 /* JXGoodsDetailCouponViewModel.m in Sources */,
+				E1A34B3421D5F865002D4690 /* MutableSelectCell.m in Sources */,
 				DED6BD8D1FC54E9F0004EA72 /* NetWorkTool.m in Sources */,
 				DE9F8CBA1FDFACCE00D8FE8A /* JXCitySeachViewController.m in Sources */,
 				DEDA7D041FCD5C07008A362A /* JXShoppingCartHeatView.m in Sources */,
@@ -8268,6 +8294,7 @@
 				CBFF45621F7248D100D2AF93 /* XYEWalletAllNet.m in Sources */,
 				4826A48A21BFC43500EAF963 /* DYJXAddMemberCollectionViewCell.m in Sources */,
 				DEE9AA3E1FBD3AEC001FA69A /* JXRenewInFootView.m in Sources */,
+				E1A34B3721D6132D002D4690 /* DYSelecteContractsPage.m in Sources */,
 				E16657B821A413AA00BAC552 /* OwnerImageCell.m in Sources */,
 				DE910FDA2085DD3C00BDDABF /* JXMyOrderDetailsViewController.m in Sources */,
 				48B573802047EE860028A8FA /* JXElectronicInvoiceCheckCell.m in Sources */,
@@ -8296,7 +8323,6 @@
 				CBCF83561F7129BD00B20CF9 /* LBXScanView.m in Sources */,
 				DEB72FDF1FBD77470069C581 /* JXDetailsViewController.m in Sources */,
 				CB5AE5AD1F7B82A7004846E2 /* XYOrderCommentVC.m in Sources */,
-				E1BD1E9621C4A3D700C6B3D9 /* UIView+Toast.m in Sources */,
 				48E2502921C8922500CC7D9E /* XYDYJXIMUser.m in Sources */,
 				CBF74E391F8DBA6600D528C2 /* XYLanuchGuideVC.m in Sources */,
 				DE71B165208744DD00467E06 /* PYPhotoCell.m in Sources */,
@@ -8467,6 +8493,7 @@
 				48C5E6F320590FCB00239081 /* JXSelectDeliverToShopPage.m in Sources */,
 				CB123C541F999A6400CD4429 /* XYLanuchGuideVideoVC.m in Sources */,
 				DE277D381FBAC2FB00FE52C8 /* XYAddressCell.m in Sources */,
+				E1A34B3A21D64A4D002D4690 /* UIButton+CQBlockSupport.m in Sources */,
 				48EB46552079F15F00B0A736 /* JXRefundReasonCell.m in Sources */,
 				CBE85ADB1F63D6ED00E1E4EA /* XYOrderDetailBalanceVC.m in Sources */,
 				48432059202455E400468411 /* JXPiontsRuleViewModel.m in Sources */,
@@ -8557,6 +8584,7 @@
 				48B389471FD394AF009A0F13 /* JXTagCouponView.m in Sources */,
 				48E8A4C321BA1F8A0046EA0E /* DYJXXYRelation.m in Sources */,
 				E157682121C9122D003A5C25 /* NIMMessageModel.m in Sources */,
+				E1A34B3D21D64A6F002D4690 /* CQColorfulAlertView.m in Sources */,
 				CB3872771FA333F000254263 /* XYPreDepositNet.m in Sources */,
 				E15767EF21C9122D003A5C25 /* NIMKitRobotDefaultTemplateParser.m in Sources */,
 				CBE85AB71F6304DF00E1E4EA /* XYMineHeaderVC.m in Sources */,
@@ -8675,6 +8703,7 @@
 				DE910FC92085DD3C00BDDABF /* JXMyDetailsGoodsCell.m in Sources */,
 				E15767E621C9122D003A5C25 /* NIMContactDataCell.m in Sources */,
 				CBE859CA1F5FAD1000E1E4EA /* XYHomeHotGoodsCVCell.m in Sources */,
+				E1A34B3121D5F775002D4690 /* DYRotateSendViewController.m in Sources */,
 				48B389401FD39328009A0F13 /* JXTagNormalView.m in Sources */,
 				DE81A88320649F8700E8632C /* AddressAreaModel.m in Sources */,
 				CB53FEEF1F6BFF870020F19A /* XYQRCodePushCommon.m in Sources */,

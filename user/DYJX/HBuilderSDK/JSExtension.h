@@ -10,6 +10,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #include "PGPlugin.h"
 #import "NIMMessageModel.h"
+#import "JXChatViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,8 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *targetImg;
 
 @property (nonatomic, strong)NSArray <RCIMMessage *> *dataArray;
+@property (nonatomic, strong)NSArray <RCConversationModel *> *conversionArray;
 
 @property (nonatomic) dispatch_semaphore_t semaphore;
+
+@property (nonatomic,strong)JXChatViewController *chatVC;
 
 @end
 

@@ -26,7 +26,7 @@
 
     self.navigationItem.title = @"群组";
     [self initNavigator];
-    self.conversationListTableView.tableHeaderView = self.headView;
+    [self.view addSubview:self.headView];
 }
 
 - (void)initNavigator{

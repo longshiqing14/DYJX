@@ -26,7 +26,7 @@
 
     self.navigationItem.title = @"联系人";
     [self initNavigator];
-    self.conversationListTableView.tableHeaderView = self.headView;
+    [self.view addSubview:self.headView];
 }
 
 - (void)initNavigator{
