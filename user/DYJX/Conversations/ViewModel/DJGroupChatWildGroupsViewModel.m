@@ -1,23 +1,23 @@
 //
-//  DJGroupChatViewModel.m
+//  DJGroupChatWildGroupsViewModel.m
 //  user
 //
 //  Created by 岩  熊 on 2018/12/30.
 //  Copyright © 2018年 xiaopenglive. All rights reserved.
 //
 
-#import "DJGroupChatViewModel.h"
+#import "DJGroupChatWildGroupsViewModel.h"
 #import "DYJXXYResult.h"
 
 #define kRequestPageNumber @"page"
 #define kRequestPageSize @"page_size"
 #define kStartPageIndex 1
-@interface DJGroupChatViewModel()
+@interface DJGroupChatWildGroupsViewModel()
 @property (nonatomic,assign) NSInteger pageNum;
 @property (nonatomic, strong) NSMutableArray<DYJXXYResult*> *dataArray;
 @end
 
-@implementation DJGroupChatViewModel
+@implementation DJGroupChatWildGroupsViewModel
 - (NSMutableDictionary *)requestDic{
     if (!_requestDic) {
         _requestDic = [NSMutableDictionary dictionary];
@@ -29,7 +29,7 @@
 - (NSString *)GroupName:(NSIndexPath *)indexPath
 {
     
-    return self.dataArray[indexPath.section].Children[indexPath.row].GroupName;
+    return self.dataArray[indexPath.row].GroupName;
 }
 
 - (NSString *)GroupNumberString:(NSIndexPath *)indexPath
@@ -40,19 +40,11 @@
 
 - (NSString *)iconImageUrl:(NSIndexPath *)indexPath
 {
-    return self.dataArray[indexPath.section].Children[indexPath.row].GroupHeadImg;
+    return self.dataArray[indexPath.row].GroupHeadImg;
 }
 
-- (NSInteger)numberOfSection{
+- (NSInteger)numberOfCell{
     return self.dataArray.count;
-}
-
-//- (NSInteger)numberOfCell:(NSInteger)section{
-//    return self.dataArray[section].Children.count;
-//}
-
-- (NSInteger)numberOfCell:(NSInteger)section{
-    return self.dataArray[section].Children.count;
 }
 
 - (NSString *)sectionHeaderGroupName:(NSInteger )section{
@@ -65,7 +57,7 @@
     return self.dataArray[section].GroupHeadImg;
 }
 
-- (void)getMyCompanyAndGroupDataSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail{
+- (void)getMyWildGroupsDataSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail{
     [XYProgressHUD show];
     WeakSelf;
     
@@ -76,19 +68,15 @@
     [self.requestDic setObject:userModel.ObjResult forKey:@"DeviceToken"];
     [self.requestDic setObject:userModel.MemberID forKey:@"MemberID"];
     [self.requestDic setObject:userModel.UserID forKey:@"CertificateId"];
-    [XYNetWorking XYPOST:kDYJXAPI_user_MyCompanyAndGroup params:self.requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.requestDic setObject:@1 forKey:@"Data"];
+
+    [XYNetWorking XYPOST:kDYJXAPI_user_MyWildGroups params:self.requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             
             if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
                 [XYProgressHUD svHUDDismiss];
                 [self.dataArray removeAllObjects];
                 self.dataArray = [[NSArray modelArrayWithClass:[DYJXXYResult class] json:[responseObject objectForKey:@"Result"]] mutableCopy];
-                
-               __block NSMutableArray<DYJXXYResult *> *tempArray = [self.dataArray mutableCopy];
-                [tempArray enumerateObjectsUsingBlock:^(DYJXXYResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [weakSelf.dataArray[idx].Children insertObject:obj atIndex:0];
-                }];
-                
                 success();
                 
             }else{

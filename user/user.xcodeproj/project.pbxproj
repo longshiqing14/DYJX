@@ -286,6 +286,7 @@
 		48E2504B21D8A7A100CC7D9E /* DJGroupChatHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E2504A21D8A7A100CC7D9E /* DJGroupChatHeaderView.xib */; };
 		48E2504F21D8AA5C00CC7D9E /* DJGroupChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2504D21D8AA5C00CC7D9E /* DJGroupChatCell.m */; };
 		48E2505021D8AA5C00CC7D9E /* DJGroupChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E2504E21D8AA5C00CC7D9E /* DJGroupChatCell.xib */; };
+		48E2505321D8C7DF00CC7D9E /* DJGroupChatWildGroupsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2505221D8C7DF00CC7D9E /* DJGroupChatWildGroupsViewModel.m */; };
 		48E8A4A821B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */; };
 		48E8A4AB21B90ED50046EA0E /* CompanyTitleAndArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AA21B90ED50046EA0E /* CompanyTitleAndArrowCell.m */; };
 		48E8A4BC21BA1F8A0046EA0E /* DYJXXYBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AC21BA1F850046EA0E /* DYJXXYBusines.m */; };
@@ -1666,6 +1667,8 @@
 		48E2504C21D8AA5C00CC7D9E /* DJGroupChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJGroupChatCell.h; sourceTree = "<group>"; };
 		48E2504D21D8AA5C00CC7D9E /* DJGroupChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGroupChatCell.m; sourceTree = "<group>"; };
 		48E2504E21D8AA5C00CC7D9E /* DJGroupChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJGroupChatCell.xib; sourceTree = "<group>"; };
+		48E2505121D8C7DF00CC7D9E /* DJGroupChatWildGroupsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJGroupChatWildGroupsViewModel.h; sourceTree = "<group>"; };
+		48E2505221D8C7DF00CC7D9E /* DJGroupChatWildGroupsViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGroupChatWildGroupsViewModel.m; sourceTree = "<group>"; };
 		48E8A4A621B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndSelcetedArrowCell.h; sourceTree = "<group>"; };
 		48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyTitleAndSelcetedArrowCell.m; sourceTree = "<group>"; };
 		48E8A4A921B90ED50046EA0E /* CompanyTitleAndArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndArrowCell.h; sourceTree = "<group>"; };
@@ -3841,6 +3844,8 @@
 				48E2503821D76F7F00CC7D9E /* DJCompanyChatViewModel.m */,
 				48E2504421D893B300CC7D9E /* DJGroupChatViewModel.h */,
 				48E2504521D893B300CC7D9E /* DJGroupChatViewModel.m */,
+				48E2505121D8C7DF00CC7D9E /* DJGroupChatWildGroupsViewModel.h */,
+				48E2505221D8C7DF00CC7D9E /* DJGroupChatWildGroupsViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -8420,6 +8425,7 @@
 				CB53FE6F1F69654A0020F19A /* XYPreDepositSelectModel.m in Sources */,
 				E17FC6C921A1009D00D435D9 /* DJJLLoginResponse.m in Sources */,
 				DE81A88120649F8700E8632C /* AddressModel.m in Sources */,
+				48E2505321D8C7DF00CC7D9E /* DJGroupChatWildGroupsViewModel.m in Sources */,
 				CBFF467E1F7F271500D2AF93 /* XYOrderShowImgCVCell.m in Sources */,
 				488B092F21B6230C00DAA97E /* CompanyAdminBottomView.m in Sources */,
 				E11C423C21A2E5DC0039A53A /* GroupDetailModel.m in Sources */,

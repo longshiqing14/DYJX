@@ -12,15 +12,19 @@
 #import "DYJXIdentitySwitchingPage.h"
 #import "NaviViewController.h"
 #import "DJGroupChatViewModel.h"
+#import "DJGroupChatWildGroupsViewModel.h"
 #import "DJGroupChatHeaderView.h"
 #import "DJGroupChatCell.h"
+#import "DJCompanyChatCell.h"
 
-@interface DJGroupChatPage ()<UITableViewDelegate,UITableViewDataSource>
+@interface DJGroupChatPage ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong)GroupHeadView *headView;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic, strong)UITableView *wildGroupsTableView;
 @property (nonatomic, strong)DJGroupChatViewModel *viewModel;
+@property (nonatomic, strong)DJGroupChatWildGroupsViewModel *wildGroupsviewModel;
 @end
 
 @implementation DJGroupChatPage
@@ -38,6 +42,12 @@
     [self.viewModel getMyCompanyAndGroupDataSuccess:^{
         [weakSelf initExpandArray];
         [weakSelf.tableView reloadData];
+    } failed:^(NSString *errorMsg) {
+        
+    }];
+    
+    [self.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
+        [weakSelf.wildGroupsTableView reloadData];
     } failed:^(NSString *errorMsg) {
         
     }];
@@ -82,8 +92,10 @@
     [self.headView.outsideButton setSelected:NO];
     [sender setSelected:YES];
     if (sender.tag == 1) {
+        [self.view bringSubviewToFront:self.tableView];
     }
     else {
+        [self.view bringSubviewToFront:self.wildGroupsTableView];
     }
 }
 
@@ -126,12 +138,29 @@
 - (void)initSubView{
     [self.tableView registerNib:[UINib nibWithNibName:@"DJGroupChatCell" bundle:nil] forCellReuseIdentifier:@"DJGroupChatCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"DJGroupChatHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"DJGroupChatHeaderView"];
-    self.tableView.showsVerticalScrollIndicator = NO;
     
+    [self.wildGroupsTableView registerNib:[UINib nibWithNibName:@"DJCompanyChatCell" bundle:nil] forCellReuseIdentifier:@"DJCompanyChatCell"];
+    
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.wildGroupsTableView.showsVerticalScrollIndicator = NO;
     [self.tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
+    [self.wildGroupsTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     
     [self.view addSubview:self.headView];
     
+    //外部群tableview
+    [self.view addSubview:self.wildGroupsTableView];
+    [self.wildGroupsTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        } else {
+            make.bottom.mas_equalTo(self.view);
+        }
+    }];
+    
+    //内部群tableview
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -145,19 +174,32 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if ([_isExpandArray[section] isEqualToString:@"0"]) {
-        //未展开
-        return 0;
-    }else{
-        //展开
-        return [self.viewModel numberOfCell:section];
+    if (tableView == self.tableView) {
+
+        if ([_isExpandArray[section] isEqualToString:@"0"]) {
+            //未展开
+            return 0;
+        }else{
+            //展开
+            return [self.viewModel numberOfCell:section];
+            
+        }
         
+    }else{
+        
+        return [self.wildGroupsviewModel numberOfCell];
     }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return [self.viewModel numberOfSection];
+    if (tableView == self.tableView) {
+        
+        return [self.viewModel numberOfSection];
+        
+    }else{
+        
+        return 1;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -166,39 +208,56 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DJGroupChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DJGroupChatCell" forIndexPath:indexPath];
-    [cell.userIcon setImageWithURL:[NSURL URLWithString:[[self.viewModel iconImageUrl:indexPath] XYImageURL]] placeholder:[UIImage imageNamed:@"person_orange"]];
-    cell.userName.text = [self.viewModel GroupName:indexPath];
+    UITableViewCell *cell = nil;
+    if (tableView == self.tableView) {
+        
+        DJGroupChatCell *groupChatCell = [tableView dequeueReusableCellWithIdentifier:@"DJGroupChatCell" forIndexPath:indexPath];
+        [groupChatCell.userIcon setImageWithURL:[NSURL URLWithString:[[self.viewModel iconImageUrl:indexPath] XYImageURL]] placeholder:[UIImage imageNamed:@"person_orange"]];
+        groupChatCell.userName.text = [self.viewModel GroupName:indexPath];
+        cell = groupChatCell;
+        
+    }else{
+        
+        DJCompanyChatCell *wildGroupcell = [tableView dequeueReusableCellWithIdentifier:@"DJCompanyChatCell" forIndexPath:indexPath];
+        [wildGroupcell.userIcon setImageWithURL:[NSURL URLWithString:[[self.wildGroupsviewModel iconImageUrl:indexPath] XYImageURL]] placeholder:[UIImage imageNamed:@"person_orange"]];
+        wildGroupcell.userName.text = [self.wildGroupsviewModel GroupName:indexPath];
+        cell = wildGroupcell;
+    }
     
     return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    DJGroupChatHeaderView *header = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"DJGroupChatHeaderView"];
-    header.backgroundColor = [UIColor colorWithHexString:@"C8E5FF"];
-    header.groupName.text = [self.viewModel sectionHeaderGroupName:section];
-    //    header.block = ^{
-    //        DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
-    //        //        page.userIconImageURL = [model.GroupHeadImg XYImageURL];
-    //        //        page.groupNumber = self.chatModel.targetId;
-    //        //        page.isAdmin = [self isAdmin:model];
-    //        [self.navigationController pushViewController:page animated:YES];
-    //    };
-    
-    if ([_isExpandArray[section] isEqualToString:@"0"]) {
-        //未展开
-        [header.arrowImage setImage:[UIImage imageNamed:@"zhedie_upper"]];
+    if (tableView == self.tableView) {
+        DJGroupChatHeaderView *header = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"DJGroupChatHeaderView"];
+        header.backgroundColor = [UIColor colorWithHexString:@"C8E5FF"];
+        header.groupName.text = [self.viewModel sectionHeaderGroupName:section];
+        //    header.block = ^{
+        //        DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
+        //        //        page.userIconImageURL = [model.GroupHeadImg XYImageURL];
+        //        //        page.groupNumber = self.chatModel.targetId;
+        //        //        page.isAdmin = [self isAdmin:model];
+        //        [self.navigationController pushViewController:page animated:YES];
+        //    };
         
+        if ([_isExpandArray[section] isEqualToString:@"0"]) {
+            //未展开
+            [header.arrowImage setImage:[UIImage imageNamed:@"zhedie_upper"]];
+            
+            
+        }else{
+            
+            [header.arrowImage setImage:[UIImage imageNamed:@"zhedie_down"]];
+            
+        }
+        
+        [self addTableViewHeaderTapActionWithSection:section header:header];
+        
+        return header;
         
     }else{
-        
-        [header.arrowImage setImage:[UIImage imageNamed:@"zhedie_down"]];
-        
+        return [UIView new];
     }
-    
-    [self addTableViewHeaderTapActionWithSection:section header:header];
-    
-    return header;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -219,16 +278,26 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 50;
+    if (tableView == self.tableView) {
+        return 50;
+    }else{
+        return 0;
+    }
 }
 
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (tableView == self.tableView) {
+        
+    }else{
+        
+    }
 }
 
 - (void)addTableViewHeaderTapActionWithSection:(NSInteger)section header:(UITableViewHeaderFooterView*)header{
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
     tap.delegate = self;
     [header addGestureRecognizer:tap];
@@ -280,6 +349,32 @@
         _tableView.backgroundColor = [UIColor whiteColor];
     }
     return _tableView;
+}
+
+- (UITableView *)wildGroupsTableView{
+    WeakSelf;
+    if (!_wildGroupsTableView) {
+        _wildGroupsTableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];
+        _wildGroupsTableView.delegate = self;
+        _wildGroupsTableView.dataSource = self;
+        _wildGroupsTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [weakSelf.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
+                [weakSelf.wildGroupsTableView.mj_header endRefreshing];
+                [weakSelf.wildGroupsTableView reloadData];
+            } failed:^(NSString *errorMsg) {
+                
+            }];
+        }];
+        _wildGroupsTableView.backgroundColor = [UIColor whiteColor];
+    }
+    return _wildGroupsTableView;
+}
+
+- (DJGroupChatWildGroupsViewModel *)wildGroupsviewModel{
+    if (!_wildGroupsviewModel) {
+        _wildGroupsviewModel = [[DJGroupChatWildGroupsViewModel alloc]init];
+    }
+    return _wildGroupsviewModel;
 }
 
 - (DJGroupChatViewModel *)viewModel{
