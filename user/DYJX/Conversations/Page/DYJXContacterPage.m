@@ -52,8 +52,8 @@
 }
 
 - (void)black_controller{
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    XYKeyWindow.rootViewController = appDelegate.rootViewController;
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 - (UITapGestureRecognizer *)tapGestureRecognizer{

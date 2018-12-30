@@ -21,6 +21,7 @@
 #import "PDRCoreAppWindow.h"
 #import "PDRCoreAppInfo.h"
 #import "PDRCore.h"
+#import "NIMKitTitleView.h"
 
 @interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -35,6 +36,7 @@
     WeakSelf;
     [self initNavigation];
     [self initCollectionView];
+    [self setUpTitleView];
 
     [self.viewModel.requestDic setObject:self.IdentityModel.Id forKey:@"CertificateId"];
     [self.viewModel getMyAppsSuccess:^{
@@ -42,6 +44,10 @@
     } failed:^(NSString *errorMsg) {
         
     }];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)initCollectionView{
@@ -230,6 +236,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setUpTitleView
+{
+    NIMKitTitleView *titleView = (NIMKitTitleView *)self.navigationItem.titleView;
+    if (!titleView || ![titleView isKindOfClass:[NIMKitTitleView class]])
+    {
+        titleView = [[NIMKitTitleView alloc] initWithFrame:CGRectZero];
+        self.navigationItem.titleView = titleView;
+
+        titleView.titleLabel.text = @"选择";
+    }
+
+    [titleView sizeToFit];
+}
+
 - (void)initNavigation{
     self.title = @"达意简讯";
 
@@ -281,7 +301,7 @@
 //    [self.navigationController pushViewController:[[DYJXConversationTabBarController alloc] init] animated:YES];
     DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[self.IdentityModel.GroupHeadImg XYImageURL]];
     [XYUserDefaults writeAppDlegateOfCurrentUserIconURL:[self.IdentityModel.GroupHeadImg XYImageURL]];
-    XYKeyWindow.rootViewController = conversationTabBarController;
+    [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
     
 }
 

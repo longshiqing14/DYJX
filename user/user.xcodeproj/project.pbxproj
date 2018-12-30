@@ -1098,6 +1098,12 @@
 		E1CDB23921D77EEC0049B124 /* LocationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB23821D77EEC0049B124 /* LocationInfoViewController.m */; };
 		E1CDB23C21D799F00049B124 /* myAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB23B21D799F00049B124 /* myAnnotation.m */; };
 		E1CDB23F21D79AE20049B124 /* MyAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB23E21D79AE20049B124 /* MyAnnotationView.m */; };
+		E1CDB24221D7A6C50049B124 /* DNewContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB24121D7A6C50049B124 /* DNewContractViewController.m */; };
+		E1CDB25021D7AA410049B124 /* SWQRCodeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB24521D7AA410049B124 /* SWQRCodeConfig.m */; };
+		E1CDB25121D7AA410049B124 /* SWQRCodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB24621D7AA410049B124 /* SWQRCodeManager.m */; };
+		E1CDB25221D7AA410049B124 /* SWQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB24A21D7AA410049B124 /* SWQRCodeViewController.m */; };
+		E1CDB25321D7AA410049B124 /* SWQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1CDB24B21D7AA410049B124 /* SWQRCode.bundle */; };
+		E1CDB25421D7AA410049B124 /* SWScannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB24D21D7AA410049B124 /* SWScannerView.m */; };
 		E1D913B721C0C24B0006B171 /* SimpleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D913B621C0C24B0006B171 /* SimpleMessage.m */; };
 		E1D913BA21C0C3020006B171 /* SimpleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D913B921C0C3020006B171 /* SimpleMessageCell.m */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
@@ -3145,6 +3151,18 @@
 		E1CDB23B21D799F00049B124 /* myAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myAnnotation.m; sourceTree = "<group>"; };
 		E1CDB23D21D79AE20049B124 /* MyAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAnnotationView.h; sourceTree = "<group>"; };
 		E1CDB23E21D79AE20049B124 /* MyAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAnnotationView.m; sourceTree = "<group>"; };
+		E1CDB24021D7A6C50049B124 /* DNewContractViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNewContractViewController.h; sourceTree = "<group>"; };
+		E1CDB24121D7A6C50049B124 /* DNewContractViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNewContractViewController.m; sourceTree = "<group>"; };
+		E1CDB24521D7AA410049B124 /* SWQRCodeConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWQRCodeConfig.m; sourceTree = "<group>"; };
+		E1CDB24621D7AA410049B124 /* SWQRCodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWQRCodeManager.m; sourceTree = "<group>"; };
+		E1CDB24721D7AA410049B124 /* SWQRCodeConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWQRCodeConfig.h; sourceTree = "<group>"; };
+		E1CDB24821D7AA410049B124 /* SWQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWQRCode.h; sourceTree = "<group>"; };
+		E1CDB24921D7AA410049B124 /* SWQRCodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWQRCodeManager.h; sourceTree = "<group>"; };
+		E1CDB24A21D7AA410049B124 /* SWQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWQRCodeViewController.m; sourceTree = "<group>"; };
+		E1CDB24B21D7AA410049B124 /* SWQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SWQRCode.bundle; sourceTree = "<group>"; };
+		E1CDB24D21D7AA410049B124 /* SWScannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWScannerView.m; sourceTree = "<group>"; };
+		E1CDB24E21D7AA410049B124 /* SWScannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWScannerView.h; sourceTree = "<group>"; };
+		E1CDB24F21D7AA410049B124 /* SWQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWQRCodeViewController.h; sourceTree = "<group>"; };
 		E1D913B521C0C24B0006B171 /* SimpleMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleMessage.h; sourceTree = "<group>"; };
 		E1D913B621C0C24B0006B171 /* SimpleMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleMessage.m; sourceTree = "<group>"; };
 		E1D913B821C0C3020006B171 /* SimpleMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleMessageCell.h; sourceTree = "<group>"; };
@@ -7473,6 +7491,7 @@
 		E19DC894219AC14400C86478 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				E1CDB24321D7AA410049B124 /* SWQRCode */,
 				E13E60D021C35AC300D0C4B3 /* Store */,
 				E13E60BF21C35A7100D0C4B3 /* DB */,
 				48511D84219FC9C4006C6081 /* Category */,
@@ -7548,6 +7567,8 @@
 				E19DC8C5219ACC5700C86478 /* DYLastestChatViewController.m */,
 				E19DC8C7219ACC6A00C86478 /* DJContactsChatViewController.h */,
 				E19DC8C8219ACC6A00C86478 /* DJContactsChatViewController.m */,
+				E1CDB24021D7A6C50049B124 /* DNewContractViewController.h */,
+				E1CDB24121D7A6C50049B124 /* DNewContractViewController.m */,
 				E19DC8CA219ACC7B00C86478 /* DJCompanyChatPage.h */,
 				E19DC8CB219ACC7B00C86478 /* DJCompanyChatPage.m */,
 				E19DC8CD219ACC9100C86478 /* DJGroupChatPage.h */,
@@ -7585,6 +7606,39 @@
 				E1BC7B1921D4826000017C39 /* QMapKit.bundle */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E1CDB24321D7AA410049B124 /* SWQRCode */ = {
+			isa = PBXGroup;
+			children = (
+				E1CDB24421D7AA410049B124 /* Config */,
+				E1CDB24A21D7AA410049B124 /* SWQRCodeViewController.m */,
+				E1CDB24B21D7AA410049B124 /* SWQRCode.bundle */,
+				E1CDB24C21D7AA410049B124 /* View */,
+				E1CDB24F21D7AA410049B124 /* SWQRCodeViewController.h */,
+			);
+			path = SWQRCode;
+			sourceTree = "<group>";
+		};
+		E1CDB24421D7AA410049B124 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				E1CDB24521D7AA410049B124 /* SWQRCodeConfig.m */,
+				E1CDB24621D7AA410049B124 /* SWQRCodeManager.m */,
+				E1CDB24721D7AA410049B124 /* SWQRCodeConfig.h */,
+				E1CDB24821D7AA410049B124 /* SWQRCode.h */,
+				E1CDB24921D7AA410049B124 /* SWQRCodeManager.h */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		E1CDB24C21D7AA410049B124 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E1CDB24D21D7AA410049B124 /* SWScannerView.m */,
+				E1CDB24E21D7AA410049B124 /* SWScannerView.h */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E1D913B121C0C15A0006B171 /* Views */ = {
@@ -7810,6 +7864,7 @@
 				4804A186219593170081AB5B /* native-bundle-main.js in Resources */,
 				4804A14A21957D5D0081AB5B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				DED76E0B1FD3E930009332E6 /* JXDiscountCell.xib in Resources */,
+				E1CDB25321D7AA410049B124 /* SWQRCode.bundle in Resources */,
 				4804A14B21957D5D0081AB5B /* TZImagePickerController.bundle in Resources */,
 				DE910FD22085DD3C00BDDABF /* JXMyDetailsGoodsCell.xib in Resources */,
 				E1B1178D219D58A800C96B3E /* Pandora in Resources */,
@@ -8182,6 +8237,7 @@
 				E157680A21C9122D003A5C25 /* NIMLoadProgressView.m in Sources */,
 				E157683C21C9122D003A5C25 /* NIMSessionTimestampCell.m in Sources */,
 				E1203C0D21C64D6900418055 /* ConversionManager.m in Sources */,
+				E1CDB25121D7AA410049B124 /* SWQRCodeManager.m in Sources */,
 				E19DC8C6219ACC5700C86478 /* DYLastestChatViewController.m in Sources */,
 				DEB72FEE1FBDB8D20069C581 /* JXMyBroadbandAccountHeatView.m in Sources */,
 				E157685821C9122D003A5C25 /* NIMKitSwitcherCell.m in Sources */,
@@ -8466,6 +8522,7 @@
 				CB123C381F988E1D00CD4429 /* XYEWalletPreDepositReturnHeaderVC.m in Sources */,
 				CB3307A21FA1BF8F00117695 /* IQTitleBarButtonItem.m in Sources */,
 				E157681621C9122D003A5C25 /* NIMTimePickerView.m in Sources */,
+				E1CDB25421D7AA410049B124 /* SWScannerView.m in Sources */,
 				CBCF835B1F71356900B20CF9 /* XYOrderDetailOrderNumQRcodeVC.m in Sources */,
 				DE71B161208744DD00467E06 /* PYPhotosPreviewController.m in Sources */,
 				487357C221947A93001B59AB /* WebViewController.m in Sources */,
@@ -8572,6 +8629,7 @@
 				488E30C21FD9102300D4DC17 /* JXGoodsDetailCouponViewController.m in Sources */,
 				E13E60F021C363D300D0C4B3 /* DefaultPortraitView.m in Sources */,
 				CBFF456E1F72648900D2AF93 /* XYEWalletCommon.m in Sources */,
+				E1CDB25021D7AA410049B124 /* SWQRCodeConfig.m in Sources */,
 				CBE85A061F604CA300E1E4EA /* XYHomeTVCell.m in Sources */,
 				CBCF83511F7129BD00B20CF9 /* LBXScanTypes.m in Sources */,
 				CBF74E501F8F068D00D528C2 /* XYBoardBandNet.m in Sources */,
@@ -8645,6 +8703,7 @@
 				E157680F21C9122D003A5C25 /* NIMTeamCardOperationItem.m in Sources */,
 				CBCF83541F7129BD00B20CF9 /* LBXScanNetAnimation.m in Sources */,
 				E13E60CD21C35A7100D0C4B3 /* FMDatabase.m in Sources */,
+				E1CDB24221D7A6C50049B124 /* DNewContractViewController.m in Sources */,
 				CBF74E5F1F8F437200D528C2 /* XYCaculateTool.m in Sources */,
 				CB063E141F9F1B2400A9395D /* XYEWalletBalanceFirstCell.m in Sources */,
 				CB063E201FA027EA00A9395D /* XYEWalletPreDepositThirdCell.m in Sources */,
@@ -8844,6 +8903,7 @@
 				DE2C53D61FAC67230015A84C /* XYOrderConfirmModel.m in Sources */,
 				E13E60ED21C3634800D0C4B3 /* SortForTime.m in Sources */,
 				DE4364C91FCBBA93002976B0 /* BaseTableView.m in Sources */,
+				E1CDB25221D7AA410049B124 /* SWQRCodeViewController.m in Sources */,
 				E19DC8C9219ACC6A00C86478 /* DJContactsChatViewController.m in Sources */,
 				CBFF467C1F7F271500D2AF93 /* XYOrderReAddCommentSecondCell.m in Sources */,
 				DEDA7CFE1FCD0D3C008A362A /* JXNotUsedHeatView.m in Sources */,

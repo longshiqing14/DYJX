@@ -90,7 +90,7 @@
 }
 
 - (void)black_controller{
-    XYKeyWindow.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //客服

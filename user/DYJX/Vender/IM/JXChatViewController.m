@@ -60,6 +60,35 @@
 
 
 #pragma mark - Action
+#pragma mark - NIMMessageCellDelegate
+-(BOOL)onTapAvatar:(RCIMMessage *)message {
+    [XYUserDefaults readLoginedModel];
+    DYJXIdentitySwitchingModel *model = [UserManager shared].swichModel;
+    if ([UserManager shared].isCompany == 1) { // 本人详情
+        DYJXUserInfoDetailPage *page = [[DYJXUserInfoDetailPage alloc]init];
+        page.userIconImageURL = [model.GroupHeadImg XYImageURL];
+        [self.navigationController pushViewController:page animated:YES];
+        //        target.type = XJGroupTypePerson;
+    }
+    else {
+        if (model.IsPart) { // 子公司详情
+            DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
+            page.userIconImageURL = [model.GroupHeadImg XYImageURL];
+            page.groupNumber = self.chatModel.targetId;
+            page.isAdmin = [self isAdmin:model];
+            [self.navigationController pushViewController:page animated:YES];
+            //            target.type = XJGroupTypeSubCompany;
+        }
+        else { // 公司详情
+            DYJXCompanyInfoDetailPage *page = [[DYJXCompanyInfoDetailPage alloc]init];
+            page.userIconImageURL = [model.GroupHeadImg XYImageURL];
+            page.isAdmin = [self isAdmin:model];
+            [self.navigationController pushViewController:page animated:YES];
+            //            target.type = XJGroupTypeCompany;
+        }
+    }
+    return YES;
+}
 -(void)pushDetail {
     [XYUserDefaults readLoginedModel];
     DYJXIdentitySwitchingModel *model = [UserManager shared].swichModel;
