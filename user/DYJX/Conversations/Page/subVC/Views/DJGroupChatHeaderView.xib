@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DJGroupChatHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhedie_upper" translatesAutoresizingMaskIntoConstraints="NO" id="JY5-5X-FCc">
+                    <rect key="frame" x="10" y="15.5" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="hug-TY-wF2"/>
+                        <constraint firstAttribute="height" constant="20" id="qn4-oe-SUg"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZg-g5-spU">
+                    <rect key="frame" x="40" y="16" width="59" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQm-iy-BgC">
+                    <rect key="frame" x="0.0" y="49" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="cLC-QN-xzX"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.81176470588235294" green="0.93333333333333335" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="pQm-iy-BgC" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="7Wy-GS-U5J"/>
+                <constraint firstItem="pQm-iy-BgC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QiB-nf-b44"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pQm-iy-BgC" secondAttribute="trailing" id="Tn8-Hh-N19"/>
+                <constraint firstItem="JY5-5X-FCc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="W9t-0D-wXc"/>
+                <constraint firstItem="EZg-g5-spU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aHj-Mf-OJN"/>
+                <constraint firstItem="JY5-5X-FCc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="dOM-Jg-miG"/>
+                <constraint firstItem="EZg-g5-spU" firstAttribute="leading" secondItem="JY5-5X-FCc" secondAttribute="trailing" constant="10" id="zdH-Er-4Kr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="arrowImage" destination="JY5-5X-FCc" id="g9f-r0-fvf"/>
+                <outlet property="groupName" destination="EZg-g5-spU" id="p9c-Kr-2n8"/>
+            </connections>
+            <point key="canvasLocation" x="1" y="48"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="zhedie_upper" width="100" height="100"/>
+    </resources>
+</document>
