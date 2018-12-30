@@ -281,6 +281,11 @@
 		48E2503E21D774A800CC7D9E /* DJCompanyChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E2503C21D774A800CC7D9E /* DJCompanyChatCell.xib */; };
 		48E2504121D7AFA400CC7D9E /* DJCompanyChatHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2504021D7AFA400CC7D9E /* DJCompanyChatHeader.m */; };
 		48E2504321D7AFB900CC7D9E /* DJCompanyChatHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E2504221D7AFB900CC7D9E /* DJCompanyChatHeader.xib */; };
+		48E2504621D893B300CC7D9E /* DJGroupChatViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2504521D893B300CC7D9E /* DJGroupChatViewModel.m */; };
+		48E2504921D8A79000CC7D9E /* DJGroupChatHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2504821D8A79000CC7D9E /* DJGroupChatHeaderView.m */; };
+		48E2504B21D8A7A100CC7D9E /* DJGroupChatHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E2504A21D8A7A100CC7D9E /* DJGroupChatHeaderView.xib */; };
+		48E2504F21D8AA5C00CC7D9E /* DJGroupChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2504D21D8AA5C00CC7D9E /* DJGroupChatCell.m */; };
+		48E2505021D8AA5C00CC7D9E /* DJGroupChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E2504E21D8AA5C00CC7D9E /* DJGroupChatCell.xib */; };
 		48E8A4A821B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */; };
 		48E8A4AB21B90ED50046EA0E /* CompanyTitleAndArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AA21B90ED50046EA0E /* CompanyTitleAndArrowCell.m */; };
 		48E8A4BC21BA1F8A0046EA0E /* DYJXXYBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A4AC21BA1F850046EA0E /* DYJXXYBusines.m */; };
@@ -1675,6 +1680,14 @@
 		48E2503F21D7AFA400CC7D9E /* DJCompanyChatHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJCompanyChatHeader.h; sourceTree = "<group>"; };
 		48E2504021D7AFA400CC7D9E /* DJCompanyChatHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJCompanyChatHeader.m; sourceTree = "<group>"; };
 		48E2504221D7AFB900CC7D9E /* DJCompanyChatHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJCompanyChatHeader.xib; sourceTree = "<group>"; };
+		48E2504421D893B300CC7D9E /* DJGroupChatViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJGroupChatViewModel.h; sourceTree = "<group>"; };
+		48E2504521D893B300CC7D9E /* DJGroupChatViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGroupChatViewModel.m; sourceTree = "<group>"; };
+		48E2504721D8A79000CC7D9E /* DJGroupChatHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJGroupChatHeaderView.h; sourceTree = "<group>"; };
+		48E2504821D8A79000CC7D9E /* DJGroupChatHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGroupChatHeaderView.m; sourceTree = "<group>"; };
+		48E2504A21D8A7A100CC7D9E /* DJGroupChatHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJGroupChatHeaderView.xib; sourceTree = "<group>"; };
+		48E2504C21D8AA5C00CC7D9E /* DJGroupChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJGroupChatCell.h; sourceTree = "<group>"; };
+		48E2504D21D8AA5C00CC7D9E /* DJGroupChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGroupChatCell.m; sourceTree = "<group>"; };
+		48E2504E21D8AA5C00CC7D9E /* DJGroupChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJGroupChatCell.xib; sourceTree = "<group>"; };
 		48E8A4A621B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndSelcetedArrowCell.h; sourceTree = "<group>"; };
 		48E8A4A721B8FE110046EA0E /* CompanyTitleAndSelcetedArrowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyTitleAndSelcetedArrowCell.m; sourceTree = "<group>"; };
 		48E8A4A921B90ED50046EA0E /* CompanyTitleAndArrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyTitleAndArrowCell.h; sourceTree = "<group>"; };
@@ -3892,6 +3905,8 @@
 				4804A1C3219D64E80081AB5B /* DYJXConversionViewModel.m */,
 				48E2503721D76F7F00CC7D9E /* DJCompanyChatViewModel.h */,
 				48E2503821D76F7F00CC7D9E /* DJCompanyChatViewModel.m */,
+				48E2504421D893B300CC7D9E /* DJGroupChatViewModel.h */,
+				48E2504521D893B300CC7D9E /* DJGroupChatViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6899,6 +6914,12 @@
 				E1A73EA121D8C3A200267385 /* DLHeadScanView.m */,
 				E1A73EA321D8CB8500267385 /* HeadView.h */,
 				E1A73EA421D8CB8500267385 /* HeadView.m */,
+				48E2504721D8A79000CC7D9E /* DJGroupChatHeaderView.h */,
+				48E2504821D8A79000CC7D9E /* DJGroupChatHeaderView.m */,
+				48E2504A21D8A7A100CC7D9E /* DJGroupChatHeaderView.xib */,
+				48E2504C21D8AA5C00CC7D9E /* DJGroupChatCell.h */,
+				48E2504D21D8AA5C00CC7D9E /* DJGroupChatCell.m */,
+				48E2504E21D8AA5C00CC7D9E /* DJGroupChatCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -8007,6 +8028,7 @@
 				48E2504321D7AFB900CC7D9E /* DJCompanyChatHeader.xib in Resources */,
 				4804A14A21957D5D0081AB5B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				DED76E0B1FD3E930009332E6 /* JXDiscountCell.xib in Resources */,
+				48E2505021D8AA5C00CC7D9E /* DJGroupChatCell.xib in Resources */,
 				E1CDB25321D7AA410049B124 /* SWQRCode.bundle in Resources */,
 				4804A14B21957D5D0081AB5B /* TZImagePickerController.bundle in Resources */,
 				DE910FD22085DD3C00BDDABF /* JXMyDetailsGoodsCell.xib in Resources */,
@@ -8070,6 +8092,7 @@
 				48D980261FEB88E300246D4B /* ProvinceData.plist in Resources */,
 				DE91100D2085DD5600BDDABF /* JXOderRemarksCell.xib in Resources */,
 				DEAB00941FDE31F10007E66D /* JXHomeRecommendCell.xib in Resources */,
+				48E2504B21D8A7A100CC7D9E /* DJGroupChatHeaderView.xib in Resources */,
 				DEAB008F1FDE30700007E66D /* JXHomeRecommendView.xib in Resources */,
 				DEAB00991FDE34030007E66D /* JXHomeCommodityCell.xib in Resources */,
 				488E8A07219FFD5A008695A7 /* RongSticker.bundle in Resources */,
@@ -8748,6 +8771,7 @@
 				DE71B15C208744DD00467E06 /* PYProgressView.m in Sources */,
 				E13E861421C7327600B4875D /* DataBaseManager.m in Sources */,
 				CBE85AC51F63943A00E1E4EA /* XYOrderConfirmOrderVC.m in Sources */,
+				48E2504621D893B300CC7D9E /* DJGroupChatViewModel.m in Sources */,
 				E13E60CC21C35A7100D0C4B3 /* FMDatabaseAdditions.m in Sources */,
 				48DE38DE1FDE35160006528C /* JXFoodCell.m in Sources */,
 				E157680D21C9122D003A5C25 /* NIMCreateTeamAnnouncement.m in Sources */,
@@ -8820,6 +8844,7 @@
 				E157682B21C9122D003A5C25 /* NIMTipContentConfig.m in Sources */,
 				E15767F521C9122D003A5C25 /* NIMInputEmoticonParser.m in Sources */,
 				CBF74E751F8F87DF00D528C2 /* XYMyBoardBandSecondChildVC.m in Sources */,
+				48E2504F21D8AA5C00CC7D9E /* DJGroupChatCell.m in Sources */,
 				CBF8DDD81FA896160018EC62 /* XYTableViewFooterIntervalView.m in Sources */,
 				CB4287651F66417E004C43C1 /* XYOrderDetailModel.m in Sources */,
 				4873513E2186F5A5001B59AB /* DYJXIdentitySwitchingViewModel.m in Sources */,
@@ -9039,6 +9064,7 @@
 				CBFF467A1F7F271500D2AF93 /* XYOrderCommentDetailFirstCell.m in Sources */,
 				E157680321C9122D003A5C25 /* NIMKitMediaFetcher.m in Sources */,
 				DE4FC29E20918FD80069A4B4 /* JXLocationTool.m in Sources */,
+				48E2504921D8A79000CC7D9E /* DJGroupChatHeaderView.m in Sources */,
 				E17FC6DA21A1053E00D435D9 /* DJJSGetUserModel.m in Sources */,
 				CB4287451F6455C4004C43C1 /* WTReTextField.m in Sources */,
 				DE910F2B2085859C00BDDABF /* JXMyRefundAfterSaleModel.m in Sources */,

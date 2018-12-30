@@ -21,7 +21,7 @@
 @property (nonatomic, strong) NSArray * AdminUsers;
 @property (nonatomic, strong) NSArray * AllMemberIds;
 @property (nonatomic, assign) BOOL CanNotSearch;
-@property (nonatomic, strong) NSArray * Children;
+@property (nonatomic, strong) NSMutableArray<DYJXXYResult*> * Children;
 @property (nonatomic, copy) NSString * CreateBy;
 @property (nonatomic, copy) NSString * CreateOn;
 @property (nonatomic, strong) DYJXXYCreator * Creator;

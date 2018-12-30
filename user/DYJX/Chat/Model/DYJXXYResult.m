@@ -49,7 +49,11 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 
 
 
-
++(NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass {
+    return @{
+             @"Children":[DYJXXYResult class],
+             };
+}
 /**
  * Instantiate the instance using the passed dictionary values to set the properties values
  */

@@ -308,7 +308,6 @@
     }
     else if (self.type == 3) {
         DIIResult *result = (DIIResult *)self.applyArray[indexPath.row];
-
         if ((result.IsAgree && result.IsProcess) || (result.IsProcess && !result.IsAgree)) {
             DYAgreeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DYAgreeTableViewCell"];
             if (!cell) {
