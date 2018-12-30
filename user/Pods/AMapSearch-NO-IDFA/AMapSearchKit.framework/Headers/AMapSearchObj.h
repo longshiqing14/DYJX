@@ -136,7 +136,7 @@ typedef NS_ENUM(NSInteger, AMapTruckSizeType)
 ///道路周围搜索范围,单位米,[0-500]，默认250。
 @property (nonatomic, assign) NSInteger range;
 ///用户自己规划的路线,在origine、destination未填入时为必填.格式为:"经度,维度;经度,维度;...". 目前限制个数最多为100个点
-@property (nonatomic, strong) NSString *polylineStr;
+@property (nonatomic, copy) NSString *polylineStr;
 ///用户自己规划的路线,在origine、destination未填入且polylineStr未填入时为必填. 目前限制个数最多为100个点
 @property (nonatomic, strong) NSArray<AMapGeoPoint*> *polyline;
 
