@@ -71,6 +71,9 @@ static NSString * const kDYJXAPI_user_GetGroupById = @"GetGroupById";
 //好友联系人
 static NSString * const kDYJXAPI_user_SearchContact = @"SearchContact";
 
+//我创建或参与的公司
+static NSString * const kDYJXAPI_user_MyGroups = @"MyGroups";
+
 
 
 

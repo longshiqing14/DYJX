@@ -8,13 +8,14 @@
 
 #import "DJCompanyChatViewModel.h"
 #import "DYJXIdentitySwitchingModel.h"
+#import "DYJXXYResult.h"
 
 #define kRequestPageNumber @"page"
 #define kRequestPageSize @"page_size"
 #define kStartPageIndex 1
 @interface DJCompanyChatViewModel()
 @property (nonatomic,assign) NSInteger pageNum;
-@property (nonatomic, strong) NSMutableArray<DYJXIdentitySwitchingModel*> *dataArray;
+@property (nonatomic, strong) NSMutableArray<DYJXXYResult*> *dataArray;
 @end
 
 @implementation DJCompanyChatViewModel
@@ -29,18 +30,18 @@
 - (NSString *)GroupName:(NSIndexPath *)indexPath
 {
     
-    return self.dataArray[indexPath.row].GroupName;
+    return self.dataArray[indexPath.section].GroupName;
 }
 
 - (NSString *)GroupNumberString:(NSIndexPath *)indexPath
 {
     
-    return self.dataArray[indexPath.row].NumberString;
+    return self.dataArray[indexPath.section].NumberString;
 }
 
 - (NSString *)iconImageUrl:(NSIndexPath *)indexPath
 {
-    return self.dataArray[indexPath.row].GroupHeadImg;
+    return self.dataArray[indexPath.section].GroupHeadImg;
 }
 
 - (NSInteger)numberOfSection{
@@ -66,30 +67,24 @@
 }
 
 //获取子公司、参与公司 信息
-- (void)getMyConversionDataSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail{
+- (void)getMyGroupsDataSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail{
     [XYProgressHUD show];
     WeakSelf;
+
     DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
     [self.requestDic setObject:userModel.UserID forKey:@"UserID"];
     [self.requestDic setObject:@"iOS" forKey:@"Device"];
     [self.requestDic setObject:userModel.ClientId forKey:@"ClientId"];
     [self.requestDic setObject:userModel.ObjResult forKey:@"DeviceToken"];
     [self.requestDic setObject:userModel.MemberID forKey:@"MemberID"];
-    
-    [XYNetWorking XYPOST:kDYJXAPI_user_Conversations params:self.requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.requestDic setObject:userModel.UserID forKey:@"CertificateId"];
+    [self.requestDic setObject:@"1" forKey:@"GroupType"];
+    [XYNetWorking XYPOST:kDYJXAPI_user_MyGroups params:self.requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             
             if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
                 [XYProgressHUD svHUDDismiss];
-                NSArray *resultArray = [NSArray modelArrayWithClass:[DYJXIdentitySwitchingModel class] json:[responseObject objectForKey:@"Result"]];
-                
-                [resultArray enumerateObjectsUsingBlock:^(DYJXIdentitySwitchingModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [weakSelf.dataArray addObject:obj];
-                    if (obj.Children.count > 0) {
-                        [weakSelf.dataArray addObjectsFromArray:obj.Children];
-                    }
-                    
-                }];
+                self.dataArray = [[NSArray modelArrayWithClass:[DYJXXYResult class] json:[responseObject objectForKey:@"Result"]] mutableCopy];
                 
                 success();
                 
@@ -111,5 +106,13 @@
         fail(error.localizedDescription);
     }];
 }
+
+- (NSMutableArray<DYJXXYResult *> *)dataArray{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
+}
+
 @end
 

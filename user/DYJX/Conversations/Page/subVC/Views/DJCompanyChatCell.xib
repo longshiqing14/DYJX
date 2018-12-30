@@ -32,15 +32,30 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxx-lA-FWL">
+                        <rect key="frame" x="0.0" y="43" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="zuX-RB-clc"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="HvQ-Hq-7XP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0mf-bv-vLB"/>
                     <constraint firstItem="asj-UT-6c6" firstAttribute="leading" secondItem="HvQ-Hq-7XP" secondAttribute="trailing" constant="10" id="FWJ-R2-zI7"/>
+                    <constraint firstItem="nxx-lA-FWL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KJc-pr-AzX"/>
+                    <constraint firstAttribute="bottom" secondItem="nxx-lA-FWL" secondAttribute="bottom" id="QcQ-Bq-d4o"/>
                     <constraint firstItem="HvQ-Hq-7XP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="sJu-SJ-48A"/>
+                    <constraint firstAttribute="trailing" secondItem="nxx-lA-FWL" secondAttribute="trailing" id="uEe-12-zsP"/>
                     <constraint firstItem="asj-UT-6c6" firstAttribute="top" secondItem="HvQ-Hq-7XP" secondAttribute="top" id="yN7-GF-WBh"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="userIcon" destination="HvQ-Hq-7XP" id="Kja-7f-ygd"/>
+                <outlet property="userName" destination="asj-UT-6c6" id="sDU-ze-5Wi"/>
+            </connections>
+            <point key="canvasLocation" x="-124" y="161"/>
         </tableViewCell>
     </objects>
 </document>

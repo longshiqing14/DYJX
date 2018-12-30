@@ -23,6 +23,6 @@
 - (NSString *)sectionHeaderGroupName:(NSInteger )section;
 - (NSString *)sectionHeaderGroupNumberString:(NSInteger )section;
 - (NSString *)sectionHeadericonImageUrl:(NSInteger )section;
-//获取子公司、参与公司 信息
-- (void)getMyConversionDataSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail;
+//获取我创建或参与公司
+- (void)getMyGroupsDataSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail;
 @end

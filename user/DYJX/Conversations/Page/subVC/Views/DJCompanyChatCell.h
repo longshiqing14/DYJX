@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DJCompanyChatCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *userIcon;
 
+@property (weak, nonatomic) IBOutlet UILabel *userName;
 @end
