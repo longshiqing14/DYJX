@@ -74,8 +74,11 @@ static NSString * const kDYJXAPI_user_SearchContact = @"SearchContact";
 //我创建或参与的公司
 static NSString * const kDYJXAPI_user_MyGroups = @"MyGroups";
 
+//我的公司或内部群
+static NSString * const kDYJXAPI_user_MyCompanyAndGroup = @"MyCompanyAndGroup";
 
-
+//外部群
+static NSString * const kDYJXAPI_user_MyWildGroups = @"MyWildGroups";
 
 
 //我的宽带账号列表
