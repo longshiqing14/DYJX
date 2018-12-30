@@ -14,11 +14,15 @@
 #import "DYSelecteContractsPage.h"
 #import "CQColorfulAlertView.h"
 #import "IMSDK.h"
+#import "DLHeadScanView.h"
+#import "DYJXQRCodePage.h"
+#import "SWQRCodeViewController.h"
 
 @interface DNewContractViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)HeadSearchView *headView;
+@property (nonatomic, strong)DLHeadScanView *scanView;
 
 @end
 
@@ -30,6 +34,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     [self.view addSubview:self.headView];
+    [self.view addSubview:self.scanView];
     [self.view addSubview:self.tableView];
 
     [self baseUI];
@@ -63,7 +68,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60;
@@ -81,6 +86,30 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - Action
+
+-(void)buttonClick:(UIButton *)sender {
+    if (sender.tag == 1) {
+        NSLog(@"添加手机联系人");
+    }
+    else if(sender.tag == 2) {
+        NSLog(@"扫一扫");
+        SWQRCodeConfig *config = [[SWQRCodeConfig alloc]init];
+        config.scannerType = SWScannerTypeBoth;
+
+        SWQRCodeViewController *qrcodeVC = [[SWQRCodeViewController alloc]init];
+        qrcodeVC.codeConfig = config;
+        [self.navigationController pushViewController:qrcodeVC animated:YES];
+    }
+    else if(sender.tag == 3) {
+        NSLog(@"二维码");
+        DYJXQRCodePage *qrCodePage = [[DYJXQRCodePage alloc]init];
+        qrCodePage.userIdOrCompanyId = [UserManager shared].getUserModel.UserID;
+        qrCodePage.companyNumber = [UserManager shared].getUserModel.Result.NumberString;
+        qrCodePage.companyName = [UserManager shared].getUserModel.Result.UserName;
+        [self.navigationController pushViewController:qrCodePage animated:YES];
+    }
+}
 
 -(void)black_controller {
     [self.navigationController popViewControllerAnimated:YES];
@@ -101,13 +130,23 @@
 
 -(UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 119, kScreenWidth, kScreenHeight - 64 - 119) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 150, kScreenWidth, kScreenHeight - 64 - 150) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.delaysContentTouches = NO;
     }
     return _tableView;
+}
+
+-(DLHeadScanView *)scanView {
+    if (!_scanView) {
+        _scanView = [[DLHeadScanView alloc] initWithFrame:CGRectMake(0, 60, kScreenWidth, 90)];
+        [_scanView.contractButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_scanView.scanButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_scanView.qrCodeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _scanView;
 }
 
 @end

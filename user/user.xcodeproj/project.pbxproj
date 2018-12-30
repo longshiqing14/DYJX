@@ -1084,6 +1084,28 @@
 		E1A34B3721D6132D002D4690 /* DYSelecteContractsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3621D6132D002D4690 /* DYSelecteContractsPage.m */; };
 		E1A34B3A21D64A4D002D4690 /* UIButton+CQBlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3921D64A4D002D4690 /* UIButton+CQBlockSupport.m */; };
 		E1A34B3D21D64A6F002D4690 /* CQColorfulAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3C21D64A6F002D4690 /* CQColorfulAlertView.m */; };
+		E1A73E9A21D8B46900267385 /* DIIResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73E8F21D8B46500267385 /* DIIResult.m */; };
+		E1A73E9B21D8B46900267385 /* DIIBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73E9021D8B46500267385 /* DIIBusines.m */; };
+		E1A73E9C21D8B46900267385 /* DIISearchApply.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73E9221D8B46600267385 /* DIISearchApply.m */; };
+		E1A73E9D21D8B46900267385 /* DIIIMInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73E9521D8B46700267385 /* DIIIMInfo.m */; };
+		E1A73E9E21D8B46900267385 /* DIIMemberTo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73E9721D8B46800267385 /* DIIMemberTo.m */; };
+		E1A73E9F21D8B46900267385 /* DIIMemberFrom.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73E9921D8B46800267385 /* DIIMemberFrom.m */; };
+		E1A73EA221D8C3A200267385 /* DLHeadScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73EA121D8C3A200267385 /* DLHeadScanView.m */; };
+		E1A73EA521D8CB8600267385 /* HeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73EA421D8CB8500267385 /* HeadView.m */; };
+		E1ACC64F21D86B3B00E0EEE9 /* DYGoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC64E21D86B3B00E0EEE9 /* DYGoodCell.m */; };
+		E1ACC65321D8720B00E0EEE9 /* DYSearchContactRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC65221D8720B00E0EEE9 /* DYSearchContactRequest.m */; };
+		E1ACC68421D8874900E0EEE9 /* DLLIMInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC67B21D8874600E0EEE9 /* DLLIMInfo.m */; };
+		E1ACC68521D8874900E0EEE9 /* DLLResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC67D21D8874700E0EEE9 /* DLLResult.m */; };
+		E1ACC68621D8874900E0EEE9 /* DLLSearchContactResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC68021D8874800E0EEE9 /* DLLSearchContactResponse.m */; };
+		E1ACC68721D8874900E0EEE9 /* DLLBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC68221D8874800E0EEE9 /* DLLBusines.m */; };
+		E1ACC68821D8874900E0EEE9 /* DLLIMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC68321D8874900E0EEE9 /* DLLIMUser.m */; };
+		E1ACC68B21D89CC700E0EEE9 /* BlackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC68A21D89CC700E0EEE9 /* BlackTableViewCell.m */; };
+		E1ACC68E21D8A06C00E0EEE9 /* DYAgreeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC68D21D8A06C00E0EEE9 /* DYAgreeTableViewCell.m */; };
+		E1ACC69121D8A1E500E0EEE9 /* InApplayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC69021D8A1E500E0EEE9 /* InApplayTableViewCell.m */; };
+		E1ACC69421D8A3BC00E0EEE9 /* OtherApplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC69321D8A3BC00E0EEE9 /* OtherApplyCell.m */; };
+		E1ACC69B21D8AAA500E0EEE9 /* DYYResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC69821D8AAA400E0EEE9 /* DYYResult.m */; };
+		E1ACC69C21D8AAA500E0EEE9 /* DYYBlackListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC69921D8AAA500E0EEE9 /* DYYBlackListResponse.m */; };
+		E1ACC69D21D8AAA500E0EEE9 /* DYYBlackObj.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC69A21D8AAA500E0EEE9 /* DYYBlackObj.m */; };
 		E1ACF2F121D39BEC0045F655 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ACF2F021D39BEC0045F655 /* UIImage+fixOrientation.m */; };
 		E1B1178B219D4F0D00C96B3E /* SCAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B11789219D4F0C00C96B3E /* SCAccountManager.m */; };
 		E1B1178D219D58A800C96B3E /* Pandora in Resources */ = {isa = PBXBuildFile; fileRef = E1B1178C219D58A800C96B3E /* Pandora */; };
@@ -3140,6 +3162,50 @@
 		E1A34B3921D64A4D002D4690 /* UIButton+CQBlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CQBlockSupport.m"; sourceTree = "<group>"; };
 		E1A34B3B21D64A6E002D4690 /* CQColorfulAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQColorfulAlertView.h; sourceTree = "<group>"; };
 		E1A34B3C21D64A6F002D4690 /* CQColorfulAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQColorfulAlertView.m; sourceTree = "<group>"; };
+		E1A73E8E21D8B46500267385 /* DIIMemberTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIIMemberTo.h; sourceTree = "<group>"; };
+		E1A73E8F21D8B46500267385 /* DIIResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIIResult.m; sourceTree = "<group>"; };
+		E1A73E9021D8B46500267385 /* DIIBusines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIIBusines.m; sourceTree = "<group>"; };
+		E1A73E9121D8B46600267385 /* DIISearchApply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIISearchApply.h; sourceTree = "<group>"; };
+		E1A73E9221D8B46600267385 /* DIISearchApply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIISearchApply.m; sourceTree = "<group>"; };
+		E1A73E9321D8B46600267385 /* DIIResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIIResult.h; sourceTree = "<group>"; };
+		E1A73E9421D8B46700267385 /* DIIIMInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIIIMInfo.h; sourceTree = "<group>"; };
+		E1A73E9521D8B46700267385 /* DIIIMInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIIIMInfo.m; sourceTree = "<group>"; };
+		E1A73E9621D8B46700267385 /* DIIMemberFrom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIIMemberFrom.h; sourceTree = "<group>"; };
+		E1A73E9721D8B46800267385 /* DIIMemberTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIIMemberTo.m; sourceTree = "<group>"; };
+		E1A73E9821D8B46800267385 /* DIIBusines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIIBusines.h; sourceTree = "<group>"; };
+		E1A73E9921D8B46800267385 /* DIIMemberFrom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIIMemberFrom.m; sourceTree = "<group>"; };
+		E1A73EA021D8C3A200267385 /* DLHeadScanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLHeadScanView.h; sourceTree = "<group>"; };
+		E1A73EA121D8C3A200267385 /* DLHeadScanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DLHeadScanView.m; sourceTree = "<group>"; };
+		E1A73EA321D8CB8500267385 /* HeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadView.h; sourceTree = "<group>"; };
+		E1A73EA421D8CB8500267385 /* HeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeadView.m; sourceTree = "<group>"; };
+		E1ACC64D21D86B3B00E0EEE9 /* DYGoodCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYGoodCell.h; sourceTree = "<group>"; };
+		E1ACC64E21D86B3B00E0EEE9 /* DYGoodCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYGoodCell.m; sourceTree = "<group>"; };
+		E1ACC65121D8720A00E0EEE9 /* DYSearchContactRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYSearchContactRequest.h; sourceTree = "<group>"; };
+		E1ACC65221D8720B00E0EEE9 /* DYSearchContactRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYSearchContactRequest.m; sourceTree = "<group>"; };
+		E1ACC67A21D8874600E0EEE9 /* DLLIMInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLIMInfo.h; sourceTree = "<group>"; };
+		E1ACC67B21D8874600E0EEE9 /* DLLIMInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLIMInfo.m; sourceTree = "<group>"; };
+		E1ACC67C21D8874600E0EEE9 /* DLLBusines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLBusines.h; sourceTree = "<group>"; };
+		E1ACC67D21D8874700E0EEE9 /* DLLResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLResult.m; sourceTree = "<group>"; };
+		E1ACC67E21D8874700E0EEE9 /* DLLSearchContactResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLSearchContactResponse.h; sourceTree = "<group>"; };
+		E1ACC67F21D8874700E0EEE9 /* DLLResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLResult.h; sourceTree = "<group>"; };
+		E1ACC68021D8874800E0EEE9 /* DLLSearchContactResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLSearchContactResponse.m; sourceTree = "<group>"; };
+		E1ACC68121D8874800E0EEE9 /* DLLIMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLIMUser.h; sourceTree = "<group>"; };
+		E1ACC68221D8874800E0EEE9 /* DLLBusines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLBusines.m; sourceTree = "<group>"; };
+		E1ACC68321D8874900E0EEE9 /* DLLIMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLIMUser.m; sourceTree = "<group>"; };
+		E1ACC68921D89CC700E0EEE9 /* BlackTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlackTableViewCell.h; sourceTree = "<group>"; };
+		E1ACC68A21D89CC700E0EEE9 /* BlackTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlackTableViewCell.m; sourceTree = "<group>"; };
+		E1ACC68C21D8A06C00E0EEE9 /* DYAgreeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYAgreeTableViewCell.h; sourceTree = "<group>"; };
+		E1ACC68D21D8A06C00E0EEE9 /* DYAgreeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYAgreeTableViewCell.m; sourceTree = "<group>"; };
+		E1ACC68F21D8A1E500E0EEE9 /* InApplayTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InApplayTableViewCell.h; sourceTree = "<group>"; };
+		E1ACC69021D8A1E500E0EEE9 /* InApplayTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InApplayTableViewCell.m; sourceTree = "<group>"; };
+		E1ACC69221D8A3BC00E0EEE9 /* OtherApplyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherApplyCell.h; sourceTree = "<group>"; };
+		E1ACC69321D8A3BC00E0EEE9 /* OtherApplyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherApplyCell.m; sourceTree = "<group>"; };
+		E1ACC69521D8AAA300E0EEE9 /* DYYResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYYResult.h; sourceTree = "<group>"; };
+		E1ACC69621D8AAA300E0EEE9 /* DYYBlackObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYYBlackObj.h; sourceTree = "<group>"; };
+		E1ACC69721D8AAA400E0EEE9 /* DYYBlackListResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYYBlackListResponse.h; sourceTree = "<group>"; };
+		E1ACC69821D8AAA400E0EEE9 /* DYYResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYYResult.m; sourceTree = "<group>"; };
+		E1ACC69921D8AAA500E0EEE9 /* DYYBlackListResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYYBlackListResponse.m; sourceTree = "<group>"; };
+		E1ACC69A21D8AAA500E0EEE9 /* DYYBlackObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYYBlackObj.m; sourceTree = "<group>"; };
 		E1ACF2EF21D39BEC0045F655 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
 		E1ACF2F021D39BEC0045F655 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		E1B11789219D4F0C00C96B3E /* SCAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAccountManager.m; sourceTree = "<group>"; };
@@ -6839,6 +6905,20 @@
 				48E2503F21D7AFA400CC7D9E /* DJCompanyChatHeader.h */,
 				48E2504021D7AFA400CC7D9E /* DJCompanyChatHeader.m */,
 				48E2504221D7AFB900CC7D9E /* DJCompanyChatHeader.xib */,
+				E1ACC64D21D86B3B00E0EEE9 /* DYGoodCell.h */,
+				E1ACC64E21D86B3B00E0EEE9 /* DYGoodCell.m */,
+				E1ACC68921D89CC700E0EEE9 /* BlackTableViewCell.h */,
+				E1ACC68A21D89CC700E0EEE9 /* BlackTableViewCell.m */,
+				E1ACC68C21D8A06C00E0EEE9 /* DYAgreeTableViewCell.h */,
+				E1ACC68D21D8A06C00E0EEE9 /* DYAgreeTableViewCell.m */,
+				E1ACC68F21D8A1E500E0EEE9 /* InApplayTableViewCell.h */,
+				E1ACC69021D8A1E500E0EEE9 /* InApplayTableViewCell.m */,
+				E1ACC69221D8A3BC00E0EEE9 /* OtherApplyCell.h */,
+				E1ACC69321D8A3BC00E0EEE9 /* OtherApplyCell.m */,
+				E1A73EA021D8C3A200267385 /* DLHeadScanView.h */,
+				E1A73EA121D8C3A200267385 /* DLHeadScanView.m */,
+				E1A73EA321D8CB8500267385 /* HeadView.h */,
+				E1A73EA421D8CB8500267385 /* HeadView.m */,
 				48E2504721D8A79000CC7D9E /* DJGroupChatHeaderView.h */,
 				48E2504821D8A79000CC7D9E /* DJGroupChatHeaderView.m */,
 				48E2504A21D8A7A100CC7D9E /* DJGroupChatHeaderView.xib */,
@@ -7456,6 +7536,9 @@
 		E17AF1E221A01D430041249C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E1ACC67921D87FEC00E0EEE9 /* SearchBlackList */,
+				E1ACC66621D87DE500E0EEE9 /* SearchFriendApply */,
+				E1ACC65021D8720300E0EEE9 /* SearchContact */,
 				E13E60F721C3C79000D0C4B3 /* Extra */,
 				E12DBDAF21AD1EBC0011E3A4 /* Conversations */,
 				E17FC6CB21A1051000D435D9 /* GetUserById */,
@@ -7609,6 +7692,57 @@
 				E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */,
 			);
 			path = subVC;
+			sourceTree = "<group>";
+		};
+		E1ACC65021D8720300E0EEE9 /* SearchContact */ = {
+			isa = PBXGroup;
+			children = (
+				E1ACC67C21D8874600E0EEE9 /* DLLBusines.h */,
+				E1ACC68221D8874800E0EEE9 /* DLLBusines.m */,
+				E1ACC67A21D8874600E0EEE9 /* DLLIMInfo.h */,
+				E1ACC67B21D8874600E0EEE9 /* DLLIMInfo.m */,
+				E1ACC68121D8874800E0EEE9 /* DLLIMUser.h */,
+				E1ACC68321D8874900E0EEE9 /* DLLIMUser.m */,
+				E1ACC67F21D8874700E0EEE9 /* DLLResult.h */,
+				E1ACC67D21D8874700E0EEE9 /* DLLResult.m */,
+				E1ACC67E21D8874700E0EEE9 /* DLLSearchContactResponse.h */,
+				E1ACC68021D8874800E0EEE9 /* DLLSearchContactResponse.m */,
+				E1ACC65121D8720A00E0EEE9 /* DYSearchContactRequest.h */,
+				E1ACC65221D8720B00E0EEE9 /* DYSearchContactRequest.m */,
+			);
+			path = SearchContact;
+			sourceTree = "<group>";
+		};
+		E1ACC66621D87DE500E0EEE9 /* SearchFriendApply */ = {
+			isa = PBXGroup;
+			children = (
+				E1A73E9821D8B46800267385 /* DIIBusines.h */,
+				E1A73E9021D8B46500267385 /* DIIBusines.m */,
+				E1A73E9421D8B46700267385 /* DIIIMInfo.h */,
+				E1A73E9521D8B46700267385 /* DIIIMInfo.m */,
+				E1A73E9621D8B46700267385 /* DIIMemberFrom.h */,
+				E1A73E9921D8B46800267385 /* DIIMemberFrom.m */,
+				E1A73E8E21D8B46500267385 /* DIIMemberTo.h */,
+				E1A73E9721D8B46800267385 /* DIIMemberTo.m */,
+				E1A73E9321D8B46600267385 /* DIIResult.h */,
+				E1A73E8F21D8B46500267385 /* DIIResult.m */,
+				E1A73E9121D8B46600267385 /* DIISearchApply.h */,
+				E1A73E9221D8B46600267385 /* DIISearchApply.m */,
+			);
+			path = SearchFriendApply;
+			sourceTree = "<group>";
+		};
+		E1ACC67921D87FEC00E0EEE9 /* SearchBlackList */ = {
+			isa = PBXGroup;
+			children = (
+				E1ACC69721D8AAA400E0EEE9 /* DYYBlackListResponse.h */,
+				E1ACC69921D8AAA500E0EEE9 /* DYYBlackListResponse.m */,
+				E1ACC69621D8AAA300E0EEE9 /* DYYBlackObj.h */,
+				E1ACC69A21D8AAA500E0EEE9 /* DYYBlackObj.m */,
+				E1ACC69521D8AAA300E0EEE9 /* DYYResult.h */,
+				E1ACC69821D8AAA400E0EEE9 /* DYYResult.m */,
+			);
+			path = SearchBlackList;
 			sourceTree = "<group>";
 		};
 		E1BC7B0A21D47D7900017C39 /* Location */ = {
@@ -8249,9 +8383,11 @@
 				CBD3D50B1FB58A62007FF022 /* XYClassificationGoodsRightCVCell.m in Sources */,
 				CBFF46191F7D36BA00D2AF93 /* XYGoodsDetailParameterWebVC.m in Sources */,
 				E17AF25C21A02D480041249C /* DJJXIMInfo.m in Sources */,
+				E1ACC68521D8874900E0EEE9 /* DLLResult.m in Sources */,
 				CB123C4E1F9986C900CD4429 /* XYGoodsSearchResultModel.m in Sources */,
 				48A3707421ABF406002861DD /* TitleAndContentCell.m in Sources */,
 				CB4287551F64D79C004C43C1 /* XYOrderListCellGoodsListCVC.m in Sources */,
+				E1ACC69C21D8AAA500E0EEE9 /* DYYBlackListResponse.m in Sources */,
 				48C5E6F020590D5F00239081 /* GJOrderingForClientsMoreListCell.m in Sources */,
 				DE4364C61FCBADFB002976B0 /* JXMyCouponsViewController.m in Sources */,
 				E15767F421C9122D003A5C25 /* NIMSpellingCenter.m in Sources */,
@@ -8266,6 +8402,7 @@
 				48E8A4CE21BE4CAA0046EA0E /* SubcompanyTopView.m in Sources */,
 				DEE9AA3A1FBD3AC1001FA69A /* JXRenewInInPutCell.m in Sources */,
 				489A3F391FB53A870084E2BC /* JXSearchResultPage.m in Sources */,
+				E1ACC69B21D8AAA500E0EEE9 /* DYYResult.m in Sources */,
 				48A370F121B13A47002861DD /* DYJXUserInfoDetailPage.m in Sources */,
 				48B8309E1FBABA3F0019F503 /* JXStyleView.m in Sources */,
 				E1B52939219FE0FC008B27A5 /* XJInfoDetailPage.m in Sources */,
@@ -8312,6 +8449,7 @@
 				DE36FA481FCE889C00ED184E /* JXShopCouponHeatView.m in Sources */,
 				CB53FE781F6A132B0020F19A /* XYPaymentListModel.m in Sources */,
 				CBF74E2E1F8B6CDB00D528C2 /* XYNotificationCenterWebVC.m in Sources */,
+				E1A73E9F21D8B46900267385 /* DIIMemberFrom.m in Sources */,
 				E13E60CF21C35A7100D0C4B3 /* FMResultSet.m in Sources */,
 				CBE85A6B1F628C6E00E1E4EA /* XYShopingCartListModel.m in Sources */,
 				CB123C3B1F989A4D00CD4429 /* XYEWalletPreDepositReturnListVC.m in Sources */,
@@ -8376,6 +8514,7 @@
 				CB42875C1F6630A8004C43C1 /* XYOrderDetailVC.m in Sources */,
 				48B830A11FBACD250019F503 /* JXGoodsCubeCollectionViewCell.m in Sources */,
 				DE1A5F4C1FCFFE2A00EA8AE8 /* JXHhopAvailableModel.m in Sources */,
+				E1A73E9E21D8B46900267385 /* DIIMemberTo.m in Sources */,
 				DE71B17C2087522900467E06 /* JXMyAfterSaleDetailFootView.m in Sources */,
 				48644D5A1FCE48EC00CE47BC /* JXNotUsedViewModel.m in Sources */,
 				E1307FE221A7ABC50014C220 /* GroupHeadView.m in Sources */,
@@ -8417,8 +8556,10 @@
 				DE9F8CC01FDFD06700D8FE8A /* JXHomeRecommendCollectionView.m in Sources */,
 				CBD2BAA81F5D4CAD0057E2E7 /* XYRegisterVC.m in Sources */,
 				CB42876B1F66960B004C43C1 /* XYOrderDetailSubClassOrderDetailPayVC.m in Sources */,
+				E1ACC68721D8874900E0EEE9 /* DLLBusines.m in Sources */,
 				CBA03A541FCE4D5F007098D7 /* XYOrderConfirmCouponVC.m in Sources */,
 				CBCF83721F7211D700B20CF9 /* XYEWalletDetailModel.m in Sources */,
+				E1ACC68421D8874900E0EEE9 /* DLLIMInfo.m in Sources */,
 				DEE9AA2C1FBD2F18001FA69A /* JXProcessingInformationViewController.m in Sources */,
 				E157684321C9122D003A5C25 /* NIMSessionImageContentView.m in Sources */,
 				48644D6A1FCED22800CE47BC /* JXFullReduceGoodsPagePromotionView.m in Sources */,
@@ -8446,6 +8587,7 @@
 				DE4364DB1FCBDFC0002976B0 /* JXExpiredViewController.m in Sources */,
 				48456AA51FBD31810036600B /* POViewFrameBuilder.m in Sources */,
 				E17FC6CA21A1009D00D435D9 /* DJJLUAUser.m in Sources */,
+				E1A73E9A21D8B46900267385 /* DIIResult.m in Sources */,
 				CBD2BAA21F5D49590057E2E7 /* XYTabbarController.m in Sources */,
 				48644D6F1FCFD70800CE47BC /* JXCouponActivityWebPage.m in Sources */,
 				E1307FE821A7DDAF0014C220 /* DYJXLatestListCell.m in Sources */,
@@ -8463,6 +8605,8 @@
 				DE71B15A208744DD00467E06 /* UIView+PYExtension.m in Sources */,
 				CBFF466F1F7F270A00D2AF93 /* XYOrderCommentTools.m in Sources */,
 				E1CDB23921D77EEC0049B124 /* LocationInfoViewController.m in Sources */,
+				E1ACC69421D8A3BC00E0EEE9 /* OtherApplyCell.m in Sources */,
+				E1ACC68B21D89CC700E0EEE9 /* BlackTableViewCell.m in Sources */,
 				481FE72A2183125600CFE26B /* DYJXUserModel.m in Sources */,
 				CB123C101F94632000CD4429 /* XYConfirmOrderInvoiceVC.m in Sources */,
 				E157684621C9122D003A5C25 /* NIMSessionUnknowContentView.m in Sources */,
@@ -8504,6 +8648,7 @@
 				E15767E321C9122D003A5C25 /* NIMContactSelectViewController.m in Sources */,
 				E157682221C9122D003A5C25 /* NIMKitInfo.m in Sources */,
 				487351312186A35A001B59AB /* DYJXGetBackPwdAuthorizationCodeViewModel.m in Sources */,
+				E1A73E9B21D8B46900267385 /* DIIBusines.m in Sources */,
 				E15767F021C9122D003A5C25 /* NIMKitRobotTemplateLayout.m in Sources */,
 				E157683121C9122D003A5C25 /* NIMSessionDataSourceImpl.m in Sources */,
 				E15767F821C9122D003A5C25 /* NIMInputView.m in Sources */,
@@ -8516,6 +8661,7 @@
 				CBFF45621F7248D100D2AF93 /* XYEWalletAllNet.m in Sources */,
 				4826A48A21BFC43500EAF963 /* DYJXAddMemberCollectionViewCell.m in Sources */,
 				DEE9AA3E1FBD3AEC001FA69A /* JXRenewInFootView.m in Sources */,
+				E1A73EA221D8C3A200267385 /* DLHeadScanView.m in Sources */,
 				E1A34B3721D6132D002D4690 /* DYSelecteContractsPage.m in Sources */,
 				E16657B821A413AA00BAC552 /* OwnerImageCell.m in Sources */,
 				DE910FDA2085DD3C00BDDABF /* JXMyOrderDetailsViewController.m in Sources */,
@@ -8621,6 +8767,7 @@
 				4848B7A1208888440093D8C4 /* JXRefundTextModel.m in Sources */,
 				CB4287621F66326E004C43C1 /* XYOrderDetailSubClassOrderDetailVC.m in Sources */,
 				48E2502A21C8922500CC7D9E /* XYDYJXResponse.m in Sources */,
+				E1ACC64F21D86B3B00E0EEE9 /* DYGoodCell.m in Sources */,
 				E1419A0021CCDC7D0067AE2E /* DYJXSendMsgReq.m in Sources */,
 				E157683A21C9122D003A5C25 /* NIMKitMessageAtModel.m in Sources */,
 				CB4287711F66AB5C004C43C1 /* XYOrderDetailSubClassOrderDetailPayTVCell.m in Sources */,
@@ -8651,6 +8798,7 @@
 				CB3307A01FA1BF8F00117695 /* IQBarButtonItem.m in Sources */,
 				CB42874C1F645A7A004C43C1 /* XYPayOrderSuccessVC.m in Sources */,
 				48D980161FEB5C5B00246D4B /* JXClassificationFoldPage.m in Sources */,
+				E1ACC69121D8A1E500E0EEE9 /* InApplayTableViewCell.m in Sources */,
 				480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */,
 				CBE85ABA1F630B1C00E1E4EA /* XYMineOrderButtonVC.m in Sources */,
 				E1BC7B1321D47DE400017C39 /* SearchResultsController.m in Sources */,
@@ -8748,6 +8896,7 @@
 				CB063E141F9F1B2400A9395D /* XYEWalletBalanceFirstCell.m in Sources */,
 				CB063E201FA027EA00A9395D /* XYEWalletPreDepositThirdCell.m in Sources */,
 				E19DC8CC219ACC7B00C86478 /* DJCompanyChatPage.m in Sources */,
+				E1A73EA521D8CB8600267385 /* HeadView.m in Sources */,
 				CB063E1A1FA0279800A9395D /* XYEWalletPreDepositFirstCell.m in Sources */,
 				E1BC7B1F21D4B7D900017C39 /* DYLocationTableViewCell.m in Sources */,
 				DE9110132085DD5600BDDABF /* JXOderInvoiceView.m in Sources */,
@@ -8757,6 +8906,7 @@
 				CBE8598D1F5E81E100E1E4EA /* XYCycleImageModel.m in Sources */,
 				E157682821C9122D003A5C25 /* NIMVideoContentConfig.m in Sources */,
 				E1D913BA21C0C3020006B171 /* SimpleMessageCell.m in Sources */,
+				E1ACC69D21D8AAA500E0EEE9 /* DYYBlackObj.m in Sources */,
 				CB3307A41FA1BF8F00117695 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				487351AF218D5115001B59AB /* DYJXConversationTabBarController.m in Sources */,
 				CB42874F1F6466BF004C43C1 /* XYMineOrderListTVCell.m in Sources */,
@@ -8765,6 +8915,7 @@
 				CB123C451F98D10A00CD4429 /* ShoppingCartTool.m in Sources */,
 				E157681D21C9122D003A5C25 /* NIMTimestampModel.m in Sources */,
 				DE4364D61FCBDF66002976B0 /* JXNotUsedViewController.m in Sources */,
+				E1ACC68E21D8A06C00E0EEE9 /* DYAgreeTableViewCell.m in Sources */,
 				E1ACF2F121D39BEC0045F655 /* UIImage+fixOrientation.m in Sources */,
 				DE36FA421FCE5C9100ED184E /* JXCouponHeatView.m in Sources */,
 				CB063E171F9F1F9300A9395D /* XYDatePickerView.m in Sources */,
@@ -8781,6 +8932,7 @@
 				CBF74E561F8F129F00D528C2 /* XYMyBoardBandRenewalListVC.m in Sources */,
 				E15767FE21C9122D003A5C25 /* NIMInputEmoticonButton.m in Sources */,
 				48B8307F1FB59D170019F503 /* JXSearchHistoryHotCollectionReusableHeaderView.m in Sources */,
+				E1A73E9D21D8B46900267385 /* DIIIMInfo.m in Sources */,
 				E157684A21C9122D003A5C25 /* NIMLocationViewController.m in Sources */,
 				DE91100C2085DD5600BDDABF /* JXOderIntegralCell.m in Sources */,
 				DE910FD72085DD3C00BDDABF /* JXMyOderDetailsAddressCell.m in Sources */,
@@ -8866,6 +9018,7 @@
 				CBFF45D81F7CB1C900D2AF93 /* XYGoodsDetailVC.m in Sources */,
 				CBE859FD1F5FF31B00E1E4EA /* XYBestRequest.m in Sources */,
 				CBFF45CC1F7A8FA500D2AF93 /* XYUMSocialShareItemCVC.m in Sources */,
+				E1ACC68821D8874900E0EEE9 /* DLLIMUser.m in Sources */,
 				489A3F361FB53A150084E2BC /* JXSearchHistoryPage.m in Sources */,
 				CB42875F1F663259004C43C1 /* XYOrderDetailSubClassOrderStatusVC.m in Sources */,
 				CB3872851FA4573000254263 /* XYFindVideoVC.m in Sources */,
@@ -8878,6 +9031,7 @@
 				CB42876E1F66961E004C43C1 /* XYOrderDetailSubClassOrderDetailAddressVC.m in Sources */,
 				CBE85B071F63F4EC00E1E4EA /* XYMineAllNet.m in Sources */,
 				CBE85AD81F63D44B00E1E4EA /* XYOrderPaymentRemarkSectionFooterVC.m in Sources */,
+				E1A73E9C21D8B46900267385 /* DIISearchApply.m in Sources */,
 				DE71B1742087455200467E06 /* FLAnimatedImage.m in Sources */,
 				CB582FA81F7358D4009E495F /* XYDelieveryAddressVC.m in Sources */,
 				E15767EA21C9122D003A5C25 /* NIMKitFileLocationHelper.m in Sources */,
@@ -8943,6 +9097,7 @@
 				CBE85AB41F62CBB100E1E4EA /* XYShoppingCartCommon.m in Sources */,
 				481FE70F2182EB3B00CFE26B /* DYJXLoginViewModel.m in Sources */,
 				DE2C53D61FAC67230015A84C /* XYOrderConfirmModel.m in Sources */,
+				E1ACC65321D8720B00E0EEE9 /* DYSearchContactRequest.m in Sources */,
 				E13E60ED21C3634800D0C4B3 /* SortForTime.m in Sources */,
 				DE4364C91FCBBA93002976B0 /* BaseTableView.m in Sources */,
 				E1CDB25221D7AA410049B124 /* SWQRCodeViewController.m in Sources */,
@@ -8956,6 +9111,7 @@
 				DE24BD85207F39AE00A213C5 /* JXMyRefundAfterSaleViewController.m in Sources */,
 				E13E60E721C362FB00D0C4B3 /* RCDUtilities.m in Sources */,
 				48C5E706205B742E00239081 /* JXSelectAdressListModel.m in Sources */,
+				E1ACC68621D8874900E0EEE9 /* DLLSearchContactResponse.m in Sources */,
 				CB3307711FA16D0700117695 /* UITableView+WLEmptyPlaceHolder.m in Sources */,
 				E13E60EA21C3632000D0C4B3 /* RCDataBaseManager.m in Sources */,
 				CBFF459F1F753F2D00D2AF93 /* XYOrderDetailOrderStatusTVCell.m in Sources */,
