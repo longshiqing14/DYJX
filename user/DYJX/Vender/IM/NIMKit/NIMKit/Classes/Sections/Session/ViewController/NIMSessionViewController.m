@@ -574,11 +574,11 @@
         }
         handle = YES;
     }
-//    if ([eventName isEqualToString:NIMKitEventNameTapAudio])
-//    {
-//        [self.interactor mediaAudioPressed:event.messageModel];
-//        handle = YES;
-//    }
+    if ([eventName isEqualToString:NIMKitEventNameTapAudio])
+    {
+        [self.interactor mediaAudioPressed:event.messageModel];
+        handle = YES;
+    }
 //    if ([eventName isEqualToString:NIMKitEventNameTapRobotBlock]) {
 //        NSDictionary *param = event.data;
 ////        NIMMessage *message = [NIMMessageMaker msgWithRobotSelect:param[@"text"] target:param[@"target"] params:param[@"param"] toRobot:param[@"robotId"]];
