@@ -41,6 +41,7 @@ static NSString *headerID=@"headerID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    WeakSelf;
     [self initNavigation];
     [self.tableView registerClass:[DYJXIdentitySwitchingCell class] forCellReuseIdentifier:cellID];
     [self.tableView registerClass:[DYJXIdentitySwitchingHeader class] forHeaderFooterViewReuseIdentifier:@"headerID"];
@@ -50,6 +51,10 @@ static NSString *headerID=@"headerID";
     
     [self.tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     [self.tableView setBackgroundColor:[UIColor colorWithHexString:@"FFFFFF"]];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf GetUserInfo];
+    }];
 
     //设置接收消息代理
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -106,12 +111,14 @@ static NSString *headerID=@"headerID";
     WeakSelf;
     [self.viewModel getUserInfoSuccess:^{
         [weakSelf.viewModel getMyEnterprisesSuccess:^{
-             [weakSelf.tableView reloadData];
+            [weakSelf.tableView.mj_header endRefreshing];
+
+            [weakSelf.tableView reloadData];
         } failed:^(NSString *errorMsg) {
-            
+              [weakSelf.tableView.mj_header endRefreshing];
         }];
     } failed:^(NSString *errorMsg) {
-        
+        [weakSelf.tableView.mj_header endRefreshing];
     }];
     
 }

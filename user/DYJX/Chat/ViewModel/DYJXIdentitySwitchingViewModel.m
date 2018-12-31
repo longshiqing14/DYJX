@@ -185,16 +185,17 @@
             }else{
                 
                 [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
+                fail([responseObject objectForKey:@"Message"]);
             }
             
         }else{
             [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
-            
+            fail([responseObject objectForKey:@"Message"]);
         }
         
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
         [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
-        
+        fail(@"连接异常");
     }];
 }
 
