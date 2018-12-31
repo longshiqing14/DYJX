@@ -17,7 +17,7 @@ NSString *const kDYJOLastMgDeleted = @"Deleted";
 NSString *const kDYJOLastMgDisabled = @"Disabled";
 NSString *const kDYJOLastMgFromCertifyId = @"FromCertifyId";
 NSString *const kDYJOLastMgFromId = @"FromId";
-NSString *const kDYJOLastMgIdField = @"Id";
+NSString *const kDYJOLastMgId = @"Id";
 NSString *const kDYJOLastMgImKey = @"ImKey";
 NSString *const kDYJOLastMgMessageType = @"MessageType";
 NSString *const kDYJOLastMgRowData = @"RowData";
@@ -66,8 +66,8 @@ NSString *const kDYJOLastMgTargetType = @"TargetType";
 	if(![dictionary[kDYJOLastMgFromId] isKindOfClass:[NSNull class]]){
 		self.FromId = dictionary[kDYJOLastMgFromId];
 	}	
-	if(![dictionary[kDYJOLastMgIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDYJOLastMgIdField];
+	if(![dictionary[kDYJOLastMgId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDYJOLastMgId];
 	}	
 	if(![dictionary[kDYJOLastMgImKey] isKindOfClass:[NSNull class]]){
 		self.ImKey = dictionary[kDYJOLastMgImKey];
@@ -123,8 +123,8 @@ NSString *const kDYJOLastMgTargetType = @"TargetType";
 	if(self.FromId != nil){
 		dictionary[kDYJOLastMgFromId] = self.FromId;
 	}
-	if(self.IdField != nil){
-		dictionary[kDYJOLastMgIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDYJOLastMgId] = self.Id;
 	}
 	if(self.ImKey != nil){
 		dictionary[kDYJOLastMgImKey] = self.ImKey;
@@ -171,8 +171,8 @@ NSString *const kDYJOLastMgTargetType = @"TargetType";
 	if(self.FromId != nil){
 		[aCoder encodeObject:self.FromId forKey:kDYJOLastMgFromId];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDYJOLastMgIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDYJOLastMgId];
 	}
 	if(self.ImKey != nil){
 		[aCoder encodeObject:self.ImKey forKey:kDYJOLastMgImKey];
@@ -203,7 +203,7 @@ NSString *const kDYJOLastMgTargetType = @"TargetType";
 	self.Disabled = [[aDecoder decodeObjectForKey:kDYJOLastMgDisabled] boolValue];
 	self.FromCertifyId = [aDecoder decodeObjectForKey:kDYJOLastMgFromCertifyId];
 	self.FromId = [aDecoder decodeObjectForKey:kDYJOLastMgFromId];
-	self.IdField = [aDecoder decodeObjectForKey:kDYJOLastMgIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDYJOLastMgId];
 	self.ImKey = [aDecoder decodeObjectForKey:kDYJOLastMgImKey];
 	self.MessageType = [[aDecoder decodeObjectForKey:kDYJOLastMgMessageType] integerValue];
 	self.RowData = [aDecoder decodeObjectForKey:kDYJOLastMgRowData];
@@ -230,7 +230,7 @@ NSString *const kDYJOLastMgTargetType = @"TargetType";
 	copy.Disabled = self.Disabled;
 	copy.FromCertifyId = [self.FromCertifyId copy];
 	copy.FromId = [self.FromId copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.ImKey = [self.ImKey copy];
 	copy.MessageType = self.MessageType;
 	copy.RowData = [self.RowData copy];

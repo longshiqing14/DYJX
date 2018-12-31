@@ -56,7 +56,7 @@
 
     [self.goodsNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.goodsImageView.mas_right).mas_equalTo(10);
-        make.top.mas_equalTo(weakSelf).mas_equalTo(5);
+        make.top.mas_equalTo(weakSelf).mas_equalTo(10);
         make.right.mas_equalTo(weakSelf).mas_equalTo(-55);
     }];
 
@@ -67,7 +67,7 @@
     }];
 
     [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(weakSelf).insets(UIEdgeInsetsMake(0, 10, 0, 0));
+        make.left.right.bottom.equalTo(weakSelf).insets(UIEdgeInsetsMake(0, 0, 0, 0));
         make.height.mas_equalTo(0.5);
     }];
 

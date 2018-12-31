@@ -19,7 +19,7 @@
 @property (nonatomic, assign) BOOL Deleted;
 @property (nonatomic, assign) BOOL Disabled;
 @property (nonatomic, copy) NSString * DisplayName;
-@property (nonatomic, copy) NSString * IdField;
+@property (nonatomic, copy) NSString * Id;
 @property (nonatomic, assign) NSInteger Number;
 @property (nonatomic, copy) NSString * NumberString;
 @property (nonatomic, copy) NSString * RongCloudToken;

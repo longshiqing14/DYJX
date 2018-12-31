@@ -20,7 +20,7 @@
 @property (nonatomic, copy) NSString * fromName;
 @property (nonatomic, strong) NSObject * gMembers;
 @property (nonatomic, assign) NSInteger gType;
-@property (nonatomic, copy) NSString * idField;
+@property (nonatomic, copy) NSString * Id;
 @property (nonatomic, copy) NSString * imKey;
 @property (nonatomic, copy) NSString * keywords;
 @property (nonatomic, assign) NSInteger messageType;

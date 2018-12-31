@@ -17,7 +17,7 @@ NSString *const kDYYResultCreateBy = @"CreateBy";
 NSString *const kDYYResultCreateOn = @"CreateOn";
 NSString *const kDYYResultDeleted = @"Deleted";
 NSString *const kDYYResultDisabled = @"Disabled";
-NSString *const kDYYResultIdField = @"Id";
+NSString *const kDYYResultId = @"Id";
 NSString *const kDYYResultUserId = @"UserId";
 
 @interface DYYResult ()
@@ -61,8 +61,8 @@ NSString *const kDYYResultUserId = @"UserId";
 		self.Disabled = [dictionary[kDYYResultDisabled] boolValue];
 	}
 
-	if(![dictionary[kDYYResultIdField] isKindOfClass:[NSNull class]]){
-		self.Id = dictionary[kDYYResultIdField];
+	if(![dictionary[kDYYResultId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDYYResultId];
 	}	
 	if(![dictionary[kDYYResultUserId] isKindOfClass:[NSNull class]]){
 		self.UserId = dictionary[kDYYResultUserId];
@@ -98,7 +98,7 @@ NSString *const kDYYResultUserId = @"UserId";
 	dictionary[kDYYResultDeleted] = @(self.Deleted);
 	dictionary[kDYYResultDisabled] = @(self.Disabled);
 	if(self.Id != nil){
-		dictionary[kDYYResultIdField] = self.Id;
+		dictionary[kDYYResultId] = self.Id;
 	}
 	if(self.UserId != nil){
 		dictionary[kDYYResultUserId] = self.UserId;
@@ -134,7 +134,7 @@ NSString *const kDYYResultUserId = @"UserId";
 		[aCoder encodeObject:self.CreateOn forKey:kDYYResultCreateOn];
 	}
 	[aCoder encodeObject:@(self.Deleted) forKey:kDYYResultDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kDYYResultDisabled];	if(self.Id != nil){
-		[aCoder encodeObject:self.Id forKey:kDYYResultIdField];
+		[aCoder encodeObject:self.Id forKey:kDYYResultId];
 	}
 	if(self.UserId != nil){
 		[aCoder encodeObject:self.UserId forKey:kDYYResultUserId];
@@ -156,7 +156,7 @@ NSString *const kDYYResultUserId = @"UserId";
 	self.CreateOn = [aDecoder decodeObjectForKey:kDYYResultCreateOn];
 	self.Deleted = [[aDecoder decodeObjectForKey:kDYYResultDeleted] boolValue];
 	self.Disabled = [[aDecoder decodeObjectForKey:kDYYResultDisabled] boolValue];
-	self.Id = [aDecoder decodeObjectForKey:kDYYResultIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDYYResultId];
 	self.UserId = [aDecoder decodeObjectForKey:kDYYResultUserId];
 	return self;
 

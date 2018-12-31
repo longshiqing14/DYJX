@@ -21,7 +21,7 @@
 @property (nonatomic, copy) NSString * Disabled;
 @property (nonatomic, assign) NSInteger EndDateTime;
 @property (nonatomic, copy) NSString * From;
-@property (nonatomic, copy) NSString * IdField;
+@property (nonatomic, copy) NSString * Id;
 @property (nonatomic, copy) NSString * Keyword;
 @property (nonatomic, copy) NSString * MemberID;
 @property (nonatomic, copy) NSString * PageIndex;

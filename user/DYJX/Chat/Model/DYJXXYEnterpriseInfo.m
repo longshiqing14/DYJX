@@ -14,7 +14,7 @@ NSString *const kDYJXXYEnterpriseInfoCanNotSearch = @"CanNotSearch";
 NSString *const kDYJXXYEnterpriseInfoCompanyName = @"CompanyName";
 NSString *const kDYJXXYEnterpriseInfoCompanyShortName = @"CompanyShortName";
 NSString *const kDYJXXYEnterpriseInfoHeadImgUrl = @"HeadImgUrl";
-NSString *const kDYJXXYEnterpriseInfoIdField = @"Id";
+NSString *const kDYJXXYEnterpriseInfoId = @"Id";
 NSString *const kDYJXXYEnterpriseInfoImages = @"Images";
 
 @interface DYJXXYEnterpriseInfo ()
@@ -48,8 +48,8 @@ NSString *const kDYJXXYEnterpriseInfoImages = @"Images";
 	if(![dictionary[kDYJXXYEnterpriseInfoHeadImgUrl] isKindOfClass:[NSNull class]]){
 		self.HeadImgUrl = dictionary[kDYJXXYEnterpriseInfoHeadImgUrl];
 	}	
-	if(![dictionary[kDYJXXYEnterpriseInfoIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDYJXXYEnterpriseInfoIdField];
+	if(![dictionary[kDYJXXYEnterpriseInfoId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDYJXXYEnterpriseInfoId];
 	}	
 	if(![dictionary[kDYJXXYEnterpriseInfoImages] isKindOfClass:[NSNull class]]){
 		self.Images = dictionary[kDYJXXYEnterpriseInfoImages];
@@ -75,8 +75,8 @@ NSString *const kDYJXXYEnterpriseInfoImages = @"Images";
 	if(self.HeadImgUrl != nil){
 		dictionary[kDYJXXYEnterpriseInfoHeadImgUrl] = self.HeadImgUrl;
 	}
-	if(self.IdField != nil){
-		dictionary[kDYJXXYEnterpriseInfoIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDYJXXYEnterpriseInfoId] = self.Id;
 	}
 	if(self.Images != nil){
 		dictionary[kDYJXXYEnterpriseInfoImages] = self.Images;
@@ -102,8 +102,8 @@ NSString *const kDYJXXYEnterpriseInfoImages = @"Images";
 	if(self.HeadImgUrl != nil){
 		[aCoder encodeObject:self.HeadImgUrl forKey:kDYJXXYEnterpriseInfoHeadImgUrl];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDYJXXYEnterpriseInfoIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDYJXXYEnterpriseInfoId];
 	}
 	if(self.Images != nil){
 		[aCoder encodeObject:self.Images forKey:kDYJXXYEnterpriseInfoImages];
@@ -122,7 +122,7 @@ NSString *const kDYJXXYEnterpriseInfoImages = @"Images";
 	self.CompanyName = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoCompanyName];
 	self.CompanyShortName = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoCompanyShortName];
 	self.HeadImgUrl = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoHeadImgUrl];
-	self.IdField = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoId];
 	self.Images = [aDecoder decodeObjectForKey:kDYJXXYEnterpriseInfoImages];
 	return self;
 
@@ -140,7 +140,7 @@ NSString *const kDYJXXYEnterpriseInfoImages = @"Images";
 	copy.CompanyName = [self.CompanyName copy];
 	copy.CompanyShortName = [self.CompanyShortName copy];
 	copy.HeadImgUrl = [self.HeadImgUrl copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Images = [self.Images copy];
 
 	return copy;

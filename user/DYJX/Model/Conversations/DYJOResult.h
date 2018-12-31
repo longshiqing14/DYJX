@@ -19,7 +19,7 @@
 @property (nonatomic, copy) NSString * FromHeadImg;
 @property (nonatomic, copy) NSString * FromId;
 @property (nonatomic, copy) NSString * FromName;
-@property (nonatomic, copy) NSString * IdField;
+@property (nonatomic, copy) NSString * Id;
 @property (nonatomic, strong) NSDictionary * LastMsg;
 @property (nonatomic, copy) NSString * TargetHeadImg;
 @property (nonatomic, copy) NSString * TargetId;

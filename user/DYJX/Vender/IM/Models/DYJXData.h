@@ -21,7 +21,7 @@
 @property (nonatomic, assign) BOOL Disabled;
 @property (nonatomic, copy) NSString * FromCertifyId;
 @property (nonatomic, copy) NSString * FromId;
-@property (nonatomic, copy) NSString * IdField;
+@property (nonatomic, copy) NSString * Id;
 @property (nonatomic, assign) NSInteger MessageType;
 @property (nonatomic, assign) NSInteger SendType;
 @property (nonatomic, copy) NSString * Target;

@@ -14,7 +14,7 @@
 @property (nonatomic, assign) BOOL AdminSay;
 @property (nonatomic, assign) BOOL CanNotSearch;
 @property (nonatomic, strong) NSString * HeadImgUrl;
-@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, strong) NSString * Id;
 @property (nonatomic, strong) NSString * Images;
 @property (nonatomic, strong) NSString * NickName;
 

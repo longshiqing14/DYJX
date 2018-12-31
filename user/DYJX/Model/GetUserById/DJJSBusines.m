@@ -13,7 +13,7 @@ NSString *const kDJJSBusinesCreateOn = @"CreateOn";
 NSString *const kDJJSBusinesDeleted = @"Deleted";
 NSString *const kDJJSBusinesDisabled = @"Disabled";
 NSString *const kDJJSBusinesIMInfo = @"IMInfo";
-NSString *const kDJJSBusinesIdField = @"Id";
+NSString *const kDJJSBusinesId = @"Id";
 
 @interface DJJSBusines ()
 @end
@@ -44,8 +44,8 @@ NSString *const kDJJSBusinesIdField = @"Id";
 		self.IMInfo = [[DJJSIMInfo alloc] initWithDictionary:dictionary[kDJJSBusinesIMInfo]];
 	}
 
-	if(![dictionary[kDJJSBusinesIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDJJSBusinesIdField];
+	if(![dictionary[kDJJSBusinesId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDJJSBusinesId];
 	}	
 	return self;
 }
@@ -65,8 +65,8 @@ NSString *const kDJJSBusinesIdField = @"Id";
 	if(self.IMInfo != nil){
 		dictionary[kDJJSBusinesIMInfo] = [self.IMInfo toDictionary];
 	}
-	if(self.IdField != nil){
-		dictionary[kDJJSBusinesIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDJJSBusinesId] = self.Id;
 	}
 	return dictionary;
 
@@ -86,8 +86,8 @@ NSString *const kDJJSBusinesIdField = @"Id";
 	[aCoder encodeObject:@(self.Deleted) forKey:kDJJSBusinesDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kDJJSBusinesDisabled];	if(self.IMInfo != nil){
 		[aCoder encodeObject:self.IMInfo forKey:kDJJSBusinesIMInfo];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDJJSBusinesIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDJJSBusinesId];
 	}
 
 }
@@ -102,7 +102,7 @@ NSString *const kDJJSBusinesIdField = @"Id";
 	self.Deleted = [[aDecoder decodeObjectForKey:kDJJSBusinesDeleted] boolValue];
 	self.Disabled = [[aDecoder decodeObjectForKey:kDJJSBusinesDisabled] boolValue];
 	self.IMInfo = [aDecoder decodeObjectForKey:kDJJSBusinesIMInfo];
-	self.IdField = [aDecoder decodeObjectForKey:kDJJSBusinesIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDJJSBusinesId];
 	return self;
 
 }
@@ -118,7 +118,7 @@ NSString *const kDJJSBusinesIdField = @"Id";
 	copy.Deleted = self.Deleted;
 	copy.Disabled = self.Disabled;
 	copy.IMInfo = [self.IMInfo copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 
 	return copy;
 }

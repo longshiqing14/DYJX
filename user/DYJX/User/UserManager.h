@@ -36,6 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray<DYJXIdentitySwitchingModel*> *dataArray;
 
 
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

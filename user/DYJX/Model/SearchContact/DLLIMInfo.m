@@ -12,7 +12,7 @@
 NSString *const kDLLIMInfoAdminSay = @"AdminSay";
 NSString *const kDLLIMInfoCanNotSearch = @"CanNotSearch";
 NSString *const kDLLIMInfoHeadImgUrl = @"HeadImgUrl";
-NSString *const kDLLIMInfoIdField = @"Id";
+NSString *const kDLLIMInfoId = @"Id";
 NSString *const kDLLIMInfoImages = @"Images";
 NSString *const kDLLIMInfoPersonBank = @"PersonBank";
 NSString *const kDLLIMInfoPersonBankCardNo = @"PersonBankCardNo";
@@ -42,8 +42,8 @@ NSString *const kDLLIMInfoPersonBankCardNo = @"PersonBankCardNo";
 	if(![dictionary[kDLLIMInfoHeadImgUrl] isKindOfClass:[NSNull class]]){
 		self.HeadImgUrl = dictionary[kDLLIMInfoHeadImgUrl];
 	}	
-	if(![dictionary[kDLLIMInfoIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDLLIMInfoIdField];
+	if(![dictionary[kDLLIMInfoId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDLLIMInfoId];
 	}	
 	if(![dictionary[kDLLIMInfoImages] isKindOfClass:[NSNull class]]){
 		self.Images = dictionary[kDLLIMInfoImages];
@@ -69,8 +69,8 @@ NSString *const kDLLIMInfoPersonBankCardNo = @"PersonBankCardNo";
 	if(self.HeadImgUrl != nil){
 		dictionary[kDLLIMInfoHeadImgUrl] = self.HeadImgUrl;
 	}
-	if(self.IdField != nil){
-		dictionary[kDLLIMInfoIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDLLIMInfoId] = self.Id;
 	}
 	if(self.Images != nil){
 		dictionary[kDLLIMInfoImages] = self.Images;
@@ -96,8 +96,8 @@ NSString *const kDLLIMInfoPersonBankCardNo = @"PersonBankCardNo";
 	[aCoder encodeObject:@(self.AdminSay) forKey:kDLLIMInfoAdminSay];	[aCoder encodeObject:@(self.CanNotSearch) forKey:kDLLIMInfoCanNotSearch];	if(self.HeadImgUrl != nil){
 		[aCoder encodeObject:self.HeadImgUrl forKey:kDLLIMInfoHeadImgUrl];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDLLIMInfoIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDLLIMInfoId];
 	}
 	if(self.Images != nil){
 		[aCoder encodeObject:self.Images forKey:kDLLIMInfoImages];
@@ -120,7 +120,7 @@ NSString *const kDLLIMInfoPersonBankCardNo = @"PersonBankCardNo";
 	self.AdminSay = [[aDecoder decodeObjectForKey:kDLLIMInfoAdminSay] boolValue];
 	self.CanNotSearch = [[aDecoder decodeObjectForKey:kDLLIMInfoCanNotSearch] boolValue];
 	self.HeadImgUrl = [aDecoder decodeObjectForKey:kDLLIMInfoHeadImgUrl];
-	self.IdField = [aDecoder decodeObjectForKey:kDLLIMInfoIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDLLIMInfoId];
 	self.Images = [aDecoder decodeObjectForKey:kDLLIMInfoImages];
 	self.PersonBank = [aDecoder decodeObjectForKey:kDLLIMInfoPersonBank];
 	self.PersonBankCardNo = [aDecoder decodeObjectForKey:kDLLIMInfoPersonBankCardNo];
@@ -138,7 +138,7 @@ NSString *const kDLLIMInfoPersonBankCardNo = @"PersonBankCardNo";
 	copy.AdminSay = self.AdminSay;
 	copy.CanNotSearch = self.CanNotSearch;
 	copy.HeadImgUrl = [self.HeadImgUrl copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Images = [self.Images copy];
 	copy.PersonBank = [self.PersonBank copy];
 	copy.PersonBankCardNo = [self.PersonBankCardNo copy];

@@ -24,7 +24,7 @@
 @property (nonatomic, assign) BOOL Disabled;
 @property (nonatomic, assign) NSInteger DistrictID;
 @property (nonatomic, strong) XYDYJXIMUser * IMUser;
-@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, strong) NSString * Id;
 @property (nonatomic, assign) NSInteger Number;
 @property (nonatomic, strong) NSString * NumberString;
 @property (nonatomic, assign) NSInteger ProvinceID;

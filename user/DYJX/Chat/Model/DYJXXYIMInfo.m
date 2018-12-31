@@ -12,7 +12,7 @@
 NSString *const kDYJXXYIMInfoAdminSay = @"AdminSay";
 NSString *const kDYJXXYIMInfoCanNotSearch = @"CanNotSearch";
 NSString *const kDYJXXYIMInfoHeadImgUrl = @"HeadImgUrl";
-NSString *const kDYJXXYIMInfoIdField = @"Id";
+NSString *const kDYJXXYIMInfoId = @"Id";
 NSString *const kDYJXXYIMInfoImages = @"Images";
 NSString *const kDYJXXYIMInfoPersonBank = @"PersonBank";
 NSString *const kDYJXXYIMInfoPersonBankCardNo = @"PersonBankCardNo";
@@ -44,8 +44,8 @@ NSString *const kDYJXXYIMInfoPersonRemark = @"PersonRemark";
 	if(![dictionary[kDYJXXYIMInfoHeadImgUrl] isKindOfClass:[NSNull class]]){
 		self.HeadImgUrl = dictionary[kDYJXXYIMInfoHeadImgUrl];
 	}	
-	if(![dictionary[kDYJXXYIMInfoIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDYJXXYIMInfoIdField];
+	if(![dictionary[kDYJXXYIMInfoId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDYJXXYIMInfoId];
 	}	
 	if(![dictionary[kDYJXXYIMInfoImages] isKindOfClass:[NSNull class]]){
 		self.Images = dictionary[kDYJXXYIMInfoImages];
@@ -77,8 +77,8 @@ NSString *const kDYJXXYIMInfoPersonRemark = @"PersonRemark";
 	if(self.HeadImgUrl != nil){
 		dictionary[kDYJXXYIMInfoHeadImgUrl] = self.HeadImgUrl;
 	}
-	if(self.IdField != nil){
-		dictionary[kDYJXXYIMInfoIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDYJXXYIMInfoId] = self.Id;
 	}
 	if(self.Images != nil){
 		dictionary[kDYJXXYIMInfoImages] = self.Images;
@@ -110,8 +110,8 @@ NSString *const kDYJXXYIMInfoPersonRemark = @"PersonRemark";
 	[aCoder encodeObject:@(self.AdminSay) forKey:kDYJXXYIMInfoAdminSay];	[aCoder encodeObject:@(self.CanNotSearch) forKey:kDYJXXYIMInfoCanNotSearch];	if(self.HeadImgUrl != nil){
 		[aCoder encodeObject:self.HeadImgUrl forKey:kDYJXXYIMInfoHeadImgUrl];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDYJXXYIMInfoIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDYJXXYIMInfoId];
 	}
 	if(self.Images != nil){
 		[aCoder encodeObject:self.Images forKey:kDYJXXYIMInfoImages];
@@ -140,7 +140,7 @@ NSString *const kDYJXXYIMInfoPersonRemark = @"PersonRemark";
 	self.AdminSay = [[aDecoder decodeObjectForKey:kDYJXXYIMInfoAdminSay] boolValue];
 	self.CanNotSearch = [[aDecoder decodeObjectForKey:kDYJXXYIMInfoCanNotSearch] boolValue];
 	self.HeadImgUrl = [aDecoder decodeObjectForKey:kDYJXXYIMInfoHeadImgUrl];
-	self.IdField = [aDecoder decodeObjectForKey:kDYJXXYIMInfoIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDYJXXYIMInfoId];
 	self.Images = [aDecoder decodeObjectForKey:kDYJXXYIMInfoImages];
 	self.PersonBank = [aDecoder decodeObjectForKey:kDYJXXYIMInfoPersonBank];
 	self.PersonBankCardNo = [aDecoder decodeObjectForKey:kDYJXXYIMInfoPersonBankCardNo];
@@ -160,7 +160,7 @@ NSString *const kDYJXXYIMInfoPersonRemark = @"PersonRemark";
 	copy.AdminSay = self.AdminSay;
 	copy.CanNotSearch = self.CanNotSearch;
 	copy.HeadImgUrl = [self.HeadImgUrl copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Images = [self.Images copy];
 	copy.PersonBank = [self.PersonBank copy];
 	copy.PersonBankCardNo = [self.PersonBankCardNo copy];

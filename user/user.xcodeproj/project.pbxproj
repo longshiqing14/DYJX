@@ -1066,6 +1066,10 @@
 		E182E386219D102200BC5028 /* JSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E182E385219D102100BC5028 /* JSExtension.m */; };
 		E18D581E21A4FA9F001FE4A0 /* ContractHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E18D581D21A4FA9F001FE4A0 /* ContractHeadView.m */; };
 		E18D582121A50A90001FE4A0 /* ConpanyHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E18D582021A50A90001FE4A0 /* ConpanyHeadView.m */; };
+		E1999E3521D9AA20004B7460 /* SKFindConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E1999E2E21D9AA1D004B7460 /* SKFindConversationModel.m */; };
+		E1999E3621D9AA20004B7460 /* SKLatestMsgs.m in Sources */ = {isa = PBXBuildFile; fileRef = E1999E2F21D9AA1E004B7460 /* SKLatestMsgs.m */; };
+		E1999E3721D9AA20004B7460 /* SKResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E1999E3321D9AA20004B7460 /* SKResult.m */; };
+		E1999E3821D9AA20004B7460 /* SKLastMg.m in Sources */ = {isa = PBXBuildFile; fileRef = E1999E3421D9AA20004B7460 /* SKLastMg.m */; };
 		E19DC893219ABB9000C86478 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8DDD31FA817760018EC62 /* libstdc++.6.0.9.tbd */; };
 		E19DC8B5219AC2DB00C86478 /* BaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8B4219AC2DB00C86478 /* BaseListViewController.m */; };
 		E19DC8B8219AC36400C86478 /* DYChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8B7219AC36400C86478 /* DYChatViewController.m */; };
@@ -3133,6 +3137,14 @@
 		E18D581D21A4FA9F001FE4A0 /* ContractHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContractHeadView.m; sourceTree = "<group>"; };
 		E18D581F21A50A90001FE4A0 /* ConpanyHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConpanyHeadView.h; sourceTree = "<group>"; };
 		E18D582021A50A90001FE4A0 /* ConpanyHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConpanyHeadView.m; sourceTree = "<group>"; };
+		E1999E2D21D9AA1D004B7460 /* SKFindConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFindConversationModel.h; sourceTree = "<group>"; };
+		E1999E2E21D9AA1D004B7460 /* SKFindConversationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFindConversationModel.m; sourceTree = "<group>"; };
+		E1999E2F21D9AA1E004B7460 /* SKLatestMsgs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLatestMsgs.m; sourceTree = "<group>"; };
+		E1999E3021D9AA1E004B7460 /* SKLatestMsgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKLatestMsgs.h; sourceTree = "<group>"; };
+		E1999E3121D9AA1F004B7460 /* SKResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKResult.h; sourceTree = "<group>"; };
+		E1999E3221D9AA1F004B7460 /* SKLastMg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKLastMg.h; sourceTree = "<group>"; };
+		E1999E3321D9AA20004B7460 /* SKResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKResult.m; sourceTree = "<group>"; };
+		E1999E3421D9AA20004B7460 /* SKLastMg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLastMg.m; sourceTree = "<group>"; };
 		E19DC8B3219AC2DB00C86478 /* BaseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseListViewController.h; sourceTree = "<group>"; };
 		E19DC8B4219AC2DB00C86478 /* BaseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseListViewController.m; sourceTree = "<group>"; };
 		E19DC8B6219AC36400C86478 /* DYChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYChatViewController.h; sourceTree = "<group>"; };
@@ -7536,6 +7548,7 @@
 		E17AF1E221A01D430041249C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E1999E2C21D9AA02004B7460 /* FindConversation */,
 				E1ACC67921D87FEC00E0EEE9 /* SearchBlackList */,
 				E1ACC66621D87DE500E0EEE9 /* SearchFriendApply */,
 				E1ACC65021D8720300E0EEE9 /* SearchContact */,
@@ -7603,6 +7616,21 @@
 				E17FC6D121A1053C00D435D9 /* DJJSResult.m */,
 			);
 			path = GetUserById;
+			sourceTree = "<group>";
+		};
+		E1999E2C21D9AA02004B7460 /* FindConversation */ = {
+			isa = PBXGroup;
+			children = (
+				E1999E2D21D9AA1D004B7460 /* SKFindConversationModel.h */,
+				E1999E2E21D9AA1D004B7460 /* SKFindConversationModel.m */,
+				E1999E3221D9AA1F004B7460 /* SKLastMg.h */,
+				E1999E3421D9AA20004B7460 /* SKLastMg.m */,
+				E1999E3021D9AA1E004B7460 /* SKLatestMsgs.h */,
+				E1999E2F21D9AA1E004B7460 /* SKLatestMsgs.m */,
+				E1999E3121D9AA1F004B7460 /* SKResult.h */,
+				E1999E3321D9AA20004B7460 /* SKResult.m */,
+			);
+			path = FindConversation;
 			sourceTree = "<group>";
 		};
 		E19DC894219AC14400C86478 /* Vender */ = {
@@ -8727,6 +8755,7 @@
 				CBD2BA061F5D23CC0057E2E7 /* ViewController.m in Sources */,
 				CB53FE751F6A0FC80020F19A /* XYPreDepositTVCHeaderView.m in Sources */,
 				CB582F981F721CBA009E495F /* XYSelectIconPopView.m in Sources */,
+				E1999E3721D9AA20004B7460 /* SKResult.m in Sources */,
 				E15767E521C9122D003A5C25 /* NIMGroupedUsrInfo.m in Sources */,
 				CBFF46111F7D2D9F00D2AF93 /* XYOrderAlreadyCommentCell.m in Sources */,
 				E13E60F621C364C600D0C4B3 /* RCDUserInfoManager.m in Sources */,
@@ -8777,6 +8806,7 @@
 				DE71B15C208744DD00467E06 /* PYProgressView.m in Sources */,
 				E13E861421C7327600B4875D /* DataBaseManager.m in Sources */,
 				CBE85AC51F63943A00E1E4EA /* XYOrderConfirmOrderVC.m in Sources */,
+				E1999E3821D9AA20004B7460 /* SKLastMg.m in Sources */,
 				48E2504621D893B300CC7D9E /* DJGroupChatViewModel.m in Sources */,
 				E13E60CC21C35A7100D0C4B3 /* FMDatabaseAdditions.m in Sources */,
 				48DE38DE1FDE35160006528C /* JXFoodCell.m in Sources */,
@@ -8815,6 +8845,7 @@
 				E157684721C9122D003A5C25 /* NIMSessionMessageContentView.m in Sources */,
 				488E30C21FD9102300D4DC17 /* JXGoodsDetailCouponViewController.m in Sources */,
 				E13E60F021C363D300D0C4B3 /* DefaultPortraitView.m in Sources */,
+				E1999E3521D9AA20004B7460 /* SKFindConversationModel.m in Sources */,
 				CBFF456E1F72648900D2AF93 /* XYEWalletCommon.m in Sources */,
 				E1CDB25021D7AA410049B124 /* SWQRCodeConfig.m in Sources */,
 				CBE85A061F604CA300E1E4EA /* XYHomeTVCell.m in Sources */,
@@ -9034,6 +9065,7 @@
 				E1A73E9C21D8B46900267385 /* DIISearchApply.m in Sources */,
 				DE71B1742087455200467E06 /* FLAnimatedImage.m in Sources */,
 				CB582FA81F7358D4009E495F /* XYDelieveryAddressVC.m in Sources */,
+				E1999E3621D9AA20004B7460 /* SKLatestMsgs.m in Sources */,
 				E15767EA21C9122D003A5C25 /* NIMKitFileLocationHelper.m in Sources */,
 				E13E60DC21C3610400D0C4B3 /* RCDGroupInfo.m in Sources */,
 				DE9110142085DD5600BDDABF /* JXOderCell.m in Sources */,

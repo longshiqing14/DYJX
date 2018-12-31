@@ -12,7 +12,7 @@
 NSString *const kDJJSIMInfoAdminSay = @"AdminSay";
 NSString *const kDJJSIMInfoCanNotSearch = @"CanNotSearch";
 NSString *const kDJJSIMInfoHeadImgUrl = @"HeadImgUrl";
-NSString *const kDJJSIMInfoIdField = @"Id";
+NSString *const kDJJSIMInfoId = @"Id";
 NSString *const kDJJSIMInfoImages = @"Images";
 NSString *const kDJJSIMInfoNickName = @"NickName";
 
@@ -41,8 +41,8 @@ NSString *const kDJJSIMInfoNickName = @"NickName";
 	if(![dictionary[kDJJSIMInfoHeadImgUrl] isKindOfClass:[NSNull class]]){
 		self.HeadImgUrl = dictionary[kDJJSIMInfoHeadImgUrl];
 	}	
-	if(![dictionary[kDJJSIMInfoIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDJJSIMInfoIdField];
+	if(![dictionary[kDJJSIMInfoId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDJJSIMInfoId];
 	}	
 	if(![dictionary[kDJJSIMInfoImages] isKindOfClass:[NSNull class]]){
 		self.Images = dictionary[kDJJSIMInfoImages];
@@ -65,8 +65,8 @@ NSString *const kDJJSIMInfoNickName = @"NickName";
 	if(self.HeadImgUrl != nil){
 		dictionary[kDJJSIMInfoHeadImgUrl] = self.HeadImgUrl;
 	}
-	if(self.IdField != nil){
-		dictionary[kDJJSIMInfoIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDJJSIMInfoId] = self.Id;
 	}
 	if(self.Images != nil){
 		dictionary[kDJJSIMInfoImages] = self.Images;
@@ -89,8 +89,8 @@ NSString *const kDJJSIMInfoNickName = @"NickName";
 	[aCoder encodeObject:@(self.AdminSay) forKey:kDJJSIMInfoAdminSay];	[aCoder encodeObject:@(self.CanNotSearch) forKey:kDJJSIMInfoCanNotSearch];	if(self.HeadImgUrl != nil){
 		[aCoder encodeObject:self.HeadImgUrl forKey:kDJJSIMInfoHeadImgUrl];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDJJSIMInfoIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDJJSIMInfoId];
 	}
 	if(self.Images != nil){
 		[aCoder encodeObject:self.Images forKey:kDJJSIMInfoImages];
@@ -110,7 +110,7 @@ NSString *const kDJJSIMInfoNickName = @"NickName";
 	self.AdminSay = [[aDecoder decodeObjectForKey:kDJJSIMInfoAdminSay] boolValue];
 	self.CanNotSearch = [[aDecoder decodeObjectForKey:kDJJSIMInfoCanNotSearch] boolValue];
 	self.HeadImgUrl = [aDecoder decodeObjectForKey:kDJJSIMInfoHeadImgUrl];
-	self.IdField = [aDecoder decodeObjectForKey:kDJJSIMInfoIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDJJSIMInfoId];
 	self.Images = [aDecoder decodeObjectForKey:kDJJSIMInfoImages];
 	self.NickName = [aDecoder decodeObjectForKey:kDJJSIMInfoNickName];
 	return self;
@@ -127,7 +127,7 @@ NSString *const kDJJSIMInfoNickName = @"NickName";
 	copy.AdminSay = self.AdminSay;
 	copy.CanNotSearch = self.CanNotSearch;
 	copy.HeadImgUrl = [self.HeadImgUrl copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Images = [self.Images copy];
 	copy.NickName = [self.NickName copy];
 

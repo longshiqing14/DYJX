@@ -20,7 +20,7 @@
 @property (nonatomic, assign) BOOL Disabled;
 @property (nonatomic, strong) NSString * DisplayName;
 @property (nonatomic, strong) NSString * DisplayTel;
-@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, strong) NSString * Id;
 @property (nonatomic, assign) NSInteger Number;
 @property (nonatomic, strong) NSString * NumberString;
 @property (nonatomic, strong) NSString * RongCloudToken;

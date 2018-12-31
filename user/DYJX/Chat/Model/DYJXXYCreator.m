@@ -17,7 +17,7 @@ NSString *const kDYJXXYCreatorDeleted = @"Deleted";
 NSString *const kDYJXXYCreatorDisabled = @"Disabled";
 NSString *const kDYJXXYCreatorDisplayName = @"DisplayName";
 NSString *const kDYJXXYCreatorDisplayTel = @"DisplayTel";
-NSString *const kDYJXXYCreatorIdField = @"Id";
+NSString *const kDYJXXYCreatorId = @"Id";
 NSString *const kDYJXXYCreatorNumber = @"Number";
 NSString *const kDYJXXYCreatorNumberString = @"NumberString";
 NSString *const kDYJXXYCreatorRongCloudToken = @"RongCloudToken";
@@ -65,8 +65,8 @@ NSString *const kDYJXXYCreatorUserName = @"UserName";
 	if(![dictionary[kDYJXXYCreatorDisplayTel] isKindOfClass:[NSNull class]]){
 		self.DisplayTel = dictionary[kDYJXXYCreatorDisplayTel];
 	}	
-	if(![dictionary[kDYJXXYCreatorIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDYJXXYCreatorIdField];
+	if(![dictionary[kDYJXXYCreatorId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDYJXXYCreatorId];
 	}	
 	if(![dictionary[kDYJXXYCreatorNumber] isKindOfClass:[NSNull class]]){
 		self.Number = [dictionary[kDYJXXYCreatorNumber] integerValue];
@@ -115,8 +115,8 @@ NSString *const kDYJXXYCreatorUserName = @"UserName";
 	if(self.DisplayTel != nil){
 		dictionary[kDYJXXYCreatorDisplayTel] = self.DisplayTel;
 	}
-	if(self.IdField != nil){
-		dictionary[kDYJXXYCreatorIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDYJXXYCreatorId] = self.Id;
 	}
 	dictionary[kDYJXXYCreatorNumber] = @(self.Number);
 	if(self.NumberString != nil){
@@ -159,8 +159,8 @@ NSString *const kDYJXXYCreatorUserName = @"UserName";
 	if(self.DisplayTel != nil){
 		[aCoder encodeObject:self.DisplayTel forKey:kDYJXXYCreatorDisplayTel];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDYJXXYCreatorIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDYJXXYCreatorId];
 	}
 	[aCoder encodeObject:@(self.Number) forKey:kDYJXXYCreatorNumber];	if(self.NumberString != nil){
 		[aCoder encodeObject:self.NumberString forKey:kDYJXXYCreatorNumberString];
@@ -188,7 +188,7 @@ NSString *const kDYJXXYCreatorUserName = @"UserName";
 	self.Disabled = [[aDecoder decodeObjectForKey:kDYJXXYCreatorDisabled] boolValue];
 	self.DisplayName = [aDecoder decodeObjectForKey:kDYJXXYCreatorDisplayName];
 	self.DisplayTel = [aDecoder decodeObjectForKey:kDYJXXYCreatorDisplayTel];
-	self.IdField = [aDecoder decodeObjectForKey:kDYJXXYCreatorIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDYJXXYCreatorId];
 	self.Number = [[aDecoder decodeObjectForKey:kDYJXXYCreatorNumber] integerValue];
 	self.NumberString = [aDecoder decodeObjectForKey:kDYJXXYCreatorNumberString];
 	self.RongCloudToken = [aDecoder decodeObjectForKey:kDYJXXYCreatorRongCloudToken];
@@ -213,7 +213,7 @@ NSString *const kDYJXXYCreatorUserName = @"UserName";
 	copy.Disabled = self.Disabled;
 	copy.DisplayName = [self.DisplayName copy];
 	copy.DisplayTel = [self.DisplayTel copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Number = self.Number;
 	copy.NumberString = [self.NumberString copy];
 	copy.RongCloudToken = [self.RongCloudToken copy];

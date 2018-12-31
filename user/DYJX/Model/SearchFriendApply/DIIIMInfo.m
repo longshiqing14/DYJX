@@ -12,7 +12,7 @@
 NSString *const kDIIIMInfoAdminSay = @"AdminSay";
 NSString *const kDIIIMInfoCanNotSearch = @"CanNotSearch";
 NSString *const kDIIIMInfoHeadImgUrl = @"HeadImgUrl";
-NSString *const kDIIIMInfoIdField = @"Id";
+NSString *const kDIIIMInfoId = @"Id";
 NSString *const kDIIIMInfoImages = @"Images";
 NSString *const kDIIIMInfoNickName = @"NickName";
 
@@ -41,8 +41,8 @@ NSString *const kDIIIMInfoNickName = @"NickName";
 	if(![dictionary[kDIIIMInfoHeadImgUrl] isKindOfClass:[NSNull class]]){
 		self.HeadImgUrl = dictionary[kDIIIMInfoHeadImgUrl];
 	}	
-	if(![dictionary[kDIIIMInfoIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDIIIMInfoIdField];
+	if(![dictionary[kDIIIMInfoId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDIIIMInfoId];
 	}	
 	if(![dictionary[kDIIIMInfoImages] isKindOfClass:[NSNull class]]){
 		self.Images = dictionary[kDIIIMInfoImages];
@@ -65,8 +65,8 @@ NSString *const kDIIIMInfoNickName = @"NickName";
 	if(self.HeadImgUrl != nil){
 		dictionary[kDIIIMInfoHeadImgUrl] = self.HeadImgUrl;
 	}
-	if(self.IdField != nil){
-		dictionary[kDIIIMInfoIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDIIIMInfoId] = self.Id;
 	}
 	if(self.Images != nil){
 		dictionary[kDIIIMInfoImages] = self.Images;
@@ -89,8 +89,8 @@ NSString *const kDIIIMInfoNickName = @"NickName";
 	[aCoder encodeObject:@(self.AdminSay) forKey:kDIIIMInfoAdminSay];	[aCoder encodeObject:@(self.CanNotSearch) forKey:kDIIIMInfoCanNotSearch];	if(self.HeadImgUrl != nil){
 		[aCoder encodeObject:self.HeadImgUrl forKey:kDIIIMInfoHeadImgUrl];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDIIIMInfoIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDIIIMInfoId];
 	}
 	if(self.Images != nil){
 		[aCoder encodeObject:self.Images forKey:kDIIIMInfoImages];
@@ -110,7 +110,7 @@ NSString *const kDIIIMInfoNickName = @"NickName";
 	self.AdminSay = [[aDecoder decodeObjectForKey:kDIIIMInfoAdminSay] boolValue];
 	self.CanNotSearch = [[aDecoder decodeObjectForKey:kDIIIMInfoCanNotSearch] boolValue];
 	self.HeadImgUrl = [aDecoder decodeObjectForKey:kDIIIMInfoHeadImgUrl];
-	self.IdField = [aDecoder decodeObjectForKey:kDIIIMInfoIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDIIIMInfoId];
 	self.Images = [aDecoder decodeObjectForKey:kDIIIMInfoImages];
 	self.NickName = [aDecoder decodeObjectForKey:kDIIIMInfoNickName];
 	return self;
@@ -127,7 +127,7 @@ NSString *const kDIIIMInfoNickName = @"NickName";
 	copy.AdminSay = self.AdminSay;
 	copy.CanNotSearch = self.CanNotSearch;
 	copy.HeadImgUrl = [self.HeadImgUrl copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Images = [self.Images copy];
 	copy.NickName = [self.NickName copy];
 

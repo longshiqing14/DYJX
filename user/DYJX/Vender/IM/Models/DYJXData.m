@@ -19,7 +19,7 @@ NSString *const kDYJXDataDeleted = @"Deleted";
 NSString *const kDYJXDataDisabled = @"Disabled";
 NSString *const kDYJXDataFromCertifyId = @"FromCertifyId";
 NSString *const kDYJXDataFromId = @"FromId";
-NSString *const kDYJXDataIdField = @"Id";
+NSString *const kDYJXDataId = @"Id";
 NSString *const kDYJXDataMessageType = @"MessageType";
 NSString *const kDYJXDataSendType = @"SendType";
 NSString *const kDYJXDataTarget = @"Target";
@@ -85,8 +85,8 @@ NSString *const kDYJXDataUpdateOn = @"UpdateOn";
 	if(![dictionary[kDYJXDataFromId] isKindOfClass:[NSNull class]]){
 		self.FromId = dictionary[kDYJXDataFromId];
 	}	
-	if(![dictionary[kDYJXDataIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDYJXDataIdField];
+	if(![dictionary[kDYJXDataId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDYJXDataId];
 	}	
 	if(![dictionary[kDYJXDataMessageType] isKindOfClass:[NSNull class]]){
 		self.MessageType = [dictionary[kDYJXDataMessageType] integerValue];
@@ -145,8 +145,8 @@ NSString *const kDYJXDataUpdateOn = @"UpdateOn";
 	if(self.FromId != nil){
 		dictionary[kDYJXDataFromId] = self.FromId;
 	}
-	if(self.IdField != nil){
-		dictionary[kDYJXDataIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDYJXDataId] = self.Id;
 	}
 	dictionary[kDYJXDataMessageType] = @(self.MessageType);
 	dictionary[kDYJXDataSendType] = @(self.SendType);
@@ -191,8 +191,8 @@ NSString *const kDYJXDataUpdateOn = @"UpdateOn";
 	if(self.FromId != nil){
 		[aCoder encodeObject:self.FromId forKey:kDYJXDataFromId];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDYJXDataIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDYJXDataId];
 	}
 	[aCoder encodeObject:@(self.MessageType) forKey:kDYJXDataMessageType];	[aCoder encodeObject:@(self.SendType) forKey:kDYJXDataSendType];	if(self.Target != nil){
 		[aCoder encodeObject:self.Target forKey:kDYJXDataTarget];
@@ -222,7 +222,7 @@ NSString *const kDYJXDataUpdateOn = @"UpdateOn";
 	self.Disabled = [[aDecoder decodeObjectForKey:kDYJXDataDisabled] boolValue];
 	self.FromCertifyId = [aDecoder decodeObjectForKey:kDYJXDataFromCertifyId];
 	self.FromId = [aDecoder decodeObjectForKey:kDYJXDataFromId];
-	self.IdField = [aDecoder decodeObjectForKey:kDYJXDataIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDYJXDataId];
 	self.MessageType = [[aDecoder decodeObjectForKey:kDYJXDataMessageType] integerValue];
 	self.SendType = [[aDecoder decodeObjectForKey:kDYJXDataSendType] integerValue];
 	self.Target = [aDecoder decodeObjectForKey:kDYJXDataTarget];
@@ -251,7 +251,7 @@ NSString *const kDYJXDataUpdateOn = @"UpdateOn";
 	copy.Disabled = self.Disabled;
 	copy.FromCertifyId = [self.FromCertifyId copy];
 	copy.FromId = [self.FromId copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.MessageType = self.MessageType;
 	copy.SendType = self.SendType;
 	copy.Target = [self.Target copy];

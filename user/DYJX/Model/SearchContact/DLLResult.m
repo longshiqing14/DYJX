@@ -22,7 +22,7 @@ NSString *const kDLLResultDeleted = @"Deleted";
 NSString *const kDLLResultDisabled = @"Disabled";
 NSString *const kDLLResultDistrictID = @"DistrictID";
 NSString *const kDLLResultIMUser = @"IMUser";
-NSString *const kDLLResultIdField = @"Id";
+NSString *const kDLLResultId = @"Id";
 NSString *const kDLLResultNumber = @"Number";
 NSString *const kDLLResultNumberString = @"NumberString";
 NSString *const kDLLResultProvinceID = @"ProvinceID";
@@ -92,8 +92,8 @@ NSString *const kDLLResultUserType = @"UserType";
 		self.IMUser = [[DLLIMUser alloc] initWithDictionary:dictionary[kDLLResultIMUser]];
 	}
 
-	if(![dictionary[kDLLResultIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDLLResultIdField];
+	if(![dictionary[kDLLResultId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDLLResultId];
 	}	
 	if(![dictionary[kDLLResultNumber] isKindOfClass:[NSNull class]]){
 		self.Number = [dictionary[kDLLResultNumber] integerValue];
@@ -165,8 +165,8 @@ NSString *const kDLLResultUserType = @"UserType";
 	if(self.IMUser != nil){
 		dictionary[kDLLResultIMUser] = [self.IMUser toDictionary];
 	}
-	if(self.IdField != nil){
-		dictionary[kDLLResultIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDLLResultId] = self.Id;
 	}
 	dictionary[kDLLResultNumber] = @(self.Number);
 	if(self.NumberString != nil){
@@ -223,8 +223,8 @@ NSString *const kDLLResultUserType = @"UserType";
 	[aCoder encodeObject:@(self.Deleted) forKey:kDLLResultDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kDLLResultDisabled];	[aCoder encodeObject:@(self.DistrictID) forKey:kDLLResultDistrictID];	if(self.IMUser != nil){
 		[aCoder encodeObject:self.IMUser forKey:kDLLResultIMUser];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDLLResultIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDLLResultId];
 	}
 	[aCoder encodeObject:@(self.Number) forKey:kDLLResultNumber];	if(self.NumberString != nil){
 		[aCoder encodeObject:self.NumberString forKey:kDLLResultNumberString];
@@ -263,7 +263,7 @@ NSString *const kDLLResultUserType = @"UserType";
 	self.Disabled = [[aDecoder decodeObjectForKey:kDLLResultDisabled] boolValue];
 	self.DistrictID = [[aDecoder decodeObjectForKey:kDLLResultDistrictID] integerValue];
 	self.IMUser = [aDecoder decodeObjectForKey:kDLLResultIMUser];
-	self.IdField = [aDecoder decodeObjectForKey:kDLLResultIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDLLResultId];
 	self.Number = [[aDecoder decodeObjectForKey:kDLLResultNumber] integerValue];
 	self.NumberString = [aDecoder decodeObjectForKey:kDLLResultNumberString];
 	self.ProvinceID = [[aDecoder decodeObjectForKey:kDLLResultProvinceID] integerValue];
@@ -297,7 +297,7 @@ NSString *const kDLLResultUserType = @"UserType";
 	copy.Disabled = self.Disabled;
 	copy.DistrictID = self.DistrictID;
 	copy.IMUser = [self.IMUser copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Number = self.Number;
 	copy.NumberString = [self.NumberString copy];
 	copy.ProvinceID = self.ProvinceID;

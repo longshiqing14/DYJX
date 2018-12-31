@@ -18,7 +18,7 @@ NSString *const kDYJXExtraModelfromId = @"FromId";
 NSString *const kDYJXExtraModelfromName = @"FromName";
 NSString *const kDYJXExtraModelgMembers = @"GMembers";
 NSString *const kDYJXExtraModelgType = @"GType";
-NSString *const kDYJXExtraModelidField = @"Id";
+NSString *const kDYJXExtraModelId = @"Id";
 NSString *const kDYJXExtraModelimKey = @"ImKey";
 NSString *const kDYJXExtraModelkeywords = @"Keywords";
 NSString *const kDYJXExtraModelmessageType = @"MessageType";
@@ -70,8 +70,8 @@ NSString *const kDYJXExtraModeltargetType = @"TargetType";
 		self.gType = [dictionary[kDYJXExtraModelgType] integerValue];
 	}
 
-	if(![dictionary[kDYJXExtraModelidField] isKindOfClass:[NSNull class]]){
-		self.idField = dictionary[kDYJXExtraModelidField];
+	if(![dictionary[kDYJXExtraModelId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDYJXExtraModelId];
 	}	
 	if(![dictionary[kDYJXExtraModelimKey] isKindOfClass:[NSNull class]]){
 		self.imKey = dictionary[kDYJXExtraModelimKey];
@@ -134,8 +134,8 @@ NSString *const kDYJXExtraModeltargetType = @"TargetType";
 		dictionary[kDYJXExtraModelgMembers] = self.gMembers;
 	}
 	dictionary[kDYJXExtraModelgType] = @(self.gType);
-	if(self.idField != nil){
-		dictionary[kDYJXExtraModelidField] = self.idField;
+	if(self.Id != nil){
+		dictionary[kDYJXExtraModelId] = self.Id;
 	}
 	if(self.imKey != nil){
 		dictionary[kDYJXExtraModelimKey] = self.imKey;
@@ -193,8 +193,8 @@ NSString *const kDYJXExtraModeltargetType = @"TargetType";
 	if(self.gMembers != nil){
 		[aCoder encodeObject:self.gMembers forKey:kDYJXExtraModelgMembers];
 	}
-	[aCoder encodeObject:@(self.gType) forKey:kDYJXExtraModelgType];	if(self.idField != nil){
-		[aCoder encodeObject:self.idField forKey:kDYJXExtraModelidField];
+	[aCoder encodeObject:@(self.gType) forKey:kDYJXExtraModelgType];	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDYJXExtraModelId];
 	}
 	if(self.imKey != nil){
 		[aCoder encodeObject:self.imKey forKey:kDYJXExtraModelimKey];
@@ -232,7 +232,7 @@ NSString *const kDYJXExtraModeltargetType = @"TargetType";
 	self.fromName = [aDecoder decodeObjectForKey:kDYJXExtraModelfromName];
 	self.gMembers = [aDecoder decodeObjectForKey:kDYJXExtraModelgMembers];
 	self.gType = [[aDecoder decodeObjectForKey:kDYJXExtraModelgType] integerValue];
-	self.idField = [aDecoder decodeObjectForKey:kDYJXExtraModelidField];
+	self.Id = [aDecoder decodeObjectForKey:kDYJXExtraModelId];
 	self.imKey = [aDecoder decodeObjectForKey:kDYJXExtraModelimKey];
 	self.keywords = [aDecoder decodeObjectForKey:kDYJXExtraModelkeywords];
 	self.messageType = [[aDecoder decodeObjectForKey:kDYJXExtraModelmessageType] integerValue];
@@ -261,7 +261,7 @@ NSString *const kDYJXExtraModeltargetType = @"TargetType";
 	copy.fromName = [self.fromName copy];
 	copy.gMembers = [self.gMembers copy];
 	copy.gType = self.gType;
-	copy.idField = [self.idField copy];
+	copy.Id = [self.Id copy];
 	copy.imKey = [self.imKey copy];
 	copy.keywords = [self.keywords copy];
 	copy.messageType = self.messageType;

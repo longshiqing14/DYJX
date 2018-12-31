@@ -19,7 +19,7 @@ NSString *const kDYSearchContactRequestDeviceToken = @"DeviceToken";
 NSString *const kDYSearchContactRequestDisabled = @"Disabled";
 NSString *const kDYSearchContactRequestEndDateTime = @"EndDateTime";
 NSString *const kDYSearchContactRequestFrom = @"From";
-NSString *const kDYSearchContactRequestIdField = @"Id";
+NSString *const kDYSearchContactRequestId = @"Id";
 NSString *const kDYSearchContactRequestKeyword = @"Keyword";
 NSString *const kDYSearchContactRequestMemberID = @"MemberID";
 NSString *const kDYSearchContactRequestPageIndex = @"PageIndex";
@@ -73,8 +73,8 @@ NSString *const kDYSearchContactRequestUserType = @"UserType";
 	if(![dictionary[kDYSearchContactRequestFrom] isKindOfClass:[NSNull class]]){
 		self.From = dictionary[kDYSearchContactRequestFrom];
 	}	
-	if(![dictionary[kDYSearchContactRequestIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDYSearchContactRequestIdField];
+	if(![dictionary[kDYSearchContactRequestId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDYSearchContactRequestId];
 	}	
 	if(![dictionary[kDYSearchContactRequestKeyword] isKindOfClass:[NSNull class]]){
 		self.Keyword = dictionary[kDYSearchContactRequestKeyword];
@@ -136,8 +136,8 @@ NSString *const kDYSearchContactRequestUserType = @"UserType";
 	if(self.From != nil){
 		dictionary[kDYSearchContactRequestFrom] = self.From;
 	}
-	if(self.IdField != nil){
-		dictionary[kDYSearchContactRequestIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDYSearchContactRequestId] = self.Id;
 	}
 	if(self.Keyword != nil){
 		dictionary[kDYSearchContactRequestKeyword] = self.Keyword;
@@ -197,8 +197,8 @@ NSString *const kDYSearchContactRequestUserType = @"UserType";
 	[aCoder encodeObject:@(self.EndDateTime) forKey:kDYSearchContactRequestEndDateTime];	if(self.From != nil){
 		[aCoder encodeObject:self.From forKey:kDYSearchContactRequestFrom];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDYSearchContactRequestIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDYSearchContactRequestId];
 	}
 	if(self.Keyword != nil){
 		[aCoder encodeObject:self.Keyword forKey:kDYSearchContactRequestKeyword];
@@ -237,7 +237,7 @@ NSString *const kDYSearchContactRequestUserType = @"UserType";
 	self.Disabled = [aDecoder decodeObjectForKey:kDYSearchContactRequestDisabled];
 	self.EndDateTime = [[aDecoder decodeObjectForKey:kDYSearchContactRequestEndDateTime] integerValue];
 	self.From = [aDecoder decodeObjectForKey:kDYSearchContactRequestFrom];
-	self.IdField = [aDecoder decodeObjectForKey:kDYSearchContactRequestIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDYSearchContactRequestId];
 	self.Keyword = [aDecoder decodeObjectForKey:kDYSearchContactRequestKeyword];
 	self.MemberID = [aDecoder decodeObjectForKey:kDYSearchContactRequestMemberID];
 	self.PageIndex = [aDecoder decodeObjectForKey:kDYSearchContactRequestPageIndex];
@@ -266,7 +266,7 @@ NSString *const kDYSearchContactRequestUserType = @"UserType";
 	copy.Disabled = [self.Disabled copy];
 	copy.EndDateTime = self.EndDateTime;
 	copy.From = [self.From copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Keyword = [self.Keyword copy];
 	copy.MemberID = [self.MemberID copy];
 	copy.PageIndex = [self.PageIndex copy];

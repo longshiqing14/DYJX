@@ -25,7 +25,7 @@ NSString *const kDYJXXYResultGroupHeadImg = @"GroupHeadImg";
 NSString *const kDYJXXYResultGroupName = @"GroupName";
 NSString *const kDYJXXYResultGroupNumber = @"GroupNumber";
 NSString *const kDYJXXYResultGroupType = @"GroupType";
-NSString *const kDYJXXYResultIdField = @"Id";
+NSString *const kDYJXXYResultId = @"Id";
 NSString *const kDYJXXYResultIsPart = @"IsPart";
 NSString *const kDYJXXYResultMemberIds = @"MemberIds";
 NSString *const kDYJXXYResultMembers = @"Members";
@@ -121,8 +121,8 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 		self.GroupType = [dictionary[kDYJXXYResultGroupType] integerValue];
 	}
 
-	if(![dictionary[kDYJXXYResultIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDYJXXYResultIdField];
+	if(![dictionary[kDYJXXYResultId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDYJXXYResultId];
 	}	
 	if(![dictionary[kDYJXXYResultIsPart] isKindOfClass:[NSNull class]]){
 		self.IsPart = [dictionary[kDYJXXYResultIsPart] boolValue];
@@ -241,8 +241,8 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 		dictionary[kDYJXXYResultGroupNumber] = self.GroupNumber;
 	}
 	dictionary[kDYJXXYResultGroupType] = @(self.GroupType);
-	if(self.IdField != nil){
-		dictionary[kDYJXXYResultIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDYJXXYResultId] = self.Id;
 	}
 	dictionary[kDYJXXYResultIsPart] = @(self.IsPart);
 	if(self.MemberIds != nil){
@@ -330,8 +330,8 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 	if(self.GroupNumber != nil){
 		[aCoder encodeObject:self.GroupNumber forKey:kDYJXXYResultGroupNumber];
 	}
-	[aCoder encodeObject:@(self.GroupType) forKey:kDYJXXYResultGroupType];	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDYJXXYResultIdField];
+	[aCoder encodeObject:@(self.GroupType) forKey:kDYJXXYResultGroupType];	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDYJXXYResultId];
 	}
 	[aCoder encodeObject:@(self.IsPart) forKey:kDYJXXYResultIsPart];	if(self.MemberIds != nil){
 		[aCoder encodeObject:self.MemberIds forKey:kDYJXXYResultMemberIds];
@@ -385,7 +385,7 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 	self.GroupName = [aDecoder decodeObjectForKey:kDYJXXYResultGroupName];
 	self.GroupNumber = [aDecoder decodeObjectForKey:kDYJXXYResultGroupNumber];
 	self.GroupType = [[aDecoder decodeObjectForKey:kDYJXXYResultGroupType] integerValue];
-	self.IdField = [aDecoder decodeObjectForKey:kDYJXXYResultIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDYJXXYResultId];
 	self.IsPart = [[aDecoder decodeObjectForKey:kDYJXXYResultIsPart] boolValue];
 	self.MemberIds = [aDecoder decodeObjectForKey:kDYJXXYResultMemberIds];
 	self.Members = [aDecoder decodeObjectForKey:kDYJXXYResultMembers];
@@ -429,7 +429,7 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 	copy.GroupName = [self.GroupName copy];
 	copy.GroupNumber = [self.GroupNumber copy];
 	copy.GroupType = self.GroupType;
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.IsPart = self.IsPart;
 	copy.MemberIds = [self.MemberIds copy];
 	copy.Members = [self.Members copy];

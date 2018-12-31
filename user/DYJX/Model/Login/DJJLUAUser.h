@@ -19,7 +19,7 @@
 @property (nonatomic, copy) NSString * CreateUAUrl;
 @property (nonatomic, assign) BOOL Deleted;
 @property (nonatomic, assign) BOOL Disabled;
-@property (nonatomic, copy) NSString * IdField;
+@property (nonatomic, copy) NSString * Id;
 @property (nonatomic, strong) DJJLMember * Member;
 @property (nonatomic, assign) NSInteger Number;
 @property (nonatomic, copy) NSString * NumberString;

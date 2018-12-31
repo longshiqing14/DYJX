@@ -13,7 +13,7 @@ NSString *const kDLLBusinesCreateOn = @"CreateOn";
 NSString *const kDLLBusinesDeleted = @"Deleted";
 NSString *const kDLLBusinesDisabled = @"Disabled";
 NSString *const kDLLBusinesIMInfo = @"IMInfo";
-NSString *const kDLLBusinesIdField = @"Id";
+NSString *const kDLLBusinesId = @"Id";
 
 @interface DLLBusines ()
 @end
@@ -44,8 +44,8 @@ NSString *const kDLLBusinesIdField = @"Id";
 		self.IMInfo = [[DLLIMInfo alloc] initWithDictionary:dictionary[kDLLBusinesIMInfo]];
 	}
 
-	if(![dictionary[kDLLBusinesIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDLLBusinesIdField];
+	if(![dictionary[kDLLBusinesId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDLLBusinesId];
 	}	
 	return self;
 }
@@ -65,8 +65,8 @@ NSString *const kDLLBusinesIdField = @"Id";
 	if(self.IMInfo != nil){
 		dictionary[kDLLBusinesIMInfo] = [self.IMInfo toDictionary];
 	}
-	if(self.IdField != nil){
-		dictionary[kDLLBusinesIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDLLBusinesId] = self.Id;
 	}
 	return dictionary;
 
@@ -86,8 +86,8 @@ NSString *const kDLLBusinesIdField = @"Id";
 	[aCoder encodeObject:@(self.Deleted) forKey:kDLLBusinesDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kDLLBusinesDisabled];	if(self.IMInfo != nil){
 		[aCoder encodeObject:self.IMInfo forKey:kDLLBusinesIMInfo];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDLLBusinesIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDLLBusinesId];
 	}
 
 }
@@ -102,7 +102,7 @@ NSString *const kDLLBusinesIdField = @"Id";
 	self.Deleted = [[aDecoder decodeObjectForKey:kDLLBusinesDeleted] boolValue];
 	self.Disabled = [[aDecoder decodeObjectForKey:kDLLBusinesDisabled] boolValue];
 	self.IMInfo = [aDecoder decodeObjectForKey:kDLLBusinesIMInfo];
-	self.IdField = [aDecoder decodeObjectForKey:kDLLBusinesIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDLLBusinesId];
 	return self;
 
 }
@@ -118,7 +118,7 @@ NSString *const kDLLBusinesIdField = @"Id";
 	copy.Deleted = self.Deleted;
 	copy.Disabled = self.Disabled;
 	copy.IMInfo = [self.IMInfo copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 
 	return copy;
 }

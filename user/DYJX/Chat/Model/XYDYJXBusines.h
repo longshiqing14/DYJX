@@ -16,7 +16,7 @@
 @property (nonatomic, assign) BOOL Deleted;
 @property (nonatomic, assign) BOOL Disabled;
 @property (nonatomic, strong) XYDYJXIMInfo * IMInfo;
-@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, strong) NSString * Id;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

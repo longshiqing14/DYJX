@@ -11,6 +11,7 @@
 #include "PGPlugin.h"
 #import "NIMMessageModel.h"
 #import "JXChatViewController.h"
+#import "SKFindConversationModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -41,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) dispatch_semaphore_t semaphore;
 
 @property (nonatomic,strong)JXChatViewController *chatVC;
+
+- (void)getConversion:(NSString *)targetId FromId:(NSString *)fromId type:(NSInteger)type  DataSuccess:(void(^)(id response))success failed:(void(^)(NSString *errorMsg))fail;
 
 @end
 

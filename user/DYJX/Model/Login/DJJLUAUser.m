@@ -15,7 +15,7 @@ NSString *const kDJJLUAUserCreateOn = @"CreateOn";
 NSString *const kDJJLUAUserCreateUAUrl = @"CreateUAUrl";
 NSString *const kDJJLUAUserDeleted = @"Deleted";
 NSString *const kDJJLUAUserDisabled = @"Disabled";
-NSString *const kDJJLUAUserIdField = @"Id";
+NSString *const kDJJLUAUserId = @"Id";
 NSString *const kDJJLUAUserMember = @"Member";
 NSString *const kDJJLUAUserNumber = @"Number";
 NSString *const kDJJLUAUserNumberString = @"NumberString";
@@ -58,8 +58,8 @@ NSString *const kDJJLUAUserType = @"Type";
 		self.Disabled = [dictionary[kDJJLUAUserDisabled] boolValue];
 	}
 
-	if(![dictionary[kDJJLUAUserIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDJJLUAUserIdField];
+	if(![dictionary[kDJJLUAUserId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDJJLUAUserId];
 	}	
 	if(![dictionary[kDJJLUAUserMember] isKindOfClass:[NSNull class]]){
 		self.Member = [[DJJLMember alloc] initWithDictionary:dictionary[kDJJLUAUserMember]];
@@ -102,8 +102,8 @@ NSString *const kDJJLUAUserType = @"Type";
 	}
 	dictionary[kDJJLUAUserDeleted] = @(self.Deleted);
 	dictionary[kDJJLUAUserDisabled] = @(self.Disabled);
-	if(self.IdField != nil){
-		dictionary[kDJJLUAUserIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDJJLUAUserId] = self.Id;
 	}
 	if(self.Member != nil){
 		dictionary[kDJJLUAUserMember] = [self.Member toDictionary];
@@ -135,8 +135,8 @@ NSString *const kDJJLUAUserType = @"Type";
 	if(self.CreateUAUrl != nil){
 		[aCoder encodeObject:self.CreateUAUrl forKey:kDJJLUAUserCreateUAUrl];
 	}
-	[aCoder encodeObject:@(self.Deleted) forKey:kDJJLUAUserDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kDJJLUAUserDisabled];	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDJJLUAUserIdField];
+	[aCoder encodeObject:@(self.Deleted) forKey:kDJJLUAUserDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kDJJLUAUserDisabled];	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDJJLUAUserId];
 	}
 	if(self.Member != nil){
 		[aCoder encodeObject:self.Member forKey:kDJJLUAUserMember];
@@ -159,7 +159,7 @@ NSString *const kDJJLUAUserType = @"Type";
 	self.CreateUAUrl = [aDecoder decodeObjectForKey:kDJJLUAUserCreateUAUrl];
 	self.Deleted = [[aDecoder decodeObjectForKey:kDJJLUAUserDeleted] boolValue];
 	self.Disabled = [[aDecoder decodeObjectForKey:kDJJLUAUserDisabled] boolValue];
-	self.IdField = [aDecoder decodeObjectForKey:kDJJLUAUserIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDJJLUAUserId];
 	self.Member = [aDecoder decodeObjectForKey:kDJJLUAUserMember];
 	self.Number = [[aDecoder decodeObjectForKey:kDJJLUAUserNumber] integerValue];
 	self.NumberString = [aDecoder decodeObjectForKey:kDJJLUAUserNumberString];
@@ -182,7 +182,7 @@ NSString *const kDJJLUAUserType = @"Type";
 	copy.CreateUAUrl = [self.CreateUAUrl copy];
 	copy.Deleted = self.Deleted;
 	copy.Disabled = self.Disabled;
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Member = [self.Member copy];
 	copy.Number = self.Number;
 	copy.NumberString = [self.NumberString copy];

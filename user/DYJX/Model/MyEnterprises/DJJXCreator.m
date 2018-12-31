@@ -16,7 +16,7 @@ NSString *const kDJJXCreatorCreateOn = @"CreateOn";
 NSString *const kDJJXCreatorDeleted = @"Deleted";
 NSString *const kDJJXCreatorDisabled = @"Disabled";
 NSString *const kDJJXCreatorDisplayName = @"DisplayName";
-NSString *const kDJJXCreatorIdField = @"Id";
+NSString *const kDJJXCreatorId = @"Id";
 NSString *const kDJJXCreatorNumber = @"Number";
 NSString *const kDJJXCreatorNumberString = @"NumberString";
 NSString *const kDJJXCreatorRongCloudToken = @"RongCloudToken";
@@ -61,8 +61,8 @@ NSString *const kDJJXCreatorUserName = @"UserName";
 	if(![dictionary[kDJJXCreatorDisplayName] isKindOfClass:[NSNull class]]){
 		self.DisplayName = dictionary[kDJJXCreatorDisplayName];
 	}	
-	if(![dictionary[kDJJXCreatorIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDJJXCreatorIdField];
+	if(![dictionary[kDJJXCreatorId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDJJXCreatorId];
 	}	
 	if(![dictionary[kDJJXCreatorNumber] isKindOfClass:[NSNull class]]){
 		self.Number = [dictionary[kDJJXCreatorNumber] integerValue];
@@ -108,8 +108,8 @@ NSString *const kDJJXCreatorUserName = @"UserName";
 	if(self.DisplayName != nil){
 		dictionary[kDJJXCreatorDisplayName] = self.DisplayName;
 	}
-	if(self.IdField != nil){
-		dictionary[kDJJXCreatorIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDJJXCreatorId] = self.Id;
 	}
 	dictionary[kDJJXCreatorNumber] = @(self.Number);
 	if(self.NumberString != nil){
@@ -149,8 +149,8 @@ NSString *const kDJJXCreatorUserName = @"UserName";
 	[aCoder encodeObject:@(self.Deleted) forKey:kDJJXCreatorDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kDJJXCreatorDisabled];	if(self.DisplayName != nil){
 		[aCoder encodeObject:self.DisplayName forKey:kDJJXCreatorDisplayName];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDJJXCreatorIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDJJXCreatorId];
 	}
 	[aCoder encodeObject:@(self.Number) forKey:kDJJXCreatorNumber];	if(self.NumberString != nil){
 		[aCoder encodeObject:self.NumberString forKey:kDJJXCreatorNumberString];
@@ -177,7 +177,7 @@ NSString *const kDJJXCreatorUserName = @"UserName";
 	self.Deleted = [[aDecoder decodeObjectForKey:kDJJXCreatorDeleted] boolValue];
 	self.Disabled = [[aDecoder decodeObjectForKey:kDJJXCreatorDisabled] boolValue];
 	self.DisplayName = [aDecoder decodeObjectForKey:kDJJXCreatorDisplayName];
-	self.IdField = [aDecoder decodeObjectForKey:kDJJXCreatorIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDJJXCreatorId];
 	self.Number = [[aDecoder decodeObjectForKey:kDJJXCreatorNumber] integerValue];
 	self.NumberString = [aDecoder decodeObjectForKey:kDJJXCreatorNumberString];
 	self.RongCloudToken = [aDecoder decodeObjectForKey:kDJJXCreatorRongCloudToken];
@@ -201,7 +201,7 @@ NSString *const kDJJXCreatorUserName = @"UserName";
 	copy.Deleted = self.Deleted;
 	copy.Disabled = self.Disabled;
 	copy.DisplayName = [self.DisplayName copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Number = self.Number;
 	copy.NumberString = [self.NumberString copy];
 	copy.RongCloudToken = [self.RongCloudToken copy];

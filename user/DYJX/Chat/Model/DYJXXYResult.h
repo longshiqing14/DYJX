@@ -33,7 +33,7 @@
 @property (nonatomic, copy) NSString * GroupName;
 @property (nonatomic, copy) NSString * GroupNumber;
 @property (nonatomic, assign) NSInteger GroupType;
-@property (nonatomic, copy) NSString * IdField;
+@property (nonatomic, copy) NSString * Id;
 @property (nonatomic, assign) BOOL IsPart;
 @property (nonatomic, strong) NSArray<NSString*> * MemberIds;
 @property (nonatomic, strong) NSArray * Members;

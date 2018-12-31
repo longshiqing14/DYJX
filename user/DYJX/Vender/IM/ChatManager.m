@@ -369,7 +369,7 @@
     sendData.ConversationId = extraDic[@"ConversationId"];
     sendData.FromCertifyId = [JSExtension shared].myIdentityId;
     sendData.FromId = [UserManager shared].getUserModel.UserID;
-    sendData.IdField = extraDic[@"Id"];
+    sendData.Id = extraDic[@"Id"];
     sendData.SendType = 4;
     sendData.Target = [JSExtension shared].targetId;
     sendData.TargetId = [JSExtension shared].targetId;
@@ -569,7 +569,7 @@
     sendData.ConversationId = conversion.targetId;
     sendData.FromCertifyId = [JSExtension shared].myIdentityId;
     sendData.FromId = [UserManager shared].getUserModel.UserID;
-    sendData.IdField = @"";
+    sendData.Id = @"";
     sendData.SendType = 4;
     sendData.Target = [JSExtension shared].targetId;
     sendData.TargetId = [JSExtension shared].targetId;
@@ -754,7 +754,7 @@
     sendData.ConversationId = extraDic[@"ConversationId"];
     sendData.FromCertifyId = [JSExtension shared].myIdentityId;
     sendData.FromId = [UserManager shared].getUserModel.UserID;
-    sendData.IdField = extraDic[@"Id"];
+    sendData.Id = extraDic[@"Id"];
     sendData.SendType = 4;
     sendData.Target = [JSExtension shared].targetId;
     sendData.TargetId = [JSExtension shared].targetId;

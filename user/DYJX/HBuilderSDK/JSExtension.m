@@ -318,4 +318,46 @@
     }
 }
 
+- (void)getConversion:(NSString *)targetId FromId:(NSString *)fromId type:(NSInteger)type  DataSuccess:(void(^)(id response))success failed:(void(^)(NSString *errorMsg))fail{
+    WeakSelf;
+    NSMutableDictionary *requestDic = [[NSMutableDictionary alloc] init];
+    [requestDic setObject:[UserManager shared].getUserModel.UserID forKey:@"UserID"];
+    [requestDic setObject:@"iOS" forKey:@"Device"];
+    [requestDic setObject:[JSExtension shared].myClientId forKey:@"ClientId"];
+    [requestDic setObject:[UserManager shared].login.ObjResult forKey:@"DeviceToken"];
+    [requestDic setObject:[UserManager shared].getUserModel.MemberID forKey:@"MemberID"];
+    [requestDic setObject:[JSExtension shared].myIdentityId forKey:@"CertificateId"];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    [data setObject:fromId forKey:@"FromId"];
+    [data setObject:targetId forKey:@"TargetId"];
+    [data setObject:@(type) forKey:@"Type"];
+    [requestDic setObject:data forKey:@"Data"];
+
+    [XYNetWorking XYPOST:@"FindConversation" params:requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+
+            if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
+                [XYProgressHUD svHUDDismiss];
+                SKResult *result = [SKResult mj_objectWithKeyValues:[responseObject objectForKey:@"Result"]];
+                success(result);
+
+            }else{
+                [YDBAlertView showToast:[responseObject objectForKey:RETURN_DESC_] dismissDelay:1.0];
+
+                NSError * error = [[NSError alloc]initWithDomain:@"" code:100000 userInfo:nil];
+                fail(error.localizedDescription);
+            }
+
+        }else{
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+            NSError * error = [[NSError alloc]initWithDomain:[responseObject objectForKey:RETURN_CODE_] code:100000 userInfo:nil];
+            fail(error.localizedDescription);
+        }
+
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        fail(error.localizedDescription);
+    }];
+}
+
 @end

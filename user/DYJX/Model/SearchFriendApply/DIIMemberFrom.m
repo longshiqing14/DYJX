@@ -17,7 +17,7 @@ NSString *const kDIIMemberFromDeleted = @"Deleted";
 NSString *const kDIIMemberFromDisabled = @"Disabled";
 NSString *const kDIIMemberFromDisplayName = @"DisplayName";
 NSString *const kDIIMemberFromDisplayTel = @"DisplayTel";
-NSString *const kDIIMemberFromIdField = @"Id";
+NSString *const kDIIMemberFromId = @"Id";
 NSString *const kDIIMemberFromNumber = @"Number";
 NSString *const kDIIMemberFromNumberString = @"NumberString";
 NSString *const kDIIMemberFromRongCloudToken = @"RongCloudToken";
@@ -65,8 +65,8 @@ NSString *const kDIIMemberFromUserName = @"UserName";
 	if(![dictionary[kDIIMemberFromDisplayTel] isKindOfClass:[NSNull class]]){
 		self.DisplayTel = dictionary[kDIIMemberFromDisplayTel];
 	}	
-	if(![dictionary[kDIIMemberFromIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDIIMemberFromIdField];
+	if(![dictionary[kDIIMemberFromId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDIIMemberFromId];
 	}	
 	if(![dictionary[kDIIMemberFromNumber] isKindOfClass:[NSNull class]]){
 		self.Number = [dictionary[kDIIMemberFromNumber] integerValue];
@@ -115,8 +115,8 @@ NSString *const kDIIMemberFromUserName = @"UserName";
 	if(self.DisplayTel != nil){
 		dictionary[kDIIMemberFromDisplayTel] = self.DisplayTel;
 	}
-	if(self.IdField != nil){
-		dictionary[kDIIMemberFromIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDIIMemberFromId] = self.Id;
 	}
 	dictionary[kDIIMemberFromNumber] = @(self.Number);
 	if(self.NumberString != nil){
@@ -159,8 +159,8 @@ NSString *const kDIIMemberFromUserName = @"UserName";
 	if(self.DisplayTel != nil){
 		[aCoder encodeObject:self.DisplayTel forKey:kDIIMemberFromDisplayTel];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDIIMemberFromIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDIIMemberFromId];
 	}
 	[aCoder encodeObject:@(self.Number) forKey:kDIIMemberFromNumber];	if(self.NumberString != nil){
 		[aCoder encodeObject:self.NumberString forKey:kDIIMemberFromNumberString];
@@ -188,7 +188,7 @@ NSString *const kDIIMemberFromUserName = @"UserName";
 	self.Disabled = [[aDecoder decodeObjectForKey:kDIIMemberFromDisabled] boolValue];
 	self.DisplayName = [aDecoder decodeObjectForKey:kDIIMemberFromDisplayName];
 	self.DisplayTel = [aDecoder decodeObjectForKey:kDIIMemberFromDisplayTel];
-	self.IdField = [aDecoder decodeObjectForKey:kDIIMemberFromIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDIIMemberFromId];
 	self.Number = [[aDecoder decodeObjectForKey:kDIIMemberFromNumber] integerValue];
 	self.NumberString = [aDecoder decodeObjectForKey:kDIIMemberFromNumberString];
 	self.RongCloudToken = [aDecoder decodeObjectForKey:kDIIMemberFromRongCloudToken];
@@ -213,7 +213,7 @@ NSString *const kDIIMemberFromUserName = @"UserName";
 	copy.Disabled = self.Disabled;
 	copy.DisplayName = [self.DisplayName copy];
 	copy.DisplayTel = [self.DisplayTel copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Number = self.Number;
 	copy.NumberString = [self.NumberString copy];
 	copy.RongCloudToken = [self.RongCloudToken copy];

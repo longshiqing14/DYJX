@@ -16,7 +16,7 @@ NSString *const kDJJSResultCreateOn = @"CreateOn";
 NSString *const kDJJSResultDeleted = @"Deleted";
 NSString *const kDJJSResultDisabled = @"Disabled";
 NSString *const kDJJSResultDisplayName = @"DisplayName";
-NSString *const kDJJSResultIdField = @"Id";
+NSString *const kDJJSResultId = @"Id";
 NSString *const kDJJSResultNumber = @"Number";
 NSString *const kDJJSResultNumberString = @"NumberString";
 NSString *const kDJJSResultRelation = @"Relation";
@@ -62,8 +62,8 @@ NSString *const kDJJSResultUserName = @"UserName";
 	if(![dictionary[kDJJSResultDisplayName] isKindOfClass:[NSNull class]]){
 		self.DisplayName = dictionary[kDJJSResultDisplayName];
 	}	
-	if(![dictionary[kDJJSResultIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDJJSResultIdField];
+	if(![dictionary[kDJJSResultId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDJJSResultId];
 	}	
 	if(![dictionary[kDJJSResultNumber] isKindOfClass:[NSNull class]]){
 		self.Number = [dictionary[kDJJSResultNumber] integerValue];
@@ -113,8 +113,8 @@ NSString *const kDJJSResultUserName = @"UserName";
 	if(self.DisplayName != nil){
 		dictionary[kDJJSResultDisplayName] = self.DisplayName;
 	}
-	if(self.IdField != nil){
-		dictionary[kDJJSResultIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDJJSResultId] = self.Id;
 	}
 	dictionary[kDJJSResultNumber] = @(self.Number);
 	if(self.NumberString != nil){
@@ -157,8 +157,8 @@ NSString *const kDJJSResultUserName = @"UserName";
 	[aCoder encodeObject:@(self.Deleted) forKey:kDJJSResultDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kDJJSResultDisabled];	if(self.DisplayName != nil){
 		[aCoder encodeObject:self.DisplayName forKey:kDJJSResultDisplayName];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDJJSResultIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDJJSResultId];
 	}
 	[aCoder encodeObject:@(self.Number) forKey:kDJJSResultNumber];	if(self.NumberString != nil){
 		[aCoder encodeObject:self.NumberString forKey:kDJJSResultNumberString];
@@ -188,7 +188,7 @@ NSString *const kDJJSResultUserName = @"UserName";
 	self.Deleted = [[aDecoder decodeObjectForKey:kDJJSResultDeleted] boolValue];
 	self.Disabled = [[aDecoder decodeObjectForKey:kDJJSResultDisabled] boolValue];
 	self.DisplayName = [aDecoder decodeObjectForKey:kDJJSResultDisplayName];
-	self.IdField = [aDecoder decodeObjectForKey:kDJJSResultIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDJJSResultId];
 	self.Number = [[aDecoder decodeObjectForKey:kDJJSResultNumber] integerValue];
 	self.NumberString = [aDecoder decodeObjectForKey:kDJJSResultNumberString];
 	self.Relation = [aDecoder decodeObjectForKey:kDJJSResultRelation];
@@ -213,7 +213,7 @@ NSString *const kDJJSResultUserName = @"UserName";
 	copy.Deleted = self.Deleted;
 	copy.Disabled = self.Disabled;
 	copy.DisplayName = [self.DisplayName copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Number = self.Number;
 	copy.NumberString = [self.NumberString copy];
 	copy.Relation = [self.Relation copy];

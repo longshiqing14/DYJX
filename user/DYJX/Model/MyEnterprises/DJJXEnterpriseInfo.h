@@ -14,7 +14,7 @@
 @property (nonatomic, assign) BOOL AdminSay;
 @property (nonatomic, assign) BOOL CanNotSearch;
 @property (nonatomic, copy) NSString * CompanyName;
-@property (nonatomic, copy) NSString * IdField;
+@property (nonatomic, copy) NSString * Id;
 @property (nonatomic, copy) NSString * Images;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;

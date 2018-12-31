@@ -260,24 +260,24 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.type == 1) {
-        return 48;
+        return 60;
     }
     else if (self.type == 2) {
-        return 48;
+        return 60;
     }
     else if (self.type == 3) {
         DIIResult *result = (DIIResult *)self.applyArray[indexPath.row];
 
          if ((result.IsAgree && result.IsProcess) || (result.IsProcess && !result.IsAgree)) {
-             return 48;
+             return 60;
          }
         else if ([result.MemberTo.Id isEqualToString:[UserManager shared].getUserModel.UserID]) { // 待处理的好友请求
-            return 48;
+            return 60;
         }
-        return 72;
+        return 84;
     }
     else if (self.type == 4) {
-        return 48;
+        return 60;
     }
     return 0;
 }
@@ -416,25 +416,81 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.type == 1) {
-//        DLLResult *result = (DLLResult *)self.goodArray[indexPath.row];
-//        RCConversationType conversationType = ConversationType_PRIVATE;
-//        NIMSessionType type = NIMSessionTypeP2P;
-//        [JSExtension shared].type = 0;
-//        [JSExtension shared].targetId = result.IMUser.IdField;
-//        [JSExtension shared].targetName = result.IMUser.UserName;;
-//        [JSExtension shared].targetImg = result.IMUser.Business.IMInfo.HeadImgUrl;
-//
-////        [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].targetId];
-//
-//        NIMSession *session = [NIMSession session:@"" type:type];
-//        [JSExtension shared].session = session;
-//        JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
-//        [JSExtension shared].chatVC = chatVC;
-//        chatVC.naviTitle = result.IMUser.DisplayName;
-////        chatVC.chatModel = model;
-//        [self.navigationController pushViewController:chatVC animated:YES];
+        DLLResult *result = (DLLResult *)self.goodArray[indexPath.row];
+        [[JSExtension shared] getConversion:result.BindUserId FromId:result.UserId type:result.UserType DataSuccess:^(id  _Nonnull response) {
+            SKResult *respo = (SKResult *)response;
+            NIMSessionType type = NIMSessionTypeP2P;
+            [JSExtension shared].type = 0;
+            if (respo.LastMsg.RowData) {
+                NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
+                NSDictionary *dic = [body stringToDictionary];
+                if (dic[@"extra"]) {
+                    NSDictionary *dict = [dic[@"extra"] stringToDictionary];
+                    [JSExtension shared].targetId = dict[@"TargetId"];
+                    [JSExtension shared].targetName = dict[@"TargetName"];
+                    [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
+                    [JSExtension shared].conversionId = respo.LastMsg.ConversationId;
+                }
+            }
+
+            if([JSExtension shared].conversionId.length) {
+                [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+
+                NIMSession *session = [NIMSession session:respo.LastMsg.ConversationId type:type];
+                [JSExtension shared].session = session;
+                JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+                RCConversationModel *chatModel = [[RCConversationModel alloc] init];
+                chatModel.targetId = [JSExtension shared].conversionId;
+                [JSExtension shared].chatVC = chatVC;
+                chatVC.naviTitle = result.IMUser.DisplayName;
+                chatVC.chatModel = chatModel;
+                [self.navigationController pushViewController:chatVC animated:YES];
+            }
+            else {
+                [self.view makeToast:@"会话ID获取失败"];
+            }
+        } failed:^(NSString * _Nonnull errorMsg) {
+            [self.view makeToast:@"会话ID获取失败"];
+        }];
     }
     else if(self.type == 2) {
+        DLLResult *result = (DLLResult *)self.genralArray[indexPath.row];
+        [[JSExtension shared] getConversion:result.BindUserId FromId:result.UserId type:result.UserType DataSuccess:^(id  _Nonnull response) {
+            SKResult *respo = (SKResult *)response;
+            NIMSessionType type = NIMSessionTypeP2P;
+            [JSExtension shared].type = 0;
+            if (respo.LastMsg.RowData) {
+                NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
+                NSDictionary *dic = [body stringToDictionary];
+                if (dic[@"extra"]) {
+                    NSDictionary *dict = [dic[@"extra"] stringToDictionary];
+                    [JSExtension shared].targetId = dict[@"TargetId"];
+                    [JSExtension shared].targetName = dict[@"TargetName"];
+                    [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
+                    [JSExtension shared].conversionId = respo.LastMsg.ConversationId;
+                }
+            }
+
+            if([JSExtension shared].conversionId.length) {
+                [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+
+                NIMSession *session = [NIMSession session:respo.LastMsg.ConversationId type:type];
+                [JSExtension shared].session = session;
+                JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+                RCConversationModel *chatModel = [[RCConversationModel alloc] init];
+                chatModel.targetId = [JSExtension shared].conversionId;
+                [JSExtension shared].chatVC = chatVC;
+                chatVC.naviTitle = result.IMUser.DisplayName;
+                chatVC.chatModel = chatModel;
+                [self.navigationController pushViewController:chatVC animated:YES];
+            }
+            else {
+                [self.view makeToast:@"会话ID获取失败"];
+            }
+        } failed:^(NSString * _Nonnull errorMsg) {
+            [self.view makeToast:@"会话ID获取失败"];
+        }];
+
     }
     else if(self.type == 3) {
         DIIResult *result = (DIIResult *)self.applyArray[indexPath.row];

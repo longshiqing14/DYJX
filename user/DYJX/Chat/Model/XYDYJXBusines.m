@@ -13,7 +13,7 @@ NSString *const kXYDYJXBusinesCreateOn = @"CreateOn";
 NSString *const kXYDYJXBusinesDeleted = @"Deleted";
 NSString *const kXYDYJXBusinesDisabled = @"Disabled";
 NSString *const kXYDYJXBusinesIMInfo = @"IMInfo";
-NSString *const kXYDYJXBusinesIdField = @"Id";
+NSString *const kXYDYJXBusinesId = @"Id";
 
 @interface XYDYJXBusines ()
 @end
@@ -44,8 +44,8 @@ NSString *const kXYDYJXBusinesIdField = @"Id";
 		self.IMInfo = [[XYDYJXIMInfo alloc] initWithDictionary:dictionary[kXYDYJXBusinesIMInfo]];
 	}
 
-	if(![dictionary[kXYDYJXBusinesIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kXYDYJXBusinesIdField];
+	if(![dictionary[kXYDYJXBusinesId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kXYDYJXBusinesId];
 	}	
 	return self;
 }
@@ -65,8 +65,8 @@ NSString *const kXYDYJXBusinesIdField = @"Id";
 	if(self.IMInfo != nil){
 		dictionary[kXYDYJXBusinesIMInfo] = [self.IMInfo toDictionary];
 	}
-	if(self.IdField != nil){
-		dictionary[kXYDYJXBusinesIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kXYDYJXBusinesId] = self.Id;
 	}
 	return dictionary;
 
@@ -86,8 +86,8 @@ NSString *const kXYDYJXBusinesIdField = @"Id";
 	[aCoder encodeObject:@(self.Deleted) forKey:kXYDYJXBusinesDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kXYDYJXBusinesDisabled];	if(self.IMInfo != nil){
 		[aCoder encodeObject:self.IMInfo forKey:kXYDYJXBusinesIMInfo];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kXYDYJXBusinesIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kXYDYJXBusinesId];
 	}
 
 }
@@ -102,7 +102,7 @@ NSString *const kXYDYJXBusinesIdField = @"Id";
 	self.Deleted = [[aDecoder decodeObjectForKey:kXYDYJXBusinesDeleted] boolValue];
 	self.Disabled = [[aDecoder decodeObjectForKey:kXYDYJXBusinesDisabled] boolValue];
 	self.IMInfo = [aDecoder decodeObjectForKey:kXYDYJXBusinesIMInfo];
-	self.IdField = [aDecoder decodeObjectForKey:kXYDYJXBusinesIdField];
+	self.Id = [aDecoder decodeObjectForKey:kXYDYJXBusinesId];
 	return self;
 
 }
@@ -118,7 +118,7 @@ NSString *const kXYDYJXBusinesIdField = @"Id";
 	copy.Deleted = self.Deleted;
 	copy.Disabled = self.Disabled;
 	copy.IMInfo = [self.IMInfo copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 
 	return copy;
 }

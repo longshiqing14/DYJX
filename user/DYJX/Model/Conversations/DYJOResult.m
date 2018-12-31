@@ -16,7 +16,7 @@ NSString *const kDYJOResultDisabled = @"Disabled";
 NSString *const kDYJOResultFromHeadImg = @"FromHeadImg";
 NSString *const kDYJOResultFromId = @"FromId";
 NSString *const kDYJOResultFromName = @"FromName";
-NSString *const kDYJOResultIdField = @"Id";
+NSString *const kDYJOResultId = @"Id";
 NSString *const kDYJOResultLastMsg = @"LastMsg";
 NSString *const kDYJOResultTargetHeadImg = @"TargetHeadImg";
 NSString *const kDYJOResultTargetId = @"TargetId";
@@ -62,8 +62,8 @@ NSString *const kDYJOResultUpdateOn = @"UpdateOn";
 	if(![dictionary[kDYJOResultFromName] isKindOfClass:[NSNull class]]){
 		self.FromName = dictionary[kDYJOResultFromName];
 	}	
-	if(![dictionary[kDYJOResultIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDYJOResultIdField];
+	if(![dictionary[kDYJOResultId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDYJOResultId];
 	}	
 	if(![dictionary[kDYJOResultLastMsg] isKindOfClass:[NSNull class]]){
 		self.LastMsg = [[NSDictionary alloc] initWithDictionary:dictionary[kDYJOResultLastMsg]];
@@ -115,8 +115,8 @@ NSString *const kDYJOResultUpdateOn = @"UpdateOn";
 	if(self.FromName != nil){
 		dictionary[kDYJOResultFromName] = self.FromName;
 	}
-	if(self.IdField != nil){
-		dictionary[kDYJOResultIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDYJOResultId] = self.Id;
 	}
 	if(self.LastMsg != nil){
 		dictionary[kDYJOResultLastMsg] = self.LastMsg;
@@ -164,8 +164,8 @@ NSString *const kDYJOResultUpdateOn = @"UpdateOn";
 	if(self.FromName != nil){
 		[aCoder encodeObject:self.FromName forKey:kDYJOResultFromName];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDYJOResultIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDYJOResultId];
 	}
 	if(self.LastMsg != nil){
 		[aCoder encodeObject:self.LastMsg forKey:kDYJOResultLastMsg];
@@ -201,7 +201,7 @@ NSString *const kDYJOResultUpdateOn = @"UpdateOn";
 	self.FromHeadImg = [aDecoder decodeObjectForKey:kDYJOResultFromHeadImg];
 	self.FromId = [aDecoder decodeObjectForKey:kDYJOResultFromId];
 	self.FromName = [aDecoder decodeObjectForKey:kDYJOResultFromName];
-	self.IdField = [aDecoder decodeObjectForKey:kDYJOResultIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDYJOResultId];
 	self.LastMsg = [aDecoder decodeObjectForKey:kDYJOResultLastMsg];
 	self.TargetHeadImg = [aDecoder decodeObjectForKey:kDYJOResultTargetHeadImg];
 	self.TargetId = [aDecoder decodeObjectForKey:kDYJOResultTargetId];
@@ -227,7 +227,7 @@ NSString *const kDYJOResultUpdateOn = @"UpdateOn";
 	copy.FromHeadImg = [self.FromHeadImg copy];
 	copy.FromId = [self.FromId copy];
 	copy.FromName = [self.FromName copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.LastMsg = [self.LastMsg copy];
 	copy.TargetHeadImg = [self.TargetHeadImg copy];
 	copy.TargetId = [self.TargetId copy];

@@ -21,7 +21,7 @@ NSString *const kXYDYJXResultDeleted = @"Deleted";
 NSString *const kXYDYJXResultDisabled = @"Disabled";
 NSString *const kXYDYJXResultDistrictID = @"DistrictID";
 NSString *const kXYDYJXResultIMUser = @"IMUser";
-NSString *const kXYDYJXResultIdField = @"Id";
+NSString *const kXYDYJXResultId = @"Id";
 NSString *const kXYDYJXResultNumber = @"Number";
 NSString *const kXYDYJXResultNumberString = @"NumberString";
 NSString *const kXYDYJXResultProvinceID = @"ProvinceID";
@@ -88,8 +88,8 @@ NSString *const kXYDYJXResultUserType = @"UserType";
 		self.IMUser = [[XYDYJXIMUser alloc] initWithDictionary:dictionary[kXYDYJXResultIMUser]];
 	}
 
-	if(![dictionary[kXYDYJXResultIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kXYDYJXResultIdField];
+	if(![dictionary[kXYDYJXResultId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kXYDYJXResultId];
 	}	
 	if(![dictionary[kXYDYJXResultNumber] isKindOfClass:[NSNull class]]){
 		self.Number = [dictionary[kXYDYJXResultNumber] integerValue];
@@ -158,8 +158,8 @@ NSString *const kXYDYJXResultUserType = @"UserType";
 	if(self.IMUser != nil){
 		dictionary[kXYDYJXResultIMUser] = [self.IMUser toDictionary];
 	}
-	if(self.IdField != nil){
-		dictionary[kXYDYJXResultIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kXYDYJXResultId] = self.Id;
 	}
 	dictionary[kXYDYJXResultNumber] = @(self.Number);
 	if(self.NumberString != nil){
@@ -213,8 +213,8 @@ NSString *const kXYDYJXResultUserType = @"UserType";
 	[aCoder encodeObject:@(self.Deleted) forKey:kXYDYJXResultDeleted];	[aCoder encodeObject:@(self.Disabled) forKey:kXYDYJXResultDisabled];	[aCoder encodeObject:@(self.DistrictID) forKey:kXYDYJXResultDistrictID];	if(self.IMUser != nil){
 		[aCoder encodeObject:self.IMUser forKey:kXYDYJXResultIMUser];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kXYDYJXResultIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kXYDYJXResultId];
 	}
 	[aCoder encodeObject:@(self.Number) forKey:kXYDYJXResultNumber];	if(self.NumberString != nil){
 		[aCoder encodeObject:self.NumberString forKey:kXYDYJXResultNumberString];
@@ -252,7 +252,7 @@ NSString *const kXYDYJXResultUserType = @"UserType";
 	self.Disabled = [[aDecoder decodeObjectForKey:kXYDYJXResultDisabled] boolValue];
 	self.DistrictID = [[aDecoder decodeObjectForKey:kXYDYJXResultDistrictID] integerValue];
 	self.IMUser = [aDecoder decodeObjectForKey:kXYDYJXResultIMUser];
-	self.IdField = [aDecoder decodeObjectForKey:kXYDYJXResultIdField];
+	self.Id = [aDecoder decodeObjectForKey:kXYDYJXResultId];
 	self.Number = [[aDecoder decodeObjectForKey:kXYDYJXResultNumber] integerValue];
 	self.NumberString = [aDecoder decodeObjectForKey:kXYDYJXResultNumberString];
 	self.ProvinceID = [[aDecoder decodeObjectForKey:kXYDYJXResultProvinceID] integerValue];
@@ -285,7 +285,7 @@ NSString *const kXYDYJXResultUserType = @"UserType";
 	copy.Disabled = self.Disabled;
 	copy.DistrictID = self.DistrictID;
 	copy.IMUser = [self.IMUser copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Number = self.Number;
 	copy.NumberString = [self.NumberString copy];
 	copy.ProvinceID = self.ProvinceID;

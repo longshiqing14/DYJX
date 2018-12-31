@@ -12,7 +12,7 @@
 NSString *const kDJJXEnterpriseInfoAdminSay = @"AdminSay";
 NSString *const kDJJXEnterpriseInfoCanNotSearch = @"CanNotSearch";
 NSString *const kDJJXEnterpriseInfoCompanyName = @"CompanyName";
-NSString *const kDJJXEnterpriseInfoIdField = @"Id";
+NSString *const kDJJXEnterpriseInfoId = @"Id";
 NSString *const kDJJXEnterpriseInfoImages = @"Images";
 
 @interface DJJXEnterpriseInfo ()
@@ -40,8 +40,8 @@ NSString *const kDJJXEnterpriseInfoImages = @"Images";
 	if(![dictionary[kDJJXEnterpriseInfoCompanyName] isKindOfClass:[NSNull class]]){
 		self.CompanyName = dictionary[kDJJXEnterpriseInfoCompanyName];
 	}	
-	if(![dictionary[kDJJXEnterpriseInfoIdField] isKindOfClass:[NSNull class]]){
-		self.IdField = dictionary[kDJJXEnterpriseInfoIdField];
+	if(![dictionary[kDJJXEnterpriseInfoId] isKindOfClass:[NSNull class]]){
+		self.Id = dictionary[kDJJXEnterpriseInfoId];
 	}	
 	if(![dictionary[kDJJXEnterpriseInfoImages] isKindOfClass:[NSNull class]]){
 		self.Images = dictionary[kDJJXEnterpriseInfoImages];
@@ -61,8 +61,8 @@ NSString *const kDJJXEnterpriseInfoImages = @"Images";
 	if(self.CompanyName != nil){
 		dictionary[kDJJXEnterpriseInfoCompanyName] = self.CompanyName;
 	}
-	if(self.IdField != nil){
-		dictionary[kDJJXEnterpriseInfoIdField] = self.IdField;
+	if(self.Id != nil){
+		dictionary[kDJJXEnterpriseInfoId] = self.Id;
 	}
 	if(self.Images != nil){
 		dictionary[kDJJXEnterpriseInfoImages] = self.Images;
@@ -82,8 +82,8 @@ NSString *const kDJJXEnterpriseInfoImages = @"Images";
 	[aCoder encodeObject:@(self.AdminSay) forKey:kDJJXEnterpriseInfoAdminSay];	[aCoder encodeObject:@(self.CanNotSearch) forKey:kDJJXEnterpriseInfoCanNotSearch];	if(self.CompanyName != nil){
 		[aCoder encodeObject:self.CompanyName forKey:kDJJXEnterpriseInfoCompanyName];
 	}
-	if(self.IdField != nil){
-		[aCoder encodeObject:self.IdField forKey:kDJJXEnterpriseInfoIdField];
+	if(self.Id != nil){
+		[aCoder encodeObject:self.Id forKey:kDJJXEnterpriseInfoId];
 	}
 	if(self.Images != nil){
 		[aCoder encodeObject:self.Images forKey:kDJJXEnterpriseInfoImages];
@@ -100,7 +100,7 @@ NSString *const kDJJXEnterpriseInfoImages = @"Images";
 	self.AdminSay = [[aDecoder decodeObjectForKey:kDJJXEnterpriseInfoAdminSay] boolValue];
 	self.CanNotSearch = [[aDecoder decodeObjectForKey:kDJJXEnterpriseInfoCanNotSearch] boolValue];
 	self.CompanyName = [aDecoder decodeObjectForKey:kDJJXEnterpriseInfoCompanyName];
-	self.IdField = [aDecoder decodeObjectForKey:kDJJXEnterpriseInfoIdField];
+	self.Id = [aDecoder decodeObjectForKey:kDJJXEnterpriseInfoId];
 	self.Images = [aDecoder decodeObjectForKey:kDJJXEnterpriseInfoImages];
 	return self;
 
@@ -116,7 +116,7 @@ NSString *const kDJJXEnterpriseInfoImages = @"Images";
 	copy.AdminSay = self.AdminSay;
 	copy.CanNotSearch = self.CanNotSearch;
 	copy.CompanyName = [self.CompanyName copy];
-	copy.IdField = [self.IdField copy];
+	copy.Id = [self.Id copy];
 	copy.Images = [self.Images copy];
 
 	return copy;

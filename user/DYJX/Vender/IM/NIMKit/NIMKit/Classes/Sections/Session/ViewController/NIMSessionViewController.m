@@ -745,7 +745,7 @@
             break;
         case 1:
             [items addObject:[[UIMenuItem alloc] initWithTitle:@"下载"
-                                                        action:@selector(copyText:)]];
+                                                        action:@selector(downLoad:)]];
             [items addObject:[[UIMenuItem alloc] initWithTitle:@"转发"
                                                         action:@selector(rotateSend:)]];
             [items addObject:[[UIMenuItem alloc] initWithTitle:@"分享到微信"
@@ -819,6 +819,30 @@
     DYRotateSendViewController *target = [[DYRotateSendViewController alloc] init];
     target.message = message;
     [self.navigationController pushViewController:target animated:YES];
+}
+
+-(void)downLoad:(id)sender {
+    RCIMMessage *message = [self messageForMenu];
+    UIImage *imageToShare = nil;
+    if (message.image) {
+        imageToShare = message.image;
+    }
+    else {
+        imageToShare = [UIImage imageWithContentsOfFile:message.LocalPath];
+    }
+    if (!imageToShare) {
+        imageToShare = [UIImage imageNamed:@"dyjx_default_img"];
+    }
+    UIImageWriteToSavedPhotosAlbum(imageToShare, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+
+-(void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contentInfo {
+    if (error) {
+        [self.view makeToast:@"下载失败"];
+    }
+    else {
+        [self.view makeToast:@"已经下载到图片库"];
+    }
 }
 
 - (void)copyText:(id)sender

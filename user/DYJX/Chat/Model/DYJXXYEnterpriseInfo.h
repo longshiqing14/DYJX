@@ -16,7 +16,7 @@
 @property (nonatomic, copy) NSString * CompanyName;
 @property (nonatomic, copy) NSString * CompanyShortName;
 @property (nonatomic, copy) NSString * HeadImgUrl;
-@property (nonatomic, copy) NSString * IdField;
+@property (nonatomic, copy) NSString * Id;
 @property (nonatomic, copy) NSString * Images;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;

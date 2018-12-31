@@ -16,7 +16,7 @@
 @property (nonatomic, assign) BOOL Deleted;
 @property (nonatomic, assign) BOOL Disabled;
 @property (nonatomic, strong) DJJSIMInfo * IMInfo;
-@property (nonatomic, copy) NSString * IdField;
+@property (nonatomic, copy) NSString * Id;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
