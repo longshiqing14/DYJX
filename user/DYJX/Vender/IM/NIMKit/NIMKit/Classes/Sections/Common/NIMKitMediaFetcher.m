@@ -14,6 +14,7 @@
 #import "NIMKitDependency.h"
 #import "TZImageManager.h"
 #import "NIMKitProgressHUD.h"
+#import "JSExtension.h"
 
 @interface NIMKitMediaPickerController : TZImagePickerController
 
@@ -51,7 +52,7 @@
         if (picker && weakSelf) {
             weakSelf.assetsPicker = picker;
             weakSelf.libraryResultHandler = result;
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:picker animated:YES completion:nil];
+            [[JSExtension shared].chatVC presentViewController:picker animated:YES completion:nil];
             
         }else{
             result(nil,nil,PHAssetMediaTypeUnknown);
@@ -68,7 +69,7 @@
 #elif TARGET_OS_IPHONE
         self.imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
         self.imagePicker.videoQuality = UIImagePickerControllerQualityTypeHigh;
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:self.imagePicker animated:YES completion:nil];
+        [[JSExtension shared].chatVC presentViewController:self.imagePicker animated:YES completion:nil];
 #endif
     }
 }

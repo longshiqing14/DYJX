@@ -138,7 +138,9 @@
             if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
                 [XYProgressHUD svHUDDismiss];
                 self.blackArray = [[NSArray modelArrayWithClass:[DYYResult class] json:[responseObject objectForKey:@"Result"]] mutableCopy];
-                [self.tableView reloadData];
+                if (self.type == 4) {
+                    [self.tableView reloadData];
+                }
             }else{
                 [YDBAlertView showToast:[responseObject objectForKey:RETURN_DESC_] dismissDelay:1.0];
             }
@@ -160,7 +162,9 @@
             if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
                 [XYProgressHUD svHUDDismiss];
                 self.applyArray = [[NSArray modelArrayWithClass:[DIIResult class] json:[responseObject objectForKey:@"Result"]] mutableCopy];
-                [self.tableView reloadData];
+                if (self.type == 3) {
+                    [self.tableView reloadData];
+                }
             }else{
                 [YDBAlertView showToast:[responseObject objectForKey:RETURN_DESC_] dismissDelay:1.0];
             }
@@ -209,11 +213,17 @@
                 [XYProgressHUD svHUDDismiss];
                 if (self.type == 1) {
                     self.goodArray = [[NSArray modelArrayWithClass:[DLLResult class] json:[responseObject objectForKey:@"Result"]] mutableCopy];
+                    if (self.type == 1) {
+                        [self.tableView reloadData];
+                    }
                 }
                 else {
                     self.genralArray = [[NSArray modelArrayWithClass:[DLLResult class] json:[responseObject objectForKey:@"Result"]] mutableCopy];
+                    if (self.type == 2) {
+                        [self.tableView reloadData];
+                    }
                 }
-                [self.tableView reloadData];
+
 
             }else{
                 [YDBAlertView showToast:[responseObject objectForKey:RETURN_DESC_] dismissDelay:1.0];
@@ -406,6 +416,23 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.type == 1) {
+//        DLLResult *result = (DLLResult *)self.goodArray[indexPath.row];
+//        RCConversationType conversationType = ConversationType_PRIVATE;
+//        NIMSessionType type = NIMSessionTypeP2P;
+//        [JSExtension shared].type = 0;
+//        [JSExtension shared].targetId = result.IMUser.IdField;
+//        [JSExtension shared].targetName = result.IMUser.UserName;;
+//        [JSExtension shared].targetImg = result.IMUser.Business.IMInfo.HeadImgUrl;
+//
+////        [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].targetId];
+//
+//        NIMSession *session = [NIMSession session:@"" type:type];
+//        [JSExtension shared].session = session;
+//        JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+//        [JSExtension shared].chatVC = chatVC;
+//        chatVC.naviTitle = result.IMUser.DisplayName;
+////        chatVC.chatModel = model;
+//        [self.navigationController pushViewController:chatVC animated:YES];
     }
     else if(self.type == 2) {
     }

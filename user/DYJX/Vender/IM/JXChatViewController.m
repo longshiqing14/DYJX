@@ -11,6 +11,7 @@
 #import "DYJXSubcompanyInfoDetailPage.h"
 #import "DYJXCompanyInfoDetailPage.h"
 #import "IQKeyboardManager.h"
+#import "JSExtension.h"
 
 @interface JXChatViewController ()
 
@@ -36,6 +37,8 @@
 }
 
 -(void)dealloc {
+    [JSExtension shared].chatVC = nil;
+    [JSExtension shared].conversionId = @"";
     [[IQKeyboardManager sharedManager] setEnable:YES];
     [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
     [[IQKeyboardManager sharedManager].disabledToolbarClasses removeObject:[self class]];
@@ -128,7 +131,8 @@
 }
 
 -(void)black_controller{
-
+    [JSExtension shared].chatVC = nil;
+    [JSExtension shared].conversionId = @"";
     [self.navigationController popViewControllerAnimated:YES];
 }
 

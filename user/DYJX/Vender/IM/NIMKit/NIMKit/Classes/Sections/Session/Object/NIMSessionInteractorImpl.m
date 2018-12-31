@@ -16,6 +16,7 @@
 #import "NIMKitAudioCenter.h"
 #import "JXLocationTool.h"
 #import "DYLocationViewController.h"
+#import "JSExtension.h"
 
 static const void * const NTESDispatchMessageDataPrepareSpecificKey = &NTESDispatchMessageDataPrepareSpecificKey;
 dispatch_queue_t NTESMessageDataPrepareQueue()
@@ -473,7 +474,7 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
     vc.delegate = self;
     vc.isSubmit = YES;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:nav animated:YES completion:nil];
+    [[JSExtension shared].chatVC presentViewController:nav animated:YES completion:nil];
 }
 
 -(void)workLocationPressed {

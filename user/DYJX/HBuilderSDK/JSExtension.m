@@ -308,4 +308,14 @@
     return array;
 }
 
+
+-(void)setConversionId:(NSString *)conversionId {
+    if (conversionId) {
+        _conversionId = conversionId;
+        if([JSExtension shared].chatVC) {
+            [JSExtension shared].chatVC.session.sessionId = conversionId;
+        }
+    }
+}
+
 @end

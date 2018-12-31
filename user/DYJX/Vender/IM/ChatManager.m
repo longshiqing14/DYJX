@@ -752,7 +752,6 @@
     sendData.UpdateBy = extraDic[@"FromName"];
     sendData.Deleted = model.isDeleted;
     sendData.ConversationId = extraDic[@"ConversationId"];
-    sendData.ConversationId = extraDic[@"ConversationId"];
     sendData.FromCertifyId = [JSExtension shared].myIdentityId;
     sendData.FromId = [UserManager shared].getUserModel.UserID;
     sendData.IdField = extraDic[@"Id"];
@@ -781,6 +780,7 @@
         if ([NSString stringWithFormat:@"%@",responseObject[@"Succeed"]].boolValue) {
             NSDictionary *dics = [self dictionaryWithJsonString:responseObject[@"Result"][@"RowData"] ? responseObject[@"Result"][@"RowData"] : @""];
             if ([blockMessage.content isKindOfClass:[RCTextMessage class]]) {
+
                 RCTextMessage *textMessage = (RCTextMessage *)(model.content);
                 textMessage.extra = [NSString stringWithFormat:@"%@",dics[@"extra"]];
                 blockMessage.extraDic = [self dictionaryWithJsonString:textMessage.extra];
@@ -805,6 +805,7 @@
             blockMessage.sentTime = [[NSDate date] timeIntervalSince1970]*1000;
             blockMessage.sentStatus = SentStatus_SENT;
             blockMessage.deliveryState = NIMMessageDeliveryStateDeliveried;
+
             if ([blockMessage.content isKindOfClass:[RCImageMessage class]]) {
                 RCImageMessage *textMessage = (RCImageMessage *)(message.content);
                 NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -817,12 +818,16 @@
 //                RCVoiceMessage *textMessage = (RCVoiceMessage *)(message.content);
 //                blockMessage.LocalPath = [self getPathFromModel:blockMessage identifyId:[JSExtension shared].myIdentityId conversationId:[JSExtension shared].conversionId];
             }
+
         }
         else {
             blockMessage.messageUId = [NSString stringWithFormat:@"%lf",[[NSDate date] timeIntervalSince1970]*1000];
             blockMessage.sentTime = [[NSDate date] timeIntervalSince1970]*1000;
             blockMessage.sentStatus = SentStatus_FAILED;
             blockMessage.deliveryState = NIMMessageDeliveryStateFailed;
+        }
+        if ([JSExtension shared].conversionId.length == 0) {
+            [JSExtension shared].conversionId = blockMessage.extraDic[@"ConversationId"];
         }
         [self storeSourceWithContent:blockMessage identifyId:[JSExtension shared].myIdentityId conversationId:[JSExtension shared].conversionId];
         [[DataBaseManager shared] insertModel:blockMessage identifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
@@ -843,6 +848,9 @@
             NSString *type = imageTypes.lastObject;
             NSString *imagePath = [NSString stringWithFormat:@"%@/%@%@%@.%@",docDir,[JSExtension shared].myIdentityId,[JSExtension shared].conversionId,blockMessage.messageUId,type];
             blockMessage.LocalPath = imagePath;
+        }
+        if ([JSExtension shared].conversionId.length == 0) {
+            [JSExtension shared].conversionId = blockMessage.extraDic[@"ConversationId"];
         }
         [self storeSourceWithContent:blockMessage identifyId:[JSExtension shared].myIdentityId conversationId:[JSExtension shared].conversionId];
         [[DataBaseManager shared] insertModel:blockMessage identifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
@@ -923,6 +931,9 @@
             NSString *type = imageTypes.lastObject;
             NSString *imagePath = [NSString stringWithFormat:@"%@/%@%@%@.%@",docDir,[JSExtension shared].myIdentityId,[JSExtension shared].conversionId,blockMessage.messageUId,type];
             blockMessage.LocalPath = imagePath;
+        }
+        if ([JSExtension shared].conversionId.length == 0) {
+            [JSExtension shared].conversionId = blockMessage.extraDic[@"ConversationId"];
         }
         [self storeSourceWithContent:blockMessage identifyId:[JSExtension shared].myIdentityId conversationId:[JSExtension shared].conversionId];
         [[DataBaseManager shared] insertModel:blockMessage identifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];

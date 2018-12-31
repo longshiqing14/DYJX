@@ -184,6 +184,9 @@
         dictory[tempConversionId] = @(unreadCount);
     }
     else {
+        if (!tempConversionId.length) {
+            return;
+        }
         dictory[tempConversionId] = @(1);
     }
     NSLog(@"%@",dictory);
@@ -194,6 +197,9 @@
 -(void)remarkAllReadIdentifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
     NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
     NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    if (!tempConversionId.length) {
+        return;
+    }
     YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
     NSString *tableName = [NSString stringWithFormat:@"%@%@",firstString,tempIdentifyId];
     [store createTableWithName:tableName];
