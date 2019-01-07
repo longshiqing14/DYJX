@@ -88,7 +88,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
     NSLog(@"%@",launchOptions);
 
     // 微信分享
-    [WXApi registerApp:@"wxfba72eb585ced789"];
+    [WXApi registerApp:@"wxa821f07ab127f88a"];
 
     // 为了用音频
     [[NIMSDK sharedSDK] registerWithAppID:NIMSDKAppKey cerName:nil];
@@ -99,7 +99,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
     
 //    [self getSessionId];
 //    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    [WXApi registerApp:@"wx58c50219d3defad2"];
+//    [WXApi registerApp:@"wx58c50219d3defad2"];
     [[RCIMClient sharedRCIMClient] registerMessageType:SimpleMessage.class];
     //设置会话列表头像和会话页面头像
     [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
