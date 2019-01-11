@@ -19,6 +19,7 @@
 @property (nonatomic, assign) BOOL selectedSeverProtocol;
 @property (nonatomic, strong) DYJXRegisteViewModel *viewModel;
 @property(nonatomic, copy)NSString *randCode;
+@property(nonatomic, strong)UIView *bottomBackgroundView;
 @end
 
 @implementation DYJXRegistePage
@@ -31,7 +32,16 @@
       NSFontAttributeName:[UIFont systemFontOfSize:18]};
     self.selectedSeverProtocol = YES;
     [self initNavigation];
+    [self initSubViews];
     [self.backToLoginBTN setAttributedTitle:[YWDTools combineAttributeStr:@"已有账号 ？" color:@"#FFFFFF" secondAttributeStr:@"请登录》" color:@"#F2A73B"] forState:(UIControlStateNormal)];
+}
+
+- (void)initSubViews{
+    [self.view addSubview:self.bottomBackgroundView];
+    [self.bottomBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(34);
+    }];
 }
 
 - (void)initNavigation{
@@ -124,6 +134,15 @@
     }
     return _viewModel;
 }
+
+- (UIView *)bottomBackgroundView{
+    if (!_bottomBackgroundView) {
+        _bottomBackgroundView = [[UIView alloc]init];
+        _bottomBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#15293B"];
+    }
+    return _bottomBackgroundView;
+}
+
 /*
 #pragma mark - Navigation
 

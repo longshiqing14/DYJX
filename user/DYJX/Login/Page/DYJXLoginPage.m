@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *userNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;
 @property(nonatomic ,strong) DYJXLoginViewModel *viewModel;
+@property(nonatomic, strong)UIView *bottomBackgroundView;
 @end
 
 @implementation DYJXLoginPage
@@ -29,7 +30,7 @@
     self.navigationController.navigationBar.titleTextAttributes=
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
       NSFontAttributeName:[UIFont systemFontOfSize:18]};
-
+    [self initSubViews];
 //    self.userNameTF.text = @"13612846724";
 //    self.passwordTF.text = @"111111";
 //    self.userNameTF.text = @"13750820441";
@@ -39,6 +40,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)initSubViews{
+    [self.view addSubview:self.bottomBackgroundView];
+    [self.bottomBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(34);
+    }];
 }
 
 - (IBAction)loginButtonClick:(UIButton *)sender {
@@ -76,6 +85,14 @@
         _viewModel = [[DYJXLoginViewModel alloc]init];
     }
     return _viewModel;
+}
+
+- (UIView *)bottomBackgroundView{
+    if (!_bottomBackgroundView) {
+        _bottomBackgroundView = [[UIView alloc]init];
+        _bottomBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#15293B"];
+    }
+    return _bottomBackgroundView;
 }
 /*
 #pragma mark - Navigation
