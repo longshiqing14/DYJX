@@ -54,7 +54,7 @@
 #import "DYJXLoginPage.h"
 
 #import <RongIMKit/RongIMKit.h>
-#define RongAppKey @"qf3d5gbjqs03h"
+#define RongAppKey @"qf3d5gbjqwflh"
 #define NIMSDKAppKey @"8fc95f505b6cbaedf613677c8e08fc0b"
 
 #endif
@@ -199,14 +199,42 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
     [self netWorkReachAbility];
 //    [self eliminate];
 
+    [self initIm];
+
     return [PDRCore initEngineWihtOptions:launchOptions withRunMode:PDRCoreRunModeAppClient];
+}
+
+-(void)initIm {
+    [XYNetWorking XYPOST:@"RongCloudAPPKey" params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+
+            if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
+                [XYProgressHUD svHUDDismiss];
+                NSString *result = [NSString stringWithFormat:@"%@", [responseObject objectForKey:@"Result"]];
+                NSArray *appKeys = [result componentsSeparatedByString:@","];
+                NSString *appkey = [NSString stringWithFormat:@"%@", appKeys.firstObject];
+                if (appkey.length) {
+                    [[RCIM sharedRCIM] initWithAppKey:appkey];
+                }
+            }else{
+                [YDBAlertView showToast:[responseObject objectForKey:RETURN_DESC_] dismissDelay:1.0];
+            }
+
+        }else{
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+            NSError * error = [[NSError alloc]initWithDomain:[responseObject objectForKey:RETURN_CODE_] code:100000 userInfo:nil];
+        }
+
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+    }];
 }
 
 #pragma mark - 初始化融云SDK
 -(void)IMInit{
 
     //请使用您之前从融云开发者控制台注册得到的 App Key，通过RCIM的单例，传入 initWithAppKey: 方法，初始化 SDK。
-    [[RCIM sharedRCIM] initWithAppKey:RongAppKey];
+//    [[RCIM sharedRCIM] initWithAppKey:RongAppKey];
     //    [[RCIMClient sharedRCIMClient] initWithAppKey:RongAppKey];
     [RCIM sharedRCIM].enableMessageAttachUserInfo = YES;
     /*
