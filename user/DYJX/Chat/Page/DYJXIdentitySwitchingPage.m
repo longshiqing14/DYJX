@@ -75,6 +75,7 @@ static NSString *headerID=@"headerID";
 
 - (void)initSubViews{
     [self.view addSubview:self.bottomBackgroundView];
+    [self.view sendSubviewToBack:self.bottomBackgroundView];
     [self.bottomBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
         make.height.mas_equalTo(34);
