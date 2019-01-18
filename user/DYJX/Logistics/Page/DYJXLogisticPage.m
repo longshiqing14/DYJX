@@ -38,7 +38,7 @@
     [self initNavigation];
     [self initSubViews];
     [self initCollectionView];
-    [self setUpTitleView];
+//    [self setUpTitleView];
 
     [self.viewModel.requestDic setObject:self.IdentityModel.Id forKey:@"CertificateId"];
     [self.viewModel getMyAppsSuccess:^{
@@ -255,14 +255,14 @@
         titleView = [[NIMKitTitleView alloc] initWithFrame:CGRectZero];
         self.navigationItem.titleView = titleView;
 
-        titleView.titleLabel.text = @"选择";
+        titleView.titleLabel.text = @"企业简讯";
     }
 
     [titleView sizeToFit];
 }
 
 - (void)initNavigation{
-    self.title = @"达意简讯";
+    self.title = @"企业简讯";
 
     [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
 
