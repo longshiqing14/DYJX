@@ -255,14 +255,14 @@
         titleView = [[NIMKitTitleView alloc] initWithFrame:CGRectZero];
         self.navigationItem.titleView = titleView;
 
-        titleView.titleLabel.text = @"企业简讯";
+        titleView.titleLabel.text = @"公司简讯";
     }
 
     [titleView sizeToFit];
 }
 
 - (void)initNavigation{
-    self.title = @"企业简讯";
+    self.title = @"公司简讯";
 
     [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
 
