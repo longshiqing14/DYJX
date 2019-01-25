@@ -72,10 +72,10 @@
    [[XYCommon getCurrentVC].navigationController popViewControllerAnimated:YES];
     
 }
-//- (NSString*)getCertificateId{
-//    return @"123";
-//}
-//
+- (NSString*)getEnterpriseId{
+    return @"123";
+}
+
 //- (NSString*)getClientId{
 //    return @"123";
 //}

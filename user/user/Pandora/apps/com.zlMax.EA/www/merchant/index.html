@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>新泰通[物流公司]</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id='btnPlusBack' class="mui-icon mui-icon-left-nav mui-pull-left mui-hidden" style="margin-right: -8px;"></a>
+			<a class="mui-icon mui-icon-bars mui-pull-left mui-plus-visible"><span style="font-size: 18px;"> 设置</span></a>
+			<a id="btnMore" class="mui-icon iconfont icon-more mui-pull-right"></a>
+			<a id="btnAdd" class="mui-icon iconfont icon-xinzeng mui-pull-right" style="margin-right: 0px;"></a>
+			<h1 id="title" class="mui-title"></h1>
+			<input type="hidden" value='' id="companyName">
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<!--<a class="mui-tab-item" href="tab-webview-subpage-chat.html">-->
+			<!--<span class="mui-icon iconfont icon-xiaoxitixing">-->
+			<!--&lt;!&ndash;<span class="mui-badge">9</span>&ndash;&gt;-->
+			<!--</span>-->
+			<!--<span class="mui-tab-label">物流提醒</span>-->
+			<!--</a>-->
+			<a id="defaultTab" class="mui-tab-item mui-active" href="orders.html">
+				<span class="mui-icon iconfont icon-order"></span>
+				<span class="mui-tab-label">报销单</span>
+			</a>
+			<!--<a class="mui-tab-item" href="orderlogs.html">
+				<span class="mui-icon iconfont icon-yuan-filled"></span>
+				<span class="mui-tab-label">物流跟踪</span>
+			</a>
+			<a class="mui-tab-item" href="lineInstances.html">
+				<span class="mui-icon mui-icon-settings"></span>
+				<span class="mui-tab-label">线路</span>
+			</a>
+			<a class="mui-tab-item" href="customers.html">
+				<span class="mui-icon iconfont icon-shanghu"></span>
+				<span class="mui-tab-label">商户</span>
+			</a>
+			-->
+			<a class="mui-tab-item mui-hidden" id='reimbursementSet' href="reimbursementSet.html">
+				<span class="mui-icon iconfont icon-yuan"></span>
+				<span class="mui-tab-label">报销设置</span>
+			</a>
+		</nav>
+		<div id="loadDiv" class="mui-loader">
+			<span class="mui-spinner"></span><br/> 加载中...
+			<br/>
+			<span id="loadingLabel" style="font-size: 10px;"></span>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			var menu = null,
+				main = null;
+			var showMenu = false;
+			mui.init({
+				swipeBack: false,
+				statusBarBackground: '#f7f7f7',
+				gestureConfig: {
+					doubletap: true
+				}
+			});
+			var btnArray = ['立即升级', '暂不升级'];
+			var isInTransition = false;
+			/**
+			 * 显示侧滑菜单
+			 */
+			function openMenu() {
+				if(isInTransition) {
+					return;
+				}
+				if(!showMenu) {
+					//侧滑菜单处于隐藏状态，则立即显示出来；
+					isInTransition = true;
+					menu.setStyle({
+						mask: 'rgba(0,0,0,0)'
+					}); //menu设置透明遮罩防止点击
+					menu.show('none', 0, function() {
+						//主窗体开始侧滑并显示遮罩
+						main.setStyle({
+							mask: 'rgba(0,0,0,0.4)',
+							left: '70%',
+							transition: {
+								duration: 150
+							}
+						});
+						mui.later(function() {
+							isInTransition = false;
+							menu.setStyle({
+								mask: "none"
+							}); //移除menu的mask
+						}, 160);
+						showMenu = true;
+					});
+				}
+			}
+			/**
+			 * 关闭菜单
+			 */
+			function closeMenu() {
+				if(isInTransition) {
+					return;
+				}
+				if(showMenu) {
+					//关闭遮罩；
+					//主窗体开始侧滑；
+					isInTransition = true;
+					main.setStyle({
+						mask: 'none',
+						left: '0',
+						transition: {
+							duration: 200
+						}
+					});
+					showMenu = false;
+					//等动画结束后，隐藏菜单webview，节省资源；
+					mui.later(function() {
+						isInTransition = false;
+						menu.hide();
+					}, 300);
+				}
+			}
+			//点击左上角侧滑图标，打开侧滑菜单；
+			document.querySelector('.mui-icon-bars').addEventListener('tap', function(e) {
+				if(showMenu) {
+					closeMenu();
+				} else {
+					openMenu();
+				}
+			});
+			//敲击顶部导航，内容区回到顶部
+			//    document.querySelector('header').addEventListener('doubletap', function() {
+			//        main.children()[0].evalJS('mui.scrollTo(0, 100)');
+			//    });
+			//主界面向右滑动，若菜单未显示，则显示菜单；否则不做任何操作
+			window.addEventListener("swiperight", openMenu);
+			//主界面向左滑动，若菜单已显示，则关闭菜单；否则，不做任何操作；
+			window.addEventListener("swipeleft", closeMenu);
+			//侧滑菜单触发关闭菜单命令
+			window.addEventListener("menu:close", closeMenu);
+			window.addEventListener("menu:open", openMenu);
+			//重写mui.menu方法，Android版本menu按键按下可自动打开、关闭侧滑菜单；
+			mui.menu = function() {
+				if(showMenu) {
+					closeMenu();
+				} else {
+					openMenu();
+				}
+			};
+
+			function switch2CustomerUI() {
+				var customer = plus.webview.getWebviewById('customer');
+				if(!customer) {
+					mui.openWindow({
+						id: 'merchant',
+						url: 'merchant/index.html',
+						show: {
+							aniShow: 'none'
+						},
+						waiting: {
+							autoShow: false
+						},
+						showedCB: function() {
+							xtt.saveUIType('merchant');
+							closeMenu();
+							mui.fire(customer, 'switch2');
+							main.hide();
+							menu.hide();
+						}
+					});
+				} else {
+					xtt.saveUIType('merchant');
+					closeMenu();
+					mui.later(function() {
+						mui.fire(customer, 'switch2');
+						main.hide();
+						menu.hide();
+					}, 310);
+				}
+			}
+
+			function switch2() {
+				main.show();
+				//menu.show();
+			}
+
+			window.addEventListener("switch2CustomerUI", switch2CustomerUI);
+			window.addEventListener("switch2", switch2);
+
+			//首页返回键处理
+			//处理逻辑：1秒内，连续两次按返回键，则退出应用；
+			var first = null;
+			mui.back = function() {
+				if(showMenu) {
+					closeMenu();
+				} else {
+					//首次按键，提示‘再按一次退出应用’
+					if(!first) {
+						first = new Date().getTime();
+						mui.toast('再按一次退出应用');
+						setTimeout(function() {
+							first = null;
+						}, 1000);
+					} else {
+						if(new Date().getTime() - first < 1000) {
+							plus.runtime.quit();
+						}
+					}
+				}
+			};
+
+			//自定义事件，模拟点击“首页选项卡”
+			//    document.addEventListener('gohome', function () {
+			//        var defaultTab = document.getElementById("defaultTab");
+			//        //模拟首页点击
+			//        mui.trigger(defaultTab, 'tap');
+			//        //切换选项卡高亮
+			//        var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+			//        if (defaultTab !== current) {
+			//            current.classList.remove('mui-active');
+			//            defaultTab.classList.add('mui-active');
+			//        }
+			//    });
+
+			//新增按钮处理
+			document.getElementById('btnAdd').addEventListener('tap', function() {
+				var sub = plus.webview.getWebviewById(activeTab);
+				if(sub)
+					mui.fire(sub, 'add');
+			});
+			document.getElementById('btnMore').addEventListener('tap', function() {
+				var sub = plus.webview.getWebviewById(activeTab);
+				if(sub)
+					mui.fire(sub, 'moreAction');
+			});
+
+			var subpages = ['orders.html', 'reimbursementSet.html'];
+			var subpage_style = {
+				top: '45px',
+				bottom: '51px'
+			};
+			var aniShow = {};
+
+			mui.plusReady(function() {
+
+				xtt.initPlusReady();
+
+				if(xtt.host != 'HB') {
+					$('#btnPlusBack').removeClass('mui-hidden');
+					document.getElementById('btnPlusBack').addEventListener('tap', function() {
+						plus.runtime.quit();
+					});
+				}
+				
+				setEnterpriseInfo();
+
+				main = plus.webview.currentWebview();
+
+				main.addEventListener('maskClick', closeMenu);
+				//处理侧滑导航，为了避免和子页面初始化等竞争资源，延迟加载侧滑页面；
+				menu = plus.webview.getWebviewById('merchantMenu');
+				//        setTimeout(function () {
+				//            menu = mui.preload({
+				//                id: 'merchantMenu',
+				//                url: 'index-menu.html',
+				//                styles: {
+				//                    left: 0,
+				//                    width: '70%',
+				//                    zindex: -1
+				//                },
+				//                show: {
+				//                    aniShow: 'none'
+				//                }
+				//            });
+				//        }, 300);
+
+				//预加载选择汽配城、商户页面
+				mui.later(function() {
+
+				}, 200);
+
+				//创建子页面
+				for(var i = 0; i < 1; i++) {
+					var temp = {};
+					var sub = plus.webview.getWebviewById(subpages[i]);
+					if(!sub)
+						sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
+
+					if(i > 0) {
+						sub.hide();
+					} else {
+						temp[subpages[i]] = "true";
+						mui.extend(aniShow, temp);
+					}
+					main.append(sub);
+				}
+
+				$("#loadDiv").addClass('mui-hidden');
+
+				//自动更新
+				mui.later(function() {
+					autoUpdate();
+				}, 3000);
+
+				function autoUpdate(showToast) {
+					var h5v = xtt.getH5Version();
+					var cid = xtt.getClientId();
+					var timestamp = Date.parse(new Date());
+					if(showToast) mui.toast('正在检查最新版本...');
+					mui.ajax(xtt.updateUrl + '?c=' + cid + '&t=' + timestamp, {
+						type: 'get',
+						data: null,
+						dateType: 'json',
+						timeout: 10000,
+						beforeSend: function() {
+							//loadingMsg('正在恢复会话信息...');
+						},
+						success: function(res) {
+							if(res) {
+								if(xtt.versionCompare(res.version, xtt.version) > 0) {
+									//mui.alert(res.version, '新泰通物流');
+									var updatePrompt = mui.openWindow({
+										id: 'updatePrompt',
+										url: '../updatePrompt.html',
+										styles: {
+											left: 0,
+											top: 0,
+											width: '100%',
+											height: '100%',
+											background: 'transparent',
+											zindex: 101
+										},
+										show: {
+											aniShow: 'none'
+										},
+										extras: {
+											data: {
+												openerId: plus.webview.currentWebview().id,
+												backEvent: 'updated',
+												updateInfo: res
+											}
+										}
+									});
+									//                            mui.fire(updatePrompt, 'init', {
+									//                                openerId: plus.webview.currentWebview().id,
+									//                                backEvent: 'updated',
+									//                                updateInfo: res
+									//                            });
+								} else {
+									if(showToast) mui.toast('您的应用程序已经是最新的版本。');
+								}
+							} else {
+								if(showToast) mui.toast('获取应用更新信息错误，请稍后再试！');
+							}
+							//定时，设置10分钟运行一次
+							setTimeout(autoUpdate, 10 * 60 * 1000);
+						},
+						error: function(xhr, type, errorThrown) {
+							if(showToast) mui.toast('更新信息请求错误！' + errorThrown);
+							//定时，设置5分钟运行一次
+							setTimeout(autoUpdate, 5 * 60 * 1000);
+						}
+					});
+				}
+
+				document.addEventListener('checkUpdate', function(e) {
+					autoUpdate(true);
+				});
+			});
+			//当前激活选项
+			var activeTab = subpages[0];
+			var title = document.getElementById("title");
+			//选项卡点击事件
+			mui('.mui-bar-tab').on('tap', 'a', function(e) {
+				var targetTab = this.getAttribute('href');
+				if(targetTab == activeTab) {
+					return;
+				}
+				var sub = plus.webview.getWebviewById(targetTab);
+				if(!sub) {
+					sub = plus.webview.create(targetTab, targetTab, subpage_style);
+					main.append(sub);
+				}
+				//更换标题
+				$(title).html($('#companyName').val() + '-' + this.querySelector('.mui-tab-label').innerHTML);
+				//title.innerHTML = '新泰通-' + this.querySelector('.mui-tab-label').innerHTML;
+				//显示目标选项卡
+				var targetContent = 'list-' + targetTab;
+				//若为iOS平台或非首次显示，则直接显示
+				if(mui.os.ios || aniShow[targetTab]) {
+					plus.webview.show(targetTab);
+					//plus.webview.show(targetContent);
+				} else {
+					//否则，使用fade-in动画，且保存变量
+					var temp = {};
+					temp[targetTab] = "true";
+					mui.extend(aniShow, temp);
+					plus.webview.show(targetTab, "fade-in", 300);
+					//plus.webview.show(targetContent,"fade-in",300);
+				}
+				//隐藏当前;
+				var activeContent = 'list-' + activeTab;
+				plus.webview.hide(activeTab);
+				//plus.webview.hide(activeContent);
+				//更改当前活跃的选项卡
+				activeTab = targetTab;
+			});
+
+			//双击标题滚动到列表顶部
+			document.querySelector('header').addEventListener('doubletap', function() {
+				if(activeTab) {
+					var sub = plus.webview.getWebviewById(activeTab);
+					mui.fire(sub, 'scroll2Top');
+				}
+			});
+
+			//设置标题
+			function setEnterpriseInfo() {
+				var param = xtt.getDefaultParam();
+				mui.ajax(xtt.serverRoot + 'ReimbursementCommon/GetEnterpriseInfo', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function(xhr, settings) {
+						//plus.nativeUI.showWaiting('正在保存，请稍后...')
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								if(res.Result) {
+									$('#companyName').val(res.Result.GroupName);
+									$(title).html($('#companyName').val() + '-报销单');
+
+									//判断如果为管理员，则显示报销设置
+									if(res.Result.AdminUserIds && res.Result.AdminUserIds.indexOf(xtt.member.MemberID) > -1) {
+										//console.log('1');
+										$('#reimbursementSet').removeClass('mui-hidden');
+									} else {
+										$('#reimbursementSet').addClass('mui-hidden');
+									}
+								}
+							}
+						} else {
+							mui.toast('获取报销分类错误，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('发送请求失败，请稍后再试！');
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

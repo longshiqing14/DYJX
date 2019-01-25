@@ -173,6 +173,11 @@
 		48A3710C21B527D6002861DD /* TitleAndContentArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3710B21B527D6002861DD /* TitleAndContentArrowCell.m */; };
 		48A3710F21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A3710E21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.m */; };
 		48A3711121B61369002861DD /* CompanyBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A3711021B61369002861DD /* CompanyBottomView.xib */; };
+		48A6A0DB21FAFF7600FD2E3F /* liblibPayment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A6A0DA21FAFF7600FD2E3F /* liblibPayment.a */; };
+		48A6A0DD21FAFFC000FD2E3F /* libalixpayment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A6A0DC21FAFFBF00FD2E3F /* libalixpayment.a */; };
+		48A6A0DF21FB010600FD2E3F /* libwxpay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A6A0DE21FB010500FD2E3F /* libwxpay.a */; };
+		48A6A0E121FB019A00FD2E3F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A6A0E021FB019900FD2E3F /* libsqlite3.0.tbd */; };
+		48A6A0E221FB01AB00FD2E3F /* libz.tbd in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BE61F8DC86400CD4429 /* libz.tbd */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		48B35106208F027300A9F7E4 /* DSectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35102208F027300A9F7E4 /* DSectionIndexView.m */; };
 		48B35107208F027300A9F7E4 /* DSectionIndexItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35105208F027300A9F7E4 /* DSectionIndexItemView.m */; };
 		48B740E3201EB81A0062FA33 /* UIAlertController+XYAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B740E2201EB81A0062FA33 /* UIAlertController+XYAlertController.m */; };
@@ -229,8 +234,6 @@
 		CB123BD81F8DC40A00CD4429 /* jpush-ios-3.0.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BD51F8DC40A00CD4429 /* jpush-ios-3.0.6.a */; };
 		CB123BDB1F8DC81000CD4429 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BDA1F8DC81000CD4429 /* CFNetwork.framework */; };
 		CB123BDD1F8DC82500CD4429 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BDC1F8DC82500CD4429 /* CoreFoundation.framework */; };
-		CB123BDF1F8DC82E00CD4429 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BDE1F8DC82E00CD4429 /* CoreTelephony.framework */; };
-		CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BE01F8DC83800CD4429 /* SystemConfiguration.framework */; };
 		CB123BE31F8DC84800CD4429 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BE21F8DC84800CD4429 /* Foundation.framework */; };
 		CB123BE51F8DC85100CD4429 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BE41F8DC85100CD4429 /* UIKit.framework */; };
 		CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BE61F8DC86400CD4429 /* libz.tbd */; };
@@ -665,6 +668,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				48A6A0E221FB01AB00FD2E3F /* libz.tbd in Embed Frameworks */,
 				E15766B621C911BE003A5C25 /* NIMSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -978,6 +982,10 @@
 		48A3710D21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXSubcompanyInfoDetailViewModel.h; sourceTree = "<group>"; };
 		48A3710E21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXSubcompanyInfoDetailViewModel.m; sourceTree = "<group>"; };
 		48A3711021B61369002861DD /* CompanyBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyBottomView.xib; sourceTree = "<group>"; };
+		48A6A0DA21FAFF7600FD2E3F /* liblibPayment.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibPayment.a; sourceTree = "<group>"; };
+		48A6A0DC21FAFFBF00FD2E3F /* libalixpayment.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libalixpayment.a; sourceTree = "<group>"; };
+		48A6A0DE21FB010500FD2E3F /* libwxpay.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libwxpay.a; sourceTree = "<group>"; };
+		48A6A0E021FB019900FD2E3F /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		48B35102208F027300A9F7E4 /* DSectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSectionIndexView.m; sourceTree = "<group>"; };
 		48B35103208F027300A9F7E4 /* DSectionIndexItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSectionIndexItemView.h; sourceTree = "<group>"; };
 		48B35104208F027300A9F7E4 /* DSectionIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSectionIndexView.h; sourceTree = "<group>"; };
@@ -1868,16 +1876,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48A6A0E121FB019A00FD2E3F /* libsqlite3.0.tbd in Frameworks */,
 				CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */,
 				E1B52925219FBA7D008B27A5 /* libc++.tbd in Frameworks */,
+				48A6A0DD21FAFFC000FD2E3F /* libalixpayment.a in Frameworks */,
 				E19DC8C2219AC69700C86478 /* VideoToolbox.framework in Frameworks */,
-				CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */,
 				4873530E2192F572001B59AB /* QuartzCore.framework in Frameworks */,
 				E19DC8C0219AC61D00C86478 /* Photos.framework in Frameworks */,
 				4873530C2192F54A001B59AB /* ImageIO.framework in Frameworks */,
 				4873530D2192F558001B59AB /* CoreText.framework in Frameworks */,
 				E15766B421C91098003A5C25 /* NIMSDK.framework in Frameworks */,
-				CB123BDF1F8DC82E00CD4429 /* CoreTelephony.framework in Frameworks */,
 				487352E42192EDC5001B59AB /* CoreMedia.framework in Frameworks */,
 				CBFF45971F74C33600D2AF93 /* CoreGraphics.framework in Frameworks */,
 				487353132192F5E5001B59AB /* AVFoundation.framework in Frameworks */,
@@ -1896,6 +1904,7 @@
 				CB123BDB1F8DC81000CD4429 /* CFNetwork.framework in Frameworks */,
 				487352E62192EDD7001B59AB /* CoreAudio.framework in Frameworks */,
 				4873530F2192F5C7001B59AB /* CoreLocation.framework in Frameworks */,
+				48A6A0DB21FAFF7600FD2E3F /* liblibPayment.a in Frameworks */,
 				E1B52925219FBA7D008B27A5 /* libc++.tbd in Frameworks */,
 				CBFF45991F74C34E00D2AF93 /* libsqlite3.tbd in Frameworks */,
 				E19DC893219ABB9000C86478 /* libstdc++.6.0.9.tbd in Frameworks */,
@@ -1960,10 +1969,9 @@
 				CB123BE51F8DC85100CD4429 /* UIKit.framework in Frameworks */,
 				4804A1A621995E4C0081AB5B /* liblibStorage.a in Frameworks */,
 				CB123BE31F8DC84800CD4429 /* Foundation.framework in Frameworks */,
-				CB123BE11F8DC83800CD4429 /* SystemConfiguration.framework in Frameworks */,
-				CB123BDF1F8DC82E00CD4429 /* CoreTelephony.framework in Frameworks */,
 				CB123BDD1F8DC82500CD4429 /* CoreFoundation.framework in Frameworks */,
 				CB123BDB1F8DC81000CD4429 /* CFNetwork.framework in Frameworks */,
+				48A6A0DF21FB010600FD2E3F /* libwxpay.a in Frameworks */,
 				4804A1A821995F250081AB5B /* storage.framework in Frameworks */,
 				CBFF45991F74C34E00D2AF93 /* libsqlite3.tbd in Frameworks */,
 				48511D79219EC417006C6081 /* BaiduMapAPI_Location.framework in Frameworks */,
@@ -3304,6 +3312,7 @@
 		CBFF457C1F74BCFA00D2AF93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				48A6A0E021FB019900FD2E3F /* libsqlite3.0.tbd */,
 				488E896D219FF8CD008695A7 /* libiconv.tbd */,
 				488E896B219FF8AF008695A7 /* libbz2.tbd */,
 				488E8969219FF6D9008695A7 /* SafariServices.framework */,
@@ -3331,6 +3340,9 @@
 				487352E92192EE1E001B59AB /* libxml2.tbd */,
 				4804A1A521995E4C0081AB5B /* liblibStorage.a */,
 				4804A1AC219981020081AB5B /* liblibNativeUI.a */,
+				48A6A0DA21FAFF7600FD2E3F /* liblibPayment.a */,
+				48A6A0DC21FAFFBF00FD2E3F /* libalixpayment.a */,
+				48A6A0DE21FB010500FD2E3F /* libwxpay.a */,
 				4804A1A721995F250081AB5B /* storage.framework */,
 				487352E72192EDE2001B59AB /* CoreAudioKit.framework */,
 				487352E52192EDD6001B59AB /* CoreAudio.framework */,

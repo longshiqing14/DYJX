@@ -120,6 +120,9 @@
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_qcd"]){
             //全城达
             cell.content1.text = @"全城达\n 同城\n员工端";
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"ea"]){
+            //报销登记审核
+            cell.content1.text = @"报销\n登记\n审核";
         }
 
         cell.content1.textColor = [UIColor colorWithHexString:@"#333333"];
@@ -179,6 +182,12 @@
             WebAppController  *pWebAppController = [[WebAppController alloc] init];
             self.navigationController.navigationBarHidden = YES;
             pWebAppController.AppId = @"com.zlMax.xttLogisticsQcd";
+            [self.navigationController pushViewController:pWebAppController animated:YES];
+            
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"ea"]){
+            WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            self.navigationController.navigationBarHidden = YES;
+            pWebAppController.AppId = @"com.zlMax.EA";
             [self.navigationController pushViewController:pWebAppController animated:YES];
             
         }

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>报销设置</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<!--<div class="mui-content">
+			<div id="searchPanel">
+				<div class="mui-input-row mui-search">
+					<input id="searchInput" type="search" class="mui-input-clear" placeholder="输入关键字查询...">
+				</div>
+			</div>
+			<div id="stPanel">
+
+			</div>
+		</div>
+		-->
+		<div id="loadDiv" class="mui-loader">
+			<span class="mui-spinner"></span><br/> 加载中...
+			<br/>
+			<span id="loadingLabel" style="font-size: 10px;">正在加载报销项目</span>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			var listStyle = {
+				top: '2px',
+				bottom: '0px'
+			};
+			//启用双击监听
+			mui.init({
+				gestureConfig: {
+					doubletap: true
+				}
+				//        ,
+				//        subpages: [{
+				//            url: 'list-carCities.html',
+				//            id: 'list-carCities.html',
+				//            styles: {
+				//                top: '38px',
+				//                bottom: '38px'
+				//            }
+				//        }]
+			});
+			var self, sub;
+			mui.plusReady(function() {
+				//添加子窗体
+				self = plus.webview.currentWebview();
+				mui.later(function() {
+					sub = plus.webview.getWebviewById('list-reimbursementItem.html');
+					if(!sub) {
+						sub = plus.webview.create('list-reimbursementItem.html', 'list-reimbursementItem.html', listStyle);
+					}
+					self.append(sub);
+					mui.later(function() {
+						mui.preload({
+							id: 'reimbursement',
+							url: 'reimbursement.html'
+						});
+						mui.preload({
+							id: 'selectPCD',
+							url: 'selectPCD.html'
+						});
+					}, 300);
+					$("#loadDiv").addClass('mui-hidden');
+				}, 1000);
+			});
+
+			//新增
+			function add() {
+				if(sub)
+					mui.fire(sub, 'add');
+			}
+
+			function moreAction() {
+				if(sub)
+					mui.fire(sub, 'moreAction');
+			}
+			//新增事件
+			document.addEventListener('add', add);
+			document.addEventListener('moreAction', moreAction);
+
+			//查询
+			var searchInput = $('#searchInput');
+
+			function search() {
+				var keyword = searchInput.val().trim();
+				//if(keyword && keyword != '')
+				mui.fire(sub, 'search', {
+					Keyword: keyword
+				});
+			}
+			//绑定查询事件
+			//document.getElementById('searchInput').addEventListener('search', search);
+		</script>
+	</body>
+
+</html>

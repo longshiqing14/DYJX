@@ -160,7 +160,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     //截屏通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenShot) name:UIApplicationUserDidTakeScreenshotNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenShot) name:UIApplicationUserDidTakeScreenshotNotification object:nil];
 
     DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
     if ([YWDTools isNil:userModel.ClientId]) {

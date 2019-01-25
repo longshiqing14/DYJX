@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>报销条目设置</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">报销条目新增/修改</h1>
+			<a id="btnTopSave" class="mui-icon iconfont mui-pull-right"><span style="font-size: 18px;"> 保存</span></a>
+		</header>
+		<div class="mui-content">
+
+			<form id="editForm" class="mui-input-group" style="margin-top: 0px;margin-bottom: 60px;">
+
+				<div class="mui-input-row">
+					<label>条目名称</label>
+					<input type="text" placeholder="例如车辆费用" id="Name" name="Name">
+				</div>
+
+				<h4 class="mui-content-padded">该条目的下拉菜单项（最多3组）</h4>
+
+				<div class="mui-input-row">
+					<label>1、名称：</label>
+					<input type="text" placeholder="例如物流班次" id="selectItem1" name="selectItem1">
+				</div>
+				<div class="mui-input-row" style="height: 80px;">
+					<label>下拉选项  </br>(逗号隔开)</label>
+					<textarea rows="3" placeholder="例如广深白班，广深晚班，广中白班，广中晚班" name="selectItemValue1" id="selectItemValue1"></textarea>
+				</div>
+
+				<div class="mui-input-row">
+					<label>2、名称：</label>
+					<input type="text" placeholder="例如车牌号码" id="selectItem2" name="selectItem2">
+				</div>
+				<div class="mui-input-row" style="height: 80px;">
+					<label>下拉选项  </br>(逗号隔开)</label>
+					<textarea rows="3" placeholder="例如粤B88888，粤A99999，粤A66666" name="selectItemValue2" id="selectItemValue2"></textarea>
+				</div>
+
+				<div class="mui-input-row">
+					<label>3、名称：</label>
+					<input type="text" placeholder="其他" id="selectItem3" name="selectItem3">
+				</div>
+				<div class="mui-input-row" style="height: 80px;">
+					<label>下拉选项  </br>(逗号隔开)</label>
+					<textarea rows="3" placeholder="其他1，其他2，其他3" name="selectItemValue3" id="selectItemValue3"></textarea>
+				</div>
+
+				<h4 class="mui-content-padded">该条目的单选按钮（最多3组）</h4>
+
+				<div class="mui-input-row">
+					<label>1、名称：</label>
+					<input type="text" placeholder="例如记账方式" id="radioItem1" name="radioItem1">
+				</div>
+
+				<div class="mui-input-row">
+					<div class="mui-checkbox clearMethod mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px; width:185px">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 40px;padding-right: 1px;width:85px">按钮1</label>
+						<input disabled="disabled" checked="checked" type="checkbox">
+						<input type="text" placeholder="例如现金" id="radioItemValue1_1" name="radioItemValue1_1" style="width:85px">
+					</div>
+					<div class="mui-checkbox clearMethod mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px; width:185px">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 40px;padding-right: 1px;width:85px">按钮2</label>
+						<input disabled="disabled" checked="checked" type="checkbox">
+						<input type="text" placeholder="例如挂账" id="radioItemValue1_2" name="radioItemValue1_2" style="width:85px">
+					</div>
+				</div>
+
+				<div class="mui-input-row">
+					<label>2、名称：</label>
+					<input type="text" placeholder="例如油品选择" id="radioItem2" name="radioItem2">
+				</div>
+
+				<div class="mui-input-row">
+					<div class="mui-checkbox clearMethod mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px; width:185px">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 40px;padding-right: 1px;width:85px">按钮1</label>
+						<input disabled="disabled" checked="checked" type="checkbox">
+						<input type="text" placeholder="例如柴油" id="radioItemValue2_1" name="radioItemValue2_1" style="width:85px">
+					</div>
+					<div class="mui-checkbox clearMethod mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px; width:185px">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 40px;padding-right: 1px;width:85px">按钮2</label>
+						<input disabled="disabled" checked="checked" type="checkbox">
+						<input type="text" placeholder="例如汽油" id="radioItemValue2_2" name="radioItemValue2_2" style="width:85px">
+					</div>
+				</div>
+
+				<div class="mui-input-row">
+					<label>3、名称：</label>
+					<input type="text" placeholder="例如其他" id="radioItem3" name="radioItem3">
+				</div>
+
+				<div class="mui-input-row">
+					<div class="mui-checkbox clearMethod mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px; width:185px">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 40px;padding-right: 1px;width:85px">按钮1</label>
+						<input disabled="disabled" checked="checked" type="checkbox">
+						<input type="text" placeholder="其他1" id="radioItemValue3_1" name="radioItemValue3_1" style="width:85px">
+					</div>
+					<div class="mui-checkbox clearMethod mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px; width:185px">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 40px;padding-right: 1px;width:85px">按钮2</label>
+						<input disabled="disabled" checked="checked" type="checkbox">
+						<input type="text" placeholder="其他2" id="radioItemValue3_2" name="radioItemValue3_2" style="width:85px">
+					</div>
+				</div>
+
+				<h4 class="mui-content-padded">该条目的数字输入框（最多10个）</h4>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">A、名称：</label>
+					<input type="text" id="numberInput1" style="width:120px;float:left" placeholder="例如加油升数" name="numberInput1">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="numberInputValue1" style="width:70px;float:left" placeholder="升" name="numberInputValue1">
+				</div>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">B、名称：</label>
+					<input type="text" id="numberInput2" style="width:120px;float:left" placeholder="例如油品单价" name="numberInput2">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="numberInputValue2" style="width:70px;float:left" placeholder="元/升" name="numberInputValue2">
+				</div>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">C、名称：</label>
+					<input type="text" id="numberInput3" style="width:120px;float:left" placeholder="例如油费" name="numberInput3">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="numberInputValue3" style="width:70px;float:left" placeholder="元" name="numberInputValue3">
+				</div>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">D、名称：</label>
+					<input type="text" id="numberInput4" style="width:120px;float:left" placeholder="例如路费" name="numberInput4">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="numberInputValue4" style="width:70px;float:left" placeholder="元" name="numberInputValue4">
+				</div>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">E、名称：</label>
+					<input type="text" id="numberInput5" style="width:120px;float:left" placeholder="例如维修保养" name="numberInput5">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="numberInputValue5" style="width:70px;float:left" placeholder="元" name="numberInputValue5">
+				</div>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">F、名称：</label>
+					<input type="text" id="numberInput6" style="width:120px;float:left" placeholder="例如事故维修" name="numberInput6">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="numberInputValue6" style="width:70px;float:left" placeholder="元" name="numberInputValue6">
+				</div>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">G、名称：</label>
+					<input type="text" id="numberInput7" style="width:120px;float:left" placeholder="例如停车费" name="numberInput7">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="numberInputValue7" style="width:70px;float:left" placeholder="元" name="numberInputValue7">
+				</div>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">H、名称：</label>
+					<input type="text" id="numberInput8" style="width:120px;float:left" placeholder="" name="numberInput8">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="numberInputValue8" style="width:70px;float:left" placeholder="" name="numberInputValue8">
+				</div>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">I、名称：</label>
+					<input type="text" id="numberInput9" style="width:120px;float:left" placeholder="" name="numberInput9">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="numberInputValue9" style="width:70px;float:left" placeholder="" name="numberInputValue9">
+				</div>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">J、名称：</label>
+					<input type="text" id="numberInput10" style="width:120px;float:left" placeholder="" name="numberInput10">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="numberInputValue10" style="width:70px;float:left" placeholder="" name="numberInputValue10">
+				</div>
+
+				<h4 class="mui-content-padded">该条目的统计项（最多3个，名称若由字母A-J命名，由该字母的数字输入将不能输入，只能由函数式计算）</h4>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">1、名称：</label>
+					<input type="text" id="statItem1" style="width:120px;float:left" placeholder="倒如C" name="statItem1">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="statItemUnit1" style="width:70px;float:left" placeholder="元" name="statItemUnit1">
+				</div>
+				<div class="mui-input-row">
+					<label>函数式：</label>
+					<input type="text" placeholder="A*B" id="statItemValue1" name="statItemValue1">
+				</div>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">2、名称：</label>
+					<input type="text" id="statItem2" style="width:120px;float:left" placeholder="倒如车辆费用" name="statItem2">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="statItemUnit2" style="width:70px;float:left" placeholder="元" name="statItemUnit2">
+				</div>
+				<div class="mui-input-row">
+					<label>函数式：</label>
+					<input type="text" placeholder="C+D" id="statItemValue2" name="statItemValue2">
+				</div>
+				<div class="mui-input-row">
+					<label style="width:100px;padding:11px 1px 11px 15px">3、名称：</label>
+					<input type="text" id="statItem3" style="width:120px;float:left" placeholder="" name="statItem3">
+					<label style="width:70px;padding:11px 1px 11px 15px">单位：</label>
+					<input type="text" id="statItemUnit3" style="width:70px;float:left" placeholder="" name="statItemUnit3">
+				</div>
+				<div class="mui-input-row">
+					<label>函数式：</label>
+					<input type="text" placeholder="" id="statItemValue3" name="statItemValue3">
+				</div>
+
+				<h4 class="mui-content-padded">该条目的文本输入框（最多2个）</h4>
+				<div class="mui-input-row">
+					<label>1、名称：</label>
+					<input type="text" placeholder="例如备注" id="textInput1" name="textInput1">
+				</div>
+				<div class="mui-input-row">
+					<label>2、名称：</label>
+					<input type="text" placeholder="" id="textInput2" name="textInput2">
+				</div>
+
+				<h4 class="mui-content-padded mui-hidden">该条目报销审核人</h4>
+				<div class="mui-input-row mui-hidden" style="height: 150px;">
+					<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px;">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px;">张三</label>
+						<input name="AgreeUser" value="0" id="ClearMethod0" type="checkbox">
+					</div>
+					<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px;">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px;">李四</label>
+						<input name="AgreeUser" value="1" id="ClearMethod1" type="checkbox">
+					</div>
+					<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px;">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px;">李四</label>
+						<input name="AgreeUser" value="1" id="ClearMethod1" type="checkbox">
+					</div>
+					<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px;">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px;">李四</label>
+						<input name="AgreeUser" value="1" id="ClearMethod1" type="checkbox">
+					</div>
+					<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px;">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px;">李四</label>
+						<input name="AgreeUser" value="1" id="ClearMethod1" type="checkbox">
+					</div>
+					<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px;">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px;">李四</label>
+						<input name="AgreeUser" value="1" id="ClearMethod1" type="checkbox">
+					</div>
+					<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px;">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px;">李四</label>
+						<input name="AgreeUser" value="1" id="ClearMethod1" type="checkbox">
+					</div>
+					<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px;">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px;">李四</label>
+						<input name="AgreeUser" value="1" id="ClearMethod1" type="checkbox">
+					</div>
+					<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px;">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px;">李四</label>
+						<input name="AgreeUser" value="1" id="ClearMethod1" type="checkbox">
+					</div>
+				</div>
+
+				<h4 class="mui-content-padded">该条目报销审核后是否要发布消息到报销内部群</h4>
+				<div class="mui-input-row">
+					<div class="mui-checkbox clearMethod mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px;width:45%">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px">是</label>
+						<input name="isSendToGroup" value="1" id="isSendToGroup1" checked="checked" type="checkbox">
+					</div>
+					<div class="mui-checkbox clearMethod mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px;width:45%">
+						<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px">否</label>
+						<input name="isSendToGroup" value="0" id="isSendToGroup0" type="checkbox">
+					</div>
+				</div>
+
+				<h4 class="mui-content-padded">发生日期、行政区划、相片凭证（最多100张）和审核意见备注是默认提供项，另报销单发起日期由系统自动登记。</h4>
+
+				<input type="hidden" id="Id" name="Id" value="">
+
+			</form>
+			<div class="mui-button-row bottom-action-bar">
+				<button id="btnBottomSave" type="button" style="width:100%;height:55px;" class="mui-btn mui-btn-primary">
+					保存
+				</button>
+			</div>
+
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			//xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+			});
+			var title = $('#title'); //标题
+
+			var reimName = $('#Name');
+			var Id = $('#Id');
+
+			//处理单选钮事件
+			/*document.querySelector('#areaList').addEventListener('selected', function(e) {
+				var v = $(e.detail.el).data('value');
+				areaId.val(v);
+			});*/
+			/**
+			 * 初始化数据，清空
+			 */
+			function defautValue() {
+				reimName.val('');
+				Id.val('');
+
+				//下拉菜单
+				for(var i = 1; i <= 3; i++) {
+					$('#selectItem' + i).val('');
+					$('#selectItemValue' + i).val('');
+				}
+
+				//单选
+				for(var i = 1; i <= 3; i++) {
+					$('#radioItem' + i).val('');
+					for(var j = 1; j <= 2; j++) {
+						$('#radioItemValue' + i + '_' + j).val('');
+					}
+				}
+
+				//数字
+				for(var i = 1; i <= 10; i++) {
+					$('#numberInput' + i).val('');
+					$('#numberInputValue' + i).val('');
+				}
+
+				//统计
+				for(var i = 1; i <= 3; i++) {
+					$('#statItem' + i).val('');
+					$('#statItemUnit' + i).val('');
+					$('#statItemValue' + i).val('');
+				}
+
+				//文本输入
+				for(var i = 1; i <= 2; i++) {
+					$('#textInput' + i).val('');
+				}
+
+				//是否发布到内部群
+				mui('input[name=isSendToGroup]').each(function() {
+					if($(this).val() == 1) {
+						this.checked = true
+					}
+				});
+
+			}
+			/**
+			 * 设置Id
+			 * @param e 事件调用参数
+			 */
+			function setId(e) {
+				var id = e.detail.id;
+				title.html(id ? '报销条目修改' : '报销条目新增')
+				defautValue();
+				if(id) {
+					var param = xtt.getDefaultParam();
+					param['Id'] = id;
+					mui.ajax(xtt.serverRoot + 'ReimbursementCommon/GetReimbursementSet', {
+						type: 'post',
+						data: param,
+						timeout: 10000,
+						beforeSend: function() {
+							//loadingMsg('正在恢复会话信息...');
+						},
+						success: function(res) {
+							if(res) {
+								if(res.Succeed) {
+									var result = res.Result;
+									BindData(result);
+								} else {
+									mui.toast('获取报销条目资料失败！' + res.Message ? res.Message : '');
+									mui.back();
+								}
+							} else {
+								mui.toast('获取报销条目资料错误，请稍后再试！');
+								mui.back();
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast('请求错误！' + errorThrown);
+							mui.back();
+						}
+					});
+				}
+			}
+			//侦听setId
+			document.addEventListener('setId', setId);
+			/**
+			 * 保存
+			 */
+			function save() {
+				//校验数据
+				var name = reimName.val().trim();
+				if(!name || name == '') {
+					mui.toast('请输入报销条目名称！');
+					return;
+				}
+
+				var ABC = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
+				var listSelectItem = [];
+				for(var i = 1; i <= 3; i++) {
+					var selectName = $('#selectItem' + i).val().trim();
+					var selectValue = $('#selectItemValue' + i).val().trim();
+					if((selectName == '' && selectValue == '') || (selectName != '' && selectValue != '')) {
+						var slectItem = {
+							Name: selectName,
+							Value: selectValue
+						};
+						listSelectItem.push(slectItem);
+					} else {
+						mui.toast('报销条目的下拉菜单项: ' + i + " 必须都填写或者都不填写！");
+						return;
+					}
+				}
+
+				var listRadioItem = [];
+				//单选
+				for(var i = 1; i <= 3; i++) {
+					var radioName = $('#radioItem' + i).val();
+					var radioValue1 = $('#radioItemValue' + i + '_1').val();
+					var radioValue2 = $('#radioItemValue' + i + '_2').val();
+					if((radioName != '' && radioValue1 != '' && radioValue2 != '') || (radioName == '' && radioValue1 == '' && radioValue2 == '')) {
+						var radioItem = {
+							Name: radioName,
+							Value: radioValue1 + "," + radioValue2
+						};
+						listRadioItem.push(radioItem);
+					} else {
+						mui.toast('报销条目的单选按钮: ' + i + " 必须都填写或者都不填写！");
+						return;
+					}
+				}
+
+				var listNumberItem = [];
+				//数字
+				for(var i = 1; i <= 10; i++) {
+					var numberInputName = $('#numberInput' + i).val();
+					var numberInputUnit = $('#numberInputValue' + i).val();
+					if((numberInputName != '' && numberInputUnit != '') || (numberInputName == '' && numberInputUnit == '')) {
+						var numberItem = {
+							Name: numberInputName,
+							Unit: numberInputUnit
+						};
+						listNumberItem.push(numberItem);
+					} else {
+						mui.toast('报销条目的数字输入框: ' + ABC[i] + " 必须都填写或者都不填写！");
+						return;
+					}
+				}
+
+				var listStatItem = [];
+				//统计
+				for(var i = 1; i <= 3; i++) {
+					var statName = $('#statItem' + i).val();
+					var statUnit = $('#statItemUnit' + i).val();
+					var statValue = $('#statItemValue' + i).val();
+					if((statName == '' && statUnit == '' && statValue == '') || (statName != '' && statUnit != '' && statValue != '')) {
+						var statItem = {
+							Name: statName,
+							Unit: statUnit,
+							Value: statValue
+						};
+						listStatItem.push(statItem);
+					} else {
+						mui.toast('报销条目的统计项: 必须都填写或者都不填写（包含名称，单位和函数式）！');
+						return;
+					}
+				}
+				console.log(JSON.stringify(listStatItem));
+
+				var listInputItem = [];
+				//文本输入
+				for(var i = 1; i <= 2; i++) {
+					var inputName = $('#textInput' + i).val();
+					var inputItem = {
+						Name: inputName,
+					};
+					listInputItem.push(inputItem);
+				}
+
+				var isSendToGroup = true;
+				mui('input[name="isSendToGroup"]').each(function(index, element) {
+					if(this.checked) {
+						isSendToGroup = $(this).val() == 1 ? true : false;
+					}
+				});
+
+				var id = Id.val();
+				var action = (id && id != '') ? 'UpdateReimbursementSet' : 'AddReimbursementSet';
+				var param = xtt.getDefaultParam();
+
+				var ReimbursementSet = {
+					Id: id,
+					FirstCategoryName: reimName.val().trim(),
+					SelectItems: JSON.stringify(listSelectItem),
+					RadioItems: JSON.stringify(listRadioItem),
+					NumberInputItems: JSON.stringify(listNumberItem),
+					StatItems: JSON.stringify(listStatItem),
+					TextInputItems: JSON.stringify(listInputItem),
+					IsSendToGroup: isSendToGroup
+				}
+				param["Data"] = ReimbursementSet;
+
+				mui.ajax(xtt.serverRoot + 'ReimbursementCommon/' + action, {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function(xhr, settings) {
+						//loadingMsg('正在恢复会话信息...');
+						//xhr.setRequestHeader('Content-Type', 'application/json');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								var list = plus.webview.getWebviewById('list-reimbursementItem.html');
+								if(list)
+									mui.fire(list, 'saved', {
+										reimbursementSet: res.Result,
+										isUpdated: action == 'UpdateReimbursementSet'
+									});
+								console.log(JSON.stringify(res.Result));
+								mui.toast('保存成功！');
+								/*mui.openWindow({
+									url: "index.html",
+									id: "merchant",
+									show: {
+										aniShow: 'pop-in',
+										duration: 300
+									}
+								});*/
+								mui.back();
+							} else {
+								mui.toast('保存失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('保存错误，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			}
+			//保存按钮事件
+			document.getElementById('btnBottomSave').addEventListener('tap', save);
+			document.getElementById('btnTopSave').addEventListener('tap', save);
+
+			//选择后回调
+			function BindData(result) {
+				if(result) {
+					reimName.val(result.FirstCategoryName);
+					Id.val(result.Id);
+					var listSelectItem = JSON.parse(result.SelectItems);
+					if(listSelectItem != null && listSelectItem.length >= 3) {
+						for(var i = 1; i <= 3; i++) {
+							$('#selectItem' + i).val(listSelectItem[i - 1].Name);
+							$('#selectItemValue' + i).val(listSelectItem[i - 1].Value);
+						}
+					}
+
+					var listRadioItem = JSON.parse(result.RadioItems);
+					if(listRadioItem != null && listRadioItem.length >= 3) {
+						for(var i = 1; i <= 3; i++) {
+							$('#radioItem' + i).val(listRadioItem[i - 1].Name);
+							if(listRadioItem[i - 1].Value.split(',').length > 1) {
+								$('#radioItemValue' + i + '_1').val(listRadioItem[i - 1].Value.split(',')[0])
+								$('#radioItemValue' + i + '_2').val(listRadioItem[i - 1].Value.split(',')[1])
+							}
+						}
+					}
+
+					var listNumberItem = JSON.parse(result.NumberInputItems);
+					if(listNumberItem != null && listNumberItem.length >= 10) {
+						for(var i = 1; i <= 10; i++) {
+							$('#numberInput' + i).val(listNumberItem[i - 1].Name);
+							$('#numberInputValue' + i).val(listNumberItem[i - 1].Unit);
+						}
+					}
+
+					var listStatItem = JSON.parse(result.StatItems);
+					if(listStatItem != null && listStatItem.length >= 3) {
+						for(var i = 1; i <= 3; i++) {
+							$('#statItem' + i).val(listStatItem[i - 1].Name);
+							$('#statItemUnit' + i).val(listStatItem[i - 1].Unit);
+							$('#statItemValue' + i).val(listStatItem[i - 1].Value);
+						}
+					}
+
+					var listInputItem = JSON.parse(result.TextInputItems);
+					if(listInputItem != null && listInputItem.length >= 2) {
+						for(var i = 1; i <= 2; i++) {
+							$('#textInput' + i).val(listInputItem[i - 1].Name);
+						}
+					}
+
+					//先清空
+					mui('input[name=isSendToGroup]').each(function() {
+						this.checked = false
+					});
+
+					mui('input[name="isSendToGroup"]').each(function(index, element) {
+						if($(this).val() == (result.IsSendToGroup ? 1 : 0)) {
+							this.checked = true;
+						}
+					});
+
+				}
+			}
+
+			mui('.mui-checkbox.clearMethod').on('change', 'input', function() {
+				var value = this.checked ? "true" : "false";
+				var id = $(this).attr('id');
+				if(value == "true") {
+					mui('input[name="isSendToGroup"]').each(function(index, element) {
+						if($(this).attr("id") != id) {
+							this.checked = false;
+						}
+					});
+				} else {
+					mui('input[name="isSendToGroup"]').each(function(index, element) {
+						if($(this).attr("id") == id) {
+							this.checked = true;
+						}
+					});
+				}
+			});
+		</script>
+
+	</body>
+
+</html>

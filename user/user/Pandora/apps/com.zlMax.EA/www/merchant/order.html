@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>报销单新增/修改</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+
+		<style type="text/css">
+			.showimg {
+				margin: 5px 10px auto 10px;
+				text-align: center;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">报销单新增/修改</h1>
+		</header>
+		<div class="mui-content">
+			<form id="editForm" class="mui-input-group" style="margin-top: 0px;margin-bottom: 60px;">
+				<input type="hidden" id="Id" name="Id" value="">
+				<input type="hidden" id="FirstCategoryId" name='FirstCategoryId' value="" />
+				<input type="hidden" id="ImageFileName" name='ImageFileName' value="" />
+				<div id='divFirstCategory'>
+
+				</div>
+				<div class="mui-input-row">
+					<a id="btnStartDate" class="">
+						<label>发生日期</label>
+						<input type="text" readonly placeholder="请选择发生日期..." name="ReimbursementOn" id="ReimbursementOn">
+						<a id="btnTodayStart" class="mui-btn mui-btn-primary float-btn btn-today">今</a>
+					</a>
+				</div>
+
+				<div id='SecendCategory'>
+					<div id='divF1'>
+					</div>
+				</div>
+
+				<div class="mui-input-row" id="divPCD">
+					<a class="mui-navigate-right">
+						<label>省市区</label>
+						<input type="text" placeholder="请选择所在省市区..." readonly id="PCDName" name="PCDName">
+						<input type="hidden" id="ProvinceID" name="ProvinceID" />
+						<input type="hidden" id="CityID" name="CityID" />
+						<input type="hidden" id="DistrictID" name="DistrictID" />
+						<a class="mui-btn mui-btn-warning float-btn btn-clear">清除</a>
+					</a>
+				</div>
+
+				<div class="mui-input-row" style="height: 45px;">
+					<label>上传凭证</label>
+					<button type="button" id="headImage" class="mui-btn mui-btn-primary" style="float:right; margin-top: 4px; margin-right: 8px; width:150px;">点击上传</button>
+				</div>
+
+				<div class="mui-input-row" style="height: 100px;">
+					<div class="showimg">
+					</div>
+				</div>
+
+				<div class="mui-input-row" style="height: 55px;">
+					<label>审核备注</label>
+					<textarea rows="5" id="NotAgreeRemark" placeholder="审核备注，由审核人员填写。" readonly="readonly" name="NotAgreeRemark"></textarea>
+				</div>
+
+			</form>
+
+			<div id='divSaveAndAccept' class="mui-button-row bottom-action-bar">
+				<button id="btnSave" type="button" style="width:100%;height:55px;" class="mui-btn mui-btn-primary">
+					保存
+				</button>
+				<!--	<button id="btnAccept" type="button" style="width:49%;height:55px;" class="mui-btn mui-btn-primary mui-btn-danger">
+					接单
+				</button>-->
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script src="../js/binaryajax.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/exif.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/canvasResize.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+
+				//加载报销分类及子分类
+				var d = new Date();
+				ReimbursementOn.val(d.getFullYear() + "-" + ((d.getMonth() + 1) < 10 ? '0' : '') + (d.getMonth() + 1) + "-" + ((d.getDate()) < 10 ? '0' : '') + d.getDate());
+			});
+
+			/*mui.back = function() {
+				mui.openWindow({
+					url: "index.html",
+					id: "merchant",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			}*/
+
+			var Id = $('#Id');
+			var title = $('#title'); //标题
+			var lineId = $('#lineId'); //线路
+			var carNo = $('#CarNo'); //车牌号
+			var ImageFileName = $('#ImageFileName'); //上传图片后，服务器保存的文件名称;
+			var ReimbursementOn = $('#ReimbursementOn'); //发生日期
+			var iptMileage = $('#iptMileage');
+			var ABC = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']; //
+
+			/*点击头像触发*/
+			document.getElementById("headImage").addEventListener('tap', function() {
+				plus.nativeUI.actionSheet({
+						cancel: "取消",
+						buttons: [{
+							title: "从手机中相册选择"
+						}, {
+							title: '拍照'
+						}]
+					},
+					function(e) {
+						//console.log(JSON.stringify(e));
+						if(e.index == 1) { //点击从相册选择
+							//console.log("相册选择");
+							galleryImgs();
+						} else if(e.index == 2) {
+							//console.log("手机拍照");
+							cameraimages();
+						}
+					}
+				);
+			});
+
+			//上传单张图片
+			function galleryImg() {
+				//每次拍摄或选择图片前清空数组对象
+				f1.splice(0, f1.length);
+				//document.getElementsByClassName("showimg")[0].innerHTML = null;
+				// 从相册中选择图片
+				mui.toast("从相册中选择一张图片");
+				plus.gallery.pick(function(path) {
+					showImg(path, 1);
+				}, function(e) {
+					mui.toast("取消选择图片");
+				}, {
+					filter: "image",
+					multiple: false
+				});
+			}
+
+			function galleryImgs() {
+				//每次拍摄或选择图片前清空数组对象
+				imgCount = 1;
+				//document.getElementsByClassName("showimg")[0].innerHTML = null;
+				// 从相册中选择图片
+				plus.gallery.pick(function(e) {
+					/*if(e.files.length != 2) {
+						mui.toast('请选择身份证正面和背面照片共两张');
+						return false;
+					}*/
+					chooseCount = e.files.length;
+					for(var i in e.files) {
+						showImg(e.files[i], i);
+					}
+
+					//imgupgrade();
+
+				}, function(e) {
+					mui.toast("取消选择图片");
+				}, {
+					filter: "image",
+					multiple: true
+				});
+			}
+			// 拍照添加文件
+
+			function cameraimages() {
+				//每次拍摄或选择图片前清空数组对象
+				imgCount = 1;
+				chooseCount = 1;
+				//console.log('拍照');
+				//document.getElementsByClassName("showimg")[0].innerHTML = null;
+				var cmr = plus.camera.getCamera();
+				cmr.captureImage(function(p) {
+					plus.io.resolveLocalFileSystemURL(p, function(entry) {
+						var localurl = entry.toLocalURL(); //把拍照的目录路径，变成本地url路径，例如file:///........之类的。
+						showImg(localurl);
+					});
+				}, function(e) {
+					mui.toast("很抱歉，获取失败 ", e);
+				});
+			}
+			// 全局数组对象，添加文件,用于压缩上传使用
+			var f1 = new Array();
+			var imgCount = 1;
+			var chooseCount = 1;
+
+			function showImg(url) {
+				// 兼容以“file:”开头的情况
+				//console.log(url);
+				if(0 != url.toString().indexOf("file://")) {
+					url = "file://" + url;
+				}
+				var _div_ = document.getElementsByClassName("showimg")[0];
+				var _img_ = new Image();
+				_img_.src = url; // 传过来的图片路径在这里用。
+				_img_.onclick = function() {
+					plus.runtime.openFile(url);
+				};
+
+				_img_.onload = function() {
+					plus.nativeUI.showWaiting('正在上传图片，请稍后...');
+					var tmph = _img_.height;
+					var tmpw = _img_.width;
+					var isHengTu = tmpw > tmph;
+					var max = Math.max(tmpw, tmph);
+					var min = Math.min(tmpw, tmph);
+					var bili = min / max;
+					if(max > 1200) {
+						max = 1200;
+						min = Math.floor(bili * max);
+					}
+					tmph = isHengTu ? min : max;
+					tmpw = isHengTu ? max : min;
+					_img_.style.border = "1px solid rgb(200,199,204)";
+					_img_.style.margin = "2px";
+					_img_.style.width = "70px";
+					_img_.style.height = "80px";
+					_img_.onload = null;
+					plus.io.resolveLocalFileSystemURL(url, function(entry) {
+							entry.file(function(file) {
+								//console.log(file.size + '--' + file.name);
+								canvasResize(file, {
+									width: tmpw,
+									height: tmph,
+									crop: false,
+									quality: 50, //压缩质量
+									rotate: 0,
+									callback: function(data, width, height) {
+										//f1.push(data);
+										imgupgrade(data);
+										_img_.src = data;
+										_div_.appendChild(_img_);
+										//plus.nativeUI.closeWaiting();
+									}
+								});
+							});
+						},
+						function(e) {
+							//plus.nativeUI.closeWaiting();
+							//console.log(e.message);
+						});
+				};
+			};
+
+			function showRemoteImg(tb200, url) {
+				var _div_ = document.getElementsByClassName("showimg")[0];
+				var _img_ = new Image();
+				_img_.src = tb200; // 传过来的图片路径在这里用。
+				_img_.onclick = function() {
+					plus.runtime.openURL(url);
+				};
+				_img_.onload = function() {
+					var tmph = _img_.height;
+					var tmpw = _img_.width;
+					var isHengTu = tmpw > tmph;
+					var max = Math.max(tmpw, tmph);
+					var min = Math.min(tmpw, tmph);
+					var bili = min / max;
+					if(max > 1200) {
+						max = 1200;
+						min = Math.floor(bili * max);
+					}
+					tmph = isHengTu ? min : max;
+					tmpw = isHengTu ? max : min;
+					_img_.style.border = "1px solid rgb(200,199,204)";
+					_img_.style.margin = "2px";
+					_img_.style.width = "70px";
+					_img_.style.height = "80px";
+					_img_.onload = null;
+					_div_.appendChild(_img_);
+				};
+			}
+
+			function imgupgrade(data) {
+				//mui.toast('后台联调时启用上传功能');
+				//return;
+				//var wt = plus.nativeUI.showWaiting('正在上传第 ' + imgIndex + ' 张图片，请稍后...');
+				//发送数据  
+				var filedata = new Array();
+				filedata.push({
+					FileData: data
+				});
+
+				var data = {
+					param: filedata //base64数据        
+				};
+
+				mui.ajax(xtt.serverRoot + 'ReimbursementCommon/UploadJsonFiles', {
+					type: 'post',
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function(xhr, settings) {
+
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								if(chooseCount == imgCount) {
+									mui.toast('上传成功！');
+									plus.nativeUI.closeWaiting()
+								}
+								imgCount++;
+								//console.log(res.File.SavedFileName);
+								var filenames = ImageFileName.val() + res.File.SavedFileName + ',';
+								ImageFileName.val(filenames);
+
+							} else {
+								mui.toast(res.Message);
+							}
+						} else {
+							mui.toast('保存错误，请稍后再试！');
+						}
+						//plus.nativeUI.closeWaiting();
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('发送请求失败，请稍后再试！');
+						//plus.nativeUI.closeWaiting();
+					}
+				});
+			}
+
+			btnSave1 = $('#btnSave');
+
+			var btnArray = ['确认', '取消'];
+
+			document.getElementById('btnSave').addEventListener('tap', function() {
+				//组合数据
+				var firstCategory = $('#FirstCategoryId');
+				if(firstCategory.val() == '' || firstCategory.val() == null) {
+					mui.toast('请选择要报销的主分类！');
+					return;
+				}
+
+				//console.log(firstCategory.val());
+
+				var msg = $('input[name="FCategory"][value="' + firstCategory.val() + '"]').prev().html();
+				var details = '';
+				var totalAmount = 0;
+				computerStat(firstCategory.val());
+
+				//下拉选择项目
+				var listSelectItem = [];
+
+				$('.select[data-Fid="' + firstCategory.val() + '"]').each(function() {
+					var name = $(this).find('label').eq(0).html();
+					var value = $(this).find('input').eq(0).val();
+					listSelectItem.push({
+						Name: name,
+						Value: value
+					});
+				});
+				//console.log(JSON.stringify(listSelectItem));
+
+				//单选
+				var listRadioItem = [];
+				$('.radioItem[data-Fid="' + firstCategory.val() + '"]').each(function() {
+					var name = $(this).attr('data-name');
+					var inputs = $(this).find('input');
+					var value = '';
+					if(inputs[0].checked) {
+						value = inputs.eq(0).val();
+					}
+					if(inputs[1].checked) {
+						value = inputs.eq(1).val();
+					}
+					listRadioItem.push({
+						Name: name,
+						Value: value
+					});
+				});
+				//console.log(JSON.stringify(listRadioItem));
+
+				//数字输入
+				var listNumberInputItem = [];
+				$('.mui-input-numbox[data-Fid="' + firstCategory.val() + '"]').each(function() {
+					var name = $(this).attr('data-name');
+					var value = $(this).val();
+					var unit = $(this).attr('data-unit');
+					if(value != '') {
+						listNumberInputItem.push({
+							Name: name,
+							Value: value,
+							Unit: unit
+						});
+						details += name + '：' + $(this).val() + ' ' + unit + ' \r\n';
+					}
+					if(value != '' && unit == '元') {
+						totalAmount += Number(value);
+					}
+				});
+				//console.log(JSON.stringify(listNumberInputItem));
+
+				var listStatItem = [];
+				$('.statItem[data-Fid="' + firstCategory.val() + '"]').each(function() {
+					var name = $(this).attr('data-name');
+					var value = $(this).val();
+					var unit = $(this).attr('data-unit');
+					if(ABC.indexOf(name) == -1) {
+						listStatItem.push({
+							Name: name,
+							Value: value,
+							Unit: unit
+						});
+					}
+				});
+				//console.log(JSON.stringify(listStatItem));
+
+				var listTextInputItem = [];
+				$('.textInput[data-Fid="' + firstCategory.val() + '"]').each(function() {
+					var name = $(this).attr('data-name');
+					var value = $(this).val();
+					listTextInputItem.push({
+						Name: name,
+						Value: value
+					})
+				})
+				//console.log(JSON.stringify(listTextInputItem));
+
+				btnSave1.html('保存(合计:' + totalAmount + ')');
+				var orderInfo = msg + '：合计 ' + totalAmount + ' 元，明细如下：\r\n\r\n';
+				orderInfo += details;
+
+				if(listNumberInputItem == null || listNumberInputItem.length == 0) {
+					mui.toast('请至少选择一个报销项目！');
+					return;
+				}
+
+				var images = '';
+
+				if(ImageFileName.val() != null && ImageFileName.val() != '') {
+					//console.log(ImageFileName.val());
+					var imageNames = ImageFileName.val().split(',');
+					var listFileInfo = new Array();
+					for(var i = 0; i < imageNames.length; i++) {
+						if(imageNames[i] != '') {
+							listFileInfo.push({
+								Name: imageNames[i],
+								Title: '报销'
+							})
+						}
+					}
+					if(listFileInfo.length != 0) {
+						images = JSON.stringify(listFileInfo);
+					}
+				}
+
+				////console.log('do');
+				var ReimbursementDetail = {
+					SelectItems: JSON.stringify(listSelectItem),
+					RadioItems: JSON.stringify(listRadioItem),
+					NumberInputItems: JSON.stringify(listNumberInputItem),
+					StatItems: JSON.stringify(listStatItem),
+					TextInputItems: JSON.stringify(listTextInputItem),
+					ReimbursementSetId: firstCategory.val(),
+					FirstCategoryName: $('input[name="FCategory"][value="' + firstCategory.val() + '"]').prev().html(),
+					ProvinceID: $('#ProvinceID').val(),
+					CityID: $('#CityID').val(),
+					DistrictID: $('#DistrictID').val(),
+					PCDName: $('#PCDName').val(),
+				}
+
+				var param = xtt.getDefaultParam();
+				var Reimbursement = {
+					Id: Id.val(),
+					Remark: $('#Remark').val(),
+					ReimbursementOn: ReimbursementOn.val(),
+					Images: images,
+					Detail: ReimbursementDetail
+				}
+
+				param["Data"] = Reimbursement;
+				var id = Id.val();
+				var action = 'AddReimbursement';
+				if(id && id != '') {
+					action = 'UpdateReimbursement'
+				}
+
+				mui.confirm(orderInfo, '请确认报销单！', btnArray, function(e) {
+					if(e.index == 0) {
+						mui.ajax(xtt.serverRoot + 'ReimbursementCommon/' + action, {
+							type: 'post',
+							data: JSON.stringify(param),
+							contentType: 'application/json',
+							timeout: 10000,
+							beforeSend: function(xhr, settings) {
+								plus.nativeUI.showWaiting('正在保存，请稍后...')
+							},
+							success: function(res) {
+								if(res) {
+									if(res.Succeed) {
+										//回调进行更新列表
+										var list = plus.webview.getWebviewById('list-orders.html');
+										if(list)
+											mui.fire(list, 'saved', {
+												logisticsOrder: res.Result,
+												isUpdated: action != 'AddReimbursement'
+											});
+
+										mui.toast('保存成功！');
+										Id.val(res.Result.Id);
+										//保存相关的值，下次录入不用再次输入
+
+										mui.openWindow({
+											url: "index.html",
+											id: "merchant",
+											show: {
+												aniShow: 'pop-in',
+												duration: 300
+											}
+										});
+
+									} else {
+										mui.toast(res.Message);
+									}
+									plus.nativeUI.closeWaiting();
+								} else {
+									mui.toast('获取报销分类错误，请稍后再试！');
+									plus.nativeUI.closeWaiting();
+								}
+								plus.nativeUI.closeWaiting();
+							},
+							error: function(xhr, type, errorThrown) {
+								mui.toast('发送请求失败，请稍后再试！');
+								plus.nativeUI.closeWaiting();
+							}
+						});
+					}
+				});
+
+			});
+
+			$('.mui-input-numbox').on('change', function() {
+				//console.log('aa');
+			});
+
+			//获取报销分类并展示
+			function LoadCategory(id) {
+				var param = xtt.getDefaultParam();
+				mui.ajax(xtt.serverRoot + 'ReimbursementCommon/GetReimbursementSetCategory', {
+					type: 'post',
+					data: param,
+					timeout: 10000,
+					beforeSend: function(xhr, settings) {
+
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								CreateCategory(res);
+								Bind(id);
+							} else {
+								mui.toast(res.Message);
+							}
+						} else {
+							mui.toast('获取报销分类错误，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('发送请求失败，请稍后再试！');
+					}
+				});
+			}
+
+			function Bind(id) {
+				if(id) {
+					var param = xtt.getDefaultParam();
+					param['Id'] = id;
+					mui.ajax(xtt.serverRoot + 'ReimbursementCommon/GetReimbursement', {
+						type: 'post',
+						data: param,
+						timeout: 10000,
+						beforeSend: function() {
+							//loadingMsg('正在恢复会话信息...');
+						},
+						success: function(res) {
+							if(res.Succeed) {
+								BindData(res.Result);
+							} else {
+								mui.toast('获取报销单资料失败！' + res.Message ? res.Message : '');
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast('请求错误！' + errorThrown);
+						}
+					});
+				}
+			}
+
+			function CreteSecCategoryDiv(Detail) {
+				var secDiv = $('<div id="divP' + Detail.Id + '">').addClass('divSecCategory mui-hidden');
+
+				//创建下拉
+				if(Detail.SelectItems) {
+					var listSelectItem = JSON.parse(Detail.SelectItems)
+					if(listSelectItem != undefined && listSelectItem != null && listSelectItem.length > 0) {
+						for(var j = 0; j < listSelectItem.length; j++) {
+							var selectItem = listSelectItem[j];
+							if(selectItem.Name != '' && selectItem.Value != '') {
+								var selectDiv = $('<div class="mui-input-row">').append(
+									$('<a class="select">').attr('id', 'select_' + Detail.Id + '_' + j)
+									.attr('data-Fid', Detail.Id)
+									.attr('data-value', selectItem.Value).append(
+										$('<label>').append(selectItem.Name)
+									).append(
+										$('<input type="text" readonly placeholder="请选择' + selectItem.Name + '">')
+										.attr('id', 'selectItem_' + Detail.Id + '_' + j)
+									).append(
+										$('<a class="mui-btn mui-btn-warning float-btn btn-clear">').append('清除')
+									)
+								)
+								secDiv.append(selectDiv);
+							}
+						}
+					}
+				}
+				//创建单选
+				if(Detail.RadioItems) {
+					var listRadioItem = JSON.parse(Detail.RadioItems)
+					if(listRadioItem != undefined && listRadioItem != null && listRadioItem.length > 0) {
+						for(var j = 0; j < listRadioItem.length; j++) {
+							var radioItem = listRadioItem[j];
+							if(radioItem.Name != '' && radioItem.Value != '' && radioItem.Value.split(',').length > 1) {
+
+								////console.log(radioItem.Value.split(','));
+								var radioDiv = $('<div class="mui-input-row radioItem ' + Detail.Id + '">')
+									.attr('data-Fid', Detail.Id)
+									.attr('data-name', radioItem.Name).append(
+										$('<label>').append(radioItem.Name))
+									.append(
+										$('<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px; width:105px">')
+										.append(
+											$('<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px">')
+											.append(radioItem.Value.split(',')[0])
+										).append(
+											$('<input id="radioItem_' + Detail.Id + '_' + j + '_0" name="radioItem_' + Detail.Id + '_' + j + '" value="' + radioItem.Value.split(',')[0] + '" type="checkbox">')
+										)
+									).append(
+										$('<div class="mui-checkbox mui-pull-left mui-left" style="margin-left:1px;margin-right:1px;padding-left: 1px;padding-right: 1px; width:125px">')
+										.append(
+											$('<label style="margin-left:1px;margin-right:1px;padding-left: 45px;padding-right: 1px">')
+											.append(radioItem.Value.split(',')[1])
+										).append(
+											$('<input id="radioItem_' + Detail.Id + '_' + j + '_1" name="radioItem_' + Detail.Id + '_' + j + '" value="' + radioItem.Value.split(',')[1] + '" type="checkbox">')
+										)
+									)
+								secDiv.append(radioDiv);
+							}
+						}
+					}
+				}
+
+				//数字输入框
+				if(Detail.NumberInputItems) {
+					var listNumberItem = JSON.parse(Detail.NumberInputItems)
+					if(listNumberItem != undefined && listNumberItem != null && listNumberItem.length > 0) {
+						for(var j = 0; j < listNumberItem.length; j++) {
+							var numberItem = listNumberItem[j];
+							if(numberItem.Name != '' && numberItem.Unit != '') {
+								var Numberdiv = $('<div class="mui-input-row" style="height: 45px;">');
+								Numberdiv.append($('<label style="width:180px;padding: 11px;0px;">').append(ABC[j] + '：' + numberItem.Name + '(' + numberItem.Unit + ')'));
+								var divnum = $('<div class="mui-numbox" style="width: 160px;height: 40px;" data-numbox-min="0" data-numbox-max="999999">');
+								divnum.append($('<button class="mui-btn mui-btn-numbox-minus" type="button">').append('-'));
+								divnum.append($('<input  class="mui-input-numbox" data-ABC="' + ABC[j] + '" data-name="' +
+									numberItem.Name + '" type="number" data-Fid="' + Detail.Id + '" data-unit="' + numberItem.Unit + '">'));
+								divnum.append($('<button class="mui-btn mui-btn-numbox-plus" type="button">').append('+'))
+								Numberdiv.append(divnum);
+								secDiv.append(Numberdiv);
+							}
+						}
+					}
+				}
+				//统计项目
+				if(Detail.StatItems) {
+					var listStatItem = JSON.parse(Detail.StatItems)
+					if(listStatItem != undefined && listStatItem != null && listStatItem.length > 0) {
+						for(var j = 0; j < listStatItem.length; j++) {
+							var statItem = listStatItem[j];
+							if(statItem.Name != '' && statItem.Unit != '') {
+								var hiddenClass = ''
+								if(ABC.indexOf(statItem.Name) != -1) {
+									hiddenClass = 'mui-hidden';
+								}
+
+								var statDiv = $('<div class="mui-input-row divStatItem ' + hiddenClass + '">')
+									.append($('<label>').append(statItem.Name + '(' + statItem.Value + ')'))
+									.append(
+										$('<input type="text" style="text-align:right;padding-right: 70px;" class="statItem " data-name="' +
+											statItem.Name + '" data-Fid="' + Detail.Id + '"' + '" data-unit="' + statItem.Unit +
+											'" readonly="readonly" data-value=' + statItem.Value + ' >')
+									)
+								secDiv.append(statDiv);
+							}
+						}
+					}
+				}
+
+				//文本输入框
+				if(Detail.TextInputItems) {
+					var listTextItem = JSON.parse(Detail.TextInputItems)
+					if(listTextItem != undefined && listTextItem != null && listTextItem.length > 0) {
+						for(var j = 0; j < listTextItem.length; j++) {
+							var textItem = listTextItem[j];
+							if(textItem.Name != '') {
+								var textDiv = $('<div class="mui-input-row" style="height: 55px;">').append(
+										$('<label>').append(textItem.Name))
+									.append(
+										$('<textarea class="textInput" data-Fid="' + Detail.Id + '" data-name="' + textItem.Name + '">')
+									)
+								secDiv.append(textDiv);
+							}
+						}
+					}
+				}
+
+				return secDiv;
+
+			}
+
+			//创建主分类
+			function CreateCategory(o) {
+				if(o) {
+					$('#divFirstCategory').empty();
+					$('#SecendCategory').empty();
+					//大分类一次加2行
+					for(var i = 0; i < o.Result.length; i = i + 2) {
+						var divFirstCategory = $('<div class="mui-input-row" style="height: 60px;">');
+						var div1 = $('<div class="mui-checkbox FirstCategory mui-pull-left mui-left" style="margin: 10px 1px 0px 10px;padding: 0px 1px; width:145px">')
+						var div2 = div1.clone();
+						var lable1 = $('<label style="margin:0px 1px;padding: 10px 1px 0px 45px">' + o.Result[i].FirstCategoryName + '</label>');
+						var check1 = $('<input name="FCategory" value="' + o.Result[i].Id + '" id="FCategory' + o.Result[i].Id + '" type="checkbox">');
+						divFirstCategory.append(div1.append(lable1).append(check1));
+
+						////console.log(JSON.stringify(o.Result[i].Childrens));
+						var Detail = o.Result[i];
+						$('#SecendCategory').append(CreteSecCategoryDiv(Detail));
+
+						if(i + 1 < o.Result.length) {
+							var lable2 = $('<label style="margin:0px 1px;padding: 10px 1px 0px 45px">' + o.Result[i + 1].FirstCategoryName + '</label>');
+							var check2 = $('<input name="FCategory" value="' + o.Result[i + 1].Id + '" id="FCategory' + o.Result[i + 1].AutoId + '" type="checkbox">');
+							divFirstCategory.append(div2.append(lable2).append(check2));
+
+							var Detail2 = o.Result[i + 1];
+							//console.log(JSON.stringify(Detail2));						
+							$('#SecendCategory').append(CreteSecCategoryDiv(Detail2));
+							//console.log($('#SecendCategory').html());					
+						}
+						$('#divFirstCategory').append(divFirstCategory);
+					}
+				}
+
+				//数字文本框失焦点事件
+				$('.mui-input-numbox').bind('blur', function() {
+					if($(this).val() == 0) {
+						$(this).val(null);
+					}
+				});
+
+				//数字框重新渲染
+				mui('.mui-numbox').numbox();
+
+				//先清空所有值
+				$('.mui-input-numbox').each(function() {
+					$(this).val('');
+				});
+
+				//主分类点击切换
+				mui('.mui-checkbox.FirstCategory').on('change', 'input', function() {
+					var value = this.checked ? "true" : "false";
+					var id = $(this).attr('id');
+					if(value == 'false') {
+						this.checked = true;
+					} else {
+						mui('input[name="FCategory"]').each(function(index, element) {
+							if($(this).attr("id") != id) {
+								this.checked = false;
+							}
+						});
+						$('#FirstCategoryId').val($(this).val());
+						$('.divSecCategory').addClass('mui-hidden');
+						$('#divP' + $(this).val()).removeClass('mui-hidden');
+					}
+
+				});
+
+				//设置统计项目中的值
+				setStatItem();
+
+			}
+
+			function setStatItem() {
+				//找到样式为 mui-hidden的条目，取出函数式和名称
+				var liststatEl = $('.mui-input-row.divStatItem.mui-hidden');
+				if(liststatEl != null && liststatEl != undefined) {
+					//console.log('b');
+					var statInput = liststatEl.find('input');
+					if(statInput != null && statInput != undefined) {
+						statInput.each(function() {
+							/*console.log(statInput.length);
+							console.log($('#FirstCategoryId').val());*/
+							var numberInput = $('input[data-ABC="' + $(this).attr('data-name') + '"][data-Fid="' + $(this).attr('data-Fid') + '"]');
+							numberInput.attr('disabled', 'disabled');
+							numberInput.prev().attr('disabled', 'disabled');
+							numberInput.next().attr('disabled', 'disabled');
+						})
+					}
+				}
+			}
+
+			function computerStat(categoryId) {
+				var liststatEl = $('.mui-input-row.divStatItem.mui-hidden');
+				if(liststatEl != null && liststatEl != undefined) {
+					var statInput = liststatEl.find('input');
+					if(statInput != null && statInput != undefined) {
+						statInput.each(function() {
+							var numberInput = $('input[data-ABC="' + $(this).attr('data-name') + '"][data-Fid="' + categoryId + '"]');
+							var computerValue = $(this).attr('data-value');
+							var s = computerValue.toUpperCase().split('');
+							if(s != null && s.length > 0) {
+								for(var i = 0; i < s.length; i++) {
+									var amount = 0;
+									var value = $('input[data-ABC="' + s[i] + '"][data-Fid="' + categoryId + '"]').val()
+									if(value != '' && value != null) {
+										amount = Number(value);
+									}
+									if(ABC.indexOf(s[i]) > -1) {
+										computerValue = computerValue.replace(s[i], amount)
+									}
+								}
+							}
+							numberInput.val(eval(computerValue));
+						})
+					}
+				}
+				var showlistStatEl = $('.mui-input-row.divStatItem');
+				if(showlistStatEl != null && showlistStatEl != undefined) {
+					var statInput = showlistStatEl.find('input');
+					if(statInput != null && statInput != undefined) {
+						statInput.each(function() {
+							//var numberInput = $('input[data-ABC="' + $(this).attr('data-name') + '"]');
+							var computerValue = $(this).attr('data-value');
+							var s = computerValue.toUpperCase().split('');
+							if(s != null && s.length > 0) {
+								for(var i = 0; i < s.length; i++) {
+									var amount = 0;
+									var value = $('input[data-ABC="' + s[i] + '"][data-Fid="' + categoryId + '"]').val()
+									if(value != '' && value != null) {
+										amount = Number(value);
+									}
+									if(ABC.indexOf(s[i]) > -1) {
+										computerValue = computerValue.replace(s[i], amount)
+									}
+								}
+							}
+							if($(this).attr('data-Fid') == categoryId) {
+								$(this).val(eval(computerValue));
+							}
+						})
+					}
+				}
+			}
+
+			/**
+			 * 初始化数据，清空
+			 */
+			function defautValue(id) {
+				LoadCategory(id);
+				Id.val('');
+				ImageFileName.val('');
+				$('#Remark').val('');
+				$('#NotAgreeRemark').val('');
+				$('.mui-input-numbox').val('');
+				$('.showimg').empty();
+				var d = new Date();
+
+				ReimbursementOn.val(d.getFullYear() + "-" + ((d.getMonth() + 1) < 10 ? '0' : '') + (d.getMonth() + 1) + "-" + ((d.getDate()) < 10 ? '0' : '') + d.getDate());
+				btnSave1.html('保存');
+				btnSave1.attr('disabled', null);
+			}
+
+			/**
+			 * 设置Id
+			 * @param e 事件调用参数
+			 */
+			function setId(e) {
+				var id = e.detail.id;
+				title.html(id ? '报销单修改' : '报销单新增')
+				defautValue(id);
+			}
+			//侦听setId
+			document.addEventListener('setId', setId);
+
+			//绑定数据
+			function BindData(res) {
+				//console.log(JSON.stringify(res));
+				//绑定主键
+				Id.val(res.Id);
+				ReimbursementOn.val(res.ReimbursementOn.split(' ')[0])
+
+				$('#Remark').val(res.Remark);
+				btnSave1.html('保存(合计:' + res.TotalAmount + ')');
+				if(res.IsAgree == true) {
+					btnSave1.attr('disabled', 'true');
+					btnSave1.append('[已同意，不能修改]')
+				} else {
+					btnSave1.attr('disabled', null);
+					if(res.IsAgree == false) {
+						$('#NotAgreeRemark').val(res.NotAgreeRemark);
+					}
+				}
+
+				//绑定图片
+				var images = JSON.parse(res.Images);
+				if(images != null && images.length != 0) {
+					for(var i = 0; i < images.length; i++) {
+
+						//记录到隐藏域
+						ImageFileName.val(ImageFileName.val() + images[i].Name + ',');
+
+						//显示图片
+						if(images[i].Name != null && images[i].Name != '' && images[i].Name.length > 2) {
+							var url = xtt.serverRoot + 'Files/' + 'Images/' + images[i].Name.substr(0, 1) + '/' + images[i].Name.substr(1, 2) + '/';
+							var tb200 = url + 'tb200/' + images[i].Name;
+							var originImg = url + images[i].Name;
+							showRemoteImg(tb200, originImg);
+						}
+					}
+				}
+
+				if(res.Detail) {
+					var result = res.Detail;
+					var listSelectItem = JSON.parse(result.SelectItems);
+					//console.log(JSON.stringify(listSelectItem));
+					if(listSelectItem != null && listSelectItem.length != 0) {
+						for(var i = 0; i < listSelectItem.length; i++) {
+							$('#selectItem_' + result.ReimbursementSetId + '_' + i).val(listSelectItem[i].Value);
+						}
+					}
+
+					var listRadioItem = JSON.parse(result.RadioItems);
+					//console.log(JSON.stringify(listRadioItem));
+					if(listRadioItem != null && listRadioItem.length != 0) {
+						for(var i = 0; i < listRadioItem.length; i++) {
+							if(listRadioItem[i].Value) {
+								var inputs = $('input[name="radioItem_' + result.ReimbursementSetId + '_' + i + '"]');
+								var value = listRadioItem[i].Value
+								if(inputs.eq(0).val() == value) {
+									inputs[0].checked = true;
+								}
+								if(inputs.eq(1).val() == value) {
+									inputs[1].checked = true;
+								}
+							}
+						}
+					}
+
+					var listNumberItem = JSON.parse(result.NumberInputItems);
+					//console.log(JSON.stringify(listNumberItem));
+					if(listNumberItem != null && listNumberItem.length != 0) {
+						for(var i = 0; i < listNumberItem.length; i++) {
+							$('input[data-name="' + listNumberItem[i].Name + '"][type="number"][data-Fid="' + result.ReimbursementSetId + '"]')
+								.val(listNumberItem[i].Value);
+						}
+					}
+
+					var listStatItem = JSON.parse(result.StatItems);
+					if(listStatItem != null && listStatItem.length != 0) {
+						for(var i = 0; i < listStatItem.length; i++) {
+							$('input[data-name="' + listStatItem[i].Name + '"][type="text"][data-Fid="' + result.ReimbursementSetId + '"]')
+							.val(listStatItem[i].Value);
+						}
+					}
+
+					var listInputItem = JSON.parse(result.TextInputItems);
+					//console.log(JSON.stringify(listInputItem));
+
+					//绑定省市区
+					$('#ProvinceID').val(result.ProvinceID);
+					$('#CityID').val(result.CityID);
+					$('#DistrictID').val(result.DistrictID);
+					$('#PCDName').val(result.PCDName);
+
+					if(listInputItem != null && listInputItem.length != 0) {
+						for(var i = 0; i < listInputItem.length; i++) {
+							var item = listInputItem[i];
+							$('textarea[data-name="' + item.Name + '"][data-Fid="' + result.ReimbursementSetId + '"]').html(item.Value);
+						}
+					}
+					title.html('报销单:' + res.Number + '【' + (res.IsAgree == null ? "未审核" : (res.IsAgree == true ? "审核通过" : "审核未通过")) + '】')
+				}
+
+				mui('input[name="FCategory"]').each(function(index, element) {
+					if($(this).val() == res.Detail.ReimbursementSetId) {
+						this.checked = true;
+						$('.divSecCategory').addClass('mui-hidden');
+						$('#divP' + $(this).val()).removeClass('mui-hidden');
+					} else {
+						this.checked = false;
+					}
+					$('#FirstCategoryId').val($(this).val());
+				});
+
+			}
+
+			//选择省市区事件
+			document.getElementById('PCDName').addEventListener('tap', function() {
+				mui.fire(
+					plus.webview.getWebviewById('selectPCD'),
+					'chooseProvince', {
+						backId: plus.webview.currentWebview().id
+					}
+				);
+				mui.openWindow({
+					url: "selectPCD.html",
+					id: "selectPCD",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+
+			//选择后回调
+			document.addEventListener("PCDSelected", function(e) {
+				$('#PCDName').val(e.detail.PCDName);
+				$('#ProvinceID').val(e.detail.ProvinceID);
+				$('#CityID').val(e.detail.CityID);
+				$('#DistrictID').val(e.detail.DistrictID);
+			});
+
+			mui('#editForm').on('tap', '.btn-clear', function(e) {
+				var ipt = $(this).parent().find('input');
+				ipt.val('');
+				ipt.attr('data-', '');
+				return false;
+			});
+
+			//选择
+			mui('#editForm').on('tap', '.select', function(e) {
+				mui.fire(
+					plus.webview.getWebviewById('select'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id,
+						searchType: 0,
+						value: $(this).attr('data-value'),
+						selectId: $(this).attr('id')
+					}
+				);
+				mui.openWindow({
+					url: "select.html",
+					id: "select",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+
+			mui('#SecendCategory').on('change', 'input[type="checkbox"]', function(e) {
+				var value = this.checked ? "true" : "false";
+				var id = $(this).attr('id');
+				var name = $(this).attr('name');
+				if(value == "true") {
+					mui('input[name="' + name + '"]').each(function(index, element) {
+						if($(this).attr("id") != id) {
+							this.checked = false;
+						}
+					});
+				} else {
+					/*mui('input[name="' + name + '"]').each(function(index, element) {
+						if($(this).attr("id") == id) {
+							this.checked = true;
+						}
+					});*/
+				}
+			});
+
+			mui('#SecendCategory').on('change', 'input[type="number"]', function(e) {
+				var categoryId = $(this).attr('data-Fid');
+				computerStat(categoryId);
+				var totalAmount = 0;
+				$('.mui-input-numbox').each(function() {
+					var name = $(this).attr('data-name');
+					var value = $(this).val();
+					var unit = $(this).attr('data-unit');
+					if(value != '' && unit == '元') {
+						totalAmount += Number(value);
+					}
+				});
+				btnSave1.html('保存(合计:' + totalAmount + ')');
+			});
+
+			//选择则后
+			document.addEventListener("selected", function(e) {
+				var selectItem = e.detail;
+				//console.log(JSON.stringify(selectItem));
+				if(selectItem) {
+					$('#' + selectItem.SelectId).find('input').val(selectItem.Value)
+				}
+			});
+
+			document.getElementById('btnTodayStart').addEventListener('tap', function() {
+				var d = new Date();
+				ReimbursementOn.val(d.getFullYear() + "-" + ((d.getMonth() + 1) < 10 ? '0' : '') + (d.getMonth() + 1) + "-" + ((d.getDate()) < 10 ? '0' : '') + d.getDate());
+			});
+
+			document.getElementById('btnStartDate').addEventListener('tap', selStartDate);
+
+			function selStartDate() {
+				var ds = getDateFromString(ReimbursementOn.val());
+				plus.nativeUI.pickDate(function(e) {
+					var d = e.date;
+					ReimbursementOn.val(d.getFullYear() + "-" + ((d.getMonth() + 1) < 10 ? '0' : '') + (d.getMonth() + 1) + "-" + ((d.getDate()) < 10 ? '0' : '') + d.getDate());
+				}, function(e) {
+					//info.innerText = "您没有选择日期";
+				}, {
+					title: "请选择开始日期",
+					date: ds,
+					maxDate: new Date()
+				});
+			}
+
+			function getDateFromString(dStr) {
+				var arr = dStr.split('-');
+				var d = new Date;
+				if(arr.length > 2) {
+					d.setFullYear(parseInt(arr[0]), parseInt(arr[1] - 1), parseInt(arr[2]));
+				}
+				return d;
+			}
+
+			/*mui('.mui-checkbox.radioItem').on('change', 'input', function() {
+				var value = this.checked ? "true" : "false";
+				var id = $(this).attr('id');
+				if(value == "true") {
+					mui('input[name="ClearMethod"]').each(function(index, element) {
+						if($(this).attr("id") != id) {
+							this.checked = false;
+						}
+					});
+				} else {
+					mui('input[name="ClearMethod"]').each(function(index, element) {
+						if($(this).attr("id") == id) {
+							this.checked = true;
+						}
+					});
+				}
+			});*/
+		</script>
+	</body>
+
+</html>
