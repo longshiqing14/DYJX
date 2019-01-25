@@ -207,7 +207,6 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
 -(void)initIm {
     [XYNetWorking XYPOST:@"RongCloudAPPKey" params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
-
             if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
                 [XYProgressHUD svHUDDismiss];
                 NSString *result = [NSString stringWithFormat:@"%@", [responseObject objectForKey:@"Result"]];

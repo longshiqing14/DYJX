@@ -251,7 +251,7 @@
 }
 
 - (void)initNavigation{
-    self.title = @"达意简讯";
+    self.title = @"公司简讯";
 
     [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
 
