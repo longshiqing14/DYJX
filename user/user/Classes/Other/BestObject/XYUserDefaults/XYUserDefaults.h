@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "XYPickCityModel.h"
 #import "DYJXUserModel.h"
 #import "DYJXUserInfoModel.h"
 #import "DJJLLoginResponse.h"
@@ -89,8 +88,7 @@
 
 
 
-/** 读取全局变量  user_city  */
-+ (XYSelectCommuityModel*)readAppDlegateOfUser_city;
+
 /** 读取全局变量  user_city fixed  */
 + (NSString*)readAppDlegateOfUser_cityOfFfixed;
 /** 读取全局变量  user_city city  */

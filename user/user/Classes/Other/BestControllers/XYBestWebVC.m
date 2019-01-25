@@ -7,27 +7,26 @@
 //
 
 #import "XYBestWebVC.h"
-#import "JXCouponActivityWebPage.h"
-#import "JXCouponDetailModel.h"
-#import "XYOrderAllNet.h"
-#import "XYOrderConfirmOrderVC.h"
+//#import "JXCouponActivityWebPage.h"
+//#import "JXCouponDetailModel.h"
+//#import "XYOrderAllNet.h"
+//#import "XYOrderConfirmOrderVC.h"
 //#import "XYOrderConfirmOrderVC.h" // 确认订单
-#import "JXOrderSettlementViewController.h"
+//#import "JXOrderSettlementViewController.h"
 
 #import "XLPhotoBrowser.h" //图片浏览
 
 //#import "XYOrderDetailSubClassOrderDetailVC.h" // 订单详情
-#import "JXMyOrderDetailsViewController.h"
-#import "XYMineOrderListVCViewController.h" // 订单列表
+//#import "JXMyOrderDetailsViewController.h"
+//#import "XYMineOrderListVCViewController.h" // 订单列表
 
-#import "XYPreDepositVC.h" // 活动页面
-#import "JXFullReduceGoodsPage.h"
-#import "JXGoodsDetailCouponViewController.h"
-#import "XYGoodsDetailVC.h"
-#import "JXAddCartAnimationModel.h"
-#import "XYOrderAddCommentVC.h"
-#import "JXMyCouponsViewController.h"
-#import "XYOrderCommentDetailWebVC.h"
+//#import "XYPreDepositVC.h" // 活动页面
+//#import "JXFullReduceGoodsPage.h"
+//#import "JXGoodsDetailCouponViewController.h"
+//#import "XYGoodsDetailVC.h"
+//#import "JXAddCartAnimationModel.h"
+//#import "XYOrderAddCommentVC.h"
+//#import "XYOrderCommentDetailWebVC.h"
 
 @interface XYBestWebVC () <WKUIDelegate, WKNavigationDelegate,WKScriptMessageHandler>
 
@@ -262,10 +261,6 @@
             
         }else if ([resourceSpecifier hasPrefix:@"//checkout"]){ // 结算
 
-//            XYOrderConfirmOrderVC * confirmOrderVC = [[XYOrderConfirmOrderVC alloc]init];
-//            [self.navigationController pushViewController:confirmOrderVC animated:YES];
-            JXOrderSettlementViewController * orderSettlementViewController = [[JXOrderSettlementViewController alloc]init];
-            [self.navigationController pushViewController:orderSettlementViewController animated:YES];
             
         }else if ([resourceSpecifier hasPrefix:@"//showImage"]){ // 图片浏览
 
@@ -309,21 +304,11 @@
                 
                 if ([dict[@"type"] isEqualToString:@"details"]) { // 订单详情
                     
-                    NSMutableDictionary * orderidDict = [NSMutableDictionary dictionary];
-                    orderidDict = [self arrayToDictionaryWithString:typeArray[1]];
-                    
-//                    XYOrderDetailSubClassOrderDetailVC * orderDetailVC = [[XYOrderDetailSubClassOrderDetailVC alloc]init];
-//                    orderDetailVC.order_ID = orderidDict[@"orderid"];
-//                    [self.navigationController pushViewController:orderDetailVC animated:YES];
-                    JXMyOrderDetailsViewController * myOrderDetailsViewController = [[JXMyOrderDetailsViewController alloc]init];
-                    myOrderDetailsViewController.orderID = orderidDict[@"orderid"];;
-                    [self.navigationController pushViewController:myOrderDetailsViewController animated:YES];
+
                     
                 }else if([dict[@"type"] isEqualToString:@"comment"]){ //  评论列表
                     
-                    XYMineOrderListVCViewController * orderListVC = [[XYMineOrderListVCViewController alloc]init];
-                    orderListVC.selectIndex = 3;
-                    [self.navigationController pushViewController:orderListVC animated:YES];
+            
                     
                 }
                 
@@ -418,190 +403,10 @@
     if ([message.name isEqualToString:@"toPage"]) {
         
         if ([message.body isKindOfClass:[NSString class]]) {
-//            XYOrderDetailSubClassOrderDetailVC * detailVC = [[XYOrderDetailSubClassOrderDetailVC alloc]init];
-//            detailVC.order_ID = message.body;
-//            [self.navigationController pushViewController:detailVC animated:YES];
-            JXMyOrderDetailsViewController * myOrderDetailsViewController = [[JXMyOrderDetailsViewController alloc]init];
-            myOrderDetailsViewController.orderID = message.body;
-            [self.navigationController pushViewController:myOrderDetailsViewController animated:YES];
+
         }
         
-    }else if ([message.name isEqualToString:@"notLanded"]){
-        
-        [XYCommon setPresentViewControllerWithLoginView];
-
-    }else if ([message.name isEqualToString:@"noLanded"]){
-
-        [XYCommon setPresentViewControllerWithLoginView];
-        [self.navigationController popViewControllerAnimated:YES];
-        
-    }else if ([message.name isEqualToString:@"inventoryNone"]){
-        
-        [self webViewWithDetailInventoryNone];
-        
-    }else if ([message.name isEqualToString:@"goPage"]){
-        
-        if ([[XYCommon getCurrentVC] isKindOfClass:[self class]]) {
-            XYPreDepositVC * preDepositVC = [[XYPreDepositVC alloc]init];
-            preDepositVC.isProductList = @"Y";
-            [self.navigationController pushViewController:preDepositVC animated:YES];
-        }else{
-            [self webViewGoFormActivityVC];
-        }
-        
-    }else if ([message.name isEqualToString:@"GetCouponActivityGoodsList"]){
-        JXCouponDetailModel *model = [JXCouponDetailModel modelWithJSON:message.body];
-//        NSNumber *isEnableType = [message.body valueForKey:@"isEnableType"];
-//        NSString *activeid = [message.body valueForKey:@"activeid"];
-//        NSString *ruleId = [message.body valueForKey:@"ruleId"];
-//        NSString *activityUrl = [message.body valueForKey:@"activityUrl"];
-        NSInteger  nums = [model.isEnableType integerValue];
-        if (nums == 0) {
-            JXCouponActivityWebPage *couponActivityWebPage = [[JXCouponActivityWebPage alloc]init];
-            couponActivityWebPage.webURLstr = [model.activityUrl stringByAppendingString:[NSString stringWithFormat:@"?activeId=%@",model.activeid]];
-            [self.navigationController pushViewController:couponActivityWebPage animated:NO];
-        }else if (nums == 1){
-
-            JXFullReduceGoodsPage *fullReduceGoodsPage = [[JXFullReduceGoodsPage alloc]init];
-            fullReduceGoodsPage.activeId = model.activeid;
-            [self.navigationController pushViewController:fullReduceGoodsPage animated:NO];
-        }else if (nums == 2){
-            [self.navigationController.tabBarController setSelectedIndex:0];
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        }
-
-    }else if ([message.name isEqualToString:@"getUserInfoCoupon"]){
-        
-        
-        [XYWebViewJavaScript javaScriptUpdateCouponActivityWithWebView:self.myWebView];
-        
-        
-    }else if ([message.name isEqualToString:@"toCart"]){
-        
-        [self.navigationController.tabBarController setSelectedIndex:2];
-         [self.navigationController popToRootViewControllerAnimated:YES];
-    }else if ([message.name isEqualToString:@"openCoupon"]){
-        JXGoodsDetailCouponViewController *couponListView = [[JXGoodsDetailCouponViewController alloc]initWithNibName:@"JXGoodsDetailCouponViewController" bundle:nil];
-        NSMutableString *activityIdsString = [NSMutableString stringWithFormat:@"%@",message.body];
-        [activityIdsString deleteCharactersInRange:NSMakeRange(activityIdsString.length - 1, 1)];
-        couponListView.activityIds = activityIdsString;
-//      [YWDPopupControl popupView: couponListView.view offsetTop:164 backGroudcolor:[UIColor grayColor]];
-        couponListView.dissViewController = ^(UIViewController *controller) {
-            [self dismissViewControllerAnimated:YES completion:^{
-                
-            }];
-        };
-        [self pushController:couponListView];
-        
-        
-        
-        NSLog(@"弹出优惠券弹窗");
-    }else if ([message.name isEqualToString:@"postMessageForId"]){
-        //分类加载
-        [XYWebViewJavaScript javaScriptUpdateClassifiCartLeftRightPositioinWithWebView:self.myWebView];
-    }else if ([message.name isEqualToString:@"jumpToGoodsDetail"]){
-        //分类进入 商详
-//        NSArray *array = [NSArray arrayWithArray:message.body];
-        NSDictionary *dic = [NSDictionary dictionaryWithDictionary:message.body];
-        
-        XYGoodsDetailVC * detailVC = [[XYGoodsDetailVC alloc]init];
-        detailVC.productId = [dic objectForKey:@"productId"];
-        [self.navigationController pushViewController:detailVC animated:YES];
-    }else if ([message.name isEqualToString:@"postMessageForUpdate"]){
-        //分类 加购物车
-        JXAddCartAnimationModel *model = [JXAddCartAnimationModel modelWithJSON:message.body];
-    
-        CGPoint startPiont = CGPointMake([model.left floatValue], [model.top floatValue]);
-        [YWDTools addCartAnimationWithStartPoint:startPiont endPoint:CGPointZero goodsImage:model.logo productId:model.productId animation:NO];
-        
-        
-    }else if ([message.name isEqualToString:@"getUserInfoMore"]){
-        //首页点击更多
-      [XYWebViewJavaScript javaScriptUpdateUserInfoMoreWithWebView:self.myWebView];
-    }else if ([message.name isEqualToString:@"postProductImg"]){
-        self.imageUrl = message.body;
-        NSData *data = nil;
-        if (![YWDTools isNil:self.imageUrl]) {
-        data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.imageUrl]];
-        }else{
-        }
-        
-        [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"goodsDetailImageData"];
-    }else if ([message.name isEqualToString:@"reloadPage"]){
-        [self loadRequestUrl];
-    }else if ([message.name isEqualToString:@"xpPostMethods"]){
-        [XYWebViewJavaScript javaScriptTestWithWebView:self.myWebView];
-
-    }else if ([message.name isEqualToString:@"turnToCommentList"]){
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"turnToCommentList" object:nil];
-    }else if ([message.name isEqualToString:@"postTitleToHelpCenter"]){
-        if (message.body == nil) {
-            return ;
-        }
-        
-        NSData *jsonData = [message.body dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSError *err;
-        
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
-        
-        if(err) {
-            
-            NSLog(@"json解析失败：%@",err);
-            
-            return ;
-            
-        }
-        self.title = [dic valueForKey:@"title"];
-        
-    }else if ([message.name isEqualToString:@"getInitData"]){
-       [XYWebViewJavaScript javaScriptUpdateUserInfoSetInitDataWithWebView:self.myWebView];
-    }else if ([message.name isEqualToString:@"getUserInfo"]){
-        [XYWebViewJavaScript javaScriptUpdateUserNameWithWebView:self.myWebView];
-    }else if ([message.name isEqualToString:@"goOrderDetails"]){
-        
-//        XYOrderDetailSubClassOrderDetailVC * orderDetailVC = [[XYOrderDetailSubClassOrderDetailVC alloc]init];
-//        orderDetailVC.order_ID = message.body;
-//        [self.navigationController pushViewController:orderDetailVC animated:YES];
-        JXMyOrderDetailsViewController * myOrderDetailsViewController = [[JXMyOrderDetailsViewController alloc]init];
-        myOrderDetailsViewController.orderID = message.body;
-        [self.navigationController pushViewController:myOrderDetailsViewController animated:YES];
-    }else if ([message.name isEqualToString:@"goEvaluate"]){
-        XYCommentProductListModel *model = [XYCommentProductListModel modelWithJSON:message.body];
-        
-        XYOrderAddCommentVC *commentVC = [[XYOrderAddCommentVC alloc] init];
-        commentVC.dataModel = model;
-        [self.navigationController pushViewController:commentVC animated:YES];
-    }else if ([message.name isEqualToString:@"Coupon"]){
-        UIStoryboard *board=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        //这个字符串是你要跳转面板的名字
-        JXMyCouponsViewController *myCouponsViewController =[board instantiateViewControllerWithIdentifier:@"JXMyCouponsID"];
-
-        [self.navigationController pushViewController:myCouponsViewController animated:YES];
-    }else if ([message.name isEqualToString:@"sweepCodeOrder"]){
-        NSLog(@"%@",message.body);
-        JXProductIdModel *model=[JXProductIdModel modelWithJSON:message.body];
-        NSString *cityID=[XYUserDefaults readAppDlegateOfUser_cityOfcityid];
-        if ([cityID isEqualToString:model.cityId]) {
-            [self buyNowButtonClick:model.productId PartnerId:model.partnerId];
-        }else{
-            [YDBAlertView showToast:[NSString stringWithFormat:@"该商品仅限%@区域用户购买",model.cityName] dismissDelay:1.0];
-//            [XYProgressHUD svHUDShowStyle:XYHUDStyleError title:[NSString stringWithFormat:@"该商品仅限%@区域用户购买",model.cityName] dismissTimeInterval:1.0];
-        }
-        
-    }else if ([message.name isEqualToString:@"getPageFrom"]){
-        
-        [XYWebViewJavaScript javaScriptUpdateGetOriginWithWebView:self.myWebView];
-    }else if ([message.name isEqualToString:@"goEvaluateDetial"]){
-        NSDictionary *dic = [NSDictionary dictionaryWithDictionary:message.body];
-       
-        XYOrderCommentDetailWebVC *webVC  =[[XYOrderCommentDetailWebVC alloc]init];
-        webVC.apprId = [dic objectForKey:@"apprId"];
-        webVC.productId = [dic objectForKey:@"productId"];
-        [self.navigationController pushViewController:webVC animated:YES];
     }
-
     
 
     
@@ -620,15 +425,7 @@
     }
     
     WeakSelf;
-    [XYOrderAllNet netActivityCartBuyNowWithProductId:productId PartnerId:partnerId Block:^(NSDictionary *blockDictionary, NSError *error) {
-        
-        if (error == nil) {
-//            XYOrderConfirmOrderVC * confirmOrderVC = [[XYOrderConfirmOrderVC alloc]init];
-//            [weakSelf.navigationController pushViewController:confirmOrderVC animated:YES];
-            JXOrderSettlementViewController * orderSettlementViewController = [[JXOrderSettlementViewController alloc]init];
-            [weakSelf.navigationController pushViewController:orderSettlementViewController animated:YES];
-        }
-    }];
+    
 }
 
 #pragma mark - WKUIDelegate

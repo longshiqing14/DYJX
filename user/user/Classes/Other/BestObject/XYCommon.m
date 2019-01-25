@@ -8,8 +8,6 @@
 
 #import "XYCommon.h"
 
-//#import "XYTabbarController.h"
-#import "XYLoginVC.h"
 #import "DYJXLoginPage.h"
 @implementation XYCommon
 

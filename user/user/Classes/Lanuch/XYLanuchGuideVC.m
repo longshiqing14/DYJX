@@ -7,8 +7,6 @@
 //
 
 #import "XYLanuchGuideVC.h"
-#import "XYTabbarController.h"
-#import "XYLoginVC.h"
 @interface XYLanuchGuideVC ()<UIScrollViewDelegate>
 /** 图片数组 */
 @property(nonatomic,strong) NSMutableArray *dataArr;
@@ -197,15 +195,6 @@ static CGFloat const dotHeight = 8.0;
 //点击进入主页面
 -(void)clickNextPageBtn:(UIButton *)sender{
 
-    
-//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//    if ([XYUserDefaults readUserDefaultsRegistered].count != 0) {
-//        window.rootViewController = [[XYTabbarController alloc] init];
-//    }else{
-//        window.rootViewController = [[XYLoginVC alloc]init];
-//    }
-    
-    XYKeyWindow.rootViewController = [[XYTabbarController alloc] init];
     
 
 }

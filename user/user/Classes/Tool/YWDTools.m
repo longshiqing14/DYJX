@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 #import <CommonCrypto/CommonDigest.h>
 #import "ShoppingCartTool.h"
-#import "XYShoppingCartNet.h"
 
 @implementation YWDTools
 
@@ -638,46 +637,6 @@
 
 /** 添加 购物车的动画 */
 + (void)addCartAnimationWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint goodsImage:(NSString*)imageUrl productId:(NSString*)productId animation:(BOOL)animation{
-    
-    
-    [XYShoppingCartNet netCartAddWithProductId:productId block:^(NSDictionary *blockDictionary, NSError *error) {
-        if (error == nil) {
-            
-            //     10*7     8*5;
-            
-            CGPoint endPoints ;
-            if (endPoint.x == 0 && endPoint.y == 0 ) {
-                endPoints = CGPointMake(XYScreenW/8*5, XYScreenH-34);;
-                if (XYScreenH == 812) {
-                    endPoints = CGPointMake(XYScreenW/8*5, XYScreenH-34-30);
-                }
-            }else{
-                endPoints = endPoint;
-            }
-            
-            //    UIImageView *imageView = [[UIImageView alloc]init] ;
-            //    [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
-            
-            UIImage *image = [[UIImage alloc]init];
-            if ([YWDTools isNil:imageUrl]) {
-                image = [UIImage imageNamed:@"placeholder"];
-            }else{
-                NSURL *url = [NSURL URLWithString:imageUrl];
-                NSData *data = [NSData dataWithContentsOfURL:url];
-                image = [UIImage imageWithData:data];
-            }
-            
-            if (animation) {
-                [ShoppingCartTool addToShoppingCartWithGoodsImage:image
-                                                       startPoint:startPoint
-                                                         endPoint:endPoints
-                                                       completion:^(BOOL finished) {
-                                                           
-                                                       }];
-            }
-            
-        }
-    }];
     
 }
 

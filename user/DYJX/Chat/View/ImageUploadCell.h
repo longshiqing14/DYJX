@@ -8,7 +8,6 @@
 
 #import "BaseTableViewCell.h"
 #import "XYOrderCommentDetailModel.h"
-
 @interface ImageUploadCell : BaseTableViewCell
 @property (copy, nonatomic) void(^addPicturesBlock)();
 @property (copy, nonatomic) void (^deleteImageBlock)(NSInteger index);

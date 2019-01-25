@@ -15,10 +15,10 @@
 #import "ImageUploadCell.h"
 #import "BusinessLicenceFooter.h"
 #import "TipsFooter.h"
-#import "XYSelectIconPopView.h"
 #import "TitleAndContentArrowCell.h"
 #import "DYJXUserInfoModel.h"
 #import "DYJXQRCodePage.h"
+#import "XYSelectIconPopView.h"
 
 static NSString *kGroupDetailModelTipsFooter = @"kGroupDetailModelTipsFooter";
 static NSString *kGroupDetailModelBusinessLicenceFooter = @"kGroupDetailModelBusinessLicenceFooter";

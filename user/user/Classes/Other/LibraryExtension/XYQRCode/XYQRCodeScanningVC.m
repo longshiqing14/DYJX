@@ -8,11 +8,6 @@
 
 #import "XYQRCodeScanningVC.h"
 
-#import "XYBestWebVC.h"
-
-#import "XYGoodsSearchVC.h"
-
-#import "XYGoodsSearchResultVC.h"
 
 @interface XYQRCodeScanningVC ()
 
@@ -116,9 +111,7 @@
 - (void)inputButtonClick:(UIButton*)sender
 {
     
-    XYGoodsSearchVC * searchVC = [[XYGoodsSearchVC alloc]init];
-    
-    [self.navigationController pushViewController:searchVC animated:YES];
+
 }
 
 #pragma mark - 懒加载
@@ -254,14 +247,8 @@
     XYLog(@"  strScanned   %@  ",strResult.strScanned);
     
     if ([strResult.strScanned hasPrefix:@"http://"] || [strResult.strScanned hasPrefix:@"https://"]) {
-        XYBestWebVC * webVC = [[XYBestWebVC alloc]init];
-//        detailModel.shareUrl=
-        webVC.webURLstr = [[NSString stringWithFormat:@"%@",strResult.strScanned] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`%^{}\"[]|\\<> "].invertedSet];
-        [self.navigationController pushViewController:webVC animated:YES];
     }else{
-        XYGoodsSearchResultVC * searchResultVC = [[XYGoodsSearchResultVC alloc]init];
-        searchResultVC.barcode = strResult.strScanned;
-        [self.navigationController pushViewController:searchResultVC animated:YES];
+       
         
     }
     

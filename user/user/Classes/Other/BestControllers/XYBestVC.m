@@ -7,7 +7,7 @@
 //
 
 #import "XYBestVC.h"
-#import "XYHomeVC.h"
+
 #import "UIColor+Extension.h"
 
 @interface XYBestVC ()
@@ -34,15 +34,15 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"%@",self.navigationController.topViewController);
-    if (![self.navigationController.topViewController isKindOfClass:[XYHomeVC class]]) {
-        
-        //        [[UINavigationBar appearance] setBackgroundImage:[XYRGBAColor(228,228,228, 1) imageWithColor] forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearance] setShadowImage:[XYRGBAColor(228,228,228, 1) imageWithColor]];
-    }else
-    {
-        [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
-    }
+//    NSLog(@"%@",self.navigationController.topViewController);
+//    if (![self.navigationController.topViewController isKindOfClass:[XYHomeVC class]]) {
+//        
+//        //        [[UINavigationBar appearance] setBackgroundImage:[XYRGBAColor(228,228,228, 1) imageWithColor] forBarMetrics:UIBarMetricsDefault];
+//        [[UINavigationBar appearance] setShadowImage:[XYRGBAColor(228,228,228, 1) imageWithColor]];
+//    }else
+//    {
+//        [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+//    }
 }
 
 

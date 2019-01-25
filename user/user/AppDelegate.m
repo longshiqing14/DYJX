@@ -15,9 +15,7 @@
 #import "JPUSHService.h"            // 极光推送
 #import "WXApi.h"
 #import "XYBestNavigationVC.h"
-#import "XYLoginVC.h"
 #import "XYPay.h"
-#import "XYTabbarController.h"
 #import <AMapSearchKit/AMapSearchKit.h>
 #import "UPPaymentControl.h"
 //#import "RSA.h"
@@ -25,7 +23,6 @@
 #import "XYUserDefaults.h"
 #import "NSString+Tool.h"
 #import <WebKit/WebKit.h>
-#import "XYLoginAndRegisterNet.h"
 #import "NaviViewController.h"
 #import "XYLanuchGuideVideoVC.h"
 #import "XYLanuchGuideVC.h"
@@ -33,8 +30,6 @@
 #import <UShareUI/UShareUI.h>
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
-#import "JXShareImageView.h"
-#import "JXShareManager.h"
 #import "NetWorkTool.h"
 //版本更新
 #import "JXVersionUpdateView.h"
@@ -62,27 +57,13 @@
 @interface AppDelegate ()<JPUSHRegisterDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,RCIMGroupUserInfoDataSource,RCIMReceiveMessageDelegate,RCIMConnectionStatusDelegate,WXApiDelegate>
 
 @property (nonatomic, strong) UIImageView *photoIV;
-@property (nonatomic, strong) JXShareImageView *shareImageView;
 @property (nonatomic, copy) NSString *shareURL;
 @property (nonatomic, strong) UIImageView *tempPhotoIV;
 @end
 
 static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
 @implementation AppDelegate
-//获取sessionID
--(void)getSessionId{
-    NSString * sessionId = [XYUserDefaults readUserDefaultsOfSessionId];
-    if (!sessionId) {
-        [NetWorkTool postRequest:@{@"force":@""} relativePath:kJXAPI_user_sessionGet ShowAndDismiss:NO success:^(id responseObject) {
-            NSDictionary * dict = [XYCommon removeNull:responseObject];
-            [XYUserDefaults writeUserDefaultsSessionIdDict:dict];
-        } failure:^{
-            
-        } UnusualFailure:^{
-            
-        }];
-    }
-}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"%@",launchOptions);
@@ -1015,158 +996,5 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 }
 
-//截屏
-- (void)screenShot
-{
-    //每次截屏之前，删除之间添加的存放图片的imageView，不然重复截屏会不断的截取到之前的页面
-    [self.photoIV removeFromSuperview];
-    self.photoIV = nil;
-    
-    //截屏, 获取所截图片（imageWithScreenshot在后面实现）
-    UIImage *image = [YWDTools imageWithScreenshot];
-    
-    //添加显示
-    UIImageView *photoIV = [[UIImageView alloc]initWithImage:image];
-    self.photoIV = photoIV;
-    self.tempPhotoIV = photoIV;
-    photoIV.frame = CGRectMake(40, 50, [UIScreen mainScreen].bounds.size.width-80, [UIScreen mainScreen].bounds.size.height-250);
-    
-    /*为imageView添加边框和阴影，以突出显示*/
-    //给imageView添加边框
-    CALayer * layer = [photoIV layer];
-    layer.borderColor = [[UIColor whiteColor] CGColor];
-    layer.borderWidth = 5.0f;
-    
-    //添加四个边阴影
-    photoIV.layer.shadowColor = [UIColor blackColor].CGColor;
-    photoIV.layer.shadowOffset = CGSizeMake(0, 0);
-    photoIV.layer.shadowOpacity = 0.5;
-    photoIV.layer.shadowRadius = 10.0;
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window addSubview:photoIV];
-    //调用显示分享的页面
-    [self share];
-
-}
-
-
-- (void)share
-{
-    WeakSelf;
-    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageMaxColumnCountForPortraitAndBottom = 2;
-        [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-        
-        [JXShareManager getShotScreenInfoFromSeveiceSuccess:^(JXShareModel *model) {
-            weakSelf.shareURL = model.shares[0].shareUrl;
-            // 根据platformType调用相关平台进行分享
-            [weakSelf shareImageToPlatformType:platformType];
-
-        } fail:^{
-            
-        }];
-        
-        
-//        //分享成功之后移除imageView
-//        [self.photoIV removeFromSuperview];
-//        self.photoIV = nil;
-        
-    }];
-    //设置ShareMenuView的代理，实现点击取消分享的时候移除imageView
-    [UMSocialUIManager setShareMenuViewDelegate:self];
-}
-
-- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType
-{
-    //创建分享消息对象
-    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
-    //设置分享的图片
-    self.shareImageView.shotScreenImage.image = self.tempPhotoIV.image;
-    self.shareImageView.QRCodeImageView.image = [YWDTools createNonInterpolatedUIImageFormCIImage:[YWDTools createQRForString:self.shareURL] withSize:400];
-    shareObject.shareImage = [YWDTools imageFromView:self.shareImageView];
-    //分享消息对象设置分享内容对象
-    messageObject.shareObject = shareObject;
-   
-    //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self.window.viewController completion:^(id data, NSError *error) {
-        if (error) {
-            NSLog(@"************Share fail with error %@*********",error);
-        }else{
-            NSLog(@"response data is %@",data);
-        }
-        [self.photoIV removeFromSuperview];
-        self.photoIV = nil;
-    }];
-}
-//ShareMenuViewDelegate
-- (void)UMSocialShareMenuViewDidDisappear
-{
-    [self.photoIV removeFromSuperview];
-    self.photoIV = nil;
-}
-
-- (JXShareImageView *)shareImageView{
-    if (!_shareImageView) {
-        _shareImageView = [[JXShareImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight + 132)];
-    }
-    return _shareImageView;
-}
-
-- (void)CheckAndUpgradeVersion{
-    /**获取程序的版本号*/
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    NSMutableDictionary *requestDic = [NSMutableDictionary dictionary];
-    
-//    requestDic[@"App_ID"] = App_ID;// 程序的apple ID号
-    requestDic[@"appType"] = @"1";
-    requestDic[@"os"] = @"ios";
-    requestDic[@"appCode"] = [version stringByReplacingOccurrencesOfString:@"." withString:@""];
-    NSMutableDictionary * dict = [XYBestRequest requestAllDataWithApi_ID:kJXAPI_user_infrastructureCheckUpdate request_data:requestDic];
-    
-    [XYNetWorking XYPOST:@"" params:dict success:^(NSURLSessionDataTask *task, id responseObject) {
-        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            
-            if ([[responseObject objectForKey:RETURN_CODE_] isEqualToString:ERROR_NUM_STRING_] ) {
-                [XYProgressHUD svHUDDismiss];
-
-                UpdateVersionModel *model = [UpdateVersionModel modelWithJSON: [responseObject objectForKey:RETURN_DATA]];
-                if ([model.update isEqualToString:@"0"]) {
-                    return ;
-                }else{
-                    JXVersionUpdateView *versionUpdateView = [[NSBundle mainBundle] loadNibNamed:@"JXVersionUpdateView"owner:self options:nil].lastObject;
-                    versionUpdateView.versionLb.text = [NSString stringWithFormat:@"是否升级到新版本%@版",model.version];
-                    versionUpdateView.targetSizeLb.text = [NSString stringWithFormat:@"新版本大小：%@M",model.target_size];
-                    versionUpdateView.updateLogLb.text = model.update_log;
-                    
-                    if ([model.constraint isEqualToString:@"0"]) {
-                        versionUpdateView.CloseBTN.hidden = NO;
-                    }else{
-                        versionUpdateView.CloseBTN.hidden = YES;
-                    }
-                    [YWDPopupControl popupView:versionUpdateView];
-                   
-                }
-                
-                
-
-                
-            }else{
-                
-                [YDBAlertView showToast:[responseObject objectForKey:RETURN_DESC_] dismissDelay:1.0];
-                NSError * error = [[NSError alloc]initWithDomain:@"" code:100000 userInfo:nil];
-                //                block(nil,error);
-            }
-            
-        }else{
-            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
-            NSError * error = [[NSError alloc]initWithDomain:[responseObject objectForKey:RETURN_CODE_] code:100000 userInfo:nil];
-            //            block(nil,error);
-        }
-        
-    } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
-        //        block(nil,error);
-    }];
-}
 
 @end
