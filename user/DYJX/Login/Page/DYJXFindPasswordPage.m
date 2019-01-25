@@ -17,6 +17,7 @@
 
 @property(nonatomic, strong)DYJXGetBackPwdAuthorizationCodeViewModel *viewModel;
 @property(nonatomic, copy)NSString *randCode;
+@property(nonatomic, strong)UIView *bottomBackgroundView;
 @end
 
 @implementation DYJXFindPasswordPage
@@ -29,6 +30,7 @@
     NSFontAttributeName:[UIFont systemFontOfSize:18]};
 
     [self initNavigation];
+    [self initSubViews];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -44,6 +46,16 @@
     rightBarButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     
 }
+
+- (void)initSubViews{
+    [self.view addSubview:self.bottomBackgroundView];
+    [self.view sendSubviewToBack:self.bottomBackgroundView];
+    [self.bottomBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(34);
+    }];
+}
+
 - (IBAction)getBackPwdAuthorizationCode:(UIButton *)sender {
     if ([YWDTools isNil:self.phoneNumTF.text]) {
         [YDBAlertView showToast:@"请输入手机号！"];
@@ -104,6 +116,14 @@
         _viewModel = [[DYJXGetBackPwdAuthorizationCodeViewModel alloc]init];
     }
     return _viewModel;
+}
+
+- (UIView *)bottomBackgroundView{
+    if (!_bottomBackgroundView) {
+        _bottomBackgroundView = [[UIView alloc]init];
+        _bottomBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#15293B"];
+    }
+    return _bottomBackgroundView;
 }
 /*
 #pragma mark - Navigation

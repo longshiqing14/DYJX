@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) DYJXLogisticViewModel *viewModel;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property(nonatomic, strong)UIView *bottomBackgroundView;
 @end
 
 @implementation DYJXLogisticPage
@@ -35,8 +36,9 @@
     [super viewDidLoad];
     WeakSelf;
     [self initNavigation];
+    [self initSubViews];
     [self initCollectionView];
-    [self setUpTitleView];
+//    [self setUpTitleView];
 
     [self.viewModel.requestDic setObject:self.IdentityModel.Id forKey:@"CertificateId"];
     [self.viewModel getMyAppsSuccess:^{
@@ -48,6 +50,15 @@
 
 -(void)viewWillAppear:(BOOL)animated {
      [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
+}
+
+- (void)initSubViews{
+    [self.view addSubview:self.bottomBackgroundView];
+    [self.view sendSubviewToBack:self.bottomBackgroundView];
+    [self.bottomBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(34);
+    }];
 }
 
 - (void)initCollectionView{
@@ -244,7 +255,7 @@
         titleView = [[NIMKitTitleView alloc] initWithFrame:CGRectZero];
         self.navigationItem.titleView = titleView;
 
-        titleView.titleLabel.text = @"选择";
+        titleView.titleLabel.text = @"公司简讯";
     }
 
     [titleView sizeToFit];
@@ -287,6 +298,14 @@
         _tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goBackPage:)];
     }
     return _tapGestureRecognizer;
+}
+
+- (UIView *)bottomBackgroundView{
+    if (!_bottomBackgroundView) {
+        _bottomBackgroundView = [[UIView alloc]init];
+        _bottomBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#15293B"];
+    }
+    return _bottomBackgroundView;
 }
 
 - (void)goBackPage:(UITapGestureRecognizer*)tapGestureRecognizer{

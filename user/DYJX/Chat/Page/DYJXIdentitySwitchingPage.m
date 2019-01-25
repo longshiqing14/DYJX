@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong)DYJXIdentitySwitchingViewModel *viewModel;
 @property(nonatomic, strong)DYJXIdentitySwitchingModel *selectedIdentity;
+@property(nonatomic, strong)UIView *bottomBackgroundView;
 @end
 
 static NSString *cellID=@"cellID";
@@ -43,6 +44,8 @@ static NSString *headerID=@"headerID";
     [super viewDidLoad];
     WeakSelf;
     [self initNavigation];
+    
+    [self initSubViews];
     [self.tableView registerClass:[DYJXIdentitySwitchingCell class] forCellReuseIdentifier:cellID];
     [self.tableView registerClass:[DYJXIdentitySwitchingHeader class] forHeaderFooterViewReuseIdentifier:@"headerID"];
     self.tableView.delegate = self;
@@ -68,6 +71,15 @@ static NSString *headerID=@"headerID";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:XY_IM_AlreadRead object:nil];
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+- (void)initSubViews{
+    [self.view addSubview:self.bottomBackgroundView];
+    [self.view sendSubviewToBack:self.bottomBackgroundView];
+    [self.bottomBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(34);
+    }];
 }
 
 -(void)dealloc {
@@ -517,6 +529,14 @@ static NSString *headerID=@"headerID";
         _selectedIdentity = [[DYJXIdentitySwitchingModel alloc] init];
     }
     return _selectedIdentity;
+}
+
+- (UIView *)bottomBackgroundView{
+    if (!_bottomBackgroundView) {
+        _bottomBackgroundView = [[UIView alloc]init];
+        _bottomBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#15293B"];
+    }
+    return _bottomBackgroundView;
 }
 
 - (DYJXIdentitySwitchingViewModel *)viewModel{

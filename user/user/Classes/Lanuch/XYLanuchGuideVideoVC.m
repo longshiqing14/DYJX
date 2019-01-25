@@ -10,7 +10,6 @@
 
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "XYTabbarController.h"
 @interface XYLanuchGuideVideoVC ()
 /** 播放器 */
 @property(nonatomic,strong) AVPlayer *player;
@@ -101,7 +100,7 @@ static CGFloat const btnH = 40.f;
     [self.countTimer invalidate];
     [self.player pause];
     self.player = nil;
-    [UIApplication sharedApplication].keyWindow.rootViewController = [[XYTabbarController alloc] init];
+//    [UIApplication sharedApplication].keyWindow.rootViewController = [[XYTabbarController alloc] init];
     
 }
 

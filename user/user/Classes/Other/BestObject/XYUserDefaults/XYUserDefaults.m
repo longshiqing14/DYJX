@@ -212,44 +212,5 @@
 
 
 
-/******************************** 账号地址 信息 ************************************/
-/** 读取全局变量  user_city  */
-+ (XYSelectCommuityModel*)readAppDlegateOfUser_city
-{
-    AppDelegate * delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    XYSelectCommuityModel * newModel = [XYSelectCommuityModel mj_objectWithKeyValues:delegate.user_city];
-    return newModel;
-}
-
-/** 读取全局变量  user_city fixed  */
-+ (NSString*)readAppDlegateOfUser_cityOfFfixed
-{
-    AppDelegate * delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    XYSelectCommuityModel * newModel = [XYSelectCommuityModel mj_objectWithKeyValues:delegate.user_city];
-    return newModel.fixed;
-}
-
-/** 读取全局变量  user_city city  */
-+ (NSString*)readAppDlegateOfUser_cityOfcityid
-{
-    AppDelegate * delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    XYSelectCommuityModel * newModel = [XYSelectCommuityModel mj_objectWithKeyValues:delegate.user_city];
-    return newModel.cityId;
-}
-/** 读取全局变量  user_city merchantId  */
-+ (NSString*)readAppDlegateOfUser_cityOfMerchantId
-{
-    AppDelegate * delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    XYSelectCommuityModel * newModel = [XYSelectCommuityModel mj_objectWithKeyValues:delegate.user_city];
-    return newModel.merchantId;
-}
-/** 写入全局变量  user_city  */
-+ (void)writeAppDlegateOfOrderMerchantId:(NSDictionary*)dict
-{
-    
-    AppDelegate * delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    delegate.user_city = dict;
-}
-
 @end
 

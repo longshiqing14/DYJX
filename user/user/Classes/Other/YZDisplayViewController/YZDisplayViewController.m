@@ -12,7 +12,7 @@
 #import "UIView+Frame.h"
 #import "YZFlowLayout.h"
 
-#import "XYOrderCommon.h"
+//#import "XYOrderCommon.h"
 
 static NSString * const ID = @"CONTENTCELL";
 
