@@ -13,4 +13,9 @@
 - (void)loginWithPhoneNumber:(NSString*)phoneNumber
                     Password:(NSString*)password
                      Success:(void(^)())success failed:(void(^)(NSString *errorMsg))fail;
+- (void)loginCodeWithPhoneNumber:(NSString*)phoneNumber
+                        Password:(NSString*)password
+                         rndCode:(NSString*)rndCode
+                         Success:(void(^)())success failed:(void(^)(NSString *errorMsg))fail;
+- (void)getAuthorizationCodeWithPhoneNumber:(NSString*)phoneNumber Success:(void(^)(NSString *randCode))success failed:(void(^)(NSString *errorMsg))fail;
 @end
