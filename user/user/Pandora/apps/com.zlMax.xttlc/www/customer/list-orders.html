@@ -293,13 +293,12 @@
 					.attr('data-TotalFee', item.Fee + item.BoxFee + item.GoodsPriceFee)
 					.append('支付');
 				li.append(a);
-				/*.append(
-					$('<a>').attr('data-', item.Id)
-					.addClass('mui-btn mui-btn-primary btn-order-print')
-					.append(
-						$('<span>').addClass('mui-icon mui-icon-upload')
-					).append('打印')
-				);*/
+			
+				li.append(
+					$('<a style="top:70px">').addClass('mui-btn mui-btn-red btn-delete btn-order-delete')
+					.addClass(showMore ? '' : 'mui-hidden')
+					.append('删除')
+				);
 				/*if(!item.IsPaidFee && item.Status != 0) {
 					if(orderType == '#receive') {
 						if(item.IsNeedReceiveMemberPay) {
@@ -525,12 +524,12 @@
 				var elem = this;
 				var li = elem.parentNode;
 				var id = $('.btn-edit', $(li)).attr('id');
-				mui.confirm('确认删除该条记录？', '新泰通', btnArray, function(e) {
+				mui.confirm('确认删除该条记录？', '16888物流平台', btnArray, function(e) {
 					if(e.index == 0) {
 						//删除操作
 						var param = xtt.getDefaultParam();
 						param['Id'] = id;
-						mui.ajax(xtt.serverRoot + 'DelLogisticsOrders', {
+						mui.ajax(xtt.serverRoot + 'DelOrder', {
 							type: 'post',
 							data: param,
 							timeout: 10000,
@@ -544,16 +543,16 @@
 										li.parentNode.removeChild(li);
 									} else {
 										mui.toast('删除失败！' + res.Message ? res.Message : '');
-										mui.back();
+										//mui.back();
 									}
 								} else {
 									mui.toast('删除失败，请稍后再试！');
-									mui.back();
+									//mui.back();
 								}
 							},
 							error: function(xhr, type, errorThrown) {
 								mui.toast('请求错误！' + errorThrown);
-								mui.back();
+								//mui.back();
 							}
 						});
 					} else {

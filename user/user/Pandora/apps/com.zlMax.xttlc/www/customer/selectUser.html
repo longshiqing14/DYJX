@@ -259,12 +259,8 @@
 					.addClass('mui-table-view-cell');
 				var a = $('<a>').addClass('btn-addRS')
 					.append(
-						$('<p style="color:red;font-size:20px">').addClass('customer-contact mui-ellipsis')
-						.append('没有查询到匹配用户，')
-					)
-					.append(
-						$('<p style="color:red;font-size:20px">').addClass('customer-contact mui-ellipsis')
-						.append('你可以通过手工录入添加' + (getRSName() == "receiverSelected" ? '收货' : '发货') + '联系人')
+						$('<p style="height:50px;line-height:25px;color:red;font-size:20px">').addClass('customer-contact')
+						.append('您可通过手机号或商号或名称关键字查询</br>'+ (getRSName() == "receiverSelected" ? '收货' : '发货') + '联系人' +'，没有的话可直接手工新增。')
 					)
 				a.append(
 					$('<p>').addClass('customer-contact mui-ellipsis')

@@ -367,7 +367,7 @@
 				if(ids == '' || ids == null) {
 					return;
 				}
-				mui.confirm('您确认要全部移除吗？', '新泰通', btnArray, function(e) {
+				mui.confirm('您确认要全部移除吗？', '16888物流平台', btnArray, function(e) {
 					if(e.index == 0) {
 						table.empty();
 						RealAccount.html('');
@@ -459,6 +459,7 @@
 				}, function(e) {
 					var result = "-------- 支付失败 --------\n" + "错误码：" + e.code + '\n' + e.message;
 					console.log(result);
+					//mui.toast(result);
 				});
 			}
 		</script>

@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>登录新泰通</title>
+		<title>登录16888物流平台</title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/xtt.css" rel="stylesheet" />
 	</head>
@@ -12,7 +12,7 @@
 	<body>
 		<header id="header" class="mui-bar mui-bar-nav mui-hidden">
 			<a id='btnPlusBack' class="mui-icon mui-icon-left-nav mui-pull-left mui-hidden"></a>
-			<h1 class="mui-title">登录新泰通</h1>
+			<h1 class="mui-title">登录16888物流平台</h1>
 		</header>
 		<div id="loginDiv" class="mui-content mui-hidden">
 			<div class="mui-card" style="margin-top: 40px;">
@@ -51,7 +51,7 @@
 			<span class="mui-spinner"></span><br/> 加载中...
 			<br/>
 			<span id="loadingLabel" style="font-size: 10px;"></span>
-			<p style="color: #0062CC; font-size: 28px; position: absolute; bottom: 28px; width: 100%;">新泰通物流</p>
+			<p style="color: #0062CC; font-size: 28px; position: absolute; bottom: 28px; width: 100%;">16888物流平台</p>
 			<p style="color: #0062CC; font-size: 10px; position: absolute; bottom: 0; width: 100%;">xtt168.com Copyright ©2016
 			</p>
 		</div>
@@ -71,16 +71,20 @@
 
 				//xtt初始化
 				xtt.initPlusReady();
+
 				if(xtt.host != 'HB'){
 					$('#btnPlusBack').removeClass('mui-hidden');
 					document.getElementById('btnPlusBack').addEventListener('tap', function() {
-                        if (plus.os.name == "Android") {
-                            plus.runtime.quit();
-                        } else if (plus.os.name == "iOS") {
-                            xtt.popNavigation();
-                        }
+						/*plus.runtime.quit();*/
 
-                    });
+						if(plus.os.name == "Android") {
+							plus.runtime.quit();
+						}
+						else if(plus.os.name == "iOS"){
+							xtt.popNavigation();
+						}
+
+					});
 				}
 				//版本切换
 				var self = plus.webview.currentWebview();
@@ -447,13 +451,8 @@
 					}, 1500);
 				} else {
 					if(new Date().getTime() - first < 1500) {
-                        if (plus.os.name == "Android") {
-                            plus.runtime.quit();
-                        } else if (plus.os.name == "iOS") {
-                            xtt.popNavigation();
-                        }
-
-                    }
+						plus.runtime.quit();
+					}
 				}
 				//        }
 			};

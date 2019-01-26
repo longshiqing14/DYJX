@@ -4,7 +4,7 @@
 var xtt = (function(document, undefined) {
 
 	//初始化
-	var version = '1.2.0.0'; //版本号
+	var version = '1.2.4.0'; //版本号
 	var launchFlag = null;
 	var uiType = 'customer';
 	var clientId = null,
@@ -15,11 +15,11 @@ var xtt = (function(document, undefined) {
 	//var serverRoot = 'http://192.168.0.213:10001/XttLogistics/';
 	var serverRoot = 'http://www.xtt168.com:8168/XttLogistics/';
 	var device = 'H5';
-    var host = 'HB'; //默认宿主为HB(HBuilder)
+	var host = 'HB'; //默认宿主为HB(HBuilder)
 	var importedClass = null;
-    var androidImportClassName = 'com.cjj.sungocar.manager.SCAccountManager';
+	var androidImportClassName = 'com.cjj.sungocar.manager.SCAccountManager';
 	var iosImportClassName = 'SCAccountManager';
-	
+
 	//uiType = !uiType ? 'merchant' : uiType; //默认界面类型为物流商
 
 	var $ = {
@@ -27,7 +27,7 @@ var xtt = (function(document, undefined) {
 		uiType: uiType, //UI界面类型
 		clientId: clientId,
 		member: member,
-		host:host, 
+		host: host,
 		certificateId: certificateId,
 		serverRoot: serverRoot,
 		inited: false,
@@ -41,13 +41,13 @@ var xtt = (function(document, undefined) {
 	 */
 	$.initPlusReady = function() {
 		$.launchFlag = plus.storage.getItem('launchFlag-' + version);
-        //$.uiType = plus.storage.getItem('uiType');
-        $.getClientId();
-        //$.clientId = plus.storage.getItem('clientId');
-        var s = plus.storage.getItem('member');
-        if (s)
-            $.member = JSON.parse(s);
-        $.inited = true;
+		//$.uiType = plus.storage.getItem('uiType');
+		$.getClientId();
+		//$.clientId = plus.storage.getItem('clientId');
+		var s = plus.storage.getItem('member');
+		if(s)
+			$.member = JSON.parse(s);
+		$.inited = true;
 	};
 
 	$.getClientId = function() {
@@ -86,12 +86,6 @@ var xtt = (function(document, undefined) {
 			plus.runtime.restart();
 	};
 
-    $.popNavigation = function () {
-        if(importedClass)
-            importedClass.popNavigation();
-
-    };
-
 	$.plusBack = function() {
 		if(importedClass)
 			importedClass.plusBack();
@@ -110,6 +104,12 @@ var xtt = (function(document, undefined) {
 		}
 		return r;
 	};
+
+	$.popNavigation = function() {
+		if(importedClass) {
+			importedClass.popNavigation();
+		}
+	}
 
 	/**
 	 * 获取Member对象

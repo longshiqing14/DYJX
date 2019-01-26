@@ -5,9 +5,9 @@
 		"iPad"
 	],
 	//"id": "com.zlMax.xttlc",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "新泰通物流",/*应用名称，程序桌面图标名称*/
+	"name": "16888物流平台",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "1.2.0",/*应用版本名称*/
+		"name": "1.2.4",/*应用版本名称*/
 		"code": "83"
 	},
 	"description": "",/*应用描述信息*/
@@ -174,7 +174,7 @@
 					},
 					"ipad": {
 						"normal": "unpackage/res/icons/72x72.png", /*iPad普通屏幕程序图标，分辨率：72x72*/
-						"retina": "unpackage/res/icons/144x144.png", /*iPad高分屏程序图标，分辨率：xttea*/
+						"retina": "unpackage/res/icons/144x144.png", /*iPad高分屏程序图标，分辨率：144x144*/
 						"normal7": "unpackage/res/icons/76x76.png", /*iPad iOS7程序图标，分辨率：76x76*/
 						"retina7": "unpackage/res/icons/152x152.png", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
 						"spotlight-normal": "unpackage/res/icons/50x50.png", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
