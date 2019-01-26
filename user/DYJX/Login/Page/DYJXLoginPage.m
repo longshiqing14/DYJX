@@ -36,7 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"登录";
+//    self.title = @"登录";
     [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
     self.navigationController.navigationBar.titleTextAttributes=
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
@@ -69,8 +69,8 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
-    self.navigationController.navigationBar.hidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBar.hidden = YES;
     self.navigationController.navigationBar.translucent = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }
