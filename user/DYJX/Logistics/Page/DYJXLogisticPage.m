@@ -275,6 +275,11 @@
 
     UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [iconImage setContentMode:UIViewContentModeScaleAspectFill];
+    
+    if ([UserManager shared].isCompany == 1) {
+        iconImage.layer.cornerRadius = 12.5;
+    }
+    
     iconImage.clipsToBounds = YES;
     [iconImage setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
     self.navigationItem.rightBarButtonItem.width = 25;
