@@ -22,6 +22,7 @@
 #import "PDRCoreAppInfo.h"
 #import "PDRCore.h"
 #import "NIMKitTitleView.h"
+#import "DJCompanyChatPage.h"
 
 @interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -129,6 +130,9 @@
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"ea"]){
             //报销登记审核
             cell.content1.text = @"报销\n登记\n审核";
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
+            //报销登记审核
+            cell.content1.text = @"公司\n 和\n我的商号";
         }
         cell.content1.textColor = [UIColor colorWithHexString:@"#333333"];
     }
@@ -197,6 +201,13 @@
             self.navigationController.navigationBarHidden = YES;
             pWebAppController.AppId = @"com.zlMax.EA";
             [self.navigationController pushViewController:pWebAppController animated:YES];
+            
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
+            [YDBAlertView showToast:@"numberMarket"];
+//            WebAppController  *pWebAppController = [[WebAppController alloc] init];
+//            self.navigationController.navigationBarHidden = YES;
+//            pWebAppController.AppId = @"com.zlMax.EA";
+//            [self.navigationController pushViewController:pWebAppController animated:YES];
             
         }
     }

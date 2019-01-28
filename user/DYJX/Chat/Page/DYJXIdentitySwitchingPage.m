@@ -616,13 +616,16 @@ static NSString *headerID=@"headerID";
     [UserManager shared].swichModel = self.selectedIdentity;
     if ([[UserManager shared].getUserModel.Result.NumberString isEqualToString:self.selectedIdentity.NumberString]) { // 本人详情
         [UserManager shared].isCompany = 1;
+         [JSExtension shared].enterpriseId = self.selectedIdentity.Id;
     }
     else {
         if (self.selectedIdentity.IsPart) { // 子公司详情
            [UserManager shared].isCompany = 2;
+            [JSExtension shared].enterpriseId = self.selectedIdentity.Id;
         }
         else { // 公司详情
             [UserManager shared].isCompany = 3;
+             [JSExtension shared].enterpriseId = self.selectedIdentity.Id;
         }
     }
 
