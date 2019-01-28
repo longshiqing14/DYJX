@@ -63,8 +63,8 @@
     [self.passwordButton addTarget:self action:@selector(selectType:) forControlEvents:UIControlEventTouchUpInside];
 //    self.userNameTF.text = @"13612846724";
 //    self.passwordTF.text = @"111111";
-//    self.userNameTF.text = @"13750820441";
-//    self.passwordTF.text = @"654321";
+    self.userNameTF.text = @"13750820441";
+    self.passwordTF.text = @"654321";
 }
 
 -(void)viewWillAppear:(BOOL)animated {

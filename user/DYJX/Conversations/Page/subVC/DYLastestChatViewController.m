@@ -128,9 +128,9 @@
 }
 
 - (void)initNavigator{
-    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [iconImage setImageWithURL:[NSURL URLWithString:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
-    self.navigationItem.rightBarButtonItem.width = 25;
+    self.navigationItem.rightBarButtonItem.width = 20;
     
     UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
     [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
@@ -147,7 +147,6 @@
         DYJOResult *result = self.viewModel.lasterList.Result[i];
         RCConversationModel *model = [[RCConversationModel alloc]init];
         model.conversationModelType = RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION;
-        model.conversationTitle = result.TargetName;
         if (result.LastMsg[@"RowData"]) {
             NSString *body = [NSString stringWithFormat:@"%@",result.LastMsg[@"RowData"]];
             NSDictionary *dic = [body stringToDictionary];
@@ -175,8 +174,16 @@
         model.unreadMessageCount = 1;
         NSMutableDictionary *dictory = [[NSMutableDictionary alloc] init];
         if (result.LastMsg[@"CreateOn"]) {
-            [dictory setObject:[NSString stringWithFormat:@"%@",result.LastMsg[@"CreateOn"]] forKey:@"UpdateOn"];
+            NSString *creatorName = [NSString stringWithFormat:@"%@",result.LastMsg[@"CreateOn"]];
+            [dictory setObject:creatorName forKey:@"UpdateOn"];
         }
+        if ([result.TargetName isEqualToString:[UserManager shared].getUserModel.Result.DisplayName]) {
+            model.conversationTitle = result.FromName;
+        }
+        else {
+            model.conversationTitle = result.TargetName;
+        }
+
         model.sentStatus = [NSString stringWithFormat:@"%@",result.LastMsg[@"SendType"]].integerValue*10;
         NSInteger type = [NSString stringWithFormat:@"%@",result.LastMsg[@"MessageType"]].integerValue;
         if (type == 0) { // 文字
