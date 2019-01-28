@@ -76,9 +76,9 @@
     return [JSExtension shared].enterpriseId;
 }
 
-//+ (NSString*)getClientId{
-//    return @"123";
-//}
++ (NSString*)getAction{
+    return [JSExtension shared].action;
+}
 
 - (void)PluginTestFunction:(PGMethod*)commands
 {

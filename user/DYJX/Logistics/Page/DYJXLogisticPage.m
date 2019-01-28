@@ -23,12 +23,15 @@
 #import "PDRCore.h"
 #import "NIMKitTitleView.h"
 #import "DJCompanyChatPage.h"
+#import "JSExtension.h"
+#import "DJCompanyChatViewModel.h"
 
 @interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) DYJXLogisticViewModel *viewModel;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property(nonatomic, strong)UIView *bottomBackgroundView;
+@property(nonatomic, strong) DJCompanyChatViewModel *companyViewModel;
 @end
 
 @implementation DYJXLogisticPage
@@ -153,7 +156,11 @@
         if (indexPath.row == 0) {
             [YDBAlertView showToast:@"功能开发中，敬请期待！"];
         }else if (indexPath.row == 1){
-            [YDBAlertView showToast:@"功能开发中，敬请期待！"];
+            [JSExtension shared].action = @"numberMarket";
+            WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            self.navigationController.navigationBarHidden = YES;
+            pWebAppController.AppId = @"com.zlMax.xttNumber";
+            [self.navigationController pushViewController:pWebAppController animated:YES];
         }else if (indexPath.row == 2){
             //16888物流平台
             // Webivew集成不能同时WebApp集成，需要修改AppDelegate文件的PDRCore的启动参数
@@ -203,12 +210,16 @@
             [self.navigationController pushViewController:pWebAppController animated:YES];
             
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
-            [YDBAlertView showToast:@"numberMarket"];
+//            [JSExtension shared].action = @"myNumber";
 //            WebAppController  *pWebAppController = [[WebAppController alloc] init];
 //            self.navigationController.navigationBarHidden = YES;
-//            pWebAppController.AppId = @"com.zlMax.EA";
+//            pWebAppController.AppId = @"com.zlMax.xttNumber";
 //            [self.navigationController pushViewController:pWebAppController animated:YES];
-            
+            [self.companyViewModel getMyGroupsDataSuccess:^{
+//                [weakSelf.tableView reloadData];
+            } failed:^(NSString *errorMsg) {
+                
+            }];
         }
     }
 }
@@ -346,7 +357,12 @@
 }
 
 - (IBAction)walletBTN:(UIButton *)sender {
-    [YDBAlertView showToast:@"开发中，敬请期待！"];
+    //             wallet ,  numberMarket  ,  myNumber;
+    [JSExtension shared].action = @"wallet";
+    WebAppController  *pWebAppController = [[WebAppController alloc] init];
+    self.navigationController.navigationBarHidden = YES;
+    pWebAppController.AppId = @"com.zlMax.xttNumber";
+    [self.navigationController pushViewController:pWebAppController animated:YES];
 }
 
 - (IBAction)conversationBTN:(UIButton *)sender {
@@ -355,6 +371,13 @@
     [XYUserDefaults writeAppDlegateOfCurrentUserIconURL:[self.IdentityModel.GroupHeadImg XYImageURL]];
     [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
     
+}
+
+- (DJCompanyChatViewModel *)companyViewModel{
+    if (!_companyViewModel) {
+        _companyViewModel = [[DJCompanyChatViewModel alloc]init];
+    }
+    return _companyViewModel;
 }
 
 - (void)dealloc{
