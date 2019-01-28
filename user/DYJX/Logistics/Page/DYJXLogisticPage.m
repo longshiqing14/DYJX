@@ -124,17 +124,15 @@
             //报销登记审核
             cell.content1.text = @"报销\n登记\n审核";
         }
-
         cell.content1.textColor = [UIColor colorWithHexString:@"#333333"];
-
-        if (indexPath.section == 0) {
-            cell.contentView.backgroundColor = [UIColor colorWithRed:254.0/255.0 green:241/255.0 blue:187/255.0 alpha:1];
-        }
-        else {
-            cell.contentView.backgroundColor = [UIColor colorWithRed:221/255.0 green:238/255.0 blue:205/255.0 alpha:1];
-
-        }
     }
+    
+    if (indexPath.section == 0) {
+        cell.contentView.backgroundColor = [UIColor colorWithHexString:@"#FFFFE0"];
+    }else {
+        cell.contentView.backgroundColor = [UIColor colorWithRed:221/255.0 green:238/255.0 blue:205/255.0 alpha:1];
+    }
+    
     return cell;
     
 }
