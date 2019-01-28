@@ -89,7 +89,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (section == 0) {
-        return 2;
+        return 4;
     }else{
         return [self.viewModel numberOfCellectionItem];
     }
@@ -100,9 +100,15 @@
     DYJXLogisticCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"DYJXLogisticCollectionViewCell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            //比价
+            cell.content1.text = @"比价";
+        }else if (indexPath.row == 1){
+            //商号市场
+            cell.content1.text = @"商号\n市场";
+        }else if (indexPath.row == 2){
             //16888物流平台
             cell.content1.text = @"16888\n 物流\n 平台";
-        }else if (indexPath.row == 1){
+        }else if (indexPath.row == 3){
             //百度
             cell.content1.text = @"百度\nMore";
         }
@@ -124,17 +130,15 @@
             //报销登记审核
             cell.content1.text = @"报销\n登记\n审核";
         }
-
         cell.content1.textColor = [UIColor colorWithHexString:@"#333333"];
-
-        if (indexPath.section == 0) {
-            cell.contentView.backgroundColor = [UIColor colorWithRed:254.0/255.0 green:241/255.0 blue:187/255.0 alpha:1];
-        }
-        else {
-            cell.contentView.backgroundColor = [UIColor colorWithRed:221/255.0 green:238/255.0 blue:205/255.0 alpha:1];
-
-        }
     }
+    
+    if (indexPath.section == 0) {
+        cell.contentView.backgroundColor = [UIColor colorWithHexString:@"#FFFFE0"];
+    }else {
+        cell.contentView.backgroundColor = [UIColor colorWithRed:221/255.0 green:238/255.0 blue:205/255.0 alpha:1];
+    }
+    
     return cell;
     
 }
@@ -143,19 +147,23 @@
     
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            [YDBAlertView showToast:@"功能开发中，敬请期待！"];
+        }else if (indexPath.row == 1){
+            [YDBAlertView showToast:@"功能开发中，敬请期待！"];
+        }else if (indexPath.row == 2){
             //16888物流平台
             // Webivew集成不能同时WebApp集成，需要修改AppDelegate文件的PDRCore的启动参数
-
-          WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            
+            WebAppController  *pWebAppController = [[WebAppController alloc] init];
             pWebAppController.AppId = @"com.zlMax.xttlc";
             if (pWebAppController) {
                 self.navigationController.navigationBarHidden = YES;
                 [self.navigationController pushViewController:pWebAppController animated:YES];
-            }            
-        }else if (indexPath.row == 1){
+            }
+        }else if (indexPath.row == 3){
             //百度
             DYJXBaiDuWebPage * baiDuWebPage = [[DYJXBaiDuWebPage alloc]init];
-//            self.navigationController.navigationBarHidden = YES;
+            //            self.navigationController.navigationBarHidden = YES;
             baiDuWebPage.webURLstr = @"https://m.baidu.com/usrprofile?action=square";
             [self.navigationController pushViewController:baiDuWebPage animated:YES];
         }
@@ -277,6 +285,11 @@
 
     UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [iconImage setContentMode:UIViewContentModeScaleAspectFill];
+    
+    if ([UserManager shared].isCompany == 1) {
+        iconImage.layer.cornerRadius = 12.5;
+    }
+    
     iconImage.clipsToBounds = YES;
     [iconImage setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
     self.navigationItem.rightBarButtonItem.width = 25;
