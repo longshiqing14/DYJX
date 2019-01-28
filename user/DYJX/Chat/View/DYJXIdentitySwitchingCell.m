@@ -64,6 +64,12 @@
         make.centerY.equalTo(weakSelf);
         make.size.mas_equalTo(CGSizeMake(50 , 50));
     }];
+
+    [self.dotNumber mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.top.equalTo(weakSelf.goodsImageView).insets(UIEdgeInsetsMake(0, 0, 10, 10));
+        make.right.equalTo(weakSelf.goodsImageView).offset(7);
+        make.size.mas_equalTo(CGSizeMake(18, 18));
+    }];
     
     [self.selectedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-20);
@@ -86,11 +92,6 @@
     [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(weakSelf.contentView).with.offset(0);
         make.height.mas_equalTo(0.5);
-    }];
-
-    [self.dotNumber mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.bottom.equalTo(weakSelf).insets(UIEdgeInsetsMake(0, 0, 10, 10));
-        make.size.mas_equalTo(CGSizeMake(22, 22));
     }];
 }
 
@@ -141,10 +142,10 @@
         _dotNumber = [[UILabel alloc]init];
         _dotNumber.backgroundColor = [UIColor colorWithRed:219/255.0 green:55/255.0 blue:48/255.0 alpha:1];
         _dotNumber.textAlignment = NSTextAlignmentCenter;
-        _dotNumber.font = [UIFont systemFontOfSize:12];
+        _dotNumber.font = [UIFont systemFontOfSize:11];
         _dotNumber.textColor = [UIColor whiteColor];
         _dotNumber.layer.masksToBounds = true;
-        _dotNumber.layer.cornerRadius = 11;
+        _dotNumber.layer.cornerRadius = 9.0;
         [_dotNumber setHidden:true];
         _dotNumber.text = @"99";
     }

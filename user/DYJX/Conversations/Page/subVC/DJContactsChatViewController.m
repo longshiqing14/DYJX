@@ -71,9 +71,9 @@
     self.navigationItem.leftBarButtonItem=item;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
 
-    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [iconImage setImageWithURL:[NSURL URLWithString:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
-    self.navigationItem.rightBarButtonItem.width = 25;
+    self.navigationItem.rightBarButtonItem.width = 20;
 
     UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
     [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
