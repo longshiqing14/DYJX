@@ -89,7 +89,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (section == 0) {
-        return 2;
+        return 4;
     }else{
         return [self.viewModel numberOfCellectionItem];
     }
@@ -100,9 +100,15 @@
     DYJXLogisticCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"DYJXLogisticCollectionViewCell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            //比价
+            cell.content1.text = @"比价";
+        }else if (indexPath.row == 1){
+            //商号市场
+            cell.content1.text = @"商号\n市场";
+        }else if (indexPath.row == 2){
             //16888物流平台
             cell.content1.text = @"16888\n 物流\n 平台";
-        }else if (indexPath.row == 1){
+        }else if (indexPath.row == 3){
             //百度
             cell.content1.text = @"百度\nMore";
         }
@@ -141,19 +147,23 @@
     
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            [YDBAlertView showToast:@"功能开发中，敬请期待！"];
+        }else if (indexPath.row == 1){
+            [YDBAlertView showToast:@"功能开发中，敬请期待！"];
+        }else if (indexPath.row == 2){
             //16888物流平台
             // Webivew集成不能同时WebApp集成，需要修改AppDelegate文件的PDRCore的启动参数
-
-          WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            
+            WebAppController  *pWebAppController = [[WebAppController alloc] init];
             pWebAppController.AppId = @"com.zlMax.xttlc";
             if (pWebAppController) {
                 self.navigationController.navigationBarHidden = YES;
                 [self.navigationController pushViewController:pWebAppController animated:YES];
-            }            
-        }else if (indexPath.row == 1){
+            }
+        }else if (indexPath.row == 3){
             //百度
             DYJXBaiDuWebPage * baiDuWebPage = [[DYJXBaiDuWebPage alloc]init];
-//            self.navigationController.navigationBarHidden = YES;
+            //            self.navigationController.navigationBarHidden = YES;
             baiDuWebPage.webURLstr = @"https://m.baidu.com/usrprofile?action=square";
             [self.navigationController pushViewController:baiDuWebPage animated:YES];
         }
