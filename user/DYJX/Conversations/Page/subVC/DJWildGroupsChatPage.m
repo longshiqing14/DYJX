@@ -1,12 +1,12 @@
 //
-//  DJGroupChatPage.m
+//  DJWildGroupsChatPage.m
 //  user
 //
-//  Created by longshiqing on 2018/11/13.
-//  Copyright © 2018年 xiaopenglive. All rights reserved.
+//  Created by 岩  熊 on 2019/1/29.
+//  Copyright © 2019年 xiaopenglive. All rights reserved.
 //
 
-#import "DJGroupChatPage.h"
+#import "DJWildGroupsChatPage.h"
 #import "GroupHeadView.h"
 #import "AppDelegate.h"
 #import "DYJXIdentitySwitchingPage.h"
@@ -17,7 +17,7 @@
 #import "DJGroupChatCell.h"
 #import "DJCompanyChatCell.h"
 
-@interface DJGroupChatPage ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
+@interface DJWildGroupsChatPage ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong)GroupHeadView *headView;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
@@ -27,7 +27,7 @@
 @property (nonatomic, strong)DJGroupChatWildGroupsViewModel *wildGroupsviewModel;
 @end
 
-@implementation DJGroupChatPage
+@implementation DJWildGroupsChatPage
 {
     NSMutableArray *_isExpandArray;//记录section是否展开
 }
@@ -39,12 +39,12 @@
     _isExpandArray = [[NSMutableArray alloc]init];
     [self initNavigation];
     [self initSubView];
-    [self.viewModel getMyCompanyAndGroupDataSuccess:^{
-        [weakSelf initExpandArray];
-        [weakSelf.tableView reloadData];
-    } failed:^(NSString *errorMsg) {
-        
-    }];
+//    [self.viewModel getMyCompanyAndGroupDataSuccess:^{
+//        [weakSelf initExpandArray];
+//        [weakSelf.tableView reloadData];
+//    } failed:^(NSString *errorMsg) {
+//
+//    }];
     
     [self.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
         [weakSelf.wildGroupsTableView reloadData];
@@ -58,22 +58,22 @@
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
       NSFontAttributeName:[UIFont systemFontOfSize:18]};
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
-
+    
     UIImage *image = [UIImage imageNamed:@"btn_home"];
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithImage:image style:(UIBarButtonItemStylePlain) target:self action:@selector(black_controller)];
-
+    
     self.navigationItem.leftBarButtonItem=item;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
-
+    
     UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [iconImage setImageWithURL:[NSURL URLWithString:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
     self.navigationItem.rightBarButtonItem.width = 20;
-
+    
     UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
     [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
     [rightCustomView addSubview: iconImage];
-
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightCustomView];
 }
 
@@ -82,10 +82,10 @@
 }
 #pragma mark - Action
 -(void)searchClick {
-
+    
 }
 -(void)addClick {
-
+    
 }
 -(void)btnClick:(UIButton *)sender {
     [self.headView.innerButton setSelected:NO];
@@ -101,20 +101,20 @@
 
 - (void) initExpandArray{
     for (NSInteger i = 0; i < [self.viewModel numberOfSection]; i++) {
-//        if (i == 0) {
-//            [_isExpandArray addObject:@"1"];//0:没展开 1:展开
-//
-//        }else{
-            [_isExpandArray addObject:@"0"];//0:没展开 1:展开
-            
-//        }
+        //        if (i == 0) {
+        //            [_isExpandArray addObject:@"1"];//0:没展开 1:展开
+        //
+        //        }else{
+        [_isExpandArray addObject:@"0"];//0:没展开 1:展开
+        
+        //        }
     }
 }
 
 #pragma mark - UI
 -(GroupHeadView *)headView {
     if (!_headView) {
-        _headView = [[GroupHeadView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 0)];
+        _headView = [[GroupHeadView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 120)];
         [_headView.searchButton addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
         [_headView.addButton addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
         [_headView.innerButton addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -132,12 +132,12 @@
 
 - (void)goBackPage{
     XYKeyWindow.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
-
+    
 }
 
 - (void)initSubView{
-    [self.tableView registerNib:[UINib nibWithNibName:@"DJGroupChatCell" bundle:nil] forCellReuseIdentifier:@"DJGroupChatCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"DJGroupChatHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"DJGroupChatHeaderView"];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"DJGroupChatCell" bundle:nil] forCellReuseIdentifier:@"DJGroupChatCell"];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"DJGroupChatHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"DJGroupChatHeaderView"];
     
     [self.wildGroupsTableView registerNib:[UINib nibWithNibName:@"DJCompanyChatCell" bundle:nil] forCellReuseIdentifier:@"DJCompanyChatCell"];
     
@@ -146,13 +146,13 @@
     [self.tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     [self.wildGroupsTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     
-    [self.view addSubview:self.headView];
+//    [self.view addSubview:self.headView];
     
     //外部群tableview
     [self.view addSubview:self.wildGroupsTableView];
     [self.wildGroupsTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
+        make.top.mas_equalTo(0);
         if (@available(iOS 11.0, *)) {
             make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
         } else {
@@ -161,21 +161,21 @@
     }];
     
     //内部群tableview
-    [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-        } else {
-            make.bottom.mas_equalTo(self.view);
-        }
-    }];
+//    [self.view addSubview:self.tableView];
+//    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.mas_equalTo(0);
+//        make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
+//        if (@available(iOS 11.0, *)) {
+//            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+//        } else {
+//            make.bottom.mas_equalTo(self.view);
+//        }
+//    }];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.tableView) {
-
+        
         if ([_isExpandArray[section] isEqualToString:@"0"]) {
             //未展开
             return 0;
@@ -311,13 +311,13 @@
     
     if ([_isExpandArray[tap.view.tag] isEqualToString:@"0"]) {
         //关闭 => 展开
-//        [self updateExpandArray];
+        //        [self updateExpandArray];
         [_isExpandArray removeObjectAtIndex:tap.view.tag];
         [_isExpandArray insertObject:@"1" atIndex:tap.view.tag];
         
     }else{
         //展开 => 关闭
-//        [self updateExpandArray];
+        //        [self updateExpandArray];
         [_isExpandArray removeObjectAtIndex:tap.view.tag];
         [_isExpandArray insertObject:@"0" atIndex:tap.view.tag];
     }

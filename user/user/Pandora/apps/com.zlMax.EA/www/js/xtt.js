@@ -3,7 +3,7 @@
  */
 var xtt = (function(document, undefined) {
 	//初始化
-	var version = '1.0.1.0'; //版本号
+	var version = '1.0.2.0'; //版本号
 	var launchFlag = null;
 	var uiType = null;
 	var clientId = null,
@@ -11,9 +11,9 @@ var xtt = (function(document, undefined) {
 		member = null,
 		deviceToken = null;
 	var enterpriseId = 'c58c42b6-c4a3-4118-8218-2448ad4bf79a';
-	//var serverRoot = 'http://www.xtt168.com:8168/';
+	var serverRoot = 'http://www.xtt168.com:8168/';
 	//var serverRoot = 'http://192.168.0.110:8099/';
-	var serverRoot = 'http://192.168.0.110:10001/';
+	//var serverRoot = 'http://192.168.0.110:10001/';
 
 	var device = 'H5';
 	var host = 'HB'; //默认宿主为HB(HBuilder)
@@ -86,6 +86,12 @@ var xtt = (function(document, undefined) {
 		else
 			plus.runtime.restart();
 	};
+
+	$.popNavigation = function() {
+		if(importedClass) {
+			importedClass.popNavigation();
+		}
+	}
 
 	$.plusBack = function() {
 		if(importedClass)

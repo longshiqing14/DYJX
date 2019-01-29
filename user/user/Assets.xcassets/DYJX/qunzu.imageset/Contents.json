@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "qunzu-2.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "qunzu.png",
       "scale" : "2x"
     },
     {

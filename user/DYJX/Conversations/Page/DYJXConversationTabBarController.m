@@ -17,6 +17,7 @@
 #import "DJContactsChatViewController.h"
 #import "DJCompanyChatPage.h"
 #import "DJGroupChatPage.h"
+#import "DJWildGroupsChatPage.h"
 
 @interface DYJXConversationTabBarController ()
 
@@ -47,9 +48,11 @@
     // 添加子控制器
     [self setupChildVC:[[DYLastestChatViewController alloc]init] title:@"最近会话" image:@"huihua" selectedImage:@"huihua-select"];
     [self setupChildVC:[[DJContactsChatViewController alloc] init] title:@"联系人" image:@"lianxiren" selectedImage:@"lianxiren-select"];
-    [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"公司" image:@"gongsi-normal" selectedImage:@"gongsi-select"];
-    [self setupChildVC:[[DJGroupChatPage alloc] init] title:@"群组" image:@"qunzu" selectedImage:@"qunzu-select"];
+//    [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"公司" image:@"gongsi-normal" selectedImage:@"gongsi-select"];
+    [self setupChildVC:[[DJGroupChatPage alloc] init] title:@"内部群" image:@"neibuqun-normal" selectedImage:@"neibuqun-select"];
 
+    [self setupChildVC:[[DJWildGroupsChatPage alloc] init] title:@"外部群" image:@"qunzu" selectedImage:@"qunzu-select"];
+    
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateItemsBadge:) name:XY_notification_ItemsBadge object:nil];
 }

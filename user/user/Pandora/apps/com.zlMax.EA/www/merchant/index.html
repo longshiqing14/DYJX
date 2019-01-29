@@ -255,7 +255,15 @@
 				if(xtt.host != 'HB') {
 					$('#btnPlusBack').removeClass('mui-hidden');
 					document.getElementById('btnPlusBack').addEventListener('tap', function() {
-						plus.runtime.quit();
+						/*plus.runtime.quit();*/
+
+						if(plus.os.name == "Android") {
+							plus.runtime.quit();
+						}
+						else if(plus.os.name == "iOS"){
+							xtt.popNavigation();
+						}
+
 					});
 				}
 				
@@ -423,6 +431,7 @@
 
 			//设置标题
 			function setEnterpriseInfo() {
+				mui.toast(xtt.enterpriseId);
 				var param = xtt.getDefaultParam();
 				mui.ajax(xtt.serverRoot + 'ReimbursementCommon/GetEnterpriseInfo', {
 					type: 'post',
