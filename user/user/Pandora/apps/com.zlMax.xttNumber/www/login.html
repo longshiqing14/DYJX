@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>登录新泰通</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/xtt.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav mui-hidden">
+			<a id='btnPlusBack' class="mui-icon mui-icon-left-nav mui-pull-left mui-hidden"></a>
+			<h1 class="mui-title">登录新泰通</h1>
+		</header>
+		<div id="loginDiv" class="mui-content mui-hidden">
+			<div class="mui-card" style="margin-top: 40px;">
+				<form id="loginForm" class="mui-input-group">
+					<div class="mui-input-row">
+						<label>登录ID</label>
+						<input id="loginId" type="text" class="mui-input-clear" placeholder="用户名/手机/会员号" />
+					</div>
+					<div class="mui-input-row">
+						<label>密码</label>
+						<input id="pwd" type="password" class="mui-input-clear" placeholder="请输入密码" />
+					</div>
+					<!--<div class="mui-input-row mui-radio">-->
+					<!--<label>普通会员</label>-->
+					<!--<input name="loginType" type="radio"/>-->
+					<!--</div>-->
+					<!--<div class="mui-input-row mui-radio">-->
+					<!--<label>物流商</label>-->
+					<!--<input name="loginType" type="radio" checked/>-->
+					<!--</div>-->
+				</form>
+			</div>
+			<div class="mui-content-padded" style="margin-top: 20px; padding-left: 6px; padding-right: 6px;">
+				<button id="btnLogin" type="button" class="mui-btn mui-btn-primary mui-btn-block">登录</button>
+				<div style="text-align: center;">
+					<a>注册会员</a>
+					<span class="xtt-splitor">|</span>
+					<a>忘记密码</a>
+				</div>
+			</div>
+			<div class="mui-content-padded">
+				<p id="statusLabel" class="xtt-statusLabel"></p>
+			</div>
+		</div>
+		<div id="loadDiv" class="mui-loader" style="height: 65%;">
+			<span class="mui-spinner"></span><br/> 加载中...
+			<br/>
+			<span id="loadingLabel" style="font-size: 10px;">耐心地等待一下，马上就要完成了</span>
+			<p style="color: #0062CC; font-size: 28px; position: absolute; bottom: 28px; width: 100%;">新泰通物流</p>
+			<p style="color: #0062CC; font-size: 10px; position: absolute; bottom: 0; width: 100%;">xtt168.com Copyright ©2016
+			</p>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/zepto-1.1.6.min.js"></script>
+		<script src="js/xtt.js"></script>
+		<script type="text/javascript" charset="UTF-8">
+			mui.init({
+				swipeBack: false,
+				statusBarBackground: '#f7f7f7',
+				gestureConfig: {
+					doubletap: false
+				}
+			});
+			mui.plusReady(function() {
+
+				//xtt初始化
+				xtt.initPlusReady();
+
+				if(xtt.host != 'HB') {
+					$('#btnPlusBack').removeClass('mui-hidden');
+					document.getElementById('btnPlusBack').addEventListener('tap', function() {
+						/*plus.runtime.quit();*/
+
+						if(plus.os.name == "Android") {
+							plus.runtime.quit();
+						}
+						else if(plus.os.name == "iOS"){
+							xtt.popNavigation();
+						}
+
+					});
+				}
+
+				//版本切换
+				var self = plus.webview.currentWebview();
+				var h5v = xtt.getH5Version();
+				//如果H5版本大于本地版本
+				if(xtt.versionCompare(h5v, xtt.version) > 0) {
+					//要跳转的页面
+					var jumpUrl = 'file://' + plus.io.convertLocalFileSystemURL('_doc/www/' + h5v + '/login.html');
+					//防止递归
+					if(self.getURL() != jumpUrl) {
+						plus.io.resolveLocalFileSystemURL('_doc/www/' + h5v + '/login.html', function(entry) {
+							self.loadURL(jumpUrl);
+							return;
+						}, function(e) {
+							xtt.saveH5Version(xtt.version);
+						});
+					}
+				}
+
+				//仅支持竖屏显示
+				plus.screen.lockOrientation("portrait-primary");
+
+				//判断是否登录，设置显示
+				if(!xtt.clientId) {
+					document.getElementById('loadDiv').classList.add('mui-hidden');
+					document.getElementById('header').classList.remove('mui-hidden');
+					document.getElementById('loginDiv').classList.remove('mui-hidden');
+				}
+
+				//显示欢迎页
+				//      if (xtt.launchFlag) {
+				//          //有值，说明已经显示过了，无需显示；
+				//          //关闭splash页面；
+				//          plus.navigator.closeSplashscreen();
+				//          plus.navigator.setFullscreen(false);
+				//          toMain();
+				//      } else {
+				//          //显示启动导航
+				//          mui.openWindow({
+				//              id: 'guide',
+				//              url: 'guide.html',
+				//              show: {
+				//                  aniShow: 'none'
+				//              },
+				//              waiting: {
+				//                  autoShow: false
+				//              }
+				//          });
+				//      }
+
+				plus.navigator.closeSplashscreen();
+				plus.navigator.setFullscreen(false);
+				toMain();
+			});
+
+			var loadingLabel = $('#loadingLabel');
+
+			function loadingMsg(msg) {
+				loadingLabel.html(msg);
+			}
+
+			/**
+			 * 跳转到主界面
+			 */
+			function toMain() {
+				if(xtt.clientId) {
+
+					document.getElementById('loadDiv').classList.remove('mui-hidden');
+					document.getElementById('header').classList.add('mui-hidden');
+					document.getElementById('loginDiv').classList.add('mui-hidden');
+
+					//恢复会话信息
+					//loadingMsg('正在恢复会话信息...');
+					var param = xtt.getDefaultParam();
+					
+					//console.log('to');
+					//console.log(param.ClientId);
+					
+					mui.ajax(xtt.serverRoot + 'Heartbeat', {
+						type: 'post',
+						data: param,
+						timeout: 30000,
+						beforeSend: function() {
+							loadingMsg('正在恢复会话信息...');
+						},
+						success: function(res) {
+							if(res) {
+								if(res.Succeed) {
+									loadingMsg('恢复会话信息成功！');
+									xtt.saveLoginStatus(param.ClientId, res.UAUser);
+									
+									//console.log(xtt.action);
+									mui.toast(xtt.action);
+									
+									restoreMemberSuccess();
+								} else {
+									statusMessage('登录失败！' + res.Message ? res.Message : '');
+									restoreMemberFailed('登录失败！' + res.Message ? res.Message : '');
+								}
+							} else {
+								statusMessage('登录失败，请稍后再试！');
+								restoreMemberFailed();
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							statusMessage('请求错误！' + errorThrown);
+							restoreMemberFailed();
+						}
+					});
+
+				} else {
+					// do nothing
+				}
+			}
+
+			function restoreMemberSuccess() {
+				//预加载页面
+				
+				loadingMsg('正在预加载用户页面...');
+				var customerIndex = mui.preload({
+					id: 'customer',
+					url: 'customer/number.html'
+				});
+
+				var merchant_main_subpage_style = {
+					top: '45px',
+					bottom: '51px'
+				};
+
+				var merchant_list_subpage_style = {
+					top: '38px',
+					bottom: '38px'
+				};
+
+				
+				mui.openWindow({
+					id: 'customer',
+					url: 'customer/number.html',
+					show: {
+						aniShow: 'none'
+					}
+					//,
+					//waiting: {
+					//    autoShow: true
+					//}
+				});
+			
+			
+				plus.webview.currentWebview().setStyle({
+					zindex: -2
+				});
+				mui.later(
+					function() {
+						plus.webview.currentWebview().hide();
+						//隐藏登录窗体
+
+					}, 1000);
+			}
+
+			function restoreMemberFailed(msg) {
+				document.getElementById('loadDiv').classList.add('mui-hidden');
+				document.getElementById('header').classList.remove('mui-hidden');
+				document.getElementById('loginDiv').classList.remove('mui-hidden');
+				if(msg) {
+					mui.toast(msg);
+				} else {
+					mui.toast('恢复会话信息失败！请重新登录。');
+				}
+			}
+
+			var statusLabel = document.getElementById('statusLabel');
+
+			function statusMessage(msg) {
+				statusLabel.innerHTML = msg;
+			}
+
+			window.addEventListener("toMain", toMain);
+
+			//重新登录
+			window.addEventListener("reLogin", function() {
+				xtt.saveLoginStatus('', null);
+				var login = plus.webview.getLaunchWebview();
+				login.reload(true);
+				login.setStyle({
+					zindex: 0
+				});
+				login.show();
+				plus.webview.getWebviewById('merchant').close();
+				plus.webview.getWebviewById('merchantMenu').close();
+				//plus.webview.getWebviewById('orders.html').close();
+				//plus.webview.getWebviewById('list-orders.html').close();
+				//plus.webview.getWebviewById('customer.html').close();
+				//plus.webview.getWebviewById('carCities').close();
+				//plus.webview.getWebviewById('list-carCities').close();
+				plus.webview.getWebviewById('customer').close();
+			});
+
+			document.getElementById('btnLogin').addEventListener('tap', function() {
+				var loginId = $('#loginId').val().trim();
+				var pwd = $('#pwd').val().trim();
+
+				if(!loginId || loginId == "") {
+					mui.alert('请输入登录ID');
+					return;
+				}
+				if(!pwd || loginId == "") {
+					mui.alert('请输入密码');
+					return;
+				}
+
+				pwd = xtt.md5(pwd);
+
+				var data = {
+					LoginId: loginId,
+					Password: pwd,
+					Device: plus.os.name + "_H5"
+				};
+
+				mui.ajax(xtt.serverRoot + 'Login', {
+					type: 'post',
+					data: data,
+					timeout: 10000,
+					beforeSend: function() {
+						statusMessage('正在登录...');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								mui.toast('登录成功！');
+								xtt.saveLoginStatus(res.ClientId, res.UAUser);
+								toMain();
+							} else {
+								statusMessage('登录失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							statusMessage('登录失败，请稍后再试！')
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						statusMessage('请求错误！' + errorThrown);
+					}
+				});
+
+			});
+
+			//首页返回键处理
+			//处理逻辑：1秒内，连续两次按返回键，则退出应用；
+			var first = null;
+			mui.back = function() {
+				//        if (showMenu) {
+				//            closeMenu();
+				//        } else {
+				//首次按键，提示‘再按一次退出应用’
+				if(!first) {
+					first = new Date().getTime();
+					mui.toast('再按一次退出应用');
+					setTimeout(function() {
+						first = null;
+					}, 1000);
+				} else {
+					if(new Date().getTime() - first < 1000) {
+						if(plus.os.name == "Android") {
+							plus.runtime.quit();
+						}
+						else if(plus.os.name == "iOS"){
+							xtt.popNavigation();
+						}
+					}
+				}
+				//        }
+			};
+		</script>
+	</body>
+
+</html>

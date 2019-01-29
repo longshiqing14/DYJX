@@ -7,7 +7,7 @@
 //
 
 #import "DJCompanyChatViewModel.h"
-#import "DYJXXYResult.h"
+
 
 #define kRequestPageNumber @"page"
 #define kRequestPageSize @"page_size"
@@ -63,6 +63,10 @@
 }
 - (NSString *)sectionHeadericonImageUrl:(NSInteger )section{
     return self.dataArray[section].GroupHeadImg;
+}
+
+- (NSMutableArray<DYJXXYResult*> *)getRefundReasonsArray{
+    return self.dataArray;
 }
 
 //获取子公司、参与公司 信息

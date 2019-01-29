@@ -72,13 +72,13 @@
    [[XYCommon getCurrentVC].navigationController popViewControllerAnimated:YES];
     
 }
-- (NSString*)getEnterpriseId{
-    return @"123";
++ (NSString*)getEnterpriseId{
+    return [JSExtension shared].enterpriseId;
 }
 
-//- (NSString*)getClientId{
-//    return @"123";
-//}
++ (NSString*)getAction{
+    return [JSExtension shared].action;
+}
 
 - (void)PluginTestFunction:(PGMethod*)commands
 {

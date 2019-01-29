@@ -22,12 +22,17 @@
 #import "PDRCoreAppInfo.h"
 #import "PDRCore.h"
 #import "NIMKitTitleView.h"
+#import "DJCompanyChatPage.h"
+#import "JSExtension.h"
+#import "DJCompanyChatViewModel.h"
+#import "JXRefoundReasonPopView.h"
 
 @interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) DYJXLogisticViewModel *viewModel;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property(nonatomic, strong)UIView *bottomBackgroundView;
+@property(nonatomic, strong) DJCompanyChatViewModel *companyViewModel;
 @end
 
 @implementation DYJXLogisticPage
@@ -129,6 +134,9 @@
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"ea"]){
             //报销登记审核
             cell.content1.text = @"报销\n登记\n审核";
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
+            //报销登记审核
+            cell.content1.text = @"公司\n 和\n我的商号";
         }
         cell.content1.textColor = [UIColor colorWithHexString:@"#333333"];
     }
@@ -149,7 +157,11 @@
         if (indexPath.row == 0) {
             [YDBAlertView showToast:@"功能开发中，敬请期待！"];
         }else if (indexPath.row == 1){
-            [YDBAlertView showToast:@"功能开发中，敬请期待！"];
+            [JSExtension shared].action = @"numberMarket";
+            WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            self.navigationController.navigationBarHidden = YES;
+            pWebAppController.AppId = @"com.zlMax.xttNumber";
+            [self.navigationController pushViewController:pWebAppController animated:YES];
         }else if (indexPath.row == 2){
             //16888物流平台
             // Webivew集成不能同时WebApp集成，需要修改AppDelegate文件的PDRCore的启动参数
@@ -193,11 +205,37 @@
             [self.navigationController pushViewController:pWebAppController animated:YES];
             
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"ea"]){
+
+            [self.companyViewModel getMyGroupsDataSuccess:^{
+                JXRefoundReasonPopView *ReasonPopView = [[NSBundle mainBundle] loadNibNamed:@"JXRefoundReasonPopView" owner:self options:nil][0];
+                ReasonPopView.selectReasonBlock = ^(NSString *enterpriseId) {
+                    [JSExtension shared].enterpriseId = enterpriseId;
+                    if ([self.companyViewModel getRefundReasonsArray].count == 0) {
+                        return ;
+                    }else{
+                        WebAppController  *pWebAppController = [[WebAppController alloc] init];
+                        self.navigationController.navigationBarHidden = YES;
+                        pWebAppController.AppId = @"com.zlMax.EA";
+                        [self.navigationController pushViewController:pWebAppController animated:YES];
+                        
+                    }
+                    
+                };
+                ReasonPopView.dataArray = [self.companyViewModel getRefundReasonsArray];
+                [ReasonPopView registCell];
+                [ReasonPopView.reasonTab reloadData];
+                [YWDPopupControl popupView:ReasonPopView];
+            } failed:^(NSString *errorMsg) {
+                
+            }];
+            
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
+            [JSExtension shared].action = @"numberMarket";
             WebAppController  *pWebAppController = [[WebAppController alloc] init];
             self.navigationController.navigationBarHidden = YES;
-            pWebAppController.AppId = @"com.zlMax.EA";
+            pWebAppController.AppId = @"com.zlMax.xttNumber";
             [self.navigationController pushViewController:pWebAppController animated:YES];
-            
+
         }
     }
 }
@@ -335,7 +373,12 @@
 }
 
 - (IBAction)walletBTN:(UIButton *)sender {
-    [YDBAlertView showToast:@"开发中，敬请期待！"];
+    //             wallet ,  numberMarket  ,  myNumber;
+    [JSExtension shared].action = @"wallet";
+    WebAppController  *pWebAppController = [[WebAppController alloc] init];
+    self.navigationController.navigationBarHidden = YES;
+    pWebAppController.AppId = @"com.zlMax.xttNumber";
+    [self.navigationController pushViewController:pWebAppController animated:YES];
 }
 
 - (IBAction)conversationBTN:(UIButton *)sender {
@@ -344,6 +387,13 @@
     [XYUserDefaults writeAppDlegateOfCurrentUserIconURL:[self.IdentityModel.GroupHeadImg XYImageURL]];
     [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
     
+}
+
+- (DJCompanyChatViewModel *)companyViewModel{
+    if (!_companyViewModel) {
+        _companyViewModel = [[DJCompanyChatViewModel alloc]init];
+    }
+    return _companyViewModel;
 }
 
 - (void)dealloc{

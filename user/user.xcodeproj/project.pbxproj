@@ -143,6 +143,10 @@
 		488E8A07219FFD5A008695A7 /* RongSticker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 488E89E8219FFD5A008695A7 /* RongSticker.bundle */; };
 		488E8A08219FFD5A008695A7 /* RongSticker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E89E9219FFD5A008695A7 /* RongSticker.framework */; };
 		489245071FD7D9A7005A0FE0 /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 489A3F6A1FB5523E0084E2BC /* UIImage+Tool.m */; };
+		4895F0E721FFE8F300203073 /* JXRefoundReasonPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4895F0E121FFE8F100203073 /* JXRefoundReasonPopView.xib */; };
+		4895F0E821FFE8F300203073 /* JXRefoundReasonPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4895F0E421FFE8F200203073 /* JXRefoundReasonPopView.m */; };
+		4895F0E921FFE8F300203073 /* JXRefundReasonPopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4895F0E521FFE8F200203073 /* JXRefundReasonPopCell.xib */; };
+		4895F0EA21FFE8F300203073 /* JXRefundReasonPopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4895F0E621FFE8F200203073 /* JXRefundReasonPopCell.m */; };
 		489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489A3F2D1FB42B4F0084E2BC /* MapKit.framework */; };
 		489A3F851FB5567F0084E2BC /* YDBAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 489A3F7D1FB5523E0084E2BC /* YDBAlertView.m */; };
 		489A3F861FB556D40084E2BC /* YWDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 489A3F811FB5523E0084E2BC /* YWDTools.m */; };
@@ -879,6 +883,12 @@
 		488E89E9219FFD5A008695A7 /* RongSticker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongSticker.framework; sourceTree = "<group>"; };
 		489245051FD7D4E1005A0FE0 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
 		489245061FD7D4E2005A0FE0 /* loading@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@3x.gif"; sourceTree = "<group>"; };
+		4895F0E121FFE8F100203073 /* JXRefoundReasonPopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JXRefoundReasonPopView.xib; sourceTree = "<group>"; };
+		4895F0E221FFE8F100203073 /* JXRefundReasonPopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXRefundReasonPopCell.h; sourceTree = "<group>"; };
+		4895F0E321FFE8F100203073 /* JXRefoundReasonPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXRefoundReasonPopView.h; sourceTree = "<group>"; };
+		4895F0E421FFE8F200203073 /* JXRefoundReasonPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXRefoundReasonPopView.m; sourceTree = "<group>"; };
+		4895F0E521FFE8F200203073 /* JXRefundReasonPopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JXRefundReasonPopCell.xib; sourceTree = "<group>"; };
+		4895F0E621FFE8F200203073 /* JXRefundReasonPopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXRefundReasonPopCell.m; sourceTree = "<group>"; };
 		489A3F2C1FB30E210084E2BC /* JXApiDefineMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXApiDefineMacro.h; sourceTree = "<group>"; };
 		489A3F2D1FB42B4F0084E2BC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		489A3F4B1FB54A130084E2BC /* AppConfigMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfigMacro.h; sourceTree = "<group>"; };
@@ -2438,6 +2448,12 @@
 		48735192218ADE63001B59AB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4895F0E321FFE8F100203073 /* JXRefoundReasonPopView.h */,
+				4895F0E421FFE8F200203073 /* JXRefoundReasonPopView.m */,
+				4895F0E121FFE8F100203073 /* JXRefoundReasonPopView.xib */,
+				4895F0E221FFE8F100203073 /* JXRefundReasonPopCell.h */,
+				4895F0E621FFE8F200203073 /* JXRefundReasonPopCell.m */,
+				4895F0E521FFE8F200203073 /* JXRefundReasonPopCell.xib */,
 				4873519A218BF19E001B59AB /* DYJXLogisticCollectionViewCell.h */,
 				4873519B218BF19E001B59AB /* DYJXLogisticCollectionViewCell.m */,
 				4873519C218BF19E001B59AB /* DYJXLogisticCollectionViewCell.xib */,
@@ -4795,6 +4811,7 @@
 				4804A14B21957D5D0081AB5B /* TZImagePickerController.bundle in Resources */,
 				E1B1178D219D58A800C96B3E /* Pandora in Resources */,
 				4804A14F21957D5D0081AB5B /* qucsdkResources.bundle in Resources */,
+				4895F0E921FFE8F300203073 /* JXRefundReasonPopCell.xib in Resources */,
 				488E89EE219FFD5A008695A7 /* release_notes_ios.txt in Resources */,
 				48E8A4CB21BE47A30046EA0E /* SubcompanyBottomView.xib in Resources */,
 				CB42F6011FAC655D00889257 /* new_feature_3.png in Resources */,
@@ -4807,6 +4824,7 @@
 				487C55AA2060FFE1006A8071 /* JXVersionUpdateView.xib in Resources */,
 				4804A15021957D5D0081AB5B /* SVProgressHUD.bundle in Resources */,
 				4804A14D21957D5D0081AB5B /* BaiduWalletSDKBundle.bundle in Resources */,
+				4895F0E721FFE8F300203073 /* JXRefoundReasonPopView.xib in Resources */,
 				4804A14721957D5D0081AB5B /* AlipaySDK.bundle in Resources */,
 				4873513B2186F475001B59AB /* DYJXIdentitySwitchingPage.xib in Resources */,
 				CBCF83521F7129BD00B20CF9 /* CodeScan.bundle in Resources */,
@@ -5039,6 +5057,7 @@
 				DE94566D1FBEE88600827C08 /* BaseCell.m in Sources */,
 				48E92D721FBC9AD4006BBC88 /* UIView+Tool.m in Sources */,
 				48B8309B1FBA81C40019F503 /* EABAUITools.m in Sources */,
+				4895F0E821FFE8F300203073 /* JXRefoundReasonPopView.m in Sources */,
 				489A3F861FB556D40084E2BC /* YWDTools.m in Sources */,
 				E1419A0121CCDC7D0067AE2E /* DYJXData.m in Sources */,
 				489A3F851FB5567F0084E2BC /* YDBAlertView.m in Sources */,
@@ -5378,6 +5397,7 @@
 				CB3307981FA1BF8F00117695 /* IQUIScrollView+Additions.m in Sources */,
 				CBE859D31F5FD0AA00E1E4EA /* XYBestAllNet.m in Sources */,
 				E157681921C9122D003A5C25 /* NIMTeamMemberCardHeaderCell.m in Sources */,
+				4895F0EA21FFE8F300203073 /* JXRefundReasonPopCell.m in Sources */,
 				E157684D21C9122D003A5C25 /* UIImage+NIMKit.m in Sources */,
 				CB33079D1FA1BF8F00117695 /* IQKeyboardManager.m in Sources */,
 				487C55AD206100A8006A8071 /* UpdateVersionModel.m in Sources */,

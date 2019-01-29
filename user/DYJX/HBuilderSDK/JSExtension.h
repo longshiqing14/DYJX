@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (JSExtension *)shared;
 @property (nonatomic, copy)NSString *myClientId;
 @property (nonatomic, copy)NSString *myIdentityId;
+@property (nonatomic, copy)NSString *enterpriseId;
+@property (nonatomic, copy)NSString *action;
 
 @property (nonatomic, copy)NSString *targetId;
 @property (nonatomic, assign)NSInteger type;
