@@ -25,6 +25,7 @@
 #import "DYJXSubcompanyInfoDetailPage.h"
 #import <RongIMKit/RongIMKit.h>
 #import "IMSDK.h"
+#import "DYJXComparePage.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -507,6 +508,11 @@ static NSString *headerID=@"headerID";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DYJXComparePage *target = [[DYJXComparePage alloc] init];
+    [self.navigationController pushViewController:target animated:YES];
+
+    return;
+
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.selectedIdentity = [self.viewModel IdentityAtIndexPath:indexPath];
     if (indexPath.row == 0) {

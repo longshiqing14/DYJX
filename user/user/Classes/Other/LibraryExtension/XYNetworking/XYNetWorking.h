@@ -108,5 +108,6 @@ typedef void (^XYProgress)(NSProgress *progress);
 
 
 
++(AFHTTPSessionManager *)managerWithBaseURL:(NSString *)baseURL  sessionConfiguration:(BOOL)isconfiguration;
 
 @end

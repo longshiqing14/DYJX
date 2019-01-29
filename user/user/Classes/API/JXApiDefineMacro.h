@@ -12,7 +12,7 @@
 
 #endif /* JXApiDefineMacro_h */
 
-
+#define BEST_COMPARA @"http://www.qpq168.com:8080/QPQMobile/"
 #define  BEST_URL @"http://www.xtt168.com:9000/zim/"
 #define BEST_H5_URL  @"http://bisdevh5.xiaopenglife.com/"
 #define BEST_IMAGE_URL  @"http://www.xtt168.com:9000/Files/Images/"

@@ -30,7 +30,6 @@
     [requestDic setValue:[NSString stringWithFormat:@"%ld",(long)pageNumber] forKey:@"page"];
     [requestDic setValue:[NSString stringWithFormat:@"%ld",(long)100] forKey:@"page_size"];
 
-//    NSMutableDictionary * dict = [XYBestRequest requestAllDataWithApi_ID:@"Conversations" request_data:requestDic];
 
     [XYNetWorking XYPOST:@"Conversations" params:requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
 //        [XYProgressHUD svHUDDismiss];
