@@ -591,6 +591,8 @@
 		E1A137B121FFECA900A5E4A1 /* DYJXComparePage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A137B021FFECA900A5E4A1 /* DYJXComparePage.m */; };
 		E1A137B721FFF3F600A5E4A1 /* GSCCompare.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A137B421FFF3F500A5E4A1 /* GSCCompare.m */; };
 		E1A137B821FFF3F600A5E4A1 /* GSCCListCompareItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A137B621FFF3F600A5E4A1 /* GSCCListCompareItem.m */; };
+		E1A137BE21FFFF4200A5E4A1 /* MyWebPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A137BD21FFFF4200A5E4A1 /* MyWebPage.m */; };
+		E1A137C12200855E00A5E4A1 /* CompareHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A137C02200855E00A5E4A1 /* CompareHeadView.m */; };
 		E1A34B3121D5F775002D4690 /* DYRotateSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3021D5F775002D4690 /* DYRotateSendViewController.m */; };
 		E1A34B3421D5F865002D4690 /* MutableSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3321D5F865002D4690 /* MutableSelectCell.m */; };
 		E1A34B3721D6132D002D4690 /* DYSelecteContractsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3621D6132D002D4690 /* DYSelecteContractsPage.m */; };
@@ -1786,6 +1788,10 @@
 		E1A137B421FFF3F500A5E4A1 /* GSCCompare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCCompare.m; sourceTree = "<group>"; };
 		E1A137B521FFF3F600A5E4A1 /* GSCCListCompareItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCCListCompareItem.h; sourceTree = "<group>"; };
 		E1A137B621FFF3F600A5E4A1 /* GSCCListCompareItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCCListCompareItem.m; sourceTree = "<group>"; };
+		E1A137BC21FFFF4200A5E4A1 /* MyWebPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyWebPage.h; sourceTree = "<group>"; };
+		E1A137BD21FFFF4200A5E4A1 /* MyWebPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWebPage.m; sourceTree = "<group>"; };
+		E1A137BF2200855E00A5E4A1 /* CompareHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompareHeadView.h; sourceTree = "<group>"; };
+		E1A137C02200855E00A5E4A1 /* CompareHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompareHeadView.m; sourceTree = "<group>"; };
 		E1A34B2F21D5F775002D4690 /* DYRotateSendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYRotateSendViewController.h; sourceTree = "<group>"; };
 		E1A34B3021D5F775002D4690 /* DYRotateSendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYRotateSendViewController.m; sourceTree = "<group>"; };
 		E1A34B3221D5F865002D4690 /* MutableSelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MutableSelectCell.h; sourceTree = "<group>"; };
@@ -2441,6 +2447,8 @@
 				487351A6218C522D001B59AB /* DYJXBaiDuWebPage.m */,
 				E1A137AF21FFECA900A5E4A1 /* DYJXComparePage.h */,
 				E1A137B021FFECA900A5E4A1 /* DYJXComparePage.m */,
+				E1A137BC21FFFF4200A5E4A1 /* MyWebPage.h */,
+				E1A137BD21FFFF4200A5E4A1 /* MyWebPage.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -2457,6 +2465,8 @@
 				4873519A218BF19E001B59AB /* DYJXLogisticCollectionViewCell.h */,
 				4873519B218BF19E001B59AB /* DYJXLogisticCollectionViewCell.m */,
 				4873519C218BF19E001B59AB /* DYJXLogisticCollectionViewCell.xib */,
+				E1A137BF2200855E00A5E4A1 /* CompareHeadView.h */,
+				E1A137C02200855E00A5E4A1 /* CompareHeadView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5193,6 +5203,7 @@
 				481FE72A2183125600CFE26B /* DYJXUserModel.m in Sources */,
 				E157684621C9122D003A5C25 /* NIMSessionUnknowContentView.m in Sources */,
 				E13E60D321C35AD200D0C4B3 /* AFHttpTool.m in Sources */,
+				E1A137C12200855E00A5E4A1 /* CompareHeadView.m in Sources */,
 				4873513A2186F475001B59AB /* DYJXIdentitySwitchingPage.m in Sources */,
 				CBCF83571F7129BD00B20CF9 /* LBXScanViewController.m in Sources */,
 				DE277D421FBAC39C00FE52C8 /* XYLocationModel.m in Sources */,
@@ -5397,6 +5408,7 @@
 				CB3307981FA1BF8F00117695 /* IQUIScrollView+Additions.m in Sources */,
 				CBE859D31F5FD0AA00E1E4EA /* XYBestAllNet.m in Sources */,
 				E157681921C9122D003A5C25 /* NIMTeamMemberCardHeaderCell.m in Sources */,
+				E1A137BE21FFFF4200A5E4A1 /* MyWebPage.m in Sources */,
 				4895F0EA21FFE8F300203073 /* JXRefundReasonPopCell.m in Sources */,
 				E157684D21C9122D003A5C25 /* UIImage+NIMKit.m in Sources */,
 				CB33079D1FA1BF8F00117695 /* IQKeyboardManager.m in Sources */,

@@ -26,6 +26,7 @@
 #import "JSExtension.h"
 #import "DJCompanyChatViewModel.h"
 #import "JXRefoundReasonPopView.h"
+#import "DYJXComparePage.h"
 
 @interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -155,6 +156,9 @@
     
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            DYJXComparePage *target = [[DYJXComparePage alloc] init];
+            [self.navigationController pushViewController:target animated:YES];
+            return;
             [YDBAlertView showToast:@"功能开发中，敬请期待！"];
         }else if (indexPath.row == 1){
             [JSExtension shared].action = @"numberMarket";

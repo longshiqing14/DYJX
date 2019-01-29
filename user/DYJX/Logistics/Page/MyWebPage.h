@@ -1,5 +1,5 @@
 //
-//  DYJXComparePage.h
+//  MyWebPage.h
 //  user
 //
 //  Created by longshiqing on 2019/1/29.
@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <WMPageController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DYJXComparePage : WMPageController
+@interface MyWebPage : UIViewController
+
+@property (nonatomic, copy)NSString *url;
+
+-(void)reloadData;
 
 @end
 

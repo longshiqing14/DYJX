@@ -105,4 +105,14 @@ NSString *const kGSCCListCompareItemName = @"Name";
 
 	return copy;
 }
+
+-(MyWebPage *)webpage {
+    if (!_webpage) {
+        _webpage = [[MyWebPage alloc] init];
+    }
+    _webpage.url = self.Link;
+    [_webpage reloadData];
+    return _webpage;
+}
+
 @end
