@@ -39,12 +39,12 @@
     _isExpandArray = [[NSMutableArray alloc]init];
     [self initNavigation];
     [self initSubView];
-    [self.viewModel getMyCompanyAndGroupDataSuccess:^{
-        [weakSelf initExpandArray];
-        [weakSelf.tableView reloadData];
-    } failed:^(NSString *errorMsg) {
-        
-    }];
+//    [self.viewModel getMyCompanyAndGroupDataSuccess:^{
+//        [weakSelf initExpandArray];
+//        [weakSelf.tableView reloadData];
+//    } failed:^(NSString *errorMsg) {
+//
+//    }];
     
     [self.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
         [weakSelf.wildGroupsTableView reloadData];
@@ -136,8 +136,8 @@
 }
 
 - (void)initSubView{
-    [self.tableView registerNib:[UINib nibWithNibName:@"DJGroupChatCell" bundle:nil] forCellReuseIdentifier:@"DJGroupChatCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"DJGroupChatHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"DJGroupChatHeaderView"];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"DJGroupChatCell" bundle:nil] forCellReuseIdentifier:@"DJGroupChatCell"];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"DJGroupChatHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"DJGroupChatHeaderView"];
     
     [self.wildGroupsTableView registerNib:[UINib nibWithNibName:@"DJCompanyChatCell" bundle:nil] forCellReuseIdentifier:@"DJCompanyChatCell"];
     
@@ -146,13 +146,13 @@
     [self.tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     [self.wildGroupsTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     
-    [self.view addSubview:self.headView];
+//    [self.view addSubview:self.headView];
     
     //外部群tableview
     [self.view addSubview:self.wildGroupsTableView];
     [self.wildGroupsTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
+        make.top.mas_equalTo(0);
         if (@available(iOS 11.0, *)) {
             make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
         } else {
@@ -161,16 +161,16 @@
     }];
     
     //内部群tableview
-    [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-        } else {
-            make.bottom.mas_equalTo(self.view);
-        }
-    }];
+//    [self.view addSubview:self.tableView];
+//    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.mas_equalTo(0);
+//        make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
+//        if (@available(iOS 11.0, *)) {
+//            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+//        } else {
+//            make.bottom.mas_equalTo(self.view);
+//        }
+//    }];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
