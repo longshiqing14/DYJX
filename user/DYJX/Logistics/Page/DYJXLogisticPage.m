@@ -26,6 +26,7 @@
 #import "JSExtension.h"
 #import "DJCompanyChatViewModel.h"
 #import "JXRefoundReasonPopView.h"
+#import "DJCompanyChatPage.h"
 
 @interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -135,7 +136,7 @@
             //报销登记审核
             cell.content1.text = @"报销\n登记\n审核";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
-            //报销登记审核
+            //公司和我的商号
             cell.content1.text = @"公司\n 和\n我的商号";
         }
         cell.content1.textColor = [UIColor colorWithHexString:@"#333333"];
@@ -230,12 +231,9 @@
             }];
             
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
-            [JSExtension shared].action = @"numberMarket";
-            WebAppController  *pWebAppController = [[WebAppController alloc] init];
-            self.navigationController.navigationBarHidden = YES;
-            pWebAppController.AppId = @"com.zlMax.xttNumber";
-            [self.navigationController pushViewController:pWebAppController animated:YES];
 
+            DJCompanyChatPage *companyChatPage = [[DJCompanyChatPage alloc]init];
+                [self.navigationController pushViewController:companyChatPage animated:YES];
         }
     }
 }

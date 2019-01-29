@@ -15,11 +15,14 @@
 #import "DJCompanyChatCell.h"
 #import "DJCompanyChatHeader.h"
 #import "DYJXSubcompanyInfoDetailPage.h"
+#import "WebAppController.h"
+#import "JSExtension.h"
 
 @interface DJCompanyChatPage ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong)ConpanyHeadView *headView;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *shanghaoTapGestureRecognizer;
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)DJCompanyChatViewModel *viewModel;
 @end
@@ -29,7 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     WeakSelf;
-    self.navigationItem.title = @"我创建或参与的公司";
     [self initNavigation];
     [self.view addSubview:self.headView];
 //    [self initNavigator];
@@ -52,7 +54,15 @@
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithImage:image style:(UIBarButtonItemStylePlain) target:self action:@selector(black_controller)];
 
-    self.navigationItem.leftBarButtonItem=item;
+    UILabel *titleLb = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    titleLb.text = @"公司";
+    titleLb.textColor = [UIColor colorWithHexString:@"#F2A73B"];
+    titleLb.font = [UIFont systemFontOfSize:17];
+    
+    UIBarButtonItem *leftSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    leftSpace.width = 80;
+    
+    self.navigationItem.leftBarButtonItems= @[item,leftSpace,[[UIBarButtonItem alloc]initWithCustomView:titleLb]];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
 
     UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
@@ -62,12 +72,25 @@
     UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
     [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
     [rightCustomView addSubview: iconImage];
+    
+    UILabel *shanghaoLb = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80, 40)];
+    shanghaoLb.text = @"我的商号";
+    shanghaoLb.textColor = [UIColor colorWithHexString:@"FFFFFF"];
+    shanghaoLb.font = [UIFont systemFontOfSize:17];
+    
+    UIView *shanghaoCustomView = [[UIView alloc] initWithFrame: shanghaoLb.frame];
+    [shanghaoCustomView addGestureRecognizer:self.shanghaoTapGestureRecognizer];
+    [shanghaoCustomView addSubview: shanghaoLb];
+    
+    UIBarButtonItem *rightSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    rightSpace.width = 80;
+    
+    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:rightCustomView],rightSpace,[[UIBarButtonItem alloc]initWithCustomView:shanghaoCustomView]];
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightCustomView];
 }
 
 - (void)black_controller{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - Action
 -(void)searchClick {
@@ -94,9 +117,23 @@
     return _tapGestureRecognizer;
 }
 
+- (UITapGestureRecognizer *)shanghaoTapGestureRecognizer{
+    if (!_shanghaoTapGestureRecognizer) {
+        _shanghaoTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToShangHaoPage)];
+    }
+    return _shanghaoTapGestureRecognizer;
+}
+
 - (void)goBackPage{
     XYKeyWindow.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXIdentitySwitchingPage alloc] initWithNibName:@"DYJXIdentitySwitchingPage" bundle:nil]];
+}
 
+- (void)goToShangHaoPage{
+    [JSExtension shared].action = @"numberMarket";
+    WebAppController  *pWebAppController = [[WebAppController alloc] init];
+    self.navigationController.navigationBarHidden = YES;
+    pWebAppController.AppId = @"com.zlMax.xttNumber";
+    [self.navigationController pushViewController:pWebAppController animated:YES];
 }
 
 - (void)initSubView{
