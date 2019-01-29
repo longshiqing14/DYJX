@@ -67,6 +67,9 @@
                     if ([obj.Name isEqualToString:@"xttlc"]) {
                         [weakSelf.resultArray removeObject:obj];
                     }
+                    if ([obj.Name isEqualToString:@"compare"]) {
+                        [weakSelf.resultArray removeObject:obj];
+                    }
                 }];
                 success();
                 
