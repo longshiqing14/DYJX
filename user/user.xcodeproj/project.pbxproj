@@ -147,6 +147,7 @@
 		4895F0E821FFE8F300203073 /* JXRefoundReasonPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4895F0E421FFE8F200203073 /* JXRefoundReasonPopView.m */; };
 		4895F0E921FFE8F300203073 /* JXRefundReasonPopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4895F0E521FFE8F200203073 /* JXRefundReasonPopCell.xib */; };
 		4895F0EA21FFE8F300203073 /* JXRefundReasonPopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4895F0E621FFE8F200203073 /* JXRefundReasonPopCell.m */; };
+		4895F0ED2200477B00203073 /* DJWildGroupsChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4895F0EC2200477B00203073 /* DJWildGroupsChatPage.m */; };
 		489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489A3F2D1FB42B4F0084E2BC /* MapKit.framework */; };
 		489A3F851FB5567F0084E2BC /* YDBAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 489A3F7D1FB5523E0084E2BC /* YDBAlertView.m */; };
 		489A3F861FB556D40084E2BC /* YWDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 489A3F811FB5523E0084E2BC /* YWDTools.m */; };
@@ -886,6 +887,8 @@
 		4895F0E421FFE8F200203073 /* JXRefoundReasonPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXRefoundReasonPopView.m; sourceTree = "<group>"; };
 		4895F0E521FFE8F200203073 /* JXRefundReasonPopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JXRefundReasonPopCell.xib; sourceTree = "<group>"; };
 		4895F0E621FFE8F200203073 /* JXRefundReasonPopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXRefundReasonPopCell.m; sourceTree = "<group>"; };
+		4895F0EB2200477B00203073 /* DJWildGroupsChatPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJWildGroupsChatPage.h; sourceTree = "<group>"; };
+		4895F0EC2200477B00203073 /* DJWildGroupsChatPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJWildGroupsChatPage.m; sourceTree = "<group>"; };
 		489A3F2C1FB30E210084E2BC /* JXApiDefineMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXApiDefineMacro.h; sourceTree = "<group>"; };
 		489A3F2D1FB42B4F0084E2BC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		489A3F4B1FB54A130084E2BC /* AppConfigMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfigMacro.h; sourceTree = "<group>"; };
@@ -4486,6 +4489,8 @@
 				E19DC8CB219ACC7B00C86478 /* DJCompanyChatPage.m */,
 				E19DC8CD219ACC9100C86478 /* DJGroupChatPage.h */,
 				E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */,
+				4895F0EB2200477B00203073 /* DJWildGroupsChatPage.h */,
+				4895F0EC2200477B00203073 /* DJWildGroupsChatPage.m */,
 			);
 			path = subVC;
 			sourceTree = "<group>";
@@ -5316,6 +5321,7 @@
 				48B740E3201EB81A0062FA33 /* UIAlertController+XYAlertController.m in Sources */,
 				E157680621C9122D003A5C25 /* NIMPageView.m in Sources */,
 				E157681021C9122D003A5C25 /* NIMTeamCardRowItem.m in Sources */,
+				4895F0ED2200477B00203073 /* DJWildGroupsChatPage.m in Sources */,
 				E157684821C9122D003A5C25 /* NIMSessionRobotContentView.m in Sources */,
 				E17AF21621A021E40041249C /* UserManager.m in Sources */,
 				E157681B21C9122D003A5C25 /* NIMTeamNotifyUpdateViewController.m in Sources */,
