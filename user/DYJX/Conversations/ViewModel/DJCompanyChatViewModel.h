@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DYJXXYResult.h"
 
 @interface DJCompanyChatViewModel : NSObject
 @property (nonatomic,strong) NSMutableDictionary *requestDic;
@@ -23,6 +24,8 @@
 - (NSString *)sectionHeaderGroupName:(NSInteger )section;
 - (NSString *)sectionHeaderGroupNumberString:(NSInteger )section;
 - (NSString *)sectionHeadericonImageUrl:(NSInteger )section;
+
+- (NSMutableArray<DYJXXYResult*> *)getRefundReasonsArray;
 //获取我创建或参与公司
 - (void)getMyGroupsDataSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail;
 @end

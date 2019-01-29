@@ -25,6 +25,7 @@
 #import "DJCompanyChatPage.h"
 #import "JSExtension.h"
 #import "DJCompanyChatViewModel.h"
+#import "JXRefoundReasonPopView.h"
 
 @interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -204,22 +205,37 @@
             [self.navigationController pushViewController:pWebAppController animated:YES];
             
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"ea"]){
-            WebAppController  *pWebAppController = [[WebAppController alloc] init];
-            self.navigationController.navigationBarHidden = YES;
-            pWebAppController.AppId = @"com.zlMax.EA";
-            [self.navigationController pushViewController:pWebAppController animated:YES];
-            
-        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
-//            [JSExtension shared].action = @"myNumber";
-//            WebAppController  *pWebAppController = [[WebAppController alloc] init];
-//            self.navigationController.navigationBarHidden = YES;
-//            pWebAppController.AppId = @"com.zlMax.xttNumber";
-//            [self.navigationController pushViewController:pWebAppController animated:YES];
+
             [self.companyViewModel getMyGroupsDataSuccess:^{
-//                [weakSelf.tableView reloadData];
+                JXRefoundReasonPopView *ReasonPopView = [[NSBundle mainBundle] loadNibNamed:@"JXRefoundReasonPopView" owner:self options:nil][0];
+                ReasonPopView.selectReasonBlock = ^(NSString *enterpriseId) {
+                    [JSExtension shared].enterpriseId = enterpriseId;
+                    if ([self.companyViewModel getRefundReasonsArray].count == 0) {
+                        return ;
+                    }else{
+                        WebAppController  *pWebAppController = [[WebAppController alloc] init];
+                        self.navigationController.navigationBarHidden = YES;
+                        pWebAppController.AppId = @"com.zlMax.EA";
+                        [self.navigationController pushViewController:pWebAppController animated:YES];
+                        
+                    }
+                    
+                };
+                ReasonPopView.dataArray = [self.companyViewModel getRefundReasonsArray];
+                [ReasonPopView registCell];
+                [ReasonPopView.reasonTab reloadData];
+                [YWDPopupControl popupView:ReasonPopView];
             } failed:^(NSString *errorMsg) {
                 
             }];
+            
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
+            [JSExtension shared].action = @"numberMarket";
+            WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            self.navigationController.navigationBarHidden = YES;
+            pWebAppController.AppId = @"com.zlMax.xttNumber";
+            [self.navigationController pushViewController:pWebAppController animated:YES];
+
         }
     }
 }
