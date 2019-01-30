@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SubcompanyBottomView : UIView
+typedef void(^SendConversationBlock)();
 
+@interface SubcompanyBottomView : UIView
+@property (nonatomic, copy)SendConversationBlock block;
 @end

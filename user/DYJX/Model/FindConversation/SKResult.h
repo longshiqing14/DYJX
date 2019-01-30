@@ -13,23 +13,23 @@
 
 @interface SKResult : NSObject
 
-@property (nonatomic, strong) NSString * CreateBy;
-@property (nonatomic, strong) NSString * CreateOn;
+@property (nonatomic, copy) NSString * CreateBy;
+@property (nonatomic, copy) NSString * CreateOn;
 @property (nonatomic, assign) BOOL Deleted;
 @property (nonatomic, assign) BOOL Disabled;
-@property (nonatomic, strong) NSString * FromHeadImg;
-@property (nonatomic, strong) NSString * FromId;
-@property (nonatomic, strong) NSString * FromName;
-@property (nonatomic, strong) NSString * IdField;
+@property (nonatomic, copy) NSString * FromHeadImg;
+@property (nonatomic, copy) NSString * FromId;
+@property (nonatomic, copy) NSString * FromName;
+@property (nonatomic, copy) NSString * IdField;
 @property (nonatomic, strong) SKLastMg * LastMsg;
 @property (nonatomic, strong) NSArray * LatestMsgs;
-@property (nonatomic, strong) NSString * TargetHeadImg;
-@property (nonatomic, strong) NSString * TargetId;
-@property (nonatomic, strong) NSString * TargetName;
+@property (nonatomic, copy) NSString * TargetHeadImg;
+@property (nonatomic, copy) NSString * TargetId;
+@property (nonatomic, copy) NSString * TargetName;
 @property (nonatomic, assign) NSInteger Type;
-@property (nonatomic, strong) NSString * UpdateBy;
-@property (nonatomic, strong) NSString * UpdateOn;
-
+@property (nonatomic, copy) NSString * UpdateBy;
+@property (nonatomic, copy) NSString * UpdateOn;
+@property (nonatomic, copy) NSString * Id;
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 -(NSDictionary *)toDictionary;

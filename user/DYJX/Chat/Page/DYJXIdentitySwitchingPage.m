@@ -577,6 +577,7 @@ static NSString *headerID=@"headerID";
             DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
             page.userIconImageURL = [model.GroupHeadImg XYImageURL];
             page.groupNumber = model.GroupNumber;
+            page.targetId = model.Id;
             page.isAdmin = [self isAdmin:model];
             [self.navigationController pushViewController:page animated:YES];
 //            target.type = XJGroupTypeSubCompany;
