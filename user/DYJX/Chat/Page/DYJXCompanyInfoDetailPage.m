@@ -23,6 +23,7 @@
 #import "DYJXQRCodePage.h"
 #import "DYJXAddMemberPage.h"
 #import "DJJXMembers.h"
+#import "JSExtension.h"
 
 static NSString *kGroupDetailModelTipsFooter = @"kGroupDetailModelTipsFooter";
 static NSString *kGroupDetailModelBusinessLicenceFooter = @"kGroupDetailModelBusinessLicenceFooter";
@@ -38,6 +39,7 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
 @property(nonatomic, assign) BOOL isSelectHeader;
 @property(nonatomic, strong) UIImage *headerImage;
 @property(strong, nonatomic) CompanyBottomView *bottomView;
+@property(strong, nonatomic) CompanyAdminBottomView *adminBottomView;
 @property(nonatomic, strong) DYJXXYGroupByIdResponse *groupByIdResponse;
 @end
 
@@ -48,12 +50,8 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
     self.isSelectHeader = NO;
     [self initNavigation];
     [self initBottomView];
-    [self.view addSubview:self.tableView];
     [self registerTableViewCell];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(self.bottomView.mas_top).mas_equalTo(0);
-    }];
+
     [self getGroupInfo];
 }
 
@@ -90,17 +88,40 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
 }
 
 - (void)initBottomView{
-   
-    [self.view addSubview:self.bottomView];
-    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(80);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-        } else {
-            make.bottom.mas_equalTo(self.view);
-        }
-    }];
+    if (!self.isAdmin) {
+        [self.view addSubview:self.bottomView];
+        [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.height.mas_equalTo(80);
+            if (@available(iOS 11.0, *)) {
+                make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            } else {
+                make.bottom.mas_equalTo(self.view);
+            }
+        }];
+        [self.view addSubview:self.tableView];
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(self.bottomView.mas_top).mas_equalTo(0);
+        }];
+    }else{
+        [self.view addSubview:self.adminBottomView];
+        [self.adminBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.height.mas_equalTo(80);
+            if (@available(iOS 11.0, *)) {
+                make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            } else {
+                make.bottom.mas_equalTo(self.view);
+            }
+        }];
+        [self.view addSubview:self.tableView];
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(self.adminBottomView.mas_top).mas_equalTo(0);
+        }];
+    }
+    
 }
 
 - (void)registerTableViewCell{
@@ -577,15 +598,122 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
 }
 
 - (CompanyBottomView *)bottomView{
+    WeakSelf
     if (!_bottomView) {
-        if (self.isAdmin) {
-            _bottomView = [[NSBundle mainBundle] loadNibNamed:@"CompanyAdminBottomView" owner:self options:nil].firstObject;
-        }else{
             _bottomView = [[NSBundle mainBundle] loadNibNamed:@"CompanyBottomView" owner:self options:nil].firstObject;
+            _bottomView.enterConversionBlock = ^{
+                DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+                [[JSExtension shared] getConversion:weakSelf.targetId FromId:userModel.UserID type:1 DataSuccess:^(id  _Nonnull response) {
+                    SKResult *respo = (SKResult *)response;
+                    NIMSessionType type = NIMSessionTypeTeam;
+                    [JSExtension shared].type = 1;
+                    if (respo.LastMsg.RowData) {
+                        NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
+                        NSDictionary *dic = [body stringToDictionary];
+                        if (dic[@"extra"]) {
+                            NSDictionary *dict = [dic[@"extra"] stringToDictionary];
+                            [JSExtension shared].targetId = dict[@"TargetId"];
+                            [JSExtension shared].targetName = dict[@"TargetName"];
+                            [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
+                            [JSExtension shared].conversionId = respo.LastMsg.ConversationId;
+                        }
+                    }
+                    
+                    if([JSExtension shared].conversionId.length) {
+                        [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+                        
+                        NIMSession *session = [NIMSession session:respo.LastMsg.ConversationId type:type];
+                        [JSExtension shared].session = session;
+                        JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+                        RCConversationModel *chatModel = [[RCConversationModel alloc] init];
+                        chatModel.targetId = [JSExtension shared].conversionId;
+                        [JSExtension shared].chatVC = chatVC;
+                        chatVC.naviTitle = respo.TargetName;
+                        chatVC.chatModel = chatModel;
+                        [weakSelf.navigationController pushViewController:chatVC animated:YES];
+                    }
+                    else {
+                        [weakSelf.view makeToast:@"会话ID获取失败"];
+                    }
+                } failed:^(NSString * _Nonnull errorMsg) {
+                    [weakSelf.view makeToast:@"会话ID获取失败"];
+                }];
+            };
+            
+            _bottomView.exitCompanyBlock = ^{
+                [weakSelf.viewModel QuitGroupWithGroupId:weakSelf.groupNumber Success:^(DYJXXYGroupByIdResponse *response) {
+                    
+                } failed:^(NSString *errorMsg) {
+                    
+                }];
+            };
         }
-    }
     return _bottomView;
 }
+
+- (CompanyAdminBottomView *)adminBottomView{
+    WeakSelf
+    if (!_adminBottomView) {
+            _adminBottomView = [[NSBundle mainBundle] loadNibNamed:@"CompanyAdminBottomView" owner:self options:nil].firstObject;
+            _adminBottomView.enterConversionBlock = ^{
+                //                    DLLResult *result = (DLLResult *)self.goodArray[indexPath.row];
+                DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+                [[JSExtension shared] getConversion:weakSelf.targetId FromId:userModel.UserID type:1 DataSuccess:^(id  _Nonnull response) {
+                    SKResult *respo = (SKResult *)response;
+                    NIMSessionType type = NIMSessionTypeTeam;
+                    [JSExtension shared].type = 1;
+                    if (respo.LastMsg.RowData) {
+                        NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
+                        NSDictionary *dic = [body stringToDictionary];
+                        if (dic[@"extra"]) {
+                            NSDictionary *dict = [dic[@"extra"] stringToDictionary];
+                            [JSExtension shared].targetId = dict[@"TargetId"];
+                            [JSExtension shared].targetName = dict[@"TargetName"];
+                            [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
+                            [JSExtension shared].conversionId = respo.LastMsg.ConversationId;
+                        }
+                    }
+                    
+                    if([JSExtension shared].conversionId.length) {
+                        [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+                        
+                        NIMSession *session = [NIMSession session:respo.LastMsg.ConversationId type:type];
+                        [JSExtension shared].session = session;
+                        JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+                        RCConversationModel *chatModel = [[RCConversationModel alloc] init];
+                        chatModel.targetId = [JSExtension shared].conversionId;
+                        [JSExtension shared].chatVC = chatVC;
+                        chatVC.naviTitle = respo.TargetName;
+                        chatVC.chatModel = chatModel;
+                        [weakSelf.navigationController pushViewController:chatVC animated:YES];
+                    }
+                    else {
+                        [weakSelf.view makeToast:@"会话ID获取失败"];
+                    }
+                } failed:^(NSString * _Nonnull errorMsg) {
+                    [weakSelf.view makeToast:@"会话ID获取失败"];
+                }];
+            };
+            
+            _adminBottomView.exitCompanyBlock = ^{
+                [weakSelf.viewModel QuitGroupWithGroupId:weakSelf.groupNumber Success:^(DYJXXYGroupByIdResponse *response) {
+                    
+                } failed:^(NSString *errorMsg) {
+                    
+                }];
+            };
+        
+        _adminBottomView.deleteCompanyBlock = ^{
+            [weakSelf.viewModel deleteGroupWithGroupId:weakSelf.groupNumber Success:^(DYJXXYGroupByIdResponse *response) {
+                
+            } failed:^(NSString *errorMsg) {
+                
+            }];
+        };
+    }
+    return _adminBottomView;
+}
+
 
 - (UIImage *)headerImage{
     if (!_headerImage) {

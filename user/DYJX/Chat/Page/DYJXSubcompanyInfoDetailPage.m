@@ -556,7 +556,6 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
             {
 //                DLLResult *result = (DLLResult *)self.goodArray[indexPath.row];
                 DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
-\
                 [[JSExtension shared] getConversion:weakSelf.targetId FromId:userModel.UserID type:0 DataSuccess:^(id  _Nonnull response) {
                     SKResult *respo = (SKResult *)response;
                     NIMSessionType type = NIMSessionTypeP2P;

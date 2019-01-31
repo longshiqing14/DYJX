@@ -80,7 +80,11 @@ static NSString * const kDYJXAPI_user_MyCompanyAndGroup = @"MyCompanyAndGroup";
 //外部群
 static NSString * const kDYJXAPI_user_MyWildGroups = @"MyWildGroups";
 
+//删除公司
+static NSString * const kDYJXAPI_user_DeleteGroup = @"DeleteGroup";
 
+//退出公司
+static NSString * const kDYJXAPI_user_QuitGroup2 = @"QuitGroup2";
 
 
 

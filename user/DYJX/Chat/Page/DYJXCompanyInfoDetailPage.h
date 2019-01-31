@@ -13,4 +13,5 @@
 @property (nonatomic, copy)NSString *userIconImageURL;
 @property (nonatomic, assign)BOOL isAdmin;
 @property (nonatomic, copy) NSString *groupNumber;
+@property (nonatomic, copy) NSString *targetId;
 @end

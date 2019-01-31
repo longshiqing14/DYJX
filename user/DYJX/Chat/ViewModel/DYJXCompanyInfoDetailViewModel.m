@@ -107,6 +107,79 @@
     }];
 }
 
+//删除公司
+- (void)deleteGroupWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail{
+    WeakSelf;
+    [SVProgressHUD show];
+    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+    [reqDict setObject:groupId forKey:@"Data"];
+    [reqDict setObject:userModel.UserID forKey:@"UserID"];
+    [reqDict setObject:@"iOS" forKey:@"Device"];
+    [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+    [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
+        [reqDict setObject:userModel.UserID forKey:@"CertificateId"];
+    [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
+    
+    [XYNetWorking XYPOST:kDYJXAPI_user_DeleteGroup params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            //            [weakSelf.dataArray removeAllObjects];
+            if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
+                [SVProgressHUD dismiss];
+                [YDBAlertView showToast:@"删除公司成功！" dismissDelay:1.0];
+                
+            }else{
+                
+                [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
+            }
+            
+        }else{
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        }
+        
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        
+    }];
+}
+
+//退出公司
+- (void)QuitGroupWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail{
+    WeakSelf;
+    [SVProgressHUD show];
+    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+    [reqDict setObject:groupId forKey:@"Data"];
+    [reqDict setObject:userModel.UserID forKey:@"UserID"];
+    [reqDict setObject:@"iOS" forKey:@"Device"];
+    [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+    [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
+        [reqDict setObject:userModel.UserID forKey:@"CertificateId"];
+    [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
+    
+    [XYNetWorking XYPOST:kDYJXAPI_user_QuitGroup2 params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            //            [weakSelf.dataArray removeAllObjects];
+            if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
+                [SVProgressHUD dismiss];
+                
+                [YDBAlertView showToast:@"退出公司成功！" dismissDelay:1.0];
+            }else{
+                
+                [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
+            }
+            
+        }else{
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        }
+        
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        
+    }];
+}
 
 - (void)initData{
     self.dataArray = [@[@[@"个人头像和二维码：",@"公司名称：",@"公司简称：",@"公司商号：",@"公司成员：",@"子公司：",@"非管理员不能发言",@"不能通过搜索或扫描找到本商号"],@[@"公司统一社会信用代码：",@"公司地址：",@"公司所属街道门牌号：",@"公司GPS位置：",@"公司座机："],@[@"公司联系人：",@"公司联系人手机：",@"公司联系人QQ：",@"公司联系人微信：",@"公司网站：",@"公司邮箱：",@"公司介绍："],@[@"公司微信：",@"公司支付宝：",@"公司银行账号：",@"公司银行账号名称：",@"公司银行账号开户行："],@[@"添加您的名片或营业执照照片"]] mutableCopy];
