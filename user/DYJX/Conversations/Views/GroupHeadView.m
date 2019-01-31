@@ -15,9 +15,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.addButton];
-        [self addSubview:self.backView];
-        [self.backView addSubview:self.innerButton];
-        [self.backView addSubview:self.outsideButton];
+//        [self addSubview:self.backView];
+//        [self.backView addSubview:self.innerButton];
+//        [self.backView addSubview:self.outsideButton];
     }
     return self;
 }
@@ -26,22 +26,22 @@
     WeakSelf
     [self.addButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(weakSelf).insets(UIEdgeInsetsMake(15, 0, 0, 15));
-        make.centerY.equalTo(weakSelf).offset(-30);
+        make.centerY.equalTo(weakSelf).offset(0);
     }];
 
-    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf).insets(UIEdgeInsetsMake(60, 0, 0, 0));
-    }];
-
-    [self.outsideButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.bottom.top.equalTo(weakSelf.backView).insets(UIEdgeInsetsMake(2, 2, 2, 2));
-        make.width.mas_equalTo(kScreenWidth/2.0);
-    }];
-
-    [self.innerButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.top.equalTo(weakSelf.backView).insets(UIEdgeInsetsMake(2, 2, 2, 2));
-        make.width.mas_equalTo(kScreenWidth/2.0);
-    }];
+//    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(weakSelf).insets(UIEdgeInsetsMake(60, 0, 0, 0));
+//    }];
+//
+//    [self.outsideButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.bottom.top.equalTo(weakSelf.backView).insets(UIEdgeInsetsMake(2, 2, 2, 2));
+//        make.width.mas_equalTo(kScreenWidth/2.0);
+//    }];
+//
+//    [self.innerButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.bottom.top.equalTo(weakSelf.backView).insets(UIEdgeInsetsMake(2, 2, 2, 2));
+//        make.width.mas_equalTo(kScreenWidth/2.0);
+//    }];
 
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(weakSelf).insets(UIEdgeInsetsMake(10, 20, 10, 20));

@@ -114,7 +114,7 @@
 #pragma mark - UI
 -(GroupHeadView *)headView {
     if (!_headView) {
-        _headView = [[GroupHeadView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 120)];
+        _headView = [[GroupHeadView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
         [_headView.searchButton addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
         [_headView.addButton addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
         [_headView.innerButton addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -146,13 +146,13 @@
     [self.tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     [self.wildGroupsTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     
-//    [self.view addSubview:self.headView];
+    [self.view addSubview:self.headView];
     
     //外部群tableview
     [self.view addSubview:self.wildGroupsTableView];
     [self.wildGroupsTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(0);
+        make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
         if (@available(iOS 11.0, *)) {
             make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
         } else {
