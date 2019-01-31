@@ -22,6 +22,7 @@
 #import "DYJXXYGroupByIdResponse.h"
 #import "SubcompanyTopView.h"
 #import "DYJXQRCodePage.h"
+#import "JSExtension.h"
 
 static NSString *kGroupDetailModelTipsFooter = @"kGroupDetailModelTipsFooter";
 static NSString *kGroupDetailModelBusinessLicenceFooter = @"kGroupDetailModelBusinessLicenceFooter";
@@ -548,8 +549,41 @@ static NSString *kGroupDetailModelCompanyTitleAndArrowCell = @"kGroupDetailModel
 }
 
 - (SubcompanyBottomView *)bottomView{
+    WeakSelf
     if (!_bottomView) {
         _bottomView = [[NSBundle mainBundle] loadNibNamed:@"SubcompanyBottomView" owner:self options:nil].firstObject;
+        _bottomView.block = ^{
+            {
+//                DLLResult *result = (DLLResult *)self.goodArray[indexPath.row];
+                DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+\
+                [[JSExtension shared] getConversion:weakSelf.targetId FromId:userModel.UserID type:0 DataSuccess:^(id  _Nonnull response) {
+                    SKResult *respo = (SKResult *)response;
+                    NIMSessionType type = NIMSessionTypeP2P;
+                    [JSExtension shared].type = 0;
+                     [JSExtension shared].conversionId = respo.Id;
+                    
+                    if([JSExtension shared].conversionId.length) {
+                        [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+                        
+                        NIMSession *session = [NIMSession session:respo.LastMsg.ConversationId type:type];
+                        [JSExtension shared].session = session;
+                        JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+                        RCConversationModel *chatModel = [[RCConversationModel alloc] init];
+                        chatModel.targetId = [JSExtension shared].conversionId;
+                        [JSExtension shared].chatVC = chatVC;
+                        chatVC.naviTitle = respo.TargetName;
+                        chatVC.chatModel = chatModel;
+                        [weakSelf.navigationController pushViewController:chatVC animated:YES];
+                    }
+                    else {
+                        [weakSelf.view makeToast:@"会话ID获取失败"];
+                    }
+                } failed:^(NSString * _Nonnull errorMsg) {
+                    [weakSelf.view makeToast:@"会话ID获取失败"];
+                }];
+            }
+        };
     }
     return _bottomView;
 }

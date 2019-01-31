@@ -326,7 +326,7 @@
     [requestDic setObject:[JSExtension shared].myClientId forKey:@"ClientId"];
     [requestDic setObject:[UserManager shared].login.ObjResult forKey:@"DeviceToken"];
     [requestDic setObject:[UserManager shared].getUserModel.MemberID forKey:@"MemberID"];
-    [requestDic setObject:[JSExtension shared].myIdentityId forKey:@"CertificateId"];
+    [requestDic setObject:[JSExtension shared].myIdentityId?:[UserManager shared].getUserModel.UserID forKey:@"CertificateId"];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     [data setObject:fromId forKey:@"FromId"];
     [data setObject:targetId forKey:@"TargetId"];
