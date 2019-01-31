@@ -68,7 +68,7 @@
     [self.requestDic setObject:userModel.ObjResult forKey:@"DeviceToken"];
     [self.requestDic setObject:userModel.MemberID forKey:@"MemberID"];
     [self.requestDic setObject:userModel.UserID forKey:@"CertificateId"];
-    [self.requestDic setObject:@1 forKey:@"Data"];
+    [self.requestDic setObject:@0 forKey:@"Data"];
 
     [XYNetWorking XYPOST:kDYJXAPI_user_MyWildGroups params:self.requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
