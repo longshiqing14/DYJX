@@ -13,7 +13,7 @@
 #import "XYBestAllNet.h"
 #import "GSCCListCompareItem.h"
 #import "CompareHeadView.h"
-
+#import "XYBestWebVC.h"
 
 @interface DYJXComparePage ()
 
@@ -59,20 +59,21 @@
 }
 
 -(void)loadData {
-    if (self.headView.textField.text.length) {
+    if (![YWDTools isNil:self.headView.textField.text]) {
         NSMutableArray *titles = [[NSMutableArray alloc] init];
         NSMutableArray *vcClasses = [[NSMutableArray alloc] init];
         for (GSCCListCompareItem *item in self.listArray) {
             [titles addObject:item.Name];
             NSString *url = [NSString stringWithFormat:@"%@",item.Link];
             NSString *changeString = [url stringByReplacingOccurrencesOfString:@"[KEYWORD]" withString:self.headView.textField.text];
-            [vcClasses addObject:changeString];
+            NSString* encodedString = [[NSString stringWithFormat:@"%@",changeString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`%^{}\"[]|\\<> "].invertedSet];
+            [vcClasses addObject:encodedString];
         }
         self.titles = titles;
         self.classes = vcClasses;
         self.progressWidth = kScreenWidth/titles.count;
         self.progressViewIsNaughty = YES;
-        self.preloadPolicy = WMPageControllerPreloadPolicyNear;
+//        self.preloadPolicy = WMPageControllerPreloadPolicyNear;
         self.progressHeight = 2.0;
 
         [self reloadData];
@@ -88,7 +89,7 @@
         self.classes = vcClasses;
         self.progressWidth = kScreenWidth/titles.count;
         self.progressViewIsNaughty = YES;
-        self.preloadPolicy = WMPageControllerPreloadPolicyNear;
+//        self.preloadPolicy = WMPageControllerPreloadPolicyNear;
         self.progressHeight = 2.0;
 
         [self reloadData];
@@ -104,8 +105,8 @@
 
 - (UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
     if (self.classes[index]) {
-        MyWebPage *page = [[MyWebPage alloc] init];
-        page.url = self.classes[index];
+        XYBestWebVC *page = [[XYBestWebVC alloc] init];
+        page.webURLstr = self.classes[index];
         return page;
     }
     return [[UIViewController alloc] init];
@@ -123,7 +124,7 @@
 //    }
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
     CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
-    return CGRectMake(leftMargin, 64, self.view.frame.size.width - 2*leftMargin, 40);
+    return CGRectMake(leftMargin, 50, self.view.frame.size.width - 2*leftMargin, 40);
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView {
@@ -134,7 +135,7 @@
     if (self.menuViewStyle == WMMenuViewStyleTriangle) {
 //        originY += self.redView.frame.size.height;
     }
-    return CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height - originY);
+    return CGRectMake(0, 50+44, self.view.frame.size.width, self.view.frame.size.height - originY);
 }
 
 #pragma mark - Action
