@@ -29,6 +29,8 @@
 @property(nonatomic ,strong) DYJXLoginViewModel *viewModel;
 @property(nonatomic, strong)UIView *bottomBackgroundView;
 @property(nonatomic, copy)NSString *rndCode;
+@property(nonatomic, strong)UIButton *button1;
+@property(nonatomic, strong)UIButton *button2;
 
 @end
 
@@ -48,7 +50,7 @@
 
     self.obtainVerCodeButton.hidden = NO;
     self.veriticationTextField.keyboardType = UIKeyboardTypeNumberPad;
-    self.loginButton.frame = CGRectMake((kScreenWidth - 137)/2.0, 246, 137, 45);
+    self.loginButton.frame = CGRectMake((kScreenWidth - 137)/2.0, 186, 137, 45);
 
     self.userNameTF.placeholder = @"手机号";
     self.userNameTF.keyboardType = UIKeyboardTypeNumberPad;
@@ -61,10 +63,44 @@
 
     [self.mobileButton addTarget:self action:@selector(selectType:) forControlEvents:UIControlEventTouchUpInside];
     [self.passwordButton addTarget:self action:@selector(selectType:) forControlEvents:UIControlEventTouchUpInside];
+
+    _button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_button1 setTitle:@"手机验证码登录" forState:UIControlStateNormal];
+    [_button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_button1 setTitleColor:[UIColor colorWithHexString:@"#F2A73B"] forState:UIControlStateSelected];
+    _button1.tag = 3;
+    [_button1 setSelected:YES];
+    [_button1 addTarget:self action:@selector(selectType:) forControlEvents:UIControlEventTouchUpInside];
+
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:_button1];
+
+    UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:@selector(emptyClick)];
+    item1.width = 30;
+
+    self.navigationItem.leftBarButtonItems = @[item1,item];
+
+    _button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_button2 setTitle:@"密码登录" forState:UIControlStateNormal];
+    [_button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_button2 setTitleColor:[UIColor colorWithHexString:@"#F2A73B"] forState:UIControlStateSelected];
+    _button2.tag = 4;
+    [_button2 addTarget:self action:@selector(selectType:) forControlEvents:UIControlEventTouchUpInside];
+
+    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithCustomView:_button2];
+
+    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:@selector(emptyClick)];
+    item3.width = 40;
+
+    self.navigationItem.rightBarButtonItems = @[item3,item2];
+
 //    self.userNameTF.text = @"13612846724";
 //    self.passwordTF.text = @"111111";
     self.userNameTF.text = @"13750820441";
     self.passwordTF.text = @"654321";
+}
+
+-(void)emptyClick {
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -97,6 +133,8 @@
 
 -(void)selectType:(UIButton *)sender {
     if (sender.tag == 3) {
+        [self.button1 setSelected:YES];
+        [self.button2 setSelected:NO];
         [self.mobileButton setSelected:YES];
         [self.passwordButton setSelected:NO];
         self.obtainVerCodeButton.hidden = NO;
@@ -104,7 +142,7 @@
         self.veriticationTextField.hidden = NO;
         self.verticationBackView.hidden = NO;
 
-        self.loginButton.frame = CGRectMake((kScreenWidth - 137)/2.0, 246, 137, 45);
+        self.loginButton.frame = CGRectMake((kScreenWidth - 137)/2.0, 186, 137, 45);
         self.userNameTF.placeholder = @"手机号";
         self.userNameTF.keyboardType = UIKeyboardTypeNumberPad;
         self.forgetPsButton.hidden = YES;
@@ -113,13 +151,15 @@
         self.passwordBackView.hidden = YES;
     }
     else {
+        [self.button1 setSelected:NO];
+        [self.button2 setSelected:YES];
         [self.mobileButton setSelected:NO];
         [self.passwordButton setSelected:YES];
         self.obtainVerCodeButton.hidden = YES;
         self.veriticationTextField.keyboardType = UIKeyboardTypeNumberPad;
         self.veriticationTextField.hidden = YES;
         self.verticationBackView.hidden = YES;
-        self.loginButton.frame = CGRectMake((kScreenWidth - 137)/2.0, 264, 137, 45);
+        self.loginButton.frame = CGRectMake((kScreenWidth - 137)/2.0, 206, 137, 45);
         self.userNameTF.placeholder = @"用户名/手机号/ID号";
         self.userNameTF.keyboardType = UIKeyboardTypeDefault;
         self.forgetPsButton.hidden = NO;
