@@ -8,6 +8,7 @@
 
 #import "DYJXRegistePage.h"
 #import "DYJXRegisteViewModel.h"
+#import "iPhoneXBottomBackgroundView.h"
 
 @interface DYJXRegistePage ()
 @property (weak, nonatomic) IBOutlet UITextField *userPhoneTF;
@@ -19,7 +20,7 @@
 @property (nonatomic, assign) BOOL selectedSeverProtocol;
 @property (nonatomic, strong) DYJXRegisteViewModel *viewModel;
 @property(nonatomic, copy)NSString *randCode;
-@property(nonatomic, strong)UIView *bottomBackgroundView;
+@property(nonatomic, strong)iPhoneXBottomBackgroundView *bottomBackgroundView;
 @end
 
 @implementation DYJXRegistePage

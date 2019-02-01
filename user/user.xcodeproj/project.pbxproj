@@ -148,6 +148,12 @@
 		4895F0E921FFE8F300203073 /* JXRefundReasonPopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4895F0E521FFE8F200203073 /* JXRefundReasonPopCell.xib */; };
 		4895F0EA21FFE8F300203073 /* JXRefundReasonPopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4895F0E621FFE8F200203073 /* JXRefundReasonPopCell.m */; };
 		4895F0ED2200477B00203073 /* DJWildGroupsChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4895F0EC2200477B00203073 /* DJWildGroupsChatPage.m */; };
+		4895F0EF2203EA3800203073 /* iPhoneXBottomBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4895F0EE2203EA3800203073 /* iPhoneXBottomBackgroundView.xib */; };
+		4895F0F22203EA5600203073 /* iPhoneXBottomBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4895F0F12203EA5600203073 /* iPhoneXBottomBackgroundView.m */; };
+		4895F0F5220432B300203073 /* DJWildGroupHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4895F0F4220432B300203073 /* DJWildGroupHeaderView.m */; };
+		4895F0F7220432C100203073 /* DJWildGroupHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4895F0F6220432C100203073 /* DJWildGroupHeaderView.xib */; };
+		4895F0FA22043E0C00203073 /* DJinnerGroupHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4895F0F922043E0C00203073 /* DJinnerGroupHeaderView.m */; };
+		4895F0FC22043E2100203073 /* DJinnerGroupHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4895F0FB22043E2100203073 /* DJinnerGroupHeaderView.xib */; };
 		489A3F2E1FB42B4F0084E2BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489A3F2D1FB42B4F0084E2BC /* MapKit.framework */; };
 		489A3F851FB5567F0084E2BC /* YDBAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 489A3F7D1FB5523E0084E2BC /* YDBAlertView.m */; };
 		489A3F861FB556D40084E2BC /* YWDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 489A3F811FB5523E0084E2BC /* YWDTools.m */; };
@@ -894,6 +900,15 @@
 		4895F0E621FFE8F200203073 /* JXRefundReasonPopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXRefundReasonPopCell.m; sourceTree = "<group>"; };
 		4895F0EB2200477B00203073 /* DJWildGroupsChatPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJWildGroupsChatPage.h; sourceTree = "<group>"; };
 		4895F0EC2200477B00203073 /* DJWildGroupsChatPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJWildGroupsChatPage.m; sourceTree = "<group>"; };
+		4895F0EE2203EA3800203073 /* iPhoneXBottomBackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iPhoneXBottomBackgroundView.xib; sourceTree = "<group>"; };
+		4895F0F02203EA5600203073 /* iPhoneXBottomBackgroundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iPhoneXBottomBackgroundView.h; sourceTree = "<group>"; };
+		4895F0F12203EA5600203073 /* iPhoneXBottomBackgroundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iPhoneXBottomBackgroundView.m; sourceTree = "<group>"; };
+		4895F0F3220432B300203073 /* DJWildGroupHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJWildGroupHeaderView.h; sourceTree = "<group>"; };
+		4895F0F4220432B300203073 /* DJWildGroupHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJWildGroupHeaderView.m; sourceTree = "<group>"; };
+		4895F0F6220432C100203073 /* DJWildGroupHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJWildGroupHeaderView.xib; sourceTree = "<group>"; };
+		4895F0F822043E0C00203073 /* DJinnerGroupHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJinnerGroupHeaderView.h; sourceTree = "<group>"; };
+		4895F0F922043E0C00203073 /* DJinnerGroupHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJinnerGroupHeaderView.m; sourceTree = "<group>"; };
+		4895F0FB22043E2100203073 /* DJinnerGroupHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJinnerGroupHeaderView.xib; sourceTree = "<group>"; };
 		489A3F2C1FB30E210084E2BC /* JXApiDefineMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXApiDefineMacro.h; sourceTree = "<group>"; };
 		489A3F2D1FB42B4F0084E2BC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		489A3F4B1FB54A130084E2BC /* AppConfigMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfigMacro.h; sourceTree = "<group>"; };
@@ -2329,6 +2344,9 @@
 				48E2501A21C7BBE800CC7D9E /* DYJXSelectMemberCell.h */,
 				48E2501B21C7BBE800CC7D9E /* DYJXSelectMemberCell.m */,
 				48E2501C21C7BBE800CC7D9E /* DYJXSelectMemberCell.xib */,
+				4895F0F02203EA5600203073 /* iPhoneXBottomBackgroundView.h */,
+				4895F0F12203EA5600203073 /* iPhoneXBottomBackgroundView.m */,
+				4895F0EE2203EA3800203073 /* iPhoneXBottomBackgroundView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3727,6 +3745,12 @@
 				48E2504721D8A79000CC7D9E /* DJGroupChatHeaderView.h */,
 				48E2504821D8A79000CC7D9E /* DJGroupChatHeaderView.m */,
 				48E2504A21D8A7A100CC7D9E /* DJGroupChatHeaderView.xib */,
+				4895F0F3220432B300203073 /* DJWildGroupHeaderView.h */,
+				4895F0F4220432B300203073 /* DJWildGroupHeaderView.m */,
+				4895F0F6220432C100203073 /* DJWildGroupHeaderView.xib */,
+				4895F0F822043E0C00203073 /* DJinnerGroupHeaderView.h */,
+				4895F0F922043E0C00203073 /* DJinnerGroupHeaderView.m */,
+				4895F0FB22043E2100203073 /* DJinnerGroupHeaderView.xib */,
 				48E2504C21D8AA5C00CC7D9E /* DJGroupChatCell.h */,
 				48E2504D21D8AA5C00CC7D9E /* DJGroupChatCell.m */,
 				48E2504E21D8AA5C00CC7D9E /* DJGroupChatCell.xib */,
@@ -4826,6 +4850,7 @@
 				4804A14B21957D5D0081AB5B /* TZImagePickerController.bundle in Resources */,
 				E1B1178D219D58A800C96B3E /* Pandora in Resources */,
 				4804A14F21957D5D0081AB5B /* qucsdkResources.bundle in Resources */,
+				4895F0FC22043E2100203073 /* DJinnerGroupHeaderView.xib in Resources */,
 				4895F0E921FFE8F300203073 /* JXRefundReasonPopCell.xib in Resources */,
 				488E89EE219FFD5A008695A7 /* release_notes_ios.txt in Resources */,
 				48E8A4CB21BE47A30046EA0E /* SubcompanyBottomView.xib in Resources */,
@@ -4847,6 +4872,7 @@
 				4804A14E21957D5D0081AB5B /* AMap.bundle in Resources */,
 				CB42F6031FAC67CC00889257 /* new_feature_2.png in Resources */,
 				488E89FC219FFD5A008695A7 /* JrmfInfo.strings in Resources */,
+				4895F0F7220432C100203073 /* DJWildGroupHeaderView.xib in Resources */,
 				E15767E121C9122D003A5C25 /* NIMKitEmoticon.bundle in Resources */,
 				488E89F2219FFD5A008695A7 /* default_image.png in Resources */,
 				48A1AC5221FAAC5600C1DB45 /* JXRefumdImageCameraCollectionCell.xib in Resources */,
@@ -4859,6 +4885,7 @@
 				48E2503E21D774A800CC7D9E /* DJCompanyChatCell.xib in Resources */,
 				488E89F3219FFD5A008695A7 /* default_image_rectangular.png in Resources */,
 				4804A14921957D5D0081AB5B /* Pingpp.bundle in Resources */,
+				4895F0EF2203EA3800203073 /* iPhoneXBottomBackgroundView.xib in Resources */,
 				48E8A4D021BE4CBA0046EA0E /* SubcompanyTopView.xib in Resources */,
 				4873519E218BF19E001B59AB /* DYJXLogisticCollectionViewCell.xib in Resources */,
 				CBFF465A1F7E7ACC00D2AF93 /* FSActionSheet_cancel@2x.png in Resources */,
@@ -5093,6 +5120,7 @@
 				E15767E721C9122D003A5C25 /* NIMContactPickedView.m in Sources */,
 				48A1AC5E21FAAFAE00C1DB45 /* XYPlayModel.m in Sources */,
 				E1A137B721FFF3F600A5E4A1 /* GSCCompare.m in Sources */,
+				4895F0F5220432B300203073 /* DJWildGroupHeaderView.m in Sources */,
 				DE36FA611FCEDE5900ED184E /* PPNumberButton.m in Sources */,
 				E11C423521A2D6750039A53A /* HeadSearchView.m in Sources */,
 				E17AF25C21A02D480041249C /* DJJXIMInfo.m in Sources */,
@@ -5133,6 +5161,7 @@
 				E1CDB23621D754F30049B124 /* ImageZoomView.m in Sources */,
 				E1A73E9F21D8B46900267385 /* DIIMemberFrom.m in Sources */,
 				E13E60CF21C35A7100D0C4B3 /* FMResultSet.m in Sources */,
+				4895F0F22203EA5600203073 /* iPhoneXBottomBackgroundView.m in Sources */,
 				E1B1178B219D4F0D00C96B3E /* SCAccountManager.m in Sources */,
 				48A3707721AE3B64002861DD /* SpaceCell.m in Sources */,
 				48E8A4BF21BA1F8A0046EA0E /* DYJXXYCreator.m in Sources */,
@@ -5226,6 +5255,7 @@
 				E1A73E9B21D8B46900267385 /* DIIBusines.m in Sources */,
 				E15767F021C9122D003A5C25 /* NIMKitRobotTemplateLayout.m in Sources */,
 				E157683121C9122D003A5C25 /* NIMSessionDataSourceImpl.m in Sources */,
+				4895F0FA22043E0C00203073 /* DJinnerGroupHeaderView.m in Sources */,
 				E15767F821C9122D003A5C25 /* NIMInputView.m in Sources */,
 				CB33079F1FA1BF8F00117695 /* IQTextView.m in Sources */,
 				E18D581E21A4FA9F001FE4A0 /* ContractHeadView.m in Sources */,

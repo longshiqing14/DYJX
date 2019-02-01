@@ -28,12 +28,13 @@
 #import "JXRefoundReasonPopView.h"
 #import "DYJXComparePage.h"
 #import "DJCompanyChatPage.h"
+#import "iPhoneXBottomBackgroundView.h"
 
 @interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) DYJXLogisticViewModel *viewModel;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
-@property(nonatomic, strong)UIView *bottomBackgroundView;
+@property(nonatomic, strong)iPhoneXBottomBackgroundView *bottomBackgroundView;
 @property(nonatomic, strong) DJCompanyChatViewModel *companyViewModel;
 @end
 
@@ -320,7 +321,9 @@
 
 - (void)initNavigation{
     self.title = @"公司简讯";
-
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:18]};
     [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
 
     UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -362,10 +365,10 @@
     return _tapGestureRecognizer;
 }
 
-- (UIView *)bottomBackgroundView{
+- (iPhoneXBottomBackgroundView *)bottomBackgroundView{
     if (!_bottomBackgroundView) {
-        _bottomBackgroundView = [[UIView alloc]init];
-        _bottomBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#15293B"];
+        _bottomBackgroundView = [[NSBundle mainBundle]loadNibNamed:@"iPhoneXBottomBackgroundView" owner:self options:nil].firstObject;
+
     }
     return _bottomBackgroundView;
 }

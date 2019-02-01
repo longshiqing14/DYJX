@@ -26,13 +26,14 @@
 #import <RongIMKit/RongIMKit.h>
 #import "IMSDK.h"
 #import "DYJXComparePage.h"
+#import "iPhoneXBottomBackgroundView.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong)DYJXIdentitySwitchingViewModel *viewModel;
 @property(nonatomic, strong)DYJXIdentitySwitchingModel *selectedIdentity;
-@property(nonatomic, strong)UIView *bottomBackgroundView;
+@property(nonatomic, strong)iPhoneXBottomBackgroundView *bottomBackgroundView;
 @end
 
 static NSString *cellID=@"cellID";
@@ -532,10 +533,10 @@ static NSString *headerID=@"headerID";
     return _selectedIdentity;
 }
 
-- (UIView *)bottomBackgroundView{
+- (iPhoneXBottomBackgroundView *)bottomBackgroundView{
     if (!_bottomBackgroundView) {
-        _bottomBackgroundView = [[UIView alloc]init];
-        _bottomBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#15293B"];
+        _bottomBackgroundView = [[NSBundle mainBundle]loadNibNamed:@"iPhoneXBottomBackgroundView" owner:self options:nil].firstObject;
+
     }
     return _bottomBackgroundView;
 }

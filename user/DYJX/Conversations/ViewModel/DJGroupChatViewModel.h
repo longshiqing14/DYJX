@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "DYJXXYResult.h"
 @interface DJGroupChatViewModel : NSObject
 @property (nonatomic,strong) NSMutableDictionary *requestDic;
-
+@property (nonatomic, strong) NSMutableArray<DYJXXYResult*> *innerGroupdataArray;
+@property (nonatomic, strong) NSMutableArray<DYJXXYResult*> *wildGroupdataArray;
 - (NSInteger)numberOfSection;
 //- (NSInteger)numberOfCell:(NSInteger )section;
 - (NSInteger)numberOfCell:(NSInteger)section;

@@ -8,6 +8,7 @@
 
 #import "DYJXFindPasswordPage.h"
 #import "DYJXGetBackPwdAuthorizationCodeViewModel.h"
+#import "iPhoneXBottomBackgroundView.h"
 
 @interface DYJXFindPasswordPage ()
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumTF;
@@ -17,7 +18,7 @@
 
 @property(nonatomic, strong)DYJXGetBackPwdAuthorizationCodeViewModel *viewModel;
 @property(nonatomic, copy)NSString *randCode;
-@property(nonatomic, strong)UIView *bottomBackgroundView;
+@property(nonatomic, strong)iPhoneXBottomBackgroundView *bottomBackgroundView;
 @end
 
 @implementation DYJXFindPasswordPage
@@ -123,10 +124,9 @@
     return _viewModel;
 }
 
-- (UIView *)bottomBackgroundView{
+- (iPhoneXBottomBackgroundView *)bottomBackgroundView{
     if (!_bottomBackgroundView) {
-        _bottomBackgroundView = [[UIView alloc]init];
-        _bottomBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#15293B"];
+        _bottomBackgroundView = [[NSBundle mainBundle]loadNibNamed:@"iPhoneXBottomBackgroundView" owner:self options:nil].firstObject;
     }
     return _bottomBackgroundView;
 }

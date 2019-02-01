@@ -7,7 +7,6 @@
 //
 
 #import "DJGroupChatViewModel.h"
-#import "DYJXXYResult.h"
 
 #define kRequestPageNumber @"page"
 #define kRequestPageSize @"page_size"
@@ -15,6 +14,7 @@
 @interface DJGroupChatViewModel()
 @property (nonatomic,assign) NSInteger pageNum;
 @property (nonatomic, strong) NSMutableArray<DYJXXYResult*> *dataArray;
+
 @end
 
 @implementation DJGroupChatViewModel
@@ -28,23 +28,41 @@
 
 - (NSString *)GroupName:(NSIndexPath *)indexPath
 {
-    
-    return self.dataArray[indexPath.section].Children[indexPath.row].GroupName;
+    if (indexPath.section + 1 <= self.innerGroupdataArray.count) {
+      return self.innerGroupdataArray[indexPath.section].Children[indexPath.row].GroupName;
+    }else{
+      return self.wildGroupdataArray[indexPath.row].GroupName;
+    }
 }
 
 - (NSString *)GroupNumberString:(NSIndexPath *)indexPath
 {
-    
-    return self.dataArray[indexPath.section].NumberString;
+    if (indexPath.section + 1 <= self.innerGroupdataArray.count) {
+        return self.innerGroupdataArray[indexPath.section].Children[indexPath.row].NumberString;
+    }else{
+        return self.wildGroupdataArray[indexPath.row].NumberString;
+    }
 }
 
 - (NSString *)iconImageUrl:(NSIndexPath *)indexPath
 {
-    return self.dataArray[indexPath.section].Children[indexPath.row].GroupHeadImg;
+    if (indexPath.section + 1 <= self.innerGroupdataArray.count) {
+        return self.innerGroupdataArray[indexPath.section].Children[indexPath.row].GroupHeadImg;
+    }else{
+        return self.wildGroupdataArray[indexPath.row].GroupHeadImg;
+    }
 }
 
 - (NSInteger)numberOfSection{
-    return self.dataArray.count;
+    if (self.dataArray.count == 0) {
+        return 0;
+    }
+    if (self.wildGroupdataArray.count >0) {
+        return self.innerGroupdataArray.count + 1;
+    }else {
+        return self.innerGroupdataArray.count + 0;
+    }
+
 }
 
 //- (NSInteger)numberOfCell:(NSInteger)section{
@@ -52,17 +70,33 @@
 //}
 
 - (NSInteger)numberOfCell:(NSInteger)section{
-    return self.dataArray[section].Children.count;
+    if (section + 1 <= self.innerGroupdataArray.count) {
+        return self.innerGroupdataArray[section].Children.count;
+    }else{
+        return self.wildGroupdataArray.count;
+    }
 }
 
 - (NSString *)sectionHeaderGroupName:(NSInteger )section{
-    return self.dataArray[section].GroupName;
+    if (section + 1 <= self.innerGroupdataArray.count) {
+        return self.innerGroupdataArray[section].GroupName;
+    }else{
+        return self.wildGroupdataArray[section].GroupName;
+    }
 }
 - (NSString *)sectionHeaderGroupNumberString:(NSInteger )section{
-    return self.dataArray[section].NumberString;
+    if (section + 1 <= self.innerGroupdataArray.count) {
+        return self.innerGroupdataArray[section].NumberString;
+    }else{
+        return self.wildGroupdataArray[section].NumberString;
+    }
 }
 - (NSString *)sectionHeadericonImageUrl:(NSInteger )section{
-    return self.dataArray[section].GroupHeadImg;
+    if (section + 1 <= self.innerGroupdataArray.count) {
+        return self.innerGroupdataArray[section].GroupHeadImg;
+    }else{
+        return self.wildGroupdataArray[section].GroupHeadImg;
+    }
 }
 
 - (void)getMyCompanyAndGroupDataSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail{
@@ -81,12 +115,18 @@
             
             if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
                 [XYProgressHUD svHUDDismiss];
-                [self.dataArray removeAllObjects];
+                [weakSelf.dataArray removeAllObjects];
+                [weakSelf.innerGroupdataArray removeAllObjects];
+                [weakSelf.wildGroupdataArray removeAllObjects];
                 self.dataArray = [[NSArray modelArrayWithClass:[DYJXXYResult class] json:[responseObject objectForKey:@"Result"]] mutableCopy];
                 
                __block NSMutableArray<DYJXXYResult *> *tempArray = [self.dataArray mutableCopy];
                 [tempArray enumerateObjectsUsingBlock:^(DYJXXYResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [weakSelf.dataArray[idx].Children insertObject:obj atIndex:0];
+                    if (weakSelf.dataArray[idx].Children.count > 0) {
+                        [weakSelf.innerGroupdataArray addObject:obj];
+                    }else{
+                        [weakSelf.wildGroupdataArray addObject:obj];
+                    }
                 }];
                 
                 success();
@@ -115,6 +155,20 @@
         _dataArray = [NSMutableArray array];
     }
     return _dataArray;
+}
+
+- (NSMutableArray<DYJXXYResult *> *)innerGroupdataArray{
+    if (!_innerGroupdataArray) {
+        _innerGroupdataArray = [NSMutableArray array];
+    }
+    return _innerGroupdataArray;
+}
+
+- (NSMutableArray<DYJXXYResult *> *)wildGroupdataArray{
+    if (!_wildGroupdataArray) {
+        _wildGroupdataArray = [NSMutableArray array];
+    }
+    return _wildGroupdataArray;
 }
 
 @end

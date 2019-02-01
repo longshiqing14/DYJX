@@ -16,6 +16,7 @@
 #import "DJGroupChatHeaderView.h"
 #import "DJGroupChatCell.h"
 #import "DJCompanyChatCell.h"
+#import "DJWildGroupHeaderView.h"
 
 @interface DJGroupChatPage ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
@@ -35,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     WeakSelf;
-    self.navigationItem.title = @"群组";
+    self.navigationItem.title = @"内部群";
     _isExpandArray = [[NSMutableArray alloc]init];
     [self initNavigation];
     [self initSubView];
@@ -46,11 +47,11 @@
         
     }];
     
-    [self.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
-        [weakSelf.wildGroupsTableView reloadData];
-    } failed:^(NSString *errorMsg) {
-        
-    }];
+//    [self.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
+//        [weakSelf.wildGroupsTableView reloadData];
+//    } failed:^(NSString *errorMsg) {
+//
+//    }];
 }
 
 - (void)initNavigation{
@@ -88,26 +89,26 @@
 
 }
 -(void)btnClick:(UIButton *)sender {
-    [self.headView.innerButton setSelected:NO];
-    [self.headView.outsideButton setSelected:NO];
-    [sender setSelected:YES];
-    if (sender.tag == 1) {
-        [self.view bringSubviewToFront:self.tableView];
-    }
-    else {
-        [self.view bringSubviewToFront:self.wildGroupsTableView];
-    }
+//    [self.headView.innerButton setSelected:NO];
+//    [self.headView.outsideButton setSelected:NO];
+//    [sender setSelected:YES];
+//    if (sender.tag == 1) {
+//        [self.view bringSubviewToFront:self.tableView];
+//    }
+//    else {
+//        [self.view bringSubviewToFront:self.wildGroupsTableView];
+//    }
 }
 
 - (void) initExpandArray{
     for (NSInteger i = 0; i < [self.viewModel numberOfSection]; i++) {
-//        if (i == 0) {
-//            [_isExpandArray addObject:@"1"];//0:没展开 1:展开
-//
-//        }else{
+        if (i == [self.viewModel numberOfSection] - 1) {
+            [_isExpandArray addObject:@"1"];//0:没展开 1:展开
+
+        }else{
             [_isExpandArray addObject:@"0"];//0:没展开 1:展开
             
-//        }
+        }
     }
 }
 
@@ -138,27 +139,42 @@
 - (void)initSubView{
     [self.tableView registerNib:[UINib nibWithNibName:@"DJGroupChatCell" bundle:nil] forCellReuseIdentifier:@"DJGroupChatCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"DJGroupChatHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"DJGroupChatHeaderView"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DJWildGroupHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"DJWildGroupHeaderView"];
     
-    [self.wildGroupsTableView registerNib:[UINib nibWithNibName:@"DJCompanyChatCell" bundle:nil] forCellReuseIdentifier:@"DJCompanyChatCell"];
+    
+//    [self.wildGroupsTableView registerNib:[UINib nibWithNibName:@"DJCompanyChatCell" bundle:nil] forCellReuseIdentifier:@"DJCompanyChatCell"];
     
     self.tableView.showsVerticalScrollIndicator = NO;
-    self.wildGroupsTableView.showsVerticalScrollIndicator = NO;
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 44)];
+    header.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+    UILabel *lb = [[UILabel alloc]init];
+    lb.textColor = [UIColor colorWithHexString:@"333333"];
+    lb.font = [UIFont systemFontOfSize:15];
+    lb.text = @"公司内部群";
+    
+    [header addSubview:lb];
+    [lb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(20);
+        make.centerY.mas_equalTo(0);
+    }];
+    // 设置header
+    self.tableView.tableHeaderView = header;
+    
     [self.tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
-    [self.wildGroupsTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     
     [self.view addSubview:self.headView];
     
     //外部群tableview
-    [self.view addSubview:self.wildGroupsTableView];
-    [self.wildGroupsTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-        } else {
-            make.bottom.mas_equalTo(self.view);
-        }
-    }];
+//    [self.view addSubview:self.wildGroupsTableView];
+//    [self.wildGroupsTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.mas_equalTo(0);
+//        make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
+//        if (@available(iOS 11.0, *)) {
+//            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+//        } else {
+//            make.bottom.mas_equalTo(self.view);
+//        }
+//    }];
     
     //内部群tableview
     [self.view addSubview:self.tableView];
@@ -174,8 +190,10 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (tableView == self.tableView) {
 
+    if (_isExpandArray.count == 0) {
+        return 0;
+    }else{
         if ([_isExpandArray[section] isEqualToString:@"0"]) {
             //未展开
             return 0;
@@ -184,22 +202,15 @@
             return [self.viewModel numberOfCell:section];
             
         }
-        
-    }else{
-        
-        return [self.wildGroupsviewModel numberOfCell];
     }
+
+        
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if (tableView == self.tableView) {
-        
+    
         return [self.viewModel numberOfSection];
         
-    }else{
-        
-        return 1;
-    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -209,26 +220,19 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = nil;
-    if (tableView == self.tableView) {
-        
-        DJGroupChatCell *groupChatCell = [tableView dequeueReusableCellWithIdentifier:@"DJGroupChatCell" forIndexPath:indexPath];
+    
+        DJGroupChatCell *groupChatCell = [self.tableView dequeueReusableCellWithIdentifier:@"DJGroupChatCell" forIndexPath:indexPath];
         [groupChatCell.userIcon setImageWithURL:[NSURL URLWithString:[[self.viewModel iconImageUrl:indexPath] XYImageURL]] placeholder:[UIImage imageNamed:@"person_orange"]];
         groupChatCell.userName.text = [self.viewModel GroupName:indexPath];
         cell = groupChatCell;
         
-    }else{
-        
-        DJCompanyChatCell *wildGroupcell = [tableView dequeueReusableCellWithIdentifier:@"DJCompanyChatCell" forIndexPath:indexPath];
-        [wildGroupcell.userIcon setImageWithURL:[NSURL URLWithString:[[self.wildGroupsviewModel iconImageUrl:indexPath] XYImageURL]] placeholder:[UIImage imageNamed:@"person_orange"]];
-        wildGroupcell.userName.text = [self.wildGroupsviewModel GroupName:indexPath];
-        cell = wildGroupcell;
-    }
     
     return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (tableView == self.tableView) {
+    
+    if (section + 1 <=self.viewModel.innerGroupdataArray.count) {
         DJGroupChatHeaderView *header = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"DJGroupChatHeaderView"];
         header.backgroundColor = [UIColor colorWithHexString:@"C8E5FF"];
         header.groupName.text = [self.viewModel sectionHeaderGroupName:section];
@@ -254,10 +258,12 @@
         [self addTableViewHeaderTapActionWithSection:section header:header];
         
         return header;
-        
     }else{
-        return [UIView new];
+        DJWildGroupHeaderView *header = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"DJWildGroupHeaderView"];
+        return header;
     }
+    
+        
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -270,30 +276,28 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
-        ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor colorWithHexString:@"CFEEFF"];
-    }
+     if (section + 1 <=self.viewModel.innerGroupdataArray.count) {
+            if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
+                ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor colorWithHexString:@"CFEEFF"];
+            }
+     }else{
+         if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
+             ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor colorWithHexString:@"F4F4F4"];
+         }
+     }
 }
 
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (tableView == self.tableView) {
         return 50;
-    }else{
-        return 0;
-    }
+
 }
 
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (tableView == self.tableView) {
-        
-    }else{
-        
-    }
+
 }
 
 - (void)addTableViewHeaderTapActionWithSection:(NSInteger)section header:(UITableViewHeaderFooterView*)header{
@@ -351,24 +355,24 @@
     return _tableView;
 }
 
-- (UITableView *)wildGroupsTableView{
-    WeakSelf;
-    if (!_wildGroupsTableView) {
-        _wildGroupsTableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];
-        _wildGroupsTableView.delegate = self;
-        _wildGroupsTableView.dataSource = self;
-        _wildGroupsTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [weakSelf.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
-                [weakSelf.wildGroupsTableView.mj_header endRefreshing];
-                [weakSelf.wildGroupsTableView reloadData];
-            } failed:^(NSString *errorMsg) {
-                
-            }];
-        }];
-        _wildGroupsTableView.backgroundColor = [UIColor whiteColor];
-    }
-    return _wildGroupsTableView;
-}
+//- (UITableView *)wildGroupsTableView{
+//    WeakSelf;
+//    if (!_wildGroupsTableView) {
+//        _wildGroupsTableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];
+//        _wildGroupsTableView.delegate = self;
+//        _wildGroupsTableView.dataSource = self;
+//        _wildGroupsTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//            [weakSelf.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
+//                [weakSelf.wildGroupsTableView.mj_header endRefreshing];
+//                [weakSelf.wildGroupsTableView reloadData];
+//            } failed:^(NSString *errorMsg) {
+//
+//            }];
+//        }];
+//        _wildGroupsTableView.backgroundColor = [UIColor whiteColor];
+//    }
+//    return _wildGroupsTableView;
+//}
 
 - (DJGroupChatWildGroupsViewModel *)wildGroupsviewModel{
     if (!_wildGroupsviewModel) {

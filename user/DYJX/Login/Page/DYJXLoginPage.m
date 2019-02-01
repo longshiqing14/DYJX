@@ -13,6 +13,7 @@
 #import "DYJXIdentitySwitchingPage.h"
 #import "NaviViewController.h"
 #import "AppDelegate.h"
+#import "iPhoneXBottomBackgroundView.h"
 
 @interface DYJXLoginPage ()
 @property (weak, nonatomic) IBOutlet UIView *verticationBackView;
@@ -27,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *userNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;
 @property(nonatomic ,strong) DYJXLoginViewModel *viewModel;
-@property(nonatomic, strong)UIView *bottomBackgroundView;
+@property(nonatomic, strong)iPhoneXBottomBackgroundView *bottomBackgroundView;
 @property(nonatomic, copy)NSString *rndCode;
 @property(nonatomic, strong)UIButton *button1;
 @property(nonatomic, strong)UIButton *button2;
@@ -242,10 +243,10 @@
     return _viewModel;
 }
 
-- (UIView *)bottomBackgroundView{
+- (iPhoneXBottomBackgroundView *)bottomBackgroundView{
     if (!_bottomBackgroundView) {
-        _bottomBackgroundView = [[UIView alloc]init];
-        _bottomBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#15293B"];
+        _bottomBackgroundView = [[NSBundle mainBundle]loadNibNamed:@"iPhoneXBottomBackgroundView" owner:self options:nil].firstObject;
+
     }
     return _bottomBackgroundView;
 }

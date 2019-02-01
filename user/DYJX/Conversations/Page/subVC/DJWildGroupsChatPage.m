@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     WeakSelf;
-    self.navigationItem.title = @"群组";
+    self.navigationItem.title = @"外部群";
     _isExpandArray = [[NSMutableArray alloc]init];
     [self initNavigation];
     [self initSubView];
