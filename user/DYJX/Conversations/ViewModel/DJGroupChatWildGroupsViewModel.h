@@ -17,10 +17,12 @@
 - (NSString *)iconImageUrl:(NSIndexPath *)indexPath;
 - (NSArray *)goodsLable:(NSIndexPath *)indexPath;
 - (NSString *)productID:(NSIndexPath *)indexPath;
+- (NSString *)sectionHeaderGroupNumber:(NSIndexPath *)indexPath;
 
 - (NSString *)sectionHeaderGroupName:(NSInteger )section;
 - (NSString *)sectionHeaderGroupNumberString:(NSInteger )section;
 - (NSString *)sectionHeadericonImageUrl:(NSInteger )section;
+//- (NSString *)sectionHeaderGroupNumber:(NSInteger )section;
 //获取我创建或参与公司
 - (void)getMyWildGroupsDataSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail;
 @end

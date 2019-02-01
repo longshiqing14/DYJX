@@ -38,6 +38,10 @@
     return self.dataArray[indexPath.section].NumberString;
 }
 
+- (NSString *)sectionHeaderGroupNumber:(NSIndexPath *)indexPath{
+    return self.dataArray[indexPath.section].GroupNumber;
+}
+
 - (NSString *)iconImageUrl:(NSIndexPath *)indexPath
 {
     return self.dataArray[indexPath.row].GroupHeadImg;
@@ -53,6 +57,10 @@
 - (NSString *)sectionHeaderGroupNumberString:(NSInteger )section{
     return self.dataArray[section].NumberString;
 }
+//- (NSString *)sectionHeaderGroupNumber:(NSInteger )section{
+//    return self.dataArray[section].GroupNumber;
+//}
+
 - (NSString *)sectionHeadericonImageUrl:(NSInteger )section{
     return self.dataArray[section].GroupHeadImg;
 }

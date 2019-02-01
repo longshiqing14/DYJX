@@ -17,6 +17,7 @@
 #import "DJGroupChatCell.h"
 #import "DJCompanyChatCell.h"
 #import "DJWildGroupHeaderView.h"
+#import "JSExtension.h"
 
 @interface DJGroupChatPage ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
@@ -297,7 +298,89 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    WeakSelf
+    if (indexPath.section + 1 <= self.viewModel.innerGroupdataArray.count) {
+        
+            DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+            [[JSExtension shared] getConversion:self.viewModel.innerGroupdataArray[indexPath.section].Children[indexPath.row].GroupNumber FromId:userModel.UserID type:1 DataSuccess:^(id  _Nonnull response) {
+                SKResult *respo = (SKResult *)response;
+                NIMSessionType type = NIMSessionTypeTeam;
+                [JSExtension shared].type = 1;
+                [JSExtension shared].conversionId = respo.Id;
+                if (respo.LastMsg.RowData) {
+                    NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
+                    NSDictionary *dic = [body stringToDictionary];
+                    if (dic[@"extra"]) {
+                        NSDictionary *dict = [dic[@"extra"] stringToDictionary];
+                        [JSExtension shared].targetId = dict[@"TargetId"];
+                        [JSExtension shared].targetName = dict[@"TargetName"];
+                        [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
+                        [JSExtension shared].conversionId = respo.Id;
+                    }
+                }
+                
+                if([JSExtension shared].conversionId.length) {
+                    [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+                    
+                    NIMSession *session = [NIMSession session:respo.LastMsg.ConversationId type:type];
+                    [JSExtension shared].session = session;
+                    JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+                    RCConversationModel *chatModel = [[RCConversationModel alloc] init];
+                    chatModel.targetId = [JSExtension shared].conversionId;
+                    [JSExtension shared].chatVC = chatVC;
+                    chatVC.naviTitle = respo.TargetName;
+                    chatVC.chatModel = chatModel;
+                    [weakSelf.navigationController pushViewController:chatVC animated:YES];
+                }
+                else {
+                    [weakSelf.view makeToast:@"会话ID获取失败"];
+                }
+            } failed:^(NSString * _Nonnull errorMsg) {
+                [weakSelf.view makeToast:@"会话ID获取失败"];
+            }];
+     
+        
+    }else{
+        
+        DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+        [[JSExtension shared] getConversion:self.viewModel.wildGroupdataArray[indexPath.section].GroupNumber FromId:userModel.UserID type:1 DataSuccess:^(id  _Nonnull response) {
+            SKResult *respo = (SKResult *)response;
+            NIMSessionType type = NIMSessionTypeTeam;
+            [JSExtension shared].type = 1;
+            [JSExtension shared].conversionId = respo.Id;
+            if (respo.LastMsg.RowData) {
+                NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
+                NSDictionary *dic = [body stringToDictionary];
+                if (dic[@"extra"]) {
+                    NSDictionary *dict = [dic[@"extra"] stringToDictionary];
+                    [JSExtension shared].targetId = dict[@"TargetId"];
+                    [JSExtension shared].targetName = dict[@"TargetName"];
+                    [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
+                    [JSExtension shared].conversionId = respo.Id;
+                }
+            }
+            
+            if([JSExtension shared].conversionId.length) {
+                [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+                
+                NIMSession *session = [NIMSession session:respo.LastMsg.ConversationId type:type];
+                [JSExtension shared].session = session;
+                JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+                RCConversationModel *chatModel = [[RCConversationModel alloc] init];
+                chatModel.targetId = [JSExtension shared].conversionId;
+                [JSExtension shared].chatVC = chatVC;
+                chatVC.naviTitle = respo.TargetName;
+                chatVC.chatModel = chatModel;
+                [weakSelf.navigationController pushViewController:chatVC animated:YES];
+            }
+            else {
+                [weakSelf.view makeToast:@"会话ID获取失败"];
+            }
+        } failed:^(NSString * _Nonnull errorMsg) {
+            [weakSelf.view makeToast:@"会话ID获取失败"];
+        }];
+    }
+    
 }
 
 - (void)addTableViewHeaderTapActionWithSection:(NSInteger)section header:(UITableViewHeaderFooterView*)header{
