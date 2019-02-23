@@ -329,7 +329,9 @@
     [requestDic setObject:[JSExtension shared].myIdentityId?:[UserManager shared].getUserModel.UserID forKey:@"CertificateId"];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     [data setObject:fromId forKey:@"FromId"];
-    [data setObject:targetId forKey:@"TargetId"];
+    if (targetId.length) {
+        [data setObject:targetId forKey:@"TargetId"];
+    }
     [data setObject:@(type) forKey:@"Type"];
     [requestDic setObject:data forKey:@"Data"];
 
