@@ -86,7 +86,7 @@
     if ([JSExtension shared].targetName.length) {
         dictory[@"TargetName"] = [JSExtension shared].targetName;
     }
-    if ([JSExtension shared].targetImg.length) {
+    if ([NSString stringWithFormat:@"%@",[JSExtension shared].targetImg].length) {
         dictory[@"TargetHeadImg"] = [JSExtension shared].targetImg;
     }
     dictory[@"TargetType"] = [JSExtension shared].type ? @(1) : @(0);
