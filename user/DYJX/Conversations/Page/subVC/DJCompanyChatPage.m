@@ -129,10 +129,10 @@
 }
 
 - (void)goToShangHaoPage{
-    [JSExtension shared].action = @"numberMarket";
+    [JSExtension shared].action = @"myNumber";
     WebAppController  *pWebAppController = [[WebAppController alloc] init];
     self.navigationController.navigationBarHidden = YES;
-    pWebAppController.AppId = @"com.zlMax.xttNumber";
+    pWebAppController.AppId = @"com.zlMax.myNumber";
     [self.navigationController pushViewController:pWebAppController animated:YES];
 }
 

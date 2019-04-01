@@ -17,15 +17,6 @@
 #define BEST_H5_URL  @"http://bisdevh5.xiaopenglife.com/"
 #define BEST_IMAGE_URL  @"http://www.xtt168.com:9000/Files/Images/"
 #define BEST_GET_URL @"http://www.xtt168.com:9000/zim/GetImg?"
-//* 生产
-//#define BEST_URL  @"https://bisapi.xiaopenglife.com/api/rest"
-//#define BEST_H5_URL  @"https://bish5.xiaopenglife.com/"
-
-
-
-///** 2017-10-21 更新 UAT */
-//#define BEST_URL  @"http://bisuatapi.xiaopenglife.com/api/rest"
-//#define BEST_H5_URL  @"http://bisuath5.xiaopenglife.com/"
 
 //-------------------达意简讯------------------
 

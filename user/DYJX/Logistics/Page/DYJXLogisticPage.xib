@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,10 +22,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UsP-P6-aHx">
-                    <rect key="frame" x="0.0" y="587" width="187.5" height="80"/>
+                    <rect key="frame" x="0.0" y="587" width="375" height="80"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDJ-6T-y3k">
-                            <rect key="frame" x="25.5" y="20.5" width="137" height="40"/>
+                            <rect key="frame" x="119" y="20" width="137" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="137" id="Bjd-wP-fqD"/>
                                 <constraint firstAttribute="height" constant="40" id="thF-gA-dfK"/>
@@ -45,32 +45,6 @@
                         <constraint firstItem="xDJ-6T-y3k" firstAttribute="centerY" secondItem="UsP-P6-aHx" secondAttribute="centerY" id="sCJ-wE-EDz"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Npi-Xw-8zd">
-                    <rect key="frame" x="188" y="587" width="187" height="80"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Da6-oB-roB">
-                            <rect key="frame" x="25" y="22.5" width="137" height="36"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="36" id="NXj-GK-AbA"/>
-                                <constraint firstAttribute="width" constant="137" id="Tta-jm-CJ4"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="钱包" backgroundImage="btn_money">
-                                <color key="titleColor" red="0.08235294118" green="0.16078431369999999" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="walletBTN:" destination="-1" eventType="touchUpInside" id="sVJ-bB-VoI"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="0.08235294118" green="0.16078431369999999" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="80" id="2m5-4M-3mO"/>
-                        <constraint firstItem="Da6-oB-roB" firstAttribute="centerX" secondItem="Npi-Xw-8zd" secondAttribute="centerX" id="KvO-B4-UTa"/>
-                        <constraint firstItem="Da6-oB-roB" firstAttribute="centerY" secondItem="Npi-Xw-8zd" secondAttribute="centerY" id="fai-I6-XUU"/>
-                    </constraints>
-                </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lAZ-36-qd3">
                     <rect key="frame" x="0.0" y="20" width="375" height="567"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -84,22 +58,18 @@
             </subviews>
             <color key="backgroundColor" red="0.082352941176470587" green="0.16078431372549018" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Npi-Xw-8zd" firstAttribute="leading" secondItem="UsP-P6-aHx" secondAttribute="trailing" id="2QC-YR-ylg"/>
-                <constraint firstItem="Npi-Xw-8zd" firstAttribute="width" secondItem="UsP-P6-aHx" secondAttribute="width" id="5k9-1L-W4c"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="lAZ-36-qd3" secondAttribute="trailing" id="8Xr-tJ-Vbw"/>
                 <constraint firstItem="lAZ-36-qd3" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="Jp3-Dm-5pr"/>
                 <constraint firstItem="lAZ-36-qd3" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="KhX-ZL-w9W"/>
                 <constraint firstItem="UsP-P6-aHx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LOX-RX-uvc"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="UsP-P6-aHx" secondAttribute="trailing" id="dE0-Py-ldB"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="UsP-P6-aHx" secondAttribute="bottom" id="hRn-LL-VHD"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="Npi-Xw-8zd" secondAttribute="bottom" id="ixy-Nn-3Hx"/>
                 <constraint firstItem="UsP-P6-aHx" firstAttribute="top" secondItem="lAZ-36-qd3" secondAttribute="bottom" id="pHU-pK-dE0"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Npi-Xw-8zd" secondAttribute="trailing" id="ztu-hh-O1W"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>
     </objects>
     <resources>
-        <image name="btn_money" width="189" height="48"/>
-        <image name="btn_session" width="236" height="69"/>
+        <image name="btn_session" width="472" height="139"/>
     </resources>
 </document>

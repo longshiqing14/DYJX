@@ -102,7 +102,7 @@ THE SOFTWARE.
 
 ## MJExtension
 
-Copyright (c) 2013-2015 MJExtension (https://github.com/CoderMJLee/MJExtension)
+Copyright (c) 2013-2019 MJExtension (https://github.com/CoderMJLee/MJExtension)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -418,7 +418,7 @@ SOFTWARE.
 
 ## WechatOpenSDK
 
-Copyright 2018 tencent.com. All rights reserved.
+Copyright 2019 tencent.com. All rights reserved.
 
 
 ## YYKit

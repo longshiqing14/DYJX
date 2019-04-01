@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "wdqb.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "qcd_tongcheng.png",
       "scale" : "2x"
     },
     {

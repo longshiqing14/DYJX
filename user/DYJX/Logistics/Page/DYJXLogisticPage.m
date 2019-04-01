@@ -30,7 +30,7 @@
 #import "DJCompanyChatPage.h"
 #import "iPhoneXBottomBackgroundView.h"
 
-@interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface DYJXLogisticPage ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) DYJXLogisticViewModel *viewModel;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
@@ -76,15 +76,17 @@
     layout.headerReferenceSize = CGSizeZero;
     layout.footerReferenceSize = CGSizeZero;
     
-    layout.itemSize = CGSizeMake(80 , 80);
+    layout.itemSize = CGSizeMake(0 , 0);
     [self.collectionView setCollectionViewLayout:layout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.scrollEnabled = NO;
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
-    self.collectionView.backgroundColor = [UIColor colorWithRed:79/225. green:134/225. blue:209/225. alpha:1];
+    self.collectionView.backgroundColor = [UIColor colorWithHexString:@"#6595F2"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"DYJXLogisticCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"DYJXLogisticCollectionViewCell"];
+    
+    
      [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
 }
 
@@ -108,47 +110,55 @@
     DYJXLogisticCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"DYJXLogisticCollectionViewCell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            //比价
-            cell.content1.text = @"比价";
+            //全球比价
+            cell.content1.text = @"全球比价";
+            [cell.imageView setImage:[UIImage imageNamed:@"qqbj"]];
+            
         }else if (indexPath.row == 1){
             //商号市场
-            cell.content1.text = @"商号\n市场";
+            cell.content1.text = @"商号市场";
+            [cell.imageView setImage:[UIImage imageNamed:@"shsc"]];
         }else if (indexPath.row == 2){
             //16888物流平台
-            cell.content1.text = @"16888\n 物流\n 平台";
+            cell.content1.text = @"物流平台";
+            [cell.imageView setImage:[UIImage imageNamed:@"16888"]];
         }else if (indexPath.row == 3){
-            //百度
-            cell.content1.text = @"百度\nMore";
+            //钱包
+            cell.content1.text = @"我的钱包";
+            [cell.imageView setImage:[UIImage imageNamed:@"wdqb"]];
         }
     
     }else if (indexPath.section == 1){
         if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt"]) {
             //新泰通物流员工端
-            cell.content1.text = @"新泰通\n 物流\n员工端";
+            [cell.imageView setImage:[UIImage imageNamed:@"xttwl"]];
+            cell.content1.text = @"员工端";
+            
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_back"]){
             //广州退货员工端
-            cell.content1.text = @"广州\n 退货\n员工端";
+            [cell.imageView setImage:[UIImage imageNamed:@"gzth"]];
+            cell.content1.text = @"员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_ea"]){
             //新泰通报销员工端
-            cell.content1.text = @"新泰通\n 报销\n员工端";
+            [cell.imageView setImage:[UIImage imageNamed:@"xttbx"]];
+            cell.content1.text = @"员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_qcd"]){
             //全城达
-            cell.content1.text = @"全城达\n 同城\n员工端";
+             [cell.imageView setImage:[UIImage imageNamed:@"tcwl"]];
+            cell.content1.text = @"员工端";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"ea"]){
             //报销登记审核
-            cell.content1.text = @"报销\n登记\n审核";
+            [cell.imageView setImage:[UIImage imageNamed:@"bxgl"]];
+            cell.content1.text = @"报销管理";
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
             //公司和我的商号
-            cell.content1.text = @"公司\n 和\n我的商号";
+            [cell.imageView setImage:[UIImage imageNamed:@"gsgl"]];
+            cell.content1.text = @"管理企业";
         }
-        cell.content1.textColor = [UIColor colorWithHexString:@"#333333"];
+        cell.content1.textColor = [UIColor colorWithHexString:@"#FFFFFF"];
     }
     
-    if (indexPath.section == 0) {
-        cell.contentView.backgroundColor = [UIColor colorWithHexString:@"#FFFFE0"];
-    }else {
-        cell.contentView.backgroundColor = [UIColor colorWithRed:221/255.0 green:238/255.0 blue:205/255.0 alpha:1];
-    }
+        cell.contentView.backgroundColor = [UIColor colorWithHexString:@"#6595F2"];
     
     return cell;
     
@@ -180,10 +190,15 @@
             }
         }else if (indexPath.row == 3){
             //百度
-            DYJXBaiDuWebPage * baiDuWebPage = [[DYJXBaiDuWebPage alloc]init];
-            //            self.navigationController.navigationBarHidden = YES;
-            baiDuWebPage.webURLstr = @"https://m.baidu.com/usrprofile?action=square";
-            [self.navigationController pushViewController:baiDuWebPage animated:YES];
+//            DYJXBaiDuWebPage * baiDuWebPage = [[DYJXBaiDuWebPage alloc]init];
+//            baiDuWebPage.webURLstr = @"https://m.baidu.com/usrprofile?action=square";
+//            [self.navigationController pushViewController:baiDuWebPage animated:YES];
+            
+            [JSExtension shared].action = @"wallet";
+            WebAppController  *pWebAppController = [[WebAppController alloc] init];
+            self.navigationController.navigationBarHidden = YES;
+            pWebAppController.AppId = @"com.zlMax.xttNumber";
+            [self.navigationController pushViewController:pWebAppController animated:YES];
         }
     }else if (indexPath.section == 1){
         if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_ea"]) {
@@ -245,7 +260,7 @@
 #pragma mark -UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake((self.view.frame.size.width - 30 - 15*5)/4 , (self.view.frame.size.width - 30 - 15*5)/4 );
+    return CGSizeMake((kScreenSize.width - 30 - 15*5)/4 , (kScreenSize.width - 30 - 15*5)/4 + 20);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
@@ -313,14 +328,14 @@
         titleView = [[NIMKitTitleView alloc] initWithFrame:CGRectZero];
         self.navigationItem.titleView = titleView;
 
-        titleView.titleLabel.text = @"公司简讯";
+        titleView.titleLabel.text = @"企连连";
     }
 
     [titleView sizeToFit];
 }
 
 - (void)initNavigation{
-    self.title = @"公司简讯";
+    self.title = @"企连连";
     self.navigationController.navigationBar.titleTextAttributes=
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
       NSFontAttributeName:[UIFont systemFontOfSize:18]};

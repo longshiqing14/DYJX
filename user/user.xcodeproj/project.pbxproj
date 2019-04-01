@@ -63,6 +63,7 @@
 		48511D7B219EC417006C6081 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48511D76219EC417006C6081 /* BaiduMapAPI_Base.framework */; };
 		48511D7D219EC4E0006C6081 /* liblibMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48511D7C219EC4E0006C6081 /* liblibMap.a */; };
 		48511D87219FC9C5006C6081 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 48511D86219FC9C4006C6081 /* NSObject+Extension.m */; };
+		486262F02250F8CB000FA4C7 /* liblibShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 486262EF2250F8CA000FA4C7 /* liblibShare.a */; };
 		487351312186A35A001B59AB /* DYJXGetBackPwdAuthorizationCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 487351302186A35A001B59AB /* DYJXGetBackPwdAuthorizationCodeViewModel.m */; };
 		4873513A2186F475001B59AB /* DYJXIdentitySwitchingPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 487351382186F475001B59AB /* DYJXIdentitySwitchingPage.m */; };
 		4873513B2186F475001B59AB /* DYJXIdentitySwitchingPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487351392186F475001B59AB /* DYJXIdentitySwitchingPage.xib */; };
@@ -790,6 +791,7 @@
 		48511D7C219EC4E0006C6081 /* liblibMap.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibMap.a; sourceTree = "<group>"; };
 		48511D85219FC9C4006C6081 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		48511D86219FC9C4006C6081 /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
+		486262EF2250F8CA000FA4C7 /* liblibShare.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibShare.a; sourceTree = "<group>"; };
 		4873512F2186A35A001B59AB /* DYJXGetBackPwdAuthorizationCodeViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXGetBackPwdAuthorizationCodeViewModel.h; sourceTree = "<group>"; };
 		487351302186A35A001B59AB /* DYJXGetBackPwdAuthorizationCodeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXGetBackPwdAuthorizationCodeViewModel.m; sourceTree = "<group>"; };
 		487351372186F475001B59AB /* DYJXIdentitySwitchingPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXIdentitySwitchingPage.h; sourceTree = "<group>"; };
@@ -2029,6 +2031,7 @@
 				48511D78219EC417006C6081 /* BaiduMapAPI_Map.framework in Frameworks */,
 				CBFF458B1F74C03500D2AF93 /* libSocialWeChat.a in Frameworks */,
 				488E8A08219FFD5A008695A7 /* RongSticker.framework in Frameworks */,
+				486262F02250F8CB000FA4C7 /* liblibShare.a in Frameworks */,
 				CB123BD81F8DC40A00CD4429 /* jpush-ios-3.0.6.a in Frameworks */,
 				CB42F5F81FAB0A6400889257 /* AlipaySDK.framework in Frameworks */,
 				488E89F7219FFD5A008695A7 /* RongSight.framework in Frameworks */,
@@ -2132,6 +2135,7 @@
 				4804A191219680420081AB5B /* liblibPGInvocation.a */,
 				4804A193219680B50081AB5B /* liblibStorage.a */,
 				4804A19921968B0D0081AB5B /* liblibIO.a */,
+				486262EF2250F8CA000FA4C7 /* liblibShare.a */,
 			);
 			name = inc;
 			path = ../../user/inc;
@@ -4760,7 +4764,7 @@
 				TargetAttributes = {
 					CBD2B9FA1F5D23CC0057E2E7 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = FLXE6E8X27;
+						DevelopmentTeam = U8S72C4VW3;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -5729,7 +5733,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FLXE6E8X27;
+				DEVELOPMENT_TEAM = U8S72C4VW3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5787,13 +5791,14 @@
 					"$(PROJECT_DIR)/user/inc",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/DYJX/RCloudSDK/IMLib",
+					"$(PROJECT_DIR)/DYJX/HBuilderSDK/Bundles",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
 				PODS_ROOT = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cjj.sungocar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dy.jx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5813,7 +5818,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FLXE6E8X27;
+				DEVELOPMENT_TEAM = U8S72C4VW3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5871,13 +5876,14 @@
 					"$(PROJECT_DIR)/user/inc",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/DYJX/RCloudSDK/IMLib",
+					"$(PROJECT_DIR)/DYJX/HBuilderSDK/Bundles",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
 				PODS_ROOT = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cjj.sungocar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dy.jx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
