@@ -1,0 +1,42 @@
+body {
+  background-color: #fff9f9;
+}
+body .mui-title {
+  color: #fff;
+}
+body .mui-bar {
+  background-color: #de0f0f;
+}
+body .mui-bar a {
+  color: #fff;
+}
+body .mui-bar .mui-icon {
+  color: #fff;
+}
+body #nav .mui-title {
+  text-align: left;
+}
+body #nav #btnFreeNumber {
+  color: #333;
+  padding: 4px 8px;
+}
+body #grids {
+  margin: 0;
+  background-color: #fff9f9;
+}
+body #grids .mui-table-view-cell {
+  padding: 4px 6px;
+}
+body #grids .mui-table-view-cell .mui-media-body {
+  margin-top: 2px;
+}
+body #grids .mui-table-view-cell img {
+  max-width: 40px;
+  max-height: 40px;
+}
+body #search {
+  background-color: #fff9f9;
+}
+body #list {
+  background-color: #fff9f9;
+}

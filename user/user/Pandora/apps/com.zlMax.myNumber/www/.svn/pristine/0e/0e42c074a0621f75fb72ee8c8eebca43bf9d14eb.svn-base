@@ -1,0 +1,63 @@
+@barBackColor: #de0f0f;
+@invertedColor: #fff;
+@bodyBackColor: #fff9f9;
+
+body{
+
+  background-color: @bodyBackColor;
+
+  .mui-title{
+    color: #fff;
+  }
+
+  .mui-bar{
+    background-color: @barBackColor;
+
+    a{
+      color: @invertedColor;
+    }
+
+    .mui-icon{
+      color: @invertedColor;
+    }
+  }
+
+  #nav{
+    .mui-title{
+      text-align: left;
+    }
+
+    #btnFreeNumber{
+      color: #333;
+      padding: 4px 8px;
+    }
+  }
+
+  #grids{
+    margin: 0;
+    background-color: @bodyBackColor;
+
+    .mui-table-view-cell {
+      padding: 4px 6px;
+
+      .mui-media-body{
+        margin-top: 2px;
+      }
+
+      img{
+        max-width: 40px;
+        max-height: 40px;
+      }
+    }
+  }
+
+  #search{
+    background-color: @bodyBackColor;
+  }
+
+  #list{
+    background-color: @bodyBackColor;
+  }
+
+}
+

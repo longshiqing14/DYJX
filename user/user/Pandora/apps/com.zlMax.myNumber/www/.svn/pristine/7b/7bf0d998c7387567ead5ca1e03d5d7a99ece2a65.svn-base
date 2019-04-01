@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>企业商号抢注</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">企业商号抢注</h1>
+		</header>
+		<div class="mui-content">
+
+			<form id="editForm" class="mui-input-group">
+				<input type="hidden" id="AreaId" name="AreaId" value="1">
+				<input type="hidden" id="Id" name="Id" value="">
+
+				<div class="mui-input-row">
+					<label>企业名称</label>
+					<input type="text" placeholder="请输入企业名称" id="EnterpriseName" name="EnterpriseName">
+				</div>
+
+				<div class="mui-input-row">
+					<label>抢注商号</label>
+					<input type="text" style="color:red;" readonly="readonly" id="Number" name="Number">
+				</div>
+
+			</form>
+			<div class="mui-button-row mui-content-padded">
+				<button id="btnSave" type="button" class="mui-btn mui-btn-primary mui-btn-block">
+					抢注
+				</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+			});
+
+			/**
+			 * 设置Id
+			 * @param e 事件调用参数
+			 */
+			function setNumber(e) {
+				var Number = e.detail.Number;
+				$('#EnterpriseName').val('');
+				$('#Number').val(Number);
+			}
+			//侦听setId
+			document.addEventListener('setNumber', setNumber);
+			/**
+			 * 保存
+			 */
+			function save() {
+
+				/*var main = plus.webview.getWebviewById('numberMarket');
+				mui.fire(main, 'saved', {
+					//返回对象
+					Number: $('#Number').val()
+				});*/
+
+				//return;
+
+				//校验数据
+				var name = $('#EnterpriseName').val().trim();
+				if(!name || name == '') {
+					mui.toast('请输入企业名称！');
+					return;
+				}
+
+				var param = xtt.getDefaultParam();
+				var memberid = [];
+				var EnterpriseInfo = {
+					CompanyName: name,
+				}
+				if(xtt && xtt.member && xtt.member.Id) {
+					memberid.push(xtt.member.Id);
+				}
+
+				console.log(JSON.stringify(EnterpriseInfo));
+				console.log(JSON.stringify(xtt.member));
+
+				var group = {
+					GroupType: 1,
+					Number: $('#Number').val(),
+					EnterpriseInfo: EnterpriseInfo,
+					MemberIds: memberid
+				}
+
+				param['Data'] = group;
+				mui.ajax(xtt.serverRoot + 'EditGroup2', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function(xhr, settings) {
+						//loadingMsg('正在恢复会话信息...');
+						//xhr.setRequestHeader('Content-Type', 'application/json');
+						$('#btnSave').attr('disabled', 'disabled');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								var main = plus.webview.getWebviewById('numberMarket');
+								mui.fire(main, 'saved', {
+									//返回对象
+									Number: $('#Number').val()
+								});
+								mui.toast('抢注成功！');
+								mui.back();
+							} else {
+								mui.toast('保存失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('保存错误，请稍后再试！');
+						}
+						$('#btnSave').attr('disabled', null);
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						$('#btnSave').attr('disabled', null);
+					}
+				});
+			}
+			//保存按钮事件
+			document.getElementById('btnSave').addEventListener('tap', save);
+		</script>
+	</body>
+
+</html>

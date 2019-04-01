@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的钱包</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/num.css" rel="stylesheet" />
+
+	</head>
+
+	<body>
+		<header id="nav" class="mui-bar mui-bar-nav">
+			<a id="btnFreeNumber" class="mui-btn mui-btn-gray mui-pull-right" style="color:green">
+				免费抢注商号
+			</a>
+			<a id='btnPlusBack' class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的钱包</h1>
+		</header>
+		<div class="mui-content" style="width:100%;background-color:#fff;position:absolute;">
+			<div class="mui-content-padded">
+				<p style="text-align: center;color:blue;font-size: 20px;margin-top: 30px;">
+					当前积分：<span style="color:red;" id="myScore">0</span>分
+				</p>
+				<p style="color:blue;font-size: 14px;margin-top: 20px;margin-left: 20px;">
+					1、积分可抢购市场一手商号，1分相当于 1 元；
+				</p>
+				<p style="color:blue;font-size: 14px;margin-top: 10px;margin-left: 20px;">
+					2、由商户发布转让的商号需真金白银方能购买；
+				</p>
+				<p style="color:blue;font-size: 14px;margin-top: 10px;margin-left: 20px;">
+					3、<span style="color:#DD524D">可通过分享商号市场的广告链接来赚取积分</span>；
+				</p>
+				<p style="color:blue;font-size: 14px;margin-top: 10px;margin-left: 20px;margin-bottom: 30px;">
+					（广告链接携带本人商号信息，不同IP每点一次，该商号即可获取1分积分）
+				</p>
+				<!--<textarea id="sharecontent" rows="3">我正在使用HBuilder+HTML5开发移动应用，赶紧跟我一起来体验！</textarea>
+
+				<p class="heading">链接地址：</p>
+				<input id="sharehref" class="sharehref" type="url" value="http://www.lw16888.com/" placeholder="请输入要分享的链接地址" />
+				<p class="heading">链接标题：</p>
+				<input id="sharehrefTitle" class="sharehref" type="text" value="DCloud HBuilder-做最好的HTML5开发工具" placeholder="请输入要分享的链接标题" />
+				<p class="heading">链接描述：</p>
+				<input id="sharehrefDes" class="sharehref" type="text" value="我正在使用HBuilder+HTML5开发移动应用，赶紧跟我一起来体验！" placeholder="请输入要分享的链接描述" />
+				<div class="button" onclick="shareHref()">分享链接</div>
+-->
+			</div>
+
+			<div class="mui-content" style="text-align: center; background-color:#de0f0f;width:100%;height: 44px;">
+				<a id="btnShareToWX" class="mui-btn mui-btn-gray" style="margin: 6px 10px; color:red">
+					分享赚积分
+				</a>
+				<!--	<a id="btnShareToQQ" class="mui-btn mui-btn-gray" style="margin:6px 10px;color:red">
+					分享到QQ
+				</a>-->
+				<a id="btnCopyLink" class="mui-btn mui-btn-gray" style="margin: 6px 10px; color:red">
+					复制广告链接
+				</a>
+			</div>
+
+			<div class="mui-content" style="background-color:#fff;">
+				<p style="text-align: center; color:blue;font-size: 14px;margin-top: 4px;margin-bottom:2px;">
+					以下为广告分享链接内容</p>
+				<div style="text-align: center;">
+					<img src="../images/demo2.png" width='100%' />
+				</div>
+			</div>
+		</div>#00B259
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.plusReady(function() {
+
+				xtt.initPlusReady();
+
+				mui.later(function() {
+					mui.preload({
+						id: 'numberMarket',
+						url: 'numberMarket.html'
+					});
+					/*mui.preload({
+						id: 'numberRegister',
+						url: 'numberRegister.html'
+					});
+					mui.preload({
+						id: 'numberBuy',
+						url: 'numberBuy.html'
+					});*/
+				}, 200);
+				
+				$('#clientId').html(xtt.clientId);
+
+				updateSerivces();
+
+				getMyWallet();
+
+			});
+
+			//var table = $('#table');
+			var shares = null;
+
+			function updateSerivces() {
+				plus.share.getServices(function(s) {
+					shares = {};
+					for(var i in s) {
+						var t = s[i];
+						shares[t.id] = t;
+					}
+				   //mui.alert(s.length);
+				}, function(e) {
+					mui.toast('获取分享服务列表失败：' + e.message);
+				});
+			}
+
+			// 分析链接
+			function shareHref() {
+				var shareBts = [];
+				// 更新分享列表
+				var ss = shares['weixin'];
+				ss && ss.nativeClient && (shareBts.push({
+						title: '微信朋友圈',
+						s: ss,
+						x: 'WXSceneTimeline'
+					}),
+					shareBts.push({
+						title: '微信好友',
+						s: ss,
+						x: 'WXSceneSession'
+					}));
+				ss = shares['qq'];
+				ss && ss.nativeClient && shareBts.push({
+					title: 'QQ',
+					s: ss
+				});
+				// 弹出分享列表
+				shareBts.length > 0 ? plus.nativeUI.actionSheet({
+					title: '分享链接',
+					cancel: '取消',
+					buttons: shareBts
+				}, function(e) {
+					(e.index > 0) && shareAction(shareBts[e.index - 1], true);
+				}) : plus.nativeUI.alert('当前环境无法支持分享链接操作!');
+			}
+
+			function shareAction(sb, bh) {
+				console.log('分享操作：');
+				if(!sb || !sb.s) {
+					console.log('无效的分享服务！');
+					return;
+				}
+				var msg = {
+					extra: {
+						scene: sb.x
+					}
+				};
+				//console.log(xtt.serverRoot.substr(0, xtt.serverRoot.lastIndexOf('/zim/')));
+				msg.href = xtt.serverRoot.substr(0, xtt.serverRoot.lastIndexOf('/zim/')) + '/Score/ShareScore?ClientId=' + xtt.clientId;
+				console.log(msg.href);
+				msg.thumbs = ['_www/images/JXlogo.png'];
+				//msg.pictures = ['_www/images/JXlogo.png'];
+				msg.content = '我正在赚商号积分，大家一起来来抢注吧，还有极品商号可转让哦！';
+				msg.title = '快来赚商号积分，免费兑换商号';
+				/*if(bh) {
+					msg.href = sharehref.value;
+					if(sharehrefTitle && sharehrefTitle.value != '') {
+						msg.title = sharehrefTitle.value;
+					}
+					if(sharehrefDes && sharehrefDes.value != '') {
+						msg.content = sharehrefDes.value;
+					}
+					msg.thumbs = ['_www/images/JXlogo.png'];
+					msg.pictures = ['_www/images/JXlogo.png'];
+				} else {
+					if(pic && pic.realUrl) {
+						msg.pictures = [pic.realUrl];
+					}
+				}*/
+				// 发送分享
+				if(sb.s.authenticated) {
+					console.log('---已授权---');
+					shareMessage(msg, sb.s);
+				} else {
+					console.log('---未授权---');
+					sb.s.authorize(function() {
+						shareMessage(msg, sb.s);
+					}, function(e) {
+						console.log('认证授权失败：' + e.code + ' - ' + e.message);
+					});
+				}
+			}
+			/**
+			 * 发送分享消息
+			 * @param {JSON} msg
+			 * @param {plus.share.ShareService} s
+			 */
+			function shareMessage(msg, s) {
+				console.log(JSON.stringify(msg));
+				s.send(msg, function() {
+					console.log('分享到"' + s.description + '"成功！');
+				}, function(e) {
+					console.log('分享到"' + s.description + '"失败: ' + JSON.stringify(e));
+				});
+			}
+
+			function getMyWallet() {
+				var param = xtt.getDefaultParam();
+				console.log('getmyscore');
+				mui.ajax(xtt.serverRoot + 'GetMyScore', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 30000,
+					beforeSend: function() {
+						//table.empty();
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								console.log('suc');
+								//console.log(JSON.stringify(res.Result));
+								$('#myScore').html(res.Result.Score);
+							} else {
+								mui.toast('获取我的积分失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('获取我的积分失败，请稍后再试！');
+						}
+
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+
+			}
+
+			//自动更新
+			mui.later(function() {
+				autoUpdate();
+			}, 3000);
+
+			function autoUpdate(showToast) {
+				var h5v = xtt.getH5Version();
+				var cid = xtt.getClientId();
+				var timestamp = Date.parse(new Date());
+				if(showToast) mui.toast('正在检查最新版本...');
+				mui.ajax(xtt.updateUrl + '?c=' + cid + '&t=' + timestamp, {
+					type: 'get',
+					data: null,
+					dateType: 'json',
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(xtt.versionCompare(res.version, xtt.version) > 0) {
+								//mui.alert(res.version, '新泰通物流');
+								var updatePrompt = mui.openWindow({
+									id: 'updatePrompt',
+									url: '../updatePrompt.html',
+									styles: {
+										left: 0,
+										top: 0,
+										width: '100%',
+										height: '100%',
+										background: 'transparent',
+										zindex: 101
+									},
+									show: {
+										aniShow: 'none'
+									},
+									extras: {
+										data: {
+											openerId: plus.webview.currentWebview().id,
+											backEvent: 'updated',
+											updateInfo: res
+										}
+									}
+								});
+
+							} else {
+								if(showToast) mui.toast('您的应用程序已经是最新的版本。');
+							}
+						} else {
+							if(showToast) mui.toast('获取应用更新信息错误，请稍后再试！');
+						}
+						//定时，设置10分钟运行一次
+						setTimeout(autoUpdate, 10 * 60 * 1000);
+					},
+					error: function(xhr, type, errorThrown) {
+						if(showToast) mui.toast('更新信息请求错误！' + errorThrown);
+						//定时，设置5分钟运行一次
+						setTimeout(autoUpdate, 5 * 60 * 1000);
+					}
+				});
+			}
+
+			//首页返回键处理
+			//处理逻辑：1秒内，连续两次按返回键，则退出应用；
+			var first = null;
+			mui.back = function() {
+				if(xtt.action == "numberMarket") {
+					mui.openWindow({
+						id: 'numberMarket',
+						url: 'numberMarket.html',
+						show: {
+							aniShow: 'none'
+						}
+					});
+				} else if(xtt.action == "wallet") {
+					//首次按键，提示‘再按一次退出应用’
+					if(!first) {
+						first = new Date().getTime();
+						mui.toast('再按一次退出应用');
+						setTimeout(function() {
+							first = null;
+						}, 1000);
+					} else {
+						if(new Date().getTime() - first < 1000) {
+							if(xtt.host == "IOS") {
+								xtt.popNavigation();
+							} else {
+								plus.runtime.quit();
+							}
+						}
+					}
+				}
+
+			};
+
+			document.getElementById('btnFreeNumber').addEventListener('tap', function() {
+				mui.openWindow({
+					url: "numberMarket.html",
+					id: "numberMarket",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			})
+
+			document.getElementById('btnPlusBack').addEventListener('tap', function() {
+				console.log('1');
+				if(xtt.action == "wallet") {
+					if(xtt.host == "IOS") {
+						xtt.popNavigation();
+					} else {
+						plus.runtime.quit();
+					}
+				} else {
+					mui.back();
+				}
+			});
+
+			document.addEventListener('GetMyWallet', function() {
+				updateSerivces();
+				getMyWallet();
+				console.log('a');
+			});
+
+			//分享到微信
+			document.getElementById('btnShareToWX').addEventListener('tap', shareSystem);
+
+			//复制到剪切板
+			document.getElementById('btnCopyLink').addEventListener('tap', function(){
+				var shareHrefLink = xtt.serverRoot.substr(0, xtt.serverRoot.lastIndexOf('/zim/')) + '/Score/ShareScore?ClientId=' + xtt.clientId;
+				switch(plus.os.name){
+				case 'iOS':
+				//获取剪切板
+				var UIPasteboard = plus.ios.importClass("UIPasteboard");
+				var generalPasteboard = UIPasteboard.generalPasteboard();
+				// 设置/获取文本内容
+				generalPasteboard.setValueforPasteboardType(shareHrefLink, "public.utf8-plain-text");
+				var value = generalPasteboard.valueForPasteboardType("public.utf8-plain-text");
+				break;
+				case 'Android':
+				//console.log('1');
+				var Context = plus.android.importClass("android.content.Context");
+				//console.log('2');
+				var main = plus.android.runtimeMainActivity();
+				//console.log('3');
+				var clip = main.getSystemService(Context.CLIPBOARD_SERVICE);
+				//console.log('4');
+				plus.android.invoke(clip,"setText",shareHrefLink);
+				//console.log('5');
+				break;
+				}
+				mui.toast("分享链接已复制到剪切板，快发给小伙伴们赚积分吧！");
+			});
+			
+			/**
+			 * 调用系统分享
+			 */
+			function shareSystem() {
+				console.log('share');
+				var msg = {
+					content: '分享赚积分，免费兑商号',
+					title: '分享赚积分，免费兑商号',
+					href: 'http://www.xtt168.com:9000/score/sharescore?ClientId='+xtt.clientId,
+				};
+				/*msg.thumbs = ['_www/images/logo.png'];
+				msg.pictures = ['_www/images/logo.png'];
+				/*if(pic && pic.realUrl) {
+					msg.pictures = [pic.realUrl];
+				}*/
+				if('iOS' == plus.os.name) { //iOS平台添加链接地址
+					msg.href = 'http://www.dcloud.io/';
+				}
+
+				//console.log(JSON.stringify(msg));
+				plus.share.sendWithSystem ? plus.share.sendWithSystem(msg, function() {
+						//console.log('Success');
+						console.log('Success');
+					}, function(e) {
+						console.log('Failed: ' + JSON.stringify(e));
+						console.log('Failed: ' + JSON.stringify(e));
+					}) :
+					shareSystemNativeJS();
+			}
+
+			function shareSystemNativeJS() {
+				if(plus.os.name !== 'Android') {
+					plus.nativeUI.alert('此平台暂不支持系统分享功能!');
+					return;
+				}
+				var intent = new Intent(Intent.ACTION_SEND);
+				if(pic && pic.realUrl) {
+					var p = '';
+					p = pic.realUrl;
+					if(p.substr(0, 7) === 'file://') {
+						p = p.substr(7);
+					} else if(p.sub(0) !== '/') {
+						p = plus.io.convertLocalFileSystemURL(p);
+					}
+				}
+				var f = new File(p);
+				var uri = Uri.fromFile(f);
+				if(f.exists() && f.isFile()) {
+					console.log('image/*');
+					intent.setType('image/*');
+					intent.putExtra(Intent.EXTRA_STREAM, uri);
+				} else {
+					console.log('text/plain');
+					intent.setType('text/plain');
+				}
+				intent.putExtra(Intent.EXTRA_SUBJECT, 'HelloH5');
+				intent.putExtra(Intent.EXTRA_TEXT, sharecontent.value);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				main.startActivity(Intent.createChooser(intent, '系统分享HelloH5'));
+			}
+		</script>
+	</body>
+
+</html>

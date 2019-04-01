@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>企业商号市场</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/num.css" rel="stylesheet" />
+		<style>
+			.numClass {
+				height: 520px;
+				bottom: 0px;
+			}
+			
+			.mui-col-xs-3,
+			.mui-col-xs-9 {
+				overflow-y: auto;
+				height: 100%;
+			}
+			
+			.mui-segmented-control .mui-control-item {
+				line-height: 50px;
+				width: 100%;
+			}
+			
+			.mui-control-content {
+				display: block;
+			}
+			
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				/*	background-color: #fff;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="nav" class="mui-bar mui-bar-nav">
+			<a id="btnFreeNumber" class="mui-btn mui-btn-gray mui-pull-right" style="color:green">
+				我的商号
+			</a>
+			<a id='btnPlusBack' class="mui-icon mui-icon-left-nav mui-pull-left" style="margin-right: -8px;"></a>
+			<h1 class="mui-title">企业商号市场</h1>
+		</header>
+		<div class="mui-content" style="width:100%;height: 100% position:absolute;">
+			<ul id="grids" class="mui-table-view mui-grid-view mui-grid-9">
+				<li id="facai" class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<img src="../images/icons/facai.png" />
+						<div class="mui-media-body" style="color:#DCDCDC">发财商号</div>
+					</a>
+				</li>
+				<li id="baozi" class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<img src="../images/icons/baozi.png" />
+						<div class="mui-media-body">豹子商号</div>
+					</a>
+				</li>
+				<li id="shizi" class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<img src="../images/icons/shizi.png" />
+						<div class="mui-media-body">狮子商号</div>
+					</a>
+				</li>
+				<li id="laohu" class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<img src="../images/icons/laohu.png" />
+						<div class="mui-media-body">老虎商号</div>
+					</a>
+				</li>
+				<li id="daxiang" class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<img src="../images/icons/daxiang.png" />
+						<div class="mui-media-body">大象商号</div>
+					</a>
+				</li>
+				<li id="konglong" class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<img src="../images/icons/konglong.png" />
+						<div class="mui-media-body" style="color:#DCDCDC">恐龙商号</div>
+					</a>
+				</li>
+				<li id="qilin" class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<img src="../images/icons/qilin.png" />
+						<div class="mui-media-body" style="color:#DCDCDC">麒麟商号</div>
+					</a>
+				</li>
+				<li id="dashun" class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<img src="../images/icons/66.png" />
+						<div class="mui-media-body" style="color:#DCDCDC">大顺商号</div>
+					</a>
+				</li>
+			</ul>
+			<div id="search" class="mui-input-row mui-search" style="margin-bottom: -15px;">
+				<input id="searchInput" type="search" class="mui-input-clear" placeholder="输入关键字查询...">
+			</div>
+
+			<div class="mui-content mui-row numClass">
+				<div class="mui-col-xs-3">
+					<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell numberleft" data-value="0">全部6位商号
+							</li>
+							<li class="mui-table-view-cell numberleft" data-value="1">可抢注商号
+							</li>
+							<li class="mui-table-view-cell numberleft" data-value="2">可抢购商号
+							</li>
+							<li class="mui-table-view-cell numberleft" data-value="3">可转让商号
+							</li>
+						</ul>
+
+					</div>
+				</div>
+				<div class="mui-col-xs-9" style="border-left: 1px solid #c8c7cc;">
+					<div id="pullrefresh" class="mui-control-content">
+						<ul class="mui-table-view" id="table">
+						</ul>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.plusReady(function() {
+
+				xtt.initPlusReady();
+
+				mui.later(function() {
+					mui.preload({
+						id: 'myNumbers',
+						url: 'myNumbers.html'
+					});
+					mui.preload({
+						id: 'numberRegister',
+						url: 'numberRegister.html'
+					});
+					mui.preload({
+						id: 'numberBuy',
+						url: 'numberBuy.html'
+					});
+				}, 200);
+				searchNumber();
+
+				document.getElementById('btnPlusBack').addEventListener('tap', function() {
+					if(xtt.action == "numberMarket") {
+						if(xtt.host == "IOS") {
+							xtt.popNavigation();
+						} else {
+							plus.runtime.quit();
+						}
+					} else {
+						mui.back();
+					}
+				});
+			});
+
+			//初始化
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					up: {
+						contentrefresh: '正在加载...',
+						contentnomore: 'ddd',
+						contentdown: '',
+						callback: pullupRefresh
+					}
+				}
+			});
+
+			var osName = ''; //系统名称
+			var table = $('#table');
+			var regForm = null;
+			var buyForm = null;
+			var myNumber = null;
+			var PageSize = 20;
+			var PageIndex = 0;
+			var keyword = '';
+
+			var SearchData = {
+				NumberType: '',
+				NumberEnable: 1
+			}
+			var clearTable = false;
+
+			var resultStatus = {
+				"PageSize": 20,
+				"PageIndex": 0,
+				"TotalPages": 0,
+				"TotalCount": -1
+			};
+
+			mui('#grids').on('tap', '.mui-media', function() {
+				console.log($(this).attr('id'));
+				if($(this).attr('id') == 'facai' || $(this).attr('id') == 'dashun' || $(this).attr('id') == 'qilin' || $(this).attr('id') == 'konglong') {
+					mui.toast('此类型商号暂未开放！');
+				} else {
+					SearchData.NumberType = $(this).attr('id');
+					SearchData.NumberEnable = 0;
+					PageIndex = 1;
+					clearTable = true;
+					$('#searchInput').val('');
+					keyword = '';
+					searchNumber();
+				}
+			});
+
+			mui('#segmentedControls').on('tap', '.numberleft', function() {
+				$('.numberleft').addClass('mui-active');
+				SearchData.NumberType = '';
+				SearchData.NumberEnable = $(this).attr('data-value');
+				PageIndex = 1;
+				clearTable = true;
+				$('#searchInput').val('');
+				keyword = '';
+				searchNumber();
+			})
+
+			function searchNumber() {
+				var param = xtt.getDefaultParam();
+				param['Data'] = SearchData;
+
+				param.PageIndex = PageIndex;
+				param.PageSize = PageSize;
+				param.Keyword = keyword;
+
+				//mui.toast(xtt.host + '|' + xtt.action + '|' + xtt.clientId);
+
+				mui.ajax(xtt.serverRoot + 'SearchNumber', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 30000,
+					beforeSend: function() {
+						if(clearTable == true) {
+							table.empty();
+							plus.nativeUI.showWaiting('正在查询，请稍后...')
+						}
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								resultStatus.PageIndex = res.PageIndex;
+								resultStatus.PageSize = res.PageSize;
+								resultStatus.TotalCount = res.TotalCount;
+								resultStatus.TotalPages = res.TotalPages;
+								updateList(res.Result, !clearTable);
+							} else {
+								mui.toast('获取商号失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('获取商号失败，请稍后再试！');
+						}
+						if(clearTable == true) {
+							plus.nativeUI.closeWaiting();
+						}
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						if(clearTable == true) {
+							plus.nativeUI.closeWaiting();
+						}
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+					}
+				});
+
+			}
+
+			//自动更新
+			mui.later(function() {
+				autoUpdate();
+			}, 3000);
+
+			function autoUpdate(showToast) {
+				var h5v = xtt.getH5Version();
+				var cid = xtt.getClientId();
+				var timestamp = Date.parse(new Date());
+				if(showToast) mui.toast('正在检查最新版本...');
+				mui.ajax(xtt.updateUrl + '?c=' + cid + '&t=' + timestamp, {
+					type: 'get',
+					data: null,
+					dateType: 'json',
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(xtt.versionCompare(res.version, xtt.version) > 0) {
+								//mui.alert(res.version, '新泰通物流');
+								var updatePrompt = mui.openWindow({
+									id: 'updatePrompt',
+									url: '../updatePrompt.html',
+									styles: {
+										left: 0,
+										top: 0,
+										width: '100%',
+										height: '100%',
+										background: 'transparent',
+										zindex: 101
+									},
+									show: {
+										aniShow: 'none'
+									},
+									extras: {
+										data: {
+											openerId: plus.webview.currentWebview().id,
+											backEvent: 'updated',
+											updateInfo: res
+										}
+									}
+								});
+								//                            mui.fire(updatePrompt, 'init', {
+								//                                openerId: plus.webview.currentWebview().id,
+								//                                backEvent: 'updated',
+								//                                updateInfo: res
+								//                            });
+							} else {
+								if(showToast) mui.toast('您的应用程序已经是最新的版本。');
+							}
+						} else {
+							if(showToast) mui.toast('获取应用更新信息错误，请稍后再试！');
+						}
+						//定时，设置10分钟运行一次
+						setTimeout(autoUpdate, 10 * 60 * 1000);
+					},
+					error: function(xhr, type, errorThrown) {
+						if(showToast) mui.toast('更新信息请求错误！' + errorThrown);
+						//定时，设置5分钟运行一次
+						setTimeout(autoUpdate, 5 * 60 * 1000);
+					}
+				});
+			}
+
+			//首页返回键处理
+			//处理逻辑：1秒内，连续两次按返回键，则退出应用；
+			var first = null;
+			mui.back = function() {
+
+				if(xtt.action == "numberMarket") {
+					if(!first) {
+						first = new Date().getTime();
+						mui.toast('再按一次退出应用');
+						setTimeout(function() {
+							first = null;
+						}, 1000);
+					} else {
+						if(new Date().getTime() - first < 1000) {
+							if(xtt.host == "IOS") {
+								xtt.popNavigation();
+							} else {
+								plus.runtime.quit();
+							}
+						}
+					}
+				} else if(xtt.action == "myNumber") {
+					mui.openWindow({
+						id: 'myNumber',
+						url: 'myNumbers.html',
+						show: {
+							aniShow: 'none'
+						}
+					});
+				}
+			};
+
+			/**
+			 * 更新列表数据（会去重，位置会有变化，已最后取到的为准）
+			 * @param numbers 商号数组
+			 * @param append 是否添加在列表尾部
+			 */
+			function updateList(numbers, append) {
+				var tmp = $('<div>');
+				$.each(numbers, function(index, item) {
+					var old = document.getElementById('li_' + item.Id);
+					if(old)
+						$(old).remove();
+					var li = createLi(item);
+					tmp.append(li);
+				});
+				if(append)
+					table.append(tmp.children());
+				else {
+					if(table.children().length > 0)
+						tmp.children().insertBefore(table.children().first());
+					else
+						table.append(tmp.children());
+				}
+			}
+
+			function createLi(item) {
+
+				var className = '普通商号';
+				var amount = 0;
+
+				if(item.NumberClass.indexOf('G') > -1) {
+					className = '豹子商号';
+					if(item.NumberClass.indexOf('G1') > -1) {
+						amount = 100;
+					} else {
+						amount = 6888;
+					}
+				} else if(item.NumberClass == 'F') {
+					amount = 300;
+					className = '狮子商号';
+				} else if(item.NumberClass == 'E') {
+					amount = 3888;
+					className = '老虎商号';
+				} else if(item.NumberClass == 'D') {
+					amount = 10000;
+					className = '大象商号';
+				} else if(item.NumberClass.indexOf('A') > -1) {
+					className = '发财商号';
+				}
+				if(item.markerStart == 2) {
+					amount = item.Amount; //转让价格
+				}
+
+				//-1为未开放，0为开放，1为已经使用，2为已经发布到市场，3以上先保留
+				var txtColor = 'gray';
+				var NumberStatus = '';
+				if(item.MarketStatus == 0) {
+					if(item.RegisterOrBuy == 1) {
+						NumberStatus = '尚未注册，马上抢注';
+						txtColor = 'green';
+					} else if(item.RegisterOrBuy == 2) {
+						NumberStatus = className + '，马上抢购';
+						txtColor = 'red';
+					}
+				} else if(item.MarketStatus == 1) {
+					if(item.RegisterOrBuy == 1) {
+						NumberStatus = className + '，已被抢注';
+					} else if(item.RegisterOrBuy == 2) {
+						NumberStatus = className + '，已被抢购';
+					}
+				} else if(item.MarketStatus == 2) {
+					if(item.RegisterOrBuy == 1) {
+						NumberStatus = '已被抢注';
+						txtColor = 'green';
+					} else if(item.RegisterOrBuy == 2) {
+						NumberStatus = className + ',已被抢购';
+						txtColor = 'red';
+					}
+					NumberStatus += '，可以转让';
+
+				}
+				var numMsg = amount != 0 ? (' (' + amount + '元) ') : '';
+				var li = $('<li style="color:' + txtColor + '">').addClass('mui-table-view-cell').append(item.Number);
+				li.attr('data-number', item.Number);
+				li.attr('data-marketStatus', item.MarketStatus);
+				li.attr('data-registerOrBuy', item.RegisterOrBuy);
+				li.attr('data-amount', amount);
+				li.attr('id', 'li_' + item.Id);
+
+				li.append($('<span style="margin-left: 20px;font-size: 12px;">').append(numMsg));
+
+				var a = $('<a style="text-decoration:underline;font-size: 12px;float:right;right:0px;color:green">').append(NumberStatus)
+				li.append(a);
+
+				//console.log(item.NumberClass);
+
+				return li;
+			}
+
+			//主列表点击事件
+			mui('#pullrefresh').on('tap', '.mui-table-view-cell', function() {
+				var status = $(this).attr('data-marketStatus');
+				if(status == 1) {
+					mui.toast('此号已经被占用，请选择其他企业商号！');
+					return;
+				}
+
+				var isRegOrBuy = $(this).attr('data-registerOrBuy');
+				console.log(isRegOrBuy);
+
+				//开发中，并且是只能抢注的
+				if(status == 0) {
+					if(isRegOrBuy == '1') {
+						//alert(id);
+						if(!regForm)
+							regForm = plus.webview.getWebviewById('numberRegister');
+						mui.fire(regForm, 'setNumber', {
+							Number: $(this).attr('data-number')
+						});
+						mui.later(function() {
+							mui.openWindow({
+								url: "numberRegister.html",
+								id: "numberRegister",
+								show: {
+									aniShow: 'pop-in',
+									duration: 300
+								}
+							});
+						}, 100);
+					} else if(isRegOrBuy == '2') {
+						if(!buyForm)
+							buyForm = plus.webview.getWebviewById('numberBuy');
+						mui.fire(buyForm, 'setNumber', {
+							Number: $(this).attr('data-number'),
+							Amount: $(this).attr('data-amount')
+						});
+						mui.later(function() {
+							mui.openWindow({
+								url: "numberBuy.html",
+								id: "numberBuy",
+								show: {
+									aniShow: 'pop-in',
+									duration: 300
+
+								}
+							});
+						}, 100);
+					}
+				}
+
+			});
+
+			//上拉追加
+			function pullupRefresh() {
+				//console.log('1');
+				clearTable = false;
+
+				if(resultStatus.TotalCount < 0) {
+					//第一次获取
+					PageIndex = 1;
+				} else {
+					PageIndex = resultStatus.PageIndex + 1;
+				}
+
+				if(PageIndex <= resultStatus.TotalPages) {
+					searchNumber();
+				} else {
+					mui.toast('没有更多数据了...');
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+				}
+
+				console.log(JSON.stringify(resultStatus));
+
+				console.log(PageIndex);
+
+				//获取数据
+
+			}
+
+			document.getElementById('btnFreeNumber').addEventListener('tap', function() {
+
+				if(!myNumber)
+					myNumber = plus.webview.getWebviewById('myNumbers');
+				mui.fire(myNumber, 'searchMyNumber', {});
+
+				mui.later(function() {
+					mui.openWindow({
+						url: "myNumbers.html",
+						id: "myNumbers",
+						show: {
+							aniShow: 'pop-in',
+							duration: 300
+						}
+					});
+				}, 100);
+			})
+
+			//侦听setId
+			document.addEventListener('saved', save);
+
+			function save(e) {
+				console.log(e.detail.Number);
+				var li = $('li[data-number="' + e.detail.Number + '"]');
+				li.remove();
+			}
+
+			var lasttime;
+			document.getElementById('searchInput').addEventListener('keyup', function(e) {
+				keyword = $('#searchInput').val().trim();
+				lasttime = e.timeStamp;
+				console.log(keyword);
+				setTimeout(function() { //设时延迟0.5s执行
+					if(lasttime - e.timeStamp == 0)
+					//如果时间差为0（也就是你停止输入0.5s之内都没有其它的keyup事件发生）则做你想要做的事
+					{
+						clearTable = true
+						SearchData.NumberEnable = 0;
+						SearchData.NumberType = '';
+						searchNumber();
+						console.log('do');
+					}
+				}, 500);
+
+			});
+		</script>
+	</body>
+
+</html>

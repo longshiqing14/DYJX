@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>商号购买</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/jquery.range.css">
+
+	</head>
+
+	<body style="background-color: transparent;">
+		<div class="xtt-prompt-bk"></div>
+		<div class="xtt-prompt" style="top:250px;">
+			<div class="xtt-prompt-wrapper">
+				<div class="title" style="font-size:18px;text-align: center;">商号：</div>
+				<div class="content">
+					<div class="contentMsg" style="margin-top:10px;margin-left:10px;margin-right:10px;line-height:25px;text-indent:2em;font-size:18px;">
+
+					</div>
+					<div style="margin-top:30px;text-align:center">
+						<button class="mui-btn mui-btn-red btn-prompt-cancel" id="btnRegCancel">取消</button>
+						<button class="mui-btn mui-btn-green" id="btnWXBuyCount" style="margin-left:20px;margin-right:20px;" data-amount="0" data-number="0">微信支付</button>
+						<button class="mui-btn mui-btn-green" id="btnBuyNumberByScore" data-score="0" data-number="0">积分购买</button>
+					</div>
+					<div style="margin-top:30px;margin-bottom: -10px;font-size:12px;padding-left:5px;">
+						您当前积分为 <span class="myScore">0</span> 分
+						<a id="btnGetScore" style="float:right;padding-right:5px;">我要赚积分</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script src="../js/beecloud.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			var self;
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+				self = plus.webview.currentWebview();
+			});
+
+			var openerId, backEvent, payInfo;
+
+			function init(e) {
+				var data = e.detail;
+				if(data) {
+					openerId = data.openerId;
+					payInfo = data.payInfo;
+					backEvent = data.backEvent;
+					payInfo = data.payInfo;
+					console.log(JSON.stringify(payInfo));
+					$('.xtt-prompt .title').html(payInfo.title);
+					$('.xtt-prompt .contentMsg').html(payInfo.msg);
+
+					$('#btnBuyNumberByScore').attr('data-score', payInfo.score).attr('data-number', payInfo.number);
+					$('#btnWXBuyCount').attr('data-amount', payInfo.amount).attr('data-number', payInfo.number);
+				}
+				getMyScore();
+			}
+
+			document.addEventListener('init', init);
+
+			//关闭
+			mui('body').on('tap', '.xtt-prompt-bk, .btn-prompt-cancel', function() {
+				//mui.back();
+				self.hide();
+			});
+
+			document.getElementById('btnWXBuyCount').addEventListener('tap', function() {
+				var number = $(this).attr('data-number');
+				var amount = $(this).attr('data-amount');
+				buy(number, amount);
+			});
+
+			function buy(number, amount) {
+				//发起服务器支付请求
+				var param = xtt.getDefaultParam();
+
+				var payInfo = {
+					Number: number,
+					PayAccount: amount
+				};
+				console.log(JSON.stringify(payInfo));
+
+				param['Data'] = payInfo;
+				//param.PayAccount = $('#Amount').val();
+
+				mui.ajax(xtt.serverRoot + 'PayNumberRequest', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+						$('#btnSave').attr('disabled', 'disabled');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								//发起支付流程
+								if(res.Result) {
+									PayOrder(res.Result.Bill_no, res.Result.Total_fee, res.Result.App_id, res.Result.App_Title, res.Result.Channel);
+								} else {
+									mui.toast('支付失败！参数有误');
+								}
+							} else {
+								mui.toast('支付失败！' + res.Message ? res.Message : '');
+							}
+
+						} else {
+							mui.toast('支付失败，请稍后再试！');
+						}
+						$('#btnSave').attr('disabled', null);
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						$('#btnSave').attr('disabled', null);
+					}
+				});
+			}
+
+			function PayOrder(Bill_no, Total_fee, App_id, App_Title, Channel) {
+				//发起支付流程
+				var TotalFee = Number(Total_fee);
+				//alert(TotalFee);
+				/*
+				 * 构建支付参数
+				 * 
+				 * app_id: BeeCloud控制台上创建的APP的appid，必填 
+				 * title: 订单标题，32个字节，最长支持16个汉字；必填
+				 * total_fee: 支付金额，以分为单位，大于0的整数，必填
+				 * bill_no: 订单号，8~32位数字和/或字母组合,确保在商户系统中唯一，必填
+				 * optional: 扩展参数,可以传入任意数量的key/value对来补充对业务逻辑的需求;此参数会在webhook回调中返回; 选填
+				 * bill_timeout: 订单失效时间,必须为非零正整数，单位为秒，必须大于360。选填 
+				 */
+				var payData = {
+					app_id: App_id,
+					channel: Channel,
+					title: App_Title,
+					total_fee: TotalFee,
+					bill_no: Bill_no,
+					optional: {
+						'bill_no': Bill_no,
+						'number': $('#Number').val()
+					},
+					bill_timeout: 360,
+					return_url: 'http://www.xtt168.com/XttLogistics/PayOrderBack' //wap支付成功后的回跳地址
+				};
+				/*
+				 *  发起支付
+				 *  payData: 支付参数
+				 *  cbsuccess: 支付成功回调
+				 *  cberror: 支付失败回调
+				 */
+				beecloud.payReq(payData, function(result) {
+					/*	var result = "-------- 支付成功 --------" + "\n感谢您的支持,我们会继续努力完善产品";*/
+					//console.log(result);
+					mui.toast('支付完成！');
+
+					var main = plus.webview.getWebviewById('numberMarket');
+					mui.fire(main, 'saved', {
+						//返回对象
+						Number: $('#Number').val()
+					});
+					
+					self.hide();
+
+				}, function(e) {
+					var result = "-------- 支付失败 --------\n" + "错误码：" + e.code + '\n' + e.message;
+					console.log(result);
+					mui.toast(result);
+				});
+			}
+
+			var regOrBuySuc = null;
+
+			document.getElementById('btnBuyNumberByScore').addEventListener('tap', function() {
+				var myscore = $(this).parent().next().find('.myScore').html();
+				var score = $(this).attr('data-score');
+				var number = $(this).attr('data-number');
+				if(Number(myscore) < score) {
+					mui.toast('积分不足，请下载简讯APP后分享链接来赚取积分吧！');
+					return;
+				}
+
+				var param = xtt.getDefaultParam();
+				var data = {
+					PayAccount: score,
+					PayType: 0,
+					Number: number
+				}
+				param['Data'] = data;
+				//console.log(JSON.stringify(group));
+
+				mui.ajax(xtt.serverRoot + 'BuyNumberByScore', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function(xhr, settings) {
+						//loadingMsg('正在恢复会话信息...');
+						//xhr.setRequestHeader('Content-Type', 'application/json');
+						//$('#btnSave').attr('disabled', 'disabled');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+
+								/*var win = $('#divBuyNumber');
+								if(win.length > 0) {
+									win.trigger('close');
+								}
+
+								//设置值
+								$('#divRegSuc').find('.personNumber').html($.cookie('Number')) //个人商号
+								$('#divRegSuc').find('.companyNumber').html(number);
+								xtt.xttWin('divRegSuc', '企业商号：' + number, 9000, true, false);
+
+								//改变原有列表
+								var oldli = $('li[data-number="' + number + '"]');
+								oldli.attr('style', 'color:gray');
+								oldli.attr('data-marketstatus', '1');
+								oldli.find('a').html('普通商号，已被抢注');
+								*/
+
+								if(regOrBuySuc == null) {
+									regOrBuySuc = plus.webview.getWebviewById('regOrBuySuc');
+									regOrBuySuc.setStyle({
+										zindex: 100
+									});
+								}
+
+								var personNumber = '';
+								if(xtt.member) {
+									personNumber = xtt.member.Number;
+								}
+
+								var payInfo = {
+									title: '企业商号：' + number,
+									number: number,
+									personNumber: personNumber
+								}
+
+								mui.fire(regOrBuySuc, 'init', {
+									openerId: plus.webview.currentWebview().id,
+									backEvent: 'printOrder',
+									payInfo: payInfo
+								});
+								regOrBuySuc.show('none');
+
+								self.hide(); //关闭
+
+							} else {
+								mui.toast(res.Message);
+							}
+						}
+						//$('#btnSave').attr('disabled', null);
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						//$('#btnSave').attr('disabled', null);
+					}
+				});
+
+			});
+
+			document.getElementById('btnGetScore').addEventListener('tap', function() {
+				mui.alert('您可以通过下载公司简讯APP，分享公司简讯的广告链接到其他应用来免费获取积分。');
+			});
+
+			function getMyScore() {
+				var param = xtt.getDefaultParam();
+				mui.ajax(xtt.serverRoot + 'GetMyScore', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function(xhr, settings) {
+						//loadingMsg('正在恢复会话信息...');
+						//xhr.setRequestHeader('Content-Type', 'application/json');
+						//$('#btnSave').attr('disabled', 'disabled');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								$('.xtt-prompt .myScore').html(res.Result.Score);
+							}
+						}
+						//$('#btnSave').attr('disabled', null);
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						//$('#btnSave').attr('disabled', null);
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

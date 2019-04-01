@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>商号购买成功</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/jquery.range.css">
+
+	</head>
+
+	<body style="background-color: transparent;">
+		<div class="xtt-prompt-bk"></div>
+		<div class="xtt-prompt" style="top:250px;">
+			<div class="xtt-prompt-wrapper">
+				<div class="title" style="font-size:18px;text-align: center;">商号：</div>
+				<div class="content">
+					<div style="margin-top:10px;margin-left:10px;margin-right:10px;line-height:25px;text-indent:2em;font-size:18px;">
+						您的个人商号<span class="personNumber"></span> 目前已获得公司商号：<span style="color:red" class="companyNumber"></span>，您可以通过下载公司简讯APP对其进行管理和买卖。
+					</div>
+					<div style="margin-top:10px;text-align:center">
+						<button class="mui-btn mui-btn-green btn-prompt-cancel" style="margin-right: 30px;" id="btnMyNumber">查看我的商号</button>
+						<button class="mui-btn mui-btn-blue btn-prompt-cancel" id="btnRegCancel">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			var self;
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+				self = plus.webview.currentWebview();
+
+				mui.later(function() {
+					mui.preload({
+						id: 'myNumbers',
+						url: 'myNumbers.html'
+					});
+				}, 200)
+			});
+
+			var openerId, backEvent, payInfo;
+
+			function init(e) {
+				var data = e.detail;
+				if(data) {
+					openerId = data.openerId;
+					payInfo = data.payInfo;
+					backEvent = data.backEvent;
+					payInfo = data.payInfo;
+					console.log(JSON.stringify(payInfo));
+
+					$('.xtt-prompt .personNumber').html(payInfo.personNumber);
+					$('.xtt-prompt .companyNumber').html(payInfo.number);
+					$('.xtt-prompt .title').html(payInfo.title);
+
+				}
+				//getMyScore();
+			}
+
+			document.addEventListener('init', init);
+
+			//关闭
+			mui('body').on('tap', '.xtt-prompt-bk, .btn-prompt-cancel', function() {
+				//mui.back();
+				self.hide();
+			});
+
+			var myNumber;
+			document.getElementById('btnMyNumber').addEventListener('tap', function(e) {
+				self.hide();
+
+				if(!myNumber)
+					myNumber = plus.webview.getWebviewById('myNumbers');
+				mui.fire(myNumber, 'searchMyNumber', {});
+
+				mui.later(function() {
+					mui.openWindow({
+						url: "myNumbers.html",
+						id: "myNumbers",
+						show: {
+							aniShow: 'pop-in',
+							duration: 300
+						}
+					});
+				}, 100);
+			});
+		</script>
+	</body>
+
+</html>
