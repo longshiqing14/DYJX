@@ -4761,7 +4761,7 @@
 				TargetAttributes = {
 					CBD2B9FA1F5D23CC0057E2E7 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = U8S72C4VW3;
+						DevelopmentTeam = FLXE6E8X27;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -5735,7 +5735,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U8S72C4VW3;
+				DEVELOPMENT_TEAM = FLXE6E8X27;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5798,9 +5798,11 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
+					"-force_load",
+					"$(SRCROOT)/user/inc/libcrypto.a",
 				);
 				PODS_ROOT = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dy.jx;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjj.sungocar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5820,7 +5822,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U8S72C4VW3;
+				DEVELOPMENT_TEAM = FLXE6E8X27;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5883,9 +5885,11 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
+					"-force_load",
+					"$(SRCROOT)/user/inc/libcrypto.a",
 				);
 				PODS_ROOT = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dy.jx;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjj.sungocar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
