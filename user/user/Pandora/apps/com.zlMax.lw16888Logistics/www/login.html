@@ -10,7 +10,6 @@
 </head>
 <body>
 <header id="header" class="mui-bar mui-bar-nav mui-hidden">
-	<a id='btnPlusBack' class="mui-icon mui-icon-left-nav mui-pull-left mui-hidden"></a>
     <h1 class="mui-title">登录16888物流</h1>
 </header>
 <div id="loginDiv" class="mui-content mui-hidden">
@@ -70,17 +69,7 @@
 
         //xtt初始化
         xtt.initPlusReady();
-				
-				if(xtt.host != 'HB'){
-					$('#btnPlusBack').removeClass('mui-hidden');
-					document.getElementById('btnPlusBack').addEventListener('tap', function() {
-                        if (plus.os.name == "Android") {
-                            plus.runtime.quit();
-                        } else if (plus.os.name == "iOS") {
-                            xtt.popNavigation();
-                        }
-					});
-				}
+
         //版本切换
         var self = plus.webview.currentWebview();
         var h5v = xtt.getH5Version();
@@ -104,7 +93,6 @@
         plus.screen.lockOrientation("portrait-primary");
 
         //判断是否登录，设置显示
-                  xtt.ClientId = "123";
         if (!xtt.clientId) {
             document.getElementById('loadDiv').classList.add('mui-hidden');
             document.getElementById('header').classList.remove('mui-hidden');
@@ -146,7 +134,6 @@
      * 跳转到主界面
      */
     function toMain() {
-        xtt.ClientId = "123";
         if (xtt.clientId) {
 
             document.getElementById('loadDiv').classList.remove('mui-hidden');
@@ -425,13 +412,7 @@
             }, 1000);
         } else {
             if (new Date().getTime() - first < 1000) {
-                    if (plus.os.name == "Android") {
-                         plus.runtime.quit();
-                    } else if (plus.os.name == "iOS") {
-                         xtt.popNavigation();
-                    }
-                    
-               
+                plus.runtime.quit();
             }
         }
 //        }

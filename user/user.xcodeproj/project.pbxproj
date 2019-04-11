@@ -189,7 +189,6 @@
 		48A6A0DD21FAFFC000FD2E3F /* libalixpayment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A6A0DC21FAFFBF00FD2E3F /* libalixpayment.a */; };
 		48A6A0DF21FB010600FD2E3F /* libwxpay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A6A0DE21FB010500FD2E3F /* libwxpay.a */; };
 		48A6A0E121FB019A00FD2E3F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A6A0E021FB019900FD2E3F /* libsqlite3.0.tbd */; };
-		48A6A0E221FB01AB00FD2E3F /* libz.tbd in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BE61F8DC86400CD4429 /* libz.tbd */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		48B35106208F027300A9F7E4 /* DSectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35102208F027300A9F7E4 /* DSectionIndexView.m */; };
 		48B35107208F027300A9F7E4 /* DSectionIndexItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B35105208F027300A9F7E4 /* DSectionIndexItemView.m */; };
 		48B740E3201EB81A0062FA33 /* UIAlertController+XYAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B740E2201EB81A0062FA33 /* UIAlertController+XYAlertController.m */; };
@@ -248,7 +247,6 @@
 		CB123BDD1F8DC82500CD4429 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BDC1F8DC82500CD4429 /* CoreFoundation.framework */; };
 		CB123BE31F8DC84800CD4429 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BE21F8DC84800CD4429 /* Foundation.framework */; };
 		CB123BE51F8DC85100CD4429 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BE41F8DC85100CD4429 /* UIKit.framework */; };
-		CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BE61F8DC86400CD4429 /* libz.tbd */; };
 		CB123BE91F8DC87300CD4429 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BE81F8DC87200CD4429 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CB123BEB1F8DC88000CD4429 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BEA1F8DC88000CD4429 /* libresolv.tbd */; };
 		CB123BED1F8DC89600CD4429 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB123BEC1F8DC89600CD4429 /* Security.framework */; };
@@ -685,7 +683,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				48A6A0E221FB01AB00FD2E3F /* libz.tbd in Embed Frameworks */,
 				E15766B621C911BE003A5C25 /* NIMSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -1021,6 +1018,7 @@
 		48A6A0DC21FAFFBF00FD2E3F /* libalixpayment.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libalixpayment.a; sourceTree = "<group>"; };
 		48A6A0DE21FB010500FD2E3F /* libwxpay.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libwxpay.a; sourceTree = "<group>"; };
 		48A6A0E021FB019900FD2E3F /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		48AD6B1D225F4B5F004591B5 /* nim_strip_archs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = nim_strip_archs.sh; sourceTree = "<group>"; };
 		48B35102208F027300A9F7E4 /* DSectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSectionIndexView.m; sourceTree = "<group>"; };
 		48B35103208F027300A9F7E4 /* DSectionIndexItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSectionIndexItemView.h; sourceTree = "<group>"; };
 		48B35104208F027300A9F7E4 /* DSectionIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSectionIndexView.h; sourceTree = "<group>"; };
@@ -1922,7 +1920,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				48A6A0E121FB019A00FD2E3F /* libsqlite3.0.tbd in Frameworks */,
-				CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */,
 				E1B52925219FBA7D008B27A5 /* libc++.tbd in Frameworks */,
 				48A6A0DD21FAFFC000FD2E3F /* libalixpayment.a in Frameworks */,
 				E19DC8C2219AC69700C86478 /* VideoToolbox.framework in Frameworks */,
@@ -2010,7 +2007,6 @@
 				48511D7B219EC417006C6081 /* BaiduMapAPI_Base.framework in Frameworks */,
 				488E89F4219FFD5A008695A7 /* RongIMLib.framework in Frameworks */,
 				CB123BE91F8DC87300CD4429 /* UserNotifications.framework in Frameworks */,
-				CB123BE71F8DC86400CD4429 /* libz.tbd in Frameworks */,
 				CB123BE51F8DC85100CD4429 /* UIKit.framework in Frameworks */,
 				4804A1A621995E4C0081AB5B /* liblibStorage.a in Frameworks */,
 				CB123BE31F8DC84800CD4429 /* Foundation.framework in Frameworks */,
@@ -4479,6 +4475,7 @@
 				488E89C0219FFD58008695A7 /* release_notes_ios.txt */,
 				488E89E4219FFD5A008695A7 /* RongSticker */,
 				488E89CD219FFD59008695A7 /* Sight */,
+				48AD6B1D225F4B5F004591B5 /* nim_strip_archs.sh */,
 			);
 			path = RCloudSDK;
 			sourceTree = "<group>";
@@ -4697,9 +4694,9 @@
 				CBD2B9F71F5D23CC0057E2E7 /* Sources */,
 				CBD2B9F81F5D23CC0057E2E7 /* Frameworks */,
 				CBD2B9F91F5D23CC0057E2E7 /* Resources */,
-				CB123C251F9745BD00CD4429 /* ShellScript */,
 				69F7F38DA70DA580D042439E /* [CP] Copy Pods Resources */,
 				E15766B721C911BE003A5C25 /* Embed Frameworks */,
+				48AD6B1C225F3E1F004591B5 /* ShellScript */,
 				45738C3567ACCFACD1BA41FD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -4946,6 +4943,23 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-user/Pods-user-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		48AD6B1C225F3E1F004591B5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n\"${SRCROOT}/DYJX/RCloudSDK/nim_strip_archs.sh\"\n";
+		};
 		69F7F38DA70DA580D042439E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5046,19 +5060,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-userUITests/Pods-userUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		CB123C251F9745BD00CD4429 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "";
 		};
 		FA4154A3BA549BA61E51CB5D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -5713,6 +5714,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",

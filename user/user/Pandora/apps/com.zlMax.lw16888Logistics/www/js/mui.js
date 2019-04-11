@@ -2692,11 +2692,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 								}, 2000);
 							} else {
 								if (new Date().getTime() - $.__back__first < 2000) {
-                                    if (plus.os.name == "Android") {
-                                        plus.runtime.quit();
-                                    } else if (plus.os.name == "iOS") {
-                                        xtt.popNavigation();
-                                    }
+									plus.runtime.quit();
 								}
 							}
 						} else { //其他页面，

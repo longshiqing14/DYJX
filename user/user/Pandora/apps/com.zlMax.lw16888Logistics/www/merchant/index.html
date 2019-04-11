@@ -13,7 +13,6 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a id='btnPlusBack' class="mui-icon mui-icon-left-nav mui-pull-left mui-hidden" style="margin-right: -8px;"></a>
 			<a class="mui-icon mui-icon-bars mui-pull-left mui-plus-visible"><span style="font-size: 18px;"> 设置</span></a>
 			<a id="btnMore" class="mui-icon iconfont icon-more mui-pull-right"></a>
 			<a id="btnAdd" class="mui-icon iconfont icon-xinzeng mui-pull-right" style="margin-right: 0px;"></a>
@@ -216,11 +215,7 @@
 						}, 1000);
 					} else {
 						if(new Date().getTime() - first < 1000) {
-                            if (plus.os.name == "Android") {
-                                plus.runtime.quit();
-                            } else if (plus.os.name == "iOS") {
-                                xtt.popNavigation();
-                            }
+							plus.runtime.quit();
 						}
 					}
 				}
@@ -259,18 +254,6 @@
 			var aniShow = {};
 
 			mui.plusReady(function() {
-
-				xtt.initPlusReady();
-				if(xtt.host != 'HB'){
-					$('#btnPlusBack').removeClass('mui-hidden');
-					document.getElementById('btnPlusBack').addEventListener('tap', function() {
-                        if (plus.os.name == "Android") {
-                            plus.runtime.quit();
-                        } else if (plus.os.name == "iOS") {
-                            xtt.popNavigation();
-                        }
-					});
-				}
 
 				main = plus.webview.currentWebview();
 
