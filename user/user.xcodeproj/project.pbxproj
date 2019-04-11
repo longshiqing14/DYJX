@@ -7819,6 +7819,8 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
+					"-force_load",
+					"$(SRCROOT)/user/inc/libcrypto.a",
 				);
 				PODS_ROOT = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjj.sungocar;
@@ -7901,6 +7903,8 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
+					"-force_load",
+					"$(SRCROOT)/user/inc/libcrypto.a",
 				);
 				PODS_ROOT = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjj.sungocar;
