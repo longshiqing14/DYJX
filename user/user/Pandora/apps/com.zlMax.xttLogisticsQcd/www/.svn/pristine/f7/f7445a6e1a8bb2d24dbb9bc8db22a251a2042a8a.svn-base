@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>全成达汽配欢迎页</title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/xtt.css" rel="stylesheet"/>
+    <link href="css/guide.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="guide">
+    <div id="txt">
+        <h1>全成达汽配同城物流</h1>
+        <p>
+            达意软件 2016<br/>
+            版本：<span id="version"></span>
+        </p>
+    </div>
+    <div id="actionPanel">
+        <button id="customerLogin" class="mui-btn mui-btn-nav mui-btn-outlined mui-hidden">客户登录</button>
+        <button id="login" class="mui-btn mui-btn-nav mui-btn-outlined mui-hidden">物流商登录</button>
+        <button id="close" class="mui-btn mui-btn-nav mui-btn-outlined mui-hidden">立即体验</button>
+    </div>
+</div>
+<script src="js/mui.min.js"></script>
+<script src="js/zepto-1.1.6.min.js"></script>
+<script src="js/xtt.js"></script>
+<script type="text/javascript" charset="UTF-8">
+    mui.init();
+    mui.back = function () {
+    };
+    mui.plusReady(function () {
+        if (mui.os.ios) {
+            plus.navigator.setFullscreen(true);
+        }
+        plus.navigator.closeSplashscreen();
+
+        //xtt初始化
+        xtt.initPlusReady();
+
+        //判断UI界面类型
+        if (!xtt.uiType) {
+            document.getElementById('customerLogin').classList.remove('mui-hidden');
+            document.getElementById('login').classList.remove('mui-hidden');
+        } else {
+            document.getElementById('close').classList.remove('mui-hidden');
+        }
+
+        //显示版本号
+        document.getElementById('version').innerHTML = xtt.version;
+
+        //客户登录按钮点击事件
+        document.getElementById("customerLogin").addEventListener('tap', function (event) {
+            xtt.saveLaunchFlag('true');
+            xtt.saveUIType("customer");
+            plus.navigator.setFullscreen(false);
+            plus.webview.currentWebview().close();
+            mui.fire(mui.currentWebview.opener(), 'toMain');
+        }, false);
+        //客户登录按钮点击事件
+        document.getElementById("login").addEventListener('tap', function (event) {
+            xtt.saveLaunchFlag('true');
+            xtt.saveUIType("merchant");
+            plus.navigator.setFullscreen(false);
+            plus.webview.currentWebview().close();
+            mui.fire(mui.currentWebview.opener(), 'toMain');
+        }, false);
+        //立即体验按钮事件
+        document.getElementById("close").addEventListener('tap', function (event) {
+            xtt.saveLaunchFlag('true');
+            plus.navigator.setFullscreen(false);
+            plus.webview.currentWebview().close();
+            mui.fire(mui.currentWebview.opener(), 'toMain');
+        }, false);
+    });
+</script>
+</body>
+</html>

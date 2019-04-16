@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>企业商号抢购</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">企业商号抢购</h1>
+		</header>
+		<div class="mui-content">
+
+			<form id="editForm" class="mui-input-group">
+				<input type="hidden" id="AreaId" name="AreaId" value="1">
+				<input type="hidden" id="Id" name="Id" value="">
+
+				<div class="mui-input-row">
+					<label>抢购商号</label>
+					<input type="text" style="color:red;" readonly="readonly" id="Number" name="Number">
+				</div>
+
+				<div class="mui-input-row">
+					<label>购买价格(元)</label>
+					<input type="text" style="color:red;" readonly="readonly" id="Amount" name="Amount">
+				</div>
+
+			</form>
+			<div class="mui-button-row mui-content-padded">
+				<button id="btnSave" type="button" class="mui-btn mui-btn-primary mui-btn-green mui-btn-block">
+					我要购买
+				</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script src="../js/beecloud.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+			});
+
+			/**
+			 * 设置Id
+			 * @param e 事件调用参数
+			 */
+			function setNumber(e) {
+				$('#Number').val('');
+				$('#Amount').val('');
+
+				var Number = e.detail.Number;
+				var Amount = e.detail.Amount;
+
+				$('#Number').val(Number);
+				$('#Amount').val(Amount);
+			}
+			//侦听setId
+			document.addEventListener('setNumber', setNumber);
+
+			function buy() {
+				//发起服务器支付请求
+				var param = xtt.getDefaultParam();
+
+				var payInfo = {
+					Number: $('#Number').val(),
+					PayAccount: $('#Amount').val()
+				};
+				console.log(JSON.stringify(payInfo));
+
+				param['Data'] = payInfo;
+				//param.PayAccount = $('#Amount').val();
+
+				mui.ajax(xtt.serverRoot + 'PayNumberRequest', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+						$('#btnSave').attr('disabled', 'disabled');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								//发起支付流程
+								if(res.Result) {
+									PayOrder(res.Result.Bill_no, res.Result.Total_fee, res.Result.App_id, res.Result.App_Title, res.Result.Channel);
+								} else {
+									mui.toast('支付失败！参数有误');
+								}
+							} else {
+								mui.toast('支付失败！' + res.Message ? res.Message : '');
+							}
+
+						} else {
+							mui.toast('支付失败，请稍后再试！');
+						}
+						$('#btnSave').attr('disabled', null);
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						$('#btnSave').attr('disabled', null);
+					}
+				});
+			}
+
+			function PayOrder(Bill_no, Total_fee, App_id, App_Title, Channel) {
+				//发起支付流程
+				var TotalFee = Number(Total_fee);
+				//alert(TotalFee);
+				/*
+				 * 构建支付参数
+				 * 
+				 * app_id: BeeCloud控制台上创建的APP的appid，必填 
+				 * title: 订单标题，32个字节，最长支持16个汉字；必填
+				 * total_fee: 支付金额，以分为单位，大于0的整数，必填
+				 * bill_no: 订单号，8~32位数字和/或字母组合,确保在商户系统中唯一，必填
+				 * optional: 扩展参数,可以传入任意数量的key/value对来补充对业务逻辑的需求;此参数会在webhook回调中返回; 选填
+				 * bill_timeout: 订单失效时间,必须为非零正整数，单位为秒，必须大于360。选填 
+				 */
+				var payData = {
+					app_id: App_id,
+					channel: Channel,
+					title: App_Title,
+					total_fee: TotalFee,
+					bill_no: Bill_no,
+					optional: {
+						'bill_no': Bill_no,
+						'number': $('#Number').val()
+					},
+					bill_timeout: 360,
+					return_url: 'http://www.xtt168.com/XttLogistics/PayOrderBack' //wap支付成功后的回跳地址
+				};
+				/*
+				 *  发起支付
+				 *  payData: 支付参数
+				 *  cbsuccess: 支付成功回调
+				 *  cberror: 支付失败回调
+				 */
+				beecloud.payReq(payData, function(result) {
+					/*	var result = "-------- 支付成功 --------" + "\n感谢您的支持,我们会继续努力完善产品";*/
+					//console.log(result);
+					mui.later(function() {
+						var param = xtt.getDefaultParam();
+						param['Id'] = ids;
+						mui.ajax(xtt.serverRoot + 'GetOrder', {
+							type: 'post',
+							data: param,
+							timeout: 10000,
+							beforeSend: function() {
+								//loadingMsg('正在恢复会话信息...');
+							},
+							success: function(res) {
+								if(res) {
+									if(res.Succeed) {
+										mui.toast('支付完成！');
+										var main = plus.webview.getWebviewById('numberMarket');
+										mui.fire(main, 'saved', {
+											//返回对象
+											Number: $('#Number').val()
+										});
+										mui.back();
+									} else {
+										mui.toast('支付失败！' + res.Message ? res.Message : '');
+									}
+								} else {
+									mui.toast('支付失败，请稍后再试！');
+									mui.back();
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								mui.toast('请求错误！' + errorThrown);
+								mui.back();
+							}
+						});
+					}, 2000);
+
+				}, function(e) {
+					var result = "-------- 支付失败 --------\n" + "错误码：" + e.code + '\n' + e.message;
+					console.log(result);
+					//mui.toast(result);
+				});
+			}
+
+			//保存按钮事件
+			document.getElementById('btnSave').addEventListener('tap', buy);
+		</script>
+	</body>
+
+</html>

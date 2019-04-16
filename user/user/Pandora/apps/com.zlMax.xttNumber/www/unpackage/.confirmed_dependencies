@@ -1,0 +1,37 @@
+{
+  "login.html": {
+    "refer": [
+      "customer/index.html",
+      "customer/numberMarket.html",
+      "customer/myNumbers.html",
+      "customer/myWallet.html"
+    ],
+    "resources": []
+  },
+  "customer/numberMarket.html": {
+    "refer": [
+      "customer/numberRegister.html",
+      "customer/numberBuy.html",
+      "customer/myNumbers.html",
+      "updatePrompt.html",
+      "customer/myWallet.html",
+      "customer/buyNumberPro.html",
+      "customer/regOrBuySuc.html"
+    ],
+    "resources": []
+  },
+  "customer/myNumbers.html": {
+    "refer": [
+      "customer/numberBuy.html",
+      "customer/numberRegister.html",
+      "customer/numberMarket.html"
+    ]
+  },
+  "customer/myWallet.html": {
+    "refer": [
+      "customer/numberMarket.html",
+      "customer/numberBuy.html",
+      "customer/numberRegister.html"
+    ]
+  }
+}

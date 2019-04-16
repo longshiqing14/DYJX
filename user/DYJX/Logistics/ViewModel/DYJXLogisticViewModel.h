@@ -12,7 +12,7 @@
 @property (nonatomic,strong) NSMutableDictionary *requestDic;
 - (NSString*)itemName:(NSIndexPath*)indexpath;
 - (NSInteger)numberOfSection;
-- (NSInteger)numberOfCellectionItem;
+- (NSInteger)numberOfCellectionItem:(NSInteger)section;
 //获取用户信息
 - (void)getMyAppsSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail;
 @end

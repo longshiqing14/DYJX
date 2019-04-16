@@ -1,0 +1,583 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>线路列表</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="xtt-prompt-bk mui-hidden"></div>
+		<div class="xtt-prompt mui-hidden">
+			<div class="xtt-prompt-wrapper">
+				<div class="title">
+					请编辑日志并保存
+				</div>
+				<div class="content">
+					<textarea id="promptText" rows="5"></textarea>
+					<input type="hidden" id="InstanceId" />
+				</div>
+				<div class="action">
+					<button class="mui-btn mui-btn-danger btn-prompt-cancel">取消</button>
+					<button id='btnSave' class="mui-btn mui-btn-primary btn-prompt-save">保存</button>
+				</div>
+			</div>
+		</div>
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul id="list" class="mui-table-view">
+
+				</ul>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//第一次加载完成
+			var hasLoaded = false;
+			//查询选项，查询事件处理中需要置为初始值
+			var searchOption = {
+				Keyword: '',
+				PageSize: 20,
+				PageIndex: 0
+			};
+			var AreaText = ["", "深圳", "广州", "中山"];
+			//结果状态，查询事件处理中需要置为初始值
+			var resultStatus = {
+				"PageSize": 20,
+				"PageIndex": 0,
+				"TotalPages": 0,
+				"TotalCount": -1
+			};
+			//列表
+			var table = $('.mui-table-view');
+			//查询事件
+			document.addEventListener('search', function(e) {
+				searchOption.Keyword = e.detail.Keyword;
+				searchOption.PageIndex = 0;
+				searchOption.StartDateTime = e.detail.StartDateTime;
+				searchOption.EndDateTime = e.detail.EndDateTime;
+				resultStatus.PageIndex = 0;
+				resultStatus.TotalPages = 0;
+				resultStatus.TotalCount = -1;
+				hasLoaded = false;
+				table.children().remove();
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				}, 10);
+			});
+			//初始化
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				searchOption.PageIndex = 1;
+				//获取数据
+				var param = xtt.getDefaultParam();
+				param = mui.extend(param, searchOption);
+				param.PageIndex = 1;
+				mui.ajax(xtt.serverRoot + 'SearchInstance', {
+					type: 'post',
+					data: param,
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if (res) {
+							if (res.Succeed) {
+								mui.toast('线路更新成功！');
+								//resultStatus.PageIndex = res.PageIndex;
+								resultStatus.PageSize = res.PageSize;
+								resultStatus.TotalCount = res.TotalCount;
+								resultStatus.TotalPages = res.TotalPages;
+								updateList(res.ListLineInstance, false);
+								mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+							} else {
+								mui.toast('获取线路失败！' + res.Message ? res.Message : '');
+								mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+							}
+						} else {
+							mui.toast('获取线路失败，请稍后再试！');
+							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					}
+				});
+			}
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				if (resultStatus.TotalCount < 0) {
+					//第一次获取
+					searchOption.PageIndex = 1;
+				} else {
+					searchOption.PageIndex = resultStatus.PageIndex + 1;
+					/*if(searchOption.PageIndex > resultStatus.TotalPages){
+					 mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					 return;
+					 }*/
+				}
+				//获取数据
+				var param = xtt.getDefaultParam();
+				param = mui.extend(param, searchOption);
+				mui.ajax(xtt.serverRoot + 'SearchInstance', {
+					type: 'post',
+					data: param,
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if (res) {
+							if (res.Succeed) {
+								if (hasLoaded) {
+									var str = '获取线路列表成功！';
+									if (res.PageIndex >= res.TotalPages)
+										str = '已经到最后一页了';
+									mui.toast(str);
+								}
+								hasLoaded = true;
+								resultStatus.PageIndex = res.PageIndex;
+								resultStatus.PageSize = res.PageSize;
+								resultStatus.TotalCount = res.TotalCount;
+								resultStatus.TotalPages = res.TotalPages;
+								updateList(res.ListLineInstance, true);
+								mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+							} else {
+								mui.toast('获取线路失败！' + res.Message ? res.Message : '');
+								mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+							}
+						} else {
+							mui.toast('获取线路失败，请稍后再试！');
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+					}
+				});
+			}
+			/**
+			 * 更新列表数据（会去重，位置会有变化，已最后取到的为准）
+			 * @param carCities 线路数组
+			 * @param append 是否添加在列表尾部
+			 */
+			function updateList(ListLineInstance, append) {
+				var tmp = $('<div>');
+				$.each(ListLineInstance, function(index, item) {
+					var old = document.getElementById('li_' + item.Id);
+					if (old)
+						$(old).remove();
+					var li = createLi(item);
+					tmp.append(li);
+				});
+				if (append)
+					table.append(tmp.children());
+				else {
+					if (table.children().length > 0)
+						tmp.children().insertBefore(table.children().first());
+					else
+						table.append(tmp.children());
+				}
+			}
+			/**
+			 * 更新单个线路，用于编辑保存后的操作
+			 * @param item
+			 */
+			function updateCarCity(item) {
+				var old = document.getElementById('li_' + item.Id);
+				if (old) {
+					var li = createLi(item);
+					$(old).html(li.html());
+				}
+			}
+			/**
+			 * 构建列表项
+			 * @param item 线路数据对象
+			 * @returns {*|jQuery} 列表项
+			 */
+			function createLi(item) {
+				var li = $('<li>')
+					.addClass('mui-table-view-cell').attr('id', 'li_' + item.Id);
+				var ul = $('<ul>').addClass('lineInstance-logs mui-hidden').attr('id', 'ul_' + item.Id);
+				var lastLog = '';
+				var lastLogDate = '暂时没有物流信息！';
+				$.each(item.InstanceLogs, function(index, child) {
+					var dt = child.CreatedOn.split(' ')[1];
+					if (index != 0) {
+						//最后一条不隐藏
+						ul.append(
+							$('<li>')
+							.append($('<span>').append(dt.substr(0, dt.lastIndexOf(':'))))
+							.append(child.Description)
+						)
+					} else {
+						lastLog = child.Description;
+						lastLogDate = dt.substr(0, dt.lastIndexOf(':'));
+					}
+				});
+				var lineInfo = '';
+				if (item.LineOutletExs) {
+					$.each(item.LineOutletExs, function(index, child) {
+						if (index != item.LineOutletExs.length - 1) {
+							lineInfo += child.PCDName.substring(child.PCDName.indexOf('省') + 1, child.PCDName.lastIndexOf('市')) + '--';
+						} else {
+							lineInfo += child.PCDName.substring(child.PCDName.indexOf('省') + 1, child.PCDName.lastIndexOf('市'));
+						}
+					});
+				}
+				var a = $('<a>').addClass('btn-edit btn-lineInstance-edit')
+					.append(
+						$('<p>').addClass('lineInstance-title mui-ellipsis')
+						.append(item.Name)
+						.append(
+							$('<span>').addClass('lineInstance-date')
+							.append(' ' + item.InstanceDate.split(' ')[0])
+						)
+					)
+					.append(
+						$('<p>').addClass('lineInstance-outlets mui-ellipsis')
+						.append(
+							$('<span>').addClass('mui-icon mui-icon-location')
+						)
+						.append(
+							$('<span>').append(lineInfo)
+						)
+					)
+					.append(
+						$('<span>').addClass('mui-icon mui-icon-flag line-flag')
+					)
+					.append(
+						$('<p>').addClass('lineInstance-log').attr('id', 'p_' + item.Id)
+						.append(
+							$('<span>').append(lastLogDate)
+						)
+						.append(lastLog)
+					).append(
+						ul
+					)
+					.append(
+						$('<a>').addClass('mui-btn mui-btn-warning btn-logs').append('物流详情').attr('id', item.Id)
+					)
+					.append(
+						$('<a>').addClass('mui-btn mui-btn-primary btn-add-log').append('添加日志').attr('id', item.Id)
+					);
+				li.append(a);
+				return li;
+			}
+			//ready
+			var logPrompt = null;
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					xtt.initPlusReady();
+					logPrompt = plus.webview.getWebviewById('prompt');
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 30);
+//					setTimeout(function() {
+//						logPrompt = mui.preload({
+//							id: 'prompt',
+//							url: 'prompt.html',
+//							styles: {
+//								left: 0,
+//								top: 0,
+//								width: '100%',
+//								height: '100%',
+//								background: 'transparent',
+//								//background:  'rgba(0,0,0,0.6)',
+//								zindex: -100
+//							},
+//							show: {
+//								aniShow: 'none'
+//							}
+//						});
+//					}, 0);
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}
+			var customer = null;
+			/**
+			 * 新增
+			 */
+			function add() {
+				/*if (!customer)
+					customer = plus.webview.getWebviewById('customerEdit');
+				mui.fire(customer, 'setId', {
+					id: null
+				});
+				mui.openWindow({
+					url: "customer.html",
+					id: "customerEdit",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});*/
+			}
+			/**
+			 * 保存后的处理
+			 * @param e 事件参数
+			 */
+			function saved(e) {
+				var customer = e.detail.customer;
+				var isUpdated = e.detail.isUpdated;
+				if (customer) {
+					if (isUpdated)
+						updateCarCity(customer);
+					else
+						updateList([customer], false);
+				}
+			}
+			var showMore = false; //是否显示了更多操作
+			function moreAction() {
+				if (showMore) {
+					$('.btn-delete').addClass('mui-hidden');
+					showMore = false;
+				} else {
+					$('.btn-delete').removeClass('mui-hidden');
+					showMore = true;
+				}
+			}
+			//新增事件
+			//document.addEventListener('add', add);
+			document.addEventListener('moreAction', moreAction);
+			//保存后事件
+			document.addEventListener('saved', saved);
+			var btnArray = ['确认', '取消'];
+			//主列表点击事件
+			/*mui('#list').on('tap', '.btn-edit', function() {
+				var id = this.id;
+				if (!customer)
+					customer = plus.webview.getWebviewById('customerEdit');
+				mui.fire(customer, 'setId', {
+					id: id
+				});
+				mui.later(function() {
+					mui.openWindow({
+						url: "customer.html",
+						id: "customerEdit",
+						show: {
+							aniShow: 'pop-in',
+							duration: 300
+						}
+					});
+				}, 100);
+			});*/
+			mui('#list').on('tap', '.btn-logs', function() {
+				var logs = $('.lineInstance-logs', $(this).parent());
+				logs.toggleClass('mui-hidden');
+			});
+
+			//保存日志回调
+			function saveLog(e){
+				if(e.detail){
+					var txt = e.detail.promptText.trim();
+					if(!txt || txt == ''){
+						mui.toast('请输入日志');
+					}
+					else{
+						//保存日志操作
+						//取出内容与Id
+						var Id = $('#InstanceId').val();
+						var Des = txt;
+						//alert(Des);
+						if (Id == null || Id == '') {
+							mui.toast('请选择要添加日志的班次！');
+							return;
+						}
+						if (Des == null || Des == '') {
+							mui.toast('请录入物流描述');
+							return;
+						}
+						var param = xtt.getDefaultParam();
+						var Log = {};
+						Log['LineInstanceId'] = Id;
+						Log['Description'] = Des;
+						param['Log'] = Log;
+						mui.ajax(xtt.serverRoot + 'AddLineInstanceLog', {
+							type: 'post',
+							data: JSON.stringify(param),
+							contentType: 'application/json',
+							timeout: 10000,
+							beforeSend: function(xhr, settings) {
+								//loadingMsg('正在恢复会话信息...');
+								//xhr.setRequestHeader('Content-Type', 'application/json');
+							},
+							success: function(res) {
+								if (res) {
+									if (res.Succeed) {
+										//$('.xtt-prompt').addClass('mui-hidden');
+										//$('.xtt-prompt-bk').addClass('mui-hidden');
+										//老日志下移
+										var old = $('#p_' + Id).clone();
+										var ul = $('#ul_' + Id);
+										var li = $('<li>').append(old.html());
+										if (old.find('span').html() != '暂时没有物流信息！') {
+											if (ul.children().length > 0)
+												li.insertBefore(ul.children().first());
+											else
+												ul.append(li);
+										}
+										//替换掉最新的日志
+										$('#p_' + Id).html('');
+										var dt = res.Log.CreatedOn.split(' ')[1];
+										$('#p_' + Id).append(
+												$('<span>').append(dt.substr(0, dt.lastIndexOf(':')))
+														.append(res.Log.Description)
+										);
+										//mui.toast('保存成功！');
+										mui.toast('保存日志成功！');
+										logPrompt.hide();
+									} else {
+										mui.toast('保存失败！' + res.Message ? res.Message : '');
+									}
+								} else {
+									mui.toast('保存错误，请稍后再试！');
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								mui.toast('请求错误！' + errorThrown);
+							}
+						});
+
+					}
+
+
+				}
+			}
+			window.addEventListener('saveLog', saveLog);
+			mui('#list').on('tap', '.btn-add-log', function() {
+				//alert('add');
+				//取值
+				var lastLog = $('.lineInstance-log', $(this).parent()).clone();
+				$('span', lastLog).remove();
+				//var ptxt = $('#promptText');
+				//ptxt.val(lastLog.text().trim());
+				//ptxt.focus();
+				var id = this.id;
+				$('#InstanceId').val(id);
+
+				if(logPrompt){
+					logPrompt.setStyle({
+						zindex: 100
+					});
+					mui.fire(logPrompt, 'init', {
+						openerId: plus.webview.currentWebview().id,
+						backEvent: 'saveLog',
+						title: '请编辑日志并保存',
+						promptText: lastLog.text().trim(),
+						ok: '保存日志',
+						cancel: '取消'
+					});
+					logPrompt.show('none');
+//					logPrompt.show('none', 0, function(){
+//						logPrompt.setStyle({
+//							zindex: 100
+//						});
+//					});
+				}
+//				return;
+//
+//				$('.xtt-prompt').removeClass('mui-hidden');
+//				$('.xtt-prompt-bk').removeClass('mui-hidden');
+
+				//ptxt.select();			
+			});
+			mui('body').on('tap', '.xtt-prompt-bk, .btn-prompt-cancel', function() {
+				$('.xtt-prompt').addClass('mui-hidden');
+				$('.xtt-prompt-bk').addClass('mui-hidden');
+			});
+			document.getElementById('btnSave').addEventListener('tap', function() {
+				//取出内容与Id
+				var Id = $('#InstanceId').val();
+				var Des = $('#promptText').val();
+				//alert(Des);
+				if (Id == null || Id == '') {
+					mui.toast('请选择要添加日志的班次！');
+					return;
+				}
+				if (Des == null || Des == '') {
+					mui.toast('请录入物流描述');
+					return;
+				}
+				var param = xtt.getDefaultParam();
+				var Log = {};
+				Log['LineInstanceId'] = Id;
+				Log['Description'] = Des;
+				param['Log'] = Log;
+				mui.ajax(xtt.serverRoot + 'AddLineInstanceLog', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function(xhr, settings) {
+						//loadingMsg('正在恢复会话信息...');
+						//xhr.setRequestHeader('Content-Type', 'application/json');
+					},
+					success: function(res) {
+						if (res) {
+							if (res.Succeed) {
+								$('.xtt-prompt').addClass('mui-hidden');
+								$('.xtt-prompt-bk').addClass('mui-hidden');
+								//老日志下移
+								var old = $('#p_' + Id).clone();
+								var ul = $('#ul_' + Id);
+								var li = $('<li>').append(old.html());
+								if (old.find('span').html() != '暂时没有物流信息！') {
+									if (ul.children().length > 0)
+										li.insertBefore(ul.children().first());
+									else
+										ul.append(li);
+								}
+								//替换掉最新的日志
+								$('#p_' + Id).html('');
+								var dt = res.Log.CreatedOn.split(' ')[1];
+								$('#p_' + Id).append(
+									$('<span>').append(dt.substr(0, dt.lastIndexOf(':')))
+									.append(res.Log.Description)
+								)
+								mui.toast('保存成功！');
+							} else {
+								mui.toast('保存失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('保存错误，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

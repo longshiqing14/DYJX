@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>选择所在省</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">选择所在省市区</h1>
+		</header>
+		<div class="mui-content" style="margin-top: 0;">
+			<ul class="mui-table-view">
+				<li id="liProvince" class="mui-table-view-cell mui-collapse mui-active">
+					<a class="mui-navigate-right" href="#">选择省</a>
+					<div class="mui-collapse-content">
+						<ul id='ulProvince' class="mui-table-view">
+
+						</ul>
+					</div>
+				</li>
+				<li id="liCity" class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" href="#">选择市</a>
+					<div class="mui-collapse-content">
+						<ul id='ulCity' class="mui-table-view">
+
+						</ul>
+					</div>
+				</li>
+				<li id="liDistrict" class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" href="#">选择区</a>
+					<div class="mui-collapse-content">
+						<ul id='ulDistrict' class="mui-table-view">
+
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			var searching = false;
+
+			var liP = $('#liProvince');
+			var ulP = $('#ulProvince');
+			var liC = $('#liCity');
+			var ulC = $('#ulCity');
+			var liD = $('#liDistrict');
+			var ulD = $('#ulDistrict');
+
+			var backId = null;
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+				setDefault()
+			});
+
+			function setDefault() {
+				liP.addClass('mui-active');
+				liP.find('a').html('选择省');
+				liC.find('a').html('选择市');
+				liD.find('a').html('选择区');
+
+				liP.attr('ProvinceID', '');
+				liP.attr('ProvinceName', '');
+				liC.attr('CityID', '');
+				liC.attr('CityName', '');
+				liD.attr('DistrictID', '');
+				liD.attr('DistrictName', '');
+				
+				ulP.html('');
+				ulC.html('');
+				ulD.html('');
+			}
+
+			function search(type, id) {
+				//获取数据
+				var param = xtt.getDefaultParam();
+				var action = "GetProvinces";
+				if(type == 'city') {
+					action = "GetCitys";
+					param['ProvinceID'] = id;
+				} else if(type == 'district') {
+					param['CityID'] = id;
+					action = "GetDistricts";
+				}
+				mui.ajax(xtt.serverRoot + action, {
+					type: 'post',
+					data: param,
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								if(type == 'province') {
+									ulP.html('');
+									ulC.html('');
+									ulD.html('');
+									$.each(res.Provinces, function(index, item) {
+										ulP.append(createLi(item, type));
+									});
+								} else if(type == 'city') {
+									ulC.html('');
+									ulD.html('');
+									$.each(res.Citys, function(index, item) {
+										ulC.append(createLi(item, type));
+									});
+								} else if(type == 'district') {
+									ulD.html('');
+									$.each(res.Districts, function(index, item) {
+										ulD.append(createLi(item, type));
+									});
+								}
+								$('.mui-content').scrollTop(0);
+							} else {
+								mui.toast('获取用户失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('获取用户失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			}
+
+			document.addEventListener('chooseProvince', function(e) {
+				backId = e.detail.backId;
+				setDefault();
+				search('province', '');
+			});
+			//列表点击事件
+			mui('#liProvince').on('tap', '.mui-table-view-cell', function() {
+				var id = this.id;
+				var ProvinceName = $(this).attr('ProvinceName');
+				liP.attr('ProvinceID', this.id);
+				liP.attr('ProvinceName', ProvinceName);
+				liP.find('a').html(ProvinceName);
+				liC.find('a').html('选择市');
+				liP.attr('CityID', '');
+				liP.attr('CityName', '');
+				liD.find('a').html('选择区');
+				liD.attr('DistrictID', '');
+				liD.attr('DistrictName', '');
+				liP.removeClass('mui-active');
+				liC.addClass('mui-active');
+				//获取所在的市	
+				search('city', id);
+			});
+
+			//列表点击事件
+			mui('#liCity').on('tap', '.mui-table-view-cell', function() {
+				var id = this.id;
+				var CityName = $(this).attr('CityName');
+				liC.attr('CityID', this.id);
+				liC.attr('CityName', CityName);
+				liC.find('a').html(CityName);
+				liD.find('a').html('选择区');
+				liD.attr('DistrictID', '');
+				liD.attr('DistrictName', '');
+				liC.removeClass('mui-active');
+				liD.addClass('mui-active');
+				//获取所在的市	
+				search('district', id);
+			});
+
+			//列表点击事件
+			mui('#liDistrict').on('tap', '.mui-table-view-cell', function() {
+				var id = this.id;
+				var DistrictName = $(this).attr('DistrictName');
+				liD.attr('DistrictID', this.id);
+				liD.attr('DistrictName', DistrictName);
+				liD.find('a').html(DistrictName);
+				liD.removeClass('mui-active');
+
+				var PCDInfo = {
+					ProvinceID: liP.attr('ProvinceID'),
+					CityID: liC.attr('CityID'),
+					DistrictID: liD.attr('DistrictID'),
+					PCDName: liP.attr('ProvinceName') + liC.attr('CityName') + liD.attr('DistrictName'),
+				}
+
+				if(backId) {
+					mui.fire(
+						plus.webview.getWebviewById(backId),
+						'PCDSelected',
+						PCDInfo
+					);
+					mui.openWindow({
+						id: backId,
+						show: {
+							aniShow: 'pop-in',
+							duration: 300
+						}
+					});
+				}
+
+			});
+
+			/**
+			 * 构建列表项
+			 * @param item 汽配城数据对象
+			 * @returns {*|jQuery} 列表项
+			 */
+			function createLi(item, type) {
+				var li = $('<li>');
+				if(type == 'province') {
+					li.addClass('mui-table-view-cell').attr('id', item.ProvinceID)
+						.attr('ProvinceName', item.ProvinceName);
+					li.append(item.ProvinceName);
+				} else if(type == 'city') {
+					li.addClass('mui-table-view-cell').attr('id', item.CityID)
+						.attr('CityName', item.CityName);
+					li.append(item.CityName);
+				} else if(type == 'district') {
+					li.addClass('mui-table-view-cell').attr('id', item.DistrictID)
+						.attr('DistrictName', item.DistrictName);
+					li.append(item.DistrictName);
+				}
+				return li;
+			}
+		</script>
+	</body>
+
+</html>
