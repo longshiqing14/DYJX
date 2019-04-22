@@ -1,0 +1,531 @@
+{
+  "guide.html": {
+    "resources": [
+      "css/xtt.css",
+      "css/guide.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "login.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "js/zepto-1.1.6.min.js",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "guide.html",
+      "customer/index.html",
+      "merchant/index.html",
+      "loading.html",
+      "merchant/orders.html",
+      "merchant/carCities.html",
+      "merchant/list-carCities.html",
+      "merchant/list-orders.html",
+      "merchant/customers.html",
+      "merchant/list-customers.html",
+      "merchant/index-menu.html"
+    ]
+  },
+  "customer/index.html": {
+    "resources": [
+      "js/xtt.js",
+      "fonts/mui.ttf",
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "merchant/index.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "fonts/iconfont.ttf",
+      "js/zepto-1.1.6.min.js",
+      "merchant/orders.html",
+      "fonts/iconfont.woff"
+    ],
+    "refer": [
+      "merchant/index-menu.html",
+      "merchant/orders.html",
+      "merchant/carCities.html",
+      "merchant/customers.html",
+      "merchant/selectCarCity.html",
+      "merchant/selectCustomer.html",
+      "merchant/lineInstances.html",
+      "merchant/prompt.html",
+      "merchant/outlets.html",
+      "merchant/selectOutlet.html",
+      "updatePrompt.html"
+    ]
+  },
+  "merchant/index-menu.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": [
+      "login.html",
+      "merchant/test.html",
+      "resetPassword.html"
+    ]
+  },
+  "merchant/orders.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "merchant/list-orders.html",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js",
+      "fonts/mui.ttf",
+      "fonts/iconfont.ttf",
+      "fonts/iconfont.woff"
+    ],
+    "refer": [
+      "merchant/list-orders.html",
+      "merchant/order.html",
+      "merchant/selectLine.html",
+      "merchant/orderPay.html",
+      "merchant/customer.html",
+      "merchant/selectAccount.html"
+    ]
+  },
+  "merchant/carCities.html": {
+    "resources": [
+      "merchant/list-carCities.html",
+      "fonts/mui.ttf",
+      "js/zepto-1.1.6.min.js",
+      "js/xtt.js",
+      "css/merchant.css",
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/iconfont.css",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "merchant/list-carCities.html",
+      "merchant/carCity.html"
+    ]
+  },
+  "merchant/list-carCities.html": {
+    "resources": [
+      "css/iconfont.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js",
+      "fonts/mui.ttf",
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "merchant/list-orders.html": {
+    "resources": [
+      "css/mui.min.css",
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "merchant/customers.html": {
+    "resources": [
+      "js/xtt.js",
+      "js/zepto-1.1.6.min.js",
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "merchant/list-customers.html",
+      "css/merchant.css"
+    ],
+    "refer": [
+      "merchant/list-customers.html",
+      "merchant/customer.html",
+      "merchant/selectBindMember.html"
+    ]
+  },
+  "loading.html": {
+    "resources": [
+      "css/xtt.css",
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "merchant/carCity.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js",
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "merchant/list-customers.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": [
+      "merchant/customer.html"
+    ]
+  },
+  "merchant/test.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "css/merchant.css",
+      "fonts/mui.ttf",
+      "js/xtt.js",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": [
+      "merchant/selectCarCity.html",
+      "merchant/selectCustomer.html",
+      "merchant/customerListStyle.html",
+      "merchant/orderListStyle.html",
+      "merchant/selectLine.html"
+    ]
+  },
+  "merchant/selectCarCity.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "merchant/selectCustomer.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js",
+      "fonts/iconfont.woff"
+    ],
+    "refer": [
+      "merchant/customer.html"
+    ]
+  },
+  "merchant/customerListStyle.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "css/merchant.css",
+      "fonts/mui.ttf",
+      "js/xtt.js",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "merchant/orderListStyle.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "css/merchant.css",
+      "fonts/mui.ttf",
+      "js/xtt.js",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "merchant/customer.html": {
+    "resources": [
+      "js/mui.picker.js",
+      "js/mui.poppicker.js",
+      "js/city.data.js",
+      "css/mui.poppicker.css",
+      "css/mui.picker.css",
+      "fonts/mui.ttf",
+      "js/xtt.js",
+      "js/zepto-1.1.6.min.js",
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "css/merchant.css"
+    ],
+    "refer": [
+      "merchant/selectCarCity.html"
+    ]
+  },
+  "merchant/order.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": [
+      "merchant/selectLine.html",
+      "merchant/selectCustomer.html"
+    ]
+  },
+  "merchant/selectLine.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "merchant/selectBindMember.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "resetPassword.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "merchant/lineInstances.html": {
+    "resources": [
+      "merchant/list-lineInstances.html",
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "fonts/iconfont.woff",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": [
+      "merchant/list-lineInstances.html"
+    ]
+  },
+  "merchant/list-lineInstances.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "merchant/customer.html"
+    ]
+  },
+  "merchant/prompt.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "merchant/orderPay.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "merchant/outlets.html": {
+    "resources": [
+      "css/merchant.css",
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "js/zepto-1.1.6.min.js",
+      "merchant/list-outlets.html"
+    ],
+    "refer": [
+      "merchant/outlet.html",
+      "merchant/list-outlets.html",
+      "merchant/selectProvince.html",
+      "merchant/selectCity.html",
+      "merchant/selectDistrict.html"
+    ]
+  },
+  "merchant/selectOutlet.html": {
+    "resources": [
+      "css/merchant.css",
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "merchant/outlet.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "merchant/list-outlets.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js",
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "merchant/selectProvince.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "merchant/selectCity.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "merchant/selectDistrict.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ],
+    "refer": []
+  },
+  "updatePrompt.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "js/zepto-1.1.6.min.js"
+    ]
+  },
+  "merchant/selectAccount.html": {
+    "resources": [
+      "css/xtt.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/xtt.js",
+      "css/merchant.css",
+      "js/zepto-1.1.6.min.js"
+    ]
+  }
+}

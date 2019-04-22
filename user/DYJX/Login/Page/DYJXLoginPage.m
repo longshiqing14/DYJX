@@ -18,8 +18,8 @@
 @interface DYJXLoginPage ()
 @property (weak, nonatomic) IBOutlet UIView *verticationBackView;
 @property (weak, nonatomic) IBOutlet UIView *passwordBackView;
-@property (weak, nonatomic) IBOutlet UIButton *passwordButton;
-@property (weak, nonatomic) IBOutlet UIButton *mobileButton;
+//@property (weak, nonatomic) IBOutlet UIButton *passwordButton;
+//@property (weak, nonatomic) IBOutlet UIButton *mobileButton;
 @property (weak, nonatomic) IBOutlet UIButton *obtainVerCodeButton;
 @property (weak, nonatomic) IBOutlet UITextField *veriticationTextField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -32,7 +32,8 @@
 @property(nonatomic, copy)NSString *rndCode;
 @property(nonatomic, strong)UIButton *button1;
 @property(nonatomic, strong)UIButton *button2;
-
+@property(nonatomic, strong)UIButton *passwordButton;
+@property(nonatomic, strong)UIButton *mobileButton;
 @end
 
 @implementation DYJXLoginPage
@@ -96,8 +97,8 @@
 
 //    self.userNameTF.text = @"13612846724";
 //    self.passwordTF.text = @"111111";
-    self.userNameTF.text = @"13750820441";
-    self.passwordTF.text = @"654321";
+//    self.userNameTF.text = @"18778399223";
+//    self.passwordTF.text = @"123456";
 }
 
 -(void)emptyClick {
@@ -241,6 +242,20 @@
         _viewModel = [[DYJXLoginViewModel alloc]init];
     }
     return _viewModel;
+}
+
+- (UIButton *)mobileButton{
+    if (!_mobileButton) {
+        _mobileButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    }
+    return _mobileButton;
+}
+
+- (UIButton *)passwordButton{
+    if (!_passwordButton) {
+        _passwordButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    }
+    return _passwordButton;
 }
 
 - (iPhoneXBottomBackgroundView *)bottomBackgroundView{

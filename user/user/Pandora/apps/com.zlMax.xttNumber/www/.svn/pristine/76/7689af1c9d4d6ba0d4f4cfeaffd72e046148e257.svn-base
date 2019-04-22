@@ -1,0 +1,26 @@
+{
+  "login.html": {
+    "refer": [
+      "customer/index.html",
+      "customer/numberMarket.html",
+      "customer/myNumbers.html"
+    ],
+    "resources": []
+  },
+  "customer/numberMarket.html": {
+    "refer": [
+      "customer/numberRegister.html",
+      "customer/numberBuy.html",
+      "customer/myNumbers.html",
+      "updatePrompt.html"
+    ],
+    "resources": []
+  },
+  "customer/myNumbers.html": {
+    "refer": [
+      "customer/numberBuy.html",
+      "customer/numberRegister.html",
+      "customer/numberMarket.html"
+    ]
+  }
+}

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的商号</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/num.css" rel="stylesheet" />
+
+	</head>
+
+	<body>
+		<header id="nav" class="mui-bar mui-bar-nav">
+			<a id="btnFreeNumber" class="mui-btn mui-btn-gray mui-pull-right" style="color:green">
+				免费抢注商号
+			</a>
+			<a id='btnPlusBack' class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的商号</h1>
+		</header>
+		<div class="mui-content" style="width:100%;height: 100% position:absolute;">
+			<ul class="mui-table-view" id="table">
+				<!--<li class="mui-table-view-cell" style="Height:80px"> <span style="color:red">100001</span>
+					<a class="mui-btn mui-btn-green btn-delete" style="left:15px;right:auto;top:55px">转让此商号</a>		
+					<a class="mui-btn mui-btn-gray btn-delete" style="right:15px;top:20px">为该商号创建一个公司</a>
+					<a class="mui-btn mui-btn-gray btn-delete" style="right:15px;top:60px">为该商号绑定既有公司</a>
+				</li>-->
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.plusReady(function() {
+
+				xtt.initPlusReady();
+
+				mui.later(function() {
+					mui.preload({
+						id: 'numberMarket',
+						url: 'numberMarket.html'
+					});
+					mui.preload({
+						id: 'myWallet',
+						url: 'myWallet.html'
+					});
+					/*mui.preload({
+						id: 'numberRegister',
+						url: 'numberRegister.html'
+					});
+					mui.preload({
+						id: 'numberBuy',
+						url: 'numberBuy.html'
+					});*/
+				}, 200);
+
+				searchMyNumber();
+
+			});
+
+			var table = $('#table');
+
+			function searchMyNumber() {
+				var param = xtt.getDefaultParam();
+				mui.ajax(xtt.serverRoot + 'SearchMyNumber', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 30000,
+					beforeSend: function() {
+						table.empty();
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								updateList(res.Result, false);
+							} else {
+								mui.toast('获取我的商号失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('获取商号我的失败，请稍后再试！');
+						}
+
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+
+			}
+
+			//自动更新
+			mui.later(function() {
+				autoUpdate();
+			}, 3000);
+
+			function autoUpdate(showToast) {
+				var h5v = xtt.getH5Version();
+				var cid = xtt.getClientId();
+				var timestamp = Date.parse(new Date());
+				if(showToast) mui.toast('正在检查最新版本...');
+				mui.ajax(xtt.updateUrl + '?c=' + cid + '&t=' + timestamp, {
+					type: 'get',
+					data: null,
+					dateType: 'json',
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(xtt.versionCompare(res.version, xtt.version) > 0) {
+								//mui.alert(res.version, '新泰通物流');
+								var updatePrompt = mui.openWindow({
+									id: 'updatePrompt',
+									url: '../updatePrompt.html',
+									styles: {
+										left: 0,
+										top: 0,
+										width: '100%',
+										height: '100%',
+										background: 'transparent',
+										zindex: 101
+									},
+									show: {
+										aniShow: 'none'
+									},
+									extras: {
+										data: {
+											openerId: plus.webview.currentWebview().id,
+											backEvent: 'updated',
+											updateInfo: res
+										}
+									}
+								});
+
+							} else {
+								if(showToast) mui.toast('您的应用程序已经是最新的版本。');
+							}
+						} else {
+							if(showToast) mui.toast('获取应用更新信息错误，请稍后再试！');
+						}
+						//定时，设置10分钟运行一次
+						setTimeout(autoUpdate, 10 * 60 * 1000);
+					},
+					error: function(xhr, type, errorThrown) {
+						if(showToast) mui.toast('更新信息请求错误！' + errorThrown);
+						//定时，设置5分钟运行一次
+						setTimeout(autoUpdate, 5 * 60 * 1000);
+					}
+				});
+			}
+
+			//首页返回键处理
+			//处理逻辑：1秒内，连续两次按返回键，则退出应用；
+			var first = null;
+			mui.back = function() {
+
+				if(xtt.action == "numberMarket") {
+					mui.openWindow({
+						id: 'numberMarket',
+						url: 'numberMarket.html',
+						show: {
+							aniShow: 'none'
+						}
+					});
+				} else if(xtt.action == "wallet") {
+					mui.openWindow({
+						id: 'myWallet',
+						url: 'myWallet.html',
+						show: {
+							aniShow: 'none'
+						}
+					});
+				} else if(xtt.action == "myNumber") {
+					//首次按键，提示‘再按一次退出应用’
+					if(!first) {
+						first = new Date().getTime();
+						mui.toast('再按一次退出应用');
+						setTimeout(function() {
+							first = null;
+						}, 1000);
+					} else {
+						if(new Date().getTime() - first < 1000) {
+							if(xtt.host == "IOS") {
+								xtt.popNavigation();
+							} else {
+								plus.runtime.quit();
+							}
+						}
+					}
+				}
+
+			};
+
+			/**
+			 * 更新列表数据（会去重，位置会有变化，已最后取到的为准）
+			 * @param numbers 商号数组
+			 * @param append 是否添加在列表尾部
+			 */
+			function updateList(numbers, append) {
+				var tmp = $('<div>');
+				$.each(numbers, function(index, item) {
+					var old = document.getElementById('li_' + item.Id);
+					if(old)
+						$(old).remove();
+					var li = createLi(item);
+					tmp.append(li);
+				});
+				if(append)
+					table.append(tmp.children());
+				else {
+					if(table.children().length > 0)
+						tmp.children().insertBefore(table.children().first());
+					else
+						table.append(tmp.children());
+				}
+			}
+
+			function createLi(item) {
+				var li = $('<li class="mui-table-view-cell" style="Height:80px">');
+				if(!item.EnterpriseName) {
+					li.append($('<span style="color:red">').append(item.Number + ' ' + ' （未绑公司）'));
+					li.append($('<a class="mui-btn mui-btn-gray btn-delete" style="right:15px;top:20px">').append('为该商号创建一个公司'))
+				} else {
+					li.append($('<span style="color:deepskyblue">').append(item.Number + ' ' + ' （已绑公司）'));
+					li.append($('<a class="mui-btn mui-btn-gray btn-delete" style="right:15px;top:20px">').append(item.EnterpriseName));
+				}
+				li.append($('<a class="mui-btn mui-btn-green btn-delete" style="left:15px;right:auto;top:55px">').append('转让此商号'))
+				li.append($('<a class="mui-btn mui-btn-gray btn-delete" style="right:15px;top:60px">').append('为该商号绑定既有公司'));
+				return li;
+			}
+
+			//主列表点击事件
+			mui('#pullrefresh').on('tap', '.mui-table-view-cell', function() {
+				var status = $(this).attr('data-marketStatus');
+				if(status == 1) {
+					mui.toast('此号已经被占用，请选择其他企业商号！');
+					return;
+				}
+
+				var isRegOrBuy = $(this).attr('data-registerOrBuy');
+
+				//开放中，并且是只能抢注的
+				if(status == 0) {
+					if(isRegOrBuy == '1') {
+						//alert(id);
+						if(!regForm)
+							regForm = plus.webview.getWebviewById('numberRegister');
+						mui.fire(regForm, 'setNumber', {
+							Number: $(this).attr('data-number')
+						});
+						mui.later(function() {
+							mui.openWindow({
+								url: "numberRegister.html",
+								id: "numberRegister",
+								show: {
+									aniShow: 'pop-in',
+									duration: 300
+								}
+							});
+						}, 100);
+					} else if(isRegOrBuy == '2') {
+						if(!buyForm)
+							buyForm = plus.webview.getWebviewById('numberBuy');
+						mui.fire(buyForm, 'setNumber', {
+							Number: $(this).attr('data-number'),
+							Amount: $(this).attr('data-amount')
+						});
+						mui.later(function() {
+							mui.openWindow({
+								url: "numberBuy.html",
+								id: "numberBuy",
+								show: {
+									aniShow: 'pop-in',
+									duration: 300
+								}
+							});
+						}, 100);
+					}
+				}
+			});
+
+			document.getElementById('btnFreeNumber').addEventListener('tap', function() {
+				mui.openWindow({
+					url: "numberMarket.html",
+					id: "numberMarket",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			})
+
+			document.getElementById('btnPlusBack').addEventListener('tap', function() {
+				if(xtt.action == "myNumber") {
+					if(xtt.host == "IOS") {
+						xtt.popNavigation();
+					} else {
+						plus.runtime.quit();
+					}
+				} else {
+					mui.back();
+				}
+			});
+
+			document.addEventListener('searchMyNumber', function() {
+				searchMyNumber();
+				console.log('a');
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>选择线路/收发货点</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">选择线路/收发货点</h1>
+		</header>
+		<div class="mui-content select-line-outlet" style="margin-top: 0;">
+			<div class="mui-input-row mui-search" style="padding: 2px;">
+				<input id="searchInput" type="search" class="mui-input-clear" placeholder="输入关键字查询线路...">
+				<input id="selectLineId" type="hidden">
+			</div>
+			<ul id="list" class="mui-table-view list-fixed-top96 fix-table-after" style="margin-top: -15px; bottom: 50%;">
+
+			</ul>
+			<div class="outlets start-outlet" style="">
+				<div class="title">收货点</div>
+				<ul class="outlet-list" id="startOutlets">
+					<!--<li>广州永福</li>
+					<li>广州海恳</li>
+					<li class="active">广州金鸡岭</li>
+					<li>广州湛隆</li>
+					<li>广州陈田</li>
+					<li>广州三元里</li>
+					<li>广州活动</li>-->
+				</ul>
+			</div>
+			<div class="outlets end-outlet">
+				<div class="title">卸货点</div>
+				<ul class="outlet-list" id="endOutlets">
+					<!--	<li class="active">深圳八卦岭</li>
+					<li>深圳龙岗</li>-->
+				</ul>
+			</div>
+			<div class="line-text" style="">
+				已选择线路:
+			</div>
+			<div id='divSave' class="mui-button-row bottom-action-bar">
+				<button id="btnSave" type="button" class="mui-btn mui-btn-primary mui-btn-block">
+					确定
+				</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			var searching = false;
+			var table = $('#list');
+			var cacheData = {};
+			var endOutletData = {};
+			var backId = null;
+			var startOutlets = $('#startOutlets');
+			var endOutlets = $('#endOutlets');
+
+			var selectStartOutlet = '';
+			var selectEndOutlet = '';
+			var orderType = 0; //订单类型，0为普通，1为代理
+
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+				$('#searchInput').val('');
+				search('');
+			});
+
+			function search(keyword) {
+				//获取数据
+				var param = xtt.getDefaultParam();
+				param = mui.extend(param, {
+					Keyword: keyword,
+					PageIndex: 1,
+					PageSize: 30
+				});
+				mui.ajax(xtt.serverRoot + 'SearchCompanyLine', {
+					type: 'post',
+					data: param,
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if(res) {
+							if(res.Succeed) {
+								table.html('');
+								table.scrollTop(0);
+								$.each(res.ListLineOutLet, function(index, item) {
+									cacheData[item.LineId] = item;
+									table.append(createLi(item));
+									if(item.LineId == $('#selectLineId').val()) {
+										var temp = cacheData[item.LineId];
+										startOutlets.html('');
+										endOutlets.html('');
+										var endOt = [];
+										$.each(temp.ListOutlet, function(index, item2) {
+											if(item2.StepIndex == 0) {
+												var li = $('<li>').append(item2.Name).attr('id', item2.Id);
+												if(selectStartOutlet == item2.Id) {
+													li.addClass('active');
+												}
+												startOutlets.append(li);
+											} else {
+												var outLet = {
+													Id: item2.Id,
+													Name: item2.Name,
+													PId: item2.Province,
+													CId: item2.City,
+													DId: item2.District
+												}
+												endOt.push(outLet);
+												var li = $('<li>').append(item2.Name).attr('id', item2.Id)
+												if(selectEndOutlet == item2.Id) {
+													li.addClass('active');
+												}
+												endOutlets.append(li);
+											}
+										});
+										
+										endOutletData[temp.LineId] = endOt;
+
+										$('.line-text').html('已选择线路：<span style="color:red">' + item.Name + '</span>');
+
+										var existStartActive = startOutlets.find('.active');
+										if(existStartActive.length == 0) {
+											//默认第一个
+											startOutlets.find('li').first().addClass('active');
+										}
+										var existEndActive = endOutlets.find('.active');
+										if(existEndActive.length == 0) {
+											endOutlets.find('li').first().addClass('active');
+										}
+									}
+								});
+							} else {
+								mui.toast('获取线路失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('获取线路失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			}
+			document.getElementById('searchInput').addEventListener('input', function(e) {
+				//mui.alert($('#searchInput').val());
+				var keyword = $('#searchInput').val().trim();
+				//if(keyword.length < 2)
+				//   return;
+				search(keyword);
+			});
+			document.addEventListener('setBack', function(e) {
+				$('#selectLineId').val(e.detail.selectLineId);
+				selectStartOutlet = e.detail.selectStartOutlet;
+				selectEndOutlet = e.detail.selectEndOutlet;
+				backId = e.detail.backId;
+				orderType = e.detail.orderType;
+				if(orderType == 0) {
+					table.hide();
+				} else {
+					table.show();
+				}
+				search('');
+			});
+
+			document.getElementById('btnSave').addEventListener('tap', function() {
+				//取出线路，收货点，卸货点
+				//alert($('#selectLineId').val());
+
+				var selS = startOutlets.find('.active').first();
+				selectStartOutlet = selS.attr('id');
+
+				var selE = endOutlets.find('.active').first();
+				selectEndOutlet = selE.attr('id');
+
+				if($('#selectLineId').val() == '') {
+					mui.toast('请选择线路！');
+					return;
+				}
+				if(selectStartOutlet == '') {
+					mui.toast('请选择收货点！');
+					return;
+				}
+				if(selectEndOutlet == '') {
+					mui.toast('请选择卸货点！');
+					return;
+				}
+				var line = cacheData[$('#selectLineId').val()];
+				//return;
+
+				/*alert(selectStartOutlet);
+				alert(selectEndOutlet);
+				
+				alert(backId);*/
+
+				/*var s = JSON.stringify(endOutletData[$('#selectLineId').val()]);
+				alert(s);*/
+
+				if(backId) {
+					var data = {
+						Line: line,
+						StartOutlet: {
+							Name: selS.html(),
+							Id: selectStartOutlet
+						},
+						EndOutlet: {
+							Name: selE.html(),
+							Id: selectEndOutlet
+						},
+						EndOutletData: endOutletData[$('#selectLineId').val()]
+					};
+					mui.fire(plus.webview.getWebviewById(backId), 'lineSelected', data);
+					mui.later(function() {
+						mui.back();
+					}, 100);
+				}
+
+			});
+
+			//列表点击事件
+			mui('#list').on('tap', '.btn-edit', function() {
+				var id = this.id;
+				$('#selectLineId').val(id);
+				/*if (backId) {
+					mui.fire(plus.webview.getWebviewById(backId), 'lineSelected', cacheData[id]);
+					mui.later(function() {
+						mui.back();
+					}, 100);
+				}*/
+				//查询出收货点和卸货点
+				var allOutlets = cacheData[id];
+				startOutlets.html('');
+				endOutlets.html('');
+				var endOt = [];
+				$.each(allOutlets.ListOutlet, function(index, item) {
+					if(item.StepIndex == 0) {
+						var li = $('<li>').append(item.Name).attr('id', item.Id);
+						if(selectStartOutlet == item.Id) {
+							li.addClass('active');
+						}
+						startOutlets.append(li);
+					} else {
+						var outLet = {
+							Id: item.Id,
+							Name: item.Name,
+							PId: item.Province,
+							CId: item.City,
+							DId: item.District
+						}
+						endOt.push(outLet);
+						var li = $('<li>').append(item.Name).attr('id', item.Id)
+						if(selectEndOutlet == item.Id) {
+							li.addClass('active');
+						}
+						endOutlets.append(li);
+					}
+					endOutletData[allOutlets.LineId] = endOt;
+				}); //$(this).parent().addClass('active');
+				$('.line-text').html('已选择线路：<span style="color:red">' + $(this).find('.customer-title').html() + '</span>');
+
+				var existStartActive = startOutlets.find('.active');
+				if(existStartActive.length == 0) {
+					//默认第一个
+					startOutlets.find('li').first().addClass('active');
+				}
+				var existEndActive = endOutlets.find('.active');
+				if(existEndActive.length == 0) {
+					endOutlets.find('li').first().addClass('active');
+				}
+			});
+
+			//列表点击事件
+			mui('#startOutlets').on('tap', 'li', function() {
+				var id = this.id;
+				$('#startOutlets').find('li').removeClass('active');
+				$(this).addClass('active');
+				selectStartOutlet = id;
+				//alert(id);
+			});
+
+			//列表点击事件
+			mui('#endOutlets').on('tap', 'li', function() {
+				var id = this.id;
+				$('#endOutlets').find('li').removeClass('active');
+				$(this).addClass('active');
+				selectEndOutlet = id;
+				//alert(id+ $(this).html());
+			});
+
+			/**
+			 * 构建列表项
+			 * @param item 汽配城数据对象
+			 * @returns {*|jQuery} 列表项
+			 */
+			function createLi(item) {
+				var li = $('<li>')
+					.addClass('mui-table-view-cell').attr('id', 'li_' + item.LineId);
+				var a = $('<a>').addClass('mui-navigate-right btn-edit')
+					.append(
+						$('<p>').addClass('customer-title mui-ellipsis')
+						.append(item.Name)
+					)
+					.attr('id', item.LineId);
+				li.append(a);
+				return li;
+			}
+		</script>
+	</body>
+
+</html>

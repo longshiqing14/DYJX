@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>货运单收款</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">货运单收款</h1>
+		</header>
+		<div class="mui-content" style="margin-top: -15px;">
+			<!--数据列表-->
+			<ul id="list" class="mui-table-view">
+			</ul>
+
+			<form id="editForm" class="mui-input-group" style="margin-top: 0px;">
+				<div class="mui-input-row">
+					<label>总计运费</label>
+					<input type="text" value="" style="color: red;" id='TotalFee' readonly="readonly" disabled="disabled" />
+				</div>
+				<div class="mui-input-row">
+					<label>总计代收款</label>
+					<input type="text" value="" style="color: red;" id='TotalMemberPayFee' readonly="readonly" disabled="disabled" />
+				</div>
+				<div class="mui-input-row" style="height: 100px;">
+					<label>收款备注</label>
+					<textarea rows="3" placeholder="请输入收款备注" name="Remark" id="remark"></textarea>
+				</div>
+			</form>
+			<div class="mui-button-row mui-content-padded">
+				<button id="btnSave" type="button" class="mui-btn mui-btn-primary mui-btn-block">
+            设置收款
+        </button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//初始化
+			mui.init({
+				swipeBack: false //关闭自动右滑返回功能
+			});
+			xtt.setSwipeRightBack();
+			//plusReady
+			mui.plusReady(function() {
+				xtt.initPlusReady();
+			});
+			var table = $('.mui-table-view');
+			var remark = $('#remark');
+			var totalFee = $('#TotalFee');
+			var totalMemberPayFee = $('#TotalMemberPayFee');
+			var btnArray = ['确认', '取消'];
+
+			function createLi(item) {
+				var divFee = $('<div style="clear: none;">').addClass('mui-input-row mui-checkbox')
+					.append(
+						$('<label style="padding: 6px 48px 6px 6px;">').append(
+							'运费：￥' + (item.Fee + item.BoxFee + item.GoodsPriceFee) + '[运' + item.Fee + (item.GoodsPriceFee == 0 ? '' : ('保' + item.GoodsPriceFee)) + (item.BoxFee == 0 ? '' : ('木' + item.BoxFee)) + ']' + (item.IsNeedReceiveMemberPay ? '到付' : '发付')
+						)
+					);
+				if (item.IsPaidFee) {
+					divFee.append(
+						$('<input style="float:right;">').attr('value', '已付款').attr('readonly', 'readonly')
+					);
+				} else {
+					divFee.append(
+						$('<input>').attr('type', 'checkbox')
+						.attr('data-', item.Id).attr('name', 'chkFee')
+						.attr('checked', 'checked').attr('value', item.Fee + item.BoxFee + item.GoodsPriceFee))
+				}
+				var divMemberPayFee = '';
+				if (item.MemberPayFee != null && item.MemberPayFee != 0) {
+					divMemberPayFee = $('<div style="clear: none;">').addClass('mui-input-row mui-checkbox')
+						.append(
+							$('<label style="padding: 6px 48px 6px 6px;">').append(
+								'代收：￥' + item.MemberPayFee
+							)
+						);
+					if (item.IsPaidMemberPayFee) {
+						divMemberPayFee.append(
+							$('<input>').attr('value', '已付款').attr('readonly', 'readonly')
+						);
+					} else {
+						divMemberPayFee.append(
+							$('<input>').attr('type', 'checkbox').attr('data-', item.Id)
+							.attr('name', 'chkMemberPayFee').attr('checked', 'checked').attr('value', item.MemberPayFee)
+						)
+					}
+				}
+				var li = $('<li>')
+					.addClass('mui-table-view-cell').attr('id', 'li_' + item.Id);
+				var a = $('<a>').addClass('btn-edit btn-order-edit')
+					.append(
+						$('<div style="background-color:' + ((item.ReceiveCarCityColor == null || item.ReceiveCarCityColor.length == 0) ? '#bababa' : item.ReceiveCarCityColor) + '">').addClass('order-quantity').append(item.ServicesGoodsTotalQuantity).append(
+							$('<span>').addClass('unit').append('件')
+						).append($('<div>').addClass('order-other').append('[' + item.InstanceOnText + ']'))
+						.append($('<div>').addClass('order-other').append(item.LineName))
+						.append($('<div>').addClass('order-other').append(item.CreatedBy))
+					)
+					.append(
+						$('<div>').addClass('order-detail')
+						.append(
+							$('<p>').addClass('order-from mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-location'))
+							.append(item.SendCarCityName + ' ' + item.SendShortName)
+						).append(
+							$('<p>').addClass('order-to mui-ellipsis')
+							.append($('<span>').addClass('mui-icon mui-icon-paperplane'))
+							.append(item.ReceiveCarCityName + ' ' + item.ReceiveShortName)
+						)
+						.append(divFee)
+						.append(divMemberPayFee)
+					).attr('id', item.Id);
+				li.append(a);
+				return li;
+			}
+
+			function SeachPay(e) {
+				totalFee.val('');
+				totalMemberPayFee.val('');
+				remark.val('');
+				table.empty();
+				$('#btnSave').attr('disabled', null);
+				var ids = e.detail.ids;
+				var param = xtt.getDefaultParam();
+				/*var arr = new Array();
+				//查询数据并绑定
+				var param = xtt.getDefaultParam();
+				for (var i = 0; i < ids.length - 1; i++) {
+					arr[i] = ids[i];
+				}*/
+				param['OrderIds'] = ids;
+				mui.ajax(xtt.serverRoot + 'SeachPayOrder', {
+					type: 'post',
+					data: JSON.stringify(param),
+					contentType: 'application/json',
+					timeout: 10000,
+					beforeSend: function() {
+						//loadingMsg('正在恢复会话信息...');
+					},
+					success: function(res) {
+						if (res) {
+							if (res.Succeed) {
+								var fee = 0;
+								var memberPayFee = 0;
+								$.each(res.ListOrder, function(index, item) {
+									table.append(createLi(item));
+									if (!item.IsPaidFee) {
+										fee += item.Fee + item.BoxFee + item.GoodsPriceFee;
+									}
+									if (!item.IsPaidMemberPayFee) {
+										if (item.MemberPayFee != null && item.MemberPayFee != 0) {
+											memberPayFee += item.MemberPayFee;
+										}
+									}
+								});
+								if (fee != 0) {
+									totalFee.val(fee);
+								}
+								if (memberPayFee != 0) {
+									totalMemberPayFee.val(memberPayFee);
+								}
+								mui('.mui-checkbox').on('change', 'input', function() {
+									var name = $(this).attr('name');
+									if (name == 'chkFee') {
+										if (this.checked) {
+											totalFee.val(Number(totalFee.val()) + Number($(this).val()));
+										} else {
+											totalFee.val(Number(totalFee.val()) - Number($(this).val()));
+										}
+									} else if (name == 'chkMemberPayFee') {
+										if (this.checked) {
+											totalMemberPayFee.val(Number(totalMemberPayFee.val()) + Number($(this).val()));
+										} else {
+											totalMemberPayFee.val(Number(totalMemberPayFee.val()) - Number($(this).val()));
+										}
+									}
+								});
+							} else {
+								mui.toast('查找付款运单列表失败！' + res.Message ? res.Message : '');
+							}
+						} else {
+							mui.toast('查找付款运单列表失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast('请求错误！' + errorThrown);
+					}
+				});
+			}
+			document.addEventListener('SeachPay', SeachPay);
+
+			function save() {
+				//校验数据
+				var total = 0;
+				if (totalFee.val() != null && totalFee.val() != '') {
+					total += Number(totalFee.val());
+				}
+				if (totalMemberPayFee.val() != null && +totalMemberPayFee.val() != '') {
+					total += Number(totalMemberPayFee.val());
+				}
+				if (total == 0) {
+					mui.toast('收款金额不能少于0元！');
+					return;
+				}
+				var countFee = 0;
+				var countTotalFee = 0
+				var countMemberPayFee = 0;
+				var countTotalMemberPayFee = 0;
+				var checkTotal = 0;
+				var FeeIds = '';
+				var MemberPayFeeIds = '';
+				mui('.mui-checkbox input[type=checkbox]').each(function() {
+					var name = $(this).attr('name');
+					if (name == 'chkFee') {
+						if (this.checked) {
+							checkTotal += Number($(this).val());
+							countFee++;
+							FeeIds += $(this).attr('data-') + ',';
+						}
+						countTotalFee++;
+					} else if (name == 'chkMemberPayFee') {
+						if (this.checked) {
+							checkTotal += Number($(this).val());
+							countMemberPayFee++;
+							MemberPayFeeIds += $(this).attr('data-') + ',';
+						}
+						countTotalMemberPayFee++;
+					}
+				});
+				if (countFee + countTotalMemberPayFee == 0) {
+					mui.toast('请选择要收款的货运订单！');
+					return;
+				}
+				if (checkTotal != total) {
+					mui.toast('选择的货运订单总价与计算的不一致！');
+					return;
+				}
+				var msg = "您确定要收款吗？\r\n\r\n";
+				if (countFee != 0)
+					msg += '运费' + countTotalFee + '单' + (countFee == countTotalFee ? '合计：' : ('收款' + countFee + '单，合计：')) + totalFee.val() + '\r\n';
+				if (countMemberPayFee != 0)
+					msg += '代收款' + countMemberPayFee + '单' + (countMemberPayFee == countTotalMemberPayFee ? '合计：' : ('收款' + countMemberPayFee + '单，合计：')) + totalMemberPayFee.val() + '\r\n';
+				msg += '\r\n共计：' + total + '元';
+				mui.confirm(msg, '新泰通', btnArray, function(e) {
+					if (e.index == 0) {
+						var param = xtt.getDefaultParam();
+						param['OrderFeeIds'] = FeeIds.split(',');
+						param['OrderMemberPayFeeIds'] = MemberPayFeeIds.split(',');
+						param['PayRemark'] = remark.val();
+						mui.ajax(xtt.serverRoot + 'PayFee', {
+							type: 'post',
+							data: JSON.stringify(param),
+							contentType: 'application/json',
+							timeout: 10000,
+							beforeSend: function() {
+								//loadingMsg('正在恢复会话信息...');
+							},
+							success: function(res) {
+								if (res) {
+									if (res.Succeed) {
+										var list = plus.webview.getWebviewById('list-orders.html');
+										if (list)
+											mui.fire(list, 'paid', {
+												logisticsOrder: res.ListOrder,
+											});
+										mui.toast('收款成功！');
+										$('#btnSave').attr('disabled', 'disabled');
+										mui.back();
+									} else {
+										mui.toast('查找付款运单列表失败！' + res.Message ? res.Message : '');
+									}
+								} else {
+									mui.toast('查找付款运单列表失败，请稍后再试！');
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								mui.toast('请求错误！' + errorThrown);
+							}
+						});
+					} else {}
+				});
+			}
+			document.getElementById('btnSave').addEventListener('tap', save);
+		</script>
+	</body>
+
+</html>

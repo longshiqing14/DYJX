@@ -10,7 +10,10 @@
 #import "DYJXLogisticModel.h"
 
 @interface DYJXLogisticViewModel()
-@property (nonatomic, strong)NSMutableArray<DYJXLogisticDetailModel*> *resultArray;
+@property (nonatomic, strong)NSMutableArray<DYJXLogisticDetailModel*> *responseResultArray;
+@property (nonatomic, strong)NSMutableArray<DYJXLogisticDetailModel*> *firstSectionResultArray;
+@property (nonatomic, strong)NSMutableArray<DYJXLogisticDetailModel*> *secondSectionResultArray;
+@property (nonatomic, strong)NSMutableArray<NSMutableArray<DYJXLogisticDetailModel *> *> * resultArray;
 @end
 
 @implementation DYJXLogisticViewModel
@@ -22,7 +25,29 @@
     return _requestDic;
 }
 
-- (NSMutableArray<DYJXLogisticDetailModel *> *)resultArray{
+
+- (NSMutableArray<DYJXLogisticDetailModel *> *)responseResultArray{
+    if (!_responseResultArray) {
+        _responseResultArray = [NSMutableArray array];
+    }
+    return _responseResultArray;
+}
+
+- (NSMutableArray<DYJXLogisticDetailModel *> *)firstSectionResultArray{
+    if (!_firstSectionResultArray) {
+        _firstSectionResultArray = [NSMutableArray array];
+    }
+    return _firstSectionResultArray;
+}
+
+- (NSMutableArray<DYJXLogisticDetailModel *> *)secondSectionResultArray{
+    if (!_secondSectionResultArray) {
+        _secondSectionResultArray = [NSMutableArray array];
+    }
+    return _secondSectionResultArray;
+}
+
+- (NSMutableArray<NSMutableArray<DYJXLogisticDetailModel *> *>*)resultArray{
     if (!_resultArray) {
         _resultArray = [NSMutableArray array];
     }
@@ -30,19 +55,20 @@
 }
 
 - (NSString*)itemName:(NSIndexPath*)indexpath{
-    return self.resultArray[indexpath.row].Name;
+    return self.resultArray[indexpath.section][indexpath.row].Name;
 }
 
 - (NSInteger)numberOfSection{
-    if (self.resultArray.count>1) {
-            return 2;
-    }else{
-        return 1;
-    }
+//    if (self.secondSectionResultArray.count>1) {
+//            return 2;
+//    }else{
+//        return 1;
+//    }
+    return self.resultArray.count;
 }
 
-- (NSInteger)numberOfCellectionItem{
-    return self.resultArray.count;
+- (NSInteger)numberOfCellectionItem:(NSInteger)section{
+    return self.resultArray[section].count;
 }
 
 //获取用户信息
@@ -62,15 +88,34 @@
             
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
                 [SVProgressHUD dismiss];
-              self.resultArray = [NSMutableArray arrayWithArray:[NSArray modelArrayWithClass:[DYJXLogisticDetailModel class] json:[responseObject objectForKey:@"Result"]]];
-                [self.resultArray enumerateObjectsUsingBlock:^(DYJXLogisticDetailModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+              self.responseResultArray = [NSMutableArray arrayWithArray:[NSArray modelArrayWithClass:[DYJXLogisticDetailModel class] json:[responseObject objectForKey:@"Result"]]];
+                
+                [self.responseResultArray enumerateObjectsUsingBlock:^(DYJXLogisticDetailModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([obj.Name isEqualToString:@"xttlc"]) {
-                        [weakSelf.resultArray removeObject:obj];
+                        [weakSelf.firstSectionResultArray addObject:obj];
                     }
                     if ([obj.Name isEqualToString:@"compare"]) {
-                        [weakSelf.resultArray removeObject:obj];
+                        [weakSelf.firstSectionResultArray addObject:obj];
                     }
+                    if ([obj.Name isEqualToString:@"numberMarket"]) {
+                        [weakSelf.firstSectionResultArray addObject:obj];
+                        DYJXLogisticDetailModel *walletObj = [[DYJXLogisticDetailModel alloc]init];
+                        walletObj.Name = @"wallet";
+                        [weakSelf.firstSectionResultArray addObject:walletObj];
+                    }
+                    
                 }];
+                
+                [self.responseResultArray enumerateObjectsUsingBlock:^(DYJXLogisticDetailModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ((![obj.Name isEqualToString:@"xttlc"]) && (![obj.Name isEqualToString:@"compare"]) && ![obj.Name isEqualToString:@"numberMarket"]) {
+                        [weakSelf.secondSectionResultArray addObject:obj];
+                    }
+                    
+                }];
+                
+                
+                [weakSelf.resultArray addObject:weakSelf.firstSectionResultArray];
+                [weakSelf.resultArray addObject:weakSelf.secondSectionResultArray];
                 success();
                 
             }else{

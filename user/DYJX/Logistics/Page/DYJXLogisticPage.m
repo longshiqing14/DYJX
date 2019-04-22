@@ -98,31 +98,29 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if (section == 0) {
-        return 4;
-    }else{
-        return [self.viewModel numberOfCellectionItem];
-    }
+
+    return [self.viewModel numberOfCellectionItem:section];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     DYJXLogisticCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"DYJXLogisticCollectionViewCell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
+        
+        if ([[self.viewModel itemName:indexPath] isEqualToString:@"compare"]) {
             //全球比价
             cell.content1.text = @"全球比价";
             [cell.imageView setImage:[UIImage imageNamed:@"qqbj"]];
             
-        }else if (indexPath.row == 1){
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
             //商号市场
             cell.content1.text = @"商号市场";
             [cell.imageView setImage:[UIImage imageNamed:@"shsc"]];
-        }else if (indexPath.row == 2){
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xttlc"]){
             //16888物流平台
             cell.content1.text = @"物流平台";
             [cell.imageView setImage:[UIImage imageNamed:@"16888"]];
-        }else if (indexPath.row == 3){
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"wallet"]){
             //钱包
             cell.content1.text = @"我的钱包";
             [cell.imageView setImage:[UIImage imageNamed:@"wdqb"]];
@@ -150,10 +148,10 @@
             //报销登记审核
             [cell.imageView setImage:[UIImage imageNamed:@"bxgl"]];
             cell.content1.text = @"报销管理";
-        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"company"]){
             //公司和我的商号
             [cell.imageView setImage:[UIImage imageNamed:@"gsgl"]];
-            cell.content1.text = @"管理企业";
+            cell.content1.text = @"创建企业";
         }
         cell.content1.textColor = [UIColor colorWithHexString:@"#FFFFFF"];
     }
@@ -167,18 +165,19 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
+        
+        if ([[self.viewModel itemName:indexPath] isEqualToString:@"compare"]) {
+            //全球比价
             DYJXComparePage *target = [[DYJXComparePage alloc] init];
             [self.navigationController pushViewController:target animated:YES];
-            return;
-            [YDBAlertView showToast:@"功能开发中，敬请期待！"];
-        }else if (indexPath.row == 1){
+            
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
             [JSExtension shared].action = @"numberMarket";
             WebAppController  *pWebAppController = [[WebAppController alloc] init];
             self.navigationController.navigationBarHidden = YES;
             pWebAppController.AppId = @"com.zlMax.xttNumber";
             [self.navigationController pushViewController:pWebAppController animated:YES];
-        }else if (indexPath.row == 2){
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"xttlc"]){
             //16888物流平台
             // Webivew集成不能同时WebApp集成，需要修改AppDelegate文件的PDRCore的启动参数
             
@@ -188,18 +187,14 @@
                 self.navigationController.navigationBarHidden = YES;
                 [self.navigationController pushViewController:pWebAppController animated:YES];
             }
-        }else if (indexPath.row == 3){
-            //百度
-//            DYJXBaiDuWebPage * baiDuWebPage = [[DYJXBaiDuWebPage alloc]init];
-//            baiDuWebPage.webURLstr = @"https://m.baidu.com/usrprofile?action=square";
-//            [self.navigationController pushViewController:baiDuWebPage animated:YES];
-            
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"wallet"]){
             [JSExtension shared].action = @"wallet";
             WebAppController  *pWebAppController = [[WebAppController alloc] init];
             self.navigationController.navigationBarHidden = YES;
             pWebAppController.AppId = @"com.zlMax.xttNumber";
             [self.navigationController pushViewController:pWebAppController animated:YES];
         }
+
     }else if (indexPath.section == 1){
         if ([[self.viewModel itemName:indexPath] isEqualToString:@"xtt_ea"]) {
             WebAppController  *pWebAppController = [[WebAppController alloc] init];
@@ -250,7 +245,7 @@
                 
             }];
             
-        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"company"]){
 
             DJCompanyChatPage *companyChatPage = [[DJCompanyChatPage alloc]init];
                 [self.navigationController pushViewController:companyChatPage animated:YES];

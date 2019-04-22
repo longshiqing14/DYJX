@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>线路</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/xtt.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/merchant.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<!--<div id="searchPanel">
+				<div class="mui-input-row mui-search">
+					<input id="searchInput" type="search" class="mui-input-clear" placeholder="输入关键字查询...">
+				</div>
+			</div>-->
+			<div id="filter" class="lineInstance mui-hidden">
+				<!--<h5>查询结果过滤</h5>-->
+				<form id="editForm" class="mui-input-group" style="margin-top: 0px;">
+					<div class="mui-input-row">
+						<a id="btnSelectLine" class="">
+							<label>
+								物流班次
+							</label>
+							<input type="text" readonly placeholder="请选择班次..." id="lineId" name="LineId">
+							<a class="mui-btn mui-btn-warning float-btn btn-clear">清除</a>
+						</a>
+					</div>
+					<div class="mui-input-row">
+						<a id="btnStartDate" class="">
+							<label>开始日期</label>
+							<input type="text" readonly placeholder="请选择开始日期..." name="StartDate" id="startDate">
+							<a id="btnTodayStart" class="mui-btn mui-btn-primary float-btn">今天</a>
+						</a>
+					</div>
+					<div class="mui-input-row">
+						<a id="btnEndDate" class="">
+							<label>结束日期</label>
+							<input type="text" readonly placeholder="请选择结束日期..." name="EndDate" id="endDate">
+							<a id="btnTodayEnd" class="mui-btn mui-btn-primary float-btn">今天</a>
+						</a>
+					</div>
+				</form>
+				<div class="mui-input-row mui-search">
+					<input id="searchInput" type="search" class="mui-input-clear" placeholder="输入关键字查询...">
+				</div>
+				<div class="mui-button-row" style="margin-top: -18px;">
+					<button id="btnFilter" type="button" class="mui-btn mui-btn-primary mui-btn-block">
+						筛选
+					</button>
+					<!--<button id="btnStatFilter" type="button" style="width:49%;height:55px;" class="mui-btn mui-btn-primary">-->
+					<!--统计筛选-->
+					<!--</button>-->
+				</div>
+			</div>
+			<div id="stPanel">
+				<div id="stat">
+				</div>
+				<span id="statInfo" class="mui-icon mui-icon-info-filled"></span>
+				<a id="btnShowFilter" class="mui-pull-right">查找</a>
+			</div>
+		</div>
+		<div id="loadDiv" class="mui-loader">
+			<span class="mui-spinner"></span>
+			<br/> 加载中...
+			<br/>
+			<span id="loadingLabel" style="font-size: 10px;">正在加载货运单列表</span>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/zepto-1.1.6.min.js"></script>
+		<script src="../js/xtt.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			var listStyle = {
+				top: '2px',
+				bottom: '41px'
+			};
+			var listFilterStyle = {
+				top: '38px',
+				bottom: '231px'
+			};
+			//启用双击监听
+			mui.init({
+				gestureConfig: {
+					doubletap: true
+				}
+				//        ,
+				//        subpages: [{
+				//            url: 'list-orders.html',
+				//            id: 'list-orders.html',
+				//            styles: {
+				//                top: '38px',
+				//                bottom: '38px'
+				//            }
+				//        }]
+			});
+			var self, sub;
+			mui.plusReady(function() {
+				self = plus.webview.currentWebview();
+				sub = plus.webview.getWebviewById('list-lineInstances.html');
+				if(!sub) {
+					sub = plus.webview.create('list-lineInstances.html', 'list-lineInstances.html', listStyle);
+				}
+				self.append(sub);
+				/*mui.later(function() {
+					mui.preload({
+						id: 'scan',
+						url: 'scan.html'
+					});
+				}, 200);*/
+				$("#loadDiv").addClass('mui-hidden');
+			});
+			//新增
+			function add() {
+				if(sub)
+					mui.fire(sub, 'add');
+			}
+
+			function moreAction() {
+				if(sub)
+					mui.fire(sub, 'moreAction');
+			}
+
+			function setOrderStat(e) {
+				var orderStat = e.detail.OrderStat;
+				if(orderStat) {
+					$('#stat').html('运费: <span id="sumFee">' + orderStat.SumFee.toFixed(2) + '</span> 保价: <span id="sumGoodPrice">' + orderStat.SumGoodPrice.toFixed(2) + '</span> ' +
+						'保费: <span id="sumGoodPriceFee">' + orderStat.SumGoodPriceFee.toFixed(2) + '</span><br/> 物品: <span id="sumGoodsQuantity">' + orderStat.SumGoodsQuantity + '</span> ' +
+						'代收款: <span id="sumMemberPayFee">' + orderStat.SumMemberPayFee.toFixed(2) + '</span>(<span id="sumMemberPayQuantity">' + orderStat.SumMemberPayQuantity + '</span>)'
+					)
+				}
+			}
+			//新增事件
+			document.addEventListener('add', add);
+			document.addEventListener('moreAction', moreAction);
+			document.addEventListener('setOrderStat', setOrderStat);
+			//查询
+			var searchInput = $('#searchInput');
+
+			function search(type) {
+				var keyword = searchInput.val().trim();
+				//if(keyword && keyword != '')
+				mui.fire(sub, 'search', {
+					Keyword: keyword,
+					StartDateTime: startDate.val(),
+					EndDateTime: endDate.val(),
+					LineId: lineId.attr('data-'),
+					CarCityId: carCityId.attr('data-'),
+					SearchType: type,
+				});
+			}
+			//绑定查询事件
+			document.getElementById('searchInput').addEventListener('search', function() {
+				search('1'); //普通查询
+			});
+			/*document.getElementById('searchInput').addEventListener('search', function() {
+				search('2'); //统计查询
+			});*/
+			document.getElementById('btnFilter').addEventListener('tap', function() {
+				//关闭过滤
+				switchFilter();
+				search('1');
+			});
+			//			document.getElementById('btnStatFilter').addEventListener('tap', function() {
+			//				//关闭过滤
+			//				switchFilter();
+			//				search('2');
+			//			});
+			var showFilter = false;
+			var filterDiv = $('#filter');
+
+			function switchFilter() {
+				//alert('filter');
+				if(!sub || !self)
+					return;
+				//        sub.setStyle({
+				//            mask: 'rgba(0,0,0,0.4)',
+				//            bottom: '50%',
+				//            transition: {
+				//                duration: 150
+				//            }
+				//        });
+				//        return;
+				if(showFilter) {
+					//					if (mui.os.android)
+					//						self.remove(sub);
+					//					sub.setStyle(listStyle);
+					//					if (mui.os.android)
+					//						self.append(sub);
+					sub.show();
+					filterDiv.addClass('mui-hidden');
+					showFilter = false;
+					$('#btnShowFilter').html('查找')
+					//					sub.setStyle({
+					//						mask: "none"
+					//					}); //移除menu的mask
+				} else {
+					//					if (mui.os.android)
+					//						self.remove(sub);
+					//					sub.setStyle(listFilterStyle);
+					//					if (mui.os.android)
+					//						self.append(sub);
+					sub.hide();
+					filterDiv.removeClass('mui-hidden');
+					showFilter = true;
+					$('#btnShowFilter').html('收起')
+					//					sub.setStyle({
+					//						mask: 'rgba(0,0,0,0.5)',
+					//						//bottom: '50%',
+					//						transition: {
+					//							duration: 150
+					//						}
+					//					});
+				}
+			}
+			document.getElementById('stPanel').addEventListener('tap', switchFilter);
+			var dDate = new Date();
+			var yesterdayStr = dDate.getFullYear() + '-' + (dDate.getMonth() + 1) + '-' + (dDate.getDate() - 1);
+			var todayStr = dDate.getFullYear() + '-' + (dDate.getMonth() + 1) + '-' + dDate.getDate();
+			var minDate = new Date();
+			minDate.setFullYear(2015, 4, 15);
+			var maxDate = new Date();
+			maxDate.setFullYear(2018, 4, 15);
+			var lineId = $('#lineId');
+			var startDate = $('#startDate');
+			var endDate = $('#endDate');
+			var carCityId = $('#carCityId');
+			//document ready
+			Zepto(function($) {
+				startDate.val(yesterdayStr);
+				endDate.val(todayStr);
+			});
+
+			function getDateFromString(dStr) {
+				var arr = dStr.split('-');
+				var d = new Date;
+				if(arr.length > 2) {
+					d.setFullYear(parseInt(arr[0]), parseInt(arr[1] - 1), parseInt(arr[2]));
+				}
+				return d;
+			}
+
+			function selStartDate() {
+				var ds = getDateFromString(startDate.val());
+				plus.nativeUI.pickDate(function(e) {
+					var d = e.date;
+					startDate.val(d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate());
+				}, function(e) {
+					//info.innerText = "您没有选择日期";
+				}, {
+					title: "请选择开始日期",
+					date: ds,
+					minDate: minDate,
+					maxDate: maxDate
+				});
+			}
+
+			function selEndDate() {
+				var ds = getDateFromString(endDate.val());
+				plus.nativeUI.pickDate(function(e) {
+					var d = e.date;
+					endDate.val(d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate());
+				}, function(e) {
+					//info.innerText = "您没有选择日期";
+				}, {
+					title: "请选择开始日期",
+					date: ds,
+					minDate: minDate,
+					maxDate: maxDate
+				});
+			}
+			document.getElementById('btnStartDate').addEventListener('tap', selStartDate);
+			document.getElementById('btnEndDate').addEventListener('tap', selEndDate);
+			document.getElementById('btnTodayStart').addEventListener('tap', function() {
+				var d = new Date();
+				startDate.val(d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate());
+			});
+			document.getElementById('btnTodayEnd').addEventListener('tap', function() {
+				var d = new Date();
+				endDate.val(d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate());
+			});
+
+			function test() {
+				var list = plus.webview.getWebviewById('order_list.html');
+				if(list)
+					mui.fire(list, 'setOption', {});
+			}
+			//  var contentWebview = null;
+			//  document.querySelector('header').addEventListener('doubletap',function () {
+			//      if(contentWebview==null){
+			//          contentWebview = plus.webview.currentWebview().children()[0];
+			//      }
+			//      contentWebview.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+			//  });
+			//选择班次
+			document.getElementById('lineId').addEventListener('tap', function() {
+				mui.fire(
+					plus.webview.getWebviewById('merchant-selectLine'),
+					'setBack', {
+						backId: plus.webview.currentWebview().id
+					}
+				);
+				mui.openWindow({
+					url: "selectLine.html",
+					id: "merchant-selectLine",
+					show: {
+						aniShow: 'pop-in',
+						duration: 300
+					}
+				});
+			});
+			//班次选择完成
+			document.addEventListener("lineSelected", function(e) {
+				var line = e.detail;
+				lineId.val(line.Name);
+				lineId.attr('data-', line.LineId);
+			});
+			mui('#editForm').on('tap', '.btn-clear', function(e) {
+				var ipt = $(this).parent().find('input');
+				ipt.val('');
+				ipt.attr('data-', '');
+			});
+			mui('#editForm').on('tap', 'span', function(e) {
+				carCityId.val($(this).html());
+				carCityId.attr('data-', $(this).attr('data-'))
+				/*	$(this).parent().find('input').val('');		*/
+			});
+		</script>
+	</body>
+
+</html>
