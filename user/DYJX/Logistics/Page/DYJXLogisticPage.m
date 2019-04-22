@@ -245,7 +245,7 @@
                 
             }];
             
-        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"numberMarket"]){
+        }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"company"]){
 
             DJCompanyChatPage *companyChatPage = [[DJCompanyChatPage alloc]init];
                 [self.navigationController pushViewController:companyChatPage animated:YES];
