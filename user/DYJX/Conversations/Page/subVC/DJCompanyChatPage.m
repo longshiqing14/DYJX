@@ -17,6 +17,7 @@
 #import "DYJXSubcompanyInfoDetailPage.h"
 #import "WebAppController.h"
 #import "JSExtension.h"
+#import "DYJXAddCompanyPageController.h"
 
 @interface DJCompanyChatPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -97,7 +98,8 @@
 
 }
 -(void)addClick {
-
+    DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]init];
+    [self.navigationController pushViewController:page animated:YES];
 }
 
 #pragma mark - UI
