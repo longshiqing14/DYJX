@@ -180,7 +180,7 @@
     if ([NSString stringWithFormat:@"%@",extraDic[@"TargetType"]].integerValue == 0) { // 单聊
         if ([extraDic[@"TargetId"] isEqualToString:[UserManager shared].getUserModel.UserID]) {
             if ([[JSExtension shared].myIdentityId isEqualToString:extraDic[@"TargetId"]]) {
-                if ([self.session.sessionId isEqualToString:extraDic[@"ConversationId"]]) {
+                if ([[JSExtension shared].conversionId isEqualToString:extraDic[@"ConversationId"]]) {
                     if ([_delegate respondsToSelector:@selector(onRecvMessages:)]) {
 
                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -196,7 +196,7 @@
         else { // 身份收到消息
             if ([[JSExtension shared].myIdentityId isEqualToString:extraDic[@"TargetId"]] || [[JSExtension shared].myIdentityId isEqualToString:extraDic[@"FromCertifyId"]]) {
                 if ([[JSExtension shared].myIdentityId isEqualToString:extraDic[@"TargetId"]]) {
-                    if ([self.session.sessionId isEqualToString:extraDic[@"ConversationId"]]) {
+                    if ([[JSExtension shared].conversionId isEqualToString:extraDic[@"ConversationId"]]) {
                         if ([_delegate respondsToSelector:@selector(onRecvMessages:)]) {
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 [self.delegate onRecvMessages:[self changeObject:model]];
@@ -214,7 +214,7 @@
     else {
         if ([NSString stringWithFormat:@"%@",extraDic[@"GType"]].integerValue == 1) { // 公司群群聊
             if ([[JSExtension shared].myIdentityId isEqualToString:[UserManager shared].getUserModel.UserID]) {
-                if ([self.session.sessionId isEqualToString:extraDic[@"ConversationId"]]) {
+                if ([[JSExtension shared].conversionId isEqualToString:extraDic[@"ConversationId"]]) {
                     if ([_delegate respondsToSelector:@selector(onRecvMessages:)]) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [self.delegate onRecvMessages:[self changeObject:model]];
@@ -228,7 +228,7 @@
         }
         else { // 外部群群聊
             if ([[JSExtension shared].myIdentityId isEqualToString:extraDic[@"GMembers"]]) {
-                if ([self.session.sessionId isEqualToString:extraDic[@"ConversationId"]]) {
+                if ([[JSExtension shared].conversionId isEqualToString:extraDic[@"ConversationId"]]) {
                     if ([_delegate respondsToSelector:@selector(onRecvMessages:)]) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [self.delegate onRecvMessages:[self changeObject:model]];

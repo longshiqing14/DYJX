@@ -129,7 +129,7 @@
             }
         }
     }
-
+//[IMSDK sharedManager].chatManager.delegate
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:XY_IM_InsertModel object:model];
 //    });

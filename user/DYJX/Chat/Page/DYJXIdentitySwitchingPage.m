@@ -126,8 +126,10 @@ static NSString *headerID=@"headerID";
     [self.viewModel getUserInfoSuccess:^{
         [weakSelf.viewModel getMyEnterprisesSuccess:^{
             [weakSelf.tableView.mj_header endRefreshing];
-
+            DYJXUserModel * model =[XYUserDefaults readUserDefaultsLoginedInfoModel];
+            self.selectedIdentity.Id = model.UserID;
             [weakSelf.tableView reloadData];
+            [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
         } failed:^(NSString *errorMsg) {
               [weakSelf.tableView.mj_header endRefreshing];
         }];

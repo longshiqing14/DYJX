@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy)NSString *targetId;
 @property (nonatomic, assign)NSInteger type;
-@property (nonatomic, assign)NSString *conversionId;
+@property (nonatomic, copy)NSString *conversionId;
 @property (nonatomic, strong)  NIMSession *session;
 @property (nonatomic, copy)NSString *targetName;
 @property (nonatomic, copy)NSString *targetImg;

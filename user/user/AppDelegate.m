@@ -44,6 +44,8 @@
 
 // 账号密码： 18778399213 123456
 // 账号密码： 13750820441 654321
+// 账号密码： 18778399223 654321
+
 //达意简讯
 //###########################################
 #import "DYJXLoginPage.h"
@@ -222,6 +224,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
 
      在 App 整个生命周期，您只需要调用一次此方法与融云服务器建立连接。之后无论是网络出现异常或者 App 有前后台的切换等，SDK 都会负责自动重连。 SDK 针对 iOS 的前后台和各种网络状况，进行了连接和重连机制的优化，建议您调用一次 connectWithToken 即可，其余交给 SDK 处理。 除非您已经手动将连接断开，否则您不需要自己再手动重连。
      */
+    WeakSelf;
     [[RCIMClient sharedRCIMClient] connectWithToken:[UserManager shared].getUserModel.Result.RongCloudToken
                                             success:^(NSString *userId) {
                                                 NSLog(@"登陆成功。当前登录的用户ID：%@", userId);
@@ -231,11 +234,15 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
                                                 });
 
                                             } error:^(RCConnectErrorCode status) {
+                                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                                    [weakSelf IMInit];
+                                                });
                                                 NSLog(@"登陆的错误码为:%ld", status);
                                             } tokenIncorrect:^{
                                                 //token过期或者不正确。
                                                 //如果设置了token有效期并且token过期，请重新请求您的服务器获取新的token
                                                 //如果没有设置token有效期却提示token错误，请检查您客户端和服务器的appkey是否匹配，还有检查您获取token的流程。
+                                                
                                                 NSLog(@"token错误");
                                             }];
 

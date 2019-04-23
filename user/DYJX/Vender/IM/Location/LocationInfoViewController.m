@@ -41,9 +41,20 @@
 @property (nonatomic,assign)BOOL isNeedLocation;
 @property (nonatomic,assign)NSInteger isSearchPage; //1:YES  2:NO
 @property (nonatomic,strong)QMSReGeoCodeAdInfo *currentAddressInfo;
+@property (nonatomic,strong)UIButton *arrowImageView;
 @end
 
 @implementation LocationInfoViewController
+
+-(UIButton *)arrowImageView {
+    if (!_arrowImageView) {
+        _arrowImageView = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_arrowImageView setBackgroundImage:[UIImage imageNamed:@"arrow_daohang"] forState:UIControlStateNormal];
+        _arrowImageView.frame = CGRectMake(25, kScreenHeight - 104, 30, 30.5);
+        [_arrowImageView addTarget:self action:@selector(supportThirdMap) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _arrowImageView;
+}
 
 - (SearchResultsController *)searchResultsController {
     if (_searchResultsController == nil) {
@@ -226,6 +237,7 @@
     //    if (self.isSubmit) {
     [buttonReset addTarget:self action:@selector(clickResetButton) forControlEvents:UIControlEventTouchUpInside];
     [self.mapView addSubview:buttonReset];
+
     //    }
 }
 
@@ -253,7 +265,9 @@
     footer.stateLabel.textColor = [UIColor blackColor];
     [self.tableView.mj_header beginRefreshing];
 
-
+    if (!self.isSubmit) {
+        [self.view addSubview:self.arrowImageView];
+    }
 
     myAnnotation *annotation = [[myAnnotation alloc] initWithAnnotationModelWithDict:@{@"latitute":@(self.centerPoint.coordinate.latitude),@"longitude":@(self.centerPoint.coordinate.longitude)}];
     [self.mapView addAnnotation:annotation];
@@ -308,6 +322,78 @@
     poiSearchOption.page_index = self.pageIndex;
     [poiSearchOption setBoundaryByNearbyWithCenterCoordinate:centerCoordinate radius:1000];
     [self.searcher searchWithPoiSearchOption:poiSearchOption];
+}
+
+//支持的地图
+-(void)supportThirdMap
+{
+    //支持的地图
+    NSMutableArray *maps = [NSMutableArray array];
+    //苹果原生地图-苹果原生地图方法和其他不一样
+    NSMutableDictionary *iosMapDic = [NSMutableDictionary dictionary];
+    iosMapDic[@"title"] = @"苹果地图";
+    [maps addObject:iosMapDic];
+
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    //百度地图
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]]) {
+        NSMutableDictionary *baiduMapDic = [NSMutableDictionary dictionary];
+        baiduMapDic[@"title"] = @"百度地图";
+        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%lf,%lf|name=%@&mode=driving&coord_type=gcj02",self.centerPoint.coordinate.latitude,self.centerPoint.coordinate.longitude,self.centerPoint.title] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        baiduMapDic[@"url"] = urlString;
+        [maps addObject:baiduMapDic];
+    }
+    //高德地图
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]]) {
+        NSMutableDictionary *gaodeMapDic = [NSMutableDictionary dictionary];
+        gaodeMapDic[@"title"] = @"高德地图";
+        NSString *urlString = [[NSString stringWithFormat:@"iosamap://path?sourceApplication=%@&sid=BGVIS1&slat=&slon=&sname=&did=BGVIS2&dlat=%lf&dlon=%lf&dname=%@&dev=0&t=2",app_Name,self.centerPoint.coordinate.latitude,self.centerPoint.coordinate.longitude,self.centerPoint.title] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        gaodeMapDic[@"url"] = urlString;
+        [maps addObject:gaodeMapDic];
+    }
+    //选择
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"选择地图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    NSInteger index = maps.count;
+    for (int i = 0; i < index; i++) {
+        NSString * title = maps[i][@"title"];
+        //苹果原生地图方法
+        if (i == 0) {
+            UIAlertAction * action = [UIAlertAction actionWithTitle:title style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                [self navAppleMap];
+            }];
+            [alert addAction:action];
+            continue;
+        }
+        UIAlertAction * action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString *urlString = maps[i][@"url"];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+        }];
+        [alert addAction:action];
+    }
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+//苹果地图
+- (void)navAppleMap
+{
+    //终点坐标
+    CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(self.centerPoint.coordinate.latitude, self.centerPoint.coordinate.longitude);
+    //用户位置
+    MKMapItem *currentLoc = [MKMapItem mapItemForCurrentLocation];
+    //终点位置
+    MKMapItem *toLocation = [[MKMapItem alloc]initWithPlacemark:[[MKPlacemark alloc]initWithCoordinate:loc addressDictionary:nil] ];
+    NSArray *items = @[currentLoc,toLocation];
+    //第一个
+    NSDictionary *dic = @{
+                          MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving,
+                          MKLaunchOptionsMapTypeKey : @(MKMapTypeStandard),
+                          MKLaunchOptionsShowsTrafficKey : @(YES)
+                          };
+    [MKMapItem openMapsWithItems:items launchOptions:dic];
 }
 
 - (void)refreshData:(NSNotification *)notification
