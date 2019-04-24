@@ -40,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^didSelectedBlock)(NSIndexPath *indexPath);
 /** 输入框长度限制 */
 @property (nonatomic, assign) NSInteger maxLength;
+/** 备用数组 */
+@property (nonatomic, strong) NSMutableArray *spareArray;
 
 @end
 

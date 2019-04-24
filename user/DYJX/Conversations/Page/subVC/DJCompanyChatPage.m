@@ -97,8 +97,8 @@
 -(void)searchClick {
 
 }
--(void)addClick {
-    DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]init];
+-(void)addClick {// 新增公司
+    DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_None)];
     [self.navigationController pushViewController:page animated:YES];
 }
 
@@ -184,12 +184,10 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     DJCompanyChatHeader *header = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"DJCompanyChatHeader"];
     header.groupName.text = [self.viewModel sectionHeaderGroupName:section];
-    header.block = ^{
-        DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
-//        page.userIconImageURL = [model.GroupHeadImg XYImageURL];
-//        page.groupNumber = self.chatModel.targetId;
-//        page.isAdmin = [self isAdmin:model];
-        [self.navigationController pushViewController:page animated:YES];
+    WeakSelf
+    header.block = ^{ // 新增子公司
+        DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_Sub)];
+        [weakSelf.navigationController pushViewController:page animated:YES];
     };
     return header;
 }

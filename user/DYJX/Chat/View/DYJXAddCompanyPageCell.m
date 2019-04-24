@@ -63,6 +63,8 @@
     if (!model.righImageName || ![model.righImageName isEqualToString:@""]) {
         self.nextBtn.hidden = NO;
         [self.nextBtn setBackgroundImage:[UIImage imageNamed:model.righImageName] forState:(UIControlStateNormal)];
+        BOOL isRighImageNil = (!model.righSelectedImageName || ![model.righSelectedImageName isEqualToString:@""]);
+        [self.nextBtn setBackgroundImage:[UIImage imageNamed:isRighImageNil ? model.righSelectedImageName : model.righImageName] forState:(UIControlStateSelected)];
     }else {
         self.nextBtn.hidden = YES;
     }
@@ -91,13 +93,14 @@
 
 - (void)nextBtnClick:(UIButton *)btn {
     if (self.model.isShowSelectetView) {
-//        if ([self.model.righImageName isEqualToString:@""]) {
+        if ([self.model.righImageName isEqualToString:@"ic_category_close"]) {
             if (self.nextBtnBlock) { // 跳到下一步操作
                 self.nextBtnBlock(self);
             }
-//        }else { // 勾选/非勾选
-//            self.nextBtn.selected = !self.nextBtn.selected;
-//        }
+        }else { // 勾选/非勾选
+            self.nextBtn.selected = !self.nextBtn.selected;
+            self.model.isSelected = self.nextBtn.selected;
+        }
     }
 }
 

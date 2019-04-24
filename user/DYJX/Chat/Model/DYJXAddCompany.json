@@ -26,8 +26,8 @@
         "placeholder" : "",
         "isHiddenField" : true,
         "isShowSelectetView": true,
-        "righImageName" : "345",
-        "righSelectedImageName" : "245"
+        "righImageName" : "ic_category_close",
+        "righSelectedImageName" : "ic_category_close"
     },
     {
         "cellIdentity" : "DYJXAddCompanyPageCell",
@@ -35,17 +35,17 @@
         "placeholder" : "",
         "isHiddenField" : true,
         "isShowSelectetView": true,
-        "righImageName" : "234",
-        "righSelectedImageName" : "234"
+        "righImageName" : "register_checkbox",
+        "righSelectedImageName" : "register_checkbox_active"
     },
     {
         "cellIdentity" : "DYJXAddCompanyPageCell",
-        "leftViewText" : "不能通过搜索或扫描h找到本商号",
+        "leftViewText" : "不能通过搜索或扫描找到本商号",
         "placeholder" : "",
         "isHiddenField" : true,
         "isShowSelectetView": true,
-        "righImageName" : "123",
-        "righSelectedImageName" : "34"
+        "righImageName" : "register_checkbox",
+        "righSelectedImageName" : "register_checkbox_active"
     }],
     [{
         "cellIdentity" : "DYJXAddCompanyPageCell",
@@ -60,8 +60,8 @@
         "placeholder" : "",
         "isHiddenField" : true,
         "isShowSelectetView": true,
-        "righImageName" : "12345",
-        "righSelectedImageName" : "234"
+        "righImageName" : "ic_category_close",
+        "righSelectedImageName" : "ic_category_close"
     },
     {
         "cellIdentity" : "DYJXAddCompanyPageCell",
@@ -76,8 +76,8 @@
         "placeholder" : "",
         "isHiddenField" : true,
         "isShowSelectetView": true,
-        "righImageName" : "123",
-        "righSelectedImageName" : "123"
+        "righImageName" : "ic_category_close",
+        "righSelectedImageName" : "ic_category_close"
     },
     {
         "cellIdentity" : "DYJXAddCompanyPageCell",
@@ -171,8 +171,8 @@
         "isShowSelectetView": false
     }],
     [{
-        "cellIdentity" : "DYJXAddCompanyPageCell",
-        "leftViewText" : "公司银行账号开户行：",
+        "cellIdentity" : "kGroupDetailModelImageUploadCell",
+        "leftViewText" : "",
         "placeholder" : "",
         "isHiddenField" : false,
         "isShowSelectetView": false
