@@ -1,5 +1,12 @@
 [
     [{
+        "cellIdentity" : "kGroupDetailModelPorityCellId",
+        "leftViewText" : "",
+        "placeholder" : "",
+        "isHiddenField" : false,
+        "isShowSelectetView": false
+    },
+    {
         "cellIdentity" : "DYJXAddCompanyPageCell",
         "leftViewText" : "公司名称：",
         "placeholder" : "",

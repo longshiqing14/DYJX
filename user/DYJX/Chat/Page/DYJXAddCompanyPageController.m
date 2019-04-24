@@ -10,6 +10,8 @@
 #import "DYJXAddCompanyPageCell.h"
 #import "ImageUploadCell.h"
 #import "XYSelectIconPopView.h"
+#import "OwnerImageCell.h"
+#import "DYJXQRCodePage.h"
 
 @interface DYJXAddCompanyPageController ()<UITableViewDelegate,UITableViewDataSource,XYSelectIconPopViewDelegate>
 
@@ -20,6 +22,8 @@
 @property (nonatomic, assign) DYJXAddCompanyType companyType;
 @property (nonatomic, strong) NSMutableArray *imageArray;
 @property (nonatomic, assign) BOOL isSelectHeader;
+@property(nonatomic, strong) UIImage *headerImage;
+
 @end
 
 @implementation DYJXAddCompanyPageController
@@ -76,7 +80,7 @@
 -(void)selectWayIndex:(NSInteger)index {
     WeakSelf
     if (index == 0) { // 打开相册
-        [self chooseImagesWithMaxImagesCount:4 photosHandler:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOrinalPhoto) {
+        [self chooseImagesWithMaxImagesCount:(self.isSelectHeader ? 1: 4) photosHandler:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOrinalPhoto) {
             [weakSelf updateLicenseOrHeaderWithImages:photos];
         }];
     }else { // 打开相机
@@ -88,7 +92,10 @@
 
 - (void)updateLicenseOrHeaderWithImages:(NSArray<UIImage *> *)images {
     if (self.isSelectHeader) { // 头像
-        
+        self.headerImage = images.firstObject;
+        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:0];
+        OwnerImageCell *ownerImageCell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [ownerImageCell.porityImageView setImage:images.firstObject];
     }else {
         [self.imageArray addObjectsFromArray:images];
         NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:4] ;
@@ -108,7 +115,21 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.data[indexPath.section][indexPath.row].cellIdentity forIndexPath:indexPath];
     [cell setValue:self.data[indexPath.section][indexPath.row] forKey:@"model"];
     WeakSelf
-    if (indexPath.section == self.data.count - 1) {
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        OwnerImageCell *newCell = (OwnerImageCell *)cell;
+        newCell.block = ^{
+            weakSelf.isSelectHeader = YES;
+            [weakSelf showActionForPhoto];
+        };
+        
+        newCell.qrCcodeblock = ^{
+            DYJXQRCodePage *qrCodePage = [[DYJXQRCodePage alloc]init];
+//            qrCodePage.userIdOrCompanyId = self.groupNumber;
+//            qrCodePage.companyNumber = self.groupByIdResponse.Result.NumberString;
+//            qrCodePage.companyName = self.groupByIdResponse.Result.GroupName;
+            [weakSelf.navigationController pushViewController:qrCodePage animated:YES];
+        };
+    }else if (indexPath.section == self.data.count - 1) {
         ImageUploadCell *newCell = (ImageUploadCell *)cell;
         newCell.imagesArray = [self.imageArray mutableCopy];
         newCell.addPicturesBlock = ^{
@@ -159,7 +180,9 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == self.data.count - 1) {
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        return __X(300);
+    }else if (indexPath.section == self.data.count - 1) {
         return __X(240);
     }
     return __X(100);
@@ -192,6 +215,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor grayColor];
+        [_tableView registerClass:[OwnerImageCell class] forCellReuseIdentifier:kGroupDetailModelPorityCellId];
         [_tableView registerClass:[DYJXAddCompanyPageCell class] forCellReuseIdentifier:@"DYJXAddCompanyPageCell"];
         [_tableView registerClass:[ImageUploadCell class] forCellReuseIdentifier:kGroupDetailModelImageUploadCell];
     }
