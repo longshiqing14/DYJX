@@ -661,6 +661,12 @@
 		E1D913B721C0C24B0006B171 /* SimpleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D913B621C0C24B0006B171 /* SimpleMessage.m */; };
 		E1D913BA21C0C3020006B171 /* SimpleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D913B921C0C3020006B171 /* SimpleMessageCell.m */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
+		F91EE368226F5032006BCB37 /* DYJXAddSubCompany.json in Resources */ = {isa = PBXBuildFile; fileRef = F91EE365226F5032006BCB37 /* DYJXAddSubCompany.json */; };
+		F91EE369226F5032006BCB37 /* DYJXAddCompany.json in Resources */ = {isa = PBXBuildFile; fileRef = F91EE366226F5032006BCB37 /* DYJXAddCompany.json */; };
+		F91EE36A226F5032006BCB37 /* LPXNewCustomerCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE367226F5032006BCB37 /* LPXNewCustomerCellModel.m */; };
+		F91EE36D226F5083006BCB37 /* DYJXAddCompanyPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE36C226F5082006BCB37 /* DYJXAddCompanyPageCell.m */; };
+		F91EE370226F50C2006BCB37 /* DYJXAddCompanyPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE36E226F50C2006BCB37 /* DYJXAddCompanyPageController.m */; };
+		F91EE37322709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE37122709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1924,6 +1930,16 @@
 		E1D913B621C0C24B0006B171 /* SimpleMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleMessage.m; sourceTree = "<group>"; };
 		E1D913B821C0C3020006B171 /* SimpleMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleMessageCell.h; sourceTree = "<group>"; };
 		E1D913B921C0C3020006B171 /* SimpleMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleMessageCell.m; sourceTree = "<group>"; };
+		F91EE364226F5031006BCB37 /* LPXNewCustomerCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPXNewCustomerCellModel.h; sourceTree = "<group>"; };
+		F91EE365226F5032006BCB37 /* DYJXAddSubCompany.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DYJXAddSubCompany.json; sourceTree = "<group>"; };
+		F91EE366226F5032006BCB37 /* DYJXAddCompany.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DYJXAddCompany.json; sourceTree = "<group>"; };
+		F91EE367226F5032006BCB37 /* LPXNewCustomerCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPXNewCustomerCellModel.m; sourceTree = "<group>"; };
+		F91EE36B226F5082006BCB37 /* DYJXAddCompanyPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXAddCompanyPageCell.h; sourceTree = "<group>"; };
+		F91EE36C226F5082006BCB37 /* DYJXAddCompanyPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXAddCompanyPageCell.m; sourceTree = "<group>"; };
+		F91EE36E226F50C2006BCB37 /* DYJXAddCompanyPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXAddCompanyPageController.m; sourceTree = "<group>"; };
+		F91EE36F226F50C2006BCB37 /* DYJXAddCompanyPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXAddCompanyPageController.h; sourceTree = "<group>"; };
+		F91EE37122709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AVPhotoLibraryAuthorization.m"; sourceTree = "<group>"; };
+		F91EE37222709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AVPhotoLibraryAuthorization.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2273,6 +2289,8 @@
 		48511D84219FC9C4006C6081 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				F91EE37222709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.h */,
+				F91EE37122709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m */,
 				48511D85219FC9C4006C6081 /* NSObject+Extension.h */,
 				48511D86219FC9C4006C6081 /* NSObject+Extension.m */,
 			);
@@ -2359,6 +2377,8 @@
 				4895F0F02203EA5600203073 /* iPhoneXBottomBackgroundView.h */,
 				4895F0F12203EA5600203073 /* iPhoneXBottomBackgroundView.m */,
 				4895F0EE2203EA3800203073 /* iPhoneXBottomBackgroundView.xib */,
+				F91EE36B226F5082006BCB37 /* DYJXAddCompanyPageCell.h */,
+				F91EE36C226F5082006BCB37 /* DYJXAddCompanyPageCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2389,6 +2409,8 @@
 				48E2503221D4F9A800CC7D9E /* DYJXAccessAdminPage.m */,
 				48E2503421D6528400CC7D9E /* DYJXFireAdminPage.h */,
 				48E2503521D6528400CC7D9E /* DYJXFireAdminPage.m */,
+				F91EE36F226F50C2006BCB37 /* DYJXAddCompanyPageController.h */,
+				F91EE36E226F50C2006BCB37 /* DYJXAddCompanyPageController.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -2451,6 +2473,10 @@
 				E19DC8D2219AE7E600C86478 /* BaseModel.m */,
 				E11C423A21A2E5DC0039A53A /* GroupDetailModel.h */,
 				E11C423B21A2E5DC0039A53A /* GroupDetailModel.m */,
+				F91EE366226F5032006BCB37 /* DYJXAddCompany.json */,
+				F91EE365226F5032006BCB37 /* DYJXAddSubCompany.json */,
+				F91EE364226F5031006BCB37 /* LPXNewCustomerCellModel.h */,
+				F91EE367226F5032006BCB37 /* LPXNewCustomerCellModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4820,6 +4846,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				"zh-Hans",
@@ -4898,6 +4925,7 @@
 				4873513B2186F475001B59AB /* DYJXIdentitySwitchingPage.xib in Resources */,
 				CBCF83521F7129BD00B20CF9 /* CodeScan.bundle in Resources */,
 				E15767E021C9122D003A5C25 /* NIMKitResource.bundle in Resources */,
+				F91EE368226F5032006BCB37 /* DYJXAddSubCompany.json in Resources */,
 				4804A14E21957D5D0081AB5B /* AMap.bundle in Resources */,
 				CB42F6031FAC67CC00889257 /* new_feature_2.png in Resources */,
 				488E89FC219FFD5A008695A7 /* JrmfInfo.strings in Resources */,
@@ -4912,6 +4940,7 @@
 				CBFF45901F74C03500D2AF93 /* UMSocialSDKResources.bundle in Resources */,
 				488E89F1219FFD5A008695A7 /* default_image_square.png in Resources */,
 				48E2503E21D774A800CC7D9E /* DJCompanyChatCell.xib in Resources */,
+				F91EE369226F5032006BCB37 /* DYJXAddCompany.json in Resources */,
 				488E89F3219FFD5A008695A7 /* default_image_rectangular.png in Resources */,
 				4804A14921957D5D0081AB5B /* Pingpp.bundle in Resources */,
 				4895F0EF2203EA3800203073 /* iPhoneXBottomBackgroundView.xib in Resources */,
@@ -5229,6 +5258,7 @@
 				E1CDB23C21D799F00049B124 /* myAnnotation.m in Sources */,
 				E157685721C9122D003A5C25 /* NIMCommonTableData.m in Sources */,
 				CBE85A681F62896B00E1E4EA /* UIButton+touch.m in Sources */,
+				F91EE36A226F5032006BCB37 /* LPXNewCustomerCellModel.m in Sources */,
 				48E8A4C921BE47850046EA0E /* SubcompanyBottomView.m in Sources */,
 				48A3710021B4FB59002861DD /* DYJXCompanyInfoDetailViewModel.m in Sources */,
 				48E8A4AB21B90ED50046EA0E /* CompanyTitleAndArrowCell.m in Sources */,
@@ -5301,6 +5331,7 @@
 				48B8309A1FB9F5AD0019F503 /* JXQueryConditionItem.m in Sources */,
 				E17AF25821A02D480041249C /* DJJXMembers.m in Sources */,
 				E157680021C9122D003A5C25 /* NIMGrowingInternalTextView.m in Sources */,
+				F91EE370226F50C2006BCB37 /* DYJXAddCompanyPageController.m in Sources */,
 				E15767FB21C9122D003A5C25 /* NIMInputAtCache.m in Sources */,
 				E16657B521A411FD00BAC552 /* BaseTableViewCell.m in Sources */,
 				E12DBDBC21AD48560011E3A4 /* DYJXLasterListCell.m in Sources */,
@@ -5535,6 +5566,7 @@
 				E157683821C9122D003A5C25 /* NIMKitLocationPoint.m in Sources */,
 				E182E386219D102200BC5028 /* JSExtension.m in Sources */,
 				E15767E621C9122D003A5C25 /* NIMContactDataCell.m in Sources */,
+				F91EE37322709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m in Sources */,
 				E1A34B3121D5F775002D4690 /* DYRotateSendViewController.m in Sources */,
 				CB53FEEF1F6BFF870020F19A /* XYQRCodePushCommon.m in Sources */,
 				E157681E21C9122D003A5C25 /* NIMKitInfoFetchOption.m in Sources */,
@@ -5548,6 +5580,7 @@
 				48A3710321B500B9002861DD /* DYJXCompanyInfoDetailPage.m in Sources */,
 				E1C1A40621C2B0DE0050407D /* MyTextMessageCell.m in Sources */,
 				E157681A21C9122D003A5C25 /* NIMTeamCardHeaderCell.m in Sources */,
+				F91EE36D226F5083006BCB37 /* DYJXAddCompanyPageCell.m in Sources */,
 				E13E60E721C362FB00D0C4B3 /* RCDUtilities.m in Sources */,
 				E1ACC68621D8874900E0EEE9 /* DLLSearchContactResponse.m in Sources */,
 				CB3307711FA16D0700117695 /* UITableView+WLEmptyPlaceHolder.m in Sources */,

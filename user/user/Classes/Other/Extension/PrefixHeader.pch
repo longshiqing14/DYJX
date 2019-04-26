@@ -64,7 +64,10 @@
 #import "RCIMMessage.h"
 #import "UIImage+fixOrientation.h"
 #import "UIView+Toast.h"
-
+/** 公共cell模型 */
+#import "LPXNewCustomerCellModel.h"
+/** 相册、相机封、权限授权 */
+#import "NSObject+AVPhotoLibraryAuthorization.h"
 
 #define RETURN_CODE_  @"RETURN_CODE"
 #define RETURN_DESC_  @"RETURN_DESC"
@@ -129,6 +132,8 @@
 #define XYAppDelegate           [UIApplication sharedApplication].delegate
 
 #define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO) 
+
+#define __X(x) (x*([UIScreen mainScreen].bounds.size.width / 750.0))
 
 #define WeakSelf __weak typeof(self) weakSelf = self;
 /************************************************Font**********************************************/
