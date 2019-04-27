@@ -644,6 +644,10 @@
 		E1BC7B1F21D4B7D900017C39 /* DYLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BC7B1E21D4B7D900017C39 /* DYLocationTableViewCell.m */; };
 		E1BD207A21C4B5EC00C6B3D9 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BD207921C4B5EB00C6B3D9 /* libcrypto.a */; };
 		E1C1A40621C2B0DE0050407D /* MyTextMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C1A40521C2B0DE0050407D /* MyTextMessageCell.m */; };
+		E1C84FDC22731C20006C362F /* DYXJResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C84FD522731C1D006C362F /* DYXJResult.m */; };
+		E1C84FDD22731C20006C362F /* DYXJSearchUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C84FD722731C1E006C362F /* DYXJSearchUserModel.m */; };
+		E1C84FDE22731C20006C362F /* DYXJIMInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C84FD822731C1E006C362F /* DYXJIMInfo.m */; };
+		E1C84FDF22731C20006C362F /* DYXJBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C84FDA22731C1F006C362F /* DYXJBusines.m */; };
 		E1CDB23621D754F30049B124 /* ImageZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB23521D754F30049B124 /* ImageZoomView.m */; };
 		E1CDB23921D77EEC0049B124 /* LocationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB23821D77EEC0049B124 /* LocationInfoViewController.m */; };
 		E1CDB23C21D799F00049B124 /* myAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CDB23B21D799F00049B124 /* myAnnotation.m */; };
@@ -1896,6 +1900,14 @@
 		E1BD207921C4B5EB00C6B3D9 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		E1C1A40421C2B0DE0050407D /* MyTextMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTextMessageCell.h; sourceTree = "<group>"; };
 		E1C1A40521C2B0DE0050407D /* MyTextMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTextMessageCell.m; sourceTree = "<group>"; };
+		E1C84FD422731C1D006C362F /* DYXJResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYXJResult.h; sourceTree = "<group>"; };
+		E1C84FD522731C1D006C362F /* DYXJResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYXJResult.m; sourceTree = "<group>"; };
+		E1C84FD622731C1E006C362F /* DYXJBusines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYXJBusines.h; sourceTree = "<group>"; };
+		E1C84FD722731C1E006C362F /* DYXJSearchUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYXJSearchUserModel.m; sourceTree = "<group>"; };
+		E1C84FD822731C1E006C362F /* DYXJIMInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYXJIMInfo.m; sourceTree = "<group>"; };
+		E1C84FD922731C1F006C362F /* DYXJSearchUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYXJSearchUserModel.h; sourceTree = "<group>"; };
+		E1C84FDA22731C1F006C362F /* DYXJBusines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYXJBusines.m; sourceTree = "<group>"; };
+		E1C84FDB22731C20006C362F /* DYXJIMInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYXJIMInfo.h; sourceTree = "<group>"; };
 		E1CDB23421D754F30049B124 /* ImageZoomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageZoomView.h; sourceTree = "<group>"; };
 		E1CDB23521D754F30049B124 /* ImageZoomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageZoomView.m; sourceTree = "<group>"; };
 		E1CDB23721D77EEC0049B124 /* LocationInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationInfoViewController.h; sourceTree = "<group>"; };
@@ -4401,6 +4413,7 @@
 		E17AF1E221A01D430041249C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E1C84FCD2272F207006C362F /* SearchUser  */,
 				E1999E2C21D9AA02004B7460 /* FindConversation */,
 				E1ACC67921D87FEC00E0EEE9 /* SearchBlackList */,
 				E1ACC66621D87DE500E0EEE9 /* SearchFriendApply */,
@@ -4669,6 +4682,21 @@
 				E1BC7B1921D4826000017C39 /* QMapKit.bundle */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E1C84FCD2272F207006C362F /* SearchUser  */ = {
+			isa = PBXGroup;
+			children = (
+				E1C84FD622731C1E006C362F /* DYXJBusines.h */,
+				E1C84FDA22731C1F006C362F /* DYXJBusines.m */,
+				E1C84FDB22731C20006C362F /* DYXJIMInfo.h */,
+				E1C84FD822731C1E006C362F /* DYXJIMInfo.m */,
+				E1C84FD422731C1D006C362F /* DYXJResult.h */,
+				E1C84FD522731C1D006C362F /* DYXJResult.m */,
+				E1C84FD922731C1F006C362F /* DYXJSearchUserModel.h */,
+				E1C84FD722731C1E006C362F /* DYXJSearchUserModel.m */,
+			);
+			path = "SearchUser ";
 			sourceTree = "<group>";
 		};
 		E1CDB24321D7AA410049B124 /* SWQRCode */ = {
@@ -5215,6 +5243,7 @@
 				CBD2BAC01F5D52670057E2E7 /* XYLocalCheck.m in Sources */,
 				E157684C21C9122D003A5C25 /* NSDictionary+NIMKit.m in Sources */,
 				E19DC8B5219AC2DB00C86478 /* BaseListViewController.m in Sources */,
+				E1C84FDF22731C20006C362F /* DYXJBusines.m in Sources */,
 				CBE859A81F5E854500E1E4EA /* XYNetWorking.m in Sources */,
 				48E8A4C221BA1F8A0046EA0E /* DYJXXYResult.m in Sources */,
 				E17AF25A21A02D480041249C /* DJJXBusines.m in Sources */,
@@ -5333,6 +5362,7 @@
 				E157684421C9122D003A5C25 /* NIMSessionFileTransContentView.m in Sources */,
 				CB3307A21FA1BF8F00117695 /* IQTitleBarButtonItem.m in Sources */,
 				E157681621C9122D003A5C25 /* NIMTimePickerView.m in Sources */,
+				E1C84FDC22731C20006C362F /* DYXJResult.m in Sources */,
 				E1CDB25421D7AA410049B124 /* SWScannerView.m in Sources */,
 				DE71B161208744DD00467E06 /* PYPhotosPreviewController.m in Sources */,
 				487357C221947A93001B59AB /* WebViewController.m in Sources */,
@@ -5449,6 +5479,7 @@
 				CBE85A101F60FC4600E1E4EA /* XYUserDefaults.m in Sources */,
 				E157684221C9122D003A5C25 /* NIMSessionNetChatNotifyContentView.m in Sources */,
 				CBE8598D1F5E81E100E1E4EA /* XYCycleImageModel.m in Sources */,
+				E1C84FDE22731C20006C362F /* DYXJIMInfo.m in Sources */,
 				E157682821C9122D003A5C25 /* NIMVideoContentConfig.m in Sources */,
 				E1D913BA21C0C3020006B171 /* SimpleMessageCell.m in Sources */,
 				E1ACC69D21D8AAA500E0EEE9 /* DYYBlackObj.m in Sources */,
@@ -5485,6 +5516,7 @@
 				CBE85AE91F63E48D00E1E4EA /* UIView+Frame.m in Sources */,
 				48A1AC5521FAAC9F00C1DB45 /* XYOrderCommentDetailModel.m in Sources */,
 				CBE85AEA1F63E48D00E1E4EA /* YZDisplayTitleLabel.m in Sources */,
+				E1C84FDD22731C20006C362F /* DYXJSearchUserModel.m in Sources */,
 				E17AF25D21A02D480041249C /* DJJXAdminUsers.m in Sources */,
 				48E2503921D76F7F00CC7D9E /* DJCompanyChatViewModel.m in Sources */,
 				48CC2C321FD9271400622935 /* YWDPopupControl+YWDBuyer.m in Sources */,
