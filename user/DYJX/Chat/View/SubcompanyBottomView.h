@@ -11,5 +11,12 @@
 typedef void(^SendConversationBlock)();
 
 @interface SubcompanyBottomView : UIView
+
 @property (nonatomic, copy)SendConversationBlock block;
+
+- (void)setSubcompanyBottomBtnWithTitle:(NSString *)title;
+
+- (void)setSubcompanyBottomBtnWithBackgroundColor:(UIColor *)backgroundColor;
+- (void)setSubcompanyBottomBtnWithTitleColor:(UIColor *)titleColor;
+
 @end

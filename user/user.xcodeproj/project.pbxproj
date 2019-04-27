@@ -663,6 +663,8 @@
 		F91EE36D226F5083006BCB37 /* DYJXAddCompanyPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE36C226F5082006BCB37 /* DYJXAddCompanyPageCell.m */; };
 		F91EE370226F50C2006BCB37 /* DYJXAddCompanyPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE36E226F50C2006BCB37 /* DYJXAddCompanyPageController.m */; };
 		F91EE37322709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE37122709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m */; };
+		F91EE3762270A727006BCB37 /* DYJXAddCompanyPageHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE3752270A727006BCB37 /* DYJXAddCompanyPageHeaderCell.m */; };
+		F91EE3792272D0EC006BCB37 /* DYJXAddCompanyPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE3782272D0EC006BCB37 /* DYJXAddCompanyPageViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1928,6 +1930,10 @@
 		F91EE36F226F50C2006BCB37 /* DYJXAddCompanyPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXAddCompanyPageController.h; sourceTree = "<group>"; };
 		F91EE37122709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AVPhotoLibraryAuthorization.m"; sourceTree = "<group>"; };
 		F91EE37222709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AVPhotoLibraryAuthorization.h"; sourceTree = "<group>"; };
+		F91EE3742270A727006BCB37 /* DYJXAddCompanyPageHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXAddCompanyPageHeaderCell.h; sourceTree = "<group>"; };
+		F91EE3752270A727006BCB37 /* DYJXAddCompanyPageHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXAddCompanyPageHeaderCell.m; sourceTree = "<group>"; };
+		F91EE3772272D0EC006BCB37 /* DYJXAddCompanyPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXAddCompanyPageViewModel.h; sourceTree = "<group>"; };
+		F91EE3782272D0EC006BCB37 /* DYJXAddCompanyPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXAddCompanyPageViewModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2367,6 +2373,8 @@
 				4895F0EE2203EA3800203073 /* iPhoneXBottomBackgroundView.xib */,
 				F91EE36B226F5082006BCB37 /* DYJXAddCompanyPageCell.h */,
 				F91EE36C226F5082006BCB37 /* DYJXAddCompanyPageCell.m */,
+				F91EE3742270A727006BCB37 /* DYJXAddCompanyPageHeaderCell.h */,
+				F91EE3752270A727006BCB37 /* DYJXAddCompanyPageHeaderCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2418,6 +2426,8 @@
 				48A3710E21B53A30002861DD /* DYJXSubcompanyInfoDetailViewModel.m */,
 				4826A47F21BFA87500EAF963 /* DYJXSelectMemberViewModel.h */,
 				4826A48021BFA87500EAF963 /* DYJXSelectMemberViewModel.m */,
+				F91EE3772272D0EC006BCB37 /* DYJXAddCompanyPageViewModel.h */,
+				F91EE3782272D0EC006BCB37 /* DYJXAddCompanyPageViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -5351,6 +5361,7 @@
 				DE71B15B208744DD00467E06 /* MBProgressHUD+PYExtension.m in Sources */,
 				48E2502A21C8922500CC7D9E /* XYDYJXResponse.m in Sources */,
 				E1ACC64F21D86B3B00E0EEE9 /* DYGoodCell.m in Sources */,
+				F91EE3762270A727006BCB37 /* DYJXAddCompanyPageHeaderCell.m in Sources */,
 				E1419A0021CCDC7D0067AE2E /* DYJXSendMsgReq.m in Sources */,
 				E157683A21C9122D003A5C25 /* NIMKitMessageAtModel.m in Sources */,
 				E15767F121C9122D003A5C25 /* NIMKitDevice.m in Sources */,
@@ -5458,6 +5469,7 @@
 				CBE859A71F5E854500E1E4EA /* XYAppDotNetAPIClient.m in Sources */,
 				4826A47B21BF552400EAF963 /* DYJXQRCodePage.m in Sources */,
 				E157682421C9122D003A5C25 /* NIMSessionListCell.m in Sources */,
+				F91EE3792272D0EC006BCB37 /* DYJXAddCompanyPageViewModel.m in Sources */,
 				E157681521C9122D003A5C25 /* NIMTeamSwitchTableViewCell.m in Sources */,
 				E157680721C9122D003A5C25 /* NIMCustomLeftBarView.m in Sources */,
 				DE71B16D2087454300467E06 /* DALabeledCircularProgressView.m in Sources */,
