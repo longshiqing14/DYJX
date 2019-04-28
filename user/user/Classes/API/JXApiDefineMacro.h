@@ -77,6 +77,10 @@ static NSString * const kDYJXAPI_user_DeleteGroup = @"DeleteGroup";
 //退出公司
 static NSString * const kDYJXAPI_user_QuitGroup2 = @"QuitGroup2";
 
+//添加公司、子公司
+static NSString * const kDYJXAPI_user_EditGroup2 = @"EditGroup2";
+
+
 
 
 

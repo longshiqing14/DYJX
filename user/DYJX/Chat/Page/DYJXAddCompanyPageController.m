@@ -50,6 +50,16 @@
     return [self initWithCompanyType:companyType groupNumber:@"" targetId:@""];
 }
 
+-(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType requestDic:(NSDictionary *)requestDic result:(DYJXXYResult *)result {
+    self = [super init];
+    if (self) {
+        self.companyType = companyType;
+        self.viewModel.requestDic = requestDic.mutableCopy;
+        self.viewModel.result = result;
+    }
+    return self;
+}
+
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType groupNumber:(nonnull NSString *)groupNumber targetId:(nonnull NSString *)targetId{
     self = [super init];
     if (self) {
@@ -62,9 +72,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNavigation];
     [self setUI];
     [self getGroupInfo];
     
+}
+
+- (void)setNavigation {
+    if (self.companyType == DYJXAddCompanyType_Sub) {
+        self.navigationItem.title = @"子公司账号管理";
+    }else if (self.companyType == DYJXAddCompanyType_SubDetails) {
+        self.navigationItem.title = @"信息查看";
+    }else {
+        self.navigationItem.title = @"公司账号管理";
+    }
 }
 
 /** 设置UI */
@@ -462,10 +483,14 @@
                 make.bottom.mas_equalTo(self.view);
             }
         }];
+        WeakSelf
         [_addCompanyBottomView setSubcompanyBottomBtnWithTitle:@"提交"];
         [_addCompanyBottomView setSubcompanyBottomBtnWithBackgroundColor:[UIColor colorWithRed:240/255.0 green:176/255.0 blue:67/255.0 alpha:1]];
         _addCompanyBottomView.block = ^{
             //TODO: 提交数据
+            [weakSelf.viewModel uploadCompanySuccess:^(DYJXXYGroupByIdResponse *response) {
+            } failed:^(NSString * errorMsg) {
+            }];
         };
     }
     return _addCompanyBottomView;

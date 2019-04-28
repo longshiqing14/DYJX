@@ -28,62 +28,67 @@
 }
 
 - (NSDictionary *)getUpDataParameters {
-    NSMutableDictionary *parameters = @[].mutableCopy;
-    [parameters setObject:[self getUpDataParameters] forKey:@"Data"];
-    [parameters setObject:@"" forKey:@"CertificateId"];
-    [parameters setObject:@"" forKey:@"ClientId"];
-    [parameters setObject:@"iOS" forKey:@"Device"];
-    [parameters setObject:@"" forKey:@"DeviceToken"];
-    [parameters setObject:@"" forKey:@"MemberID"];
-    [parameters setObject:@"" forKey:@"UserID"];
-    return parameters;
+    NSMutableDictionary *parameters = @{}.mutableCopy;
+    [parameters setObject:[self getDataParameters] forKey:@"Data"];
+    [parameters setObject:self.requestDic[@"CertificateId"] forKey:@"CertificateId"];
+    [parameters setObject:self.requestDic[@"ClientId"] forKey:@"ClientId"];
+    [parameters setObject:self.requestDic[@"Device"] forKey:@"Device"];
+    [parameters setObject:self.requestDic[@"DeviceToken"] forKey:@"DeviceToken"];
+    [parameters setObject:self.requestDic[@"MemberID"] forKey:@"MemberID"];
+    [parameters setObject:self.requestDic[@"UserID"] forKey:@"UserID"];
+    return parameters.copy;
 }
 
 - (NSDictionary *)getDataParameters {
-    NSMutableDictionary *parameters = @[].mutableCopy;
-    [parameters setObject:@[] forKey:@"AdminUserIds"];
+    NSMutableDictionary *parameters = @{}.mutableCopy;
+    [parameters setObject:((self.result.AdminUserIds != nil) ? self.result.AdminUserIds.copy : @[self.requestDic[@"CertificateId"]].copy) forKey:@"AdminUserIds"];
     [parameters setObject:[self getEnterpriseInfoParameters] forKey:@"EnterpriseInfo"];
     [parameters setObject:@"" forKey:@"GroupInfo"];
-    [parameters setObject:@"" forKey:@"GroupName"];
-    [parameters setObject:@"" forKey:@"GroupNumber"];
-    [parameters setObject:@(1) forKey:@"GroupType"];
-    [parameters setObject:@[] forKey:@"MemberIds"];
-    [parameters setObject:@[] forKey:@"SilenceUserIds"];
+
+    [parameters setObject:self.result.GroupName? self.result.GroupName : @"" forKey:@"GroupName"];
+    [parameters setObject:self.result.GroupNumber? self.result.GroupNumber : @"" forKey:@"GroupNumber"];
+    [parameters setObject:@(self.result.GroupType ? self.result.GroupType : 1) forKey:@"GroupType"];
+    [parameters setObject:@[self.result.MemberIds] ? @[self.result.MemberIds.firstObject] : @"" forKey:@"MemberIds"];
+    [parameters setObject:self.result.SilenceUserIds ? self.result.SilenceUserIds : @"" forKey:@"SilenceUserIds"];
     [parameters setObject:@(false) forKey:@"showChild"];
     [parameters setObject:@"" forKey:@"header"];
     [parameters setObject:@(false) forKey:@"isHeader"];
     if (self.companyType == DYJXAddCompanyType_Sub ||
         self.companyType == DYJXAddCompanyType_SubDetails) {
-        [parameters setObject:@(true) forKey:@"IsPart"];
-        [parameters setObject:@"" forKey:@"ParentEnterpriseId"];
-        [parameters setObject:@(0) forKey:@"PartType"];
+        [parameters setObject:@(self.result.IsPart) forKey:@"IsPart"];
+        [parameters setObject:self.result.GroupNumber ?: @"" forKey:@"ParentEnterpriseId"];
+        [parameters setObject:@(self.result.PartType) forKey:@"PartType"];
     }
-    return parameters;
+    return parameters.copy;
 }
 
 - (NSMutableDictionary *)getEnterpriseInfoParameters {
-    NSMutableDictionary *parameters = @[].mutableCopy;
-    [parameters setObject:@"" forKey:@"CompanyAlipay"];
-    [parameters setObject:@"" forKey:@"CompanyBank"];
-    [parameters setObject:@"" forKey:@"CompanyBankCardNO"];
-    [parameters setObject:@"" forKey:@"CompanyBankName"];
-    [parameters setObject:@"" forKey:@"CompanyEmail"];
-    [parameters setObject:@"" forKey:@"CompanyInfo"];
-    [parameters setObject:@"" forKey:@"CompanyLinkMan"];
-    [parameters setObject:@"" forKey:@"CompanyLinkManCellphone"];
-    [parameters setObject:@"" forKey:@"CompanyLinkManQQ"];
-    [parameters setObject:@"" forKey:@"CompanyLinkManWeiXin"];
-    [parameters setObject:@"" forKey:@"CompanyShortName"];
-    [parameters setObject:@"" forKey:@"CompanyTel"];
-    [parameters setObject:@"" forKey:@"CompanyWeiXin"];
-    [parameters setObject:@"" forKey:@"SociologyCredit"];
-    [parameters setObject:@"" forKey:@"WebSite"];
-    [parameters setObject:@"" forKey:@"Address"];
-    [parameters setObject:@(false) forKey:@"AdminSay"];
-    [parameters setObject:@(false) forKey:@"CanNotSearch"];
-    [parameters setObject:@"" forKey:@"CompanyName"];
-    [parameters setObject:@[] forKey:@"Images"];
-    return parameters;
+    NSMutableDictionary *parameters = @{}.mutableCopy;
+    [parameters setObject:self.dataArray[0][1].text ?: @"" forKey:@"CompanyName"];
+    [parameters setObject:self.dataArray[0][2].text ?: @""  forKey:@"CompanyInfo"];
+    [parameters setObject:self.dataArray[0][3].text ?: @"" forKey:@"CompanyShortName"];
+    [parameters setObject:@(self.dataArray[0][5].isSelected) forKey:@"AdminSay"];
+    [parameters setObject:@(self.dataArray[0].lastObject.isSelected) forKey:@"CanNotSearch"];
+    
+    [parameters setObject:self.dataArray[1][0].text ?: @"" forKey:@"SociologyCredit"];
+    [parameters setObject:self.dataArray[1][1].text ?: @"" forKey:@"Address"];
+    [parameters setObject:self.dataArray[1].lastObject.text ?: @"" forKey:@"CompanyTel"];
+    
+    [parameters setObject:self.dataArray[2][0].text ?: @"" forKey:@"CompanyLinkMan"];
+    [parameters setObject:self.dataArray[2][1].text ?: @"" forKey:@"CompanyLinkManCellphone"];
+    [parameters setObject:self.dataArray[2][2].text ?: @"" forKey:@"CompanyLinkManQQ"];
+    [parameters setObject:self.dataArray[2][3].text ?: @"" forKey:@"CompanyLinkManWeiXin"];
+    [parameters setObject:self.dataArray[2][4].text ?: @"" forKey:@"WebSite"];
+    [parameters setObject:self.dataArray[2][5].text ?: @"" forKey:@"CompanyEmail"];
+    
+    [parameters setObject:self.dataArray[3][0].text ?: @"" forKey:@"CompanyWeiXin"];
+    [parameters setObject:self.dataArray[3][1].text ?: @"" forKey:@"CompanyAlipay"];
+    [parameters setObject:self.dataArray[3][2].text ?: @"" forKey:@"CompanyBankCardNO"];
+    [parameters setObject:self.dataArray[3][3].text ?: @"" forKey:@"CompanyBankName"];
+    [parameters setObject:self.dataArray[3][4].text ?: @"" forKey:@"CompanyBank"];
+    
+    [parameters setObject:self.dataArray.lastObject.lastObject.spareArray.copy ?: @[] forKey:@"Images"];
+    return parameters.copy;
 }
 
 //获取公司信息
@@ -97,7 +102,7 @@
     [reqDict setObject:@"iOS" forKey:@"Device"];
     [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
     [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
-    //    [reqDict setObject:userModel.CertificateId forKey:@"CertificateId"];
+        [reqDict setObject:userModel.CertificateId forKey:@"CertificateId"];
     [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
     
     [XYNetWorking XYPOST:kDYJXAPI_user_GetGroupById params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -241,11 +246,45 @@
     }];
 }
 
+// 提交用户数据
+- (void)uploadCompanySuccess:(void (^)(DYJXXYGroupByIdResponse *))success failed:(void (^)(NSString *))fail {
+    WeakSelf
+    [XYNetWorking XYPOST:kDYJXAPI_user_EditGroup2 params:[self getUpDataParameters] success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
+                [SVProgressHUD dismiss];
+                NSString *message = @"添加公司成功！";
+                if (weakSelf.companyType == DYJXAddCompanyType_Sub) {
+                    message = @"添加子公司成功！";
+                }else if (weakSelf.companyType == DYJXAddCompanyType_Details) {
+                    message = @"公司详情修改成功！";
+                }else {
+                    message = @"子公司详情修改成功！";
+                }
+                [YDBAlertView showToast:message dismissDelay:1.0];
+            }else{
+                [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
+            }
+        }else{
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+    }];
+}
+
 - (NSMutableDictionary *)requestDic{
     if (!_requestDic) {
         _requestDic = [NSMutableDictionary dictionary];
     }
     return _requestDic;
+}
+
+- (DYJXXYResult *)result {
+    if (!_result) {
+        _result = [[DYJXXYResult alloc]init];
+    }
+    return _result;
 }
 
 @end

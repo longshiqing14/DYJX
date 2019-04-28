@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) DYJXAddCompanyType companyType;
 
 @property (nonatomic,strong) NSMutableDictionary *requestDic;
+@property (nonatomic,strong) DYJXXYResult *result;
+
 @property (nonatomic, strong) NSMutableArray<NSMutableArray<LPXNewCustomerCellModel *> *> *dataArray;
 - (NSInteger)numberOfSections;
 
@@ -38,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)deleteGroupWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail;
 //退出公司
 - (void)QuitGroupWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail;
+// 提交用户数据
+- (void)uploadCompanySuccess:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail;
 
 - (NSDictionary *)getUpDataParameters;
 
