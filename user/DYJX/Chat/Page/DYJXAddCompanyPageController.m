@@ -69,7 +69,8 @@
 
 /** 设置UI */
 - (void)setUI {
-    if (self.companyType == DYJXAddCompanyType_Details) {
+    if (self.companyType == DYJXAddCompanyType_Details ||
+        self.companyType == DYJXAddCompanyType_Details) {
         if (self.isAdmin) {
             [self adminBottomView];
         }else {
@@ -85,7 +86,8 @@
 
 - (void)getGroupInfo {
     WeakSelf
-    if (self.companyType == DYJXAddCompanyType_Details) {
+    if (self.companyType == DYJXAddCompanyType_Details ||
+        self.companyType == DYJXAddCompanyType_Details) {
         [self.viewModel getGroupInfoWithGroupId:self.groupNumber Success:^(DYJXXYGroupByIdResponse * _Nonnull groupByIdResponse) {
             weakSelf.groupByIdResponse = groupByIdResponse;
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -215,7 +217,8 @@
     [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"model"];
     WeakSelf
     if (indexPath.section == 0 && indexPath.row == 0) {
-        if (self.companyType != DYJXAddCompanyType_Details) {
+        if (self.companyType == DYJXAddCompanyType_None ||
+            self.companyType == DYJXAddCompanyType_Sub) {
             DYJXAddCompanyPageHeaderCell *newCell = (DYJXAddCompanyPageHeaderCell *)cell;
             newCell.block = ^{
                 weakSelf.isSelectHeader = YES;
@@ -335,7 +338,8 @@
         [self.view addSubview:_tableView];
         WeakSelf
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            if (weakSelf.companyType == DYJXAddCompanyType_Details) {
+            if (weakSelf.companyType == DYJXAddCompanyType_Details ||
+                weakSelf.companyType == DYJXAddCompanyType_SubDetails) {
                 if (weakSelf.isAdmin) {
                     make.left.top.right.mas_equalTo(0);
                     make.bottom.mas_equalTo(weakSelf.adminBottomView.mas_top).mas_equalTo(0);

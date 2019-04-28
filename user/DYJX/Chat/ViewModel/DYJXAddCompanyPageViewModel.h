@@ -10,9 +10,10 @@
 #import "DYJXXYGroupByIdResponse.h"
 
 typedef NS_OPTIONS (NSInteger ,DYJXAddCompanyType){
-    DYJXAddCompanyType_None, // 默认公司
-    DYJXAddCompanyType_Sub,   // 子公司
-    DYJXAddCompanyType_Details // 公司详情
+    DYJXAddCompanyType_None,        // 默认公司
+    DYJXAddCompanyType_Sub,         // 子公司
+    DYJXAddCompanyType_Details,     // 公司详情
+    DYJXAddCompanyType_SubDetails   // 子公司详情
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -37,6 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)deleteGroupWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail;
 //退出公司
 - (void)QuitGroupWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail;
+
+- (NSDictionary *)getUpDataParameters;
+
 @end
 
 NS_ASSUME_NONNULL_END
