@@ -18,6 +18,8 @@
 #import "CompanyAdminBottomView.h"
 #import "JSExtension.h"
 #import "SubcompanyBottomView.h"
+#import "BaiduMapViewController.h"
+#import "DYJXCompanyAddressController.h"
 
 @interface DYJXAddCompanyPageController ()<UITableViewDelegate,UITableViewDataSource,XYSelectIconPopViewDelegate>
 
@@ -75,6 +77,7 @@
     [self setNavigation];
     [self setUI];
     [self getGroupInfo];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCompanyAddressNotification:) name:kDYJXAPI_CompanyAddress_Notification object:nil];
     
 }
 
@@ -91,7 +94,7 @@
 /** 设置UI */
 - (void)setUI {
     if (self.companyType == DYJXAddCompanyType_Details ||
-        self.companyType == DYJXAddCompanyType_Details) {
+        self.companyType == DYJXAddCompanyType_SubDetails) {
         if (self.isAdmin) {
             [self adminBottomView];
         }else {
@@ -105,10 +108,27 @@
     self.tableView.estimatedSectionFooterHeight = 0;
 }
 
+- (void)changeCompanyAddressNotification:(NSNotification *)noti {
+    NSDictionary *userInfo = noti.userInfo;
+    NSMutableString *companyAddress = @"".mutableCopy;
+    if ([[userInfo allKeys] containsObject:@"provinceName"]) {
+        [companyAddress insertString:userInfo[@"provinceName"] atIndex:companyAddress.length];
+    }
+    if ([[userInfo allKeys] containsObject:@"cityName"]) {
+        [companyAddress insertString:userInfo[@"cityName"] atIndex:companyAddress.length];
+    }
+    if ([[userInfo allKeys] containsObject:@"districtName"]) {
+        [companyAddress insertString:userInfo[@"districtName"] atIndex:companyAddress.length];
+    }
+    self.viewModel.dataArray[1][1].text = companyAddress.copy;
+    NSIndexPath *indexPath= [NSIndexPath indexPathForRow:1 inSection:1] ;
+    [self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+}
+
 - (void)getGroupInfo {
     WeakSelf
     if (self.companyType == DYJXAddCompanyType_Details ||
-        self.companyType == DYJXAddCompanyType_Details) {
+        self.companyType == DYJXAddCompanyType_SubDetails) {
         [self.viewModel getGroupInfoWithGroupId:self.groupNumber Success:^(DYJXXYGroupByIdResponse * _Nonnull groupByIdResponse) {
             weakSelf.groupByIdResponse = groupByIdResponse;
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -154,16 +174,33 @@
 }
 
 - (void)updateLicenseOrHeaderWithImages:(NSArray<UIImage *> *)images {
-    if (self.isSelectHeader) { // 头像
-        self.headerImage = images.firstObject;
-        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:0];
-        OwnerImageCell *ownerImageCell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [ownerImageCell.porityImageView setImage:images.firstObject];
-    }else {
-        [self.imageArray addObjectsFromArray:images];
-        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:4] ;
-        [self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
-    }
+    WeakSelf
+    [SVProgressHUD showWithStatus:@"上传中..."];
+    [self.viewModel uploadFile:images.firstObject Success:^(id  _Nullable responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            [SVProgressHUD dismiss];
+            if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
+                [YDBAlertView showToast:@"图片上传中成功！" dismissDelay:1.0];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (weakSelf.isSelectHeader) { // 头像
+                        weakSelf.headerImage = images.firstObject;
+                        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:0];
+                        OwnerImageCell *ownerImageCell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
+                        [ownerImageCell.porityImageView setImage:images.firstObject];
+                    }else {
+                        [weakSelf.imageArray addObjectsFromArray:images];
+                        [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:responseObject[@"SavedFileName"]];
+                        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:4] ;
+                        [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+                    }
+                });
+            }else{
+                [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
+            }
+        }
+    } failed:^(NSString * _Nonnull errorMsg) {
+        [YDBAlertView showToast:@"上传中失败，请重新上传！" dismissDelay:1.0];
+    }];
 }
 
 #pragma mark - 进入会话
@@ -217,12 +254,31 @@
 }
 #pragma mark - 删除公司
 - (void)deleteCompanyWithGroupId:(NSString *)groupId {
+    WeakSelf
     [self.viewModel deleteGroupWithGroupId:groupId Success:^(DYJXXYGroupByIdResponse *response) {
         
     } failed:^(NSString *errorMsg) {
         
     }];
 }
+
+#pragma mark - （子）公司所属省市
+- (void)getCompanyAddressProvinces {
+    WeakSelf
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    [self.viewModel getProvincesWithSuccess:^(DYJXAddressModel * _Nonnull addressModel) {
+        [SVProgressHUD dismiss];
+        if (addressModel.Succeed) {
+            DYJXCompanyAddressController *companyAddressVC = [[DYJXCompanyAddressController alloc]initWithAddressModel:addressModel addressType:(DYJXCompanyAddressType_Province) provinceName:@"" cityName:@""];
+            [weakSelf.navigationController pushViewController:companyAddressVC animated:YES];
+        }else {
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        }
+    } failed:^(NSString * _Nonnull errorMsg) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+    }];
+}
+
 
 #pragma mark - UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -235,7 +291,12 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.viewModel.dataArray[indexPath.section][indexPath.row].cellIdentity forIndexPath:indexPath];
-    [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"model"];
+    if (indexPath.section == self.viewModel.dataArray.count - 1) {
+        [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"cellmodel"];
+    }else {
+        [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"model"];
+    }
+    
     WeakSelf
     if (indexPath.section == 0 && indexPath.row == 0) {
         if (self.companyType == DYJXAddCompanyType_None ||
@@ -271,6 +332,7 @@
         newCell.deleteImageBlock = ^(NSInteger index) {
             //TODO: 删除图片
             [weakSelf.imageArray removeObjectAtIndex:index];
+            [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray removeObjectAtIndex:index];
             [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
         };
     }else {
@@ -289,10 +351,15 @@
                 
             }else if (indexPath.section == 1 && indexPath.row == 1) {
                 //TODO: 公司地址
-                
+                [weakSelf getCompanyAddressProvinces];
             }else if (indexPath.section == 1 && indexPath.row == 3) {
                 //TODO: 公司GPS位置
-                
+                CLLocationCoordinate2D centerCoordinate = {0,0};
+                BaiduMapViewController *baiduMapVC = [[BaiduMapViewController alloc]initWithCenterCoordinate:centerCoordinate poiAddressBlock:^(CLLocationCoordinate2D centerCoordinate, NSString *name) {
+                    cell.model.text = name;
+                    [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+                }];
+                [weakSelf.navigationController pushViewController:baiduMapVC animated:YES];
             }
         };
     }
@@ -489,6 +556,7 @@
         _addCompanyBottomView.block = ^{
             //TODO: 提交数据
             [weakSelf.viewModel uploadCompanySuccess:^(DYJXXYGroupByIdResponse *response) {
+                [weakSelf.navigationController popViewControllerAnimated:YES];
             } failed:^(NSString * errorMsg) {
             }];
         };

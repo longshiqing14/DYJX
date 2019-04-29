@@ -27,6 +27,150 @@
     return self.dataArray[section].count;
 }
 
+- (void)setCompanyInfoWithResponse:(DYJXXYGroupByIdResponse *)response {
+    
+    
+    
+//    {
+//        ClientId = "00000000-0000-0000-0000-000000000000";
+//        DebugMessages =     (
+//        );
+//        Kicked = 0;
+//        MemberID = "00000000-0000-0000-0000-000000000000";
+//        Message = "";
+//        Result =     {
+//            AdminUserIds =         (
+//                                    "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94"
+//                                    );
+//            AdminUsers =         (
+//                                  {
+//                                      BelongEnterprise = "00000000-0000-0000-0000-000000000000";
+//                                      Cellphone = 18778399213;
+//                                      CreateBy = N18778399213;
+//                                      CreateOn = "2019-01-22 17:30:47";
+//                                      Deleted = 0;
+//                                      Disabled = 0;
+//                                      DisplayName = N18778399213;
+//                                      DisplayTel = 18778399213;
+//                                      Id = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
+//                                      Number = 1053169;
+//                                      NumberString = 1053169;
+//                                      RongCloudToken = "QivjXlRZefBX+xURCIPaQTa6yoqe/7ZK/+jxzigwUeL3xtq9FeNFY2ODgzRTPMmUUWUjq3TGbin+hjZ67e8g37Jy1nTd4DCtJMOsEL/U75iOquxRTvA5Le9bHaoycKXMxerIxppc31o=";
+//                                      Type = 0;
+//                                      UserName = N18778399213;
+//                                  }
+//                                  );
+//            AllMemberIds =         (
+//                                    "00000000-0000-0000-0000-000000000000",
+//                                    "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94"
+//                                    );
+//            CanNotSearch = 0;
+//            Children =         (
+//            );
+//            ContactRemarks =         (
+//            );
+//            CreateBy = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
+//            CreateOn = "2019-04-29 11:43:20";
+//            Creator =         {
+//                BelongEnterprise = "00000000-0000-0000-0000-000000000000";
+//                Cellphone = 18778399213;
+//                CreateBy = N18778399213;
+//                CreateOn = "2019-01-22 17:30:47";
+//                Deleted = 0;
+//                Disabled = 0;
+//                DisplayName = N18778399213;
+//                DisplayTel = 18778399213;
+//                Id = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
+//                Number = 1053169;
+//                NumberString = 1053169;
+//                RongCloudToken = "QivjXlRZefBX+xURCIPaQTa6yoqe/7ZK/+jxzigwUeL3xtq9FeNFY2ODgzRTPMmUUWUjq3TGbin+hjZ67e8g37Jy1nTd4DCtJMOsEL/U75iOquxRTvA5Le9bHaoycKXMxerIxppc31o=";
+//                Type = 0;
+//                UserName = N18778399213;
+//            };
+//            CreatorId = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
+//            Deleted = 0;
+//            Disabled = 0;
+//            EnterpriseInfo =         {
+//                AdminSay = 1;
+//                CanNotSearch = 1;
+//                CompanyInfo = 1234567;
+//                CompanyName = "Liping ";
+//                Id = "00000000-0000-0000-0000-000000000000";
+//            };
+//            GroupInfo = 1234567;
+//            GroupName = "Liping ";
+//            GroupNumber = "6ea18467-5944-4a22-a40d-9c797bf51381";
+//            GroupType = 1;
+//            Id = "6ea18467-5944-4a22-a40d-9c797bf51381";
+//            IsAllMemberGroup = 0;
+//            IsPart = 0;
+//            MemberIds =         (
+//                                 "00000000-0000-0000-0000-000000000000",
+//                                 "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94"
+//                                 );
+//            Members =         (
+//                               {
+//                                   BelongEnterprise = "00000000-0000-0000-0000-000000000000";
+//                                   Cellphone = 18778399213;
+//                                   CreateBy = N18778399213;
+//                                   CreateOn = "2019-01-22 17:30:47";
+//                                   Deleted = 0;
+//                                   Disabled = 0;
+//                                   DisplayName = N18778399213;
+//                                   DisplayTel = 18778399213;
+//                                   Id = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
+//                                   Number = 1053169;
+//                                   NumberString = 1053169;
+//                                   RongCloudToken = "QivjXlRZefBX+xURCIPaQTa6yoqe/7ZK/+jxzigwUeL3xtq9FeNFY2ODgzRTPMmUUWUjq3TGbin+hjZ67e8g37Jy1nTd4DCtJMOsEL/U75iOquxRTvA5Le9bHaoycKXMxerIxppc31o=";
+//                                   Type = 0;
+//                                   UserName = N18778399213;
+//                               }
+//                               );
+//            NotAllowJoinFree = 0;
+//            NotAllowMemberInvite = 0;
+//            NotAllowSay = 0;
+//            Number = 100130;
+//            NumberString = 100130;
+//            Owner =         {
+//                BelongEnterprise = "00000000-0000-0000-0000-000000000000";
+//                Cellphone = 18778399213;
+//                CreateBy = N18778399213;
+//                CreateOn = "2019-01-22 17:30:47";
+//                Deleted = 0;
+//                Disabled = 0;
+//                DisplayName = N18778399213;
+//                DisplayTel = 18778399213;
+//                Id = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
+//                Number = 1053169;
+//                NumberString = 1053169;
+//                RongCloudToken = "QivjXlRZefBX+xURCIPaQTa6yoqe/7ZK/+jxzigwUeL3xtq9FeNFY2ODgzRTPMmUUWUjq3TGbin+hjZ67e8g37Jy1nTd4DCtJMOsEL/U75iOquxRTvA5Le9bHaoycKXMxerIxppc31o=";
+//                Type = 0;
+//                UserName = N18778399213;
+//            };
+//            OwnerId = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
+//            PartType = 0;
+//            Relation =         {
+//                InBlacklist = 0;
+//                IsAdmin = 1;
+//                IsContact = 0;
+//                IsFriend = 0;
+//                IsMember = 1;
+//                IsOwner = 1;
+//                IsParentAdmin = 0;
+//                IsParentOwner = 0;
+//                Managed = 1;
+//            };
+//            SilenceUserIds =         (
+//                                      "00000000-0000-0000-0000-000000000000"
+//                                      );
+//            WildType = 0;
+//        };
+//        Succeed = 1;
+//        UserID = "00000000-0000-0000-0000-000000000000";
+//    }
+
+}
+
 - (NSDictionary *)getUpDataParameters {
     NSMutableDictionary *parameters = @{}.mutableCopy;
     [parameters setObject:[self getDataParameters] forKey:@"Data"];
@@ -48,7 +192,7 @@
     [parameters setObject:self.result.GroupName? self.result.GroupName : @"" forKey:@"GroupName"];
     [parameters setObject:self.result.GroupNumber? self.result.GroupNumber : @"" forKey:@"GroupNumber"];
     [parameters setObject:@(self.result.GroupType ? self.result.GroupType : 1) forKey:@"GroupType"];
-    [parameters setObject:@[self.result.MemberIds] ? @[self.result.MemberIds.firstObject] : @"" forKey:@"MemberIds"];
+    [parameters setObject:self.result.MemberIds ? @[self.result.MemberIds.firstObject] : @"" forKey:@"MemberIds"];
     [parameters setObject:self.result.SilenceUserIds ? self.result.SilenceUserIds : @"" forKey:@"SilenceUserIds"];
     [parameters setObject:@(false) forKey:@"showChild"];
     [parameters setObject:@"" forKey:@"header"];
@@ -111,7 +255,7 @@
                 [SVProgressHUD dismiss];
                 DYJXXYGroupByIdResponse *groupByIdModel = [DYJXXYGroupByIdResponse modelWithJSON:responseObject];
                 //TODO: 数据请求成功数据重组到数组中
-                
+                weakSelf.response = groupByIdModel;
                 success(groupByIdModel);
             }else{
                 [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
@@ -239,7 +383,7 @@
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         NSLog(@"上传进度：%f",1.0 * uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        success(responseObject);
+        !success ?: success(responseObject);
         NSLog(@"上传成功");
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"上传失败%@",error);
@@ -258,7 +402,7 @@
                     message = @"添加子公司成功！";
                 }else if (weakSelf.companyType == DYJXAddCompanyType_Details) {
                     message = @"公司详情修改成功！";
-                }else {
+                }else if (weakSelf.companyType == DYJXAddCompanyType_SubDetails) {
                     message = @"子公司详情修改成功！";
                 }
                 [YDBAlertView showToast:message dismissDelay:1.0];
@@ -270,6 +414,22 @@
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
         [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+    }];
+}
+
+//（子）公司所属省市
+- (void)getProvincesWithSuccess:(void (^)(DYJXAddressModel * _Nonnull))success failed:(void (^)(NSString * _Nonnull))fail {
+    
+    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+    [reqDict setObject:self.requestDic[@"Device"] forKey:@"Device"];
+    [reqDict setObject:self.requestDic[@"ClientId"] forKey:@"ClientId"];
+    [reqDict setObject:self.requestDic[@"CertificateId"] forKey:@"CertificateId"];
+    [reqDict setObject:self.requestDic[@"MemberID"] forKey:@"MemberID"];
+    [reqDict setObject:self.requestDic[@"UserID"] forKey:@"UserID"];
+    [XYNetWorking XYPOST:kDYJXAPI_user_GetProvinces params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        !success ?: success([DYJXAddressModel parse:responseObject]);
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        !fail ?: fail(@"连接异常");
     }];
 }
 

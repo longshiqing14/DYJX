@@ -669,6 +669,13 @@
 		F91EE3872275E9BC006BCB37 /* DYXJBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE3802275E9B1006BCB37 /* DYXJBusines.m */; };
 		F91EE3882275E9BC006BCB37 /* DYXJIMInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE3812275E9B1006BCB37 /* DYXJIMInfo.m */; };
 		F91EE3892275E9BC006BCB37 /* DYXJSearchUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE3842275E9B1006BCB37 /* DYXJSearchUserModel.m */; };
+		F91EE3922276C73E006BCB37 /* BaiduPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE38C2276C73E006BCB37 /* BaiduPlaceModel.m */; };
+		F91EE3932276C73E006BCB37 /* BaiduLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE38E2276C73E006BCB37 /* BaiduLocation.m */; };
+		F91EE3942276C73E006BCB37 /* BaiduMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE38F2276C73E006BCB37 /* BaiduMapViewController.m */; };
+		F91EE3952276C73E006BCB37 /* serach_Map.png in Resources */ = {isa = PBXBuildFile; fileRef = F91EE3902276C73E006BCB37 /* serach_Map.png */; };
+		F91EE3982276CD55006BCB37 /* DYJXCompanyAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE3972276CD55006BCB37 /* DYJXCompanyAddressController.m */; };
+		F91EE39B2276CED2006BCB37 /* DYJXAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE39A2276CED2006BCB37 /* DYJXAddressModel.m */; };
+		F91EE39E2276EA66006BCB37 /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE39C2276EA65006BCB37 /* NSObject+Parse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1946,6 +1953,19 @@
 		F91EE3832275E9B1006BCB37 /* DYXJBusines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYXJBusines.h; sourceTree = "<group>"; };
 		F91EE3842275E9B1006BCB37 /* DYXJSearchUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYXJSearchUserModel.m; sourceTree = "<group>"; };
 		F91EE3852275E9B1006BCB37 /* DYXJIMInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYXJIMInfo.h; sourceTree = "<group>"; };
+		F91EE38B2276C73E006BCB37 /* BaiduLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduLocation.h; sourceTree = "<group>"; };
+		F91EE38C2276C73E006BCB37 /* BaiduPlaceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduPlaceModel.m; sourceTree = "<group>"; };
+		F91EE38D2276C73E006BCB37 /* BaiduMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMapViewController.h; sourceTree = "<group>"; };
+		F91EE38E2276C73E006BCB37 /* BaiduLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduLocation.m; sourceTree = "<group>"; };
+		F91EE38F2276C73E006BCB37 /* BaiduMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMapViewController.m; sourceTree = "<group>"; };
+		F91EE3902276C73E006BCB37 /* serach_Map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = serach_Map.png; sourceTree = "<group>"; };
+		F91EE3912276C73E006BCB37 /* BaiduPlaceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduPlaceModel.h; sourceTree = "<group>"; };
+		F91EE3962276CD55006BCB37 /* DYJXCompanyAddressController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXCompanyAddressController.h; sourceTree = "<group>"; };
+		F91EE3972276CD55006BCB37 /* DYJXCompanyAddressController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXCompanyAddressController.m; sourceTree = "<group>"; };
+		F91EE3992276CED2006BCB37 /* DYJXAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXAddressModel.h; sourceTree = "<group>"; };
+		F91EE39A2276CED2006BCB37 /* DYJXAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXAddressModel.m; sourceTree = "<group>"; };
+		F91EE39C2276EA65006BCB37 /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
+		F91EE39D2276EA65006BCB37 /* NSObject+Parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Parse.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2201,6 +2221,7 @@
 		481FE7012182165700CFE26B /* DYJX */ = {
 			isa = PBXGroup;
 			children = (
+				F91EE38A2276C73E006BCB37 /* BaiduMap */,
 				E19DC895219AC28100C86478 /* RCloudSDK */,
 				E17AF1E221A01D430041249C /* Model */,
 				48511D6C219EC376006C6081 /* MyFrameWork */,
@@ -2295,6 +2316,8 @@
 		48511D84219FC9C4006C6081 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				F91EE39D2276EA65006BCB37 /* NSObject+Parse.h */,
+				F91EE39C2276EA65006BCB37 /* NSObject+Parse.m */,
 				F91EE37222709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.h */,
 				F91EE37122709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m */,
 				48511D85219FC9C4006C6081 /* NSObject+Extension.h */,
@@ -2419,6 +2442,8 @@
 				48E2503521D6528400CC7D9E /* DYJXFireAdminPage.m */,
 				F91EE36F226F50C2006BCB37 /* DYJXAddCompanyPageController.h */,
 				F91EE36E226F50C2006BCB37 /* DYJXAddCompanyPageController.m */,
+				F91EE3962276CD55006BCB37 /* DYJXCompanyAddressController.h */,
+				F91EE3972276CD55006BCB37 /* DYJXCompanyAddressController.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -2487,6 +2512,8 @@
 				F91EE365226F5032006BCB37 /* DYJXAddSubCompany.json */,
 				F91EE364226F5031006BCB37 /* LPXNewCustomerCellModel.h */,
 				F91EE367226F5032006BCB37 /* LPXNewCustomerCellModel.m */,
+				F91EE3992276CED2006BCB37 /* DYJXAddressModel.h */,
+				F91EE39A2276CED2006BCB37 /* DYJXAddressModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4747,6 +4774,20 @@
 			path = "SearchUser ";
 			sourceTree = "<group>";
 		};
+		F91EE38A2276C73E006BCB37 /* BaiduMap */ = {
+			isa = PBXGroup;
+			children = (
+				F91EE38B2276C73E006BCB37 /* BaiduLocation.h */,
+				F91EE38E2276C73E006BCB37 /* BaiduLocation.m */,
+				F91EE3912276C73E006BCB37 /* BaiduPlaceModel.h */,
+				F91EE38C2276C73E006BCB37 /* BaiduPlaceModel.m */,
+				F91EE38D2276C73E006BCB37 /* BaiduMapViewController.h */,
+				F91EE38F2276C73E006BCB37 /* BaiduMapViewController.m */,
+				F91EE3902276C73E006BCB37 /* serach_Map.png */,
+			);
+			path = BaiduMap;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4909,6 +4950,7 @@
 				488B093121B6232300DAA97E /* CompanyAdminBottomView.xib in Resources */,
 				CB3307A51FA1BF8F00117695 /* IQKeyboardManager.bundle in Resources */,
 				4804A186219593170081AB5B /* native-bundle-main.js in Resources */,
+				F91EE3952276C73E006BCB37 /* serach_Map.png in Resources */,
 				48E2504321D7AFB900CC7D9E /* DJCompanyChatHeader.xib in Resources */,
 				4804A14A21957D5D0081AB5B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				48E2505021D8AA5C00CC7D9E /* DJGroupChatCell.xib in Resources */,
@@ -5192,6 +5234,7 @@
 				E15767E721C9122D003A5C25 /* NIMContactPickedView.m in Sources */,
 				48A1AC5E21FAAFAE00C1DB45 /* XYPlayModel.m in Sources */,
 				E1A137B721FFF3F600A5E4A1 /* GSCCompare.m in Sources */,
+				F91EE3942276C73E006BCB37 /* BaiduMapViewController.m in Sources */,
 				4895F0F5220432B300203073 /* DJWildGroupHeaderView.m in Sources */,
 				DE36FA611FCEDE5900ED184E /* PPNumberButton.m in Sources */,
 				E11C423521A2D6750039A53A /* HeadSearchView.m in Sources */,
@@ -5309,6 +5352,7 @@
 				E1ACC68B21D89CC700E0EEE9 /* BlackTableViewCell.m in Sources */,
 				481FE72A2183125600CFE26B /* DYJXUserModel.m in Sources */,
 				E157684621C9122D003A5C25 /* NIMSessionUnknowContentView.m in Sources */,
+				F91EE39E2276EA66006BCB37 /* NSObject+Parse.m in Sources */,
 				E13E60D321C35AD200D0C4B3 /* AFHttpTool.m in Sources */,
 				E1A137C12200855E00A5E4A1 /* CompareHeadView.m in Sources */,
 				4873513A2186F475001B59AB /* DYJXIdentitySwitchingPage.m in Sources */,
@@ -5355,6 +5399,7 @@
 				CBCF83561F7129BD00B20CF9 /* LBXScanView.m in Sources */,
 				48E2502921C8922500CC7D9E /* XYDYJXIMUser.m in Sources */,
 				CBF74E391F8DBA6600D528C2 /* XYLanuchGuideVC.m in Sources */,
+				F91EE3932276C73E006BCB37 /* BaiduLocation.m in Sources */,
 				DE71B165208744DD00467E06 /* PYPhotoCell.m in Sources */,
 				48B8308C1FB9AEBB0019F503 /* JXBaseModel.m in Sources */,
 				E15767ED21C9122D003A5C25 /* NIMKitTimerHolder.m in Sources */,
@@ -5480,6 +5525,7 @@
 				CBE85A101F60FC4600E1E4EA /* XYUserDefaults.m in Sources */,
 				E157684221C9122D003A5C25 /* NIMSessionNetChatNotifyContentView.m in Sources */,
 				CBE8598D1F5E81E100E1E4EA /* XYCycleImageModel.m in Sources */,
+				F91EE3982276CD55006BCB37 /* DYJXCompanyAddressController.m in Sources */,
 				E157682821C9122D003A5C25 /* NIMVideoContentConfig.m in Sources */,
 				E1D913BA21C0C3020006B171 /* SimpleMessageCell.m in Sources */,
 				E1ACC69D21D8AAA500E0EEE9 /* DYYBlackObj.m in Sources */,
@@ -5499,6 +5545,7 @@
 				CBCF83531F7129BD00B20CF9 /* LBXScanLineAnimation.m in Sources */,
 				CBE859A71F5E854500E1E4EA /* XYAppDotNetAPIClient.m in Sources */,
 				4826A47B21BF552400EAF963 /* DYJXQRCodePage.m in Sources */,
+				F91EE3922276C73E006BCB37 /* BaiduPlaceModel.m in Sources */,
 				E157682421C9122D003A5C25 /* NIMSessionListCell.m in Sources */,
 				F91EE3792272D0EC006BCB37 /* DYJXAddCompanyPageViewModel.m in Sources */,
 				E157681521C9122D003A5C25 /* NIMTeamSwitchTableViewCell.m in Sources */,
@@ -5598,6 +5645,7 @@
 				E13E60EA21C3632000D0C4B3 /* RCDataBaseManager.m in Sources */,
 				E17FC6D621A1053E00D435D9 /* DJJSBusines.m in Sources */,
 				CBFF46551F7E7ACC00D2AF93 /* UIView+XLExtension.m in Sources */,
+				F91EE39B2276CED2006BCB37 /* DYJXAddressModel.m in Sources */,
 				E157685F21C914AC003A5C25 /* RCIMMessage.m in Sources */,
 				E157683221C9122D003A5C25 /* NIMSessionTableAdapter.m in Sources */,
 				E13E60E221C3614500D0C4B3 /* RCDRCIMDataSource.m in Sources */,

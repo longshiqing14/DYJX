@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DYJXXYGroupByIdResponse.h"
+#import "DYJXAddressModel.h"
 
 typedef NS_OPTIONS (NSInteger ,DYJXAddCompanyType){
     DYJXAddCompanyType_None,        // 默认公司
@@ -23,9 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType;
 
 @property (nonatomic, assign) DYJXAddCompanyType companyType;
-
+/** 添加（子）公司 */
 @property (nonatomic,strong) NSMutableDictionary *requestDic;
 @property (nonatomic,strong) DYJXXYResult *result;
+/** （子）公司详情 */
+@property (nonatomic, strong) DYJXXYGroupByIdResponse *response;
 
 @property (nonatomic, strong) NSMutableArray<NSMutableArray<LPXNewCustomerCellModel *> *> *dataArray;
 - (NSInteger)numberOfSections;
@@ -42,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)QuitGroupWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail;
 // 提交用户数据
 - (void)uploadCompanySuccess:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail;
+
+//（子）公司所属省市
+- (void)getProvincesWithSuccess:(void(^)(DYJXAddressModel *addressModel))success failed:(void(^)(NSString *errorMsg))fail;
 
 - (NSDictionary *)getUpDataParameters;
 

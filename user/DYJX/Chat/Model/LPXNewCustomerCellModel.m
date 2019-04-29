@@ -10,4 +10,11 @@
 
 @implementation LPXNewCustomerCellModel
 
+- (NSMutableArray *)spareArray {
+    if (!_spareArray) {
+        _spareArray = [[NSMutableArray alloc]init];
+    }
+    return _spareArray;
+}
+
 @end

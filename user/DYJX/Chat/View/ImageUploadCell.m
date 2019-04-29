@@ -62,6 +62,10 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
     
 }
 
+- (void)setCellmodel:(LPXNewCustomerCellModel *)cellmodel {
+    _cellmodel = cellmodel;
+}
+
 
 -(void)setImagesArray:(NSMutableArray *)imagesArray{
     _imagesArray = imagesArray;
