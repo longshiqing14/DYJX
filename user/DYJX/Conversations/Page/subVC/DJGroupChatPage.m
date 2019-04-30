@@ -18,6 +18,7 @@
 #import "DJCompanyChatCell.h"
 #import "DJWildGroupHeaderView.h"
 #import "JSExtension.h"
+#import "DJAddMorePageViewController.h"
 
 @interface DJGroupChatPage ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
@@ -88,7 +89,8 @@
     [self.tableView.mj_header beginRefreshing];
 }
 -(void)addClick {
-
+    DJAddMorePageViewController *vc = [[DJAddMorePageViewController alloc] initWithNibName:@"DJAddMorePageViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)btnClick:(UIButton *)sender {
 //    [self.headView.innerButton setSelected:NO];

@@ -33,6 +33,8 @@
 		4804A1A821995F250081AB5B /* storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1A721995F250081AB5B /* storage.framework */; };
 		4804A1AD219981030081AB5B /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1AC219981020081AB5B /* liblibNativeUI.a */; };
 		4804A1C4219D64E90081AB5B /* DYJXConversionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804A1C3219D64E80081AB5B /* DYJXConversionViewModel.m */; };
+		4804C4B622783A0A00CA3D81 /* DJAddMorePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804C4B422783A0A00CA3D81 /* DJAddMorePageViewController.m */; };
+		4804C4B722783A0A00CA3D81 /* DJAddMorePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4804C4B522783A0A00CA3D81 /* DJAddMorePageViewController.xib */; };
 		480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97392086118400EF09C2 /* UITextView+XYPlaceHolder.m */; };
 		481FE70B2182170600CFE26B /* DYJXLoginPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 481FE7092182170600CFE26B /* DYJXLoginPage.m */; };
 		481FE70C2182170600CFE26B /* DYJXLoginPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481FE70A2182170600CFE26B /* DYJXLoginPage.xib */; };
@@ -761,6 +763,9 @@
 		4804A1AC219981020081AB5B /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeUI.a; sourceTree = "<group>"; };
 		4804A1C2219D64E80081AB5B /* DYJXConversionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXConversionViewModel.h; sourceTree = "<group>"; };
 		4804A1C3219D64E80081AB5B /* DYJXConversionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXConversionViewModel.m; sourceTree = "<group>"; };
+		4804C4B322783A0A00CA3D81 /* DJAddMorePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJAddMorePageViewController.h; sourceTree = "<group>"; };
+		4804C4B422783A0A00CA3D81 /* DJAddMorePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJAddMorePageViewController.m; sourceTree = "<group>"; };
+		4804C4B522783A0A00CA3D81 /* DJAddMorePageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJAddMorePageViewController.xib; sourceTree = "<group>"; };
 		480B97382086118400EF09C2 /* UITextView+XYPlaceHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+XYPlaceHolder.h"; sourceTree = "<group>"; };
 		480B97392086118400EF09C2 /* UITextView+XYPlaceHolder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+XYPlaceHolder.m"; sourceTree = "<group>"; };
 		481434A31FE8C18600E7DCD8 /* UPAPayPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UPAPayPlugin.h; sourceTree = "<group>"; };
@@ -4614,6 +4619,9 @@
 				E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */,
 				4895F0EB2200477B00203073 /* DJWildGroupsChatPage.h */,
 				4895F0EC2200477B00203073 /* DJWildGroupsChatPage.m */,
+				4804C4B322783A0A00CA3D81 /* DJAddMorePageViewController.h */,
+				4804C4B422783A0A00CA3D81 /* DJAddMorePageViewController.m */,
+				4804C4B522783A0A00CA3D81 /* DJAddMorePageViewController.xib */,
 			);
 			path = subVC;
 			sourceTree = "<group>";
@@ -4985,6 +4993,7 @@
 				E15767E121C9122D003A5C25 /* NIMKitEmoticon.bundle in Resources */,
 				488E89F2219FFD5A008695A7 /* default_image.png in Resources */,
 				48A1AC5221FAAC5600C1DB45 /* JXRefumdImageCameraCollectionCell.xib in Resources */,
+				4804C4B722783A0A00CA3D81 /* DJAddMorePageViewController.xib in Resources */,
 				CBF74E351F8CD0B500D528C2 /* lanuchStart.png in Resources */,
 				CBFF458E1F74C03500D2AF93 /* UMSocialSDKPromptResources.bundle in Resources */,
 				48E2504B21D8A7A100CC7D9E /* DJGroupChatHeaderView.xib in Resources */,
@@ -5634,6 +5643,7 @@
 				DE4364C91FCBBA93002976B0 /* BaseTableView.m in Sources */,
 				E1CDB25221D7AA410049B124 /* SWQRCodeViewController.m in Sources */,
 				E19DC8C9219ACC6A00C86478 /* DJContactsChatViewController.m in Sources */,
+				4804C4B622783A0A00CA3D81 /* DJAddMorePageViewController.m in Sources */,
 				48A370F421B13AA8002861DD /* DYJXUserInfoDetailViewModel.m in Sources */,
 				48A3710321B500B9002861DD /* DYJXCompanyInfoDetailPage.m in Sources */,
 				E1C1A40621C2B0DE0050407D /* MyTextMessageCell.m in Sources */,
