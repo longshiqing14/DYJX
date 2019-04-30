@@ -83,6 +83,8 @@
 }
 #pragma mark - Action
 -(void)searchClick {
+    [self.viewModel.requestDic setObject:self.headView.textField.text forKey:@"Keyword"];
+    [self.tableView.mj_header beginRefreshing];
     
 }
 -(void)addClick {
@@ -379,6 +381,9 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            if (![YWDTools isNil:weakSelf.headView.textField.text]) {
+                [weakSelf.viewModel.requestDic setObject:weakSelf.headView.textField.text forKey:@"Keyword"];
+            };
             [weakSelf.viewModel getMyCompanyAndGroupDataSuccess:^{
                 [weakSelf.tableView.mj_header endRefreshing];
                 [weakSelf.tableView reloadData];
