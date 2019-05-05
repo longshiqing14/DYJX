@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DSSMobileView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="将该联系人设为" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tua-gb-e3u">
+                    <rect key="frame" x="26" y="9" width="107.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NfD-Nu-2zm">
+                    <rect key="frame" x="10" y="40" width="89" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="好友" image="register_checkbox">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="Hello:" destination="iN0-l3-epB" eventType="touchUpInside" id="hig-eN-vld"/>
+                        <action selector="friendSelect:" destination="iN0-l3-epB" eventType="touchUpInside" id="Dpa-wb-VOB"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcq-z8-sb2">
+                    <rect key="frame" x="180" y="8" width="89" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="全选" image="register_checkbox">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="allSelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="nwU-3J-ril"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njk-g2-SlM">
+                    <rect key="frame" x="99" y="40" width="89" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="普通" image="register_checkbox">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="normalClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="XcU-ju-Rfw"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3L-7y-VUw">
+                    <rect key="frame" x="277" y="40" width="89" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="删除" image="register_checkbox">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="deleteClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="1ox-GB-03U"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4DL-Kc-w7O">
+                    <rect key="frame" x="188" y="40" width="89" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="黑名单" image="register_checkbox">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="blackSelect:" destination="iN0-l3-epB" eventType="touchUpInside" id="lHz-iv-WES"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1F-dI-2ah">
+                    <rect key="frame" x="277" y="8" width="89" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="清除" image="register_checkbox">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="clearClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="m92-5g-7Pa"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="NfD-Nu-2zm" firstAttribute="top" secondItem="A0w-g8-9jP" secondAttribute="top" constant="40" id="1WY-ci-whh"/>
+                <constraint firstItem="Wcq-z8-sb2" firstAttribute="top" secondItem="A0w-g8-9jP" secondAttribute="top" constant="8" id="4GC-q1-g2k"/>
+                <constraint firstItem="K1F-dI-2ah" firstAttribute="centerY" secondItem="Tua-gb-e3u" secondAttribute="centerY" id="5D4-3B-tgB"/>
+                <constraint firstItem="Wcq-z8-sb2" firstAttribute="width" secondItem="NfD-Nu-2zm" secondAttribute="width" id="5g0-HE-iHD"/>
+                <constraint firstItem="njk-g2-SlM" firstAttribute="centerY" secondItem="NfD-Nu-2zm" secondAttribute="centerY" id="9FL-s2-K6v"/>
+                <constraint firstItem="A0w-g8-9jP" firstAttribute="trailing" secondItem="z3L-7y-VUw" secondAttribute="trailing" constant="9" id="CA2-M9-sik"/>
+                <constraint firstItem="NfD-Nu-2zm" firstAttribute="width" secondItem="z3L-7y-VUw" secondAttribute="width" id="CsH-mk-0aw"/>
+                <constraint firstItem="z3L-7y-VUw" firstAttribute="centerY" secondItem="NfD-Nu-2zm" secondAttribute="centerY" id="G9N-ms-MUG"/>
+                <constraint firstItem="NfD-Nu-2zm" firstAttribute="leading" secondItem="A0w-g8-9jP" secondAttribute="leading" constant="10" id="Gp3-rZ-zYa"/>
+                <constraint firstItem="4DL-Kc-w7O" firstAttribute="centerY" secondItem="NfD-Nu-2zm" secondAttribute="centerY" id="IKO-KO-JKm"/>
+                <constraint firstItem="Tua-gb-e3u" firstAttribute="top" secondItem="A0w-g8-9jP" secondAttribute="top" constant="9" id="MHc-l9-GMv"/>
+                <constraint firstItem="K1F-dI-2ah" firstAttribute="baseline" secondItem="Wcq-z8-sb2" secondAttribute="baseline" id="MIn-5c-2nj"/>
+                <constraint firstItem="NfD-Nu-2zm" firstAttribute="width" secondItem="njk-g2-SlM" secondAttribute="width" id="PhC-NV-5x0"/>
+                <constraint firstItem="z3L-7y-VUw" firstAttribute="leading" secondItem="4DL-Kc-w7O" secondAttribute="trailing" id="WKF-Iu-PdB"/>
+                <constraint firstItem="NfD-Nu-2zm" firstAttribute="width" secondItem="4DL-Kc-w7O" secondAttribute="width" id="dig-mF-edc"/>
+                <constraint firstItem="K1F-dI-2ah" firstAttribute="width" secondItem="NfD-Nu-2zm" secondAttribute="width" id="f4A-ul-plL"/>
+                <constraint firstItem="Wcq-z8-sb2" firstAttribute="centerY" secondItem="Tua-gb-e3u" secondAttribute="centerY" id="gYL-qh-0le"/>
+                <constraint firstItem="4DL-Kc-w7O" firstAttribute="leading" secondItem="njk-g2-SlM" secondAttribute="trailing" id="k7H-rT-HWT"/>
+                <constraint firstItem="njk-g2-SlM" firstAttribute="leading" secondItem="NfD-Nu-2zm" secondAttribute="trailing" id="ltx-YL-EGA"/>
+                <constraint firstItem="K1F-dI-2ah" firstAttribute="leading" secondItem="Wcq-z8-sb2" secondAttribute="trailing" constant="8" id="s3M-8v-m8c"/>
+                <constraint firstItem="A0w-g8-9jP" firstAttribute="trailing" secondItem="K1F-dI-2ah" secondAttribute="trailing" constant="9" id="wg2-pP-CNg"/>
+                <constraint firstItem="Tua-gb-e3u" firstAttribute="leading" secondItem="A0w-g8-9jP" secondAttribute="leading" constant="26" id="xfx-1t-udl"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="A0w-g8-9jP"/>
+            <connections>
+                <outlet property="BlackBTN" destination="4DL-Kc-w7O" id="gO9-R1-c7d"/>
+                <outlet property="NormalBTN" destination="njk-g2-SlM" id="8LJ-1D-iFa"/>
+                <outlet property="allSelectBtn" destination="Wcq-z8-sb2" id="As4-a1-biv"/>
+                <outlet property="clearBtn" destination="K1F-dI-2ah" id="ML8-Sn-B7r"/>
+                <outlet property="deleteBTN" destination="z3L-7y-VUw" id="Ggx-Ba-lRV"/>
+                <outlet property="friendBTN" destination="NfD-Nu-2zm" id="6Lq-uk-efu"/>
+            </connections>
+            <point key="canvasLocation" x="397.60000000000002" y="-204.19790104947529"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="register_checkbox" width="20" height="20"/>
+    </resources>
+</document>
