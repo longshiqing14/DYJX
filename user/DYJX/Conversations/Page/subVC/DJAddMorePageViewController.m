@@ -9,6 +9,8 @@
 #import "DJAddMorePageViewController.h"
 #import "SWQRCodeViewController.h"
 #import "DYXJResult.h"
+#import "DYJXFindGroup.h"
+
 
 @interface DJAddMorePageViewController ()
 
@@ -29,6 +31,7 @@
       NSFontAttributeName:[UIFont systemFontOfSize:18]};
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
 }
+
 - (IBAction)createGroup:(UIButton *)sender {
     //创建群
 }
@@ -53,6 +56,9 @@
     
 }
 - (IBAction)searchGroup:(UIButton *)sender {
+    DYJXFindGroup *findGroup = [[DYJXFindGroup alloc]init];
+    [self.navigationController pushViewController:findGroup animated:YES];
+    
 }
 
 /*

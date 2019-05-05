@@ -92,6 +92,8 @@ static NSString * const kDYJXAPI_user_GetDistricts = @"GetDistricts";
 // 选择公司地址通知
 static NSString * const kDYJXAPI_CompanyAddress_Notification = @"kDYJXAPICompanyAddressNotification";
 
+// 查找群
+static NSString * const kDYJXAPI_SearchGroups = @"SearchGroups";
 
 
 

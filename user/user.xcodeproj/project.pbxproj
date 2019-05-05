@@ -40,6 +40,8 @@
 		4804C4C5227E893700CA3D81 /* DJAddMorePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4804C4C3227E893700CA3D81 /* DJAddMorePageViewController.xib */; };
 		4804C4C8227E8A0A00CA3D81 /* DYJXAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804C4C6227E8A0A00CA3D81 /* DYJXAddressModel.m */; };
 		4804C4CB227E8A2800CA3D81 /* DYJXAddCompanyPageHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804C4C9227E8A2800CA3D81 /* DYJXAddCompanyPageHeaderCell.m */; };
+		4804C4CE227EC68200CA3D81 /* DYJXFindGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804C4CD227EC68200CA3D81 /* DYJXFindGroup.m */; };
+		4804C4D1227EC7E600CA3D81 /* DYJXGroupViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804C4D0227EC7E600CA3D81 /* DYJXGroupViewModel.m */; };
 		480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97392086118400EF09C2 /* UITextView+XYPlaceHolder.m */; };
 		481FE70B2182170600CFE26B /* DYJXLoginPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 481FE7092182170600CFE26B /* DYJXLoginPage.m */; };
 		481FE70C2182170600CFE26B /* DYJXLoginPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481FE70A2182170600CFE26B /* DYJXLoginPage.xib */; };
@@ -780,6 +782,10 @@
 		4804C4C7227E8A0A00CA3D81 /* DYJXAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYJXAddressModel.h; path = DYJX/Chat/Model/DYJXAddressModel.h; sourceTree = SOURCE_ROOT; };
 		4804C4C9227E8A2800CA3D81 /* DYJXAddCompanyPageHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXAddCompanyPageHeaderCell.m; sourceTree = "<group>"; };
 		4804C4CA227E8A2800CA3D81 /* DYJXAddCompanyPageHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXAddCompanyPageHeaderCell.h; sourceTree = "<group>"; };
+		4804C4CC227EC68200CA3D81 /* DYJXFindGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXFindGroup.h; sourceTree = "<group>"; };
+		4804C4CD227EC68200CA3D81 /* DYJXFindGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXFindGroup.m; sourceTree = "<group>"; };
+		4804C4CF227EC7E600CA3D81 /* DYJXGroupViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXGroupViewModel.h; sourceTree = "<group>"; };
+		4804C4D0227EC7E600CA3D81 /* DYJXGroupViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXGroupViewModel.m; sourceTree = "<group>"; };
 		480B97382086118400EF09C2 /* UITextView+XYPlaceHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+XYPlaceHolder.h"; sourceTree = "<group>"; };
 		480B97392086118400EF09C2 /* UITextView+XYPlaceHolder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+XYPlaceHolder.m"; sourceTree = "<group>"; };
 		481434A31FE8C18600E7DCD8 /* UPAPayPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UPAPayPlugin.h; sourceTree = "<group>"; };
@@ -2630,6 +2636,8 @@
 				48E2504521D893B300CC7D9E /* DJGroupChatViewModel.m */,
 				48E2505121D8C7DF00CC7D9E /* DJGroupChatWildGroupsViewModel.h */,
 				48E2505221D8C7DF00CC7D9E /* DJGroupChatWildGroupsViewModel.m */,
+				4804C4CF227EC7E600CA3D81 /* DYJXGroupViewModel.h */,
+				4804C4D0227EC7E600CA3D81 /* DYJXGroupViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -4638,6 +4646,8 @@
 				E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */,
 				4895F0EB2200477B00203073 /* DJWildGroupsChatPage.h */,
 				4895F0EC2200477B00203073 /* DJWildGroupsChatPage.m */,
+				4804C4CC227EC68200CA3D81 /* DYJXFindGroup.h */,
+				4804C4CD227EC68200CA3D81 /* DYJXFindGroup.m */,
 			);
 			path = subVC;
 			sourceTree = "<group>";
@@ -5279,6 +5289,7 @@
 				E1ACC69B21D8AAA500E0EEE9 /* DYYResult.m in Sources */,
 				48A370F121B13A47002861DD /* DYJXUserInfoDetailPage.m in Sources */,
 				E1B52939219FE0FC008B27A5 /* XJInfoDetailPage.m in Sources */,
+				4804C4CE227EC68200CA3D81 /* DYJXFindGroup.m in Sources */,
 				E157680A21C9122D003A5C25 /* NIMLoadProgressView.m in Sources */,
 				E157683C21C9122D003A5C25 /* NIMSessionTimestampCell.m in Sources */,
 				E1203C0D21C64D6900418055 /* ConversionManager.m in Sources */,
@@ -5522,6 +5533,7 @@
 				E15767F521C9122D003A5C25 /* NIMInputEmoticonParser.m in Sources */,
 				48E2504F21D8AA5C00CC7D9E /* DJGroupChatCell.m in Sources */,
 				48A1AC6121FAAFD800C1DB45 /* XYBaseModel.m in Sources */,
+				4804C4D1227EC7E600CA3D81 /* DYJXGroupViewModel.m in Sources */,
 				CBF8DDD81FA896160018EC62 /* XYTableViewFooterIntervalView.m in Sources */,
 				4873513E2186F5A5001B59AB /* DYJXIdentitySwitchingViewModel.m in Sources */,
 				CB33079C1FA1BF8F00117695 /* IQUIWindow+Hierarchy.m in Sources */,

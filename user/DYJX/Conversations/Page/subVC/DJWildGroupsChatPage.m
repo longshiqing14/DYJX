@@ -92,6 +92,7 @@
     DJAddMorePageViewController *vc = [[DJAddMorePageViewController alloc] initWithNibName:@"DJAddMorePageViewController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 -(void)btnClick:(UIButton *)sender {
     [self.headView.innerButton setSelected:NO];
     [self.headView.outsideButton setSelected:NO];
