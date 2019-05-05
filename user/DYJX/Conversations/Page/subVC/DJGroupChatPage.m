@@ -49,11 +49,6 @@
         
     }];
     
-//    [self.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
-//        [weakSelf.wildGroupsTableView reloadData];
-//    } failed:^(NSString *errorMsg) {
-//
-//    }];
 }
 
 - (void)initNavigation{
@@ -146,8 +141,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"DJWildGroupHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"DJWildGroupHeaderView"];
     
     
-//    [self.wildGroupsTableView registerNib:[UINib nibWithNibName:@"DJCompanyChatCell" bundle:nil] forCellReuseIdentifier:@"DJCompanyChatCell"];
-    
     self.tableView.showsVerticalScrollIndicator = NO;
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 44)];
     header.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
@@ -167,18 +160,6 @@
     [self.tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     
     [self.view addSubview:self.headView];
-    
-    //外部群tableview
-//    [self.view addSubview:self.wildGroupsTableView];
-//    [self.wildGroupsTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.mas_equalTo(0);
-//        make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
-//        if (@available(iOS 11.0, *)) {
-//            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-//        } else {
-//            make.bottom.mas_equalTo(self.view);
-//        }
-//    }];
     
     //内部群tableview
     [self.view addSubview:self.tableView];
@@ -443,25 +424,6 @@
     }
     return _tableView;
 }
-
-//- (UITableView *)wildGroupsTableView{
-//    WeakSelf;
-//    if (!_wildGroupsTableView) {
-//        _wildGroupsTableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];
-//        _wildGroupsTableView.delegate = self;
-//        _wildGroupsTableView.dataSource = self;
-//        _wildGroupsTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//            [weakSelf.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
-//                [weakSelf.wildGroupsTableView.mj_header endRefreshing];
-//                [weakSelf.wildGroupsTableView reloadData];
-//            } failed:^(NSString *errorMsg) {
-//
-//            }];
-//        }];
-//        _wildGroupsTableView.backgroundColor = [UIColor whiteColor];
-//    }
-//    return _wildGroupsTableView;
-//}
 
 - (DJGroupChatWildGroupsViewModel *)wildGroupsviewModel{
     if (!_wildGroupsviewModel) {
