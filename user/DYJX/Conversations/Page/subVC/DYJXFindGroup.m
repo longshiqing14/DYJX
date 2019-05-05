@@ -43,7 +43,7 @@
     //    }];
     
     if (![YWDTools isNil:self.Keyword]) {
-        [self.findGroupViewModel.requestDic setObject:self.headView.textField.text forKey:@"Keyword"];
+        [self.findGroupViewModel.requestDic setObject:self.Keyword forKey:@"Keyword"];
     };
     
     [self.findGroupViewModel refreshDataSuccess:^{
@@ -214,8 +214,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     WeakSelf
-
-        
         DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
         [[JSExtension shared] getConversion:[self.findGroupViewModel sectionHeaderGroupNumber:indexPath] FromId:userModel.UserID type:1 DataSuccess:^(id  _Nonnull response) {
             SKResult *respo = (SKResult *)response;

@@ -255,10 +255,11 @@
                 result.DisplayTel = model.Cellphone;
                 result.RongCloudToken = model.RongCloudToken;
                 result.BelongEnterprise = model.BelongEnterprise;
+                [self.navigationController popViewControllerAnimated:YES];
+
                 if (_callBack) {
                     self.callBack(result);
                 }
-                [self.navigationController popViewControllerAnimated:YES];
             }else{
 
                 [self.navigationController popViewControllerAnimated:YES];

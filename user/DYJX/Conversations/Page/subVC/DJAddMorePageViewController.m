@@ -46,9 +46,9 @@
     qrcodeVC.callBack = ^(id anyobject){
         if (anyobject) {
             DYXJResult *result = (DYXJResult *)anyobject;
-//            [self.userLists removeAllObjects];
-//            [self.userLists addObject:result];
-//            [self.tableView reloadData];
+            DYJXFindGroup *findGroup = [[DYJXFindGroup alloc]init];
+            findGroup.Keyword = result.Id;
+            [self.navigationController pushViewController:findGroup animated:YES];
         }
         
     };
