@@ -18,7 +18,7 @@
 /** 评论图片 */
 @property(strong,nonatomic) UICollectionView *photoImgCollectionView ;
 @property(strong, nonatomic) NSMutableArray *imagesArray;
-
+@property(strong, nonatomic) NSArray *imagesURL;
 
 @property(strong,nonatomic) XYOrderCommentDetailModel *model ;
 @end

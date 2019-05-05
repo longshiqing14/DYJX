@@ -53,7 +53,8 @@
         [YDBAlertView showToast:@"请选择一项才能提交！" dismissDelay:1.0];
     }
     [self.navigationController.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:NSClassFromString(@"DYJXAddCompanyPageController")]) {
+        if ([obj isKindOfClass:NSClassFromString(@"DYJXAddCompanyPageController")] ||
+            [obj isKindOfClass:NSClassFromString(@"DYJXUserInfoDetailPage")]) {
             [weakSelf.navigationController popToViewController:obj animated:YES];
             NSDictionary *userInfo = @{@"provinceName" : weakSelf.provinceName,
                                        @"cityName" : weakSelf.cityName,

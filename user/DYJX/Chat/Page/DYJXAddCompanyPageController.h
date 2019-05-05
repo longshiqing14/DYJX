@@ -8,16 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "DYJXAddCompanyPageViewModel.h"
+#import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DYJXAddCompanyPageController : UIViewController
+@interface DYJXAddCompanyPageController : BaseViewController
 
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType;
 
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType requestDic:(NSDictionary *)requestDic result:(DYJXXYResult *)result;
 
--(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType groupNumber:(NSString *)groupNumber targetId:(NSString *)targetId;
+-(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType groupNumber:(NSString *)groupNumber targetId:(NSString *)targetId userIconImageURL:(NSString *)userIconImageURL;
 
 @end
 

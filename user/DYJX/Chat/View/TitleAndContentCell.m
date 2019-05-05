@@ -13,23 +13,47 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self initSubViews];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangEvent:) name:UITextFieldTextDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
     }
     return self;
 }
 
-
-
--(void)setModel:(GroupDetailModel *)model {
-//    self.model = (GroupDetailModel *)model;
-    [self.iconImage setImage:[UIImage imageNamed:model.iconName]];
-    self.contentLb.placeholder = model.placeHolder;
-}
+//-(void)setModel:(GroupDetailModel *)model {
+////    self.model = (GroupDetailModel *)model;
+//    [self.iconImage setImage:[UIImage imageNamed:model.iconName]];
+//    self.contentLb.placeholder = model.placeHolder;
+//}
 
 - (void)initSubViews{
     [self.contentView addSubview:self.iconImage];
     [self.contentView addSubview:self.contentLb];
     [self.contentView addSubview:self.separatorLineView];
     [self layoutIfNeeded];
+}
+
+-(void)setModel:(LPXNewCustomerCellModel *)model {
+    _model = model;
+    self.iconImage.image = [UIImage imageNamed:model.leftViewImage];
+    self.contentLb.placeholder = model.placeholder;
+    self.contentLb.text = model.text;
+    self.contentLb.userInteractionEnabled = model.userInteractionEnabled;
+}
+
+- (void)textDidChangEvent:(NSNotification *)notication {
+    if (notication.object == _contentLb) {
+        _model.text =  _contentLb.text?:@"";
+    }
+}
+
+- (void)textDidBeginEditing:(NSNotification *)notication {
+    if (notication.object == _contentLb) {
+        
+    }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return YES;
 }
 
 - (void)layoutSubviews{

@@ -27,148 +27,35 @@
     return self.dataArray[section].count;
 }
 
-- (void)setCompanyInfoWithResponse:(DYJXXYGroupByIdResponse *)response {
+- (void)setContentsWithGroupByIdResponse:(DYJXXYGroupByIdResponse *)response {
+    self.dataArray[0][0].spareString = response.Result.EnterpriseInfo.HeadImgUrl;
+    self.dataArray[0][1].text = response.Result.EnterpriseInfo.CompanyName;
+    self.dataArray[0][2].text = response.Result.EnterpriseInfo.CompanyShortName;
+    self.dataArray[0][3].text = response.Result.NumberString;
+    self.dataArray[0][6].isSelected = response.Result.EnterpriseInfo.AdminSay;
+    self.dataArray[0][7].isSelected = response.Result.EnterpriseInfo.CanNotSearch;
     
-    
-    
-//    {
-//        ClientId = "00000000-0000-0000-0000-000000000000";
-//        DebugMessages =     (
-//        );
-//        Kicked = 0;
-//        MemberID = "00000000-0000-0000-0000-000000000000";
-//        Message = "";
-//        Result =     {
-//            AdminUserIds =         (
-//                                    "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94"
-//                                    );
-//            AdminUsers =         (
-//                                  {
-//                                      BelongEnterprise = "00000000-0000-0000-0000-000000000000";
-//                                      Cellphone = 18778399213;
-//                                      CreateBy = N18778399213;
-//                                      CreateOn = "2019-01-22 17:30:47";
-//                                      Deleted = 0;
-//                                      Disabled = 0;
-//                                      DisplayName = N18778399213;
-//                                      DisplayTel = 18778399213;
-//                                      Id = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
-//                                      Number = 1053169;
-//                                      NumberString = 1053169;
-//                                      RongCloudToken = "QivjXlRZefBX+xURCIPaQTa6yoqe/7ZK/+jxzigwUeL3xtq9FeNFY2ODgzRTPMmUUWUjq3TGbin+hjZ67e8g37Jy1nTd4DCtJMOsEL/U75iOquxRTvA5Le9bHaoycKXMxerIxppc31o=";
-//                                      Type = 0;
-//                                      UserName = N18778399213;
-//                                  }
-//                                  );
-//            AllMemberIds =         (
-//                                    "00000000-0000-0000-0000-000000000000",
-//                                    "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94"
-//                                    );
-//            CanNotSearch = 0;
-//            Children =         (
-//            );
-//            ContactRemarks =         (
-//            );
-//            CreateBy = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
-//            CreateOn = "2019-04-29 11:43:20";
-//            Creator =         {
-//                BelongEnterprise = "00000000-0000-0000-0000-000000000000";
-//                Cellphone = 18778399213;
-//                CreateBy = N18778399213;
-//                CreateOn = "2019-01-22 17:30:47";
-//                Deleted = 0;
-//                Disabled = 0;
-//                DisplayName = N18778399213;
-//                DisplayTel = 18778399213;
-//                Id = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
-//                Number = 1053169;
-//                NumberString = 1053169;
-//                RongCloudToken = "QivjXlRZefBX+xURCIPaQTa6yoqe/7ZK/+jxzigwUeL3xtq9FeNFY2ODgzRTPMmUUWUjq3TGbin+hjZ67e8g37Jy1nTd4DCtJMOsEL/U75iOquxRTvA5Le9bHaoycKXMxerIxppc31o=";
-//                Type = 0;
-//                UserName = N18778399213;
-//            };
-//            CreatorId = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
-//            Deleted = 0;
-//            Disabled = 0;
-//            EnterpriseInfo =         {
-//                AdminSay = 1;
-//                CanNotSearch = 1;
-//                CompanyInfo = 1234567;
-//                CompanyName = "Liping ";
-//                Id = "00000000-0000-0000-0000-000000000000";
-//            };
-//            GroupInfo = 1234567;
-//            GroupName = "Liping ";
-//            GroupNumber = "6ea18467-5944-4a22-a40d-9c797bf51381";
-//            GroupType = 1;
-//            Id = "6ea18467-5944-4a22-a40d-9c797bf51381";
-//            IsAllMemberGroup = 0;
-//            IsPart = 0;
-//            MemberIds =         (
-//                                 "00000000-0000-0000-0000-000000000000",
-//                                 "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94"
-//                                 );
-//            Members =         (
-//                               {
-//                                   BelongEnterprise = "00000000-0000-0000-0000-000000000000";
-//                                   Cellphone = 18778399213;
-//                                   CreateBy = N18778399213;
-//                                   CreateOn = "2019-01-22 17:30:47";
-//                                   Deleted = 0;
-//                                   Disabled = 0;
-//                                   DisplayName = N18778399213;
-//                                   DisplayTel = 18778399213;
-//                                   Id = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
-//                                   Number = 1053169;
-//                                   NumberString = 1053169;
-//                                   RongCloudToken = "QivjXlRZefBX+xURCIPaQTa6yoqe/7ZK/+jxzigwUeL3xtq9FeNFY2ODgzRTPMmUUWUjq3TGbin+hjZ67e8g37Jy1nTd4DCtJMOsEL/U75iOquxRTvA5Le9bHaoycKXMxerIxppc31o=";
-//                                   Type = 0;
-//                                   UserName = N18778399213;
-//                               }
-//                               );
-//            NotAllowJoinFree = 0;
-//            NotAllowMemberInvite = 0;
-//            NotAllowSay = 0;
-//            Number = 100130;
-//            NumberString = 100130;
-//            Owner =         {
-//                BelongEnterprise = "00000000-0000-0000-0000-000000000000";
-//                Cellphone = 18778399213;
-//                CreateBy = N18778399213;
-//                CreateOn = "2019-01-22 17:30:47";
-//                Deleted = 0;
-//                Disabled = 0;
-//                DisplayName = N18778399213;
-//                DisplayTel = 18778399213;
-//                Id = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
-//                Number = 1053169;
-//                NumberString = 1053169;
-//                RongCloudToken = "QivjXlRZefBX+xURCIPaQTa6yoqe/7ZK/+jxzigwUeL3xtq9FeNFY2ODgzRTPMmUUWUjq3TGbin+hjZ67e8g37Jy1nTd4DCtJMOsEL/U75iOquxRTvA5Le9bHaoycKXMxerIxppc31o=";
-//                Type = 0;
-//                UserName = N18778399213;
-//            };
-//            OwnerId = "41435c6a-1f4c-4371-adf6-9a3b6d2f5a94";
-//            PartType = 0;
-//            Relation =         {
-//                InBlacklist = 0;
-//                IsAdmin = 1;
-//                IsContact = 0;
-//                IsFriend = 0;
-//                IsMember = 1;
-//                IsOwner = 1;
-//                IsParentAdmin = 0;
-//                IsParentOwner = 0;
-//                Managed = 1;
-//            };
-//            SilenceUserIds =         (
-//                                      "00000000-0000-0000-0000-000000000000"
-//                                      );
-//            WildType = 0;
-//        };
-//        Succeed = 1;
-//        UserID = "00000000-0000-0000-0000-000000000000";
-//    }
+    self.dataArray[1][0].text = response.Result.EnterpriseInfo.SociologyCredit;
+    self.dataArray[1][1].text = response.Result.EnterpriseInfo.PCDName;
+    self.dataArray[1][2].text = response.Result.EnterpriseInfo.Address;
+    self.dataArray[1][3].text = response.Result.EnterpriseInfo.GPSAddress;
+    self.dataArray[1][4].text = response.Result.EnterpriseInfo.CompanyTel;
 
+    self.dataArray[2][0].text = response.Result.EnterpriseInfo.CompanyLinkMan;
+    self.dataArray[2][1].text = response.Result.EnterpriseInfo.CompanyLinkManCellphone;
+    self.dataArray[2][2].text = response.Result.EnterpriseInfo.CompanyLinkManQQ;
+    self.dataArray[2][3].text = response.Result.EnterpriseInfo.CompanyLinkManWeiXin;
+    self.dataArray[2][4].text = response.Result.EnterpriseInfo.WebSite;
+    self.dataArray[2][5].text = response.Result.EnterpriseInfo.CompanyEmail;
+    self.dataArray[2][6].text = response.Result.EnterpriseInfo.CompanyInfo;
+    
+    self.dataArray[3][0].text = response.Result.EnterpriseInfo.CompanyWeiXin;
+    self.dataArray[3][1].text = response.Result.EnterpriseInfo.CompanyAlipay;
+    self.dataArray[3][2].text = response.Result.EnterpriseInfo.CompanyBankCardNO;
+    self.dataArray[3][3].text = response.Result.EnterpriseInfo.CompanyBankName;
+    self.dataArray[3][4].text = response.Result.EnterpriseInfo.CompanyBank;
+    
+    self.dataArray[4].lastObject.spareArray = [response.Result.EnterpriseInfo.Images mj_JSONObject];
 }
 
 - (NSDictionary *)getUpDataParameters {
@@ -195,7 +82,7 @@
     [parameters setObject:self.result.MemberIds ? @[self.result.MemberIds.firstObject] : @"" forKey:@"MemberIds"];
     [parameters setObject:self.result.SilenceUserIds ? self.result.SilenceUserIds : @"" forKey:@"SilenceUserIds"];
     [parameters setObject:@(false) forKey:@"showChild"];
-    [parameters setObject:@"" forKey:@"header"];
+    [parameters setObject:self.dataArray.firstObject.firstObject.spareString ?: @"" forKey:@"header"];
     [parameters setObject:@(false) forKey:@"isHeader"];
     if (self.companyType == DYJXAddCompanyType_Sub ||
         self.companyType == DYJXAddCompanyType_SubDetails) {
@@ -208,14 +95,18 @@
 
 - (NSMutableDictionary *)getEnterpriseInfoParameters {
     NSMutableDictionary *parameters = @{}.mutableCopy;
+    [parameters setObject:self.dataArray[0][0].spareString ?: @"" forKey:@"HeadImgUrl"];
     [parameters setObject:self.dataArray[0][1].text ?: @"" forKey:@"CompanyName"];
-    [parameters setObject:self.dataArray[0][2].text ?: @""  forKey:@"CompanyInfo"];
-    [parameters setObject:self.dataArray[0][3].text ?: @"" forKey:@"CompanyShortName"];
+    [parameters setObject:self.dataArray[0][2].text ?: @""  forKey:@"CompanyShortName"];
+    [parameters setObject:self.dataArray[0][3].text ?: @"" forKey:@"NumberString"];
+    
     [parameters setObject:@(self.dataArray[0][5].isSelected) forKey:@"AdminSay"];
     [parameters setObject:@(self.dataArray[0].lastObject.isSelected) forKey:@"CanNotSearch"];
     
     [parameters setObject:self.dataArray[1][0].text ?: @"" forKey:@"SociologyCredit"];
-    [parameters setObject:self.dataArray[1][1].text ?: @"" forKey:@"Address"];
+    [parameters setObject:self.dataArray[1][1].text ?: @"" forKey:@"PCDName"];
+    [parameters setObject:self.dataArray[1][2].text ?: @"" forKey:@"Address"];
+    [parameters setObject:self.dataArray[1][3].text ?: @"" forKey:@"GPSAddress"];
     [parameters setObject:self.dataArray[1].lastObject.text ?: @"" forKey:@"CompanyTel"];
     
     [parameters setObject:self.dataArray[2][0].text ?: @"" forKey:@"CompanyLinkMan"];
@@ -224,6 +115,7 @@
     [parameters setObject:self.dataArray[2][3].text ?: @"" forKey:@"CompanyLinkManWeiXin"];
     [parameters setObject:self.dataArray[2][4].text ?: @"" forKey:@"WebSite"];
     [parameters setObject:self.dataArray[2][5].text ?: @"" forKey:@"CompanyEmail"];
+    [parameters setObject:self.dataArray[2][6].text ?: @"" forKey:@"CompanyInfo"];
     
     [parameters setObject:self.dataArray[3][0].text ?: @"" forKey:@"CompanyWeiXin"];
     [parameters setObject:self.dataArray[3][1].text ?: @"" forKey:@"CompanyAlipay"];
@@ -231,8 +123,26 @@
     [parameters setObject:self.dataArray[3][3].text ?: @"" forKey:@"CompanyBankName"];
     [parameters setObject:self.dataArray[3][4].text ?: @"" forKey:@"CompanyBank"];
     
-    [parameters setObject:self.dataArray.lastObject.lastObject.spareArray.copy ?: @[] forKey:@"Images"];
+    [parameters setObject:[(self.dataArray.lastObject.lastObject.spareArray ?: @[]) mj_JSONString] forKey:@"Images"];
     return parameters.copy;
+}
+
+// 上传执业照片
+- (void)uploadFileWithImages:(NSArray<UIImage *> *)images success:(void(^)(NSString  *responseObject))success failed:(void(^)(NSString *errorMsg))fail {
+    NSMutableArray *imagePaths = [[NSMutableArray alloc]init];
+    WeakSelf
+    [images enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self uploadFile:obj Success:^(id  _Nullable responseObject) {
+            [imagePaths addObject:responseObject[@"SavedFileName"]];
+            if (idx == images.count - 1) {
+                weakSelf.dataArray.lastObject.lastObject.spareString = [imagePaths.copy mj_JSONString];
+                !success ?: success([imagePaths.copy mj_JSONString]);
+            }
+        } failed:^(NSString * _Nonnull errorMsg) {
+            !fail ?: fail(errorMsg);
+            *stop = YES;
+        }];
+    }];
 }
 
 //获取公司信息
@@ -240,14 +150,21 @@
     WeakSelf;
     [SVProgressHUD show];
     DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+    
     NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
     [reqDict setObject:groupId forKey:@"Data"];
     [reqDict setObject:userModel.UserID forKey:@"UserID"];
     [reqDict setObject:@"iOS" forKey:@"Device"];
     [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
     [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
-        [reqDict setObject:userModel.CertificateId forKey:@"CertificateId"];
-    [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
+//    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+//    [reqDict setObject:groupId forKey:@"Data"];
+//    [reqDict setObject:userModel.UserID forKey:@"UserID"];
+//    [reqDict setObject:@"iOS" forKey:@"Device"];
+//    [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+//    [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
+//        [reqDict setObject:userModel.CertificateId forKey:@"CertificateId"];
+//    [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
     
     [XYNetWorking XYPOST:kDYJXAPI_user_GetGroupById params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -256,6 +173,7 @@
                 DYJXXYGroupByIdResponse *groupByIdModel = [DYJXXYGroupByIdResponse modelWithJSON:responseObject];
                 //TODO: 数据请求成功数据重组到数组中
                 weakSelf.response = groupByIdModel;
+                [weakSelf setContentsWithGroupByIdResponse:groupByIdModel];
                 success(groupByIdModel);
             }else{
                 [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
@@ -346,6 +264,9 @@
             if (self.companyType == DYJXAddCompanyType_Details ||
                 self.companyType == DYJXAddCompanyType_SubDetails) {
                 _dataArray.firstObject.firstObject.cellIdentity = kGroupDetailModelPorityCellId;
+                if (self.companyType == DYJXAddCompanyType_Details) {
+                    [_dataArray.firstObject insertObject:[self addSubCompany] atIndex:5];
+                }
             }
         }else {
             NSLog(@"josn文件不存在");
@@ -419,13 +340,24 @@
 
 //（子）公司所属省市
 - (void)getProvincesWithSuccess:(void (^)(DYJXAddressModel * _Nonnull))success failed:(void (^)(NSString * _Nonnull))fail {
-    
     NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
-    [reqDict setObject:self.requestDic[@"Device"] forKey:@"Device"];
-    [reqDict setObject:self.requestDic[@"ClientId"] forKey:@"ClientId"];
-    [reqDict setObject:self.requestDic[@"CertificateId"] forKey:@"CertificateId"];
-    [reqDict setObject:self.requestDic[@"MemberID"] forKey:@"MemberID"];
-    [reqDict setObject:self.requestDic[@"UserID"] forKey:@"UserID"];
+    if ([self.requestDic allKeys].count == 0) {
+        DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+        NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+        [reqDict setObject:@"iOS" forKey:@"Device"];
+        [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+        [reqDict setObject:userModel.UserID forKey:@"CertificateId"];
+        [reqDict setObject:userModel.MemberID forKey:@"MemberID"];
+        [reqDict setObject:userModel.UserID forKey:@"UserID"];
+    }else {
+        [reqDict setObject:self.requestDic[@"Device"] forKey:@"Device"];
+        [reqDict setObject:self.requestDic[@"ClientId"] forKey:@"ClientId"];
+        [reqDict setObject:self.requestDic[@"CertificateId"] forKey:@"CertificateId"];
+        [reqDict setObject:self.requestDic[@"MemberID"] forKey:@"MemberID"];
+        [reqDict setObject:self.requestDic[@"UserID"] forKey:@"UserID"];
+    }
+    
+    
     [XYNetWorking XYPOST:kDYJXAPI_user_GetProvinces params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
         !success ?: success([DYJXAddressModel parse:responseObject]);
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
@@ -445,6 +377,19 @@
         _result = [[DYJXXYResult alloc]init];
     }
     return _result;
+}
+
+- (LPXNewCustomerCellModel *)addSubCompany {
+    NSDictionary *params = @{
+                             @"cellIdentity" : @"DYJXAddCompanyPageCell",
+                             @"leftViewText" : @"子公司成员：",
+                             @"placeholder" : @"",
+                             @"isHiddenField" : @(true),
+                             @"isShowSelectetView": @(true),
+                             @"righImageName" : @"ic_category_close",
+                             @"righSelectedImageName" : @"ic_category_close"
+                             }.copy;
+    return [LPXNewCustomerCellModel parse:params];
 }
 
 @end

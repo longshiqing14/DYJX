@@ -32,6 +32,18 @@
 }
 //-(void)setModel:(id)model {
 //}
+-(void)setCellmodel:(LPXNewCustomerCellModel *)cellmodel {
+    _cellmodel = cellmodel;
+    [self setPorityImageViewWithURL];
+}
+
+- (void)setPorityImageViewWithURL {
+    if (self.cellmodel.spareImage) {
+        self.porityImageView.image = self.cellmodel.spareImage;
+    }else {
+        [self.porityImageView setImageWithURL:[NSURL URLWithString:[self.cellmodel.spareString XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
+    }
+}
 
 -(void)layoutSubviews {
     WeakSelf

@@ -676,6 +676,7 @@
 		F91EE3982276CD55006BCB37 /* DYJXCompanyAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE3972276CD55006BCB37 /* DYJXCompanyAddressController.m */; };
 		F91EE39B2276CED2006BCB37 /* DYJXAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE39A2276CED2006BCB37 /* DYJXAddressModel.m */; };
 		F91EE39E2276EA66006BCB37 /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE39C2276EA65006BCB37 /* NSObject+Parse.m */; };
+		F91EE3A022774DEE006BCB37 /* DYJXUserInfoDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = F91EE39F22774DED006BCB37 /* DYJXUserInfoDetail.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1966,6 +1967,7 @@
 		F91EE39A2276CED2006BCB37 /* DYJXAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXAddressModel.m; sourceTree = "<group>"; };
 		F91EE39C2276EA65006BCB37 /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
 		F91EE39D2276EA65006BCB37 /* NSObject+Parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Parse.h"; sourceTree = "<group>"; };
+		F91EE39F22774DED006BCB37 /* DYJXUserInfoDetail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DYJXUserInfoDetail.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2508,6 +2510,7 @@
 				E19DC8D2219AE7E600C86478 /* BaseModel.m */,
 				E11C423A21A2E5DC0039A53A /* GroupDetailModel.h */,
 				E11C423B21A2E5DC0039A53A /* GroupDetailModel.m */,
+				F91EE39F22774DED006BCB37 /* DYJXUserInfoDetail.json */,
 				F91EE366226F5032006BCB37 /* DYJXAddCompany.json */,
 				F91EE365226F5032006BCB37 /* DYJXAddSubCompany.json */,
 				F91EE364226F5031006BCB37 /* LPXNewCustomerCellModel.h */,
@@ -4983,6 +4986,7 @@
 				488E89FC219FFD5A008695A7 /* JrmfInfo.strings in Resources */,
 				4895F0F7220432C100203073 /* DJWildGroupHeaderView.xib in Resources */,
 				E15767E121C9122D003A5C25 /* NIMKitEmoticon.bundle in Resources */,
+				F91EE3A022774DEE006BCB37 /* DYJXUserInfoDetail.json in Resources */,
 				488E89F2219FFD5A008695A7 /* default_image.png in Resources */,
 				48A1AC5221FAAC5600C1DB45 /* JXRefumdImageCameraCollectionCell.xib in Resources */,
 				CBF74E351F8CD0B500D528C2 /* lanuchStart.png in Resources */,

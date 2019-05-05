@@ -18,7 +18,7 @@
 @interface DYJXXYResult : NSObject
 
 @property (nonatomic, strong) NSArray * AdminUserIds;
-@property (nonatomic, strong) NSArray * AdminUsers;
+@property (nonatomic, strong) NSArray<DYJXXYAdminUsers *> * AdminUsers;
 @property (nonatomic, strong) NSArray * AllMemberIds;
 @property (nonatomic, assign) BOOL CanNotSearch;
 @property (nonatomic, strong) NSMutableArray<DYJXXYResult*> * Children;

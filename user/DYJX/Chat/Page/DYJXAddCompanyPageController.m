@@ -38,7 +38,7 @@
 @property (nonatomic, copy) NSString *groupNumber;
 @property (nonatomic, copy) NSString *targetId;
 @property (nonatomic, assign) BOOL isAdmin;
-
+@property (nonatomic, copy) NSString *userIconImageURL;
 /** 底部view */
 @property(strong, nonatomic) CompanyBottomView *bottomView;
 @property(strong, nonatomic) CompanyAdminBottomView *adminBottomView;
@@ -49,7 +49,7 @@
 @implementation DYJXAddCompanyPageController
 
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType {
-    return [self initWithCompanyType:companyType groupNumber:@"" targetId:@""];
+    return [self initWithCompanyType:companyType groupNumber:@"" targetId:@"" userIconImageURL:@""];
 }
 
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType requestDic:(NSDictionary *)requestDic result:(DYJXXYResult *)result {
@@ -62,12 +62,13 @@
     return self;
 }
 
--(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType groupNumber:(nonnull NSString *)groupNumber targetId:(nonnull NSString *)targetId{
+-(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType groupNumber:(nonnull NSString *)groupNumber targetId:(nonnull NSString *)targetId userIconImageURL:(nonnull NSString *)userIconImageURL{
     self = [super init];
     if (self) {
         self.companyType = companyType;
         self.groupNumber = groupNumber;
         self.targetId = targetId;
+        self.userIconImageURL = userIconImageURL;
     }
     return self;
 }
@@ -146,7 +147,7 @@
 //弹出选择框
 -(void)showActionForPhoto
 {
-    if (self.imageArray.count == 4) {
+    if (self.imageArray.count == 4 && !self.isSelectHeader) {
         [XYProgressHUD svHUDShowStyle:XYHUDStyleInfo title:@"最多4张图片" dismissTimeInterval:1.0];
         return;
     }
@@ -183,7 +184,8 @@
                 [YDBAlertView showToast:@"图片上传中成功！" dismissDelay:1.0];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (weakSelf.isSelectHeader) { // 头像
-                        weakSelf.headerImage = images.firstObject;
+                        weakSelf.viewModel.dataArray.firstObject.firstObject.spareImage = images.firstObject;
+                        weakSelf.viewModel.dataArray.firstObject.firstObject.spareString = responseObject[@"SavedFileName"];
                         NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:0];
                         OwnerImageCell *ownerImageCell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
                         [ownerImageCell.porityImageView setImage:images.firstObject];
@@ -291,7 +293,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.viewModel.dataArray[indexPath.section][indexPath.row].cellIdentity forIndexPath:indexPath];
-    if (indexPath.section == self.viewModel.dataArray.count - 1) {
+    if ([cell isKindOfClass:[OwnerImageCell class]] ||
+        [cell isKindOfClass:[ImageUploadCell class]]) {
         [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"cellmodel"];
     }else {
         [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"model"];
@@ -302,6 +305,10 @@
         if (self.companyType == DYJXAddCompanyType_None ||
             self.companyType == DYJXAddCompanyType_Sub) {
             DYJXAddCompanyPageHeaderCell *newCell = (DYJXAddCompanyPageHeaderCell *)cell;
+            if (self.viewModel.dataArray.firstObject.firstObject.spareImage) {
+                newCell.porityImageView.image = self.viewModel.dataArray.firstObject.firstObject.spareImage;
+            }
+            
             newCell.block = ^{
                 weakSelf.isSelectHeader = YES;
                 [weakSelf showActionForPhoto];
@@ -323,7 +330,7 @@
         }
     }else if (indexPath.section == self.viewModel.dataArray.count - 1) {
         ImageUploadCell *newCell = (ImageUploadCell *)cell;
-        newCell.imagesArray = [self.imageArray mutableCopy];
+//        newCell.imagesArray = [self.imageArray mutableCopy];
         newCell.addPicturesBlock = ^{
             //TODO: 添加图片
             weakSelf.isSelectHeader = NO;
@@ -555,6 +562,11 @@
         [_addCompanyBottomView setSubcompanyBottomBtnWithBackgroundColor:[UIColor colorWithRed:240/255.0 green:176/255.0 blue:67/255.0 alpha:1]];
         _addCompanyBottomView.block = ^{
             //TODO: 提交数据
+//            [weakSelf.viewModel uploadFileWithImages:weakSelf.imageArray success:^(id  _Nonnull responseObject) {
+//
+//            } failed:^(NSString * _Nonnull errorMsg) {
+//
+//            }];
             [weakSelf.viewModel uploadCompanySuccess:^(DYJXXYGroupByIdResponse *response) {
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             } failed:^(NSString * errorMsg) {

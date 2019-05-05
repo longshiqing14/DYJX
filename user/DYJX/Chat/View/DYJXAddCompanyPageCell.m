@@ -57,7 +57,11 @@
     self.contentLb.hidden = !model.isHiddenField;
     self.textField.text = model.text;
     
-    if (model.text && ![model.text isEqualToString:@""]) {
+    if ((model.text && ![model.text isEqualToString:@""] && model.righImageName)) {
+        CGFloat width = [self getLableWidthWithText:model.text];
+        [self.leftLb mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(@(width));
+        }];
         self.leftLb.text = model.text;
     }
     if (!model.righImageName || ![model.righImageName isEqualToString:@""]) {
@@ -68,6 +72,17 @@
     }else {
         self.nextBtn.hidden = YES;
     }
+}
+
+- (CGFloat)getLableWidthWithText:(NSString *)text {
+    UILabel *lb = [[UILabel alloc]init];
+    lb.textColor = [UIColor lightGrayColor];
+    lb.textAlignment = NSTextAlignmentLeft;
+    lb.font = [UIFont systemFontOfSize:__X(30)];
+    lb.numberOfLines = 1;
+    lb.text = text;
+    [lb sizeToFit];
+    return lb.width;
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

@@ -64,20 +64,29 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
 
 - (void)setCellmodel:(LPXNewCustomerCellModel *)cellmodel {
     _cellmodel = cellmodel;
+    self.imagesURL = cellmodel.spareArray.copy;
+    [self.photoImgCollectionView reloadData];
 }
 
 
 -(void)setImagesArray:(NSMutableArray *)imagesArray{
     _imagesArray = imagesArray;
-    if (imagesArray.count / 4 == 0) {
-        [self.photoImgCollectionView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo([self cellWidth]  );
-        }];
-    }else if (imagesArray.count / 4 == 1) {
+    if (self.cellmodel.spareArray.count > 0) {
         [self.photoImgCollectionView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo([self cellWidth]*2 + 15 * 1);
         }];
+    }else {
+        if (imagesArray.count / 4 == 0) {
+            [self.photoImgCollectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo([self cellWidth]);
+            }];
+        }else if (imagesArray.count / 4 == 1) {
+            [self.photoImgCollectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo([self cellWidth]*2 + 15 * 1);
+            }];
+        }
     }
+    
     [self.photoImgCollectionView reloadData];
 }
 
@@ -173,7 +182,9 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (self.imagesArray.count == 4) {
+    if (self.imagesURL.count > 0 && self.imagesArray.count == 0) {
+        return self.imagesURL.count;
+    }else if (self.imagesArray.count == 4) {
         return self.imagesArray.count;
     }
     return self.imagesArray.count + 1;
@@ -183,13 +194,17 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
 {
     UICollectionViewCell *cell = nil;
     
-    if (self.imagesArray.count <= 3) {
-        
+    if (self.imagesURL.count > 0 && self.imagesArray.count == 0) {
+        JXRefumdImageCollectionCell *ImageCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCollectionCell forIndexPath:indexPath];
+        NSLog(@".....%@",[self.cellmodel.spareArray[indexPath.row] XYImageURL]);
+        [ImageCollectioncell.imgView setImageWithURL:[NSURL URLWithString:[self.cellmodel.spareArray[indexPath.row] XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
+        cell = ImageCollectioncell;
+    }else if (self.imagesArray.count <= 3) {
         if (indexPath.row == self.imagesArray.count) {
             JXRefumdImageCameraCollectionCell *ImageCameraCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCameraCollectionCell forIndexPath:indexPath];
             ImageCameraCollectioncell.countLb.text = [NSString stringWithFormat:@"%ld/4",self.imagesArray.count];
             cell = ImageCameraCollectioncell;
-            
+
         }else{
             JXRefumdImageCollectionCell *ImageCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCollectionCell forIndexPath:indexPath];
             [ImageCollectioncell.imgView setImage:self.imagesArray[indexPath.item]];
@@ -200,7 +215,7 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
             };
             cell = ImageCollectioncell;
         }
-        
+
     }else{
         JXRefumdImageCollectionCell *ImageCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCollectionCell forIndexPath:indexPath];
         [ImageCollectioncell.imgView setImage:self.imagesArray[indexPath.item]];

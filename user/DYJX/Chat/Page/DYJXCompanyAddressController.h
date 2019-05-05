@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 typedef NS_OPTIONS (NSInteger ,DYJXCompanyAddressType){
     DYJXCompanyAddressType_Province,        // 省
@@ -16,7 +17,7 @@ typedef NS_OPTIONS (NSInteger ,DYJXCompanyAddressType){
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DYJXCompanyAddressController : UIViewController
+@interface DYJXCompanyAddressController : BaseViewController
 
 - (instancetype)initWithAddressModel:(id)addressModel addressType:(DYJXCompanyAddressType)addressType provinceName:(NSString *)provinceName cityName:(NSString *)cityName;
 

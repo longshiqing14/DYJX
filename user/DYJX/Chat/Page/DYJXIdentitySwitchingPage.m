@@ -27,6 +27,7 @@
 #import "IMSDK.h"
 #import "DYJXComparePage.h"
 #import "iPhoneXBottomBackgroundView.h"
+#import "DYJXAddCompanyPageController.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -577,20 +578,24 @@ static NSString *headerID=@"headerID";
     }
     else {
         if (model.IsPart) { // 子公司详情
-            DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
-            page.userIconImageURL = [model.GroupHeadImg XYImageURL];
-            page.groupNumber = model.GroupNumber;
-            page.targetId = model.Id;
-            page.isAdmin = [self isAdmin:model];
+//            DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
+//            page.userIconImageURL = [model.GroupHeadImg XYImageURL];
+//            page.groupNumber = model.GroupNumber;
+//            page.targetId = model.Id;
+//            page.isAdmin = [self isAdmin:model];
+            DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_Details) groupNumber:model.GroupNumber targetId:model.Id userIconImageURL:[model.GroupHeadImg XYImageURL]];
             [self.navigationController pushViewController:page animated:YES];
+            
+            
 //            target.type = XJGroupTypeSubCompany;
         }
         else { // 公司详情
-            DYJXCompanyInfoDetailPage *page = [[DYJXCompanyInfoDetailPage alloc]init];
-            page.userIconImageURL = [model.GroupHeadImg XYImageURL];
-            page.groupNumber = model.GroupNumber;
-            page.targetId = model.Id;
-             page.isAdmin = [self isAdmin:model];
+//            DYJXCompanyInfoDetailPage *page = [[DYJXCompanyInfoDetailPage alloc]init];
+//            page.userIconImageURL = [model.GroupHeadImg XYImageURL];
+//            page.groupNumber = model.GroupNumber;
+//            page.targetId = model.Id;
+//             page.isAdmin = [self isAdmin:model];
+            DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_Details) groupNumber:model.GroupNumber targetId:model.Id userIconImageURL:[model.GroupHeadImg XYImageURL]];
             [self.navigationController pushViewController:page animated:YES];
 //            target.type = XJGroupTypeCompany;
         }

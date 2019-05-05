@@ -13,12 +13,6 @@
 @end
 
 @implementation DYJXUserInfoDetailViewModel
-- (instancetype)init{
-    if (self = [super init]) {
-        [self initData];
-    }
-    return self;
-}
 
 - (NSInteger)numberOfSection{
     return self.dataArray.count;
@@ -29,7 +23,7 @@
 }
 
 - (NSString *)content:(NSIndexPath *)indexPath{
-    return self.dataArray[indexPath.section][indexPath.row];
+    return self.dataArray[indexPath.section][indexPath.row].placeholder;
 }
 
 //上传图片
@@ -88,6 +82,7 @@
                 [SVProgressHUD dismiss];
                 
                 weakSelf.personInfoModel = [DYJXUserInfoModel modelWithJSON:[responseObject objectForKey:@"Result"]];
+                [weakSelf setContentsWithPersonInfoModel:weakSelf.personInfoModel];
                 success(weakSelf.personInfoModel);
                 
             }else{
@@ -106,12 +101,10 @@
     }];
 }
 
-
 //提交个人信息
 - (void)CommitUserInfoSuccess:(void(^)())success failed:(void(^)(NSString *errorMsg))fail{
     [XYProgressHUD show];
     WeakSelf;
-
     DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
     [self.requestDic setObject:userModel.UserID forKey:@"UserID"];
     [self.requestDic  setObject:userModel.UserID forKey:@"CertificateId"];
@@ -149,13 +142,94 @@
     }];
 }
 
-- (void)initData{
-    self.dataArray = [@[@[@"个人头像和二维码",@"请输入商号",@"电话号码"],@[@"请输入用户名",@"请输入个性签名",@"请输入真实姓名",@"请选择所属省市区",@"请填写街道门牌地址信息",@"请设置GPS定位",@"请输入QQ号",@"请输入微信号",@"请输入支付宝账号"],@[@"请输入个人银行开户行",@"请输入个人银行账号",@"请输入个人银行账户名称"],@[@"添加您的名片或营业执照照片"]] mutableCopy];
+//（子）公司所属省市
+- (void)getProvincesWithSuccess:(void (^)(DYJXAddressModel * _Nonnull))success failed:(void (^)(NSString * _Nonnull))fail {
+    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+    [reqDict setObject:@"iOS" forKey:@"Device"];
+    [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+    [reqDict setObject:userModel.UserID forKey:@"CertificateId"];
+    [reqDict setObject:userModel.MemberID forKey:@"MemberID"];
+    [reqDict setObject:userModel.UserID forKey:@"UserID"];
+    [XYNetWorking XYPOST:kDYJXAPI_user_GetProvinces params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        !success ?: success([DYJXAddressModel parse:responseObject]);
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        !fail ?: fail(@"连接异常");
+    }];
 }
 
-- (NSMutableArray<NSArray<NSString*>*>*)dataArray{
+- (NSDictionary *)getUpDataParameters {
+    NSMutableDictionary *parameters = @{}.mutableCopy;
+    if (self.dataArray[1][0].text.length > 0) {
+        [parameters setObject:self.dataArray[1][0].text forKey:@"NickName"];
+    }
+    if (self.dataArray[1][1].text.length > 0) {
+        [parameters setObject:self.dataArray[1][1].text forKey:@"PersonRemark"];
+    }
+    if (self.dataArray[1][2].text.length > 0) {
+        [parameters setObject:self.dataArray[1][2].text forKey:@"TrueName"];
+    }
+    if (self.dataArray[1][3].text.length > 0) {
+        [parameters setObject:self.dataArray[1][3].text forKey:@"PCDName"];
+    }
+    if (self.dataArray[1][4].text.length > 0) {
+        [parameters setObject:self.dataArray[1][4].text forKey:@"Address"];
+    }
+    if (self.dataArray[1][5].text.length > 0) {
+        [parameters setObject:self.dataArray[1][5].text forKey:@"GPSAddress"];
+    }
+    if (self.dataArray[1][6].text.length > 0) {
+        [parameters setObject:self.dataArray[1][6].text forKey:@"PersonQQ"];
+    }
+    if (self.dataArray[1][7].text.length > 0) {
+        [parameters setObject:self.dataArray[1][7].text forKey:@"PersonWeiXin"];
+    }
+    if (self.dataArray[1][8].text.length > 0) {
+        [parameters setObject:self.dataArray[1][8].text forKey:@"PersonAlipay"];
+    }
+    if (self.dataArray[2][0].text.length > 0) {
+        [parameters setObject:self.dataArray[2][0].text forKey:@"PersonBank"];
+    }
+    if (self.dataArray[2][1].text.length > 0) {
+        [parameters setObject:self.dataArray[2][1].text forKey:@"PersonBankCardNo"];
+    }
+    if (self.dataArray[2][2].text.length > 0) {
+        [parameters setObject:self.dataArray[2][2].text forKey:@"PersonBankName"];
+    }
+    return parameters;
+}
+
+- (void)setContentsWithPersonInfoModel:(DYJXUserInfoModel *)personInfoModel {
+    self.dataArray[0][1].text = personInfoModel.NumberString;
+    self.dataArray[0][2].text = personInfoModel.Cellphone;
+    
+    self.dataArray[1][0].text = personInfoModel.Business.IMInfo.NickName;
+    self.dataArray[1][1].text = personInfoModel.Business.IMInfo.PersonRemark;
+    self.dataArray[1][2].text = personInfoModel.Business.IMInfo.TrueName;
+    self.dataArray[1][3].text = personInfoModel.Business.IMInfo.PCDName;
+    self.dataArray[1][4].text = personInfoModel.Business.IMInfo.Address;
+    self.dataArray[1][5].text = personInfoModel.Business.IMInfo.GPSAddress;
+    self.dataArray[1][6].text = personInfoModel.Business.IMInfo.PersonQQ;
+    self.dataArray[1][7].text = personInfoModel.Business.IMInfo.PersonWeiXin;
+    self.dataArray[1][8].text = personInfoModel.Business.IMInfo.PersonAlipay;
+    
+    self.dataArray[2][0].text = personInfoModel.Business.IMInfo.PersonBank;
+    self.dataArray[2][1].text = personInfoModel.Business.IMInfo.PersonBankCardNo;
+    self.dataArray[2][2].text = personInfoModel.Business.IMInfo.PersonBankName;
+}
+
+- (NSMutableArray<NSMutableArray<LPXNewCustomerCellModel *> *> *)dataArray{
     if (!_dataArray) {
         _dataArray = [NSMutableArray array];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"DYJXUserInfoDetail.json" ofType:nil];
+        if (path) {
+            NSData *data = [[NSData alloc]initWithContentsOfFile:path];
+            NSError *error;
+            id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&error];
+            [_dataArray addObjectsFromArray: [LPXNewCustomerCellModel mj_objectArrayWithKeyValuesArray:(NSArray *)jsonObject]];
+        }else {
+            NSLog(@"josn文件不存在");
+        }
     }
     return _dataArray;
 }
