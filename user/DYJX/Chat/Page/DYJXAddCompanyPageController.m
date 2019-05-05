@@ -330,7 +330,7 @@
         }
     }else if (indexPath.section == self.viewModel.dataArray.count - 1) {
         ImageUploadCell *newCell = (ImageUploadCell *)cell;
-//        newCell.imagesArray = [self.imageArray mutableCopy];
+        newCell.imagesArray = [self.imageArray mutableCopy];
         newCell.addPicturesBlock = ^{
             //TODO: 添加图片
             weakSelf.isSelectHeader = NO;
