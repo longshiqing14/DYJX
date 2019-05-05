@@ -7,6 +7,8 @@
 //
 
 #import "DJAddMorePageViewController.h"
+#import "SWQRCodeViewController.h"
+#import "DYXJResult.h"
 
 @interface DJAddMorePageViewController ()
 
@@ -27,6 +29,32 @@
       NSFontAttributeName:[UIFont systemFontOfSize:18]};
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
 }
+- (IBAction)createGroup:(UIButton *)sender {
+    //创建群
+}
+
+- (IBAction)scanJoinFroup:(UIButton *)sender {
+    //扫一扫
+    SWQRCodeConfig *config = [[SWQRCodeConfig alloc]init];
+    config.scannerType = SWScannerTypeBoth;
+    
+    SWQRCodeViewController *qrcodeVC = [[SWQRCodeViewController alloc]init];
+    qrcodeVC.codeConfig = config;
+    qrcodeVC.callBack = ^(id anyobject){
+        if (anyobject) {
+            DYXJResult *result = (DYXJResult *)anyobject;
+//            [self.userLists removeAllObjects];
+//            [self.userLists addObject:result];
+//            [self.tableView reloadData];
+        }
+        
+    };
+    [self.navigationController pushViewController:qrcodeVC animated:YES];
+    
+}
+- (IBAction)searchGroup:(UIButton *)sender {
+}
+
 /*
 #pragma mark - Navigation
 
