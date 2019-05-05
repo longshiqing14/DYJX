@@ -594,6 +594,7 @@
 		E19DC8CC219ACC7B00C86478 /* DJCompanyChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8CB219ACC7B00C86478 /* DJCompanyChatPage.m */; };
 		E19DC8CF219ACC9100C86478 /* DJGroupChatPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */; };
 		E19DC8D3219AE7E600C86478 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E19DC8D2219AE7E600C86478 /* BaseModel.m */; };
+		E19E5B1A22740CEF0013440D /* DXZMobileContactsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E19E5B1922740CEF0013440D /* DXZMobileContactsPage.m */; };
 		E1A137B121FFECA900A5E4A1 /* DYJXComparePage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A137B021FFECA900A5E4A1 /* DYJXComparePage.m */; };
 		E1A137B721FFF3F600A5E4A1 /* GSCCompare.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A137B421FFF3F500A5E4A1 /* GSCCompare.m */; };
 		E1A137B821FFF3F600A5E4A1 /* GSCCListCompareItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A137B621FFF3F600A5E4A1 /* GSCCListCompareItem.m */; };
@@ -604,6 +605,10 @@
 		E1A34B3721D6132D002D4690 /* DYSelecteContractsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3621D6132D002D4690 /* DYSelecteContractsPage.m */; };
 		E1A34B3A21D64A4D002D4690 /* UIButton+CQBlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3921D64A4D002D4690 /* UIButton+CQBlockSupport.m */; };
 		E1A34B3D21D64A6F002D4690 /* CQColorfulAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A34B3C21D64A6F002D4690 /* CQColorfulAlertView.m */; };
+		E1A4B70E227E54E5002EC574 /* DSSMobileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A4B70D227E54E5002EC574 /* DSSMobileView.xib */; };
+		E1A4B711227E54FB002EC574 /* DSSMobileView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4B710227E54FB002EC574 /* DSSMobileView.m */; };
+		E1A4B713227E6365002EC574 /* MobileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A4B712227E6365002EC574 /* MobileView.xib */; };
+		E1A4B716227E643A002EC574 /* MobileView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4B715227E643A002EC574 /* MobileView.m */; };
 		E1A73E9A21D8B46900267385 /* DIIResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73E8F21D8B46500267385 /* DIIResult.m */; };
 		E1A73E9B21D8B46900267385 /* DIIBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73E9021D8B46500267385 /* DIIBusines.m */; };
 		E1A73E9C21D8B46900267385 /* DIISearchApply.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73E9221D8B46600267385 /* DIISearchApply.m */; };
@@ -1810,6 +1815,8 @@
 		E19DC8CE219ACC9100C86478 /* DJGroupChatPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGroupChatPage.m; sourceTree = "<group>"; };
 		E19DC8D1219AE7E600C86478 /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		E19DC8D2219AE7E600C86478 /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		E19E5B1822740CEF0013440D /* DXZMobileContactsPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXZMobileContactsPage.h; sourceTree = "<group>"; };
+		E19E5B1922740CEF0013440D /* DXZMobileContactsPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXZMobileContactsPage.m; sourceTree = "<group>"; };
 		E1A137AF21FFECA900A5E4A1 /* DYJXComparePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXComparePage.h; sourceTree = "<group>"; };
 		E1A137B021FFECA900A5E4A1 /* DYJXComparePage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXComparePage.m; sourceTree = "<group>"; };
 		E1A137B321FFF3F500A5E4A1 /* GSCCompare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCCompare.h; sourceTree = "<group>"; };
@@ -1830,6 +1837,12 @@
 		E1A34B3921D64A4D002D4690 /* UIButton+CQBlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CQBlockSupport.m"; sourceTree = "<group>"; };
 		E1A34B3B21D64A6E002D4690 /* CQColorfulAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQColorfulAlertView.h; sourceTree = "<group>"; };
 		E1A34B3C21D64A6F002D4690 /* CQColorfulAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQColorfulAlertView.m; sourceTree = "<group>"; };
+		E1A4B70D227E54E5002EC574 /* DSSMobileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSSMobileView.xib; sourceTree = "<group>"; };
+		E1A4B70F227E54FB002EC574 /* DSSMobileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSSMobileView.h; sourceTree = "<group>"; };
+		E1A4B710227E54FB002EC574 /* DSSMobileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSSMobileView.m; sourceTree = "<group>"; };
+		E1A4B712227E6365002EC574 /* MobileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MobileView.xib; sourceTree = "<group>"; };
+		E1A4B714227E643A002EC574 /* MobileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileView.h; sourceTree = "<group>"; };
+		E1A4B715227E643A002EC574 /* MobileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileView.m; sourceTree = "<group>"; };
 		E1A73E8E21D8B46500267385 /* DIIMemberTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIIMemberTo.h; sourceTree = "<group>"; };
 		E1A73E8F21D8B46500267385 /* DIIResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIIResult.m; sourceTree = "<group>"; };
 		E1A73E9021D8B46500267385 /* DIIBusines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIIBusines.m; sourceTree = "<group>"; };
@@ -3738,6 +3751,12 @@
 				E18D582021A50A90001FE4A0 /* ConpanyHeadView.m */,
 				E1307FE021A7ABC50014C220 /* GroupHeadView.h */,
 				E1307FE121A7ABC50014C220 /* GroupHeadView.m */,
+				E1A4B70F227E54FB002EC574 /* DSSMobileView.h */,
+				E1A4B710227E54FB002EC574 /* DSSMobileView.m */,
+				E1A4B714227E643A002EC574 /* MobileView.h */,
+				E1A4B715227E643A002EC574 /* MobileView.m */,
+				E1A4B712227E6365002EC574 /* MobileView.xib */,
+				E1A4B70D227E54E5002EC574 /* DSSMobileView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4571,6 +4590,8 @@
 				E19DC8C8219ACC6A00C86478 /* DJContactsChatViewController.m */,
 				E1CDB24021D7A6C50049B124 /* DNewContractViewController.h */,
 				E1CDB24121D7A6C50049B124 /* DNewContractViewController.m */,
+				E19E5B1822740CEF0013440D /* DXZMobileContactsPage.h */,
+				E19E5B1922740CEF0013440D /* DXZMobileContactsPage.m */,
 				E19DC8CA219ACC7B00C86478 /* DJCompanyChatPage.h */,
 				E19DC8CB219ACC7B00C86478 /* DJCompanyChatPage.m */,
 				E19DC8CD219ACC9100C86478 /* DJGroupChatPage.h */,
@@ -4914,6 +4935,7 @@
 				CBD2BA0B1F5D23CC0057E2E7 /* Assets.xcassets in Resources */,
 				DE0023431FBBFD1100C80AED /* Main.storyboard in Resources */,
 				488E89FE219FFD5A008695A7 /* jrmf.cer in Resources */,
+				E1A4B713227E6365002EC574 /* MobileView.xib in Resources */,
 				48A1AC4D21FAAC1A00C1DB45 /* JXRefumdImageCollectionCell.xib in Resources */,
 				487351B4218D598B001B59AB /* DYJXConversionPage.xib in Resources */,
 				4804A14621957D5D0081AB5B /* MiPassport.bundle in Resources */,
@@ -4939,6 +4961,7 @@
 				488E8A07219FFD5A008695A7 /* RongSticker.bundle in Resources */,
 				CBFF45901F74C03500D2AF93 /* UMSocialSDKResources.bundle in Resources */,
 				488E89F1219FFD5A008695A7 /* default_image_square.png in Resources */,
+				E1A4B70E227E54E5002EC574 /* DSSMobileView.xib in Resources */,
 				48E2503E21D774A800CC7D9E /* DJCompanyChatCell.xib in Resources */,
 				F91EE369226F5032006BCB37 /* DYJXAddCompany.json in Resources */,
 				488E89F3219FFD5A008695A7 /* default_image_rectangular.png in Resources */,
@@ -5182,6 +5205,7 @@
 				E15767E721C9122D003A5C25 /* NIMContactPickedView.m in Sources */,
 				48A1AC5E21FAAFAE00C1DB45 /* XYPlayModel.m in Sources */,
 				E1A137B721FFF3F600A5E4A1 /* GSCCompare.m in Sources */,
+				E1A4B716227E643A002EC574 /* MobileView.m in Sources */,
 				4895F0F5220432B300203073 /* DJWildGroupHeaderView.m in Sources */,
 				DE36FA611FCEDE5900ED184E /* PPNumberButton.m in Sources */,
 				E11C423521A2D6750039A53A /* HeadSearchView.m in Sources */,
@@ -5252,6 +5276,7 @@
 				E17FC6C721A1009D00D435D9 /* DJJLMember.m in Sources */,
 				E1A73E9E21D8B46900267385 /* DIIMemberTo.m in Sources */,
 				E1307FE221A7ABC50014C220 /* GroupHeadView.m in Sources */,
+				E19E5B1A22740CEF0013440D /* DXZMobileContactsPage.m in Sources */,
 				E12DBDB621AD1ED60011E3A4 /* DYJOLastMg.m in Sources */,
 				E157681221C9122D003A5C25 /* NIMCardMemberItem.m in Sources */,
 				E157680821C9122D003A5C25 /* NIMKitKeyboardInfo.m in Sources */,
@@ -5389,6 +5414,7 @@
 				DE71B15C208744DD00467E06 /* PYProgressView.m in Sources */,
 				E13E861421C7327600B4875D /* DataBaseManager.m in Sources */,
 				E1A137B121FFECA900A5E4A1 /* DYJXComparePage.m in Sources */,
+				E1A4B711227E54FB002EC574 /* DSSMobileView.m in Sources */,
 				E1999E3821D9AA20004B7460 /* SKLastMg.m in Sources */,
 				48E2504621D893B300CC7D9E /* DJGroupChatViewModel.m in Sources */,
 				E13E60CC21C35A7100D0C4B3 /* FMDatabaseAdditions.m in Sources */,
