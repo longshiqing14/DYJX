@@ -609,6 +609,10 @@
 		E1A4B711227E54FB002EC574 /* DSSMobileView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4B710227E54FB002EC574 /* DSSMobileView.m */; };
 		E1A4B713227E6365002EC574 /* MobileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A4B712227E6365002EC574 /* MobileView.xib */; };
 		E1A4B716227E643A002EC574 /* MobileView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4B715227E643A002EC574 /* MobileView.m */; };
+		E1A4B71F227E833F002EC574 /* BaiduMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4B719227E833F002EC574 /* BaiduMapViewController.m */; };
+		E1A4B720227E833F002EC574 /* serach_Map.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A4B71B227E833F002EC574 /* serach_Map.png */; };
+		E1A4B721227E833F002EC574 /* BaiduPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4B71D227E833F002EC574 /* BaiduPlaceModel.m */; };
+		E1A4B722227E833F002EC574 /* BaiduLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4B71E227E833F002EC574 /* BaiduLocation.m */; };
 		E1A73E9A21D8B46900267385 /* DIIResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73E8F21D8B46500267385 /* DIIResult.m */; };
 		E1A73E9B21D8B46900267385 /* DIIBusines.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73E9021D8B46500267385 /* DIIBusines.m */; };
 		E1A73E9C21D8B46900267385 /* DIISearchApply.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A73E9221D8B46600267385 /* DIISearchApply.m */; };
@@ -1843,6 +1847,13 @@
 		E1A4B712227E6365002EC574 /* MobileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MobileView.xib; sourceTree = "<group>"; };
 		E1A4B714227E643A002EC574 /* MobileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileView.h; sourceTree = "<group>"; };
 		E1A4B715227E643A002EC574 /* MobileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileView.m; sourceTree = "<group>"; };
+		E1A4B718227E833F002EC574 /* BaiduPlaceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduPlaceModel.h; sourceTree = "<group>"; };
+		E1A4B719227E833F002EC574 /* BaiduMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMapViewController.m; sourceTree = "<group>"; };
+		E1A4B71A227E833F002EC574 /* BaiduLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduLocation.h; sourceTree = "<group>"; };
+		E1A4B71B227E833F002EC574 /* serach_Map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = serach_Map.png; sourceTree = "<group>"; };
+		E1A4B71C227E833F002EC574 /* BaiduMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMapViewController.h; sourceTree = "<group>"; };
+		E1A4B71D227E833F002EC574 /* BaiduPlaceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduPlaceModel.m; sourceTree = "<group>"; };
+		E1A4B71E227E833F002EC574 /* BaiduLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduLocation.m; sourceTree = "<group>"; };
 		E1A73E8E21D8B46500267385 /* DIIMemberTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIIMemberTo.h; sourceTree = "<group>"; };
 		E1A73E8F21D8B46500267385 /* DIIResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIIResult.m; sourceTree = "<group>"; };
 		E1A73E9021D8B46500267385 /* DIIBusines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIIBusines.m; sourceTree = "<group>"; };
@@ -2208,6 +2219,7 @@
 		481FE7012182165700CFE26B /* DYJX */ = {
 			isa = PBXGroup;
 			children = (
+				E1A4B717227E833F002EC574 /* BaiduMap */,
 				E19DC895219AC28100C86478 /* RCloudSDK */,
 				E17AF1E221A01D430041249C /* Model */,
 				48511D6C219EC376006C6081 /* MyFrameWork */,
@@ -4613,6 +4625,20 @@
 			path = Compare;
 			sourceTree = "<group>";
 		};
+		E1A4B717227E833F002EC574 /* BaiduMap */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4B718227E833F002EC574 /* BaiduPlaceModel.h */,
+				E1A4B719227E833F002EC574 /* BaiduMapViewController.m */,
+				E1A4B71A227E833F002EC574 /* BaiduLocation.h */,
+				E1A4B71B227E833F002EC574 /* serach_Map.png */,
+				E1A4B71C227E833F002EC574 /* BaiduMapViewController.h */,
+				E1A4B71D227E833F002EC574 /* BaiduPlaceModel.m */,
+				E1A4B71E227E833F002EC574 /* BaiduLocation.m */,
+			);
+			path = BaiduMap;
+			sourceTree = "<group>";
+		};
 		E1ACC65021D8720300E0EEE9 /* SearchContact */ = {
 			isa = PBXGroup;
 			children = (
@@ -4900,6 +4926,7 @@
 				488E89F6219FFD5A008695A7 /* RCConfig.plist in Resources */,
 				488E89ED219FFD5A008695A7 /* RongCloud.bundle in Resources */,
 				488E89FD219FFD5A008695A7 /* WalletResource.bundle in Resources */,
+				E1A4B720227E833F002EC574 /* serach_Map.png in Resources */,
 				488E89EC219FFD5A008695A7 /* Emoji.plist in Resources */,
 				4826A48B21BFC43500EAF963 /* DYJXAddMemberCollectionViewCell.xib in Resources */,
 				48A3711121B61369002861DD /* CompanyBottomView.xib in Resources */,
@@ -5212,6 +5239,7 @@
 				E17AF25C21A02D480041249C /* DJJXIMInfo.m in Sources */,
 				E1ACC68521D8874900E0EEE9 /* DLLResult.m in Sources */,
 				48A3707421ABF406002861DD /* TitleAndContentCell.m in Sources */,
+				E1A4B721227E833F002EC574 /* BaiduPlaceModel.m in Sources */,
 				E1ACC69C21D8AAA500E0EEE9 /* DYYBlackListResponse.m in Sources */,
 				E15767F421C9122D003A5C25 /* NIMSpellingCenter.m in Sources */,
 				E157682E21C9122D003A5C25 /* NIMImageContentConfig.m in Sources */,
@@ -5423,7 +5451,9 @@
 				CBFF46571F7E7ACC00D2AF93 /* FSActionSheetCell.m in Sources */,
 				E157680221C9122D003A5C25 /* NIMMemberGroupView.m in Sources */,
 				CB3307A31FA1BF8F00117695 /* IQToolbar.m in Sources */,
+				E1A4B71F227E833F002EC574 /* BaiduMapViewController.m in Sources */,
 				CBD2BA031F5D23CC0057E2E7 /* AppDelegate.m in Sources */,
+				E1A4B722227E833F002EC574 /* BaiduLocation.m in Sources */,
 				E157680521C9122D003A5C25 /* NIMKitTitleView.m in Sources */,
 				DE71B160208744DD00467E06 /* PYPhotosNavigationController.m in Sources */,
 				48E2503021C9D84700CC7D9E /* DYJXDeleteMemberPage.m in Sources */,
