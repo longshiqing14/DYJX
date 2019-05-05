@@ -98,7 +98,7 @@
 
 }
 -(void)addClick {// 新增公司
-    DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_None)];
+    DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_None) requestDic:self.viewModel.requestDic result:[[DYJXXYResult alloc]init]];
     [self.navigationController pushViewController:page animated:YES];
 }
 
@@ -186,7 +186,7 @@
     header.groupName.text = [self.viewModel sectionHeaderGroupName:section];
     WeakSelf
     header.block = ^{ // 新增子公司
-        DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_Sub)];
+        DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_Sub) requestDic:weakSelf.viewModel.requestDic result:[weakSelf.viewModel getRefundReasonsArray][section]];
         [weakSelf.navigationController pushViewController:page animated:YES];
     };
     return header;

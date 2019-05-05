@@ -8,13 +8,30 @@
 
 #import "SubcompanyBottomView.h"
 
+@interface SubcompanyBottomView ()
+@property (weak, nonatomic) IBOutlet UIButton *bottomBtn;
+
+@end
+
 @implementation SubcompanyBottomView
 
 - (IBAction)sendConversation:(UIButton *)sender {
     if (self.block) {
         self.block();
     }
+    
 }
 
+- (void)setSubcompanyBottomBtnWithTitle:(NSString *)title {
+    [self.bottomBtn setTitle:title forState:(UIControlStateNormal)];
+}
+
+- (void)setSubcompanyBottomBtnWithBackgroundColor:(UIColor *)backgroundColor {
+    self.bottomBtn.backgroundColor = backgroundColor;
+}
+
+- (void)setSubcompanyBottomBtnWithTitleColor:(UIColor *)titleColor {
+    [self.bottomBtn setTitleColor:titleColor forState:(UIControlStateNormal)];
+}
 
 @end

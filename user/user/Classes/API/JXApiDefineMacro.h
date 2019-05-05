@@ -77,6 +77,21 @@ static NSString * const kDYJXAPI_user_DeleteGroup = @"DeleteGroup";
 //退出公司
 static NSString * const kDYJXAPI_user_QuitGroup2 = @"QuitGroup2";
 
+//添加公司、子公司
+static NSString * const kDYJXAPI_user_EditGroup2 = @"EditGroup2";
+
+//（子）公司所属省市
+static NSString * const kDYJXAPI_user_GetProvinces = @"GetProvinces";
+
+//（子）公司所属市
+static NSString * const kDYJXAPI_user_GetCitys = @"GetCitys";
+
+//（子）公司所属区/县
+static NSString * const kDYJXAPI_user_GetDistricts = @"GetDistricts";
+
+// 选择公司地址通知
+static NSString * const kDYJXAPI_CompanyAddress_Notification = @"kDYJXAPICompanyAddressNotification";
+
 
 
 

@@ -9,6 +9,7 @@
 #import "BaseTableViewCell.h"
 #import "XYOrderCommentDetailModel.h"
 @interface ImageUploadCell : BaseTableViewCell
+@property (nonatomic, strong) LPXNewCustomerCellModel *cellmodel;
 @property (copy, nonatomic) void(^addPicturesBlock)();
 @property (copy, nonatomic) void (^deleteImageBlock)(NSInteger index);
 ///** 内容标签 */

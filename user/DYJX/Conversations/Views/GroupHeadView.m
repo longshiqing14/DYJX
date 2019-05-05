@@ -73,7 +73,7 @@
     if (!_addButton) {
         _addButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _addButton.titleLabel.font = [UIFont systemFontOfSize:16];
-        [_addButton setTitle:@"新增公司" forState:UIControlStateNormal];
+        [_addButton setTitle:@"新增" forState:UIControlStateNormal];
         [_addButton setTitleColor:[UIColor colorWithRed:59/255.0 green:59/255.0 blue:59/255.0 alpha:1] forState:UIControlStateNormal];
         [_addButton setTitleColor:[UIColor colorWithRed:59/255.0 green:59/255.0 blue:59/255.0 alpha:0.5] forState:UIControlStateHighlighted];
         _addButton.tag = 5;

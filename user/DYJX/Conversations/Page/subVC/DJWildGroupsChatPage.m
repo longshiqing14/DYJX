@@ -17,6 +17,7 @@
 #import "DJGroupChatCell.h"
 #import "DJCompanyChatCell.h"
 #import "JSExtension.h"
+#import "DJAddMorePageViewController.h"
 
 @interface DJWildGroupsChatPage ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
@@ -83,10 +84,13 @@
 }
 #pragma mark - Action
 -(void)searchClick {
+    [self.wildGroupsviewModel.requestDic setObject:self.headView.textField.text forKey:@"Keyword"];
+    [self.wildGroupsTableView.mj_header beginRefreshing];
     
 }
 -(void)addClick {
-    
+    DJAddMorePageViewController *vc = [[DJAddMorePageViewController alloc] initWithNibName:@"DJAddMorePageViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)btnClick:(UIButton *)sender {
     [self.headView.innerButton setSelected:NO];
@@ -379,6 +383,9 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            if (![YWDTools isNil:weakSelf.headView.textField.text]) {
+                [weakSelf.viewModel.requestDic setObject:weakSelf.headView.textField.text forKey:@"Keyword"];
+            };
             [weakSelf.viewModel getMyCompanyAndGroupDataSuccess:^{
                 [weakSelf.tableView.mj_header endRefreshing];
                 [weakSelf.tableView reloadData];
@@ -398,6 +405,9 @@
         _wildGroupsTableView.delegate = self;
         _wildGroupsTableView.dataSource = self;
         _wildGroupsTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            if (![YWDTools isNil:weakSelf.headView.textField.text]) {
+                [weakSelf.wildGroupsviewModel.requestDic setObject:weakSelf.headView.textField.text forKey:@"Keyword"];
+            };
             [weakSelf.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
                 [weakSelf.wildGroupsTableView.mj_header endRefreshing];
                 [weakSelf.wildGroupsTableView reloadData];

@@ -62,9 +62,9 @@
     }
     if (!model.righImageName || ![model.righImageName isEqualToString:@""]) {
         self.nextBtn.hidden = NO;
-        [self.nextBtn setBackgroundImage:[UIImage imageNamed:model.righImageName] forState:(UIControlStateNormal)];
+        [self.nextBtn setImage:[UIImage imageNamed:model.righImageName] forState:(UIControlStateNormal)];
         BOOL isRighImageNil = (!model.righSelectedImageName || ![model.righSelectedImageName isEqualToString:@""]);
-        [self.nextBtn setBackgroundImage:[UIImage imageNamed:isRighImageNil ? model.righSelectedImageName : model.righImageName] forState:(UIControlStateSelected)];
+        [self.nextBtn setImage:[UIImage imageNamed:isRighImageNil ? model.righSelectedImageName : model.righImageName] forState:(UIControlStateSelected)];
     }else {
         self.nextBtn.hidden = YES;
     }
