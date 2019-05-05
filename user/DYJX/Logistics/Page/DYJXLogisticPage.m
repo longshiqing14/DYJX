@@ -58,6 +58,28 @@
 
 -(void)viewWillAppear:(BOOL)animated {
      [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
+    
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:18]};
+    [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
+    
+    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [iconImage setContentMode:UIViewContentModeScaleAspectFill];
+    
+    if ([UserManager shared].isCompany == 1) {
+        iconImage.layer.cornerRadius = 12.5;
+    }
+    
+    iconImage.clipsToBounds = YES;
+    [iconImage setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
+    self.navigationItem.rightBarButtonItem.width = 25;
+    
+    UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
+    [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
+    [rightCustomView addSubview: iconImage];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightCustomView];
 }
 
 - (void)initSubViews{
@@ -331,27 +353,7 @@
 
 - (void)initNavigation{
     self.title = @"企连连";
-    self.navigationController.navigationBar.titleTextAttributes=
-    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
-      NSFontAttributeName:[UIFont systemFontOfSize:18]};
-    [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
-
-    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [iconImage setContentMode:UIViewContentModeScaleAspectFill];
     
-    if ([UserManager shared].isCompany == 1) {
-        iconImage.layer.cornerRadius = 12.5;
-    }
-    
-    iconImage.clipsToBounds = YES;
-    [iconImage setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
-    self.navigationItem.rightBarButtonItem.width = 25;
-    
-    UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
-    [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
-    [rightCustomView addSubview: iconImage];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightCustomView];
 }
 
 - (DYJXIdentitySwitchingModel *)IdentityModel{
