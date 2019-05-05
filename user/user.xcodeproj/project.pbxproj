@@ -33,6 +33,13 @@
 		4804A1A821995F250081AB5B /* storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1A721995F250081AB5B /* storage.framework */; };
 		4804A1AD219981030081AB5B /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804A1AC219981020081AB5B /* liblibNativeUI.a */; };
 		4804A1C4219D64E90081AB5B /* DYJXConversionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804A1C3219D64E80081AB5B /* DYJXConversionViewModel.m */; };
+		4804C4BC227E88A700CA3D81 /* DYJXCompanyAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804C4B8227E88A600CA3D81 /* DYJXCompanyAddressController.m */; };
+		4804C4BD227E88A700CA3D81 /* DYJXAddCompanyPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804C4B9227E88A600CA3D81 /* DYJXAddCompanyPageController.m */; };
+		4804C4C0227E88C000CA3D81 /* DYJXAddCompanyPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804C4BF227E88C000CA3D81 /* DYJXAddCompanyPageViewModel.m */; };
+		4804C4C4227E893700CA3D81 /* DJAddMorePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804C4C2227E893600CA3D81 /* DJAddMorePageViewController.m */; };
+		4804C4C5227E893700CA3D81 /* DJAddMorePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4804C4C3227E893700CA3D81 /* DJAddMorePageViewController.xib */; };
+		4804C4C8227E8A0A00CA3D81 /* DYJXAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804C4C6227E8A0A00CA3D81 /* DYJXAddressModel.m */; };
+		4804C4CB227E8A2800CA3D81 /* DYJXAddCompanyPageHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4804C4C9227E8A2800CA3D81 /* DYJXAddCompanyPageHeaderCell.m */; };
 		480B973A2086118400EF09C2 /* UITextView+XYPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 480B97392086118400EF09C2 /* UITextView+XYPlaceHolder.m */; };
 		481FE70B2182170600CFE26B /* DYJXLoginPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 481FE7092182170600CFE26B /* DYJXLoginPage.m */; };
 		481FE70C2182170600CFE26B /* DYJXLoginPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481FE70A2182170600CFE26B /* DYJXLoginPage.xib */; };
@@ -674,7 +681,6 @@
 		F91EE369226F5032006BCB37 /* DYJXAddCompany.json in Resources */ = {isa = PBXBuildFile; fileRef = F91EE366226F5032006BCB37 /* DYJXAddCompany.json */; };
 		F91EE36A226F5032006BCB37 /* LPXNewCustomerCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE367226F5032006BCB37 /* LPXNewCustomerCellModel.m */; };
 		F91EE36D226F5083006BCB37 /* DYJXAddCompanyPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE36C226F5082006BCB37 /* DYJXAddCompanyPageCell.m */; };
-		F91EE370226F50C2006BCB37 /* DYJXAddCompanyPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE36E226F50C2006BCB37 /* DYJXAddCompanyPageController.m */; };
 		F91EE37322709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE37122709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m */; };
 /* End PBXBuildFile section */
 
@@ -761,6 +767,19 @@
 		4804A1AC219981020081AB5B /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeUI.a; sourceTree = "<group>"; };
 		4804A1C2219D64E80081AB5B /* DYJXConversionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXConversionViewModel.h; sourceTree = "<group>"; };
 		4804A1C3219D64E80081AB5B /* DYJXConversionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXConversionViewModel.m; sourceTree = "<group>"; };
+		4804C4B8227E88A600CA3D81 /* DYJXCompanyAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXCompanyAddressController.m; sourceTree = "<group>"; };
+		4804C4B9227E88A600CA3D81 /* DYJXAddCompanyPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXAddCompanyPageController.m; sourceTree = "<group>"; };
+		4804C4BA227E88A600CA3D81 /* DYJXCompanyAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXCompanyAddressController.h; sourceTree = "<group>"; };
+		4804C4BB227E88A600CA3D81 /* DYJXAddCompanyPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXAddCompanyPageController.h; sourceTree = "<group>"; };
+		4804C4BE227E88C000CA3D81 /* DYJXAddCompanyPageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXAddCompanyPageViewModel.h; sourceTree = "<group>"; };
+		4804C4BF227E88C000CA3D81 /* DYJXAddCompanyPageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXAddCompanyPageViewModel.m; sourceTree = "<group>"; };
+		4804C4C1227E893600CA3D81 /* DJAddMorePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DJAddMorePageViewController.h; path = DYJX/Conversations/Page/subVC/DJAddMorePageViewController.h; sourceTree = SOURCE_ROOT; };
+		4804C4C2227E893600CA3D81 /* DJAddMorePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DJAddMorePageViewController.m; path = DYJX/Conversations/Page/subVC/DJAddMorePageViewController.m; sourceTree = SOURCE_ROOT; };
+		4804C4C3227E893700CA3D81 /* DJAddMorePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DJAddMorePageViewController.xib; path = DYJX/Conversations/Page/subVC/DJAddMorePageViewController.xib; sourceTree = SOURCE_ROOT; };
+		4804C4C6227E8A0A00CA3D81 /* DYJXAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYJXAddressModel.m; path = DYJX/Chat/Model/DYJXAddressModel.m; sourceTree = SOURCE_ROOT; };
+		4804C4C7227E8A0A00CA3D81 /* DYJXAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYJXAddressModel.h; path = DYJX/Chat/Model/DYJXAddressModel.h; sourceTree = SOURCE_ROOT; };
+		4804C4C9227E8A2800CA3D81 /* DYJXAddCompanyPageHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXAddCompanyPageHeaderCell.m; sourceTree = "<group>"; };
+		4804C4CA227E8A2800CA3D81 /* DYJXAddCompanyPageHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXAddCompanyPageHeaderCell.h; sourceTree = "<group>"; };
 		480B97382086118400EF09C2 /* UITextView+XYPlaceHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+XYPlaceHolder.h"; sourceTree = "<group>"; };
 		480B97392086118400EF09C2 /* UITextView+XYPlaceHolder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+XYPlaceHolder.m"; sourceTree = "<group>"; };
 		481434A31FE8C18600E7DCD8 /* UPAPayPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UPAPayPlugin.h; sourceTree = "<group>"; };
@@ -1960,8 +1979,6 @@
 		F91EE367226F5032006BCB37 /* LPXNewCustomerCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPXNewCustomerCellModel.m; sourceTree = "<group>"; };
 		F91EE36B226F5082006BCB37 /* DYJXAddCompanyPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXAddCompanyPageCell.h; sourceTree = "<group>"; };
 		F91EE36C226F5082006BCB37 /* DYJXAddCompanyPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXAddCompanyPageCell.m; sourceTree = "<group>"; };
-		F91EE36E226F50C2006BCB37 /* DYJXAddCompanyPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJXAddCompanyPageController.m; sourceTree = "<group>"; };
-		F91EE36F226F50C2006BCB37 /* DYJXAddCompanyPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXAddCompanyPageController.h; sourceTree = "<group>"; };
 		F91EE37122709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AVPhotoLibraryAuthorization.m"; sourceTree = "<group>"; };
 		F91EE37222709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AVPhotoLibraryAuthorization.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2336,6 +2353,8 @@
 		487351332186F2AE001B59AB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4804C4CA227E8A2800CA3D81 /* DYJXAddCompanyPageHeaderCell.h */,
+				4804C4C9227E8A2800CA3D81 /* DYJXAddCompanyPageHeaderCell.m */,
 				48A1AC5721FAAD2800C1DB45 /* XYSelectIconPopView.h */,
 				48A1AC5621FAAD2700C1DB45 /* XYSelectIconPopView.m */,
 				4873514221870F8F001B59AB /* DYJXIdentitySwitchingCell.h */,
@@ -2411,6 +2430,10 @@
 		487351342186F2BF001B59AB /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				4804C4BB227E88A600CA3D81 /* DYJXAddCompanyPageController.h */,
+				4804C4B9227E88A600CA3D81 /* DYJXAddCompanyPageController.m */,
+				4804C4BA227E88A600CA3D81 /* DYJXCompanyAddressController.h */,
+				4804C4B8227E88A600CA3D81 /* DYJXCompanyAddressController.m */,
 				487351372186F475001B59AB /* DYJXIdentitySwitchingPage.h */,
 				487351382186F475001B59AB /* DYJXIdentitySwitchingPage.m */,
 				487351392186F475001B59AB /* DYJXIdentitySwitchingPage.xib */,
@@ -2434,8 +2457,6 @@
 				48E2503221D4F9A800CC7D9E /* DYJXAccessAdminPage.m */,
 				48E2503421D6528400CC7D9E /* DYJXFireAdminPage.h */,
 				48E2503521D6528400CC7D9E /* DYJXFireAdminPage.m */,
-				F91EE36F226F50C2006BCB37 /* DYJXAddCompanyPageController.h */,
-				F91EE36E226F50C2006BCB37 /* DYJXAddCompanyPageController.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -2443,6 +2464,8 @@
 		487351352186F2C6001B59AB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4804C4BE227E88C000CA3D81 /* DYJXAddCompanyPageViewModel.h */,
+				4804C4BF227E88C000CA3D81 /* DYJXAddCompanyPageViewModel.m */,
 				4873513C2186F5A5001B59AB /* DYJXIdentitySwitchingViewModel.h */,
 				4873513D2186F5A5001B59AB /* DYJXIdentitySwitchingViewModel.m */,
 				E11C423721A2E19B0039A53A /* GropuDetailViewModel.h */,
@@ -2588,6 +2611,8 @@
 		487351AA218D4EC8001B59AB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4804C4C7227E8A0A00CA3D81 /* DYJXAddressModel.h */,
+				4804C4C6227E8A0A00CA3D81 /* DYJXAddressModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3789,6 +3814,9 @@
 		E12DBDB921AD482B0011E3A4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4804C4C1227E893600CA3D81 /* DJAddMorePageViewController.h */,
+				4804C4C2227E893600CA3D81 /* DJAddMorePageViewController.m */,
+				4804C4C3227E893700CA3D81 /* DJAddMorePageViewController.xib */,
 				E12DBDBA21AD48560011E3A4 /* DYJXLasterListCell.h */,
 				E12DBDBB21AD48560011E3A4 /* DYJXLasterListCell.m */,
 				48E2503A21D774A800CC7D9E /* DJCompanyChatCell.h */,
@@ -4945,6 +4973,7 @@
 				DE71B167208744DD00467E06 /* PYPhotosView.bundle in Resources */,
 				CB42F5FD1FAC655000889257 /* new_feature_1.png in Resources */,
 				488B093121B6232300DAA97E /* CompanyAdminBottomView.xib in Resources */,
+				4804C4C5227E893700CA3D81 /* DJAddMorePageViewController.xib in Resources */,
 				CB3307A51FA1BF8F00117695 /* IQKeyboardManager.bundle in Resources */,
 				4804A186219593170081AB5B /* native-bundle-main.js in Resources */,
 				48E2504321D7AFB900CC7D9E /* DJCompanyChatHeader.xib in Resources */,
@@ -5256,6 +5285,7 @@
 				E1CDB25121D7AA410049B124 /* SWQRCodeManager.m in Sources */,
 				E19DC8C6219ACC5700C86478 /* DYLastestChatViewController.m in Sources */,
 				E157685821C9122D003A5C25 /* NIMKitSwitcherCell.m in Sources */,
+				4804C4C8227E8A0A00CA3D81 /* DYJXAddressModel.m in Sources */,
 				48E2503621D6528400CC7D9E /* DYJXFireAdminPage.m in Sources */,
 				CBFF45951F74C26700D2AF93 /* XYUMSocialShareView.m in Sources */,
 				E19DC8CF219ACC9100C86478 /* DJGroupChatPage.m in Sources */,
@@ -5384,8 +5414,8 @@
 				48B8309A1FB9F5AD0019F503 /* JXQueryConditionItem.m in Sources */,
 				E17AF25821A02D480041249C /* DJJXMembers.m in Sources */,
 				E157680021C9122D003A5C25 /* NIMGrowingInternalTextView.m in Sources */,
-				F91EE370226F50C2006BCB37 /* DYJXAddCompanyPageController.m in Sources */,
 				E15767FB21C9122D003A5C25 /* NIMInputAtCache.m in Sources */,
+				4804C4BC227E88A700CA3D81 /* DYJXCompanyAddressController.m in Sources */,
 				E16657B521A411FD00BAC552 /* BaseTableViewCell.m in Sources */,
 				E12DBDBC21AD48560011E3A4 /* DYJXLasterListCell.m in Sources */,
 				E157683E21C9122D003A5C25 /* NIMSessionLocationContentView.m in Sources */,
@@ -5414,6 +5444,7 @@
 				48CC2C301FD9271400622935 /* YWDPopupControl+YDBBiz.m in Sources */,
 				DE71B164208744DD00467E06 /* PYPhotoBrowseView.m in Sources */,
 				CBD2BA061F5D23CC0057E2E7 /* ViewController.m in Sources */,
+				4804C4C4227E893700CA3D81 /* DJAddMorePageViewController.m in Sources */,
 				E1999E3721D9AA20004B7460 /* SKResult.m in Sources */,
 				E15767E521C9122D003A5C25 /* NIMGroupedUsrInfo.m in Sources */,
 				E13E60F621C364C600D0C4B3 /* RCDUserInfoManager.m in Sources */,
@@ -5517,6 +5548,7 @@
 				E157680F21C9122D003A5C25 /* NIMTeamCardOperationItem.m in Sources */,
 				CBCF83541F7129BD00B20CF9 /* LBXScanNetAnimation.m in Sources */,
 				E13E60CD21C35A7100D0C4B3 /* FMDatabase.m in Sources */,
+				4804C4BD227E88A700CA3D81 /* DYJXAddCompanyPageController.m in Sources */,
 				E1CDB24221D7A6C50049B124 /* DNewContractViewController.m in Sources */,
 				E19DC8CC219ACC7B00C86478 /* DJCompanyChatPage.m in Sources */,
 				E1A73EA521D8CB8600267385 /* HeadView.m in Sources */,
@@ -5549,6 +5581,7 @@
 				E157680721C9122D003A5C25 /* NIMCustomLeftBarView.m in Sources */,
 				DE71B16D2087454300467E06 /* DALabeledCircularProgressView.m in Sources */,
 				E157684F21C9122D003A5C25 /* UITableView+NIMScrollToBottom.m in Sources */,
+				4804C4CB227E8A2800CA3D81 /* DYJXAddCompanyPageHeaderCell.m in Sources */,
 				E157681821C9122D003A5C25 /* NIMTeamAnnouncementListCell.m in Sources */,
 				E157682F21C9122D003A5C25 /* NIMBaseSessionContentConfig.m in Sources */,
 				E15767FA21C9122D003A5C25 /* NIMInputEmoticonManager.m in Sources */,
@@ -5661,6 +5694,7 @@
 				48B830971FB9F52C0019F503 /* JXQueryConditionItemView.m in Sources */,
 				E17AF25921A02D480041249C /* DJJXEnterpriseInfo.m in Sources */,
 				48CC2C311FD9271400622935 /* YWDPopupControl.m in Sources */,
+				4804C4C0227E88C000CA3D81 /* DYJXAddCompanyPageViewModel.m in Sources */,
 				487351A1218C1FCC001B59AB /* DYJXLogisticViewModel.m in Sources */,
 				CBFF45651F724B5900D2AF93 /* XYBestPageModel.m in Sources */,
 				E157682021C9122D003A5C25 /* NIMMediaItem.m in Sources */,
