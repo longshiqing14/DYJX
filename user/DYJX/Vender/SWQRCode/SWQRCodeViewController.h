@@ -8,8 +8,12 @@
 
 #import "SWQRCode.h"
 
+typedef void (^qrCallBack)(id anyobject);
+
 @interface SWQRCodeViewController : UIViewController
 
 @property (nonatomic, strong) SWQRCodeConfig *codeConfig;
+
+@property (nonatomic, copy)qrCallBack callBack;
 
 @end

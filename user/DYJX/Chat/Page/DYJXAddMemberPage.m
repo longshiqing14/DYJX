@@ -85,7 +85,7 @@
     DYJXAddMemberCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"DYJXAddMemberCollectionViewCell" forIndexPath:indexPath];
     cell.iconImage.layer.cornerRadius = (self.view.frame.size.width - 30 - 15*4)/5/2;
     cell.iconImage.layer.masksToBounds = YES;
-    [cell.iconImage setImageWithURL:[NSURL URLWithString:[self.membersArray[indexPath.row].Business.IMInfo.HeadImgUrl XYImageURL]] placeholder:[UIImage imageNamed:@"btn_user_small"]];
+    [cell.iconImage setImageWithURL:[NSURL URLWithString:[self.membersArray[indexPath.row].Business.IMInfo.HeadImgUrl XYImageURL]] placeholder:[UIImage imageNamed:@"dyjx_default_im_por"]];
     cell.nickName.text = self.membersArray[indexPath.row].DisplayName;
     return cell;
     

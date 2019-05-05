@@ -8,6 +8,8 @@
 
 #import "SWQRCodeViewController.h"
 #import "SWScannerView.h"
+#import "DYJXUserInfoModel.h"
+#import "DYXJResult.h"
 
 @interface SWQRCodeViewController ()<AVCaptureMetadataOutputObjectsDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -33,7 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = [SWQRCodeManager sw_navigationItemTitleWithType:self.codeConfig.scannerType];
+    self.navigationItem.title = @"二维码";
     [self _setupUI];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -222,6 +224,57 @@
  */
 - (void)sw_handleWithValue:(NSString *)value {
     NSLog(@"sw_handleWithValue === %@", value);
+    if (!value.length) {
+        return;
+    }
+    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+    [reqDict setObject:value forKey:@"Data"];
+    [reqDict setObject:value forKey:@"UserID"];
+    [reqDict setObject:value forKey:@"Id"];
+    [reqDict setObject:@"iOS" forKey:@"Device"];
+    [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+    [reqDict setObject:[UserManager shared].login.ObjResult forKey:@"DeviceToken"];
+
+    [XYNetWorking XYPOST:kDYJXAPI_user_GetUserById params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
+                [SVProgressHUD dismiss];
+                DYJXUserInfoModel *model = [DYJXUserInfoModel modelWithJSON:[responseObject objectForKey:@"Result"]];
+                DYXJResult *result = [[DYXJResult alloc] init];
+                result.DisplayName = model.UserName;
+                result.NumberString = model.NumberString;
+                result.Id = model.Id;
+                result.Disabled = model.Disabled;
+                result.Cellphone = model.Cellphone;
+                result.CreateOn = model.CreateOn;
+                result.Type = model.Type;
+//                result.Business = model.Business
+                result.UserName = model.UserName;
+                result.DisplayTel = model.Cellphone;
+                result.RongCloudToken = model.RongCloudToken;
+                result.BelongEnterprise = model.BelongEnterprise;
+                [self.navigationController popViewControllerAnimated:YES];
+
+                if (_callBack) {
+                    self.callBack(result);
+                }
+            }else{
+
+                [self.navigationController popViewControllerAnimated:YES];
+                [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
+            }
+
+        }else{
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 /**

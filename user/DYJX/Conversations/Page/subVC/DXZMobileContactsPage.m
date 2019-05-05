@@ -1,12 +1,13 @@
 //
-//  DNewContractViewController.m
+//  DXZMobileContactsPage.m
 //  user
 //
-//  Created by longshiqing on 2018/12/29.
-//  Copyright © 2018年 xiaopenglive. All rights reserved.
+//  Created by longshiqing on 2019/4/27.
+//  Copyright © 2019年 xiaopenglive. All rights reserved.
 //
 
-#import "DNewContractViewController.h"
+#import "DXZMobileContactsPage.h"
+
 #import "JSExtension.h"
 #import "MutableSelectCell.h"
 #import "HeadSearchView.h"
@@ -20,27 +21,30 @@
 #import "DYXJSearchUserModel.h"
 #import "DYGoodCell.h"
 #import "DYJXSubcompanyInfoDetailPage.h"
-#import "DXZMobileContactsPage.h"
+#import "DSSMobileView.h"
+#import "MobileView.h"
 
-@interface DNewContractViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface DXZMobileContactsPage ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)HeadSearchView *headView;
 @property (nonatomic, strong)DLHeadScanView *scanView;
 @property (nonatomic, strong)NSMutableArray <DYXJResult *> *userLists;
 @property (nonatomic, assign)NSInteger pageIndex;
+@property (nonatomic, strong)DSSMobileView *mobileView;
+//@property (nonatomic, strong)MobileView *mobileView;
 
 @end
 
-@implementation DNewContractViewController
+@implementation DXZMobileContactsPage
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.view.backgroundColor = [UIColor whiteColor];
 
+    [self.view addSubview:self.mobileView];
     [self.view addSubview:self.headView];
-    [self.view addSubview:self.scanView];
     [self.view addSubview:self.tableView];
 
     [self baseUI];
@@ -86,7 +90,7 @@
             self.tableView.mj_footer = nil;
         }
         [requestDic setObject:self.headView.textField.text forKey:@"Keyword"];
-        [XYNetWorking XYPOST:@"SearchUser" params:requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
+        [XYNetWorking XYPOST:@"Search112User" params:requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
             if (self.pageIndex == 1) {
                 [self.tableView.mj_header endRefreshing];
             }
@@ -128,8 +132,10 @@
         titleView = [[NIMKitTitleView alloc] initWithFrame:CGRectZero];
         self.navigationItem.titleView = titleView;
 
-        titleView.titleLabel.text = @"新增联系人";
+        titleView.titleLabel.text = @"添加手机联系人";
     }
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(clickRightBarButtonItem)];
 
     [titleView sizeToFit];
 }
@@ -166,10 +172,10 @@
     return 60;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    MutableSelectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MutableSelectCell"];
-//    if (!cell) {
-//        cell = [[MutableSelectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MutableSelectCell"];
-//    }
+    //    MutableSelectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MutableSelectCell"];
+    //    if (!cell) {
+    //        cell = [[MutableSelectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MutableSelectCell"];
+    //    }
 
     DYGoodCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DYGoodCell"];
     if (!cell) {
@@ -179,7 +185,7 @@
     cell.sellingPointLable.text = [NSString stringWithFormat:@"%@",result.DisplayName];
     cell.goodsNameLabel.text = [NSString stringWithFormat:@"ID:%@ TEL:%@", result.NumberString,result.DisplayTel];
     [cell.goodsImageView setImage:[UIImage imageNamed:@"dyjx_default_im_por"]];
-//    [cell.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[result.Business.IMInfo.N XYImageURL]] placeholderImage:[UIImage imageNamed:@"dyjx_default_im_por"]];
+    //    [cell.goodsImageView sd_setImageWithURL:[NSURL URLWithString:[result.Business.IMInfo.N XYImageURL]] placeholderImage:[UIImage imageNamed:@"dyjx_default_im_por"]];
     if (indexPath.row == self.userLists.count - 1) {
         cell.line.hidden = YES;
     }
@@ -187,7 +193,7 @@
         cell.line.hidden = NO;
     }
     return (DYGoodCell *)cell;
-//    return (RCConversationBaseCell *)cell;
+    //    return (RCConversationBaseCell *)cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -198,51 +204,50 @@
     page.groupNumber = result.NumberString;
     page.targetId = result.Id;
     [self.navigationController pushViewController:page animated:YES];
-//    [[JSExtension shared] getConversion:result.Id FromId:[UserManager shared].getUserModel.UserID type:result.Type DataSuccess:^(id  _Nonnull response) {
-//        SKResult *respo = (SKResult *)response;
-//        NIMSessionType type = NIMSessionTypeP2P;
-//        [JSExtension shared].type = 0;
-//        if (respo.LastMsg.RowData) {
-//            NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
-//            NSDictionary *dic = [body stringToDictionary];
-//            if (dic[@"extra"]) {
-//                NSDictionary *dict = [dic[@"extra"] stringToDictionary];
-//                [JSExtension shared].targetId = dict[@"TargetId"];
-//                [JSExtension shared].targetName = dict[@"TargetName"];
-//                [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
-//                [JSExtension shared].conversionId = respo.LastMsg.ConversationId;
-//            }
-//        }
-//
-//        if([JSExtension shared].conversionId.length) {
-//            [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
-//
-//            NIMSession *session = [NIMSession session:respo.LastMsg.ConversationId type:type];
-//            [JSExtension shared].session = session;
-//            JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
-//            RCConversationModel *chatModel = [[RCConversationModel alloc] init];
-//            chatModel.targetId = [JSExtension shared].conversionId;
-//            [JSExtension shared].chatVC = chatVC;
-//            chatVC.naviTitle = result.DisplayName;
-//            chatVC.chatModel = chatModel;
-//            [self.navigationController pushViewController:chatVC animated:YES];
-//        }
-//        else {
-//            [self.view makeToast:@"会话ID获取失败"];
-//        }
-//    } failed:^(NSString * _Nonnull errorMsg) {
-//        [self.view makeToast:@"会话ID获取失败"];
-//    }];
+    //    [[JSExtension shared] getConversion:result.Id FromId:[UserManager shared].getUserModel.UserID type:result.Type DataSuccess:^(id  _Nonnull response) {
+    //        SKResult *respo = (SKResult *)response;
+    //        NIMSessionType type = NIMSessionTypeP2P;
+    //        [JSExtension shared].type = 0;
+    //        if (respo.LastMsg.RowData) {
+    //            NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
+    //            NSDictionary *dic = [body stringToDictionary];
+    //            if (dic[@"extra"]) {
+    //                NSDictionary *dict = [dic[@"extra"] stringToDictionary];
+    //                [JSExtension shared].targetId = dict[@"TargetId"];
+    //                [JSExtension shared].targetName = dict[@"TargetName"];
+    //                [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
+    //                [JSExtension shared].conversionId = respo.LastMsg.ConversationId;
+    //            }
+    //        }
+    //
+    //        if([JSExtension shared].conversionId.length) {
+    //            [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
+    //
+    //            NIMSession *session = [NIMSession session:respo.LastMsg.ConversationId type:type];
+    //            [JSExtension shared].session = session;
+    //            JXChatViewController *chatVC = [[JXChatViewController alloc] initWithSession:session];
+    //            RCConversationModel *chatModel = [[RCConversationModel alloc] init];
+    //            chatModel.targetId = [JSExtension shared].conversionId;
+    //            [JSExtension shared].chatVC = chatVC;
+    //            chatVC.naviTitle = result.DisplayName;
+    //            chatVC.chatModel = chatModel;
+    //            [self.navigationController pushViewController:chatVC animated:YES];
+    //        }
+    //        else {
+    //            [self.view makeToast:@"会话ID获取失败"];
+    //        }
+    //    } failed:^(NSString * _Nonnull errorMsg) {
+    //        [self.view makeToast:@"会话ID获取失败"];
+    //    }];
 }
 
 #pragma mark - Action
-
+-(void)clickRightBarButtonItem {
+    NSLog(@"提交");
+}
 -(void)buttonClick:(UIButton *)sender {
     if (sender.tag == 1) {
         NSLog(@"添加手机联系人");
-        DXZMobileContactsPage *page = [[DXZMobileContactsPage alloc] init];
-
-        [self.navigationController pushViewController:page animated:YES];
     }
     else if(sender.tag == 2) {
         NSLog(@"扫一扫");
@@ -298,7 +303,7 @@
 
 -(UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 150, kScreenWidth, kScreenHeight - 64 - 150) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 140, kScreenWidth, kScreenHeight - 64 - 140) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
@@ -316,5 +321,42 @@
     }
     return _scanView;
 }
+//-(MobileView *)mobileView {
+//    if (!_mobileView) {
+//        _mobileView = [[NSBundle mainBundle] loadNibNamed:@"MobileView" owner:self options:nil][0];;
+//    }
+//    return _mobileView;
+//}
+-(DSSMobileView *)mobileView {
+    if (!_mobileView) {
+        _mobileView = [[DSSMobileView alloc] initWithFrame:CGRectMake(0, 60, kScreenWidth, 80)];
+        _mobileView.block = ^(NSInteger index) {
+            switch (index) {
+                case MobileTypeAll:
+                    _pageType = PageMobileTypeAll;
+                    break;
+                case MobileTypeClear:
+                    _pageType = PageMobileTypeClear;
+                    break;
+                case MobileTypeFriend:
+                    _pageType = PageMobileTypeFriend;
+                    break;
+                case MobileTypeNormal:
+                    _pageType = PageMobileTypeNormal;
+                    break;
+                case MobileTypeBlack:
+                    _pageType = PageMobileTypeBlack;
+                    break;
+                case MobileTypeDelete:
+                    _pageType = PageMobileTypeDelete;
+                    break;
+                default:
+                    break;
+            }
+        };
+    }
+    return _mobileView;
+}
+
 
 @end
