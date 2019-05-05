@@ -28,11 +28,6 @@
         self.block(MobileTypeClear);
     }
 }
-- (IBAction)Hello:(id)sender {
-    if (self.block) {
-        self.block(MobileTypeClear);
-    }
-}
 - (IBAction)friendSelect:(UIButton *)sender {
     [sender setImage:[UIImage imageNamed:@"register_checkbox_active"] forState:(UIControlStateNormal)];
     [self.NormalBTN setImage:[UIImage imageNamed:@"register_checkbox"] forState:(UIControlStateNormal)];
