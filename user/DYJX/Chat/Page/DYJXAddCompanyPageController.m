@@ -191,7 +191,14 @@
                         [ownerImageCell.porityImageView setImage:images.firstObject];
                     }else {
                         [weakSelf.imageArray addObjectsFromArray:images];
-                        [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:responseObject[@"SavedFileName"]];
+                        PersonZhiZhaoModel *model = [[PersonZhiZhaoModel alloc]init];
+                        model.Name = responseObject[@"SavedFileName"];
+                        if (weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray) {
+                            model.Title = [NSString stringWithFormat:@"执照图片%ld",weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray.count + 1];
+                        }else {
+                            model.Title = @"执照图片1";
+                        }
+                        [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:model];
                         NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:4] ;
                         [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
                     }

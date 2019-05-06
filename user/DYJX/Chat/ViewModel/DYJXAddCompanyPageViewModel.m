@@ -55,7 +55,7 @@
     self.dataArray[3][3].text = response.Result.EnterpriseInfo.CompanyBankName;
     self.dataArray[3][4].text = response.Result.EnterpriseInfo.CompanyBank;
     
-    self.dataArray[4].lastObject.spareArray = [response.Result.EnterpriseInfo.Images mj_JSONObject];
+    self.dataArray[4].lastObject.spareArray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:response.Result.EnterpriseInfo.Images].copy;
 }
 
 - (NSDictionary *)getUpDataParameters {
@@ -123,7 +123,7 @@
     [parameters setObject:self.dataArray[3][3].text ?: @"" forKey:@"CompanyBankName"];
     [parameters setObject:self.dataArray[3][4].text ?: @"" forKey:@"CompanyBank"];
     
-    [parameters setObject:[(self.dataArray.lastObject.lastObject.spareArray ?: @[]) mj_JSONString] forKey:@"Images"];
+    [parameters setObject:[PersonZhiZhaoModel  mj_keyValuesArrayWithObjectArray:(self.dataArray.lastObject.lastObject.spareArray ?: @[])] forKey:@"Images"];
     return parameters.copy;
 }
 

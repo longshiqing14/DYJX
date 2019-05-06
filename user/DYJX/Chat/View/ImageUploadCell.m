@@ -196,8 +196,8 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
     
     if (self.imagesURL.count > 0 && self.imagesArray.count == 0) {
         JXRefumdImageCollectionCell *ImageCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCollectionCell forIndexPath:indexPath];
-        NSLog(@".....%@",[self.cellmodel.spareArray[indexPath.row] XYImageURL]);
-        [ImageCollectioncell.imgView setImageWithURL:[NSURL URLWithString:[self.cellmodel.spareArray[indexPath.row] XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
+        PersonZhiZhaoModel *model = self.cellmodel.spareArray[indexPath.row];
+        [ImageCollectioncell.imgView setImageWithURL:[NSURL URLWithString:[model.Name XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
         cell = ImageCollectioncell;
     }else if (self.imagesArray.count <= 3) {
         if (indexPath.row == self.imagesArray.count) {
