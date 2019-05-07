@@ -54,7 +54,7 @@
         
     }];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshExternalGroupNotification:) name:kDYJXAPI_AddExternalGroup_Notification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshExternalGroupNotification:) name:kDYJXAPI_AddExternalGroup_Notification object:nil];
 }
 
 - (void)refreshExternalGroupNotification:(NSNotification *)noti {

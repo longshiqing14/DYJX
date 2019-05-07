@@ -583,7 +583,7 @@ static NSString *headerID=@"headerID";
 //            page.groupNumber = model.GroupNumber;
 //            page.targetId = model.Id;
 //            page.isAdmin = [self isAdmin:model];
-            DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_Details) groupNumber:model.GroupNumber targetId:model.Id userIconImageURL:[model.GroupHeadImg XYImageURL]isAdmin:[self isAdmin:model]];
+            DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_SubDetails) groupNumber:model.GroupNumber targetId:model.Id userIconImageURL:[model.GroupHeadImg XYImageURL]isAdmin:[self isAdmin:model]];
             [self.navigationController pushViewController:page animated:YES];
             
             

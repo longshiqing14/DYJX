@@ -39,6 +39,9 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
 @property(nonatomic, strong) UITextField *GPSAddressTF;
 @property(nonatomic, copy) NSString *Latitude;
 @property(nonatomic, copy) NSString *Longitude;
+@property (nonatomic, assign) NSString *ProvinceId;
+@property (nonatomic, assign) NSString *DistrictId;
+@property (nonatomic, assign) NSString *CityId;
 @property(nonatomic, strong) UITextField *NickNameTF;
 @property(nonatomic, strong) UITextField *PCDNameTF;
 @property(nonatomic, strong) UITextField *PersonAlipayTF;
@@ -77,23 +80,30 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
     [self.viewModel getUserInfoSuccess:^(DYJXUserInfoModel *personInfoModel) {
         weakSelf.personInfoModel = personInfoModel;
         NSArray *imageNamearray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:personInfoModel.Business.IMInfo.Images];
-        [imageNamearray enumerateObjectsUsingBlock:^(PersonZhiZhaoModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                // 处理耗时操作的代码块...
-                UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[obj.Name XYImageURL]]]];
-                if (image) {
-                    [weakSelf.imgArr addObject:image];
-                }
-                //通知主线程刷新
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    //回调或者说是通知主线程刷新，
-                    [weakSelf.tableView reloadData];
-                });
+        if (imageNamearray.count > 0) {
+            [imageNamearray enumerateObjectsUsingBlock:^(PersonZhiZhaoModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
+                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                    // 处理耗时操作的代码块...
+                    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[obj.Name XYImageURL]]]];
+                    if (image) {
+                        [weakSelf.imgArr addObject:image];
+                    }
+                    //通知主线程刷新
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        //回调或者说是通知主线程刷新，
+                        [weakSelf.tableView reloadData];
+                    });
+                    
+                });
+            }];
+        }else {
+            //通知主线程刷新
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //回调或者说是通知主线程刷新，
+                [weakSelf.tableView reloadData];
             });
-            
-        }];
+        }
         
     } failed:^(NSString *errorMsg) {
         
@@ -139,15 +149,27 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
 - (void)changeCompanyAddressNotification:(NSNotification *)noti {
     NSDictionary *userInfo = noti.userInfo;
     NSMutableString *companyAddress = @"".mutableCopy;
-    if ([[userInfo allKeys] containsObject:@"provinceName"]) {
-        [companyAddress insertString:userInfo[@"provinceName"] atIndex:companyAddress.length];
+    if ([[userInfo allKeys] containsObject:@"ProvinceName"]) {
+        [companyAddress insertString:userInfo[@"ProvinceName"] atIndex:companyAddress.length];
     }
-    if ([[userInfo allKeys] containsObject:@"cityName"]) {
-        [companyAddress insertString:userInfo[@"cityName"] atIndex:companyAddress.length];
+    if ([[userInfo allKeys] containsObject:@"CityName"]) {
+        [companyAddress insertString:userInfo[@"CityName"] atIndex:companyAddress.length];
     }
-    if ([[userInfo allKeys] containsObject:@"districtName"]) {
-        [companyAddress insertString:userInfo[@"districtName"] atIndex:companyAddress.length];
+    if ([[userInfo allKeys] containsObject:@"DistrictName"]) {
+        [companyAddress insertString:userInfo[@"DistrictName"] atIndex:companyAddress.length];
     }
+    
+    if ([[userInfo allKeys] containsObject:@"ProvinceID"]) {
+        self.ProvinceId = [((NSNumber *)userInfo[@"ProvinceID"]) stringValue];
+    }
+    if ([[userInfo allKeys] containsObject:@"CityID"]) {
+        self.CityId = [((NSNumber *)userInfo[@"CityID"]) stringValue];
+    }
+    if ([[userInfo allKeys] containsObject:@"DistrictID"]) {
+        self.DistrictId = [((NSNumber *)userInfo[@"DistrictID"]) stringValue];
+    }
+    
+    
     self.viewModel.dataArray[1][3].text = companyAddress.copy;
     NSIndexPath *indexPath= [NSIndexPath indexPathForRow:3 inSection:1] ;
     [self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
@@ -469,7 +491,7 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
     [self.viewModel getProvincesWithSuccess:^(DYJXAddressModel * _Nonnull addressModel) {
         [SVProgressHUD dismiss];
         if (addressModel.Succeed) {
-            DYJXCompanyAddressController *companyAddressVC = [[DYJXCompanyAddressController alloc]initWithAddressModel:addressModel addressType:(DYJXCompanyAddressType_Province) provinceName:@"" cityName:@""];
+            DYJXCompanyAddressController *companyAddressVC = [[DYJXCompanyAddressController alloc]initWithAddressModel:addressModel addressType:(DYJXCompanyAddressType_Province) addressParameters:@{}.copy];
             [weakSelf.navigationController pushViewController:companyAddressVC animated:YES];
         }else {
             [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
@@ -638,10 +660,22 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
     }
     [requstDic addEntriesFromDictionary:[self.viewModel getUpDataParameters]];
     if (![YWDTools isNil:self.Latitude]) {
-        [requstDic setObject:self.Latitude forKey:@"Latitude"];
+        [requstDic setObject:@([self.Latitude floatValue]) forKey:@"Latitude"];
     }
     if (![YWDTools isNil:self.Longitude]) {
-        [requstDic setObject:self.Longitude forKey:@"Longitude"];
+        [requstDic setObject:@([self.Longitude floatValue]) forKey:@"Longitude"];
+    }
+    
+    if (![YWDTools isNil:self.ProvinceId]) {
+        [requstDic setObject:@([self.ProvinceId integerValue]) forKey:@"ProvinceId"];
+    }
+    
+    if (![YWDTools isNil:self.CityId]) {
+        [requstDic setObject:@([self.CityId integerValue]) forKey:@"CityId"];
+    }
+    
+    if (![YWDTools isNil:self.DistrictId]) {
+        [requstDic setObject:@([self.DistrictId integerValue]) forKey:@"DistrictId"];
     }
     if (self.imgNameArr.count > 0){
         [self.imgNameArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

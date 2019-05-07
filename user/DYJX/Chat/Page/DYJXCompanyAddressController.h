@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DYJXCompanyAddressController : BaseViewController
 
-- (instancetype)initWithAddressModel:(id)addressModel addressType:(DYJXCompanyAddressType)addressType provinceName:(NSString *)provinceName cityName:(NSString *)cityName;
+- (instancetype)initWithAddressModel:(id)addressModel addressType:(DYJXCompanyAddressType)addressType addressParameters:(NSDictionary *)addressParameters;
 
 @end
 

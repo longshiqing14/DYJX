@@ -33,6 +33,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *userIconImageURL;
 
 @property (nonatomic, strong) NSMutableArray<NSMutableArray<LPXNewCustomerCellModel *> *> *dataArray;
+
+@property (nonatomic, assign) NSString *Longitude;
+@property (nonatomic, assign) NSString *Latitude;
+@property (nonatomic, assign) NSString *ProvinceId;
+@property (nonatomic, assign) NSString *DistrictId;
+@property (nonatomic, assign) NSString *CityId;
 - (NSInteger)numberOfSections;
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;

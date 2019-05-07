@@ -28,12 +28,230 @@
 }
 
 - (void)setContentsWithGroupByIdResponse:(DYJXXYGroupByIdResponse *)response {
+//    {
+//        "Result": {
+//            "Number": 100151,
+//            "NumberString": "100151",
+//            "GroupName": "测试公司1",
+//            "GroupNumber": "6f3a90cd-8183-407e-9959-2d3b191aa1d3",
+//            "GroupType": 1,
+//            "CreatorId": "6ef0bf66-cf80-4629-bb26-ade3cd244de3",
+//            "OwnerId": "6ef0bf66-cf80-4629-bb26-ade3cd244de3",
+//            "IsPart": false,
+//            "PartType": 0,
+//            "WildType": 0,
+//            "IsAllMemberGroup": false,
+//            "GroupHeadImg": "5c3ccdba-ed6d-4dda-a6a4-7ef84c9898d2.jpg",
+//            "GroupInfo": "测试测试",
+//            "NotAllowMemberInvite": false,
+//            "NotAllowJoinFree": false,
+//            "NotAllowSay": false,
+//            "CanNotSearch": false,
+//            "SilenceUserIds": [],
+//            "EnterpriseInfo": {
+//                "CompanyShortName": "高大上",
+//                "CompanyInfo": "测试测试",
+//                "CompanyEmail": "jssjj@163.com",
+//                "CompanyBankName": "建行",
+//                "CompanyBank": "深圳建行",
+//                "CompanyBankCardNO": "616946497",
+//                "CompanyWeiXin": "694694",
+//                "CompanyAlipay": "349876497964",
+//                "WebSite": "www.baidu.com",
+//                "CompanyLinkMan": "测试人",
+//                "CompanyTel": "1359845944",
+//                "CompanyLinkManCellphone": "1352864664664",
+//                "CompanyLinkManQQ": "38764946",
+//                "CompanyLinkManWeiXin": "64867649494",
+//                "SociologyCredit": "5499764",
+//                "AdminSay": true,
+//                "CompanyName": "测试公司1",
+//                "CanNotSearch": true,
+//                "HeadImgUrl": "5c3ccdba-ed6d-4dda-a6a4-7ef84c9898d2.jpg",
+//                "ProvinceId": 5,
+//                "CityId": 27,
+//                "DistrictId": 347,
+//                "PCDName": "内蒙古自治区乌海市海南区",
+//                "Address": "测试地址",
+//                "Images": "[{\"Name\":\"6f68119a-3c03-455d-af36-601275752761.jpg\",\"Title\":\"执照图片1\"},{\"Name\":\"687e95cc-16bb-467e-8d9a-6bcf941118db.jpg\",\"Title\":\"执照图片2\"},{\"Name\":\"54cdeb43-8a6e-4003-b899-2a1a6e99862a.png\",\"Title\":\"执照图片3\"},{\"Name\":\"d49f84a7-ce63-42ef-8d0a-296b2e388885.png\",\"Title\":\"执照图片4\"}]",
+//                "Longitude": 113.93784373998643,
+//                "Latitude": 22.581711500555166,
+//                "GPSAddress": "GPS位置(已定位)",
+//                "Id": "00000000-0000-0000-0000-000000000000"
+//            },
+//            "AdminUserIds": [
+//                             "6ef0bf66-cf80-4629-bb26-ade3cd244de3"],
+//            "MemberIds": [
+//                          "6ef0bf66-cf80-4629-bb26-ade3cd244de3"],
+//            "AllMemberIds": [
+//                             "6ef0bf66-cf80-4629-bb26-ade3cd244de3"],
+//            "ContactRemarks": [],
+//            "AdminUsers": [{
+//                "Number": 1058500,
+//                "NumberString": "1058500",
+//                "Cellphone": "13534002814",
+//                "Type": 0,
+//                "UserName": "N13534002814",
+//                "Business": {
+//                    "IMInfo": {
+//                        "AdminSay": false,
+//                        "CanNotSearch": false,
+//                        "ProvinceId": 0,
+//                        "CityId": 0,
+//                        "DistrictId": 0,
+//                        "Id": "00000000-0000-0000-0000-000000000000"
+//                    },
+//                    "Deleted": false,
+//                    "Disabled": false,
+//                    "CreateOn": "0001-01-01 00:00:00",
+//                    "Id": "00000000-0000-0000-0000-000000000000"
+//                },
+//                "RongCloudToken": "mYwsWfqF0qSyZG1J1HeJrpiB9rXdWaJpjIvWu0nuzlRsR9MyjhDGiiuEF0d5oIFFDVQfHt3zzXVN9HPpzGAlIxaylYsJuNYM0qFAYETnxthuZKKvSXjXbV+GOODnKzQlVMIgw6Kji3U=",
+//                "BelongEnterprise": "00000000-0000-0000-0000-000000000000",
+//                "DisplayName": "1058500",
+//                "DisplayTel": "13534002814",
+//                "Deleted": false,
+//                "Disabled": false,
+//                "CreateOn": "2019-05-07 09:49:09",
+//                "CreateBy": "N13534002814",
+//                "Id": "6ef0bf66-cf80-4629-bb26-ade3cd244de3"
+//            }],
+//            "Members": [{
+//                "Number": 1058500,
+//                "NumberString": "1058500",
+//                "Cellphone": "13534002814",
+//                "Type": 0,
+//                "UserName": "N13534002814",
+//                "Business": {
+//                    "IMInfo": {
+//                        "AdminSay": false,
+//                        "CanNotSearch": false,
+//                        "ProvinceId": 0,
+//                        "CityId": 0,
+//                        "DistrictId": 0,
+//                        "Id": "00000000-0000-0000-0000-000000000000"
+//                    },
+//                    "Deleted": false,
+//                    "Disabled": false,
+//                    "CreateOn": "0001-01-01 00:00:00",
+//                    "Id": "00000000-0000-0000-0000-000000000000"
+//                },
+//                "RongCloudToken": "mYwsWfqF0qSyZG1J1HeJrpiB9rXdWaJpjIvWu0nuzlRsR9MyjhDGiiuEF0d5oIFFDVQfHt3zzXVN9HPpzGAlIxaylYsJuNYM0qFAYETnxthuZKKvSXjXbV+GOODnKzQlVMIgw6Kji3U=",
+//                "BelongEnterprise": "00000000-0000-0000-0000-000000000000",
+//                "DisplayName": "1058500",
+//                "DisplayTel": "13534002814",
+//                "Deleted": false,
+//                "Disabled": false,
+//                "CreateOn": "2019-05-07 09:49:09",
+//                "CreateBy": "N13534002814",
+//                "Id": "6ef0bf66-cf80-4629-bb26-ade3cd244de3"
+//            }],
+//            "Creator": {
+//                "Number": 1058500,
+//                "NumberString": "1058500",
+//                "Cellphone": "13534002814",
+//                "Type": 0,
+//                "UserName": "N13534002814",
+//                "Business": {
+//                    "IMInfo": {
+//                        "AdminSay": false,
+//                        "CanNotSearch": false,
+//                        "ProvinceId": 0,
+//                        "CityId": 0,
+//                        "DistrictId": 0,
+//                        "Id": "00000000-0000-0000-0000-000000000000"
+//                    },
+//                    "Deleted": false,
+//                    "Disabled": false,
+//                    "CreateOn": "0001-01-01 00:00:00",
+//                    "Id": "00000000-0000-0000-0000-000000000000"
+//                },
+//                "RongCloudToken": "mYwsWfqF0qSyZG1J1HeJrpiB9rXdWaJpjIvWu0nuzlRsR9MyjhDGiiuEF0d5oIFFDVQfHt3zzXVN9HPpzGAlIxaylYsJuNYM0qFAYETnxthuZKKvSXjXbV+GOODnKzQlVMIgw6Kji3U=",
+//                "BelongEnterprise": "00000000-0000-0000-0000-000000000000",
+//                "DisplayName": "1058500",
+//                "DisplayTel": "13534002814",
+//                "Deleted": false,
+//                "Disabled": false,
+//                "CreateOn": "2019-05-07 09:49:09",
+//                "CreateBy": "N13534002814",
+//                "Id": "6ef0bf66-cf80-4629-bb26-ade3cd244de3"
+//            },
+//            "Owner": {
+//                "Number": 1058500,
+//                "NumberString": "1058500",
+//                "Cellphone": "13534002814",
+//                "Type": 0,
+//                "UserName": "N13534002814",
+//                "Business": {
+//                    "IMInfo": {
+//                        "AdminSay": false,
+//                        "CanNotSearch": false,
+//                        "ProvinceId": 0,
+//                        "CityId": 0,
+//                        "DistrictId": 0,
+//                        "Id": "00000000-0000-0000-0000-000000000000"
+//                    },
+//                    "Deleted": false,
+//                    "Disabled": false,
+//                    "CreateOn": "0001-01-01 00:00:00",
+//                    "Id": "00000000-0000-0000-0000-000000000000"
+//                },
+//                "RongCloudToken": "mYwsWfqF0qSyZG1J1HeJrpiB9rXdWaJpjIvWu0nuzlRsR9MyjhDGiiuEF0d5oIFFDVQfHt3zzXVN9HPpzGAlIxaylYsJuNYM0qFAYETnxthuZKKvSXjXbV+GOODnKzQlVMIgw6Kji3U=",
+//                "BelongEnterprise": "00000000-0000-0000-0000-000000000000",
+//                "DisplayName": "1058500",
+//                "DisplayTel": "13534002814",
+//                "Deleted": false,
+//                "Disabled": false,
+//                "CreateOn": "2019-05-07 09:49:09",
+//                "CreateBy": "N13534002814",
+//                "Id": "6ef0bf66-cf80-4629-bb26-ade3cd244de3"
+//            },
+//            "Children": [],
+//            "Relation": {
+//                "IsFriend": false,
+//                "IsContact": false,
+//                "InBlacklist": false,
+//                "IsMember": true,
+//                "IsAdmin": true,
+//                "IsOwner": true,
+//                "IsParentAdmin": false,
+//                "IsParentOwner": false,
+//                "Managed": true
+//            },
+//            "Deleted": false,
+//            "Disabled": false,
+//            "CreateOn": "2019-05-07 11:08:31",
+//            "CreateBy": "6ef0bf66-cf80-4629-bb26-ade3cd244de3",
+//            "Id": "6f3a90cd-8183-407e-9959-2d3b191aa1d3"
+//        },
+//        "Succeed": true,
+//        "MemberID": "00000000-0000-0000-0000-000000000000",
+//        "UserID": "00000000-0000-0000-0000-000000000000",
+//        "Message": "",
+//        "Kicked": false,
+//        "ClientId": "00000000-0000-0000-0000-000000000000",
+//        "DebugMessages": []
+//    }
     self.dataArray[0][0].spareString = response.Result.EnterpriseInfo.HeadImgUrl;
     self.dataArray[0][1].text = response.Result.EnterpriseInfo.CompanyName;
     self.dataArray[0][2].text = response.Result.EnterpriseInfo.CompanyShortName;
     self.dataArray[0][3].text = response.Result.NumberString;
-    self.dataArray[0][6].isSelected = response.Result.EnterpriseInfo.AdminSay;
-    self.dataArray[0][7].isSelected = response.Result.EnterpriseInfo.CanNotSearch;
+    if ([self.dataArray[0][4].leftViewText isEqualToString:@"公司成员："]) {
+        self.dataArray[0][4].leftViewText = [NSString stringWithFormat:@"公司成员(%ld)个：",response.Result.Members.count];
+    }
+    if ([self.dataArray[0][4].leftViewText isEqualToString:@"子公司成员："]) {
+        self.dataArray[0][4].leftViewText = [NSString stringWithFormat:@"子公司成员(%ld)个：",response.Result.Members.count];
+    }
+    if ([self.dataArray[0][5].leftViewText isEqualToString:@"子公司成员："]) {
+        self.dataArray[0][5].leftViewText = [NSString stringWithFormat:@"公司成员(%ld)个：",response.Result.Children.count];
+    }
+    if (self.companyType == DYJXAddCompanyType_SubDetails) {
+        self.dataArray[0][5].isSelected = response.Result.EnterpriseInfo.AdminSay;
+        self.dataArray[0][6].isSelected = response.Result.EnterpriseInfo.CanNotSearch;
+    }else {
+        self.dataArray[0][6].isSelected = response.Result.EnterpriseInfo.AdminSay;
+        self.dataArray[0][7].isSelected = response.Result.EnterpriseInfo.CanNotSearch;
+    }
     
     self.dataArray[1][0].text = response.Result.EnterpriseInfo.SociologyCredit;
     self.dataArray[1][1].text = response.Result.EnterpriseInfo.PCDName;
@@ -67,6 +285,58 @@
     [parameters setObject:self.requestDic[@"DeviceToken"] forKey:@"DeviceToken"];
     [parameters setObject:self.requestDic[@"MemberID"] forKey:@"MemberID"];
     [parameters setObject:self.requestDic[@"UserID"] forKey:@"UserID"];
+    
+//    {
+//        "Data": {
+//            "AdminUserIds": ["6ef0bf66-cf80-4629-bb26-ade3cd244de3"],
+//            "EnterpriseInfo": {
+//                "CompanyAlipay": "349876497964",
+//                "CompanyBank": "深圳建行",
+//                "CompanyBankCardNO": "616946497",
+//                "CompanyBankName": "建行",
+//                "CompanyEmail": "jssjj@163.com",
+//                "CompanyInfo": "测试测试",
+//                "CompanyLinkMan": "测试人",
+//                "CompanyLinkManCellphone": "1352864664664",
+//                "CompanyLinkManQQ": "38764946",
+//                "CompanyLinkManWeiXin": "64867649494",
+//                "CompanyShortName": "高大上",
+//                "CompanyTel": "1359845944",
+//                "CompanyWeiXin": "694694",
+//                "SociologyCredit": "5499764",
+//                "WebSite": "www.baidu.com",
+//                "Address": "测试地址",
+//                "AdminSay": true,
+//                "CanNotSearch": true,
+//                "CityId": 27,
+//                "CompanyName": "测试公司1",
+//                "DistrictId": 347,
+//                "GPSAddress": "GPS位置(已定位)",
+//                "HeadImgUrl": "5c3ccdba-ed6d-4dda-a6a4-7ef84c9898d2.jpg",
+//                "Images": "[{\"Name\":\"6f68119a-3c03-455d-af36-601275752761.jpg\",\"Title\":\"执照图片1\"},{\"Name\":\"687e95cc-16bb-467e-8d9a-6bcf941118db.jpg\",\"Title\":\"执照图片2\"},{\"Name\":\"54cdeb43-8a6e-4003-b899-2a1a6e99862a.png\",\"Title\":\"执照图片3\"},{\"Name\":\"d49f84a7-ce63-42ef-8d0a-296b2e388885.png\",\"Title\":\"执照图片4\"}]",
+//                "Latitude": 22.581711500555166,
+//                "Longitude": 113.93784373998643,
+//                "PCDName": "内蒙古自治区乌海市海南区",
+//                "ProvinceId": 5
+//            },
+//            "GroupHeadImg": "5c3ccdba-ed6d-4dda-a6a4-7ef84c9898d2.jpg",
+//            "GroupInfo": "测试测试",
+//            "GroupName": "测试公司1",
+//            "GroupNumber": "6487549",
+//            "GroupType": 1,
+//            "MemberIds": ["6ef0bf66-cf80-4629-bb26-ade3cd244de3"],
+//            "SilenceUserIds": [],
+//            "showChild": false,
+//            "header": "",
+//            "isHeader": false
+//        },
+//        "CertificateId": "6ef0bf66-cf80-4629-bb26-ade3cd244de3",
+//        "ClientId": "64c2e728-672c-4ab3-aeb3-8b430dd9ef03",
+//        "Device": "Android",
+//        "DeviceToken": "mYwsWfqF0qSyZG1J1HeJrpiB9rXdWaJpjIvWu0nuzlRsR9MyjhDGiiuEF0d5oIFFDVQfHt3zzXVN9HPpzGAlIxaylYsJuNYM0qFAYETnxthuZKKvSXjXbV+GOODnKzQlVMIgw6Kji3U=",
+//        "MemberID": "00000000-0000-0000-0000-000000000000",
+//        "UserID": "6ef0bf66-cf80-4629-bb26-ade3cd244de3"
+//    }
     return parameters.copy;
 }
 
@@ -80,7 +350,7 @@
     [parameters setObject:self.result.GroupNumber? self.result.GroupNumber : @"" forKey:@"GroupNumber"];
     [parameters setObject:@(self.result.GroupType ? self.result.GroupType : 1) forKey:@"GroupType"];
     [parameters setObject:self.result.MemberIds ? @[self.result.MemberIds.firstObject] : @"" forKey:@"MemberIds"];
-    [parameters setObject:self.result.SilenceUserIds ? self.result.SilenceUserIds : @"" forKey:@"SilenceUserIds"];
+    [parameters setObject:self.result.SilenceUserIds ? self.result.SilenceUserIds : @[] forKey:@"SilenceUserIds"];
     [parameters setObject:@(false) forKey:@"showChild"];
     [parameters setObject:self.dataArray.firstObject.firstObject.spareString ?: @"" forKey:@"header"];
     [parameters setObject:@(false) forKey:@"isHeader"];
@@ -95,6 +365,7 @@
 
 - (NSMutableDictionary *)getEnterpriseInfoParameters {
     NSMutableDictionary *parameters = @{}.mutableCopy;
+    [parameters setObject:self.dataArray[0][0].spareString ?: @"" forKey:@"GroupHeadImg"];
     [parameters setObject:self.dataArray[0][0].spareString ?: @"" forKey:@"HeadImgUrl"];
     [parameters setObject:self.dataArray[0][1].text ?: @"" forKey:@"CompanyName"];
     [parameters setObject:self.dataArray[0][2].text ?: @""  forKey:@"CompanyShortName"];
@@ -122,6 +393,22 @@
     [parameters setObject:self.dataArray[3][2].text ?: @"" forKey:@"CompanyBankCardNO"];
     [parameters setObject:self.dataArray[3][3].text ?: @"" forKey:@"CompanyBankName"];
     [parameters setObject:self.dataArray[3][4].text ?: @"" forKey:@"CompanyBank"];
+    
+    if (![YWDTools isNil:self.Latitude]) {
+        [parameters setObject:@([self.Latitude floatValue]) forKey:@"Latitude"];
+    }
+    if (![YWDTools isNil:self.Longitude]) {
+        [parameters setObject:@([self.Longitude floatValue]) forKey:@"CityId"];
+    }
+    if (![YWDTools isNil:self.CityId]) {
+        [parameters setObject:@([self.CityId integerValue]) forKey:@"CityId"];
+    }
+    if (![YWDTools isNil:self.DistrictId]) {
+        [parameters setObject:@([self.DistrictId integerValue]) forKey:@"DistrictId"];
+    }
+    if (![YWDTools isNil:self.ProvinceId]) {
+        [parameters setObject:@([self.ProvinceId integerValue]) forKey:@"ProvinceId"];
+    }
     
     [parameters setObject:[PersonZhiZhaoModel  mj_keyValuesArrayWithObjectArray:(self.dataArray.lastObject.lastObject.spareArray ?: @[])] forKey:@"Images"];
     return parameters.copy;

@@ -13,21 +13,21 @@
 @property (nonatomic, assign) DYJXCompanyAddressType addressType;
 @property (nonatomic, strong) id addressModel;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, copy) NSString *provinceName;
 @property (nonatomic, copy) NSString *cityName;
-@property (nonatomic, copy) NSString *districtName;
+@property (nonatomic, assign) NSInteger districtId;
+@property (nonatomic, copy) NSMutableDictionary *addressParameters;
+
 @end
 //ProvinceName
 
 @implementation DYJXCompanyAddressController
 
--(instancetype)initWithAddressModel:(id)addressModel addressType:(DYJXCompanyAddressType)addressType provinceName:(nonnull NSString *)provinceName cityName:(nonnull NSString *)cityName{
+-(instancetype)initWithAddressModel:(id)addressModel addressType:(DYJXCompanyAddressType)addressType addressParameters:(nonnull NSDictionary *)addressParameters{
     self = [super init];
     if (self) {
         self.addressModel = addressModel;
         self.addressType = addressType;
-        self.provinceName = provinceName;
-        self.cityName = cityName;
+        [self.addressParameters addEntriesFromDictionary: addressParameters];
     }
     return self;
 }
@@ -49,18 +49,16 @@
 
 - (void)rightItemClick:(id)item {
     WeakSelf
-    if (!weakSelf.districtName) {
+    if (!weakSelf.cityName) {
         [YDBAlertView showToast:@"请选择一项才能提交！" dismissDelay:1.0];
     }
     [self.navigationController.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:NSClassFromString(@"DYJXAddCompanyPageController")] ||
             [obj isKindOfClass:NSClassFromString(@"DYJXUserInfoDetailPage")]) {
             [weakSelf.navigationController popToViewController:obj animated:YES];
-            NSDictionary *userInfo = @{@"provinceName" : weakSelf.provinceName,
-                                       @"cityName" : weakSelf.cityName,
-                                       @"districtName" : ((weakSelf.districtName != nil) ? weakSelf.districtName : @"")
-                                       };
-            [[NSNotificationCenter defaultCenter] postNotificationName:kDYJXAPI_CompanyAddress_Notification object:nil userInfo:userInfo];
+            [weakSelf.addressParameters setObject:((weakSelf.cityName != nil) ? weakSelf.cityName : @"") forKey:@"DistrictName"];
+            [weakSelf.addressParameters setObject:@(weakSelf.districtId) forKey:@"DistrictId"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDYJXAPI_CompanyAddress_Notification object:nil userInfo:weakSelf.addressParameters];
             *stop = YES;
         }
     }];
@@ -119,25 +117,29 @@
     NSString *path;
     if (self.addressType == DYJXCompanyAddressType_Province) {
         path = kDYJXAPI_user_GetCitys;
+        self.cityName = model.ProvinceName;
+        self.districtId = [model.ProvinceID integerValue];
     }else if (self.addressType == DYJXCompanyAddressType_City){
         path = kDYJXAPI_user_GetDistricts;
+        self.cityName = model.CityName;
+        self.districtId = [model.CityID integerValue];
     }else {
-        self.districtName = model.DistrictName;
+        self.cityName = model.DistrictName;
+        self.districtId = [model.DistrictID integerValue];
     }
     if (path) {
         [self getProvincesWithPathURL:path provinceID:model.ProvinceID success:^(DYJXAddressModel *addressModel) {
             DYJXCompanyAddressType addressType;
-            NSString *provinceName;
-            NSString *cityName;
             if (self.addressType == DYJXCompanyAddressType_Province) {
                 addressType = DYJXCompanyAddressType_City;
-                provinceName = model.ProvinceName;
+                [weakSelf.addressParameters setObject:self.cityName forKey:@"ProvinceName"];
+                [weakSelf.addressParameters setObject:@(self.districtId) forKey:@"ProvinceID"];
             }else {
                 addressType = DYJXCompanyAddressType_District;
-                provinceName = weakSelf.provinceName;
-                cityName = model.CityName;
+                [weakSelf.addressParameters setObject:self.cityName forKey:@"CityName"];
+                [weakSelf.addressParameters setObject:@(self.districtId) forKey:@"CityID"];
             }
-            DYJXCompanyAddressController *companyAddressVC = [[DYJXCompanyAddressController alloc]initWithAddressModel:addressModel addressType:(addressType) provinceName:provinceName cityName:cityName];
+            DYJXCompanyAddressController *companyAddressVC = [[DYJXCompanyAddressController alloc]initWithAddressModel:addressModel addressType:(addressType) addressParameters:weakSelf.addressParameters.copy];
             [weakSelf.navigationController pushViewController:companyAddressVC animated:YES];
         } failed:^(NSString *errorMsg) {
             
@@ -160,9 +162,9 @@
         sectionHeaderLb.font = [UIFont systemFontOfSize:__X(32)];
         sectionHeaderLb.textAlignment = NSTextAlignmentLeft;
         if (self.addressType == DYJXCompanyAddressType_City) {
-            sectionHeaderLb.text = self.provinceName;
+            sectionHeaderLb.text = self.addressParameters[@"ProvinceName"];
         }else {
-            sectionHeaderLb.text = self.cityName;
+            sectionHeaderLb.text = self.addressParameters[@"CityName"];
         }
         return sectionHeaderView;
     }
@@ -188,6 +190,13 @@
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     }
     return _tableView;
+}
+
+-(NSMutableDictionary *)addressParameters {
+    if (!_addressParameters) {
+        _addressParameters = [[NSMutableDictionary alloc]init];
+    }
+    return _addressParameters;
 }
 
 @end

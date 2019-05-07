@@ -113,15 +113,26 @@
 - (void)changeCompanyAddressNotification:(NSNotification *)noti {
     NSDictionary *userInfo = noti.userInfo;
     NSMutableString *companyAddress = @"".mutableCopy;
-    if ([[userInfo allKeys] containsObject:@"provinceName"]) {
-        [companyAddress insertString:userInfo[@"provinceName"] atIndex:companyAddress.length];
+    if ([[userInfo allKeys] containsObject:@"ProvinceName"]) {
+        [companyAddress insertString:userInfo[@"ProvinceName"] atIndex:companyAddress.length];
     }
-    if ([[userInfo allKeys] containsObject:@"cityName"]) {
-        [companyAddress insertString:userInfo[@"cityName"] atIndex:companyAddress.length];
+    if ([[userInfo allKeys] containsObject:@"CityName"]) {
+        [companyAddress insertString:userInfo[@"CityName"] atIndex:companyAddress.length];
     }
-    if ([[userInfo allKeys] containsObject:@"districtName"]) {
-        [companyAddress insertString:userInfo[@"districtName"] atIndex:companyAddress.length];
+    if ([[userInfo allKeys] containsObject:@"DistrictName"]) {
+        [companyAddress insertString:userInfo[@"DistrictName"] atIndex:companyAddress.length];
     }
+    
+    if ([[userInfo allKeys] containsObject:@"ProvinceID"]) {
+        self.viewModel.ProvinceId = [((NSNumber *)userInfo[@"ProvinceID"]) stringValue];
+    }
+    if ([[userInfo allKeys] containsObject:@"CityID"]) {
+        self.viewModel.CityId = [((NSNumber *)userInfo[@"CityID"]) stringValue];
+    }
+    if ([[userInfo allKeys] containsObject:@"DistrictID"]) {
+        self.viewModel.DistrictId = [((NSNumber *)userInfo[@"DistrictID"]) stringValue];
+    }
+    
     self.viewModel.dataArray[1][1].text = companyAddress.copy;
     NSIndexPath *indexPath= [NSIndexPath indexPathForRow:1 inSection:1] ;
     [self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
@@ -285,7 +296,7 @@
     [self.viewModel getProvincesWithSuccess:^(DYJXAddressModel * _Nonnull addressModel) {
         [SVProgressHUD dismiss];
         if (addressModel.Succeed) {
-            DYJXCompanyAddressController *companyAddressVC = [[DYJXCompanyAddressController alloc]initWithAddressModel:addressModel addressType:(DYJXCompanyAddressType_Province) provinceName:@"" cityName:@""];
+            DYJXCompanyAddressController *companyAddressVC = [[DYJXCompanyAddressController alloc]initWithAddressModel:addressModel addressType:(DYJXCompanyAddressType_Province) addressParameters:@{}.copy];
             [weakSelf.navigationController pushViewController:companyAddressVC animated:YES];
         }else {
             [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
@@ -361,16 +372,6 @@
         };
     }else {
         DYJXAddCompanyPageCell *newCell = (DYJXAddCompanyPageCell *)cell;
-        if ((indexPath.section == 0 && indexPath.row == 4) ||
-            (indexPath.section == 1 && indexPath.row == 3)) {
-            cell.userInteractionEnabled = YES;
-        }else if (self.companyType == DYJXAddCompanyType_SubDetails) {
-            if ((indexPath.section == 0 && indexPath.row == 5)) {
-                cell.userInteractionEnabled = YES;
-            }
-        }else {
-            cell.userInteractionEnabled = NO;
-        }
         newCell.nextBtnBlock = ^(DYJXAddCompanyPageCell * _Nonnull cell) {
             //TODO: 点击进行下一步操作
             NSIndexPath *indexPath = [tableView indexPathForCell:cell];
@@ -391,6 +392,8 @@
                 CLLocationCoordinate2D centerCoordinate = {0,0};
                 BaiduMapViewController *baiduMapVC = [[BaiduMapViewController alloc]initWithCenterCoordinate:centerCoordinate poiAddressBlock:^(CLLocationCoordinate2D centerCoordinate, NSString *name) {
                     cell.model.text = name;
+                    weakSelf.viewModel.Latitude = [@(centerCoordinate.latitude) stringValue];
+                    weakSelf.viewModel.Longitude = [@(centerCoordinate.longitude) stringValue];
                     [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
                 }];
                 [weakSelf.navigationController pushViewController:baiduMapVC animated:YES];
@@ -589,11 +592,6 @@
         [_addCompanyBottomView setSubcompanyBottomBtnWithBackgroundColor:[UIColor colorWithRed:240/255.0 green:176/255.0 blue:67/255.0 alpha:1]];
         _addCompanyBottomView.block = ^{
             //TODO: 提交数据
-//            [weakSelf.viewModel uploadFileWithImages:weakSelf.imageArray success:^(id  _Nonnull responseObject) {
-//
-//            } failed:^(NSString * _Nonnull errorMsg) {
-//
-//            }];
             [weakSelf.viewModel uploadCompanySuccess:^(DYJXXYGroupByIdResponse *response) {
                 [YDBAlertView showToast:@"新增成功！" dismissDelay:1.0];
                 [weakSelf.navigationController popViewControllerAnimated:YES];
