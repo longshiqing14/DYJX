@@ -34,11 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray<NSMutableArray<LPXNewCustomerCellModel *> *> *dataArray;
 
-@property (nonatomic, assign) NSString *Longitude;
-@property (nonatomic, assign) NSString *Latitude;
-@property (nonatomic, assign) NSString *ProvinceId;
-@property (nonatomic, assign) NSString *DistrictId;
-@property (nonatomic, assign) NSString *CityId;
+@property (nonatomic, copy) NSString *Longitude;
+@property (nonatomic, copy) NSString *Latitude;
+@property (nonatomic, copy) NSString *ProvinceId;
+@property (nonatomic, copy) NSString *DistrictId;
+@property (nonatomic, copy) NSString *CityId;
 - (NSInteger)numberOfSections;
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;

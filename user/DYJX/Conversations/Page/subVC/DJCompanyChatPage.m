@@ -192,6 +192,17 @@
     return header;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DYJXXYResult *result = [self.viewModel getRefundReasonsArray][indexPath.section];
+    DYJXAddCompanyType companyType = DYJXAddCompanyType_Details;
+    if (result.IsPart) {
+        companyType = DYJXAddCompanyType_SubDetails;
+    }
+    DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(companyType) requestDic:@{} result:result];
+    page.groupNumber = result.GroupNumber;
+    [self.navigationController pushViewController:page animated:YES];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return CGFLOAT_MIN;
 }
@@ -202,12 +213,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 50;
-}
-
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
 }
 
 #pragma mark - UI
