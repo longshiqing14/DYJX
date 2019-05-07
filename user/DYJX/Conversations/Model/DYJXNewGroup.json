@@ -1,0 +1,75 @@
+[
+    [{
+        "cellIdentity" : "DYJXAddCompanyPageHeaderCell",
+        "placeholder" : "个人头像",
+    },
+    {
+        "cellIdentity" : "DYJXAddCompanyPageCell",
+        "leftViewText" : "群名称",
+        "placeholder" : "",
+    },
+    {
+        "cellIdentity" : "DYJXAddCompanyPageCell",
+        "leftViewText" : "群简介",
+        "placeholder" : "",
+    },
+    {
+        "cellIdentity" : "DYJXAddCompanyPageCell",
+        "leftViewText" : "群商号",
+        "placeholder" : "",
+    },
+    {
+        "cellIdentity" : "DYJXAddCompanyPageCell",
+        "leftViewText" : "群成员",
+        "placeholder" : "",
+        "isHiddenField" : true,
+        "isShowSelectetView": true,
+        "righImageName" : "ic_category_close",
+        "righSelectedImageName" : "ic_category_close"
+    },
+    {
+        "cellIdentity" : "DYJXAddCompanyPageCell",
+        "leftViewText" : "不容许群成员拉人进群",
+        "placeholder" : "",
+        "isHiddenField" : true,
+        "isShowSelectetView": true,
+        "righImageName" : "register_checkbox",
+        "righSelectedImageName" : "register_checkbox_active"
+    },
+    {
+        "cellIdentity" : "DYJXAddCompanyPageCell",
+        "leftViewText" : "不容许n陌生人直接进群",
+        "placeholder" : "",
+        "isHiddenField" : true,
+        "isShowSelectetView": true,
+        "righImageName" : "register_checkbox",
+        "righSelectedImageName" : "register_checkbox_active"
+    },
+    {
+        "cellIdentity" : "DYJXAddCompanyPageCell",
+        "leftViewText" : "不容许群成员发言",
+        "placeholder" : "",
+        "isHiddenField" : true,
+        "isShowSelectetView": true,
+        "righImageName" : "register_checkbox",
+        "righSelectedImageName" : "register_checkbox_active"
+    },
+    {
+        "cellIdentity" : "DYJXAddCompanyPageCell",
+        "leftViewText" : "不能通过搜索或扫描找到找到本群",
+        "placeholder" : "",
+        "isHiddenField" : true,
+        "isShowSelectetView": true,
+        "righImageName" : "register_checkbox",
+        "righSelectedImageName" : "register_checkbox_active"
+    },
+    {
+        "cellIdentity" : "DYJXAddCompanyPageCell",
+        "leftViewText" : "屏蔽群通知信息",
+        "placeholder" : "",
+        "isHiddenField" : true,
+        "isShowSelectetView": true,
+        "righImageName" : "register_checkbox",
+        "righSelectedImageName" : "register_checkbox_active"
+    }]
+]

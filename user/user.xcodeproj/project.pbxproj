@@ -679,6 +679,9 @@
 		E1D913B721C0C24B0006B171 /* SimpleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D913B621C0C24B0006B171 /* SimpleMessage.m */; };
 		E1D913BA21C0C3020006B171 /* SimpleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D913B921C0C3020006B171 /* SimpleMessageCell.m */; };
 		EFF90AC4F872946933A3B972 /* libPods-userTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9DF6B4B86803AC28947F56 /* libPods-userTests.a */; };
+		F9167435228019EB00C78105 /* DYJXNewGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9167434228019EB00C78105 /* DYJXNewGroupController.m */; };
+		F9167437228024EE00C78105 /* DYJXNewGroup.json in Resources */ = {isa = PBXBuildFile; fileRef = F9167436228024EE00C78105 /* DYJXNewGroup.json */; };
+		F916743A2280272200C78105 /* DYJXNewGroupViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91674392280272200C78105 /* DYJXNewGroupViewModel.m */; };
 		F91EE368226F5032006BCB37 /* DYJXAddSubCompany.json in Resources */ = {isa = PBXBuildFile; fileRef = F91EE365226F5032006BCB37 /* DYJXAddSubCompany.json */; };
 		F91EE369226F5032006BCB37 /* DYJXAddCompany.json in Resources */ = {isa = PBXBuildFile; fileRef = F91EE366226F5032006BCB37 /* DYJXAddCompany.json */; };
 		F91EE36A226F5032006BCB37 /* LPXNewCustomerCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE367226F5032006BCB37 /* LPXNewCustomerCellModel.m */; };
@@ -1981,6 +1984,11 @@
 		E1D913B621C0C24B0006B171 /* SimpleMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleMessage.m; sourceTree = "<group>"; };
 		E1D913B821C0C3020006B171 /* SimpleMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleMessageCell.h; sourceTree = "<group>"; };
 		E1D913B921C0C3020006B171 /* SimpleMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleMessageCell.m; sourceTree = "<group>"; };
+		F9167433228019EB00C78105 /* DYJXNewGroupController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXNewGroupController.h; sourceTree = "<group>"; };
+		F9167434228019EB00C78105 /* DYJXNewGroupController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXNewGroupController.m; sourceTree = "<group>"; };
+		F9167436228024EE00C78105 /* DYJXNewGroup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DYJXNewGroup.json; sourceTree = "<group>"; };
+		F91674382280272200C78105 /* DYJXNewGroupViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXNewGroupViewModel.h; sourceTree = "<group>"; };
+		F91674392280272200C78105 /* DYJXNewGroupViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXNewGroupViewModel.m; sourceTree = "<group>"; };
 		F91EE364226F5031006BCB37 /* LPXNewCustomerCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPXNewCustomerCellModel.h; sourceTree = "<group>"; };
 		F91EE365226F5032006BCB37 /* DYJXAddSubCompany.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DYJXAddSubCompany.json; sourceTree = "<group>"; };
 		F91EE366226F5032006BCB37 /* DYJXAddCompany.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DYJXAddCompany.json; sourceTree = "<group>"; };
@@ -2625,6 +2633,7 @@
 		487351AA218D4EC8001B59AB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F9167436228024EE00C78105 /* DYJXNewGroup.json */,
 				4804C4C7227E8A0A00CA3D81 /* DYJXAddressModel.h */,
 				4804C4C6227E8A0A00CA3D81 /* DYJXAddressModel.m */,
 			);
@@ -2646,6 +2655,8 @@
 				48E2505221D8C7DF00CC7D9E /* DJGroupChatWildGroupsViewModel.m */,
 				4804C4CF227EC7E600CA3D81 /* DYJXGroupViewModel.h */,
 				4804C4D0227EC7E600CA3D81 /* DYJXGroupViewModel.m */,
+				F91674382280272200C78105 /* DYJXNewGroupViewModel.h */,
+				F91674392280272200C78105 /* DYJXNewGroupViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -4656,6 +4667,8 @@
 				4895F0EC2200477B00203073 /* DJWildGroupsChatPage.m */,
 				4804C4CC227EC68200CA3D81 /* DYJXFindGroup.h */,
 				4804C4CD227EC68200CA3D81 /* DYJXFindGroup.m */,
+				F9167433228019EB00C78105 /* DYJXNewGroupController.h */,
+				F9167434228019EB00C78105 /* DYJXNewGroupController.m */,
 			);
 			path = subVC;
 			sourceTree = "<group>";
@@ -4976,6 +4989,7 @@
 				488E89EC219FFD5A008695A7 /* Emoji.plist in Resources */,
 				4826A48B21BFC43500EAF963 /* DYJXAddMemberCollectionViewCell.xib in Resources */,
 				48A3711121B61369002861DD /* CompanyBottomView.xib in Resources */,
+				F9167437228024EE00C78105 /* DYJXNewGroup.json in Resources */,
 				481FE70C2182170600CFE26B /* DYJXLoginPage.xib in Resources */,
 				DED74DDB1FC57C3700346AD0 /* NoNetworkView.xib in Resources */,
 				481FE76621835AF000CFE26B /* DYJXFindPasswordPage.xib in Resources */,
@@ -5515,6 +5529,7 @@
 				E1BC7B1321D47DE400017C39 /* SearchResultsController.m in Sources */,
 				48A370FA21B4C8B9002861DD /* BusinessLicenceFooter.m in Sources */,
 				E157680C21C9122D003A5C25 /* NIMNormalTeamCardViewController.m in Sources */,
+				F916743A2280272200C78105 /* DYJXNewGroupViewModel.m in Sources */,
 				E15767EB21C9122D003A5C25 /* NIMKitAuthorizationTool.m in Sources */,
 				E1A137B821FFF3F600A5E4A1 /* GSCCListCompareItem.m in Sources */,
 				E17FC6D721A1053E00D435D9 /* DJJSIMInfo.m in Sources */,
@@ -5632,6 +5647,7 @@
 				48735198218ADFF5001B59AB /* DYJXLogisticPage.m in Sources */,
 				487351B7218D5A17001B59AB /* DYJXContacterPage.m in Sources */,
 				E157680921C9122D003A5C25 /* NIMKitNotificationFirer.m in Sources */,
+				F9167435228019EB00C78105 /* DYJXNewGroupController.m in Sources */,
 				E157685521C9122D003A5C25 /* NIMKitSetting.m in Sources */,
 				48E8A4C621BE40EA0046EA0E /* DYJXSubcompanyInfoDetailPage.m in Sources */,
 				E157685321C9122D003A5C25 /* NIMKitProgressHUD.m in Sources */,

@@ -53,6 +53,12 @@
     } failed:^(NSString *errorMsg) {
         
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshExternalGroupNotification:) name:kDYJXAPI_AddExternalGroup_Notification object:nil];
+}
+
+- (void)refreshExternalGroupNotification:(NSNotification *)noti {
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)initNavigation{

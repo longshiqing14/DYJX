@@ -315,9 +315,9 @@
 - (void)uploadCompanySuccess:(void (^)(DYJXXYGroupByIdResponse *))success failed:(void (^)(NSString *))fail {
     WeakSelf
     [XYNetWorking XYPOST:kDYJXAPI_user_EditGroup2 params:[self getUpDataParameters] success:^(NSURLSessionDataTask *task, id responseObject) {
+        [SVProgressHUD dismiss];
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
-                [SVProgressHUD dismiss];
                 NSString *message = @"添加公司成功！";
                 if (weakSelf.companyType == DYJXAddCompanyType_Sub) {
                     message = @"添加子公司成功！";
@@ -327,6 +327,7 @@
                     message = @"子公司详情修改成功！";
                 }
                 [YDBAlertView showToast:message dismissDelay:1.0];
+                !success ?: success(responseObject);
             }else{
                 [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
             }

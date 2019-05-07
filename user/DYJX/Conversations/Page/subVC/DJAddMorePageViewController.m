@@ -10,7 +10,7 @@
 #import "SWQRCodeViewController.h"
 #import "DYXJResult.h"
 #import "DYJXFindGroup.h"
-
+#import "DYJXNewGroupController.h"
 
 @interface DJAddMorePageViewController ()
 
@@ -34,6 +34,8 @@
 
 - (IBAction)createGroup:(UIButton *)sender {
     //创建群
+    DYJXNewGroupController *NewGroupVC = [[DYJXNewGroupController alloc]init];
+    [self.navigationController pushViewController:NewGroupVC animated:YES];
 }
 
 - (IBAction)scanJoinFroup:(UIButton *)sender {

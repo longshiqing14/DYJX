@@ -96,13 +96,14 @@
 //        }
 //    }
     if (self.model.isShowSelectetView) {
-        //        if ([self.model.righImageName isEqualToString:@""]) {
-        if (self.nextBtnBlock) { // 跳到下一步操作
-            self.nextBtnBlock(self);
+        if ([self.model.righImageName isEqualToString:@"ic_category_close"]) {
+            if (self.nextBtnBlock) { // 跳到下一步操作
+                self.nextBtnBlock(self);
+            }
+        }else { // 勾选/非勾选
+            self.nextBtn.selected = !self.nextBtn.selected;
+            self.model.isSelected = self.nextBtn.selected;
         }
-        //        }else { // 勾选/非勾选
-        //            self.nextBtn.selected = !self.nextBtn.selected;
-        //        }
     }
 }
 

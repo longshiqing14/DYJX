@@ -89,15 +89,19 @@ static NSString * const kDYJXAPI_user_GetCitys = @"GetCitys";
 //（子）公司所属区/县
 static NSString * const kDYJXAPI_user_GetDistricts = @"GetDistricts";
 
-// 选择公司地址通知
-static NSString * const kDYJXAPI_CompanyAddress_Notification = @"kDYJXAPICompanyAddressNotification";
-
 // 查找群
 static NSString * const kDYJXAPI_SearchGroups = @"SearchGroups";
 
+// 新增群
+static NSString * const kDYJXAPI_EditGroup2 = @"EditGroup2";
 
 
 
+// 选择公司地址通知
+static NSString * const kDYJXAPI_CompanyAddress_Notification = @"kDYJXAPICompanyAddressNotification";
 
+// 新增内部群刷新通知
+static NSString * const kDYJXAPI_AddInteriorGroup_Notification = @"AddInteriorGroupNotification";
 
-
+// 新增外部群刷新通知
+static NSString * const kDYJXAPI_AddExternalGroup_Notification = @"AddExternalGroupNotification";

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType requestDic:(NSDictionary *)requestDic result:(DYJXXYResult *)result;
 
--(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType groupNumber:(NSString *)groupNumber targetId:(NSString *)targetId userIconImageURL:(NSString *)userIconImageURL;
+-(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType groupNumber:(NSString *)groupNumber targetId:(NSString *)targetId userIconImageURL:(NSString *)userIconImageURL isAdmin:(BOOL)isAdmin;
 
 @end
 

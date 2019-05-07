@@ -48,8 +48,13 @@
     } failed:^(NSString *errorMsg) {
         
     }];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshInteriorGroupNotification:) name:kDYJXAPI_AddInteriorGroup_Notification object:nil];
 }
+
+-(void)refreshInteriorGroupNotification:(NSNotification *)noti {
+    [self.tableView.mj_header beginRefreshing];
+}
+
 
 - (void)initNavigation{
     self.navigationController.navigationBar.titleTextAttributes=

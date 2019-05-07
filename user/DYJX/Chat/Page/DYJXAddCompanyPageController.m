@@ -49,7 +49,7 @@
 @implementation DYJXAddCompanyPageController
 
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType {
-    return [self initWithCompanyType:companyType groupNumber:@"" targetId:@"" userIconImageURL:@""];
+    return [self initWithCompanyType:companyType groupNumber:@"" targetId:@"" userIconImageURL:@"" isAdmin:NO];
 }
 
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType requestDic:(NSDictionary *)requestDic result:(DYJXXYResult *)result {
@@ -62,13 +62,14 @@
     return self;
 }
 
--(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType groupNumber:(nonnull NSString *)groupNumber targetId:(nonnull NSString *)targetId userIconImageURL:(nonnull NSString *)userIconImageURL{
+-(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType groupNumber:(nonnull NSString *)groupNumber targetId:(nonnull NSString *)targetId userIconImageURL:(nonnull NSString *)userIconImageURL isAdmin:(BOOL)isAdmin{
     self = [super init];
     if (self) {
         self.companyType = companyType;
         self.groupNumber = groupNumber;
         self.targetId = targetId;
         self.userIconImageURL = userIconImageURL;
+        self.isAdmin = isAdmin;
     }
     return self;
 }
@@ -187,8 +188,14 @@
                         weakSelf.viewModel.dataArray.firstObject.firstObject.spareImage = images.firstObject;
                         weakSelf.viewModel.dataArray.firstObject.firstObject.spareString = responseObject[@"SavedFileName"];
                         NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:0];
-                        OwnerImageCell *ownerImageCell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
-                        [ownerImageCell.porityImageView setImage:images.firstObject];
+                        if (weakSelf.companyType == DYJXAddCompanyType_Sub ||
+                            weakSelf.companyType == DYJXAddCompanyType_None) {
+                            DYJXAddCompanyPageHeaderCell *ownerImageCell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
+                            [ownerImageCell.porityImageView setImage:images.firstObject];
+                        }else {
+                            OwnerImageCell *ownerImageCell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
+                            [ownerImageCell.porityImageView setImage:images.firstObject];
+                        }
                     }else {
                         [weakSelf.imageArray addObjectsFromArray:images];
                         PersonZhiZhaoModel *model = [[PersonZhiZhaoModel alloc]init];
@@ -309,6 +316,7 @@
     
     WeakSelf
     if (indexPath.section == 0 && indexPath.row == 0) {
+        cell.userInteractionEnabled = YES;
         if (self.companyType == DYJXAddCompanyType_None ||
             self.companyType == DYJXAddCompanyType_Sub) {
             DYJXAddCompanyPageHeaderCell *newCell = (DYJXAddCompanyPageHeaderCell *)cell;
@@ -323,8 +331,10 @@
         }else {
             OwnerImageCell *newCell = (OwnerImageCell *)cell;
             newCell.block = ^{
-                weakSelf.isSelectHeader = YES;
-                [weakSelf showActionForPhoto];
+                if (weakSelf.companyType != DYJXAddCompanyType_SubDetails) {
+                    weakSelf.isSelectHeader = YES;
+                    [weakSelf showActionForPhoto];
+                }
             };
             
             newCell.qrCcodeblock = ^{
@@ -351,6 +361,16 @@
         };
     }else {
         DYJXAddCompanyPageCell *newCell = (DYJXAddCompanyPageCell *)cell;
+        if ((indexPath.section == 0 && indexPath.row == 4) ||
+            (indexPath.section == 1 && indexPath.row == 3)) {
+            cell.userInteractionEnabled = YES;
+        }else if (self.companyType == DYJXAddCompanyType_SubDetails) {
+            if ((indexPath.section == 0 && indexPath.row == 5)) {
+                cell.userInteractionEnabled = YES;
+            }
+        }else {
+            cell.userInteractionEnabled = NO;
+        }
         newCell.nextBtnBlock = ^(DYJXAddCompanyPageCell * _Nonnull cell) {
             //TODO: 点击进行下一步操作
             NSIndexPath *indexPath = [tableView indexPathForCell:cell];
@@ -575,8 +595,10 @@
 //
 //            }];
             [weakSelf.viewModel uploadCompanySuccess:^(DYJXXYGroupByIdResponse *response) {
+                [YDBAlertView showToast:@"新增成功！" dismissDelay:1.0];
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             } failed:^(NSString * errorMsg) {
+                [YDBAlertView showToast:errorMsg dismissDelay:1.0];
             }];
         };
     }
