@@ -54,7 +54,7 @@
         self.pageIndex = 1;
         [self reloadData];
     }];
-
+    [self.tableView.mj_header beginRefreshing];
     // 已读
 }
 
@@ -75,12 +75,12 @@
     [requestDic setObject:@20 forKey:@"PageSize"];
     [requestDic setObject:@1 forKey:@"PageIndex"];
     if (self.headView.textField.text.length) {
-        if (self.pageIndex == 1) {
-            [self.tableView.mj_header beginRefreshing];
-        }
-        else {
-            [self.tableView.mj_footer beginRefreshing];
-        }
+//        if (self.pageIndex == 1) {
+//            [self.tableView.mj_header beginRefreshing];
+//        }
+//        else {
+//            [self.tableView.mj_footer beginRefreshing];
+//        }
 
         if (self.userLists.count >= 20) {
             MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
@@ -121,6 +121,13 @@
             }
             [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
         }];
+    }else{
+                if (self.pageIndex == 1) {
+                    [self.tableView.mj_header endRefreshing];
+                }
+                else {
+                    [self.tableView.mj_footer endRefreshing];
+                }
     }
 }
 
