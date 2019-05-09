@@ -39,9 +39,9 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
 @property(nonatomic, strong) UITextField *GPSAddressTF;
 @property(nonatomic, copy) NSString *Latitude;
 @property(nonatomic, copy) NSString *Longitude;
-@property (nonatomic, assign) NSString *ProvinceId;
-@property (nonatomic, assign) NSString *DistrictId;
-@property (nonatomic, assign) NSString *CityId;
+@property (nonatomic, copy) NSString *ProvinceId;
+@property (nonatomic, copy) NSString *DistrictId;
+@property (nonatomic, copy) NSString *CityId;
 @property(nonatomic, strong) UITextField *NickNameTF;
 @property(nonatomic, strong) UITextField *PCDNameTF;
 @property(nonatomic, strong) UITextField *PersonAlipayTF;

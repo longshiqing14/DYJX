@@ -273,18 +273,19 @@
     self.dataArray[3][3].text = response.Result.EnterpriseInfo.CompanyBankName;
     self.dataArray[3][4].text = response.Result.EnterpriseInfo.CompanyBank;
     
-    self.dataArray[4].lastObject.spareArray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:response.Result.EnterpriseInfo.Images].copy;
+    [self.dataArray[4].lastObject.spareArray addObjectsFromArray: [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:response.Result.EnterpriseInfo.Images].copy];
 }
 
 - (NSDictionary *)getUpDataParameters {
+    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
     NSMutableDictionary *parameters = @{}.mutableCopy;
     [parameters setObject:[self getDataParameters] forKey:@"Data"];
-    [parameters setObject:self.requestDic[@"CertificateId"] forKey:@"CertificateId"];
-    [parameters setObject:self.requestDic[@"ClientId"] forKey:@"ClientId"];
-    [parameters setObject:self.requestDic[@"Device"] forKey:@"Device"];
-    [parameters setObject:self.requestDic[@"DeviceToken"] forKey:@"DeviceToken"];
-    [parameters setObject:self.requestDic[@"MemberID"] forKey:@"MemberID"];
-    [parameters setObject:self.requestDic[@"UserID"] forKey:@"UserID"];
+    [parameters setObject:userModel.UserID forKey:@"CertificateId"];
+    [parameters setObject:userModel.ClientId forKey:@"ClientId"];
+    [parameters setObject:@"iOS" forKey:@"Device"];
+    [parameters setObject:userModel.ObjResult forKey:@"DeviceToken"];
+    [parameters setObject:userModel.MemberID forKey:@"MemberID"];
+    [parameters setObject:userModel.UserID forKey:@"UserID"];
     
 //    {
 //        "Data": {
@@ -460,6 +461,7 @@
                 DYJXXYGroupByIdResponse *groupByIdModel = [DYJXXYGroupByIdResponse modelWithJSON:responseObject];
                 //TODO: 数据请求成功数据重组到数组中
                 weakSelf.response = groupByIdModel;
+                weakSelf.result = groupByIdModel.Result;
                 [weakSelf setContentsWithGroupByIdResponse:groupByIdModel];
                 success(groupByIdModel);
             }else{

@@ -14,6 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DYJXAddCompanyPageController : BaseViewController
 
+@property (nonatomic, copy) NSString *groupNumber;
+@property (nonatomic, copy) NSString *targetId;
+@property (nonatomic, assign) BOOL isAdmin;
+@property (nonatomic, copy) NSString *userIconImageURL;
+
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType;
 
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType requestDic:(NSDictionary *)requestDic result:(DYJXXYResult *)result;

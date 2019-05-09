@@ -34,11 +34,6 @@
 @property (nonatomic, strong)DYJXAddCompanyPageViewModel *viewModel;
 /** 公司详情请求返回数据 */
 @property(nonatomic, strong) DYJXXYGroupByIdResponse *groupByIdResponse;
-
-@property (nonatomic, copy) NSString *groupNumber;
-@property (nonatomic, copy) NSString *targetId;
-@property (nonatomic, assign) BOOL isAdmin;
-@property (nonatomic, copy) NSString *userIconImageURL;
 /** 底部view */
 @property(strong, nonatomic) CompanyBottomView *bottomView;
 @property(strong, nonatomic) CompanyAdminBottomView *adminBottomView;
@@ -91,6 +86,14 @@
     }else {
         self.navigationItem.title = @"公司账号管理";
     }
+    
+    UIBarButtonItem *rightitem=[[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(uploadCompany)];
+    
+    if (self.isAdmin) {
+        self.navigationItem.rightBarButtonItem=rightitem;
+    }
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithHexString:@"#F2A73B"]];
 }
 
 /** 设置UI */
@@ -136,6 +139,21 @@
     self.viewModel.dataArray[1][1].text = companyAddress.copy;
     NSIndexPath *indexPath= [NSIndexPath indexPathForRow:1 inSection:1] ;
     [self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+}
+
+- (void)uploadCompany {
+    WeakSelf
+    [self.viewModel uploadCompanySuccess:^(DYJXXYGroupByIdResponse *response) {
+        if (weakSelf.companyType == DYJXAddCompanyType_None ||
+            weakSelf.companyType == DYJXAddCompanyType_Sub) {
+            [YDBAlertView showToast:@"修改成功！" dismissDelay:1.0];
+        }else {
+            [YDBAlertView showToast:@"新增成功！" dismissDelay:1.0];
+        }
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    } failed:^(NSString * errorMsg) {
+        [YDBAlertView showToast:errorMsg dismissDelay:1.0];
+    }];
 }
 
 - (void)getGroupInfo {
@@ -208,7 +226,11 @@
                             [ownerImageCell.porityImageView setImage:images.firstObject];
                         }
                     }else {
-                        [weakSelf.imageArray addObjectsFromArray:images];
+                        if (weakSelf.companyType == DYJXAddCompanyType_Sub ||
+                            weakSelf.companyType == DYJXAddCompanyType_None) {
+                            [weakSelf.imageArray addObjectsFromArray:images];
+                        }
+                        
                         PersonZhiZhaoModel *model = [[PersonZhiZhaoModel alloc]init];
                         model.Name = responseObject[@"SavedFileName"];
                         if (weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray) {
@@ -342,10 +364,10 @@
         }else {
             OwnerImageCell *newCell = (OwnerImageCell *)cell;
             newCell.block = ^{
-                if (weakSelf.companyType != DYJXAddCompanyType_SubDetails) {
+//                if (weakSelf.companyType != DYJXAddCompanyType_SubDetails) {
                     weakSelf.isSelectHeader = YES;
                     [weakSelf showActionForPhoto];
-                }
+//                }
             };
             
             newCell.qrCcodeblock = ^{
@@ -592,12 +614,7 @@
         [_addCompanyBottomView setSubcompanyBottomBtnWithBackgroundColor:[UIColor colorWithRed:240/255.0 green:176/255.0 blue:67/255.0 alpha:1]];
         _addCompanyBottomView.block = ^{
             //TODO: 提交数据
-            [weakSelf.viewModel uploadCompanySuccess:^(DYJXXYGroupByIdResponse *response) {
-                [YDBAlertView showToast:@"新增成功！" dismissDelay:1.0];
-                [weakSelf.navigationController popViewControllerAnimated:YES];
-            } failed:^(NSString * errorMsg) {
-                [YDBAlertView showToast:errorMsg dismissDelay:1.0];
-            }];
+            [weakSelf uploadCompany];
         };
     }
     return _addCompanyBottomView;
