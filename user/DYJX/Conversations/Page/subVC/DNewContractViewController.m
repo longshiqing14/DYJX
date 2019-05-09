@@ -117,6 +117,8 @@
             }
             [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
         }];
+    }else{
+        [YDBAlertView showToast:@"请输入搜索关键字" dismissDelay:1.0];
     }
 }
 
