@@ -239,8 +239,8 @@
                             model.Title = @"执照图片1";
                         }
                         [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:model];
-                        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:4] ;
-                        [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+                            NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:4] ;
+                            [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
                     }
                 });
             }else{
@@ -388,7 +388,10 @@
         };
         newCell.deleteImageBlock = ^(NSInteger index) {
             //TODO: 删除图片
-            [weakSelf.imageArray removeObjectAtIndex:index];
+            if (weakSelf.companyType == DYJXAddCompanyType_Sub ||
+                weakSelf.companyType == DYJXAddCompanyType_None) {
+                [weakSelf.imageArray removeObjectAtIndex:index];
+            }
             [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray removeObjectAtIndex:index];
             [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
         };

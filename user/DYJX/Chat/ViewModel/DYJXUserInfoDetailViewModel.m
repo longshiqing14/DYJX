@@ -196,6 +196,8 @@
     if (self.dataArray[2][2].text.length > 0) {
         [parameters setObject:self.dataArray[2][2].text forKey:@"PersonBankName"];
     }
+    
+    [parameters setObject:[PersonZhiZhaoModel  mj_keyValuesArrayWithObjectArray:(self.dataArray.lastObject.lastObject.spareArray ?: @[])] forKey:@"Images"];
     return parameters;
 }
 
@@ -216,6 +218,8 @@
     self.dataArray[2][0].text = personInfoModel.Business.IMInfo.PersonBank;
     self.dataArray[2][1].text = personInfoModel.Business.IMInfo.PersonBankCardNo;
     self.dataArray[2][2].text = personInfoModel.Business.IMInfo.PersonBankName;
+    
+    [self.dataArray.lastObject.lastObject.spareArray addObjectsFromArray: [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:personInfoModel.Business.IMInfo.Images].copy];
 }
 
 - (NSMutableArray<NSMutableArray<LPXNewCustomerCellModel *> *> *)dataArray{

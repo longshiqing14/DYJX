@@ -79,31 +79,36 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
     WeakSelf;
     [self.viewModel getUserInfoSuccess:^(DYJXUserInfoModel *personInfoModel) {
         weakSelf.personInfoModel = personInfoModel;
-        NSArray *imageNamearray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:personInfoModel.Business.IMInfo.Images];
-        if (imageNamearray.count > 0) {
-            [imageNamearray enumerateObjectsUsingBlock:^(PersonZhiZhaoModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                    // 处理耗时操作的代码块...
-                    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[obj.Name XYImageURL]]]];
-                    if (image) {
-                        [weakSelf.imgArr addObject:image];
-                    }
-                    //通知主线程刷新
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        //回调或者说是通知主线程刷新，
-                        [weakSelf.tableView reloadData];
-                    });
-                    
-                });
-            }];
-        }else {
-            //通知主线程刷新
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //回调或者说是通知主线程刷新，
-                [weakSelf.tableView reloadData];
-            });
-        }
+        //通知主线程刷新
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //回调或者说是通知主线程刷新，
+            [weakSelf.tableView reloadData];
+        });
+//        NSArray *imageNamearray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:personInfoModel.Business.IMInfo.Images];
+//        if (imageNamearray.count > 0) {
+//            [imageNamearray enumerateObjectsUsingBlock:^(PersonZhiZhaoModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//                    // 处理耗时操作的代码块...
+//                    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[obj.Name XYImageURL]]]];
+//                    if (image) {
+//                        [weakSelf.imgArr addObject:image];
+//                    }
+//                    //通知主线程刷新
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        //回调或者说是通知主线程刷新，
+//                        [weakSelf.tableView reloadData];
+//                    });
+//
+//                });
+//            }];
+//        }else {
+//            //通知主线程刷新
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                //回调或者说是通知主线程刷新，
+//                [weakSelf.tableView reloadData];
+//            });
+//        }
         
     } failed:^(NSString *errorMsg) {
         
@@ -196,9 +201,14 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
             [weakSelf showActionForPhoto];
         };
         imageUploadCell.deleteImageBlock = ^(NSInteger index) {
-            [weakSelf.imgArr removeObjectAtIndex:index];
-
+            
+            //TODO: 删除图片
+            [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray removeObjectAtIndex:index];
             [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+            
+//            [weakSelf.imgArr removeObjectAtIndex:index];
+//
+//            [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
         };
     }else {
         [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"model"];
@@ -573,10 +583,26 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
         [ownerImageCell.porityImageView setImage:image];
         
     }else{
-        [self.imgArr addObject:image];
+        WeakSelf
+        [self.viewModel uploadFile:image Success:^(id  _Nullable responseObject) {
+            PersonZhiZhaoModel *model = [[PersonZhiZhaoModel alloc]init];
+            model.Name = responseObject[@"SavedFileName"];
+            if (weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray) {
+                model.Title = [NSString stringWithFormat:@"执照图片%ld",weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray.count + 1];
+            }else {
+                model.Title = @"执照图片1";
+            }
+            [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:model];
+            NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:3] ;
+            [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+        } failed:^(NSString *errorMsg) {
+            
+        }];
         
-        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:3] ;
-        [self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+//        [self.imgArr addObject:image];
+//
+//        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:3] ;
+//        [self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
     }
 
 }
@@ -677,17 +703,17 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
     if (![YWDTools isNil:self.DistrictId]) {
         [requstDic setObject:@([self.DistrictId integerValue]) forKey:@"DistrictId"];
     }
-    if (self.imgNameArr.count > 0){
-        [self.imgNameArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-             NSMutableDictionary *imageNameDic = [NSMutableDictionary dictionary];
-
-            [imageNameDic setObject:obj forKey:@"Name"];
-            [imageNameDic setObject:[NSString stringWithFormat:@"执照照片%ld",idx + 1] forKey:@"Title"];
-            [iamgeNameArray addObject:imageNameDic];
-
-        }];
-    }
-    [requstDic setObject:[iamgeNameArray mj_JSONString] forKey:@"Images"];
+//    if (self.imgNameArr.count > 0){
+//        [self.imgNameArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//             NSMutableDictionary *imageNameDic = [NSMutableDictionary dictionary];
+//
+//            [imageNameDic setObject:obj forKey:@"Name"];
+//            [imageNameDic setObject:[NSString stringWithFormat:@"执照照片%ld",idx + 1] forKey:@"Title"];
+//            [iamgeNameArray addObject:imageNameDic];
+//
+//        }];
+//    }
+//    [requstDic setObject:[iamgeNameArray mj_JSONString] forKey:@"Images"];
 
     [self.viewModel.requestDic setObject:requstDic forKey:@"Data"];
     [self.viewModel CommitUserInfoSuccess:^{

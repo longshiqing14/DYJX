@@ -183,7 +183,10 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (self.imagesURL.count > 0 && self.imagesArray.count == 0) {
-        return self.imagesURL.count;
+        if (self.imagesURL.count == 4) {
+            return self.imagesURL.count;
+        }
+        return self.imagesURL.count + 1;
     }else if (self.imagesArray.count == 4) {
         return self.imagesArray.count;
     }
@@ -195,10 +198,21 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
     UICollectionViewCell *cell = nil;
     
     if (self.imagesURL.count > 0 && self.imagesArray.count == 0) {
-        JXRefumdImageCollectionCell *ImageCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCollectionCell forIndexPath:indexPath];
-        PersonZhiZhaoModel *model = self.cellmodel.spareArray[indexPath.row];
-        [ImageCollectioncell.imgView setImageWithURL:[NSURL URLWithString:[model.Name XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
-        cell = ImageCollectioncell;
+        if (self.imagesURL.count <= 3 && indexPath.row == self.imagesURL.count) {
+            JXRefumdImageCameraCollectionCell *ImageCameraCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCameraCollectionCell forIndexPath:indexPath];
+            ImageCameraCollectioncell.countLb.text = [NSString stringWithFormat:@"%ld/4",self.imagesArray.count];
+            cell = ImageCameraCollectioncell;
+        }else {
+            JXRefumdImageCollectionCell *ImageCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCollectionCell forIndexPath:indexPath];
+            PersonZhiZhaoModel *model = self.cellmodel.spareArray[indexPath.row];
+            [ImageCollectioncell.imgView setImageWithURL:[NSURL URLWithString:[model.Name XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
+            ImageCollectioncell.deleteImageBlock = ^{
+                if (self.deleteImageBlock) {
+                    self.deleteImageBlock(indexPath.item);
+                }
+            };
+            cell = ImageCollectioncell;
+        }
     }else if (self.imagesArray.count <= 3) {
         if (indexPath.row == self.imagesArray.count) {
             JXRefumdImageCameraCollectionCell *ImageCameraCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCameraCollectionCell forIndexPath:indexPath];
@@ -215,7 +229,6 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
             };
             cell = ImageCollectioncell;
         }
-
     }else{
         JXRefumdImageCollectionCell *ImageCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCollectionCell forIndexPath:indexPath];
         [ImageCollectioncell.imgView setImage:self.imagesArray[indexPath.item]];
@@ -232,7 +245,13 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //区分是增加图片事件还是点浏览大图
-    if (indexPath.row == self.imagesArray.count) {
+//    if (indexPath.row == self.imagesArray.count) {
+//        if (_addPicturesBlock) {
+//            _addPicturesBlock();
+//        }
+//    }
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    if ([cell isKindOfClass:[JXRefumdImageCameraCollectionCell class]]) {
         if (_addPicturesBlock) {
             _addPicturesBlock();
         }
