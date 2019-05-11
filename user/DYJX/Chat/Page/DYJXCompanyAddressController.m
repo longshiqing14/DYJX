@@ -128,7 +128,7 @@
         self.districtId = [model.DistrictID integerValue];
     }
     if (path) {
-        [self getProvincesWithPathURL:path provinceID:model.ProvinceID success:^(DYJXAddressModel *addressModel) {
+        [self getProvincesWithPathURL:path provinceID:[@(self.districtId) stringValue] success:^(DYJXAddressModel *addressModel) {
             DYJXCompanyAddressType addressType;
             if (self.addressType == DYJXCompanyAddressType_Province) {
                 addressType = DYJXCompanyAddressType_City;

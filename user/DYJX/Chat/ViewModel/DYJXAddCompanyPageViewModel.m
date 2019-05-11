@@ -633,7 +633,6 @@
     NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
     if ([self.requestDic allKeys].count == 0) {
         DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
-        NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
         [reqDict setObject:@"iOS" forKey:@"Device"];
         [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
         [reqDict setObject:userModel.UserID forKey:@"CertificateId"];
