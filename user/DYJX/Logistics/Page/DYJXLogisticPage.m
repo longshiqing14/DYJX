@@ -71,6 +71,12 @@
         iconImage.layer.cornerRadius = 12.5;
     }
     
+    if ([[UserManager shared].getUserModel.Result.NumberString isEqualToString:self.IdentityModel.NumberString]) {
+        iconImage.layer.cornerRadius = 12.5;
+    }
+    
+
+    
     iconImage.clipsToBounds = YES;
     [iconImage setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
     self.navigationItem.rightBarButtonItem.width = 25;

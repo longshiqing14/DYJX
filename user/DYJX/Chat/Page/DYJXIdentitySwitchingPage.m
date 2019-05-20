@@ -116,6 +116,9 @@ static NSString *headerID=@"headerID";
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
 
     [self GetUserInfo];
     self.selectedIdentity = [[DYJXIdentitySwitchingModel alloc] init];
