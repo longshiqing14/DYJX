@@ -61,6 +61,7 @@ static NSString *headerID=@"headerID";
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf GetUserInfo];
     }];
+    
 
     //设置接收消息代理
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -620,14 +621,21 @@ static NSString *headerID=@"headerID";
 
 - (void)IdentitySwitchingCommit{
     if ([YWDTools isNil:self.selectedIdentity.Id]) {
-        [YDBAlertView showToast:@"请选择一个身份!"];
-        return;
+//        [YDBAlertView showToast:@"请选择一个身份!"];
+//        return;
+        DYJXUserModel * model =[XYUserDefaults readUserDefaultsLoginedInfoModel];
+        
+        self.selectedIdentity.Id = model.UserID;
+        [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
+
     }
 
     [UserManager shared].swichModel = self.selectedIdentity;
     if ([[UserManager shared].getUserModel.Result.NumberString isEqualToString:self.selectedIdentity.NumberString]) { // 本人详情
         [UserManager shared].isCompany = 1;
          [JSExtension shared].enterpriseId = self.selectedIdentity.Id;
+        [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
+
     }
     else {
         if (self.selectedIdentity.IsPart) { // 子公司详情

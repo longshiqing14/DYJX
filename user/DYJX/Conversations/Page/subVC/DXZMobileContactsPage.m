@@ -90,7 +90,7 @@
             self.tableView.mj_footer = nil;
         }
         [requestDic setObject:self.headView.textField.text forKey:@"Keyword"];
-        [XYNetWorking XYPOST:@"Search112User" params:requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
+        [XYNetWorking XYPOST:@"UploadPhonebook" params:requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
             if (self.pageIndex == 1) {
                 [self.tableView.mj_header endRefreshing];
             }
@@ -109,7 +109,7 @@
                 }
 
             }else{
-                [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+                [YDBAlertView showToast:@"没有要上传的通讯记录！" dismissDelay:1.0];
             }
 
         } fail:^(NSURLSessionDataTask *task, NSError *error) {
@@ -128,6 +128,7 @@
                 else {
                     [self.tableView.mj_footer endRefreshing];
                 }
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
     }
 }
 
