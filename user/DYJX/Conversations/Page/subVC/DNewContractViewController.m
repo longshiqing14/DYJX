@@ -119,6 +119,12 @@
             [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
         }];
     }else{
+        if (self.pageIndex == 1) {
+            [self.tableView.mj_header endRefreshing];
+        }
+        else {
+            [self.tableView.mj_footer endRefreshing];
+        }
         [YDBAlertView showToast:@"请输入搜索关键字" dismissDelay:1.0];
     }
 }

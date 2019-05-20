@@ -18,6 +18,7 @@
 #import "DJCompanyChatCell.h"
 #import "JSExtension.h"
 #import "DJAddMorePageViewController.h"
+#import "DYJXNewGroupController.h"
 
 @interface DYJXFindGroup ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 @property (nonatomic, strong)GroupHeadView *headView;
@@ -32,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     WeakSelf;
-    self.navigationItem.title = @"查找群";
+    self.navigationItem.title = @"搜索群";
 //    [self initNavigation];
     [self initSubView];
     //    [self.viewModel getMyCompanyAndGroupDataSuccess:^{
@@ -213,6 +214,12 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    DYJXNewGroupController *NewGroupVC = [[DYJXNewGroupController alloc]init];
+    [self.navigationController pushViewController:NewGroupVC animated:YES];
+    
+    
     WeakSelf
         DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
         [[JSExtension shared] getConversion:[self.findGroupViewModel sectionHeaderGroupNumber:indexPath] FromId:userModel.UserID type:1 DataSuccess:^(id  _Nonnull response) {
