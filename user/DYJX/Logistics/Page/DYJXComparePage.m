@@ -41,7 +41,9 @@
     [self baseUI];
 
     self.navigationItem.title = @"比价";
-
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
     [self.view addSubview:self.headView];
 
     self.menuViewStyle = WMMenuViewStyleLine;

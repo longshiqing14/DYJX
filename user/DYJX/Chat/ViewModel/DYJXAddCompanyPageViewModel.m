@@ -239,11 +239,11 @@
     if ([self.dataArray[0][4].leftViewText isEqualToString:@"公司成员："]) {
         self.dataArray[0][4].leftViewText = [NSString stringWithFormat:@"公司成员(%ld)个：",response.Result.Members.count];
     }
-    if ([self.dataArray[0][4].leftViewText isEqualToString:@"子公司成员："]) {
-        self.dataArray[0][4].leftViewText = [NSString stringWithFormat:@"子公司成员(%ld)个：",response.Result.Members.count];
+    if ([self.dataArray[0][4].leftViewText isEqualToString:@"公司成员："]) {
+        self.dataArray[0][4].leftViewText = [NSString stringWithFormat:@"公司成员(%ld)个：",response.Result.Members.count];
     }
     if ([self.dataArray[0][5].leftViewText isEqualToString:@"子公司成员："]) {
-        self.dataArray[0][5].leftViewText = [NSString stringWithFormat:@"公司成员(%ld)个：",response.Result.Children.count];
+        self.dataArray[0][5].leftViewText = [NSString stringWithFormat:@"子公司成员(%ld)个：",response.Result.Children.count];
     }
     if (self.companyType == DYJXAddCompanyType_SubDetails) {
         self.dataArray[0][5].isSelected = response.Result.EnterpriseInfo.AdminSay;
@@ -343,24 +343,33 @@
 
 - (NSDictionary *)getDataParameters {
     NSMutableDictionary *parameters = @{}.mutableCopy;
-    [parameters setObject:((self.result.AdminUserIds != nil) ? self.result.AdminUserIds.copy : @[self.requestDic[@"CertificateId"]].copy) forKey:@"AdminUserIds"];
-    [parameters setObject:[self getEnterpriseInfoParameters] forKey:@"EnterpriseInfo"];
-    [parameters setObject:@"" forKey:@"GroupInfo"];
-
-    [parameters setObject:self.result.GroupName? self.result.GroupName : @"" forKey:@"GroupName"];
-    [parameters setObject:self.result.GroupNumber? self.result.GroupNumber : @"" forKey:@"GroupNumber"];
-    [parameters setObject:@(self.result.GroupType ? self.result.GroupType : 1) forKey:@"GroupType"];
-    [parameters setObject:self.result.MemberIds ? @[self.result.MemberIds.firstObject] : @"" forKey:@"MemberIds"];
-    [parameters setObject:self.result.SilenceUserIds ? self.result.SilenceUserIds : @[] forKey:@"SilenceUserIds"];
-    [parameters setObject:@(false) forKey:@"showChild"];
-    [parameters setObject:self.dataArray.firstObject.firstObject.spareString ?: @"" forKey:@"header"];
-    [parameters setObject:@(false) forKey:@"isHeader"];
-    if (self.companyType == DYJXAddCompanyType_Sub ||
-        self.companyType == DYJXAddCompanyType_SubDetails) {
-        [parameters setObject:@(self.result.IsPart) forKey:@"IsPart"];
-        [parameters setObject:self.result.GroupNumber ?: @"" forKey:@"ParentEnterpriseId"];
-        [parameters setObject:@(self.result.PartType) forKey:@"PartType"];
+    if (self.companyType == DYJXAddCompanyType_Details) {
+        self.result.EnterpriseInfo = [DYJXXYEnterpriseInfo modelWithDictionary:[self getEnterpriseInfoParameters]];
+       [parameters addEntriesFromDictionary: [self.result mj_keyValues]];
+        if ([[parameters allKeys] containsObject:@"Children"]) {
+            [parameters removeObjectForKey:@"Children"];
+        }
+    }else {
+        [parameters setObject:((self.result.AdminUserIds != nil) ? self.result.AdminUserIds.copy : @[self.requestDic[@"CertificateId"]].copy) forKey:@"AdminUserIds"];
+        [parameters setObject:[self getEnterpriseInfoParameters] forKey:@"EnterpriseInfo"];
+        [parameters setObject:@"" forKey:@"GroupInfo"];
+        
+        [parameters setObject:self.result.GroupName? self.result.GroupName : @"" forKey:@"GroupName"];
+        [parameters setObject:self.result.GroupNumber? self.result.GroupNumber : @"" forKey:@"GroupNumber"];
+        [parameters setObject:@(self.result.GroupType ? self.result.GroupType : 1) forKey:@"GroupType"];
+        [parameters setObject:self.result.MemberIds ? @[self.result.MemberIds.firstObject] : @"" forKey:@"MemberIds"];
+        [parameters setObject:self.result.SilenceUserIds ? self.result.SilenceUserIds : @[] forKey:@"SilenceUserIds"];
+        [parameters setObject:@(false) forKey:@"showChild"];
+        [parameters setObject:self.dataArray.firstObject.firstObject.spareString ?: @"" forKey:@"header"];
+        [parameters setObject:@(false) forKey:@"isHeader"];
+        if (self.companyType == DYJXAddCompanyType_Sub ||
+            self.companyType == DYJXAddCompanyType_SubDetails) {
+            [parameters setObject:@(self.result.IsPart) forKey:@"IsPart"];
+            [parameters setObject:self.result.GroupNumber ?: @"" forKey:@"ParentEnterpriseId"];
+            [parameters setObject:@(self.result.PartType) forKey:@"PartType"];
+        }
     }
+    
     return parameters.copy;
 }
 

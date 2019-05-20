@@ -61,7 +61,7 @@
     
     self.navigationController.navigationBar.titleTextAttributes=
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
-      NSFontAttributeName:[UIFont systemFontOfSize:18]};
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
     [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
     
     UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -353,6 +353,9 @@
 
 - (void)initNavigation{
     self.title = @"企连连";
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
     
 }
 

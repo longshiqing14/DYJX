@@ -61,7 +61,7 @@
 - (void)initNavigation{
     self.navigationController.navigationBar.titleTextAttributes=
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
-      NSFontAttributeName:[UIFont systemFontOfSize:18]};
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
 
     UIImage *image = [UIImage imageNamed:@"btn_home"];

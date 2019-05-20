@@ -100,15 +100,14 @@ static NSString *headerID=@"headerID";
     self.title = @"身份切换";
     self.navigationController.navigationBar.titleTextAttributes=
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
-      NSFontAttributeName:[UIFont systemFontOfSize:18]};
-    [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
 
     UIButton *rightBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [rightBarButton addTarget:self action:@selector(IdentitySwitchingCommit) forControlEvents:UIControlEventTouchUpInside];
     rightBarButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10);
     rightBarButton.frame = CGRectMake(0, 0, 40, 20);
     [rightBarButton setTitle:@"提交" forState:UIControlStateNormal];
-    [rightBarButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [rightBarButton.titleLabel setFont:[UIFont systemFontOfSize:21]];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBarButton];
     
     rightBarButton.titleLabel.adjustsFontSizeToFitWidth = YES;

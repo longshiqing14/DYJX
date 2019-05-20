@@ -11,6 +11,7 @@
 #import "DYJXAddCompanyPageCell.h"
 #import "DYJXNewGroupViewModel.h"
 #import "XYSelectIconPopView.h"
+#import "DYJXAddGroupMemberController.h"
 
 typedef void(^InteriorGroupBlock)(void);
 typedef void(^ExternalGroupBlock)(void);
@@ -129,6 +130,8 @@ typedef void(^ExternalGroupBlock)(void);
          DYJXAddCompanyPageCell *newCell = (DYJXAddCompanyPageCell *)cell;
         newCell.nextBtnBlock = ^(DYJXAddCompanyPageCell * _Nonnull cell) {
             //TODO: 点击进行下一步操作(群成员)
+            DYJXAddGroupMemberController *addGroupMemberVC = [[DYJXAddGroupMemberController alloc]init];
+            [weakSelf.navigationController pushViewController:addGroupMemberVC animated:YES];
         };
     }
     return cell;
@@ -201,10 +204,14 @@ typedef void(^ExternalGroupBlock)(void);
 
 - (void)uploadGroupWithGroupType:(NSInteger)groupType {
     WeakSelf
-    [self.viewModel uploadGroupWithGroupType:groupType success:^(id  _Nonnull responseObject) {
-        [weakSelf popToViewControllerWithGroupType:groupType];
-    } failed:^(NSString * _Nonnull errMsg) {
-    }];
+    if (self.viewModel.dataArray[0][1].text) {
+        [self.viewModel uploadGroupWithGroupType:groupType success:^(id  _Nonnull responseObject) {
+            [weakSelf popToViewControllerWithGroupType:groupType];
+        } failed:^(NSString * _Nonnull errMsg) {
+        }];
+    }else {
+        [YDBAlertView showToast:@"您还没有填写群名称" dismissDelay:1.0];
+    }
 }
 
 - (void)popToViewControllerWithGroupType:(NSInteger)groupType {

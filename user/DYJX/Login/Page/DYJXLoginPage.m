@@ -41,10 +41,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.title = @"登录";
+    
     [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
     self.navigationController.navigationBar.titleTextAttributes=
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
-      NSFontAttributeName:[UIFont systemFontOfSize:18]};
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
     [self initSubViews];
 
     self.automaticallyAdjustsScrollViewInsets = NO;

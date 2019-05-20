@@ -68,6 +68,9 @@
     
     NSString *title = [NSString stringWithFormat:@"%zd/%zd", self.selectedPhotoView.tag + 1, self.selectedPhotoView.images.count];
     self.title = title;
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
     // 用来判断是否偏移
     self.isFirst = YES;
     
