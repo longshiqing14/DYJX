@@ -34,11 +34,22 @@
 - (NSDictionary *)getDataParametersWithGroupType:(NSInteger)groupType {
     DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
     NSMutableDictionary *parameters = @{}.mutableCopy;
-    [parameters setObject:@[userModel.UserID] forKey:@"AdminUserIds"];
+    if (userModel.UserID) {
+        [parameters setObject:@[userModel.UserID] forKey:@"AdminUserIds"];
+    }
+    
     [parameters setObject:@(self.dataArray[0][8].isSelected) forKey:@"CanNotSearch"];
-    [parameters setObject:self.dataArray[0][2].text forKey:@"GroupInfo"];
-    [parameters setObject:self.dataArray[0][1].text forKey:@"GroupName"];
-    [parameters setObject:self.dataArray[0][3].text forKey:@"GroupNumber"];
+    if (self.dataArray[0][2].text) {
+        [parameters setObject:self.dataArray[0][2].text forKey:@"GroupInfo"];
+    }
+    
+    if (self.dataArray[0][1].text) {
+        [parameters setObject:self.dataArray[0][1].text forKey:@"GroupName"];
+    }
+    if (self.dataArray[0][3].text) {
+        [parameters setObject:self.dataArray[0][3].text forKey:@"GroupNumber"];
+    }
+    
     [parameters setObject:@(2) forKey:@"GroupType"];
     [parameters setObject:@[userModel.UserID] forKey:@"MemberIds"];
     [parameters setObject:@(self.dataArray[0][6].isSelected) forKey:@"NotAllowJoinFree"];

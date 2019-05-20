@@ -20,6 +20,7 @@
 #import "SubcompanyBottomView.h"
 #import "BaiduMapViewController.h"
 #import "DYJXCompanyAddressController.h"
+#import "DYJXAddSubMemberController.h"
 
 @interface DYJXAddCompanyPageController ()<UITableViewDelegate,UITableViewDataSource,XYSelectIconPopViewDelegate>
 
@@ -82,7 +83,7 @@
     if (self.companyType == DYJXAddCompanyType_Sub) {
         self.navigationItem.title = @"子公司账号管理";
     }else if (self.companyType == DYJXAddCompanyType_SubDetails) {
-        self.navigationItem.title = @"信息查看";
+        self.navigationItem.title = @"子公司账号管理";
     }else {
         self.navigationItem.title = @"公司账号管理";
     }
@@ -144,12 +145,6 @@
 - (void)uploadCompany {
     WeakSelf
     [self.viewModel uploadCompanySuccess:^(DYJXXYGroupByIdResponse *response) {
-        if (weakSelf.companyType == DYJXAddCompanyType_None ||
-            weakSelf.companyType == DYJXAddCompanyType_Sub) {
-            [YDBAlertView showToast:@"修改成功！" dismissDelay:1.0];
-        }else {
-            [YDBAlertView showToast:@"新增成功！" dismissDelay:1.0];
-        }
         [weakSelf.navigationController popViewControllerAnimated:YES];
     } failed:^(NSString * errorMsg) {
         [YDBAlertView showToast:errorMsg dismissDelay:1.0];
@@ -295,8 +290,9 @@
 
 #pragma mark - 退出公司
 - (void)exitCompanyWithGroupId:(NSString *)groupId {
+    WeakSelf
     [self.viewModel QuitGroupWithGroupId:groupId Success:^(DYJXXYGroupByIdResponse *response) {
-        
+        [weakSelf.navigationController popViewControllerAnimated:NO];
     } failed:^(NSString *errorMsg) {
         
     }];
@@ -305,7 +301,9 @@
 - (void)deleteCompanyWithGroupId:(NSString *)groupId {
     WeakSelf
     [self.viewModel deleteGroupWithGroupId:groupId Success:^(DYJXXYGroupByIdResponse *response) {
-        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.navigationController popViewControllerAnimated:NO];
+        });
     } failed:^(NSString *errorMsg) {
         
     }];
@@ -400,14 +398,25 @@
         newCell.nextBtnBlock = ^(DYJXAddCompanyPageCell * _Nonnull cell) {
             //TODO: 点击进行下一步操作
             NSIndexPath *indexPath = [tableView indexPathForCell:cell];
-            if (indexPath.section == 0 && indexPath.row == 4) {
-                //TODO: 公司成员
-                DYJXAddMemberPage *addMemberPage = [[DYJXAddMemberPage alloc]init];
-                addMemberPage.membersArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.Members] mutableCopy];
-                addMemberPage.adminArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.AdminUsers] mutableCopy];
-                [self.navigationController pushViewController:addMemberPage animated:YES];
+            if (indexPath.section == 0 && (indexPath.row == 4 || indexPath.row == 5)) {
+                
+                if ((weakSelf.companyType == DYJXAddCompanyType_SubDetails ||
+                    weakSelf.companyType == DYJXAddCompanyType_Details) && [cell.model.leftViewText containsString:@"子公司"]) {
+                    //TODO: 子公司成员
+                    DYJXAddSubMemberController *addSubMemberVC = [[DYJXAddSubMemberController alloc]initWithCompanyResult:self.groupByIdResponse.Result];
+                    [self.navigationController pushViewController:addSubMemberVC animated:YES];
+                }else {
+                    //TODO: （子）公司成员
+                    DYJXAddMemberPage *addMemberPage = [[DYJXAddMemberPage alloc]init];
+                    if ([cell.model.leftViewText containsString:@"子公司"]) {
+                        addMemberPage.membersArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.Children] mutableCopy];
+                    }else {
+                        addMemberPage.membersArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.Members] mutableCopy];
+                    }
+                    addMemberPage.adminArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.AdminUsers] mutableCopy];
+                    [weakSelf.navigationController pushViewController:addMemberPage animated:YES];
+                }
             }else if (indexPath.section == 0 && indexPath.row == 5) {
-                //TODO: 子公司成员
                 
             }else if (indexPath.section == 1 && indexPath.row == 1) {
                 //TODO: 公司地址

@@ -46,7 +46,7 @@
     rightBarButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10);
     rightBarButton.frame = CGRectMake(0, 0, 40, 20);
     [rightBarButton setTitle:@"提交" forState:UIControlStateNormal];
-    [rightBarButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [rightBarButton.titleLabel setFont:[UIFont systemFontOfSize:21]];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBarButton];
     
     rightBarButton.titleLabel.adjustsFontSizeToFitWidth = YES;

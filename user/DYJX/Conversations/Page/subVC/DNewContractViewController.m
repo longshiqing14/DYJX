@@ -21,6 +21,7 @@
 #import "DYGoodCell.h"
 #import "DYJXSubcompanyInfoDetailPage.h"
 #import "DXZMobileContactsPage.h"
+#import "DYJXContactDetailsController.h"
 
 @interface DNewContractViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -195,7 +196,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     DYXJResult *result = (DYXJResult *)self.userLists[indexPath.row];
-    DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
+    DYJXContactDetailsController *page = [[DYJXContactDetailsController alloc]init];
+//    DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
     page.title = @"信息查看";
     page.groupNumber = result.NumberString;
     page.targetId = result.Id;
