@@ -111,6 +111,8 @@ static NSString *headerID=@"headerID";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBarButton];
     
     rightBarButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem new];
+
     
 }
 
@@ -131,9 +133,12 @@ static NSString *headerID=@"headerID";
         [weakSelf.viewModel getMyEnterprisesSuccess:^{
             [weakSelf.tableView.mj_header endRefreshing];
             DYJXUserModel * model =[XYUserDefaults readUserDefaultsLoginedInfoModel];
-            self.selectedIdentity.Id = model.UserID;
+            weakSelf.selectedIdentity.Id = model.UserID;
             [weakSelf.tableView reloadData];
             [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            weakSelf.selectedIdentity = [weakSelf.viewModel IdentityAtIndexPath:indexPath];
+                weakSelf.selectedIdentity.Id = model.UserID;
         } failed:^(NSString *errorMsg) {
               [weakSelf.tableView.mj_header endRefreshing];
         }];

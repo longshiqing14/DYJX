@@ -86,6 +86,7 @@
     [rightCustomView addSubview: iconImage];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightCustomView];
+    
 }
 
 - (void)initSubViews{
