@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "DYJXAddGroupMemberModel.h"
 
+@class DYJXAddGroupMemberCell;
+
+typedef void(^SelectBtnBlock)(DYJXAddGroupMemberCell *cell, BOOL isSelected);
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DYJXAddGroupMemberCell : UITableViewCell
@@ -18,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isSelection;
 
 @property (nonatomic, assign) BOOL isSearchUser;
+
+@property (nonatomic, copy) SelectBtnBlock block;
 
 - (void)tapSelectionClcik;
 

@@ -55,7 +55,9 @@
 }
 
 - (void)commitSelectMember {
-    
+    if (self.block) {
+        self.block([self.viewModel getSelectEnterprises].mutableCopy);
+    }
 }
 
 - (void)searchClick{
@@ -91,6 +93,11 @@
     }else {
         [cell setValue:self.viewModel.dataArray[indexPath.section].groupSubMembers[indexPath.row] forKey:@"model"];
     }
+    WeakSelf
+    cell.block = ^(DYJXAddGroupMemberCell *cell, BOOL isSelected) {
+        NSIndexPath *index = [tableView indexPathForCell:cell];
+        [weakSelf.viewModel importOrDeleteWithIndexPath:index isSection:NO isDelete:!isSelected];
+    };
     return cell;
 }
 
@@ -106,6 +113,8 @@
             [weakSelf.tableView layoutIfNeeded];
         };
         header.allElectionBlock = ^(DYJXAddGroupMemberHeaderView *headerView) {
+            NSIndexPath *index = [NSIndexPath indexPathWithIndex:section];
+            [weakSelf.viewModel importOrDeleteWithIndexPath:index isSection:YES isDelete:!weakSelf.viewModel.dataArray[section].isSelection];
             [weakSelf.tableView reloadData];
         };
         return header;

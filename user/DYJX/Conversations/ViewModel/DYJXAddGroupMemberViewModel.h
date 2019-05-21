@@ -24,17 +24,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray<DYXJResult *> *searchResultArray;
 
+@property (nonatomic, strong) NSMutableArray<DYJXAddGroupMemberModel *> *selectResultArray;
+
+@property (nonatomic, strong) NSMutableArray<DYJXAddGroupSubMemberModel *> *selectSearchResultArray;
+
 @property (nonatomic, strong) NSMutableDictionary *requestDic;
 
 - (NSInteger)numberOfSections;
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;
 
+// 导入和删除
+- (void)importOrDeleteWithIndexPath:(NSIndexPath *)indexPath isSection:(BOOL)isSection isDelete:(BOOL)isDelete;
+
 // 获取公司成员信息
 - (void)getMyEnterprisesWithSuccess:(void(^)(id response))success failed:(void(^)(NSString *errorMsg))fail;
 
 //搜索成员信息
 - (void)getSearchUserWithKeyword:(NSString*)Keyword Success:(void(^)())success failed:(void(^)(NSString *errorMsg))fail;
+
+- (NSArray<DYJXAddGroupSubMemberModel *> *)getSelectEnterprises;
 
 @end
 

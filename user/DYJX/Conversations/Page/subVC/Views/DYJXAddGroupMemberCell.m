@@ -52,6 +52,9 @@
 - (void)selectionBtnClick:(UIButton *)btn {
     self.selectionBtn.selected = !self.selectionBtn.selected;
     self.model.isSelection = self.selectionBtn.selected;
+    if (self.block) {
+        self.block(self,self.selectionBtn.selected);
+    }
 }
 
 -(void)tapSelectionClcik {

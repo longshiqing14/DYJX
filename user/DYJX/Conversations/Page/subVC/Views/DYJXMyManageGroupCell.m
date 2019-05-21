@@ -22,6 +22,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
@@ -48,6 +49,10 @@
 - (void)selectionBtnClick:(UIButton *)btn {
     self.selectionBtn.selected = !self.selectionBtn.selected;
     self.model.isSelected = self.selectionBtn.selected;
+}
+
+- (void)tapSelectionClcik {
+    [self selectionBtnClick:nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

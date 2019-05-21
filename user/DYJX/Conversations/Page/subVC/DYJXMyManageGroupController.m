@@ -73,6 +73,11 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DYJXMyManageGroupCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell tapSelectionClcik];
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return __X(68.5 * 2);
 }
