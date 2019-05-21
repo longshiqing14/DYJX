@@ -61,6 +61,7 @@ static NSString *headerID=@"headerID";
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf GetUserInfo];
     }];
+    
 
     //设置接收消息代理
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -110,11 +111,16 @@ static NSString *headerID=@"headerID";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBarButton];
     
     rightBarButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem new];
+
     
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
 
     [self GetUserInfo];
     self.selectedIdentity = [[DYJXIdentitySwitchingModel alloc] init];
@@ -127,9 +133,12 @@ static NSString *headerID=@"headerID";
         [weakSelf.viewModel getMyEnterprisesSuccess:^{
             [weakSelf.tableView.mj_header endRefreshing];
             DYJXUserModel * model =[XYUserDefaults readUserDefaultsLoginedInfoModel];
-            self.selectedIdentity.Id = model.UserID;
+            weakSelf.selectedIdentity.Id = model.UserID;
             [weakSelf.tableView reloadData];
             [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            weakSelf.selectedIdentity = [weakSelf.viewModel IdentityAtIndexPath:indexPath];
+                weakSelf.selectedIdentity.Id = model.UserID;
         } failed:^(NSString *errorMsg) {
               [weakSelf.tableView.mj_header endRefreshing];
         }];
@@ -619,14 +628,21 @@ static NSString *headerID=@"headerID";
 
 - (void)IdentitySwitchingCommit{
     if ([YWDTools isNil:self.selectedIdentity.Id]) {
-        [YDBAlertView showToast:@"请选择一个身份!"];
-        return;
+//        [YDBAlertView showToast:@"请选择一个身份!"];
+//        return;
+        DYJXUserModel * model =[XYUserDefaults readUserDefaultsLoginedInfoModel];
+        
+        self.selectedIdentity.Id = model.UserID;
+        [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
+
     }
 
     [UserManager shared].swichModel = self.selectedIdentity;
     if ([[UserManager shared].getUserModel.Result.NumberString isEqualToString:self.selectedIdentity.NumberString]) { // 本人详情
         [UserManager shared].isCompany = 1;
          [JSExtension shared].enterpriseId = self.selectedIdentity.Id;
+        [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
+
     }
     else {
         if (self.selectedIdentity.IsPart) { // 子公司详情
