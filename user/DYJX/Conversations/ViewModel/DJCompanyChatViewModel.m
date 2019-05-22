@@ -82,18 +82,42 @@
 - (NSString *)isAdmin:(NSIndexPath *)indexPath
 {
     if (self.dataArray[indexPath.section].Children) {
+        DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+
+        BOOL isAdmin = false;
+        if (![YWDTools isNil:self.dataArray[indexPath.section].Children[indexPath.row].OwnerId] && [self.dataArray[indexPath.section].Children[indexPath.row].OwnerId isEqualToString:userModel.UserID]) {
+            isAdmin = true;
+        }
         
-        if ([self.dataArray[indexPath.section].Children[indexPath.row].AdminUserIds containsObject:self.dataArray[indexPath.section].Children[indexPath.row].OwnerId]) {
+        if ((self.dataArray[indexPath.section].Children[indexPath.row].AdminUserIds.count>0) && [self.dataArray[indexPath.section].Children[indexPath.row].AdminUserIds containsObject:userModel.UserID]) {
+            isAdmin = true;
+        }
+        
+        if (isAdmin) {
             return @"管理员";
-        }else{
+        } else {
             return @"参与者";
         }
+        
     }else{
-        if ([self.dataArray[indexPath.section].AdminUserIds containsObject:self.dataArray[indexPath.section].OwnerId]) {
+        
+        DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+        
+        BOOL isAdmin = false;
+        if (![YWDTools isNil:self.dataArray[indexPath.section].OwnerId] && [self.dataArray[indexPath.section].OwnerId isEqualToString:userModel.UserID]) {
+            isAdmin = true;
+        }
+        
+        if ((self.dataArray[indexPath.section].AdminUserIds.count>0) && [self.dataArray[indexPath.section].AdminUserIds containsObject:userModel.UserID]) {
+            isAdmin = true;
+        }
+        
+        if (isAdmin) {
             return @"管理员";
-        }else{
+        } else {
             return @"参与者";
         }
+        
     }
 }
 
