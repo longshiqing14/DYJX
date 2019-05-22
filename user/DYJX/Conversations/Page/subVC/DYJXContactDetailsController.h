@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *groupNumber;
 @property (nonatomic, copy) NSString *targetId;
 
-
 @end
 
 NS_ASSUME_NONNULL_END
