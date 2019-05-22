@@ -186,6 +186,10 @@
     header.groupName.text = [self.viewModel sectionHeaderGroupName:section];
     WeakSelf
     header.block = ^{ // 新增子公司
+        if (![[self.viewModel isAdmin:[NSIndexPath indexPathForRow:0 inSection:section]] isEqualToString:@"管理员"]) {
+            [YDBAlertView showToast:@"您还不是管理员无法此操作！"];
+            return ;
+        } 
         DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_Sub) requestDic:weakSelf.viewModel.requestDic result:[weakSelf.viewModel getRefundReasonsArray][section]];
         [weakSelf.navigationController pushViewController:page animated:YES];
     };
@@ -195,7 +199,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     DYJXXYResult *result = [self.viewModel getRefundReasonsArray][indexPath.section];
     DYJXAddCompanyType companyType = DYJXAddCompanyType_Details;
-    if (result.IsPart) {
+    if ([[self.viewModel isQuanYuan:indexPath] isEqualToString:@"子公司"]) {
         companyType = DYJXAddCompanyType_SubDetails;
     }
     DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(companyType) requestDic:@{} result:result];
@@ -206,6 +210,9 @@
         page.groupNumber = result.GroupNumber;
     }
     
+    if ([[self.viewModel isAdmin:indexPath] isEqualToString:@"管理员"]) {
+        page.isAdmin = YES;
+    }
 
     page.isFromMyCompany = YES;
     [self.navigationController pushViewController:page animated:YES];
