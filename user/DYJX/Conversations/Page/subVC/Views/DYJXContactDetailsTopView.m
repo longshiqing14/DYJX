@@ -33,9 +33,11 @@
 
 -(void)setType:(ContactType)type {
     _type = type;
+    WeakSelf
     [self.btnArray enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx == type - 1) {
             obj.selected = YES;
+            weakSelf.selectedBtn = obj;
         }
     }];
 }

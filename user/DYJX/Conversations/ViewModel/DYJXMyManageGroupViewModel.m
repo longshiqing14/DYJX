@@ -95,7 +95,7 @@
 
 - (NSDictionary *)getDataParametersWithResult:(DYJXXYResult *)result {
     NSMutableDictionary *parameters = @{}.mutableCopy;
-    [parameters addEntriesFromDictionary:[result mj_keyValues]];
+    [parameters addEntriesFromDictionary:[result modelToJSONObject]];
     if ([[parameters allKeys] containsObject:@"GroupType"]) {
         [parameters setValue:@(1) forKey:@"GroupType"];
     }

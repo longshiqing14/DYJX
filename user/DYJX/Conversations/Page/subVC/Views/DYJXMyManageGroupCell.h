@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DYJXMyManageGroupCell : UITableViewCell
 
 @property (nonatomic, strong) LPXNewCustomerCellModel *model;
-
+- (void)tapSelectionClcik;
 @end
 
 NS_ASSUME_NONNULL_END
