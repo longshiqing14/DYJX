@@ -21,6 +21,7 @@
 #import "BaiduMapViewController.h"
 #import "DYJXCompanyAddressController.h"
 #import "DYJXAddSubMemberController.h"
+#import "DYJXConversationTabBarController.h"
 
 @interface DYJXAddCompanyPageController ()<UITableViewDelegate,UITableViewDataSource,XYSelectIconPopViewDelegate>
 
@@ -565,8 +566,18 @@
             }
         }];
         _bottomView.enterConversionBlock = ^{
-            // TODO:进入会话
-            [weakSelf enterConversion];
+            // TODO:进群会话
+//            [weakSelf enterConversion];
+            if (weakSelf.isFromMyCompany) {
+                if (weakSelf.navigationController.viewControllers.count >= 2) {
+                    UIViewController *vc = [weakSelf.navigationController.viewControllers objectOrNilAtIndex:1];
+                    [weakSelf.navigationController popToViewController:vc animated:YES];
+                    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]];
+                    [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
+                    [conversationTabBarController setSelectedIndex:2];
+                }
+                return ;
+            }
         };
         _bottomView.exitCompanyBlock = ^{
             // TODO:退出账号
@@ -591,8 +602,18 @@
             }
         }];
         _adminBottomView.enterConversionBlock = ^{
-            // TODO:进入会话
-            [weakSelf enterConversion];
+            // TODO:进群会话
+//            [weakSelf enterConversion];
+            if (weakSelf.isFromMyCompany) {
+                if (weakSelf.navigationController.viewControllers.count >= 2) {
+                    UIViewController *vc = [weakSelf.navigationController.viewControllers objectOrNilAtIndex:1];
+                    [weakSelf.navigationController popToViewController:vc animated:YES];
+                    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]];
+                    [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
+                    [conversationTabBarController setSelectedIndex:2];
+                }
+                return ;
+            }
         };
         
         _adminBottomView.exitCompanyBlock = ^{

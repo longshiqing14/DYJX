@@ -79,6 +79,7 @@
     
     iconImage.clipsToBounds = YES;
     [iconImage setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
+     [XYUserDefaults writeAppDlegateOfCurrentUserIconURL:[self.IdentityModel.GroupHeadImg XYImageURL]];
     self.navigationItem.rightBarButtonItem.width = 25;
     
     UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];

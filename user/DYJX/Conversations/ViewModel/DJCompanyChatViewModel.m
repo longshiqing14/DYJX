@@ -28,19 +28,97 @@
 
 - (NSString *)GroupName:(NSIndexPath *)indexPath
 {
+    if (self.dataArray[indexPath.section].Children) {
+        return self.dataArray[indexPath.section].Children[indexPath.row].GroupName;
+        
+    }else{
+        return self.dataArray[indexPath.section].GroupName;
+    }
     
-    return self.dataArray[indexPath.section].GroupName;
 }
 
 - (NSString *)GroupNumberString:(NSIndexPath *)indexPath
 {
+    if (self.dataArray[indexPath.section].Children) {
+        return self.dataArray[indexPath.section].Children[indexPath.row].NumberString;
+        
+    }else{
+        return self.dataArray[indexPath.section].NumberString;
+    }
     
-    return self.dataArray[indexPath.section].NumberString;
 }
 
 - (NSString *)iconImageUrl:(NSIndexPath *)indexPath
 {
-    return self.dataArray[indexPath.section].GroupHeadImg;
+    if (self.dataArray[indexPath.section].Children) {
+        return self.dataArray[indexPath.section].Children[indexPath.row].GroupHeadImg;
+
+    }else{
+        return self.dataArray[indexPath.section].GroupHeadImg;
+
+    }
+}
+
+- (NSString *)isQuanYuan:(NSIndexPath *)indexPath
+{
+    if (self.dataArray[indexPath.section].Children) {
+
+        if (self.dataArray[indexPath.section].Children[indexPath.row].IsPart) {
+            return @"子公司";
+        }else{
+            return @"全员";
+        }
+        
+    }else{
+        if (self.dataArray[indexPath.section].IsPart) {
+            return @"子公司";
+        }else{
+            return @"全员";
+        }
+        
+    }
+}
+
+- (NSString *)isAdmin:(NSIndexPath *)indexPath
+{
+    if (self.dataArray[indexPath.section].Children) {
+        DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+
+        BOOL isAdmin = false;
+        if (![YWDTools isNil:self.dataArray[indexPath.section].Children[indexPath.row].OwnerId] && [self.dataArray[indexPath.section].Children[indexPath.row].OwnerId isEqualToString:userModel.UserID]) {
+            isAdmin = true;
+        }
+        
+        if ((self.dataArray[indexPath.section].Children[indexPath.row].AdminUserIds.count>0) && [self.dataArray[indexPath.section].Children[indexPath.row].AdminUserIds containsObject:userModel.UserID]) {
+            isAdmin = true;
+        }
+        
+        if (isAdmin) {
+            return @"管理员";
+        } else {
+            return @"参与者";
+        }
+        
+    }else{
+        
+        DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+        
+        BOOL isAdmin = false;
+        if (![YWDTools isNil:self.dataArray[indexPath.section].OwnerId] && [self.dataArray[indexPath.section].OwnerId isEqualToString:userModel.UserID]) {
+            isAdmin = true;
+        }
+        
+        if ((self.dataArray[indexPath.section].AdminUserIds.count>0) && [self.dataArray[indexPath.section].AdminUserIds containsObject:userModel.UserID]) {
+            isAdmin = true;
+        }
+        
+        if (isAdmin) {
+            return @"管理员";
+        } else {
+            return @"参与者";
+        }
+        
+    }
 }
 
 - (NSInteger)numberOfSection{
@@ -51,8 +129,13 @@
 //    return self.dataArray[section].Children.count;
 //}
 
-- (NSInteger)numberOfCell{
-    return self.dataArray.count;
+- (NSInteger)numberOfCell:(NSInteger)section{
+    if (self.dataArray[section].Children) {
+        return self.dataArray[section].Children.count;
+
+    }else{
+        return 1;
+    }
 }
 
 - (NSString *)sectionHeaderGroupName:(NSInteger )section{
@@ -61,8 +144,14 @@
 - (NSString *)sectionHeaderGroupNumberString:(NSInteger )section{
     return self.dataArray[section].NumberString;
 }
-- (NSString *)sectionHeadericonImageUrl:(NSInteger )section{
-    return self.dataArray[section].GroupHeadImg;
+- (NSString *)sectionHeadericonImageUrl:(NSIndexPath* )indexPath{
+    if (self.dataArray[indexPath.section].Children) {
+        return self.dataArray[indexPath.section].Children[indexPath.row].GroupHeadImg;
+        
+    }else{
+        return self.dataArray[indexPath.section].GroupHeadImg;
+        
+    }
 }
 
 - (NSMutableArray<DYJXXYResult*> *)getRefundReasonsArray{
@@ -87,7 +176,17 @@
             
             if ([[responseObject objectForKey:@"Succeed"] boolValue] ) {
                 [XYProgressHUD svHUDDismiss];
+                
                 self.dataArray = [[NSArray modelArrayWithClass:[DYJXXYResult class] json:[responseObject objectForKey:@"Result"]] mutableCopy];
+                
+                __block NSMutableArray<DYJXXYResult *> *tempArray = [self.dataArray mutableCopy];
+                [tempArray enumerateObjectsUsingBlock:^(DYJXXYResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+
+                        [weakSelf.dataArray[idx].Children insertObject:obj atIndex:0];
+
+                }];
+                
+                
                 
                 success();
                 

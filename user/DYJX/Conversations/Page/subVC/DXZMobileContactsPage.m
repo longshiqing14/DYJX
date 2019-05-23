@@ -74,7 +74,12 @@
     [requestDic setObject:[JSExtension shared].myIdentityId forKey:@"CertificateId"];
     [requestDic setObject:@20 forKey:@"PageSize"];
     [requestDic setObject:@1 forKey:@"PageIndex"];
+    [requestDic setObject:@[] forKey:@"Data"];
+
     if (self.headView.textField.text.length) {
+        [requestDic setObject:self.headView.textField.text forKey:@"Keyword"];
+
+    }
 //        if (self.pageIndex == 1) {
 //            [self.tableView.mj_header beginRefreshing];
 //        }
@@ -89,7 +94,6 @@
         else {
             self.tableView.mj_footer = nil;
         }
-        [requestDic setObject:self.headView.textField.text forKey:@"Keyword"];
         [XYNetWorking XYPOST:@"UploadPhonebook" params:requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
             if (self.pageIndex == 1) {
                 [self.tableView.mj_header endRefreshing];
@@ -105,11 +109,11 @@
                     [self.userLists addObjectsFromArray:[NSArray modelArrayWithClass:[DYXJResult class] json:[responseObject objectForKey:@"Result"]]];
                     [self.tableView reloadData];
                 }else{
-                    [YDBAlertView showToast:[responseObject objectForKey:RETURN_DESC_] dismissDelay:1.0];
+                    [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
                 }
 
             }else{
-                [YDBAlertView showToast:@"没有要上传的通讯记录！" dismissDelay:1.0];
+                [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
             }
 
         } fail:^(NSURLSessionDataTask *task, NSError *error) {
@@ -121,15 +125,6 @@
             }
             [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
         }];
-    }else{
-                if (self.pageIndex == 1) {
-                    [self.tableView.mj_header endRefreshing];
-                }
-                else {
-                    [self.tableView.mj_footer endRefreshing];
-                }
-        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
-    }
 }
 
 - (void)setUpTitleView

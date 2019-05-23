@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *targetId;
 @property (nonatomic, assign) BOOL isAdmin;
 @property (nonatomic, copy) NSString *userIconImageURL;
+@property (nonatomic,assign) BOOL isFromMyCompany;
 
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType;
 
