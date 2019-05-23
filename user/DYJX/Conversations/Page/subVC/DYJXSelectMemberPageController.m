@@ -49,17 +49,30 @@
     if (self.block) {
         WeakSelf
         if (self.operatorType == OperatorMemberDelete) {
-            [self.memberModels enumerateObjectsUsingBlock:^(DYJXAddGroupSubMemberModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSArray<DYJXAddGroupSubMemberModel *> *memberModels = self.memberModels.copy;
+            [memberModels enumerateObjectsUsingBlock:^(DYJXAddGroupSubMemberModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (obj.isSelection) {
-                    [weakSelf.memberModels removeObject:obj];
-                    [weakSelf.membersArray removeObjectAtIndex:idx];
-                    [weakSelf.MemberIds removeObject:obj.GroupNumber];
+                    NSInteger index = [weakSelf.memberModels containsObject:obj];
+                    [weakSelf.membersArray removeObjectAtIndex:index];
+                    [weakSelf.MemberIds removeObjectAtIndex:index];
+                    [weakSelf.memberModels removeObjectAtIndex:index];
                 }
             }];
         }
         self.block(self.memberModels.mutableCopy,self.membersArray.mutableCopy,self.MemberIds);
         [self.navigationController popViewControllerAnimated:NO];
     }
+}
+
+- (NSInteger)searchWithId:(NSString *)Id {
+    __block NSInteger index;
+    [self.memberModels enumerateObjectsUsingBlock:^(DYJXAddGroupSubMemberModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.GroupNumber isEqualToString:Id]) {
+            index = idx;
+            *stop = YES;
+        }
+    }];
+    return index;
 }
 
 - (void)searchClick {

@@ -104,7 +104,7 @@
     WeakSelf
     if (self.isSearchUser) {
         if (isDelete) {
-            DJJXMembers *subMdeol = self.selectSearchDataArray[indexPath.row];
+            DJJXMembers *subMdeol = self.selectSearchDataArray[indexPath.row].copy;
             if ([self.selectSearchResultArray containsObject:subMdeol]) {
                 [self.selectSearchResultArray removeObject:subMdeol];
             }
@@ -112,7 +112,7 @@
                 [self.MemberIds removeObject:subMdeol.Id];
             }
         }else {
-            DJJXMembers *subMdeol = self.selectSearchDataArray[indexPath.row];
+            DJJXMembers *subMdeol = self.selectSearchDataArray[indexPath.row].copy;
             if (![self.selectSearchResultArray containsObject:subMdeol]) {
                 [self.selectSearchResultArray addObject:subMdeol];
             }
@@ -125,7 +125,7 @@
             // 删除
             if (isSection) {
                 // 全部删除
-                NSMutableArray<DJJXMembers *> *model = self.selectDataArray[indexPath.section];
+                NSMutableArray<DJJXMembers *> *model = self.selectDataArray[indexPath.section].mutableCopy;
                 [model enumerateObjectsUsingBlock:^(DJJXMembers * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([weakSelf.MemberIds containsObject:obj.Id]) {
                         [self.MemberIds removeObject:obj.Id];
@@ -135,8 +135,8 @@
                     [self.selectResultArray removeObject:model];
                 }
             }else {
-                NSMutableArray *model = self.selectDataArray[indexPath.section];
-                DJJXMembers *subMdeol = self.selectDataArray[indexPath.section][indexPath.row];
+                NSMutableArray *model = self.selectDataArray[indexPath.section].mutableCopy;
+                DJJXMembers *subMdeol = self.selectDataArray[indexPath.section][indexPath.row].copy;
                 if ([self.selectResultArray containsObject:model]) {
                     NSInteger index = [self.selectResultArray indexOfObject:model];
                     if ([model containsObject:subMdeol]) {
@@ -151,7 +151,7 @@
             // 导入
             if (isSection) {
                 // 全部导入
-                NSMutableArray<DJJXMembers *> *model = self.selectDataArray[indexPath.section];
+                NSMutableArray<DJJXMembers *> *model = self.selectDataArray[indexPath.section].mutableCopy;
                 [model enumerateObjectsUsingBlock:^(DJJXMembers * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     if (![weakSelf.MemberIds containsObject:obj.Id]) {
                         [self.MemberIds addObject:obj.Id];
@@ -164,8 +164,8 @@
                     [self.selectResultArray addObject:model];
                 }
             }else {
-                NSMutableArray *model = self.selectDataArray[indexPath.section];
-                DJJXMembers *subMdeol = self.selectDataArray[indexPath.section][indexPath.row];
+                NSMutableArray *model = self.selectDataArray[indexPath.section].mutableCopy;
+                DJJXMembers *subMdeol = self.selectDataArray[indexPath.section][indexPath.row].copy;
                 if (![self.selectResultArray containsObject:model]) {
                     [model removeAllObjects];
                     [self.selectResultArray addObject:model];
@@ -262,12 +262,22 @@
 - (void)setSelectDataArrayWithDataArray:(NSArray<DYJXXYResult *> *)dataArray {
     WeakSelf
     [dataArray enumerateObjectsUsingBlock:^(DYJXXYResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSMutableArray *members = [[NSMutableArray alloc]init];
+        NSMutableArray<DJJXMembers* > *members = [[NSMutableArray alloc]init];
         [members addObjectsFromArray:[NSArray modelArrayWithClass:[DJJXMembers class] json:obj.Members]];
+        [members enumerateObjectsUsingBlock:^(DJJXMembers * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.Id isEqualToString:[XYUserDefaults readUserDefaultsLoginedInfoModel].UserID]) {
+                [members removeObject:obj];
+            }
+        }];
         [weakSelf.selectDataArray addObject:members];
         [obj.Children enumerateObjectsUsingBlock:^(DYJXXYResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSMutableArray *members = [[NSMutableArray alloc]init];
             [members addObjectsFromArray:[NSArray modelArrayWithClass:[DJJXMembers class] json:obj.Members]];
+            [members enumerateObjectsUsingBlock:^(DJJXMembers * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj.Id isEqualToString:[XYUserDefaults readUserDefaultsLoginedInfoModel].UserID]) {
+                    [members removeObject:obj];
+                }
+            }];
             [weakSelf.selectDataArray addObject:members];
         }];
     }];
