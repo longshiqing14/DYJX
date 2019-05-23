@@ -55,6 +55,11 @@
     if (self.block) {
         self.block(self,self.selectionBtn.selected);
     }
+    if (self.operatorType == OperatorMemberAccessAdmin) {
+        self.model.isAdmin = YES;
+    }else if (self.operatorType == OperatorMemberFireAdmin) {
+        self.model.isAdmin = NO;
+    }
 }
 
 -(void)tapSelectionClcik {

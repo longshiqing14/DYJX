@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) SelectBtnBlock block;
 
+@property (nonatomic, assign) OperatorMember operatorType;
+
 - (void)tapSelectionClcik;
 
 @end

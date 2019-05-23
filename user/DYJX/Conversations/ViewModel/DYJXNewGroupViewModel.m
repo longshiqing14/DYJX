@@ -31,11 +31,28 @@
     return parameters.copy;
 }
 
+- (NSArray *)setAdminUserIds {
+    NSMutableArray *AdminUserIds = [[NSMutableArray alloc]init];
+    [AdminUserIds addObject:[XYUserDefaults readUserDefaultsLoginedInfoModel].UserID];
+    [self.memberModels enumerateObjectsUsingBlock:^(DYJXAddGroupSubMemberModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.isAdmin) {
+            [AdminUserIds addObject:obj.GroupNumber];
+        }
+    }];
+    return AdminUserIds.copy;
+}
+
 - (NSDictionary *)getDataParametersWithGroupType:(NSInteger)groupType {
     DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
     NSMutableDictionary *parameters = @{}.mutableCopy;
     if (userModel.UserID) {
-        [parameters setObject:@[userModel.UserID] forKey:@"AdminUserIds"];
+        [parameters setObject:[self setAdminUserIds] forKey:@"AdminUserIds"];
+    }
+    
+    if (self.MemberIds.count > 0) {
+        [parameters setObject:self.MemberIds.copy forKey:@"MemberIds"];
+    }else {
+        [parameters setObject:@[userModel.UserID] forKey:@"MemberIds"];
     }
     
     [parameters setObject:@(self.dataArray[0][8].isSelected) forKey:@"CanNotSearch"];
@@ -51,7 +68,6 @@
     }
     
     [parameters setObject:@(2) forKey:@"GroupType"];
-    [parameters setObject:@[userModel.UserID] forKey:@"MemberIds"];
     [parameters setObject:@(self.dataArray[0][6].isSelected) forKey:@"NotAllowJoinFree"];
     [parameters setObject:@(self.dataArray[0][5].isSelected) forKey:@"NotAllowJMemberInvite"];
     [parameters setObject:@(self.dataArray[0][7].isSelected) forKey:@"NotAllowSay"];
@@ -119,6 +135,40 @@
     }];
 }
 
+//获取公司信息
+- (void)getGroupInfoWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail{
+    WeakSelf;
+    [SVProgressHUD show];
+    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+    
+    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+    [reqDict setObject:groupId forKey:@"Data"];
+    [reqDict setObject:userModel.UserID forKey:@"UserID"];
+    [reqDict setObject:@"iOS" forKey:@"Device"];
+    [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+    [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
+    [reqDict setObject:userModel.UserID forKey:@"CertificateId"];
+    [reqDict setObject:userModel.MemberID forKey:@"MemberID"];
+    
+    [XYNetWorking XYPOST:kDYJXAPI_user_GetGroupById params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
+                [SVProgressHUD dismiss];
+                DYJXXYGroupByIdResponse *groupByIdModel = [DYJXXYGroupByIdResponse modelWithJSON:responseObject];
+                //TODO: 数据请求成功数据重组到数组中
+                weakSelf.response = groupByIdModel;
+                !success ?: success(responseObject);
+            }else{
+                [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
+            }
+        }else{
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+    }];
+}
+
 -(NSMutableArray<NSMutableArray<LPXNewCustomerCellModel *> *> *)dataArray {
     if (!_dataArray) {
         NSString *path;
@@ -134,6 +184,28 @@
         }
     }
     return _dataArray;
+}
+
+-(NSArray<DYJXAddGroupSubMemberModel *> *)memberModels {
+    if (!_memberModels) {
+        _memberModels = [[NSArray alloc]init];
+    }
+    return _memberModels;
+}
+
+
+-(NSMutableArray<NSString *> *)MemberIds {
+    if (!_MemberIds) {
+        _MemberIds = [[NSMutableArray alloc]init];
+    }
+    return _MemberIds;
+}
+
+-(DYJXXYGroupByIdResponse *)response {
+    if (!_response) {
+        _response = [[DYJXXYGroupByIdResponse alloc]init];
+    }
+    return _response;
 }
 
 @end

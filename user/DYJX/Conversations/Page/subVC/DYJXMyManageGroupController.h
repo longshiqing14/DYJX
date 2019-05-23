@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DYJXMyManageGroupController : UIViewController
 
+@property (nonatomic, copy) NSString *targetId;
+
 @end
 
 NS_ASSUME_NONNULL_END

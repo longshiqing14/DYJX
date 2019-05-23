@@ -193,7 +193,8 @@ static NSString *kGroupDetailModelSpaceFooter = @"kGroupDetailModelSpaceFooter";
                                                                                               @"imageName":@"neibuqun-select",
                                                                                               @"selectedImageName":@"neibuqun-select"}] inviteIngGroupBlocki:^{
                                                                                                   //TODO:邀请进入我管理的群
-                                                                                                  [weakSelf.navigationController pushViewController:[[DYJXMyManageGroupController alloc]init] animated:YES];
+                                                                                                  DYJXMyManageGroupController * myManageGroupC = [[DYJXMyManageGroupController alloc]init];      myManageGroupC.targetId = weakSelf.targetId;
+                                                                                        [weakSelf.navigationController pushViewController:myManageGroupC animated:YES];
                                                             }];
         [self.view addSubview:_topView];
         [_topView mas_makeConstraints:^(MASConstraintMaker *make) {

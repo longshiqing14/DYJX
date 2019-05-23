@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DYJXNewGroupController : BaseViewController
-
+@property (nonatomic, assign) DYJXGroupType groupType;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *righImageName;
 @property (nonatomic, assign) BOOL isSelection;
 @property (nonatomic, assign) BOOL isOpen;
+@property (nonatomic, copy) NSString *GroupNumber;
 @property (nonatomic, strong) NSMutableArray<DYJXAddGroupSubMemberModel *> *groupSubMembers;
 
 @end
@@ -32,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *groupName;
 @property (nonatomic, copy) NSString *administer;
 @property (nonatomic, assign) BOOL isSelection;
+@property (nonatomic, copy) NSString *GroupNumber;
+@property (nonatomic, assign) BOOL isAdmin;
 
 @end
 

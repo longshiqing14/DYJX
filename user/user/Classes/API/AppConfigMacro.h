@@ -38,6 +38,11 @@ typedef NS_ENUM(NSUInteger, OperatorMember) {
     OperatorMemberFireAdmin,//解除管理员
 };
 
+typedef NS_OPTIONS (NSInteger ,DYJXGroupType){
+    DYJXGroupType_New,        // 新建群
+    DYJXGroupType_Details     // 群详情
+};
+
 //订单状态
 //待付款
 #define JX_PAYMENT_ODERSTATE_PENDINGPAYMENT @"p100"

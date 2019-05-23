@@ -26,15 +26,28 @@
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
+    self.viewModel.targetId = self.targetId;
     [self getInviteIntoMyManageGroup];
 }
 
 - (void)setNavigation {
     self.navigationItem.title = @"添加到群组";
-    UIBarButtonItem *rightitem=[[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(uploadManageGroup)];
-    self.navigationItem.rightBarButtonItem=rightitem;
-    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
-    [self.navigationController.navigationBar setTintColor:[UIColor colorWithHexString:@"#F2A73B"]];
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
+//    UIBarButtonItem *rightitem=[[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(uploadManageGroup)];
+//    self.navigationItem.rightBarButtonItem=rightitem;
+//    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+//    [self.navigationController.navigationBar setTintColor:[UIColor colorWithHexString:@"#F2A73B"]];
+    UIButton *rightBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [rightBarButton addTarget:self action:@selector(uploadManageGroup) forControlEvents:UIControlEventTouchUpInside];
+    rightBarButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10);
+    rightBarButton.frame = CGRectMake(0, 0, 40, 20);
+    [rightBarButton setTitle:@"提交" forState:UIControlStateNormal];
+    [rightBarButton.titleLabel setFont:[UIFont systemFontOfSize:21]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBarButton];
+    
+    rightBarButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)uploadManageGroup {

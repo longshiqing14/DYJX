@@ -10,10 +10,15 @@
 
 @implementation DYJXAddGroupMemberViewModel
 
--(NSArray<DYJXAddGroupSubMemberModel *> *)getSelectEnterprises {
-    NSMutableArray<DYJXAddGroupSubMemberModel *> *selectDataArray = [[NSMutableArray alloc]init];
-    [self.selectResultArray enumerateObjectsUsingBlock:^(DYJXAddGroupMemberModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [selectDataArray addObjectsFromArray:obj.groupSubMembers];
+-(NSArray<DJJXMembers *> *)getSelectEnterprises {
+//    NSMutableArray<DYJXAddGroupSubMemberModel *> *selectDataArray = [[NSMutableArray alloc]init];
+//    [self.selectResultArray enumerateObjectsUsingBlock:^(DYJXAddGroupMemberModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [selectDataArray addObjectsFromArray:obj.groupSubMembers];
+//    }];
+//    [selectDataArray addObjectsFromArray:self.selectSearchResultArray];
+    NSMutableArray<DJJXMembers *> *selectDataArray = [[NSMutableArray alloc]init];
+    [self.selectResultArray enumerateObjectsUsingBlock:^(NSMutableArray<DJJXMembers *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [selectDataArray addObjectsFromArray:obj];
     }];
     [selectDataArray addObjectsFromArray:self.selectSearchResultArray];
     return selectDataArray;
@@ -40,16 +45,79 @@
 }
 
 -(void)importOrDeleteWithIndexPath:(NSIndexPath *)indexPath isSection:(BOOL)isSection isDelete:(BOOL)isDelete {
+//    if (self.isSearchUser) {
+//        if (isDelete) {
+//            DYJXAddGroupSubMemberModel *subMdeol = self.searchDataArray[indexPath.row];
+//            if ([self.selectSearchResultArray containsObject:subMdeol]) {
+//                [self.selectSearchResultArray removeObject:subMdeol];
+//            }
+//        }else {
+//            DYJXAddGroupSubMemberModel *subMdeol = self.searchDataArray[indexPath.row];
+//            if (![self.selectSearchResultArray containsObject:subMdeol]) {
+//                [self.selectSearchResultArray addObject:subMdeol];
+//            }
+//        }
+//    }else {
+//        if (isDelete) {
+//            // 删除
+//            if (isSection) {
+//                // 全部删除
+//                DYJXAddGroupMemberModel *model = self.dataArray[indexPath.section];
+//                if ([self.selectResultArray containsObject:model]) {
+//                    [self.selectResultArray removeObject:model];
+//                }
+//            }else {
+//                DYJXAddGroupMemberModel *model = self.dataArray[indexPath.section];
+//                DYJXAddGroupSubMemberModel *subMdeol = self.dataArray[indexPath.section].groupSubMembers[indexPath.row];
+//                if ([self.selectResultArray containsObject:model]) {
+//                    NSInteger index = [self.selectResultArray indexOfObject:model];
+//                    if ([model.groupSubMembers containsObject:subMdeol]) {
+//                        [self.selectResultArray[index].groupSubMembers removeObject:subMdeol];
+//                    }
+//                }
+//            }
+//        }else {
+//            // 导入
+//            if (isSection) {
+//                // 全部导入
+//                DYJXAddGroupMemberModel *model = self.dataArray[indexPath.section];
+//                if (![self.selectResultArray containsObject:model]) {
+//                    [self.selectResultArray addObject:model];
+//                }else {
+//                    [self.selectResultArray removeObject:model];
+//                    [self.selectResultArray addObject:model];
+//                }
+//            }else {
+//                DYJXAddGroupMemberModel *model = self.dataArray[indexPath.section];
+//                DYJXAddGroupSubMemberModel *subMdeol = self.dataArray[indexPath.section].groupSubMembers[indexPath.row];
+//                if (![self.selectResultArray containsObject:model]) {
+//                    [model.groupSubMembers removeAllObjects];
+//                    [self.selectResultArray addObject:model];
+//                }
+//                NSInteger index = [self.selectResultArray indexOfObject:model];
+//                if (![self.selectResultArray[index].groupSubMembers containsObject:subMdeol]) {
+//                    [self.selectResultArray[index].groupSubMembers addObject:subMdeol];
+//                }
+//            }
+//        }
+//    }
+    WeakSelf
     if (self.isSearchUser) {
         if (isDelete) {
-            DYJXAddGroupSubMemberModel *subMdeol = self.searchDataArray[indexPath.row];
+            DJJXMembers *subMdeol = self.selectSearchDataArray[indexPath.row];
             if ([self.selectSearchResultArray containsObject:subMdeol]) {
                 [self.selectSearchResultArray removeObject:subMdeol];
             }
+            if ([self.MemberIds containsObject:subMdeol.Id]) {
+                [self.MemberIds removeObject:subMdeol.Id];
+            }
         }else {
-            DYJXAddGroupSubMemberModel *subMdeol = self.searchDataArray[indexPath.row];
+            DJJXMembers *subMdeol = self.selectSearchDataArray[indexPath.row];
             if (![self.selectSearchResultArray containsObject:subMdeol]) {
                 [self.selectSearchResultArray addObject:subMdeol];
+            }
+            if (![self.MemberIds containsObject:subMdeol.Id]) {
+                [self.MemberIds addObject:subMdeol.Id];
             }
         }
     }else {
@@ -57,25 +125,38 @@
             // 删除
             if (isSection) {
                 // 全部删除
-                DYJXAddGroupMemberModel *model = self.dataArray[indexPath.section];
+                NSMutableArray<DJJXMembers *> *model = self.selectDataArray[indexPath.section];
+                [model enumerateObjectsUsingBlock:^(DJJXMembers * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([weakSelf.MemberIds containsObject:obj.Id]) {
+                        [self.MemberIds removeObject:obj.Id];
+                    }
+                }];
                 if ([self.selectResultArray containsObject:model]) {
                     [self.selectResultArray removeObject:model];
                 }
             }else {
-                DYJXAddGroupMemberModel *model = self.dataArray[indexPath.section];
-                DYJXAddGroupSubMemberModel *subMdeol = self.dataArray[indexPath.section].groupSubMembers[indexPath.row];
+                NSMutableArray *model = self.selectDataArray[indexPath.section];
+                DJJXMembers *subMdeol = self.selectDataArray[indexPath.section][indexPath.row];
                 if ([self.selectResultArray containsObject:model]) {
                     NSInteger index = [self.selectResultArray indexOfObject:model];
-                    if ([model.groupSubMembers containsObject:subMdeol]) {
-                        [self.selectResultArray[index].groupSubMembers removeObject:subMdeol];
+                    if ([model containsObject:subMdeol]) {
+                        [self.selectResultArray[index] removeObject:subMdeol];
                     }
+                }
+                if ([self.MemberIds containsObject:subMdeol.Id]) {
+                    [self.MemberIds removeObject:subMdeol.Id];
                 }
             }
         }else {
             // 导入
             if (isSection) {
                 // 全部导入
-                DYJXAddGroupMemberModel *model = self.dataArray[indexPath.section];
+                NSMutableArray<DJJXMembers *> *model = self.selectDataArray[indexPath.section];
+                [model enumerateObjectsUsingBlock:^(DJJXMembers * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (![weakSelf.MemberIds containsObject:obj.Id]) {
+                        [self.MemberIds addObject:obj.Id];
+                    }
+                }];
                 if (![self.selectResultArray containsObject:model]) {
                     [self.selectResultArray addObject:model];
                 }else {
@@ -83,15 +164,18 @@
                     [self.selectResultArray addObject:model];
                 }
             }else {
-                DYJXAddGroupMemberModel *model = self.dataArray[indexPath.section];
-                DYJXAddGroupSubMemberModel *subMdeol = self.dataArray[indexPath.section].groupSubMembers[indexPath.row];
+                NSMutableArray *model = self.selectDataArray[indexPath.section];
+                DJJXMembers *subMdeol = self.selectDataArray[indexPath.section][indexPath.row];
                 if (![self.selectResultArray containsObject:model]) {
-                    [model.groupSubMembers removeAllObjects];
+                    [model removeAllObjects];
                     [self.selectResultArray addObject:model];
                 }
                 NSInteger index = [self.selectResultArray indexOfObject:model];
-                if (![self.selectResultArray[index].groupSubMembers containsObject:subMdeol]) {
-                    [self.selectResultArray[index].groupSubMembers addObject:subMdeol];
+                if (![self.selectResultArray[index] containsObject:subMdeol]) {
+                    [self.selectResultArray[index] addObject:subMdeol];
+                }
+                if (![self.MemberIds containsObject:subMdeol.Id]) {
+                    [self.MemberIds addObject:subMdeol.Id];
                 }
             }
         }
@@ -119,8 +203,9 @@
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
                 NSLog(@"%@",responseObject);
-                [weakSelf.searchResultArray addObjectsFromArray:[NSArray modelArrayWithClass:[DYXJResult class] json:responseObject[@"Result"]]];
+                [weakSelf.searchResultArray addObjectsFromArray:[NSArray modelArrayWithClass:[DJJXMembers class] json:responseObject[@"Result"]]];
                 [weakSelf setSearchDataArrayWithResponse:weakSelf.searchResultArray];
+                [weakSelf selectSearchDataArrayWithSearchDataArray:weakSelf.searchResultArray];
                 !success ?: success(responseObject);
             }else {
                 [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
@@ -150,6 +235,7 @@
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
                 NSLog(@"%@",responseObject);
                 [weakSelf.resultArray addObjectsFromArray:[NSArray modelArrayWithClass:[DYJXXYResult class] json:responseObject[@"Result"]]];
+                [weakSelf setSelectDataArrayWithDataArray:weakSelf.resultArray];
                 [weakSelf setDataArrayWithResponse:weakSelf.resultArray];
                 !success ?: success(responseObject);
             }else {
@@ -173,6 +259,24 @@
     return NO;
 }
 
+- (void)setSelectDataArrayWithDataArray:(NSArray<DYJXXYResult *> *)dataArray {
+    WeakSelf
+    [dataArray enumerateObjectsUsingBlock:^(DYJXXYResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMutableArray *members = [[NSMutableArray alloc]init];
+        [members addObjectsFromArray:[NSArray modelArrayWithClass:[DJJXMembers class] json:obj.Members]];
+        [weakSelf.selectDataArray addObject:members];
+        [obj.Children enumerateObjectsUsingBlock:^(DYJXXYResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSMutableArray *members = [[NSMutableArray alloc]init];
+            [members addObjectsFromArray:[NSArray modelArrayWithClass:[DJJXMembers class] json:obj.Members]];
+            [weakSelf.selectDataArray addObject:members];
+        }];
+    }];
+}
+
+- (void)selectSearchDataArrayWithSearchDataArray:(NSArray<DJJXMembers *> *)searchDataArray {
+    [self.selectSearchDataArray addObjectsFromArray:searchDataArray.mutableCopy];
+}
+
 - (void)setDataArrayWithResponse:(NSArray<DYJXXYResult *> *)response {
     WeakSelf
     [response enumerateObjectsUsingBlock:^(DYJXXYResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -192,36 +296,49 @@
     model.companyName = result.GroupName;
     model.isSelection = NO;
     model.isOpen = NO;
+    model.GroupNumber = result.GroupNumber;
+    NSMutableArray<DJJXMembers *> *members = [[NSMutableArray alloc]init];
     [result.Members enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [model.groupSubMembers addObject:[weakSelf addGroupSubMemberWithChildren:[DYJXXYAdminUsers modelWithJSON:obj]]];
+        DJJXMembers *member = [DJJXMembers modelWithJSON:obj];
+        if (![member.Id isEqualToString:[XYUserDefaults readUserDefaultsLoginedInfoModel].UserID]) {
+//            if ([weakSelf.MemberIds containsObject:member.Id] && self.selectResultArray.count == 0) {
+//                [members addObject:member];
+//            }
+            [model.groupSubMembers addObject:[weakSelf addGroupSubMemberWithChildren:member]];
+        }
     }];
+//    [self.selectResultArray addObject:members];
     return model;
 }
 
-- (DYJXAddGroupSubMemberModel *)addGroupSubMemberWithChildren:(DYJXXYAdminUsers *)member {
+- (DYJXAddGroupSubMemberModel *)addGroupSubMemberWithChildren:(DJJXMembers *)member {
     DYJXAddGroupSubMemberModel *model = [[DYJXAddGroupSubMemberModel alloc]init];
     model.leftViewImgName = @"register_checkbox";
     model.leftViewselectionImgName = @"register_checkbox_active";
     model.iconName = member.Business.IMInfo.HeadImgUrl;
     model.groupName = member.DisplayName;
-    model.isSelection = NO;
+    model.isSelection = [self.MemberIds containsObject:member.Id] ? YES : NO;
+    model.GroupNumber = member.Id;
     return model;
 }
 
-- (void)setSearchDataArrayWithResponse:(NSArray<DYXJResult *> *)response {
+- (void)setSearchDataArrayWithResponse:(NSArray<DJJXMembers *> *)response {
     WeakSelf
-    [response enumerateObjectsUsingBlock:^(DYXJResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [response enumerateObjectsUsingBlock:^(DJJXMembers * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if ([weakSelf.MemberIds containsObject:obj.Id]) {
+//            [weakSelf.selectSearchResultArray addObject:obj];
+//        }
         [weakSelf.searchDataArray addObject:[weakSelf searchGroupSubMemberWithChildren:obj]];
     }];
 }
 
-- (DYJXAddGroupSubMemberModel *)searchGroupSubMemberWithChildren:(DYXJResult *)result {
+- (DYJXAddGroupSubMemberModel *)searchGroupSubMemberWithChildren:(DJJXMembers *)result {
     DYJXAddGroupSubMemberModel *model = [[DYJXAddGroupSubMemberModel alloc]init];
     model.leftViewImgName = @"register_checkbox";
     model.leftViewselectionImgName = @"register_checkbox_active";
     model.iconName = @"";
     model.groupName = result.NumberString;
-    model.isSelection = NO;
+    model.isSelection = [self.MemberIds containsObject:result.Id] ? YES : NO;
     return model;
 }
 
@@ -254,25 +371,60 @@
     return _searchDataArray;
 }
 
--(NSMutableArray<DYXJResult *> *)searchResultArray {
+-(NSMutableArray<DJJXMembers *> *)searchResultArray {
     if (!_searchResultArray) {
         _searchResultArray = [[NSMutableArray alloc]init];
     }
     return _searchResultArray;
 }
 
-- (NSMutableArray<DYJXAddGroupMemberModel *> *)selectResultArray {
+//- (NSMutableArray<DYJXAddGroupMemberModel *> *)selectResultArray {
+//    if (!_selectResultArray) {
+//        _selectResultArray = [[NSMutableArray alloc]init];
+//    }
+//    return _selectResultArray;
+//}
+//
+//-(NSMutableArray<DYJXAddGroupSubMemberModel *> *)selectSearchResultArray {
+//    if (!_selectSearchResultArray) {
+//        _selectSearchResultArray = [[NSMutableArray alloc]init];
+//    }
+//    return _selectSearchResultArray;
+//}
+
+- (NSMutableArray<NSMutableArray<DJJXMembers *> *> *)selectResultArray {
     if (!_selectResultArray) {
         _selectResultArray = [[NSMutableArray alloc]init];
     }
     return _selectResultArray;
 }
 
--(NSMutableArray<DYJXAddGroupSubMemberModel *> *)selectSearchResultArray {
+- (NSMutableArray<DJJXMembers *> *)selectSearchResultArray {
     if (!_selectSearchResultArray) {
         _selectSearchResultArray = [[NSMutableArray alloc]init];
     }
     return _selectSearchResultArray;
+}
+
+- (NSMutableArray<NSMutableArray<DJJXMembers *> *> *)selectDataArray{
+    if (!_selectDataArray) {
+        _selectDataArray = [[NSMutableArray alloc]init];
+    }
+    return _selectDataArray;
+}
+
+- (NSMutableArray<DJJXMembers *> *)selectSearchDataArray {
+    if (!_selectSearchDataArray) {
+        _selectSearchDataArray = [[NSMutableArray alloc]init];
+    }
+    return _selectSearchDataArray;
+}
+
+-(NSMutableArray<NSString *> *)MemberIds {
+    if (!_MemberIds) {
+        _MemberIds = [[NSMutableArray alloc]init];
+    }
+    return _MemberIds;
 }
 
 @end

@@ -1,26 +1,24 @@
 //
-//  DYJXAddGroupMemberController.m
+//  DYJXSelectMemberPageController.m
 //  user
 //
-//  Created by YP on 2019/5/19.
+//  Created by YP on 2019/5/21.
 //  Copyright © 2019 xiaopenglive. All rights reserved.
 //
 
-#import "DYJXAddGroupMemberController.h"
-#import "DYJXAddGroupMemberViewModel.h"
+#import "DYJXSelectMemberPageController.h"
+#import "DYJXAddGroupMemberModel.h"
 #import "HeadSearchView.h"
-#import "DYJXAddGroupMemberHeaderView.h"
 #import "DYJXAddGroupMemberCell.h"
 
-@interface DYJXAddGroupMemberController ()<UITableViewDataSource,UITableViewDelegate>
+@interface DYJXSelectMemberPageController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong)HeadSearchView *headView;
 @property (nonatomic, strong)UITableView *tableView;
-@property (nonatomic, strong) DYJXAddGroupMemberViewModel *viewModel;
 
 @end
 
-@implementation DYJXAddGroupMemberController
+@implementation DYJXSelectMemberPageController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,15 +28,7 @@
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
-    self.viewModel.MemberIds = self.MemberIds;
-    WeakSelf
-    [self.viewModel getMyEnterprisesWithSuccess:^(id  _Nonnull response) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.tableView reloadData];
-        });
-    } failed:^(NSString * _Nonnull errorMsg) {
-        
-    }];
+
 }
 
 - (void)initNavigation{
@@ -57,70 +47,42 @@
 
 - (void)commitSelectMember {
     if (self.block) {
-        self.block([self.viewModel getSelectEnterprises].mutableCopy,self.viewModel.MemberIds.mutableCopy);
+        WeakSelf
+        if (self.operatorType == OperatorMemberDelete) {
+            [self.memberModels enumerateObjectsUsingBlock:^(DYJXAddGroupSubMemberModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (obj.isSelection) {
+                    [weakSelf.memberModels removeObject:obj];
+                    [weakSelf.membersArray removeObjectAtIndex:idx];
+                    [weakSelf.MemberIds removeObject:obj.GroupNumber];
+                }
+            }];
+        }
+        self.block(self.memberModels.mutableCopy,self.membersArray.mutableCopy,self.MemberIds);
         [self.navigationController popViewControllerAnimated:NO];
     }
 }
 
-- (void)searchClick{
-    WeakSelf;
-    //如果不是添加成员 不能筛选
-    if (self.operatorType != OperatorMemberAdd) {
-        return;
-    }
-    [self.view endEditing:YES];
-    self.viewModel.isSearchUser = YES;
-    [self.viewModel getSearchUserWithKeyword:self.headView.textField.text Success:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.tableView reloadData];
-        });
-    } failed:^(NSString * _Nonnull errorMsg) {
-        
-    }];
+- (void)searchClick {
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.viewModel numberOfSections];
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.viewModel numberOfRowsInSection:section];
+    return self.memberModels.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DYJXAddGroupMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DYJXAddGroupMemberCell" forIndexPath:indexPath];
-    cell.isSearchUser = self.viewModel.isSearchUser;
-    if (self.viewModel.isSearchUser) {
-        [cell setValue:self.viewModel.searchDataArray[indexPath.row] forKey:@"model"];
-    }else {
-        [cell setValue:self.viewModel.dataArray[indexPath.section].groupSubMembers[indexPath.row] forKey:@"model"];
-    }
-    WeakSelf
-    cell.block = ^(DYJXAddGroupMemberCell *cell, BOOL isSelected) {
-        NSIndexPath *index = [tableView indexPathForCell:cell];
-        [weakSelf.viewModel importOrDeleteWithIndexPath:index isSection:NO isDelete:!isSelected];
-    };
+    [cell setValue:self.memberModels[indexPath.row] forKey:@"model"];
+    cell.operatorType = self.operatorType;
     return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (self.viewModel.isSearchUser) {
         return [UIView new];
-    }else {
-        DYJXAddGroupMemberHeaderView *header = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"DYJXAddGroupMemberHeaderView"];
-        [header setValue:self.viewModel.dataArray[section] forKey:@"model"];
-        WeakSelf
-        header.block = ^(DYJXAddGroupMemberHeaderView *headerView) {
-            [weakSelf.tableView reloadData];
-            [weakSelf.tableView layoutIfNeeded];
-        };
-        header.allElectionBlock = ^(DYJXAddGroupMemberHeaderView *headerView) {
-            NSIndexPath *index = [NSIndexPath indexPathWithIndex:section];
-            [weakSelf.viewModel importOrDeleteWithIndexPath:index isSection:YES isDelete:!weakSelf.viewModel.dataArray[section].isSelection];
-            [weakSelf.tableView reloadData];
-        };
-        return header;
-    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -141,17 +103,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (self.viewModel.isSearchUser) {
-        return CGFLOAT_MIN;
-    }
-    return 50;
-}
-
--(DYJXAddGroupMemberViewModel *)viewModel {
-    if (!_viewModel) {
-        _viewModel = [[DYJXAddGroupMemberViewModel alloc]init];
-    }
-    return _viewModel;
+    return CGFLOAT_MIN;
 }
 
 #pragma mark - UI
@@ -180,9 +132,15 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [_tableView registerClass:[DYJXAddGroupMemberCell class] forCellReuseIdentifier:@"DYJXAddGroupMemberCell"];
-        [_tableView registerClass:[DYJXAddGroupMemberHeaderView class] forHeaderFooterViewReuseIdentifier:@"DYJXAddGroupMemberHeaderView"];
     }
     return _tableView;
+}
+
+-(NSMutableArray<DYJXAddGroupSubMemberModel *> *)memberModels {
+    if (!_memberModels) {
+        _memberModels = [[NSMutableArray alloc]init];
+    }
+    return _memberModels;
 }
 
 -(NSMutableArray<NSString *> *)MemberIds {

@@ -12,6 +12,7 @@
 #import "DYJXNewGroupViewModel.h"
 #import "XYSelectIconPopView.h"
 #import "DYJXAddGroupMemberController.h"
+#import "DYJXAddGroupMemberPageController.h"
 
 typedef void(^InteriorGroupBlock)(void);
 typedef void(^ExternalGroupBlock)(void);
@@ -94,6 +95,8 @@ typedef void(^ExternalGroupBlock)(void);
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) DYJXNewGroupView *addGroupView;
 @property (nonatomic, strong) DYJXNewGroupViewModel *viewModel;
+@property (nonatomic, strong) NSMutableArray<DYJXAddGroupSubMemberModel *> *memberModels;
+@property (nonatomic, strong) NSMutableArray<DJJXMembers *> *membersArray;
 
 @end
 
@@ -101,7 +104,7 @@ typedef void(^ExternalGroupBlock)(void);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self viewModel];
+    self.viewModel.groupType = self.groupType;
     [self addGroupView];
     [self tableView];
 }
@@ -130,7 +133,28 @@ typedef void(^ExternalGroupBlock)(void);
          DYJXAddCompanyPageCell *newCell = (DYJXAddCompanyPageCell *)cell;
         newCell.nextBtnBlock = ^(DYJXAddCompanyPageCell * _Nonnull cell) {
             //TODO: 点击进行下一步操作(群成员)
-            DYJXAddGroupMemberController *addGroupMemberVC = [[DYJXAddGroupMemberController alloc]init];
+            DYJXAddGroupMemberPageController *addGroupMemberVC = [[DYJXAddGroupMemberPageController alloc]init];
+            if (weakSelf.groupType == DYJXGroupType_Details) {
+                addGroupMemberVC.membersArray = [NSArray modelArrayWithClass:[DJJXMembers class] json:weakSelf.viewModel.response.Result.Members].mutableCopy;
+            }else {
+                addGroupMemberVC.membersArray = weakSelf.membersArray;
+            }
+            if (weakSelf.viewModel.MemberIds.count > 0) {
+                addGroupMemberVC.MemberIds = weakSelf.viewModel.MemberIds;
+            }else {
+               addGroupMemberVC.MemberIds = weakSelf.viewModel.response.Result.MemberIds.mutableCopy;
+            }
+            NSIndexPath *index = [tableView indexPathForCell:cell];
+            addGroupMemberVC.block = ^(NSMutableArray<DYJXAddGroupSubMemberModel *> *memberModels, NSMutableArray<DJJXMembers *> *membersArray, NSMutableArray<NSString *> *MemberIds) {
+                weakSelf.membersArray = membersArray;
+                weakSelf.memberModels = memberModels;
+                weakSelf.viewModel.MemberIds = MemberIds.copy;
+                if (memberModels.count > 0) {
+                    weakSelf.viewModel.dataArray[index.section][index.row].text = [NSString stringWithFormat:@"群成员（%ld）个",memberModels.count];
+                    weakSelf.viewModel.memberModels = memberModels.copy;
+                }
+                [weakSelf.tableView reloadRowAtIndexPath:index withRowAnimation:(UITableViewRowAnimationAutomatic)];
+            };
             [weakSelf.navigationController pushViewController:addGroupMemberVC animated:YES];
         };
     }
@@ -277,5 +301,18 @@ typedef void(^ExternalGroupBlock)(void);
     return _viewModel;
 }
 
+-(NSMutableArray<DYJXAddGroupSubMemberModel *> *)memberModels {
+    if (!_memberModels) {
+        _memberModels = [[NSMutableArray alloc]init];
+    }
+    return _memberModels;
+}
+
+-(NSMutableArray<DJJXMembers *> *)membersArray {
+    if (!_membersArray) {
+        _membersArray = [[NSMutableArray alloc]init];
+    }
+    return _membersArray;
+}
 
 @end

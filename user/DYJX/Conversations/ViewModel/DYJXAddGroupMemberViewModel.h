@@ -17,18 +17,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL isSearchUser;
 
+@property (nonatomic, strong)NSMutableArray<NSString *> *MemberIds;
+
 @property (nonatomic, strong) NSMutableArray<DYJXAddGroupMemberModel *> *dataArray;
 @property (nonatomic, strong) NSMutableArray<DYJXAddGroupSubMemberModel *> *searchDataArray;
 
 @property (nonatomic, strong) NSMutableArray<DYJXXYResult *> *resultArray;
 
-@property (nonatomic, strong) NSMutableArray<DYXJResult *> *searchResultArray;
+@property (nonatomic, strong) NSMutableArray<DJJXMembers *> *searchResultArray;
 
-@property (nonatomic, strong) NSMutableArray<DYJXAddGroupMemberModel *> *selectResultArray;
+//@property (nonatomic, strong) NSMutableArray<DYJXAddGroupMemberModel *> *selectResultArray;
+//
+//@property (nonatomic, strong) NSMutableArray<DYJXAddGroupSubMemberModel *> *selectSearchResultArray;
 
-@property (nonatomic, strong) NSMutableArray<DYJXAddGroupSubMemberModel *> *selectSearchResultArray;
+@property (nonatomic, strong) NSMutableArray<NSMutableArray<DJJXMembers *> *> *selectResultArray;
+
+@property (nonatomic, strong) NSMutableArray<DJJXMembers *> *selectSearchResultArray;
 
 @property (nonatomic, strong) NSMutableDictionary *requestDic;
+
+@property (nonatomic, strong) NSMutableArray<NSMutableArray<DJJXMembers *> *> *selectDataArray;
+@property (nonatomic, strong) NSMutableArray<DJJXMembers *> *selectSearchDataArray;
 
 - (NSInteger)numberOfSections;
 
@@ -43,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 //搜索成员信息
 - (void)getSearchUserWithKeyword:(NSString*)Keyword Success:(void(^)())success failed:(void(^)(NSString *errorMsg))fail;
 
-- (NSArray<DYJXAddGroupSubMemberModel *> *)getSelectEnterprises;
+- (NSArray<DJJXMembers *> *)getSelectEnterprises;
 
 @end
 

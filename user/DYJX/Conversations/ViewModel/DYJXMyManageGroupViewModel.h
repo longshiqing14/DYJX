@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray<DYJXXYResult *> *resultArray;
 
 @property (nonatomic, strong) NSMutableArray<LPXNewCustomerCellModel *> *dataArray;
+@property (nonatomic, strong) NSMutableArray<LPXNewCustomerCellModel *> *originalArray;
+
+@property (nonatomic, copy) NSString *targetId;
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;
 

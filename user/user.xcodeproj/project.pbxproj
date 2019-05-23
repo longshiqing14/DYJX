@@ -697,6 +697,8 @@
 		F91EE36D226F5083006BCB37 /* DYJXAddCompanyPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE36C226F5082006BCB37 /* DYJXAddCompanyPageCell.m */; };
 		F91EE37322709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = F91EE37122709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m */; };
 		F91EE3A022774DEE006BCB37 /* DYJXUserInfoDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = F91EE39F22774DED006BCB37 /* DYJXUserInfoDetail.json */; };
+		F9629EDB229408EF0071708F /* DYJXAddGroupMemberPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9629EDA229408EF0071708F /* DYJXAddGroupMemberPageController.m */; };
+		F9629EDE229433070071708F /* DYJXSelectMemberPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9629EDD229433070071708F /* DYJXSelectMemberPageController.m */; };
 		F9813F50227F2E1C007A3604 /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = F9813F4F227F2E1C007A3604 /* NSObject+Parse.m */; };
 		F9F434A12287EF1B0002FE80 /* DYJXContactDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F434A02287EF1B0002FE80 /* DYJXContactDetailsController.m */; };
 		F9F434A42287EFAA0002FE80 /* DYJXContactDetailsTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F434A32287EFAA0002FE80 /* DYJXContactDetailsTopView.m */; };
@@ -2029,6 +2031,10 @@
 		F91EE37122709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AVPhotoLibraryAuthorization.m"; sourceTree = "<group>"; };
 		F91EE37222709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AVPhotoLibraryAuthorization.h"; sourceTree = "<group>"; };
 		F91EE39F22774DED006BCB37 /* DYJXUserInfoDetail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DYJXUserInfoDetail.json; sourceTree = "<group>"; };
+		F9629ED9229408EF0071708F /* DYJXAddGroupMemberPageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXAddGroupMemberPageController.h; sourceTree = "<group>"; };
+		F9629EDA229408EF0071708F /* DYJXAddGroupMemberPageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXAddGroupMemberPageController.m; sourceTree = "<group>"; };
+		F9629EDC229433070071708F /* DYJXSelectMemberPageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXSelectMemberPageController.h; sourceTree = "<group>"; };
+		F9629EDD229433070071708F /* DYJXSelectMemberPageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXSelectMemberPageController.m; sourceTree = "<group>"; };
 		F9813F4E227F2E1B007A3604 /* NSObject+Parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Parse.h"; sourceTree = "<group>"; };
 		F9813F4F227F2E1C007A3604 /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
 		F9F4349F2287EF1B0002FE80 /* DYJXContactDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXContactDetailsController.h; sourceTree = "<group>"; };
@@ -4732,6 +4738,10 @@
 				F90E3CE622913982002E7662 /* DYJXMyManageGroupController.m */,
 				F90E3CF422918858002E7662 /* DYJXAddGroupMemberController.h */,
 				F90E3CF522918858002E7662 /* DYJXAddGroupMemberController.m */,
+				F9629ED9229408EF0071708F /* DYJXAddGroupMemberPageController.h */,
+				F9629EDA229408EF0071708F /* DYJXAddGroupMemberPageController.m */,
+				F9629EDC229433070071708F /* DYJXSelectMemberPageController.h */,
+				F9629EDD229433070071708F /* DYJXSelectMemberPageController.m */,
 			);
 			path = subVC;
 			sourceTree = "<group>";
@@ -5333,6 +5343,7 @@
 				E157684E21C9122D003A5C25 /* NSString+NIMKit.m in Sources */,
 				E1A34B3421D5F865002D4690 /* MutableSelectCell.m in Sources */,
 				DED6BD8D1FC54E9F0004EA72 /* NetWorkTool.m in Sources */,
+				F9629EDE229433070071708F /* DYJXSelectMemberPageController.m in Sources */,
 				DE94566E1FBEE8A600827C08 /* BaseViewController.m in Sources */,
 				E157683D21C9122D003A5C25 /* NIMLoadMoreView.m in Sources */,
 				DE94566D1FBEE88600827C08 /* BaseCell.m in Sources */,
@@ -5531,6 +5542,7 @@
 				E157685A21C9122D003A5C25 /* NIMKitColorButtonCell.m in Sources */,
 				CB33079E1FA1BF8F00117695 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				CBCF83561F7129BD00B20CF9 /* LBXScanView.m in Sources */,
+				F9629EDB229408EF0071708F /* DYJXAddGroupMemberPageController.m in Sources */,
 				48E2502921C8922500CC7D9E /* XYDYJXIMUser.m in Sources */,
 				CBF74E391F8DBA6600D528C2 /* XYLanuchGuideVC.m in Sources */,
 				DE71B165208744DD00467E06 /* PYPhotoCell.m in Sources */,
