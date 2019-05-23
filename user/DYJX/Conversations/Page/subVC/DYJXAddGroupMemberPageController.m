@@ -181,12 +181,9 @@
                 selectMemberPageVC.MemberIds = weakSelf.MemberIds.mutableCopy;
                 selectMemberPageVC.operatorType = OperatorType;
                 selectMemberPageVC.block = ^(NSMutableArray<DYJXAddGroupSubMemberModel *> *memberModels, NSMutableArray<DJJXMembers *> *membersArray, NSMutableArray<NSString *> *MemberIds) {
-                    [weakSelf.memberModels removeAllObjects];
-                    [weakSelf.membersArray removeAllObjects];
-                    [weakSelf.MemberIds removeAllObjects];
-                    [weakSelf.memberModels addObjectsFromArray:memberModels];
-                    [weakSelf.membersArray addObjectsFromArray:membersArray];
-                    [weakSelf.MemberIds addObjectsFromArray:MemberIds];
+                    weakSelf.memberModels = memberModels.mutableCopy;
+                    weakSelf.membersArray = membersArray.mutableCopy;
+                    weakSelf.MemberIds = MemberIds.mutableCopy;
                     [weakSelf setMembersArrayWithArray];
                     [weakSelf.collectionView reloadData];
                 };
