@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DYJXNewGroupController : BaseViewController
 @property (nonatomic, assign) DYJXGroupType groupType;
+@property (nonatomic, copy) NSString *groupId;
+@property (nonatomic, copy)NSString *userIconImageURL;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -12,6 +12,7 @@
 #import "DYJXCompanyInfoDetailPage.h"
 #import "IQKeyboardManager.h"
 #import "JSExtension.h"
+#import "DYJXNewGroupController.h"
 
 @interface JXChatViewController ()
 
@@ -95,7 +96,7 @@
 -(void)pushDetail {
     [XYUserDefaults readLoginedModel];
     DYJXIdentitySwitchingModel *model = [UserManager shared].swichModel;
-    DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
+    DYJXNewGroupController *page = [[DYJXNewGroupController alloc]init];
     NSDictionary *dict = (NSDictionary *)self.chatModel.extend;
 
     if (self.chatModel.lastestMessage.senderUserInfo.portraitUri) { // 外面有图片就取外面第一层
@@ -107,8 +108,9 @@
     else {
 
     }
-    page.groupNumber = self.chatModel.targetId;
-    page.isAdmin = [self isAdmin:model];
+    page.groupId = model.Id;//self.chatModel.targetId;
+    page.groupType = DYJXGroupType_Details;
+//    page.isAdmin = [self isAdmin:model];
     [self.navigationController pushViewController:page animated:YES];
 
 //                target.type = XJGroupTypeSubCompany;

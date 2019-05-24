@@ -107,6 +107,20 @@ typedef void(^ExternalGroupBlock)(void);
     self.viewModel.groupType = self.groupType;
     [self addGroupView];
     [self tableView];
+    [self getGroupInfo];
+}
+
+- (void)getGroupInfo {
+    if (self.groupType == DYJXGroupType_Details) {
+        WeakSelf
+        [self.viewModel getGroupInfoWithGroupId:self.groupId Success:^(DYJXXYGroupByIdResponse * _Nonnull response) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.tableView reloadData];
+            });
+        } failed:^(NSString * _Nonnull errorMsg) {
+            
+        }];
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

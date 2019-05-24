@@ -157,6 +157,7 @@
                 DYJXXYGroupByIdResponse *groupByIdModel = [DYJXXYGroupByIdResponse modelWithJSON:responseObject];
                 //TODO: 数据请求成功数据重组到数组中
                 weakSelf.response = groupByIdModel;
+                [weakSelf setDataArrayWithResponse:groupByIdModel];
                 !success ?: success(responseObject);
             }else{
                 [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
@@ -167,6 +168,11 @@
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
         [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
     }];
+}
+
+- (void)setDataArrayWithResponse:(DYJXXYGroupByIdResponse *)response {
+    DYJXXYResult *result = response.Result;
+    
 }
 
 -(NSMutableArray<NSMutableArray<LPXNewCustomerCellModel *> *> *)dataArray {

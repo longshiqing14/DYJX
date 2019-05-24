@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;
 
 //获取用户信息
-- (void)getGroupInfoWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail;
+- (void)getGroupInfoWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse *response))success failed:(void(^)(NSString *errorMsg))fail;
 
 //上传图片
 - (void)uploadFile:(UIImage*)image Success:(void(^)(id  _Nullable responseObject))success failed:(void(^)(NSString *errorMsg))fail;
