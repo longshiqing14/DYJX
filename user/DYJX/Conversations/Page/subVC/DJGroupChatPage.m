@@ -319,6 +319,10 @@
                     [JSExtension shared].chatVC = chatVC;
                     chatVC.naviTitle = respo.TargetName;
                     chatVC.chatModel = chatModel;
+                    if (respo.TargetId) {
+                        chatVC.targetId = respo.TargetId;
+                    }
+                    
                     [weakSelf.navigationController pushViewController:chatVC animated:YES];
                 }
                 else {
@@ -360,6 +364,7 @@
                 [JSExtension shared].chatVC = chatVC;
                 chatVC.naviTitle = respo.TargetName;
                 chatVC.chatModel = chatModel;
+                chatVC.targetId = respo.TargetId;
                 [weakSelf.navigationController pushViewController:chatVC animated:YES];
             }
             else {

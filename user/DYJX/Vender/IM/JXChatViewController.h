@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JXChatViewController : NIMSessionViewController
 
 @property (nonatomic, copy)NSString *naviTitle;
+@property (nonatomic, copy) NSString *targetId;
 
 @end
 

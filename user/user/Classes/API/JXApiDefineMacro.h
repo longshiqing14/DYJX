@@ -119,3 +119,7 @@ static NSString * const kDYJXAPI_user_DelContact = @"DelContact";
 
 // 群成员
 static NSString * const kDYJXAPI_addGroup_SearchUser = @"SearchUser";
+
+// 屏蔽群消息
+static NSString * const kDYJXAPI_SlientGroupMsg = @"SlientGroupMsg";
+

@@ -101,8 +101,15 @@
                 self.nextBtnBlock(self);
             }
         }else { // 勾选/非勾选
-            self.nextBtn.selected = !self.nextBtn.selected;
-            self.model.isSelected = self.nextBtn.selected;
+            if ([self.model.leftViewText containsString:@"屏蔽群通知信息"]) {
+                if (self.otherBtnBlock) {
+                    self.model.isSelected = !self.model.isSelected;
+                    self.otherBtnBlock(self);
+                }
+            }else {
+                self.nextBtn.selected = !self.nextBtn.selected;
+                self.model.isSelected = self.nextBtn.selected;
+            }
         }
     }
 }
@@ -114,8 +121,15 @@
                 self.nextBtnBlock(self);
             }
         }else { // 勾选/非勾选
-            self.nextBtn.selected = !self.nextBtn.selected;
-            self.model.isSelected = self.nextBtn.selected;
+            if ([self.model.leftViewText containsString:@"屏蔽群通知信息"]) {
+                if (self.otherBtnBlock) {
+                    self.model.isSelected = !self.model.isSelected;
+                    self.otherBtnBlock(self);
+                }
+            }else {
+                self.nextBtn.selected = !self.nextBtn.selected;
+                self.model.isSelected = self.nextBtn.selected;
+            }
         }
     }
 }

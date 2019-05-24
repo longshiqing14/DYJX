@@ -33,6 +33,14 @@ NS_ASSUME_NONNULL_BEGIN
 // 提交数据
 - (void)uploadGroupWithGroupType:(NSInteger)groupType success:(void (^)(id responseObject))success failed:(void (^)(NSString *errMsg))fail;
 
+// 屏蔽群消息
+- (void)uploadSlientGroupMsgWithNumberString:(NSString *)numberString isSlientGroupMsg:(BOOL)isSlientGroupMsg success:(void (^)(id responseObject))success failed:(void (^)(NSString *errMsg))fail;
+
+//删除公司
+- (void)deleteGroupWithGroupId:(NSString*)groupId Success:(void(^)(NSString *successMsg))success failed:(void(^)(NSString *errorMsg))fail;
+//退出公司
+- (void)QuitGroupWithGroupId:(NSString*)groupId Success:(void(^)(NSString *successMsg))success failed:(void(^)(NSString *errorMsg))fail;
+
 @end
 
 NS_ASSUME_NONNULL_END

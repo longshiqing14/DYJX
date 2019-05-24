@@ -108,7 +108,7 @@
     else {
 
     }
-    page.groupId = model.Id;//self.chatModel.targetId;
+    page.groupId = self.targetId;//self.chatModel.targetId;
     page.groupType = DYJXGroupType_Details;
 //    page.isAdmin = [self isAdmin:model];
     [self.navigationController pushViewController:page animated:YES];

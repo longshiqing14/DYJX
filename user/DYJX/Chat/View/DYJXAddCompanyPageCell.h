@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) LPXNewCustomerCellModel *model;
 @property (nonatomic, copy) void (^nextBtnBlock)(DYJXAddCompanyPageCell *cell);
+@property (nonatomic, copy) void (^otherBtnBlock)(DYJXAddCompanyPageCell *cell);
 @end
 
 NS_ASSUME_NONNULL_END

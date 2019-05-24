@@ -207,7 +207,7 @@
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             [SVProgressHUD dismiss];
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
-                [YDBAlertView showToast:@"图片上传中成功！" dismissDelay:1.0];
+//                [YDBAlertView showToast:@"图片上传中成功！" dismissDelay:1.0];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (weakSelf.isSelectHeader) { // 头像
                         weakSelf.viewModel.dataArray.firstObject.firstObject.spareImage = images.firstObject;

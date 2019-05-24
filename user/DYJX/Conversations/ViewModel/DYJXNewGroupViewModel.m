@@ -7,6 +7,7 @@
 //
 
 #import "DYJXNewGroupViewModel.h"
+#import "GroupDetailModel.h"
 
 @implementation DYJXNewGroupViewModel
 
@@ -74,7 +75,7 @@
     [parameters setObject:userModel.UserID forKey:@"ParentEnterpriseId"];
     [parameters setObject:@[] forKey:@"SilenceUserIds"];
     [parameters setObject:@(groupType) forKey:@"WildType"];
-    [parameters setObject:@(self.dataArray[0][9].isSelected) forKey:@"showChild"];
+    [parameters setObject:@(false) forKey:@"showChild"];
     [parameters setObject:self.dataArray[0][0].spareString ?: @"" forKey:@"GroupHeadImg"];
     [parameters setObject:@"" forKey:@"header"];
     [parameters setObject:@(false) forKey:@"isHeader"];
@@ -172,7 +173,112 @@
 
 - (void)setDataArrayWithResponse:(DYJXXYGroupByIdResponse *)response {
     DYJXXYResult *result = response.Result;
+    self.dataArray.firstObject[1].text = result.GroupName;
+    self.dataArray.firstObject[3].text = result.NumberString;
+    if (result.Members.count > 0) {
+        self.dataArray.firstObject[4].leftViewText = [NSString stringWithFormat:@"群成员(%lu人)",(unsigned long)result.Members.count];
+    }else {
+        self.dataArray.firstObject[4].text = @"群成员：";
+    }
+    self.dataArray[0][5].isSelected = result.NotAllowMemberInvite;
+    self.dataArray[0][6].isSelected = result.NotAllowJoinFree;
+    self.dataArray[0][7].isSelected = result.NotAllowSay;
+    self.dataArray[0][8].isSelected = result.CanNotSearch;
+    if ([result.SilenceUserIds containsObject:[XYUserDefaults readUserDefaultsLoginedInfoModel].UserID]) {
+        self.dataArray[0][9].isSelected = YES;
+    }
+    self.dataArray[0][0].spareString =  response.Result.EnterpriseInfo.HeadImgUrl;
+}
+
+-(void)uploadSlientGroupMsgWithGroupNumber:(NSString *)groupNumber isSlientGroupMsg:(BOOL)isSlientGroupMsg success:(void (^)(id _Nonnull))success failed:(void (^)(NSString * _Nonnull))fail {
+    WeakSelf;
+    [SVProgressHUD show];
+    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
     
+    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+    [reqDict setObject:@(isSlientGroupMsg) forKey:@"Data"];
+    [reqDict setObject:groupNumber forKey:@"Id"];
+    [reqDict setObject:userModel.UserID forKey:@"UserID"];
+    [reqDict setObject:@"iOS" forKey:@"Device"];
+    [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+    [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
+    [reqDict setObject:userModel.UserID forKey:@"CertificateId"];
+    [reqDict setObject:userModel.MemberID forKey:@"MemberID"];
+    [XYNetWorking XYPOST:kDYJXAPI_SlientGroupMsg params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
+                [SVProgressHUD dismiss];
+                weakSelf.dataArray[0][9].isSelected = isSlientGroupMsg;
+                !success ?: success(responseObject);
+            }else{
+                [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
+            }
+        }else{
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+    }];
+}
+
+//删除公司
+- (void)deleteGroupWithGroupId:(NSString*)groupId Success:(nonnull void (^)(NSString * _Nonnull))success failed:(nonnull void (^)(NSString * _Nonnull))fail{
+    [SVProgressHUD show];
+    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+    [reqDict setObject:groupId forKey:@"Data"];
+    [reqDict setObject:userModel.UserID forKey:@"UserID"];
+    [reqDict setObject:@"iOS" forKey:@"Device"];
+    [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+    [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
+    [reqDict setObject:userModel.UserID forKey:@"CertificateId"];
+    [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
+    
+    [XYNetWorking XYPOST:kDYJXAPI_user_DeleteGroup params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
+                [SVProgressHUD dismiss];
+                [YDBAlertView showToast:@"删除公司成功！" dismissDelay:1.0];
+                !success ?: success(@"删除公司成功！");
+            }else{
+                [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
+            }
+        }else{
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+    }];
+}
+
+//退出公司
+- (void)QuitGroupWithGroupId:(NSString*)groupId Success:(nonnull void (^)(NSString * _Nonnull))success failed:(nonnull void (^)(NSString * _Nonnull))fail{
+    [SVProgressHUD show];
+    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+    NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
+    [reqDict setObject:groupId forKey:@"Data"];
+    [reqDict setObject:userModel.UserID forKey:@"UserID"];
+    [reqDict setObject:@"iOS" forKey:@"Device"];
+    [reqDict setObject:userModel.ClientId forKey:@"ClientId"];
+    [reqDict setObject:userModel.ObjResult forKey:@"DeviceToken"];
+    [reqDict setObject:userModel.UserID forKey:@"CertificateId"];
+    [reqDict setObject:@"00000000-0000-0000-0000-000000000000" forKey:@"MemberID"];
+    
+    [XYNetWorking XYPOST:kDYJXAPI_user_QuitGroup2 params:reqDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
+                [SVProgressHUD dismiss];
+                [YDBAlertView showToast:@"退出公司成功！" dismissDelay:1.0];
+                !success ?: success(@"退出公司成功！");
+            }else{
+                [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
+            }
+        }else{
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+    }];
 }
 
 -(NSMutableArray<NSMutableArray<LPXNewCustomerCellModel *> *> *)dataArray {
@@ -185,6 +291,12 @@
             NSError *error;
             id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&error];
             [_dataArray addObjectsFromArray: [LPXNewCustomerCellModel mj_objectArrayWithKeyValuesArray:(NSArray *)jsonObject]];
+            if (self.groupType == DYJXGroupType_Details) {
+                _dataArray.firstObject.firstObject.cellIdentity = kGroupDetailModelPorityCellId;
+                
+            }else {
+                _dataArray.firstObject[9].userInteractionEnabled = YES;
+            }
         }else {
             NSLog(@"josn文件不存在");
         }
