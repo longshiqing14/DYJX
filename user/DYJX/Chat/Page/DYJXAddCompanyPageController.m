@@ -577,6 +577,11 @@
                     [conversationTabBarController setSelectedIndex:2];
                 }
                 return ;
+            }else{
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]];
+                    [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
+                    [conversationTabBarController setSelectedIndex:2];
             }
         };
         _bottomView.exitCompanyBlock = ^{
@@ -613,6 +618,13 @@
                     [conversationTabBarController setSelectedIndex:2];
                 }
                 return ;
+            }else{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+
+                    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]];
+                    [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
+                    [conversationTabBarController setSelectedIndex:2];
+                
             }
         };
         

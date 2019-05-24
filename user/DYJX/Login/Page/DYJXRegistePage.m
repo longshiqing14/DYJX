@@ -144,8 +144,7 @@
 
 - (UIView *)bottomBackgroundView{
     if (!_bottomBackgroundView) {
-        _bottomBackgroundView = [[UIView alloc]init];
-        _bottomBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#15293B"];
+        _bottomBackgroundView = [[NSBundle mainBundle]loadNibNamed:@"iPhoneXBottomBackgroundView" owner:self options:nil].firstObject;
     }
     return _bottomBackgroundView;
 }
