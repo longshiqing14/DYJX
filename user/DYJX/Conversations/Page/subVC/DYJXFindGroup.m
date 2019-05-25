@@ -215,8 +215,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    DYJXXYResult *result = self.findGroupViewModel.dataArray[indexPath.row];
     DYJXNewGroupController *NewGroupVC = [[DYJXNewGroupController alloc]init];
+    NewGroupVC.groupId = result.GroupNumber;
+    if (result.AdminUserIds.count) {
+        NewGroupVC.groupType = DYJXGroupType_Details;
+    }else {
+        NewGroupVC.groupType = DYJXGroupType_Tourist;
+    }
     [self.navigationController pushViewController:NewGroupVC animated:YES];
     
 }

@@ -18,3 +18,7 @@
 }
 
 @end
+
+@implementation LPXPhotoModel
+
+@end

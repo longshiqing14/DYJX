@@ -272,8 +272,13 @@
     self.dataArray[3][2].text = response.Result.EnterpriseInfo.CompanyBankCardNO;
     self.dataArray[3][3].text = response.Result.EnterpriseInfo.CompanyBankName;
     self.dataArray[3][4].text = response.Result.EnterpriseInfo.CompanyBank;
-    
-    [self.dataArray[4].lastObject.spareArray addObjectsFromArray: [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:response.Result.EnterpriseInfo.Images].copy];
+    NSArray *spareArray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:response.Result.EnterpriseInfo.Images].copy;
+    [spareArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        LPXPhotoModel *photoModel = [[LPXPhotoModel alloc]init];
+        photoModel.photo = obj;
+        [self.dataArray[4].lastObject.spareArray addObject:photoModel];
+    }];
+//    [self.dataArray[4].lastObject.spareArray addObjectsFromArray: [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:response.Result.EnterpriseInfo.Images].copy];
 }
 
 - (NSDictionary *)getUpDataParameters {
@@ -286,64 +291,13 @@
     [parameters setObject:userModel.ObjResult forKey:@"DeviceToken"];
     [parameters setObject:userModel.MemberID forKey:@"MemberID"];
     [parameters setObject:userModel.UserID forKey:@"UserID"];
-    
-//    {
-//        "Data": {
-//            "AdminUserIds": ["6ef0bf66-cf80-4629-bb26-ade3cd244de3"],
-//            "EnterpriseInfo": {
-//                "CompanyAlipay": "349876497964",
-//                "CompanyBank": "深圳建行",
-//                "CompanyBankCardNO": "616946497",
-//                "CompanyBankName": "建行",
-//                "CompanyEmail": "jssjj@163.com",
-//                "CompanyInfo": "测试测试",
-//                "CompanyLinkMan": "测试人",
-//                "CompanyLinkManCellphone": "1352864664664",
-//                "CompanyLinkManQQ": "38764946",
-//                "CompanyLinkManWeiXin": "64867649494",
-//                "CompanyShortName": "高大上",
-//                "CompanyTel": "1359845944",
-//                "CompanyWeiXin": "694694",
-//                "SociologyCredit": "5499764",
-//                "WebSite": "www.baidu.com",
-//                "Address": "测试地址",
-//                "AdminSay": true,
-//                "CanNotSearch": true,
-//                "CityId": 27,
-//                "CompanyName": "测试公司1",
-//                "DistrictId": 347,
-//                "GPSAddress": "GPS位置(已定位)",
-//                "HeadImgUrl": "5c3ccdba-ed6d-4dda-a6a4-7ef84c9898d2.jpg",
-//                "Images": "[{\"Name\":\"6f68119a-3c03-455d-af36-601275752761.jpg\",\"Title\":\"执照图片1\"},{\"Name\":\"687e95cc-16bb-467e-8d9a-6bcf941118db.jpg\",\"Title\":\"执照图片2\"},{\"Name\":\"54cdeb43-8a6e-4003-b899-2a1a6e99862a.png\",\"Title\":\"执照图片3\"},{\"Name\":\"d49f84a7-ce63-42ef-8d0a-296b2e388885.png\",\"Title\":\"执照图片4\"}]",
-//                "Latitude": 22.581711500555166,
-//                "Longitude": 113.93784373998643,
-//                "PCDName": "内蒙古自治区乌海市海南区",
-//                "ProvinceId": 5
-//            },
-//            "GroupHeadImg": "5c3ccdba-ed6d-4dda-a6a4-7ef84c9898d2.jpg",
-//            "GroupInfo": "测试测试",
-//            "GroupName": "测试公司1",
-//            "GroupNumber": "6487549",
-//            "GroupType": 1,
-//            "MemberIds": ["6ef0bf66-cf80-4629-bb26-ade3cd244de3"],
-//            "SilenceUserIds": [],
-//            "showChild": false,
-//            "header": "",
-//            "isHeader": false
-//        },
-//        "CertificateId": "6ef0bf66-cf80-4629-bb26-ade3cd244de3",
-//        "ClientId": "64c2e728-672c-4ab3-aeb3-8b430dd9ef03",
-//        "Device": "Android",
-//        "DeviceToken": "mYwsWfqF0qSyZG1J1HeJrpiB9rXdWaJpjIvWu0nuzlRsR9MyjhDGiiuEF0d5oIFFDVQfHt3zzXVN9HPpzGAlIxaylYsJuNYM0qFAYETnxthuZKKvSXjXbV+GOODnKzQlVMIgw6Kji3U=",
-//        "MemberID": "00000000-0000-0000-0000-000000000000",
-//        "UserID": "6ef0bf66-cf80-4629-bb26-ade3cd244de3"
-//    }
     return parameters.copy;
 }
 
 - (NSDictionary *)getDataParameters {
     NSMutableDictionary *parameters = @{}.mutableCopy;
-    if (self.companyType == DYJXAddCompanyType_Details) {
+    if (self.companyType == DYJXAddCompanyType_Details ||
+        self.companyType == DYJXAddCompanyType_SubDetails) {
         self.result.EnterpriseInfo = [DYJXXYEnterpriseInfo modelWithDictionary:[self getEnterpriseInfoParameters]];
        [parameters addEntriesFromDictionary: [self.result mj_keyValues]];
         if ([[parameters allKeys] containsObject:@"Children"]) {
@@ -419,8 +373,12 @@
     if (![YWDTools isNil:self.ProvinceId]) {
         [parameters setObject:@([self.ProvinceId integerValue]) forKey:@"ProvinceId"];
     }
-    
-    [parameters setObject:[PersonZhiZhaoModel  mj_keyValuesArrayWithObjectArray:(self.dataArray.lastObject.lastObject.spareArray ?: @[])] forKey:@"Images"];
+    NSMutableArray *dataArray = [[NSMutableArray alloc]init];
+    [self.dataArray.lastObject.lastObject.spareArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [dataArray addObject:((LPXPhotoModel *)obj).photo];
+    }];
+    [parameters setObject:[[PersonZhiZhaoModel  mj_keyValuesArrayWithObjectArray:(dataArray ?: @[])] mj_JSONString] forKey:@"Images"];
+//    [parameters setObject:[[PersonZhiZhaoModel  mj_keyValuesArrayWithObjectArray:(self.dataArray.lastObject.lastObject.spareArray ?: @[])] mj_JSONString] forKey:@"Images"];
     return parameters.copy;
 }
 

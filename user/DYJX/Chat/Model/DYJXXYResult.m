@@ -23,6 +23,7 @@ NSString *const kDYJXXYResultDisabled = @"Disabled";
 NSString *const kDYJXXYResultEnterpriseInfo = @"EnterpriseInfo";
 NSString *const kDYJXXYResultGroupHeadImg = @"GroupHeadImg";
 NSString *const kDYJXXYResultGroupName = @"GroupName";
+NSString *const kDYJXXYResultGroupInfo = @"GroupInfo";
 NSString *const kDYJXXYResultGroupNumber = @"GroupNumber";
 NSString *const kDYJXXYResultGroupType = @"GroupType";
 NSString *const kDYJXXYResultId = @"Id";
@@ -42,6 +43,7 @@ NSString *const kDYJXXYResultSilenceUserIds = @"SilenceUserIds";
 NSString *const kDYJXXYResultUpdateBy = @"UpdateBy";
 NSString *const kDYJXXYResultUpdateOn = @"UpdateOn";
 NSString *const kDYJXXYResultWildType = @"WildType";
+NSString *const kDYJXXYResultParentEnterpriseId = @"ParentEnterpriseId";
 
 @interface DYJXXYResult ()
 @end
@@ -113,7 +115,10 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 	}	
 	if(![dictionary[kDYJXXYResultGroupName] isKindOfClass:[NSNull class]]){
 		self.GroupName = dictionary[kDYJXXYResultGroupName];
-	}	
+	}
+    if(![dictionary[kDYJXXYResultGroupInfo] isKindOfClass:[NSNull class]]){
+        self.GroupName = dictionary[kDYJXXYResultGroupInfo];
+    }
 	if(![dictionary[kDYJXXYResultGroupNumber] isKindOfClass:[NSNull class]]){
 		self.GroupNumber = dictionary[kDYJXXYResultGroupNumber];
 	}	
@@ -186,6 +191,9 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 	if(![dictionary[kDYJXXYResultWildType] isKindOfClass:[NSNull class]]){
 		self.WildType = [dictionary[kDYJXXYResultWildType] integerValue];
 	}
+    if(![dictionary[kDYJXXYResultParentEnterpriseId] isKindOfClass:[NSNull class]]){
+        self.ParentEnterpriseId = dictionary[kDYJXXYResultParentEnterpriseId];
+    }
 
 	return self;
 }
@@ -237,6 +245,9 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 	if(self.GroupName != nil){
 		dictionary[kDYJXXYResultGroupName] = self.GroupName;
 	}
+    if(self.GroupInfo != nil){
+        dictionary[kDYJXXYResultGroupInfo] = self.GroupInfo;
+    }
 	if(self.GroupNumber != nil){
 		dictionary[kDYJXXYResultGroupNumber] = self.GroupNumber;
 	}
@@ -282,6 +293,9 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 		dictionary[kDYJXXYResultUpdateOn] = self.UpdateOn;
 	}
 	dictionary[kDYJXXYResultWildType] = @(self.WildType);
+    if(self.ParentEnterpriseId != nil){
+        dictionary[kDYJXXYResultParentEnterpriseId] = self.ParentEnterpriseId;
+    }
 	return dictionary;
 
 }
@@ -327,6 +341,9 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 	if(self.GroupName != nil){
 		[aCoder encodeObject:self.GroupName forKey:kDYJXXYResultGroupName];
 	}
+    if(self.GroupInfo != nil){
+        [aCoder encodeObject:self.GroupInfo forKey:kDYJXXYResultGroupInfo];
+    }
 	if(self.GroupNumber != nil){
 		[aCoder encodeObject:self.GroupNumber forKey:kDYJXXYResultGroupNumber];
 	}
@@ -361,6 +378,9 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 		[aCoder encodeObject:self.UpdateOn forKey:kDYJXXYResultUpdateOn];
 	}
 	[aCoder encodeObject:@(self.WildType) forKey:kDYJXXYResultWildType];
+    if(self.ParentEnterpriseId != nil){
+        [aCoder encodeObject:self.ParentEnterpriseId forKey:kDYJXXYResultParentEnterpriseId];
+    }
 }
 
 /**
@@ -383,6 +403,7 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 	self.EnterpriseInfo = [aDecoder decodeObjectForKey:kDYJXXYResultEnterpriseInfo];
 	self.GroupHeadImg = [aDecoder decodeObjectForKey:kDYJXXYResultGroupHeadImg];
 	self.GroupName = [aDecoder decodeObjectForKey:kDYJXXYResultGroupName];
+    self.GroupInfo = [aDecoder decodeObjectForKey:kDYJXXYResultGroupInfo];
 	self.GroupNumber = [aDecoder decodeObjectForKey:kDYJXXYResultGroupNumber];
 	self.GroupType = [[aDecoder decodeObjectForKey:kDYJXXYResultGroupType] integerValue];
 	self.Id = [aDecoder decodeObjectForKey:kDYJXXYResultId];
@@ -402,6 +423,7 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 	self.UpdateBy = [aDecoder decodeObjectForKey:kDYJXXYResultUpdateBy];
 	self.UpdateOn = [aDecoder decodeObjectForKey:kDYJXXYResultUpdateOn];
 	self.WildType = [[aDecoder decodeObjectForKey:kDYJXXYResultWildType] integerValue];
+    self.ParentEnterpriseId = [aDecoder decodeObjectForKey:kDYJXXYResultParentEnterpriseId];
 	return self;
 
 }
@@ -427,6 +449,7 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 	copy.EnterpriseInfo = [self.EnterpriseInfo copy];
 	copy.GroupHeadImg = [self.GroupHeadImg copy];
 	copy.GroupName = [self.GroupName copy];
+    copy.GroupInfo = [self.GroupInfo copy];
 	copy.GroupNumber = [self.GroupNumber copy];
 	copy.GroupType = self.GroupType;
 	copy.Id = [self.Id copy];
@@ -446,7 +469,7 @@ NSString *const kDYJXXYResultWildType = @"WildType";
 	copy.UpdateBy = [self.UpdateBy copy];
 	copy.UpdateOn = [self.UpdateOn copy];
 	copy.WildType = self.WildType;
-
+    copy.ParentEnterpriseId = [self.ParentEnterpriseId copy];
 	return copy;
 }
 @end

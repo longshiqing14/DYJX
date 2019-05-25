@@ -234,7 +234,11 @@
                         }else {
                             model.Title = @"执照图片1";
                         }
-                        [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:model];
+                        LPXPhotoModel *photoModel = [[LPXPhotoModel alloc]init];
+                        photoModel.photoImage = images.firstObject;
+                        photoModel.photo = model;
+                        [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:photoModel];
+//                        [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:model];
                             NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:4] ;
                             [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
                     }
@@ -326,6 +330,37 @@
         [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
     }];
 }
+#pragma mark 定位开启可以到百度地图
+- (void)pushViewControllerWithIndexPath:(NSIndexPath *)indexPath {
+    WeakSelf
+    DYJXAddCompanyPageCell *newCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    CLLocationCoordinate2D centerCoordinate = {0,0};
+    BaiduMapViewController *baiduMapVC = [[BaiduMapViewController alloc]initWithCenterCoordinate:centerCoordinate poiAddressBlock:^(CLLocationCoordinate2D centerCoordinate, NSString *name) {
+        newCell.model.text = name;
+        weakSelf.viewModel.Latitude = [@(centerCoordinate.latitude) stringValue];
+        weakSelf.viewModel.Longitude = [@(centerCoordinate.longitude) stringValue];
+        [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+    }];
+    [self.navigationController pushViewController:baiduMapVC animated:YES];
+}
+
+#pragma mark 定位没开启设置定位权限
+- (void)setLocationAuthorization {
+    WeakSelf
+    [UIAlertController alertWithTitle:@"定位权限没有开启" message:@"当前定位权限没有开启无法定位，请你去设置定位权限" preferredStyle:(UIAlertControllerStyleAlert) cancelActionTitle:@"取消" defaultActionTitle:@[@"去设置"] defaultActionBlock:^(UIAlertAction *action) {
+        [weakSelf setupAuthorization];
+    }];
+}
+
+- (void)setupAuthorization {
+    if (iOS8Later) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"抱歉" message:@"无法跳转到隐私设置页面，请手动前往设置页面，谢谢" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
 
 
 #pragma mark - UITableViewDelegate
@@ -424,14 +459,13 @@
                 [weakSelf getCompanyAddressProvinces];
             }else if (indexPath.section == 1 && indexPath.row == 3) {
                 //TODO: 公司GPS位置
-                CLLocationCoordinate2D centerCoordinate = {0,0};
-                BaiduMapViewController *baiduMapVC = [[BaiduMapViewController alloc]initWithCenterCoordinate:centerCoordinate poiAddressBlock:^(CLLocationCoordinate2D centerCoordinate, NSString *name) {
-                    cell.model.text = name;
-                    weakSelf.viewModel.Latitude = [@(centerCoordinate.latitude) stringValue];
-                    weakSelf.viewModel.Longitude = [@(centerCoordinate.longitude) stringValue];
-                    [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+                [weakSelf requestAuthorizationWithCompletionHandler:^(BOOL granted) {
+                    if (granted) {
+                        [weakSelf pushViewControllerWithIndexPath:indexPath];
+                    }else {
+                        [weakSelf setLocationAuthorization];
+                    }
                 }];
-                [weakSelf.navigationController pushViewController:baiduMapVC animated:YES];
             }
         };
     }

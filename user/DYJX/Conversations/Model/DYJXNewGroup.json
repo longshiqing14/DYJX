@@ -38,7 +38,7 @@
     },
     {
         "cellIdentity" : "DYJXAddCompanyPageCell",
-        "leftViewText" : "不容许n陌生人直接进群",
+        "leftViewText" : "不容许陌生人直接进群",
         "placeholder" : "",
         "isHiddenField" : true,
         "isShowSelectetView": true,

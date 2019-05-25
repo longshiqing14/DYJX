@@ -15,6 +15,8 @@
 #import "DYJXAddGroupMemberPageController.h"
 #import "DYJXQRCodePage.h"
 #import "JSExtension.h"
+#import "SubcompanyBottomView.h"
+#import "DYJXJoinGroupController.h"
 
 typedef void(^InteriorGroupBlock)(void);
 typedef void(^ExternalGroupBlock)(void);
@@ -57,9 +59,9 @@ typedef void(^GroupDetailsViewBlock)(NSInteger index);
             make.height.equalTo(@(__X(80)));
             make.centerY.equalTo(@0);
             if (index == 0) {
-                make.left.equalTo(@(__X(60)));
+                make.left.equalTo(@(__X(30)));
             }else {
-                make.left.equalTo(self.bottomBtns.lastObject.mas_right).offset(__X(60));
+                make.left.equalTo(self.bottomBtns.lastObject.mas_right).offset(__X(30));
             }
         }];
         [self.bottomBtns addObject:btn];
@@ -159,6 +161,7 @@ typedef void(^GroupDetailsViewBlock)(NSInteger index);
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) DYJXNewGroupView *addGroupView;
 @property (nonatomic, strong) DYJXGroupDetailsView *groupDetailsView;
+@property(strong, nonatomic) SubcompanyBottomView *addCompanyBottomView;
 @property (nonatomic, strong) DYJXNewGroupViewModel *viewModel;
 @property (nonatomic, strong) NSMutableArray<DYJXAddGroupSubMemberModel *> *memberModels;
 @property (nonatomic, strong) NSMutableArray<DJJXMembers *> *membersArray;
@@ -169,15 +172,43 @@ typedef void(^GroupDetailsViewBlock)(NSInteger index);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNavigation];
     self.viewModel.groupType = self.groupType;
     [self addGroupView];
     [self tableView];
     [self getGroupInfo];
 }
 
+- (void)setNavigation {
+    if (self.groupType == DYJXGroupType_New) {
+        self.navigationItem.title = @"新增群";
+    }else if (self.groupType == DYJXGroupType_Details) {
+        self.navigationItem.title = @"信息管理";
+    }else if (self.groupType == DYJXGroupType_Tourist) {
+        self.navigationItem.title = @"信息查看";
+    }
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
+    UIButton *rightBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [rightBarButton addTarget:self action:@selector(CommitUserInfo) forControlEvents:UIControlEventTouchUpInside];
+    rightBarButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10);
+    rightBarButton.frame = CGRectMake(0, 0, 40, 20);
+    [rightBarButton setTitle:@"提交" forState:UIControlStateNormal];
+    [rightBarButton.titleLabel setFont:[UIFont systemFontOfSize:21]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBarButton];
+    
+    rightBarButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+}
+
 - (void)getGroupInfo {
-    if (self.groupType == DYJXGroupType_Details) {
-        [self groupDetailsView];
+    if (self.groupType == DYJXGroupType_Details ||
+        self.groupType == DYJXGroupType_Tourist) {
+        if (self.groupType == DYJXGroupType_Tourist) {
+            [self addCompanyBottomView];
+        }else if (self.groupType == DYJXGroupType_Details) {
+           [self groupDetailsView];
+        }
         if (!self.groupId) {
             [YDBAlertView showToast:@"ID为空" dismissDelay:1.0];
             return;
@@ -195,6 +226,11 @@ typedef void(^GroupDetailsViewBlock)(NSInteger index);
     }
 }
 
+// 提交修改的信息
+- (void)CommitUserInfo {
+    
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.viewModel numberOfSections];
 }
@@ -205,7 +241,11 @@ typedef void(^GroupDetailsViewBlock)(NSInteger index);
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.viewModel.dataArray[indexPath.section][indexPath.row].cellIdentity forIndexPath:indexPath];
-    [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"model"];
+    if ([cell isKindOfClass:[OwnerImageCell class]]) {
+        [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"cellmodel"];
+    }else {
+        [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"model"];
+    }
     WeakSelf
     if (indexPath.section == 0 && indexPath.row == 0) {
         if (self.groupType == DYJXGroupType_New) {
@@ -263,7 +303,7 @@ typedef void(^GroupDetailsViewBlock)(NSInteger index);
             WeakSelf
             newCell.otherBtnBlock = ^(DYJXAddCompanyPageCell * _Nonnull cell) {
                 NSIndexPath *index = [tableView indexPathForCell:cell];
-                [weakSelf.viewModel uploadSlientGroupMsgWithNumberString:weakSelf.viewModel.response.Result.GroupNumber isSlientGroupMsg:weakSelf.viewModel.dataArray[indexPath.section][indexPath.row].isSelected success:^(id  _Nonnull responseObject) {
+                [weakSelf.viewModel uploadSlientGroupMsgWithGroupNumber:weakSelf.viewModel.response.Result.GroupNumber isSlientGroupMsg:weakSelf.viewModel.dataArray[indexPath.section][indexPath.row].isSelected success:^(id  _Nonnull responseObject) {
                     [weakSelf.tableView reloadRowAtIndexPath:index withRowAnimation:(UITableViewRowAnimationAutomatic)];
                 } failed:^(NSString * _Nonnull errMsg) {
                     
@@ -436,7 +476,10 @@ typedef void(^GroupDetailsViewBlock)(NSInteger index);
             make.left.top.right.mas_equalTo(0);
             if (weakSelf.groupType == DYJXGroupType_Details) {
                 make.bottom.mas_equalTo(weakSelf.groupDetailsView.mas_top).mas_equalTo(0);
-            }else {
+            }else if (weakSelf.groupType == DYJXGroupType_Tourist) {
+                make.bottom.mas_equalTo(weakSelf.addCompanyBottomView.mas_top).mas_equalTo(0);
+            }
+            else {
                 make.bottom.mas_equalTo(weakSelf.addGroupView.mas_top).mas_equalTo(0);
             }
         }];
@@ -503,6 +546,33 @@ typedef void(^GroupDetailsViewBlock)(NSInteger index);
         }];
     }
     return _groupDetailsView;
+}
+
+- (SubcompanyBottomView *)addCompanyBottomView {
+    if (!_addCompanyBottomView) {
+        _addCompanyBottomView = [[NSBundle mainBundle] loadNibNamed:@"SubcompanyBottomView" owner:self options:nil].firstObject;
+        [self.view addSubview:_addCompanyBottomView];
+        [_addCompanyBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.height.mas_equalTo(80);
+            if (@available(iOS 11.0, *)) {
+                make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            } else {
+                make.bottom.mas_equalTo(self.view);
+            }
+        }];
+        WeakSelf
+        [_addCompanyBottomView setSubcompanyBottomBtnWithTitle:@"申请进群"];
+        [_addCompanyBottomView setSubcompanyBottomBtnWithBackgroundColor:[UIColor colorWithRed:8/255.0 green:164/255.0 blue:2/255.0 alpha:1]];
+        _addCompanyBottomView.block = ^{
+            //TODO: 进入加入申请页面
+            DYJXJoinGroupController *joinGroupVC = [[DYJXJoinGroupController alloc]init];
+            joinGroupVC.ApplyType = 1;
+            joinGroupVC.response = weakSelf.viewModel.response.Result;
+            [weakSelf.navigationController pushViewController:joinGroupVC animated:YES];
+        };
+    }
+    return _addCompanyBottomView;
 }
 
 -(DYJXNewGroupViewModel *)viewModel {

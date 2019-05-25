@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Photos/PHPhotoLibrary.h>
 #import <objc/runtime.h>
+#import <CoreLocation/CoreLocation.h>
 
 static const void *UICameraImageBlockKey = &UICameraImageBlockKey;
 
@@ -408,5 +409,19 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     }
     
     return currentVC;
+}
+
+- (void)requestAuthorizationWithCompletionHandler:(void (^)(BOOL granted))completionHandler {
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if (([CLLocationManager locationServicesEnabled] &&
+         (status == kCLAuthorizationStatusAuthorizedAlways ||
+          status == kCLAuthorizationStatusAuthorizedWhenInUse))||
+        status == kCLAuthorizationStatusNotDetermined) {
+        completionHandler(YES);
+        NSLog(@"已经打开了定位服务");
+    }else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
+        NSLog(@"定位功能不可用");
+        completionHandler(NO);
+    }
 }
 @end

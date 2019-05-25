@@ -40,7 +40,8 @@ typedef NS_ENUM(NSUInteger, OperatorMember) {
 
 typedef NS_OPTIONS (NSInteger ,DYJXGroupType){
     DYJXGroupType_New,        // 新建群
-    DYJXGroupType_Details     // 群详情
+    DYJXGroupType_Details,    // 群详情
+    DYJXGroupType_Tourist     // 游客浏览群详情（非本群成员）
 };
 
 //订单状态

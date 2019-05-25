@@ -204,8 +204,14 @@ static NSString *const RefumdImageCameraCollectionCell = @"ImageCameraCollection
             cell = ImageCameraCollectioncell;
         }else {
             JXRefumdImageCollectionCell *ImageCollectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:RefumdImageCollectionCell forIndexPath:indexPath];
-            PersonZhiZhaoModel *model = self.cellmodel.spareArray[indexPath.row];
-            [ImageCollectioncell.imgView setImageWithURL:[NSURL URLWithString:[model.Name XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
+            LPXPhotoModel *photoModel = self.cellmodel.spareArray[indexPath.row];
+            if (photoModel.photoImage) {
+                ImageCollectioncell.imgView.image = photoModel.photoImage;
+            }else {
+                PersonZhiZhaoModel *model = (PersonZhiZhaoModel *)photoModel.photo;
+                [ImageCollectioncell.imgView setImageWithURL:[NSURL URLWithString:[model.Name XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
+            }
+            
             ImageCollectioncell.deleteImageBlock = ^{
                 if (self.deleteImageBlock) {
                     self.deleteImageBlock(indexPath.item);

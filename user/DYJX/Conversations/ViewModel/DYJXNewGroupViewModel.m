@@ -46,37 +46,88 @@
 - (NSDictionary *)getDataParametersWithGroupType:(NSInteger)groupType {
     DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
     NSMutableDictionary *parameters = @{}.mutableCopy;
-    if (userModel.UserID) {
-        [parameters setObject:[self setAdminUserIds] forKey:@"AdminUserIds"];
+    if (self.groupType == DYJXGroupType_New) {
+        [parameters setObject:@(groupType) forKey:@"WildType"];
+    }else {
+        [parameters addEntriesFromDictionary: [self.response.Result mj_keyValues]];
+    }
+    if ([[parameters allKeys] containsObject:@"AdminUserIds"]) {
+        [parameters setValue:[self setAdminUserIds] forKey:@"AdminUserIds"];
+    }else {
+        if (userModel.UserID) {
+            [parameters setObject:[self setAdminUserIds] forKey:@"AdminUserIds"];
+        }
     }
     
     if (self.MemberIds.count > 0) {
-        [parameters setObject:self.MemberIds.copy forKey:@"MemberIds"];
+        if ([[parameters allKeys] containsObject:@"MemberIds"]) {
+            [parameters setValue:self.MemberIds.copy forKey:@"MemberIds"];
+        }else {
+            [parameters setObject:self.MemberIds.copy forKey:@"MemberIds"];
+        }
     }else {
         [parameters setObject:@[userModel.UserID] forKey:@"MemberIds"];
     }
     
-    [parameters setObject:@(self.dataArray[0][8].isSelected) forKey:@"CanNotSearch"];
-    if (self.dataArray[0][2].text) {
-        [parameters setObject:self.dataArray[0][2].text forKey:@"GroupInfo"];
+    if ([[parameters allKeys] containsObject:@"CanNotSearch"]) {
+        [parameters setValue:@(self.dataArray[0][8].isSelected) forKey:@"CanNotSearch"];
+    }else {
+        [parameters setObject:@(self.dataArray[0][8].isSelected) forKey:@"CanNotSearch"];
     }
     
-    if (self.dataArray[0][1].text) {
-        [parameters setObject:self.dataArray[0][1].text forKey:@"GroupName"];
+    if ([[parameters allKeys] containsObject:@"GroupInfo"]) {
+        [parameters setValue:self.dataArray[0][2].text ?: @"" forKey:@"GroupInfo"];
+    }else {
+        [parameters setObject:self.dataArray[0][2].text ?: @"" forKey:@"GroupInfo"];
     }
-    if (self.dataArray[0][3].text) {
-        [parameters setObject:self.dataArray[0][3].text forKey:@"GroupNumber"];
+    
+    if ([[parameters allKeys] containsObject:@"GroupName"]) {
+        [parameters setValue:self.dataArray[0][1].text ?: @"" forKey:@"GroupName"];
+    }else {
+        [parameters setObject:self.dataArray[0][1].text ?: @"" forKey:@"GroupName"];
+    }
+    
+    if ([[parameters allKeys] containsObject:@"GroupNumber"]) {
+        [parameters setValue:self.dataArray[0][3].text ?: @"" forKey:@"GroupNumber"];
+    }else {
+        [parameters setObject:self.dataArray[0][3].text ?: @"" forKey:@"GroupNumber"];
     }
     
     [parameters setObject:@(2) forKey:@"GroupType"];
-    [parameters setObject:@(self.dataArray[0][6].isSelected) forKey:@"NotAllowJoinFree"];
-    [parameters setObject:@(self.dataArray[0][5].isSelected) forKey:@"NotAllowJMemberInvite"];
-    [parameters setObject:@(self.dataArray[0][7].isSelected) forKey:@"NotAllowSay"];
+    
+    if ([[parameters allKeys] containsObject:@"NotAllowJoinFree"]) {
+        [parameters setValue:@(self.dataArray[0][6].isSelected)  forKey:@"NotAllowJoinFree"];
+    }else {
+        [parameters setObject:@(self.dataArray[0][6].isSelected) forKey:@"NotAllowJoinFree"];
+    }
+    
+    if ([[parameters allKeys] containsObject:@"NotAllowJMemberInvite"]) {
+        [parameters setValue:@(self.dataArray[0][5].isSelected)  forKey:@"NotAllowJMemberInvite"];
+    }else {
+        [parameters setObject:@(self.dataArray[0][5].isSelected) forKey:@"NotAllowJMemberInvite"];
+    }
+    
+    if ([[parameters allKeys] containsObject:@"NotAllowSay"]) {
+        [parameters setValue:@(self.dataArray[0][7].isSelected)  forKey:@"NotAllowSay"];
+    }else {
+        [parameters setObject:@(self.dataArray[0][7].isSelected) forKey:@"NotAllowSay"];
+    }
+    
     [parameters setObject:userModel.UserID forKey:@"ParentEnterpriseId"];
-    [parameters setObject:@[] forKey:@"SilenceUserIds"];
-    [parameters setObject:@(groupType) forKey:@"WildType"];
+    if ([[parameters allKeys] containsObject:@"SilenceUserIds"]) {
+        [parameters setObject:@[] forKey:@"SilenceUserIds"];
+    }else {
+        [parameters setValue:self.dataArray.firstObject[9].spareArray.copy forKey:@"SilenceUserIds"];
+    }
+    
     [parameters setObject:@(false) forKey:@"showChild"];
-    [parameters setObject:self.dataArray[0][0].spareString ?: @"" forKey:@"GroupHeadImg"];
+    
+    if ([[parameters allKeys] containsObject:@"GroupHeadImg"]) {
+        [parameters setObject:self.dataArray[0][0].spareString ?: @"" forKey:@"GroupHeadImg"];
+    }else {
+        [parameters setValue:self.dataArray[0][0].spareString ?: @"" forKey:@"GroupHeadImg"];
+    }
+    
     [parameters setObject:@"" forKey:@"header"];
     [parameters setObject:@(false) forKey:@"isHeader"];
     return parameters.copy;
@@ -174,6 +225,7 @@
 - (void)setDataArrayWithResponse:(DYJXXYGroupByIdResponse *)response {
     DYJXXYResult *result = response.Result;
     self.dataArray.firstObject[1].text = result.GroupName;
+    self.dataArray.firstObject[2].text = result.GroupInfo;
     self.dataArray.firstObject[3].text = result.NumberString;
     if (result.Members.count > 0) {
         self.dataArray.firstObject[4].leftViewText = [NSString stringWithFormat:@"群成员(%lu人)",(unsigned long)result.Members.count];
@@ -187,7 +239,8 @@
     if ([result.SilenceUserIds containsObject:[XYUserDefaults readUserDefaultsLoginedInfoModel].UserID]) {
         self.dataArray[0][9].isSelected = YES;
     }
-    self.dataArray[0][0].spareString =  response.Result.EnterpriseInfo.HeadImgUrl;
+    self.dataArray[0][9].spareArray = response.Result.SilenceUserIds.mutableCopy;
+    self.dataArray[0][0].spareString =  response.Result.GroupHeadImg;
 }
 
 -(void)uploadSlientGroupMsgWithGroupNumber:(NSString *)groupNumber isSlientGroupMsg:(BOOL)isSlientGroupMsg success:(void (^)(id _Nonnull))success failed:(void (^)(NSString * _Nonnull))fail {
@@ -209,6 +262,17 @@
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
                 [SVProgressHUD dismiss];
                 weakSelf.dataArray[0][9].isSelected = isSlientGroupMsg;
+                if (isSlientGroupMsg) {
+                    // 屏蔽
+                    if ([weakSelf.dataArray[0][9].spareArray containsObject:groupNumber]) {
+                        [weakSelf.dataArray[0][9].spareArray removeObject:groupNumber];
+                    }
+                }else {
+                    // 取消屏蔽
+                    if (![weakSelf.dataArray[0][9].spareArray containsObject:groupNumber]) {
+                        [weakSelf.dataArray[0][9].spareArray removeObject:groupNumber];
+                    }
+                }
                 !success ?: success(responseObject);
             }else{
                 [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
@@ -291,7 +355,8 @@
             NSError *error;
             id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&error];
             [_dataArray addObjectsFromArray: [LPXNewCustomerCellModel mj_objectArrayWithKeyValuesArray:(NSArray *)jsonObject]];
-            if (self.groupType == DYJXGroupType_Details) {
+            if (self.groupType == DYJXGroupType_Details ||
+                self.groupType == DYJXGroupType_Tourist) {
                 _dataArray.firstObject.firstObject.cellIdentity = kGroupDetailModelPorityCellId;
                 
             }else {

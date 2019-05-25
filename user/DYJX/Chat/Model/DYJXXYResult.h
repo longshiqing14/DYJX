@@ -31,6 +31,7 @@
 @property (nonatomic, strong) DYJXXYEnterpriseInfo * EnterpriseInfo;
 @property (nonatomic, copy) NSString * GroupHeadImg;
 @property (nonatomic, copy) NSString * GroupName;
+@property (nonatomic, copy) NSString * GroupInfo;
 @property (nonatomic, copy) NSString * GroupNumber;
 @property (nonatomic, assign) NSInteger GroupType;
 @property (nonatomic, copy) NSString * Id;
@@ -50,6 +51,7 @@
 @property (nonatomic, copy) NSString * UpdateBy;
 @property (nonatomic, copy) NSString * UpdateOn;
 @property (nonatomic, assign) NSInteger WildType;
+@property (nonatomic, copy) NSString *ParentEnterpriseId;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

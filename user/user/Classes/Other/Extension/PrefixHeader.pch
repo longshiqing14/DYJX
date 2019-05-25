@@ -69,6 +69,7 @@
 /** 相册、相机封、权限授权 */
 #import "NSObject+AVPhotoLibraryAuthorization.h"
 #import "NSObject+Parse.h"
+#import "UIAlertController+Extension.h"
 
 #define RETURN_CODE_  @"RETURN_CODE"
 #define RETURN_DESC_  @"RETURN_DESC"

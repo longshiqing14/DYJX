@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DYJXXYResult.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DYJXGroupViewModel : NSObject
 @property (nonatomic,strong) NSMutableDictionary *requestDic;
-
+@property (nonatomic, strong) NSMutableArray<DYJXXYResult*> *dataArray;
 - (NSInteger)numberOfCell;
 - (NSString *)GroupName:(NSIndexPath *)indexPath;
 - (NSString *)GroupNumberString:(NSIndexPath *)indexPath;

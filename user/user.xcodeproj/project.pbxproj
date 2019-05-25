@@ -699,6 +699,8 @@
 		F91EE3A022774DEE006BCB37 /* DYJXUserInfoDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = F91EE39F22774DED006BCB37 /* DYJXUserInfoDetail.json */; };
 		F9629EDB229408EF0071708F /* DYJXAddGroupMemberPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9629EDA229408EF0071708F /* DYJXAddGroupMemberPageController.m */; };
 		F9629EDE229433070071708F /* DYJXSelectMemberPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9629EDD229433070071708F /* DYJXSelectMemberPageController.m */; };
+		F9629EE4229835090071708F /* UIAlertController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9629EE2229835080071708F /* UIAlertController+Extension.m */; };
+		F9629EE72299318C0071708F /* DYJXJoinGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9629EE62299318C0071708F /* DYJXJoinGroupController.m */; };
 		F9813F50227F2E1C007A3604 /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = F9813F4F227F2E1C007A3604 /* NSObject+Parse.m */; };
 		F9F434A12287EF1B0002FE80 /* DYJXContactDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F434A02287EF1B0002FE80 /* DYJXContactDetailsController.m */; };
 		F9F434A42287EFAA0002FE80 /* DYJXContactDetailsTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F434A32287EFAA0002FE80 /* DYJXContactDetailsTopView.m */; };
@@ -2035,6 +2037,10 @@
 		F9629EDA229408EF0071708F /* DYJXAddGroupMemberPageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXAddGroupMemberPageController.m; sourceTree = "<group>"; };
 		F9629EDC229433070071708F /* DYJXSelectMemberPageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXSelectMemberPageController.h; sourceTree = "<group>"; };
 		F9629EDD229433070071708F /* DYJXSelectMemberPageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXSelectMemberPageController.m; sourceTree = "<group>"; };
+		F9629EE2229835080071708F /* UIAlertController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Extension.m"; sourceTree = "<group>"; };
+		F9629EE3229835080071708F /* UIAlertController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Extension.h"; sourceTree = "<group>"; };
+		F9629EE52299318C0071708F /* DYJXJoinGroupController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYJXJoinGroupController.h; sourceTree = "<group>"; };
+		F9629EE62299318C0071708F /* DYJXJoinGroupController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYJXJoinGroupController.m; sourceTree = "<group>"; };
 		F9813F4E227F2E1B007A3604 /* NSObject+Parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Parse.h"; sourceTree = "<group>"; };
 		F9813F4F227F2E1C007A3604 /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
 		F9F4349F2287EF1B0002FE80 /* DYJXContactDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJXContactDetailsController.h; sourceTree = "<group>"; };
@@ -2394,6 +2400,8 @@
 		48511D84219FC9C4006C6081 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				F9629EE3229835080071708F /* UIAlertController+Extension.h */,
+				F9629EE2229835080071708F /* UIAlertController+Extension.m */,
 				F9813F4E227F2E1B007A3604 /* NSObject+Parse.h */,
 				F9813F4F227F2E1C007A3604 /* NSObject+Parse.m */,
 				F91EE37222709361006BCB37 /* NSObject+AVPhotoLibraryAuthorization.h */,
@@ -4742,6 +4750,8 @@
 				F9629EDA229408EF0071708F /* DYJXAddGroupMemberPageController.m */,
 				F9629EDC229433070071708F /* DYJXSelectMemberPageController.h */,
 				F9629EDD229433070071708F /* DYJXSelectMemberPageController.m */,
+				F9629EE52299318C0071708F /* DYJXJoinGroupController.h */,
+				F9629EE62299318C0071708F /* DYJXJoinGroupController.m */,
 			);
 			path = subVC;
 			sourceTree = "<group>";
@@ -5397,6 +5407,7 @@
 				E157685821C9122D003A5C25 /* NIMKitSwitcherCell.m in Sources */,
 				4804C4C8227E8A0A00CA3D81 /* DYJXAddressModel.m in Sources */,
 				48E2503621D6528400CC7D9E /* DYJXFireAdminPage.m in Sources */,
+				F9629EE4229835090071708F /* UIAlertController+Extension.m in Sources */,
 				CBFF45951F74C26700D2AF93 /* XYUMSocialShareView.m in Sources */,
 				E19DC8CF219ACC9100C86478 /* DJGroupChatPage.m in Sources */,
 				48E8A4C121BA1F8A0046EA0E /* DYJXXYAdminUsers.m in Sources */,
@@ -5450,6 +5461,7 @@
 				E19E5B1A22740CEF0013440D /* DXZMobileContactsPage.m in Sources */,
 				E12DBDB621AD1ED60011E3A4 /* DYJOLastMg.m in Sources */,
 				E157681221C9122D003A5C25 /* NIMCardMemberItem.m in Sources */,
+				F9629EE72299318C0071708F /* DYJXJoinGroupController.m in Sources */,
 				E157680821C9122D003A5C25 /* NIMKitKeyboardInfo.m in Sources */,
 				E1CDB23C21D799F00049B124 /* myAnnotation.m in Sources */,
 				F90E3CE722913982002E7662 /* DYJXMyManageGroupController.m in Sources */,

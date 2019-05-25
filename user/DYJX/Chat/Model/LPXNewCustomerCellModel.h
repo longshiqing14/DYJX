@@ -53,4 +53,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface LPXPhotoModel : NSObject
+
+@property (nonatomic, strong) UIImage *photoImage;
+@property (nonatomic, strong) NSDictionary *photo;
+
+@end
+
 NS_ASSUME_NONNULL_END

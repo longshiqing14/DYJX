@@ -7,7 +7,6 @@
 //
 
 #import "DYJXGroupViewModel.h"
-#import "DYJXXYResult.h"
 
 #define kRequestPageNumber @"page"
 #define kRequestPageSize @"PageSize"
@@ -15,7 +14,6 @@
 
 @interface DYJXGroupViewModel()
 @property (nonatomic,assign) NSInteger pageNum;
-@property (nonatomic, strong) NSMutableArray<DYJXXYResult*> *dataArray;
 @property (nonatomic,assign) BOOL HasNextPage;
 @end
 

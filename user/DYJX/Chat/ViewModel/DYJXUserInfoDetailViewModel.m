@@ -196,8 +196,13 @@
     if (self.dataArray[2][2].text.length > 0) {
         [parameters setObject:self.dataArray[2][2].text forKey:@"PersonBankName"];
     }
-    
-    [parameters setObject:[PersonZhiZhaoModel  mj_keyValuesArrayWithObjectArray:(self.dataArray.lastObject.lastObject.spareArray ?: @[])] forKey:@"Images"];
+
+    NSMutableArray *dataArray = [[NSMutableArray alloc]init];
+    [self.dataArray.lastObject.lastObject.spareArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [dataArray addObject:((LPXPhotoModel *)obj).photo];
+    }];
+    [parameters setObject:[[PersonZhiZhaoModel  mj_keyValuesArrayWithObjectArray:(dataArray ?: @[])] mj_JSONString] forKey:@"Images"];
+//    [parameters setObject:[[PersonZhiZhaoModel  mj_keyValuesArrayWithObjectArray:(self.dataArray.lastObject.lastObject.spareArray ?: @[])] mj_JSONString]  forKey:@"Images"];
     return parameters;
 }
 
@@ -218,8 +223,13 @@
     self.dataArray[2][0].text = personInfoModel.Business.IMInfo.PersonBank;
     self.dataArray[2][1].text = personInfoModel.Business.IMInfo.PersonBankCardNo;
     self.dataArray[2][2].text = personInfoModel.Business.IMInfo.PersonBankName;
-    
-    [self.dataArray.lastObject.lastObject.spareArray addObjectsFromArray: [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:personInfoModel.Business.IMInfo.Images].copy];
+    NSArray *spareArray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:personInfoModel.Business.IMInfo.Images].copy;
+    [spareArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        LPXPhotoModel *photoModel = [[LPXPhotoModel alloc]init];
+        photoModel.photo = obj;
+        [self.dataArray.lastObject.lastObject.spareArray addObject:photoModel];
+    }];
+//    [self.dataArray.lastObject.lastObject.spareArray addObjectsFromArray: [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:personInfoModel.Business.IMInfo.Images].copy];
 }
 
 - (NSMutableArray<NSMutableArray<LPXNewCustomerCellModel *> *> *)dataArray{
