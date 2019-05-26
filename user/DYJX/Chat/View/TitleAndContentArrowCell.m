@@ -77,8 +77,8 @@
         make.left.mas_equalTo(self.iconImage.mas_right).mas_equalTo(5);
         make.right.mas_equalTo(self.arrowImageBtn.mas_left).mas_equalTo(-10);
         make.centerY.mas_equalTo(0);
-//        make.top.mas_equalTo(0);
-//        make.bottom.mas_equalTo(1);
+        make.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
     }];
     
     

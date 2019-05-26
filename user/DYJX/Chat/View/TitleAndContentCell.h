@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TitleAndContentCell : UITableViewCell//BaseTableViewCell
 @property(nonatomic, strong) UIImageView *iconImage;
 @property(nonatomic, strong) UITextField* contentLb;
+@property(nonatomic, strong) UILabel* contentTextLb;
 @property (nonatomic, strong) UIView *separatorLineView;
 @property (nonatomic, strong) LPXNewCustomerCellModel *model;
 

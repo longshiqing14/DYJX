@@ -27,6 +27,7 @@
 
 - (void)initSubViews{
     [self.contentView addSubview:self.iconImage];
+    [self.contentView addSubview:self.contentTextLb];
     [self.contentView addSubview:self.contentLb];
     [self.contentView addSubview:self.separatorLineView];
     [self layoutIfNeeded];
@@ -37,7 +38,15 @@
     self.iconImage.image = [UIImage imageNamed:model.leftViewImage];
     self.contentLb.placeholder = model.placeholder;
     self.contentLb.text = model.text;
-    self.contentLb.userInteractionEnabled = model.userInteractionEnabled;
+    self.contentLb.hidden = !model.userInteractionEnabled;
+    self.contentTextLb.hidden = model.userInteractionEnabled;
+    if (!model.userInteractionEnabled) {
+        if (model.text) {
+            self.contentTextLb.text = model.text;
+        }else {
+            self.contentTextLb.text = model.placeholder;
+        }
+    }
 }
 
 - (void)textDidChangEvent:(NSNotification *)notication {
@@ -68,8 +77,16 @@
         make.right.mas_equalTo(-10);
         make.centerY.mas_equalTo(0);
 //        make.height.mas_equalTo(16);
-//        make.top.mas_equalTo(0);
-//        make.bottom.mas_equalTo(1);
+        make.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+    }];
+    [self.contentTextLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.iconImage.mas_right).mas_equalTo(5);
+        make.right.mas_equalTo(-10);
+        make.centerY.mas_equalTo(0);
+        //        make.height.mas_equalTo(16);
+                make.top.mas_equalTo(0);
+                make.bottom.mas_equalTo(1);
     }];
     
     [self.separatorLineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -93,6 +110,16 @@
         _contentLb.textColor = [UIColor colorWithHexString:@"999999"];
     }
     return _contentLb;
+}
+
+-(UILabel *)contentTextLb {
+    if (!_contentTextLb) {
+        _contentTextLb = [[UILabel alloc]init];
+        _contentTextLb.font = [UIFont systemFontOfSize:13];
+        _contentTextLb.textColor = [UIColor lightGrayColor];
+    }
+    return _contentTextLb;
+    
 }
 
 - (UIView *)separatorLineView{

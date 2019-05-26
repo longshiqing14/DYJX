@@ -85,32 +85,6 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
             //回调或者说是通知主线程刷新，
             [weakSelf.tableView reloadData];
         });
-//        NSArray *imageNamearray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:personInfoModel.Business.IMInfo.Images];
-//        if (imageNamearray.count > 0) {
-//            [imageNamearray enumerateObjectsUsingBlock:^(PersonZhiZhaoModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//
-//                dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//                    // 处理耗时操作的代码块...
-//                    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[obj.Name XYImageURL]]]];
-//                    if (image) {
-//                        [weakSelf.imgArr addObject:image];
-//                    }
-//                    //通知主线程刷新
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        //回调或者说是通知主线程刷新，
-//                        [weakSelf.tableView reloadData];
-//                    });
-//
-//                });
-//            }];
-//        }else {
-//            //通知主线程刷新
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                //回调或者说是通知主线程刷新，
-//                [weakSelf.tableView reloadData];
-//            });
-//        }
-        
     } failed:^(NSString *errorMsg) {
         
     }];
@@ -582,7 +556,7 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
 -(UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _tableView.delaysContentTouches = NO;
+//        _tableView.delaysContentTouches = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
