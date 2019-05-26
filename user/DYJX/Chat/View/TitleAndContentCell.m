@@ -67,7 +67,7 @@
         make.left.mas_equalTo(self.iconImage.mas_right).mas_equalTo(5);
         make.right.mas_equalTo(-10);
         make.centerY.mas_equalTo(0);
-        make.height.mas_equalTo(16);
+//        make.height.mas_equalTo(16);
 //        make.top.mas_equalTo(0);
 //        make.bottom.mas_equalTo(1);
     }];

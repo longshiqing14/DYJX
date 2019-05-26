@@ -196,6 +196,7 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WeakSelf;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.viewModel.dataArray[indexPath.section][indexPath.row].cellIdentity forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.section == self.viewModel.dataArray.count - 1) {
         [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"cellmodel"];
         ImageUploadCell *imageUploadCell = (ImageUploadCell *)cell;
@@ -286,9 +287,9 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
         if (indexPath.row == 0) {
             return 150;
         }
-        return 40;
+        return 50;
     }else if (indexPath.section == 1 || indexPath.section == 2){
-        return 40;
+        return 50;
     }else{
         return 120;
     }
