@@ -9,7 +9,7 @@
 #import "DYJXJoinGroupController.h"
 
 @interface DYJXJoinGroupController ()
-
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *groupImageView;
 @property (nonatomic, strong) UILabel *groupNumberLb;
 @property (nonatomic, strong) UILabel *groupNameLb;
@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"发送请求";
     [self setUIWithGroupResponse:self.response];
 }
@@ -99,10 +99,22 @@
     return params;
 }
 
+-(UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc]init];
+        [self.view addSubview:_scrollView];
+        [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(@0);
+        }];
+        _scrollView.backgroundColor = [UIColor lightGrayColor];
+    }
+    return _scrollView;
+}
+
 - (UIImageView *)groupImageView {
     if (!_groupImageView) {
         _groupImageView =[[UIImageView alloc]init];
-        [self.view addSubview:_groupImageView];
+        [self.scrollView addSubview:_groupImageView];
         [_groupImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.and.left.equalTo(@(__X(40)));
             make.width.and.height.equalTo(@(__X(160)));
@@ -115,11 +127,11 @@
 -(UILabel *)groupNameLb {
     if (!_groupNameLb) {
         _groupNameLb = [[UILabel alloc]init];
-        [self.view addSubview:_groupNameLb];
+        [self.scrollView addSubview:_groupNameLb];
         [_groupNameLb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.groupImageView);
             make.left.equalTo(self.groupImageView.mas_right).offset(__X(20));
-            make.right.lessThanOrEqualTo(@(__X(-20)));
+            make.right.lessThanOrEqualTo(self.view).offset(__X(-20));
         }];
         _groupNameLb.font = [UIFont systemFontOfSize:__X(30)];
         _groupNameLb.textColor = [UIColor blackColor];
@@ -130,12 +142,12 @@
 -(UILabel *)groupNumberLb {
     if (!_groupNumberLb) {
         _groupNumberLb = [[UILabel alloc]init];
-        [self.view addSubview:_groupNumberLb];
+        [self.scrollView addSubview:_groupNumberLb];
         [_groupNumberLb mas_makeConstraints:^(MASConstraintMaker *make) {
            make.top.equalTo(self.groupImageView);
             make.bottom.equalTo(self.groupNameLb.mas_top).offset(__X(-10));
             make.left.equalTo(self.groupImageView.mas_right).offset(__X(20));
-            make.right.lessThanOrEqualTo(@(__X(-20)));
+            make.right.lessThanOrEqualTo(self.view).offset(__X(-20));
         }];
         _groupNumberLb.font = [UIFont systemFontOfSize:__X(30)];
         _groupNumberLb.textColor = [UIColor blackColor];
@@ -146,12 +158,12 @@
 -(UILabel *)groupInfo {
     if (!_groupInfo) {
         _groupInfo = [[UILabel alloc]init];
-        [self.view addSubview:_groupInfo];
+        [self.scrollView addSubview:_groupInfo];
         [_groupInfo mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.groupNameLb.mas_bottom).offset(__X(10));
             make.bottom.equalTo(self.groupImageView);
             make.left.equalTo(self.groupImageView.mas_right).offset(__X(20));
-            make.right.lessThanOrEqualTo(@(__X(-20)));
+            make.right.lessThanOrEqualTo(self.view).offset(__X(-20));
         }];
         _groupInfo.font = [UIFont systemFontOfSize:__X(30)];
         _groupInfo.textColor = [UIColor blackColor];
@@ -162,10 +174,11 @@
 -(UIView *)lineView {
     if (!_lineView) {
         _lineView = [[UIView alloc]init];
-        [self.view addSubview:_lineView];
+        [self.scrollView addSubview:_lineView];
         [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.groupImageView.mas_bottom).offset(__X(40));
-            make.left.and.right.equalTo(@0);
+            make.left.equalTo(@0);
+            make.right.equalTo(self.view);
             make.width.equalTo(@(__X(2)));
         }];
         _lineView.backgroundColor = [UIColor grayColor];
@@ -176,11 +189,11 @@
 -(UILabel *)inputTitleLb {
     if (!_inputTitleLb) {
         _inputTitleLb = [[UILabel alloc]init];
-        [self.view addSubview:_inputTitleLb];
+        [self.scrollView addSubview:_inputTitleLb];
         [_inputTitleLb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.lineView.mas_bottom).offset(__X(40));
             make.left.equalTo(@(__X(40)));
-            make.right.lessThanOrEqualTo(@(__X(40)));
+            make.right.lessThanOrEqualTo(self.view).offset(__X(-40));
         }];
         _inputTitleLb.text = @"请输入您的请求信息";
         _inputTitleLb.font = [UIFont systemFontOfSize:__X(30)];
@@ -192,10 +205,10 @@
 -(UITextView *)inputTextView {
     if (!_inputTextView) {
         _inputTextView = [[UITextView alloc]init];
-        [self.view addSubview:_inputTextView];
+        [self.scrollView addSubview:_inputTextView];
         [_inputTextView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(@(__X(40)));
-            make.right.equalTo(@(__X(-40)));
+            make.right.equalTo(self.view).offset(__X(-40));
             make.top.equalTo(self.inputTitleLb.mas_bottom).offset(__X(40));
             make.height.equalTo(@(__X(400)));
         }];
@@ -209,12 +222,13 @@
 -(UIButton *)joinGroupBtn {
     if (!_joinGroupBtn) {
         _joinGroupBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        [self.view addSubview:_joinGroupBtn];
+        [self.scrollView addSubview:_joinGroupBtn];
         [_joinGroupBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.inputTextView.mas_bottom).offset(__X(80));
             make.centerX.equalTo(@0);
             make.width.equalTo(@(__X(300)));
             make.height.equalTo(@(__X(80)));
+            make.bottom.lessThanOrEqualTo(@(__X(60)));
         }];
         _joinGroupBtn.backgroundColor = [UIColor orangeColor];
         [_joinGroupBtn setTitle:@"发送请求" forState:(UIControlStateNormal)];
