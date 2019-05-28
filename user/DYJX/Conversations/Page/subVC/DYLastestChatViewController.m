@@ -132,7 +132,13 @@
     [iconImage setImageWithURL:[NSURL URLWithString:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
     self.navigationItem.rightBarButtonItem.width = 20;
     
+
+    
     UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
+    if (self.isPersonIdentification) {
+        rightCustomView.layer.cornerRadius = 10;
+        rightCustomView.clipsToBounds = YES;
+    }
     [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
     [rightCustomView addSubview: iconImage];
     
