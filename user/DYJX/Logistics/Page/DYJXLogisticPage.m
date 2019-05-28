@@ -36,6 +36,8 @@
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property(nonatomic, strong)iPhoneXBottomBackgroundView *bottomBackgroundView;
 @property(nonatomic, strong) DJCompanyChatViewModel *companyViewModel;
+@property(nonatomic, assign) BOOL isPersonIdentification;
+
 @end
 
 @implementation DYJXLogisticPage
@@ -69,10 +71,13 @@
     
     if ([UserManager shared].isCompany == 1) {
         iconImage.layer.cornerRadius = 12.5;
+        self.isPersonIdentification = YES;
     }
     
     if ([[UserManager shared].getUserModel.Result.NumberString isEqualToString:self.IdentityModel.NumberString]) {
         iconImage.layer.cornerRadius = 12.5;
+        self.isPersonIdentification = YES;
+
     }
     
 
@@ -411,7 +416,7 @@
 
 - (IBAction)conversationBTN:(UIButton *)sender {
 //    [self.navigationController pushViewController:[[DYJXConversationTabBarController alloc] init] animated:YES];
-    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[self.IdentityModel.GroupHeadImg XYImageURL]];
+    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[self.IdentityModel.GroupHeadImg XYImageURL] personIdentification:self.isPersonIdentification];
     [XYUserDefaults writeAppDlegateOfCurrentUserIconURL:[self.IdentityModel.GroupHeadImg XYImageURL]];
     [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
     

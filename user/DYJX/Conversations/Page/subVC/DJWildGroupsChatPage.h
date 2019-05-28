@@ -10,5 +10,6 @@
 #import "BaseListViewController.h"
 
 @interface DJWildGroupsChatPage : UIViewController
+@property(nonatomic, assign) BOOL isPersonIdentification;
 
 @end
