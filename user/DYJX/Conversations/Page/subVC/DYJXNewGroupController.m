@@ -228,7 +228,7 @@ typedef void(^GroupDetailsViewBlock)(NSInteger index);
 
 // 提交修改的信息
 - (void)CommitUserInfo {
-    
+    [self uploadGroupWithGroupType:0];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

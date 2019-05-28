@@ -396,15 +396,18 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
     [self dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    if (self.isSelectHeader) {
-        self.headerImage = image;
-        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:0];
-        OwnerImageCell *ownerImageCell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [ownerImageCell.porityImageView setImage:image];
-        
-    }else{
-        WeakSelf
-        [self.viewModel uploadFile:image Success:^(id  _Nullable responseObject) {
+    WeakSelf
+    [self.viewModel uploadFile:image Success:^(id  _Nullable responseObject) {
+        if (self.isSelectHeader) {
+            self.headerImage = image;
+            self.viewModel.dataArray.firstObject.firstObject.spareImage = image;
+            self.viewModel.dataArray.firstObject.firstObject.spareString = responseObject[@"SavedFileName"];
+            NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:0];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                OwnerImageCell *ownerImageCell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
+                [ownerImageCell.porityImageView setImage:image];
+            });
+        }else{
             PersonZhiZhaoModel *model = [[PersonZhiZhaoModel alloc]init];
             model.Name = responseObject[@"SavedFileName"];
             if (weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray) {
@@ -416,16 +419,15 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
             photoModel.photoImage = image;
             photoModel.photo = model;
             [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:photoModel];
-//            [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:model];
+            //            [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:model];
             NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:3] ;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
             });
-            
-        } failed:^(NSString *errorMsg) {
-            
-        }];
-    }
+        }
+    } failed:^(NSString *errorMsg) {
+        
+    }];
 }
 
 - (void)CommitUserInfo{
@@ -435,13 +437,13 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
 //        //上传执照
 //        [weakSelf uploadImgArr];
 //    }else{
-        if([weakSelf.headerImage CGImage]){
-            //上传个人头像
-            [weakSelf uploadHeaderImg];
-        }else{
+//        if([weakSelf.headerImage CGImage]){
+//            //上传个人头像
+//            [weakSelf uploadHeaderImg];
+//        }else{
             //提交用户信息
-            [weakSelf UpdateIMUserInfo];
-        }
+            [self UpdateIMUserInfo];
+//        }
 //    }
 
 }
@@ -501,9 +503,9 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
     __block NSMutableArray *iamgeNameArray = [NSMutableArray array];
 
     /*@property(strong,nonatomic) NSMutableArray<NSString*> *imgNameArr ;*/
-    if (self.HeadImgUrl) {
-        [requstDic setObject:self.HeadImgUrl forKey:@"HeadImgUrl"];
-    }
+//    if (self.HeadImgUrl) {
+//        [requstDic setObject:self.HeadImgUrl forKey:@"HeadImgUrl"];
+//    }
     [requstDic addEntriesFromDictionary:[self.viewModel getUpDataParameters]];
     if (![YWDTools isNil:self.Latitude]) {
         [requstDic setObject:@([self.Latitude floatValue]) forKey:@"Latitude"];

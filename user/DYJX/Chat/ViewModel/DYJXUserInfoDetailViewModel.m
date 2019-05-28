@@ -160,6 +160,9 @@
 
 - (NSDictionary *)getUpDataParameters {
     NSMutableDictionary *parameters = @{}.mutableCopy;
+    if (self.dataArray.firstObject.firstObject.spareString.length > 0) {
+        [parameters setObject:self.dataArray.firstObject.firstObject.spareString forKey:@"HeadImgUrl"];
+    }
     if (self.dataArray[1][0].text.length > 0) {
         [parameters setObject:self.dataArray[1][0].text forKey:@"NickName"];
     }
@@ -207,6 +210,7 @@
 }
 
 - (void)setContentsWithPersonInfoModel:(DYJXUserInfoModel *)personInfoModel {
+    self.dataArray[0][0].spareString = personInfoModel.Business.IMInfo.HeadImgUrl;
     self.dataArray[0][1].text = personInfoModel.NumberString;
     self.dataArray[0][2].text = personInfoModel.Cellphone;
     
