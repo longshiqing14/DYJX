@@ -283,6 +283,7 @@
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"company"]){
 
             DJCompanyChatPage *companyChatPage = [[DJCompanyChatPage alloc]init];
+            companyChatPage.isPersonIdentification = self.isPersonIdentification;
                 [self.navigationController pushViewController:companyChatPage animated:YES];
         }
     }
