@@ -65,7 +65,7 @@
         }];
         [alertController addAction:rightAction];
     }
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+    [[self getCurrentVC] presentViewController:alertController animated:YES completion:nil];
 }
 
 + (void)alertWithTitle:(NSString *)title
@@ -92,7 +92,7 @@ defaultActionTitleColor:(NSArray *)defaultActionTitleColors
         [rightAction setValue:defaultActionTitleColors[index] forKey:@"titleTextColor"];
         [alertController addAction:rightAction];
     }
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+    [[self getCurrentVC] presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

@@ -352,6 +352,24 @@
         gaodeMapDic[@"url"] = urlString;
         [maps addObject:gaodeMapDic];
     }
+    
+    //谷歌地图
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
+        NSMutableDictionary *googleMapDic = [NSMutableDictionary dictionary];
+        googleMapDic[@"title"] = @"谷歌地图";
+        NSString *urlString = [[NSString stringWithFormat:@"comgooglemaps://?x-source=%@&x-success=%@&saddr=&daddr=%lf,%lf&directionsmode=driving",@"导航测试",@"nav123456",self.centerPoint.coordinate.latitude,self.centerPoint.coordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        googleMapDic[@"url"] = urlString;
+        [maps addObject:googleMapDic];
+    }
+    
+    //腾讯地图
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"qqmap://"]]) {
+        NSMutableDictionary *qqMapDic = [NSMutableDictionary dictionary];
+        qqMapDic[@"title"] = @"腾讯地图";
+        NSString *urlString = [[NSString stringWithFormat:@"qqmap://map/routeplan?from=我的位置&type=drive&tocoord=%lf,%lf&to=终点&coord_type=1&policy=0",self.centerPoint.coordinate.latitude,self.centerPoint.coordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        qqMapDic[@"url"] = urlString;
+        [maps addObject:qqMapDic];
+    }
     //选择
     UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"选择地图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     NSInteger index = maps.count;
