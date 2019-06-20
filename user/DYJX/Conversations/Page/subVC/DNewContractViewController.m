@@ -21,6 +21,7 @@
 #import "DYGoodCell.h"
 #import "DYJXSubcompanyInfoDetailPage.h"
 #import "DXZMobileContactsPage.h"
+#import "DYJXContactDetailsController.h"
 
 @interface DNewContractViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -117,6 +118,14 @@
             }
             [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
         }];
+    }else{
+        if (self.pageIndex == 1) {
+            [self.tableView.mj_header endRefreshing];
+        }
+        else {
+            [self.tableView.mj_footer endRefreshing];
+        }
+        [YDBAlertView showToast:@"请输入搜索关键字" dismissDelay:1.0];
     }
 }
 
@@ -193,7 +202,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     DYXJResult *result = (DYXJResult *)self.userLists[indexPath.row];
-    DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
+    DYJXContactDetailsController *page = [[DYJXContactDetailsController alloc]init];
+//    DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
     page.title = @"信息查看";
     page.groupNumber = result.NumberString;
     page.targetId = result.Id;

@@ -20,6 +20,8 @@
 #import "SubcompanyBottomView.h"
 #import "BaiduMapViewController.h"
 #import "DYJXCompanyAddressController.h"
+#import "DYJXAddSubMemberController.h"
+#import "DYJXConversationTabBarController.h"
 
 @interface DYJXAddCompanyPageController ()<UITableViewDelegate,UITableViewDataSource,XYSelectIconPopViewDelegate>
 
@@ -34,11 +36,6 @@
 @property (nonatomic, strong)DYJXAddCompanyPageViewModel *viewModel;
 /** 公司详情请求返回数据 */
 @property(nonatomic, strong) DYJXXYGroupByIdResponse *groupByIdResponse;
-
-@property (nonatomic, copy) NSString *groupNumber;
-@property (nonatomic, copy) NSString *targetId;
-@property (nonatomic, assign) BOOL isAdmin;
-
 /** 底部view */
 @property(strong, nonatomic) CompanyBottomView *bottomView;
 @property(strong, nonatomic) CompanyAdminBottomView *adminBottomView;
@@ -49,7 +46,7 @@
 @implementation DYJXAddCompanyPageController
 
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType {
-    return [self initWithCompanyType:companyType groupNumber:@"" targetId:@""];
+    return [self initWithCompanyType:companyType groupNumber:@"" targetId:@"" userIconImageURL:@"" isAdmin:NO];
 }
 
 -(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType requestDic:(NSDictionary *)requestDic result:(DYJXXYResult *)result {
@@ -62,12 +59,14 @@
     return self;
 }
 
--(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType groupNumber:(nonnull NSString *)groupNumber targetId:(nonnull NSString *)targetId{
+-(instancetype)initWithCompanyType:(DYJXAddCompanyType)companyType groupNumber:(nonnull NSString *)groupNumber targetId:(nonnull NSString *)targetId userIconImageURL:(nonnull NSString *)userIconImageURL isAdmin:(BOOL)isAdmin{
     self = [super init];
     if (self) {
         self.companyType = companyType;
         self.groupNumber = groupNumber;
         self.targetId = targetId;
+        self.userIconImageURL = userIconImageURL;
+        self.isAdmin = isAdmin;
     }
     return self;
 }
@@ -85,10 +84,18 @@
     if (self.companyType == DYJXAddCompanyType_Sub) {
         self.navigationItem.title = @"子公司账号管理";
     }else if (self.companyType == DYJXAddCompanyType_SubDetails) {
-        self.navigationItem.title = @"信息查看";
+        self.navigationItem.title = @"子公司账号管理";
     }else {
         self.navigationItem.title = @"公司账号管理";
     }
+    
+    UIBarButtonItem *rightitem=[[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(uploadCompany)];
+    
+    if (self.isAdmin) {
+        self.navigationItem.rightBarButtonItem=rightitem;
+    }
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithHexString:@"#F2A73B"]];
 }
 
 /** 设置UI */
@@ -111,18 +118,38 @@
 - (void)changeCompanyAddressNotification:(NSNotification *)noti {
     NSDictionary *userInfo = noti.userInfo;
     NSMutableString *companyAddress = @"".mutableCopy;
-    if ([[userInfo allKeys] containsObject:@"provinceName"]) {
-        [companyAddress insertString:userInfo[@"provinceName"] atIndex:companyAddress.length];
+    if ([[userInfo allKeys] containsObject:@"ProvinceName"]) {
+        [companyAddress insertString:userInfo[@"ProvinceName"] atIndex:companyAddress.length];
     }
-    if ([[userInfo allKeys] containsObject:@"cityName"]) {
-        [companyAddress insertString:userInfo[@"cityName"] atIndex:companyAddress.length];
+    if ([[userInfo allKeys] containsObject:@"CityName"]) {
+        [companyAddress insertString:userInfo[@"CityName"] atIndex:companyAddress.length];
     }
-    if ([[userInfo allKeys] containsObject:@"districtName"]) {
-        [companyAddress insertString:userInfo[@"districtName"] atIndex:companyAddress.length];
+    if ([[userInfo allKeys] containsObject:@"DistrictName"]) {
+        [companyAddress insertString:userInfo[@"DistrictName"] atIndex:companyAddress.length];
     }
+    
+    if ([[userInfo allKeys] containsObject:@"ProvinceID"]) {
+        self.viewModel.ProvinceId = [((NSNumber *)userInfo[@"ProvinceID"]) stringValue];
+    }
+    if ([[userInfo allKeys] containsObject:@"CityID"]) {
+        self.viewModel.CityId = [((NSNumber *)userInfo[@"CityID"]) stringValue];
+    }
+    if ([[userInfo allKeys] containsObject:@"DistrictID"]) {
+        self.viewModel.DistrictId = [((NSNumber *)userInfo[@"DistrictID"]) stringValue];
+    }
+    
     self.viewModel.dataArray[1][1].text = companyAddress.copy;
     NSIndexPath *indexPath= [NSIndexPath indexPathForRow:1 inSection:1] ;
     [self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+}
+
+- (void)uploadCompany {
+    WeakSelf
+    [self.viewModel uploadCompanySuccess:^(DYJXXYGroupByIdResponse *response) {
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    } failed:^(NSString * errorMsg) {
+        [YDBAlertView showToast:errorMsg dismissDelay:1.0];
+    }];
 }
 
 - (void)getGroupInfo {
@@ -146,7 +173,7 @@
 //弹出选择框
 -(void)showActionForPhoto
 {
-    if (self.imageArray.count == 4) {
+    if (self.imageArray.count == 4 && !self.isSelectHeader) {
         [XYProgressHUD svHUDShowStyle:XYHUDStyleInfo title:@"最多4张图片" dismissTimeInterval:1.0];
         return;
     }
@@ -180,18 +207,40 @@
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             [SVProgressHUD dismiss];
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
-                [YDBAlertView showToast:@"图片上传中成功！" dismissDelay:1.0];
+//                [YDBAlertView showToast:@"图片上传中成功！" dismissDelay:1.0];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (weakSelf.isSelectHeader) { // 头像
-                        weakSelf.headerImage = images.firstObject;
+                        weakSelf.viewModel.dataArray.firstObject.firstObject.spareImage = images.firstObject;
+                        weakSelf.viewModel.dataArray.firstObject.firstObject.spareString = responseObject[@"SavedFileName"];
                         NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:0];
-                        OwnerImageCell *ownerImageCell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
-                        [ownerImageCell.porityImageView setImage:images.firstObject];
+                        if (weakSelf.companyType == DYJXAddCompanyType_Sub ||
+                            weakSelf.companyType == DYJXAddCompanyType_None) {
+                            DYJXAddCompanyPageHeaderCell *ownerImageCell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
+                            [ownerImageCell.porityImageView setImage:images.firstObject];
+                        }else {
+                            OwnerImageCell *ownerImageCell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
+                            [ownerImageCell.porityImageView setImage:images.firstObject];
+                        }
                     }else {
-                        [weakSelf.imageArray addObjectsFromArray:images];
-                        [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:responseObject[@"SavedFileName"]];
-                        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:4] ;
-                        [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+                        if (weakSelf.companyType == DYJXAddCompanyType_Sub ||
+                            weakSelf.companyType == DYJXAddCompanyType_None) {
+                            [weakSelf.imageArray addObjectsFromArray:images];
+                        }
+                        
+                        PersonZhiZhaoModel *model = [[PersonZhiZhaoModel alloc]init];
+                        model.Name = responseObject[@"SavedFileName"];
+                        if (weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray) {
+                            model.Title = [NSString stringWithFormat:@"执照图片%ld",weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray.count + 1];
+                        }else {
+                            model.Title = @"执照图片1";
+                        }
+                        LPXPhotoModel *photoModel = [[LPXPhotoModel alloc]init];
+                        photoModel.photoImage = images.firstObject;
+                        photoModel.photo = model;
+                        [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:photoModel];
+//                        [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:model];
+                            NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:4] ;
+                            [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
                     }
                 });
             }else{
@@ -246,8 +295,9 @@
 
 #pragma mark - 退出公司
 - (void)exitCompanyWithGroupId:(NSString *)groupId {
+    WeakSelf
     [self.viewModel QuitGroupWithGroupId:groupId Success:^(DYJXXYGroupByIdResponse *response) {
-        
+        [weakSelf.navigationController popViewControllerAnimated:NO];
     } failed:^(NSString *errorMsg) {
         
     }];
@@ -256,7 +306,9 @@
 - (void)deleteCompanyWithGroupId:(NSString *)groupId {
     WeakSelf
     [self.viewModel deleteGroupWithGroupId:groupId Success:^(DYJXXYGroupByIdResponse *response) {
-        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.navigationController popViewControllerAnimated:NO];
+        });
     } failed:^(NSString *errorMsg) {
         
     }];
@@ -269,7 +321,7 @@
     [self.viewModel getProvincesWithSuccess:^(DYJXAddressModel * _Nonnull addressModel) {
         [SVProgressHUD dismiss];
         if (addressModel.Succeed) {
-            DYJXCompanyAddressController *companyAddressVC = [[DYJXCompanyAddressController alloc]initWithAddressModel:addressModel addressType:(DYJXCompanyAddressType_Province) provinceName:@"" cityName:@""];
+            DYJXCompanyAddressController *companyAddressVC = [[DYJXCompanyAddressController alloc]initWithAddressModel:addressModel addressType:(DYJXCompanyAddressType_Province) addressParameters:@{}.copy];
             [weakSelf.navigationController pushViewController:companyAddressVC animated:YES];
         }else {
             [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
@@ -278,6 +330,37 @@
         [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
     }];
 }
+#pragma mark 定位开启可以到百度地图
+- (void)pushViewControllerWithIndexPath:(NSIndexPath *)indexPath {
+    WeakSelf
+    DYJXAddCompanyPageCell *newCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    CLLocationCoordinate2D centerCoordinate = {0,0};
+    BaiduMapViewController *baiduMapVC = [[BaiduMapViewController alloc]initWithCenterCoordinate:centerCoordinate poiAddressBlock:^(CLLocationCoordinate2D centerCoordinate, NSString *name) {
+        newCell.model.text = name;
+        weakSelf.viewModel.Latitude = [@(centerCoordinate.latitude) stringValue];
+        weakSelf.viewModel.Longitude = [@(centerCoordinate.longitude) stringValue];
+        [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+    }];
+    [self.navigationController pushViewController:baiduMapVC animated:YES];
+}
+
+#pragma mark 定位没开启设置定位权限
+- (void)setLocationAuthorization {
+    WeakSelf
+    [UIAlertController alertWithTitle:@"定位权限没有开启" message:@"当前定位权限没有开启无法定位，请你去设置定位权限" preferredStyle:(UIAlertControllerStyleAlert) cancelActionTitle:@"取消" defaultActionTitle:@[@"去设置"] defaultActionBlock:^(UIAlertAction *action) {
+        [weakSelf setupAuthorization];
+    }];
+}
+
+- (void)setupAuthorization {
+    if (iOS8Later) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"抱歉" message:@"无法跳转到隐私设置页面，请手动前往设置页面，谢谢" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
 
 
 #pragma mark - UITableViewDelegate
@@ -291,7 +374,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.viewModel.dataArray[indexPath.section][indexPath.row].cellIdentity forIndexPath:indexPath];
-    if (indexPath.section == self.viewModel.dataArray.count - 1) {
+    if ([cell isKindOfClass:[OwnerImageCell class]] ||
+        [cell isKindOfClass:[ImageUploadCell class]]) {
         [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"cellmodel"];
     }else {
         [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"model"];
@@ -299,9 +383,14 @@
     
     WeakSelf
     if (indexPath.section == 0 && indexPath.row == 0) {
+        cell.userInteractionEnabled = YES;
         if (self.companyType == DYJXAddCompanyType_None ||
             self.companyType == DYJXAddCompanyType_Sub) {
             DYJXAddCompanyPageHeaderCell *newCell = (DYJXAddCompanyPageHeaderCell *)cell;
+            if (self.viewModel.dataArray.firstObject.firstObject.spareImage) {
+                newCell.porityImageView.image = self.viewModel.dataArray.firstObject.firstObject.spareImage;
+            }
+            
             newCell.block = ^{
                 weakSelf.isSelectHeader = YES;
                 [weakSelf showActionForPhoto];
@@ -309,8 +398,10 @@
         }else {
             OwnerImageCell *newCell = (OwnerImageCell *)cell;
             newCell.block = ^{
-                weakSelf.isSelectHeader = YES;
-                [weakSelf showActionForPhoto];
+//                if (weakSelf.companyType != DYJXAddCompanyType_SubDetails) {
+                    weakSelf.isSelectHeader = YES;
+                    [weakSelf showActionForPhoto];
+//                }
             };
             
             newCell.qrCcodeblock = ^{
@@ -331,7 +422,10 @@
         };
         newCell.deleteImageBlock = ^(NSInteger index) {
             //TODO: 删除图片
-            [weakSelf.imageArray removeObjectAtIndex:index];
+            if (weakSelf.companyType == DYJXAddCompanyType_Sub ||
+                weakSelf.companyType == DYJXAddCompanyType_None) {
+                [weakSelf.imageArray removeObjectAtIndex:index];
+            }
             [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray removeObjectAtIndex:index];
             [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
         };
@@ -340,26 +434,38 @@
         newCell.nextBtnBlock = ^(DYJXAddCompanyPageCell * _Nonnull cell) {
             //TODO: 点击进行下一步操作
             NSIndexPath *indexPath = [tableView indexPathForCell:cell];
-            if (indexPath.section == 0 && indexPath.row == 4) {
-                //TODO: 公司成员
-                DYJXAddMemberPage *addMemberPage = [[DYJXAddMemberPage alloc]init];
-                addMemberPage.membersArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.Members] mutableCopy];
-                addMemberPage.adminArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.AdminUsers] mutableCopy];
-                [self.navigationController pushViewController:addMemberPage animated:YES];
+            if (indexPath.section == 0 && (indexPath.row == 4 || indexPath.row == 5)) {
+                
+                if ((weakSelf.companyType == DYJXAddCompanyType_SubDetails ||
+                    weakSelf.companyType == DYJXAddCompanyType_Details) && [cell.model.leftViewText containsString:@"子公司"]) {
+                    //TODO: 子公司成员
+                    DYJXAddSubMemberController *addSubMemberVC = [[DYJXAddSubMemberController alloc]initWithCompanyResult:self.groupByIdResponse.Result];
+                    [self.navigationController pushViewController:addSubMemberVC animated:YES];
+                }else {
+                    //TODO: （子）公司成员
+                    DYJXAddMemberPage *addMemberPage = [[DYJXAddMemberPage alloc]init];
+                    if ([cell.model.leftViewText containsString:@"子公司"]) {
+                        addMemberPage.membersArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.Children] mutableCopy];
+                    }else {
+                        addMemberPage.membersArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.Members] mutableCopy];
+                    }
+                    addMemberPage.adminArray = [[NSArray modelArrayWithClass:[DJJXMembers class] json:self.groupByIdResponse.Result.AdminUsers] mutableCopy];
+                    [weakSelf.navigationController pushViewController:addMemberPage animated:YES];
+                }
             }else if (indexPath.section == 0 && indexPath.row == 5) {
-                //TODO: 子公司成员
                 
             }else if (indexPath.section == 1 && indexPath.row == 1) {
                 //TODO: 公司地址
                 [weakSelf getCompanyAddressProvinces];
             }else if (indexPath.section == 1 && indexPath.row == 3) {
                 //TODO: 公司GPS位置
-                CLLocationCoordinate2D centerCoordinate = {0,0};
-                BaiduMapViewController *baiduMapVC = [[BaiduMapViewController alloc]initWithCenterCoordinate:centerCoordinate poiAddressBlock:^(CLLocationCoordinate2D centerCoordinate, NSString *name) {
-                    cell.model.text = name;
-                    [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+                [weakSelf requestAuthorizationWithCompletionHandler:^(BOOL granted) {
+                    if (granted) {
+                        [weakSelf pushViewControllerWithIndexPath:indexPath];
+                    }else {
+                        [weakSelf setLocationAuthorization];
+                    }
                 }];
-                [weakSelf.navigationController pushViewController:baiduMapVC animated:YES];
             }
         };
     }
@@ -494,8 +600,23 @@
             }
         }];
         _bottomView.enterConversionBlock = ^{
-            // TODO:进入会话
-            [weakSelf enterConversion];
+            // TODO:进群会话
+//            [weakSelf enterConversion];
+            if (weakSelf.isFromMyCompany) {
+                if (weakSelf.navigationController.viewControllers.count >= 2) {
+                    UIViewController *vc = [weakSelf.navigationController.viewControllers objectOrNilAtIndex:1];
+                    [weakSelf.navigationController popToViewController:vc animated:YES];
+                    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]];
+                    [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
+                    [conversationTabBarController setSelectedIndex:2];
+                }
+                return ;
+            }else{
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]];
+                    [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
+                    [conversationTabBarController setSelectedIndex:2];
+            }
         };
         _bottomView.exitCompanyBlock = ^{
             // TODO:退出账号
@@ -520,8 +641,25 @@
             }
         }];
         _adminBottomView.enterConversionBlock = ^{
-            // TODO:进入会话
-            [weakSelf enterConversion];
+            // TODO:进群会话
+//            [weakSelf enterConversion];
+            if (weakSelf.isFromMyCompany) {
+                if (weakSelf.navigationController.viewControllers.count >= 2) {
+                    UIViewController *vc = [weakSelf.navigationController.viewControllers objectOrNilAtIndex:1];
+                    [weakSelf.navigationController popToViewController:vc animated:YES];
+                    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]];
+                    [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
+                    [conversationTabBarController setSelectedIndex:2];
+                }
+                return ;
+            }else{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+
+                    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[XYUserDefaults readAppDlegateOfCurrentUserIconURL]];
+                    [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
+                    [conversationTabBarController setSelectedIndex:2];
+                
+            }
         };
         
         _adminBottomView.exitCompanyBlock = ^{
@@ -555,10 +693,7 @@
         [_addCompanyBottomView setSubcompanyBottomBtnWithBackgroundColor:[UIColor colorWithRed:240/255.0 green:176/255.0 blue:67/255.0 alpha:1]];
         _addCompanyBottomView.block = ^{
             //TODO: 提交数据
-            [weakSelf.viewModel uploadCompanySuccess:^(DYJXXYGroupByIdResponse *response) {
-                [weakSelf.navigationController popViewControllerAnimated:YES];
-            } failed:^(NSString * errorMsg) {
-            }];
+            [weakSelf uploadCompany];
         };
     }
     return _addCompanyBottomView;

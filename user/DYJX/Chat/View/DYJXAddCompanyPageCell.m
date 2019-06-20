@@ -57,17 +57,33 @@
     self.contentLb.hidden = !model.isHiddenField;
     self.textField.text = model.text;
     
-    if (model.text && ![model.text isEqualToString:@""]) {
+    if ((model.text && ![model.text isEqualToString:@""] && model.righImageName)) {
+        CGFloat width = [self getLableWidthWithText:model.text];
+        [self.leftLb mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(@(width));
+        }];
         self.leftLb.text = model.text;
     }
     if (!model.righImageName || ![model.righImageName isEqualToString:@""]) {
         self.nextBtn.hidden = NO;
+        self.nextBtn.selected = model.isSelected;
         [self.nextBtn setImage:[UIImage imageNamed:model.righImageName] forState:(UIControlStateNormal)];
         BOOL isRighImageNil = (!model.righSelectedImageName || ![model.righSelectedImageName isEqualToString:@""]);
         [self.nextBtn setImage:[UIImage imageNamed:isRighImageNil ? model.righSelectedImageName : model.righImageName] forState:(UIControlStateSelected)];
     }else {
         self.nextBtn.hidden = YES;
     }
+}
+
+- (CGFloat)getLableWidthWithText:(NSString *)text {
+    UILabel *lb = [[UILabel alloc]init];
+    lb.textColor = [UIColor lightGrayColor];
+    lb.textAlignment = NSTextAlignmentLeft;
+    lb.font = [UIFont systemFontOfSize:__X(30)];
+    lb.numberOfLines = 1;
+    lb.text = text;
+    [lb sizeToFit];
+    return lb.width;
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -81,13 +97,21 @@
 //        }
 //    }
     if (self.model.isShowSelectetView) {
-        //        if ([self.model.righImageName isEqualToString:@""]) {
-        if (self.nextBtnBlock) { // 跳到下一步操作
-            self.nextBtnBlock(self);
+        if ([self.model.righImageName isEqualToString:@"ic_category_close"]) {
+            if (self.nextBtnBlock) { // 跳到下一步操作
+                self.nextBtnBlock(self);
+            }
+        }else { // 勾选/非勾选
+            if ([self.model.leftViewText containsString:@"屏蔽群通知信息"]) {
+                if (self.otherBtnBlock) {
+                    self.model.isSelected = !self.model.isSelected;
+                    self.otherBtnBlock(self);
+                }
+            }else {
+                self.nextBtn.selected = !self.nextBtn.selected;
+                self.model.isSelected = self.nextBtn.selected;
+            }
         }
-        //        }else { // 勾选/非勾选
-        //            self.nextBtn.selected = !self.nextBtn.selected;
-        //        }
     }
 }
 
@@ -98,8 +122,15 @@
                 self.nextBtnBlock(self);
             }
         }else { // 勾选/非勾选
-            self.nextBtn.selected = !self.nextBtn.selected;
-            self.model.isSelected = self.nextBtn.selected;
+            if ([self.model.leftViewText containsString:@"屏蔽群通知信息"]) {
+                if (self.otherBtnBlock) {
+                    self.model.isSelected = !self.model.isSelected;
+                    self.otherBtnBlock(self);
+                }
+            }else {
+                self.nextBtn.selected = !self.nextBtn.selected;
+                self.model.isSelected = self.nextBtn.selected;
+            }
         }
     }
 }

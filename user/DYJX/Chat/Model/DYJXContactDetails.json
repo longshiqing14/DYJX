@@ -1,0 +1,96 @@
+[
+    [{
+        "cellIdentity" : "kGroupDetailModelPorityCellId",
+        "placeholder" : "",
+        "userInteractionEnabled" : true
+    },
+    {
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "shanghao",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    },
+    {
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "phone",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    }],
+    [{
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "person_orange",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    },
+    {
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "sign",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    },
+    {
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "id",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    },
+    {
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "location_blue",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    },
+    {
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "location_blue",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    },
+    {
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "location_blue",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    },
+    {
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "share_qq",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    },
+    {
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "share_weixin",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    },
+    {
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "alipay",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    }],
+    [{
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "unionpay",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    },
+    {
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "unionpay",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    },
+    {
+        "cellIdentity" : "kGroupDetailModelTitleAndContentCell",
+        "leftViewImage" : "unionpay",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    }],
+    [{
+        "cellIdentity" : "kGroupDetailModelImageUploadCell",
+        "placeholder" : "",
+        "userInteractionEnabled" : false
+    }]
+]

@@ -54,7 +54,7 @@
         self.pageIndex = 1;
         [self reloadData];
     }];
-
+    [self.tableView.mj_header beginRefreshing];
     // 已读
 }
 
@@ -74,13 +74,18 @@
     [requestDic setObject:[JSExtension shared].myIdentityId forKey:@"CertificateId"];
     [requestDic setObject:@20 forKey:@"PageSize"];
     [requestDic setObject:@1 forKey:@"PageIndex"];
+    [requestDic setObject:@[] forKey:@"Data"];
+
     if (self.headView.textField.text.length) {
-        if (self.pageIndex == 1) {
-            [self.tableView.mj_header beginRefreshing];
-        }
-        else {
-            [self.tableView.mj_footer beginRefreshing];
-        }
+        [requestDic setObject:self.headView.textField.text forKey:@"Keyword"];
+
+    }
+//        if (self.pageIndex == 1) {
+//            [self.tableView.mj_header beginRefreshing];
+//        }
+//        else {
+//            [self.tableView.mj_footer beginRefreshing];
+//        }
 
         if (self.userLists.count >= 20) {
             MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
@@ -89,8 +94,7 @@
         else {
             self.tableView.mj_footer = nil;
         }
-        [requestDic setObject:self.headView.textField.text forKey:@"Keyword"];
-        [XYNetWorking XYPOST:@"Search112User" params:requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
+        [XYNetWorking XYPOST:@"UploadPhonebook" params:requestDic success:^(NSURLSessionDataTask *task, id responseObject) {
             if (self.pageIndex == 1) {
                 [self.tableView.mj_header endRefreshing];
             }
@@ -105,7 +109,7 @@
                     [self.userLists addObjectsFromArray:[NSArray modelArrayWithClass:[DYXJResult class] json:[responseObject objectForKey:@"Result"]]];
                     [self.tableView reloadData];
                 }else{
-                    [YDBAlertView showToast:[responseObject objectForKey:RETURN_DESC_] dismissDelay:1.0];
+                    [YDBAlertView showToast:[responseObject objectForKey:@"Message"] dismissDelay:1.0];
                 }
 
             }else{
@@ -121,7 +125,6 @@
             }
             [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
         }];
-    }
 }
 
 - (void)setUpTitleView

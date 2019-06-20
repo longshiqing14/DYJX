@@ -89,13 +89,37 @@ static NSString * const kDYJXAPI_user_GetCitys = @"GetCitys";
 //（子）公司所属区/县
 static NSString * const kDYJXAPI_user_GetDistricts = @"GetDistricts";
 
+// 查找群
+static NSString * const kDYJXAPI_SearchGroups = @"SearchGroups";
+
+// 新增群
+static NSString * const kDYJXAPI_EditGroup2 = @"EditGroup2";
+// 我管理的群
+static NSString * const kDYJXAPI_MyManagedGroups = @"MyManagedGroups";
+
 // 选择公司地址通知
 static NSString * const kDYJXAPI_CompanyAddress_Notification = @"kDYJXAPICompanyAddressNotification";
 
+// 新增内部群刷新通知
+static NSString * const kDYJXAPI_AddInteriorGroup_Notification = @"AddInteriorGroupNotification";
 
+// 新增外部群刷新通知
+static NSString * const kDYJXAPI_AddExternalGroup_Notification = @"AddExternalGroupNotification";
 
+// 普通联系人
+static NSString * const kDYJXAPI_user_AddUAUserContact = @"AddUAUserContact";
+// 好友联系人
+static NSString * const kDYJXAPI_user_AddFriendApply = @"AddFriendApply";
+// 加入黑名单
+static NSString * const kDYJXAPI_user_AddToBlacklist = @"AddToBlacklist";
+// 移出黑名单
+static NSString * const kDYJXAPI_user_RemoveBlacklist = @"RemoveBlacklist";
+// 删除联系人
+static NSString * const kDYJXAPI_user_DelContact = @"DelContact";
 
+// 群成员
+static NSString * const kDYJXAPI_addGroup_SearchUser = @"SearchUser";
 
-
-
+// 屏蔽群消息
+static NSString * const kDYJXAPI_SlientGroupMsg = @"SlientGroupMsg";
 

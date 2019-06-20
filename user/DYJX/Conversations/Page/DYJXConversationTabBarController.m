@@ -25,6 +25,16 @@
 
 @implementation DYJXConversationTabBarController
 
+-(instancetype)initWithIconUrl:(NSString*)iconUrl personIdentification:(BOOL)isPersonIdentification{
+    if (self = [super init]) {
+        self.iconUrl =  iconUrl;
+        self.isPersonIdentification = isPersonIdentification;
+        [self initSubViews];
+    }
+    return self;
+    
+}
+
 -(instancetype)initWithIconUrl:(NSString*)iconUrl{
     if (self = [super init]) {
         self.iconUrl =  iconUrl;
@@ -33,6 +43,7 @@
     return self;
     
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,12 +57,24 @@
     [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"15293B"]]];
     
     // 添加子控制器
-    [self setupChildVC:[[DYLastestChatViewController alloc]init] title:@"最近会话" image:@"huihua" selectedImage:@"huihua-select"];
-    [self setupChildVC:[[DJContactsChatViewController alloc] init] title:@"联系人" image:@"lianxiren" selectedImage:@"lianxiren-select"];
-//    [self setupChildVC:[[DJCompanyChatPage alloc] init] title:@"公司" image:@"gongsi-normal" selectedImage:@"gongsi-select"];
-    [self setupChildVC:[[DJGroupChatPage alloc] init] title:@"内部群" image:@"neibuqun-normal" selectedImage:@"neibuqun-select"];
+    DYLastestChatViewController *lastestChatViewController = [[DYLastestChatViewController alloc]init];
+    lastestChatViewController.isPersonIdentification = self.isPersonIdentification;
 
-    [self setupChildVC:[[DJWildGroupsChatPage alloc] init] title:@"外部群" image:@"qunzu" selectedImage:@"qunzu-select"];
+    [self setupChildVC:lastestChatViewController title:@"最近会话" image:@"huihua" selectedImage:@"huihua-select"];
+    
+    DJContactsChatViewController *contactsChatViewController = [[DJContactsChatViewController alloc] init];
+    contactsChatViewController.isPersonIdentification = self.isPersonIdentification;
+
+    [self setupChildVC:contactsChatViewController title:@"联系人" image:@"lianxiren" selectedImage:@"lianxiren-select"];
+    
+    DJGroupChatPage *groupChatPage = [[DJGroupChatPage alloc] init];
+    groupChatPage.isPersonIdentification = self.isPersonIdentification;
+
+    [self setupChildVC:groupChatPage title:@"内部群" image:@"neibuqun-normal" selectedImage:@"neibuqun-select"];
+
+    DJWildGroupsChatPage *wildGroupsChatPage = [[DJWildGroupsChatPage alloc] init];
+    wildGroupsChatPage.isPersonIdentification = self.isPersonIdentification;
+    [self setupChildVC:wildGroupsChatPage title:@"外部群" image:@"qunzu" selectedImage:@"qunzu-select"];
     
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateItemsBadge:) name:XY_notification_ItemsBadge object:nil];

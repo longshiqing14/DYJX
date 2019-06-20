@@ -60,5 +60,10 @@ typedef void (^CameraImageBlock)(UIImage *image);
 
 // 是否是后置摄像头
 - (BOOL)isRearCameraAvailable;
+// 定位授权
+- (void)requestAuthorizationWithCompletionHandler:(void (^)(BOOL granted))completionHandler;
+
+//获取当前屏幕显示的viewcontroller
+- (UIViewController *)getCurrentVC;
 
 @end

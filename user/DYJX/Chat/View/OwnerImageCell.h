@@ -22,6 +22,8 @@ typedef void(^TapQRCodeViewBlock)(void);
 @property (nonatomic, copy)TapPorityImageViewBlock block;
 @property (nonatomic, copy)TapQRCodeViewBlock qrCcodeblock;
 
+@property (nonatomic, strong) LPXNewCustomerCellModel *cellmodel;
+- (void)setPorityImageViewWithURL;
 @end
 
 NS_ASSUME_NONNULL_END

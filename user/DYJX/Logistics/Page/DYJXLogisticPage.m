@@ -36,6 +36,8 @@
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property(nonatomic, strong)iPhoneXBottomBackgroundView *bottomBackgroundView;
 @property(nonatomic, strong) DJCompanyChatViewModel *companyViewModel;
+@property(nonatomic, assign) BOOL isPersonIdentification;
+
 @end
 
 @implementation DYJXLogisticPage
@@ -58,6 +60,39 @@
 
 -(void)viewWillAppear:(BOOL)animated {
      [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
+    
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
+    [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
+    
+    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [iconImage setContentMode:UIViewContentModeScaleAspectFill];
+    
+    if ([UserManager shared].isCompany == 1) {
+        iconImage.layer.cornerRadius = 12.5;
+        self.isPersonIdentification = YES;
+    }
+    
+    if ([[UserManager shared].getUserModel.Result.NumberString isEqualToString:self.IdentityModel.NumberString]) {
+        iconImage.layer.cornerRadius = 12.5;
+        self.isPersonIdentification = YES;
+
+    }
+    
+
+    
+    iconImage.clipsToBounds = YES;
+    [iconImage setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
+     [XYUserDefaults writeAppDlegateOfCurrentUserIconURL:[self.IdentityModel.GroupHeadImg XYImageURL]];
+    self.navigationItem.rightBarButtonItem.width = 25;
+    
+    UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
+    [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
+    [rightCustomView addSubview: iconImage];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightCustomView];
+    
 }
 
 - (void)initSubViews{
@@ -248,6 +283,7 @@
         }else if ([[self.viewModel itemName:indexPath] isEqualToString:@"company"]){
 
             DJCompanyChatPage *companyChatPage = [[DJCompanyChatPage alloc]init];
+            companyChatPage.isPersonIdentification = self.isPersonIdentification;
                 [self.navigationController pushViewController:companyChatPage animated:YES];
         }
     }
@@ -255,21 +291,21 @@
 #pragma mark -UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake((kScreenSize.width - 30 - 15*5)/4 , (kScreenSize.width - 30 - 15*5)/4 + 20);
+    return CGSizeMake((kScreenSize.width - 30 - 20*5)/4 , (kScreenSize.width - 30 - 20*5)/4 + 20);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     
-    return UIEdgeInsetsMake(15, 15, 15, 15);
+    return UIEdgeInsetsMake(20, 20, 20, 20);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     
-    return 15;
+    return 20;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-   return 15;
+   return 20;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
@@ -333,25 +369,8 @@
     self.title = @"企连连";
     self.navigationController.navigationBar.titleTextAttributes=
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
-      NSFontAttributeName:[UIFont systemFontOfSize:18]};
-    [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
-
-    UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [iconImage setContentMode:UIViewContentModeScaleAspectFill];
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
     
-    if ([UserManager shared].isCompany == 1) {
-        iconImage.layer.cornerRadius = 12.5;
-    }
-    
-    iconImage.clipsToBounds = YES;
-    [iconImage setImageWithURL:[NSURL URLWithString:[self.IdentityModel.GroupHeadImg XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
-    self.navigationItem.rightBarButtonItem.width = 25;
-    
-    UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
-    [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
-    [rightCustomView addSubview: iconImage];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightCustomView];
 }
 
 - (DYJXIdentitySwitchingModel *)IdentityModel{
@@ -398,7 +417,7 @@
 
 - (IBAction)conversationBTN:(UIButton *)sender {
 //    [self.navigationController pushViewController:[[DYJXConversationTabBarController alloc] init] animated:YES];
-    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[self.IdentityModel.GroupHeadImg XYImageURL]];
+    DYJXConversationTabBarController *conversationTabBarController = [[DYJXConversationTabBarController alloc] initWithIconUrl:[self.IdentityModel.GroupHeadImg XYImageURL] personIdentification:self.isPersonIdentification];
     [XYUserDefaults writeAppDlegateOfCurrentUserIconURL:[self.IdentityModel.GroupHeadImg XYImageURL]];
     [XYKeyWindow.rootViewController presentViewController:conversationTabBarController animated:YES completion:nil];
     

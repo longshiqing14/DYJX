@@ -470,30 +470,46 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
 - (void)mediaLocationPressed
 {
 //    NIMLocationViewController *vc = [[NIMLocationViewController alloc] initWithNibName:nil bundle:nil];
-    DYLocationViewController *vc = [[DYLocationViewController alloc] init];
-    vc.delegate = self;
-    vc.isSubmit = YES;
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [[JSExtension shared].chatVC presentViewController:nav animated:YES completion:nil];
+    WeakSelf
+    [self requestAuthorizationWithCompletionHandler:^(BOOL granted) {
+        if (granted) {
+            DYLocationViewController *vc = [[DYLocationViewController alloc] init];
+            vc.delegate = weakSelf;
+            vc.isSubmit = YES;
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            [[JSExtension shared].chatVC presentViewController:nav animated:YES completion:nil];
+        }else {
+            [weakSelf setLocationAuthorization];
+        }
+    }];
 }
 
 -(void)workLocationPressed {
-    [JXLocationTool shar].LocationLaLn = ^(XYlatModel *latModel) {
-        NSArray *lanArray = @[@(latModel.lat),@(latModel.lon)];
-        RCIMMessage *message = [[IMSDK sharedManager].chatManager defaultSendMessage:5 sendObject:lanArray];
-        [[IMSDK sharedManager].chatManager sendMessage:message success:^(id  _Nullable responseObject) {
-            RCIMMessage *model = (RCIMMessage *)responseObject;
-            [self addMessages:@[model]];
-        } failed:^(NSString * _Nonnull errorMsg) {
-        }];
-    };
+    WeakSelf
+    [self requestAuthorizationWithCompletionHandler:^(BOOL granted) {
+        if (granted) {
+            [JXLocationTool shar].LocationLaLn = ^(XYlatModel *latModel) {
+                NSArray *lanArray = @[@(latModel.lat),@(latModel.lon)];
+                RCIMMessage *message = [[IMSDK sharedManager].chatManager defaultSendMessage:5 sendObject:lanArray];
+                [[IMSDK sharedManager].chatManager sendMessage:message success:^(id  _Nullable responseObject) {
+                    RCIMMessage *model = (RCIMMessage *)responseObject;
+                    [weakSelf addMessages:@[model]];
+                } failed:^(NSString * _Nonnull errorMsg) {
+                }];
+            };
+        }else {
+            [weakSelf setLocationAuthorization];
+        }
+    }];
+    
 }
 
 - (void)onSendLocation:(NIMKitLocationPoint *)locationPoint{
+    WeakSelf
     NSArray *array = @[@(locationPoint.coordinate.latitude),@(locationPoint.coordinate.longitude)];
     RCIMMessage *message = [[IMSDK sharedManager].chatManager defaultSendMessage:4 sendObject:array];
     [[IMSDK sharedManager].chatManager sendMessage:message success:^(id  _Nullable responseObject) {
-        [self addMessages:@[message]];
+        [weakSelf addMessages:@[message]];
     } failed:^(NSString * _Nonnull errorMsg) {
     }];
 //    NIMMessage *message = [NIMMessageMaker msgWithLocation:locationPoint];
@@ -503,6 +519,22 @@ dispatch_queue_t NTESMessageDataPrepareQueue()
 //    []
 }
 
+#pragma mark 定位没开启设置定位权限
+- (void)setLocationAuthorization {
+    WeakSelf
+    [UIAlertController alertWithTitle:@"定位权限没有开启" message:@"当前定位权限没有开启无法定位，请你去设置定位权限" preferredStyle:(UIAlertControllerStyleAlert) cancelActionTitle:@"取消" defaultActionTitle:@[@"去设置"] defaultActionBlock:^(UIAlertAction *action) {
+        [weakSelf setupAuthorization];
+    }];
+}
+
+- (void)setupAuthorization {
+    if (iOS8Later) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"抱歉" message:@"无法跳转到隐私设置页面，请手动前往设置页面，谢谢" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
+}
 
 - (void)onViewWillAppear
 {

@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DYLastestChatViewController : BaseListViewController
+@property(nonatomic, assign) BOOL isPersonIdentification;
 
 @end
 

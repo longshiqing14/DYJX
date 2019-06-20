@@ -11,12 +11,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TitleAndContentCell : BaseTableViewCell
+@interface TitleAndContentCell : UITableViewCell//BaseTableViewCell
 @property(nonatomic, strong) UIImageView *iconImage;
 @property(nonatomic, strong) UITextField* contentLb;
+@property(nonatomic, strong) UILabel* contentTextLb;
 @property (nonatomic, strong) UIView *separatorLineView;
+@property (nonatomic, strong) LPXNewCustomerCellModel *model;
 
-//@property (nonatomic, strong)GroupDetailModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

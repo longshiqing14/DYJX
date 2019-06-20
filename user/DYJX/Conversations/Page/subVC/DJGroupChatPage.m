@@ -48,18 +48,18 @@
     } failed:^(NSString *errorMsg) {
         
     }];
-    
-//    [self.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
-//        [weakSelf.wildGroupsTableView reloadData];
-//    } failed:^(NSString *errorMsg) {
-//
-//    }];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshInteriorGroupNotification:) name:kDYJXAPI_AddInteriorGroup_Notification object:nil];
 }
+
+-(void)refreshInteriorGroupNotification:(NSNotification *)noti {
+    [self.tableView.mj_header beginRefreshing];
+}
+
 
 - (void)initNavigation{
     self.navigationController.navigationBar.titleTextAttributes=
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
-      NSFontAttributeName:[UIFont systemFontOfSize:18]};
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
 
     UIImage *image = [UIImage imageNamed:@"btn_home"];
@@ -74,6 +74,10 @@
     self.navigationItem.rightBarButtonItem.width = 20;
 
     UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
+    if (self.isPersonIdentification) {
+        rightCustomView.layer.cornerRadius = 10;
+        rightCustomView.clipsToBounds = YES;
+    }
     [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
     [rightCustomView addSubview: iconImage];
 
@@ -146,8 +150,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"DJWildGroupHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"DJWildGroupHeaderView"];
     
     
-//    [self.wildGroupsTableView registerNib:[UINib nibWithNibName:@"DJCompanyChatCell" bundle:nil] forCellReuseIdentifier:@"DJCompanyChatCell"];
-    
     self.tableView.showsVerticalScrollIndicator = NO;
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 44)];
     header.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
@@ -167,18 +169,6 @@
     [self.tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     
     [self.view addSubview:self.headView];
-    
-    //外部群tableview
-//    [self.view addSubview:self.wildGroupsTableView];
-//    [self.wildGroupsTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.mas_equalTo(0);
-//        make.top.mas_equalTo(self.headView.mas_bottom).mas_equalTo(0);
-//        if (@available(iOS 11.0, *)) {
-//            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-//        } else {
-//            make.bottom.mas_equalTo(self.view);
-//        }
-//    }];
     
     //内部群tableview
     [self.view addSubview:self.tableView];
@@ -333,6 +323,10 @@
                     [JSExtension shared].chatVC = chatVC;
                     chatVC.naviTitle = respo.TargetName;
                     chatVC.chatModel = chatModel;
+                    if (respo.TargetId) {
+                        chatVC.targetId = respo.TargetId;
+                    }
+                    
                     [weakSelf.navigationController pushViewController:chatVC animated:YES];
                 }
                 else {
@@ -374,6 +368,7 @@
                 [JSExtension shared].chatVC = chatVC;
                 chatVC.naviTitle = respo.TargetName;
                 chatVC.chatModel = chatModel;
+                chatVC.targetId = respo.TargetId;
                 [weakSelf.navigationController pushViewController:chatVC animated:YES];
             }
             else {
@@ -443,25 +438,6 @@
     }
     return _tableView;
 }
-
-//- (UITableView *)wildGroupsTableView{
-//    WeakSelf;
-//    if (!_wildGroupsTableView) {
-//        _wildGroupsTableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];
-//        _wildGroupsTableView.delegate = self;
-//        _wildGroupsTableView.dataSource = self;
-//        _wildGroupsTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//            [weakSelf.wildGroupsviewModel getMyWildGroupsDataSuccess:^{
-//                [weakSelf.wildGroupsTableView.mj_header endRefreshing];
-//                [weakSelf.wildGroupsTableView reloadData];
-//            } failed:^(NSString *errorMsg) {
-//
-//            }];
-//        }];
-//        _wildGroupsTableView.backgroundColor = [UIColor whiteColor];
-//    }
-//    return _wildGroupsTableView;
-//}
 
 - (DJGroupChatWildGroupsViewModel *)wildGroupsviewModel{
     if (!_wildGroupsviewModel) {

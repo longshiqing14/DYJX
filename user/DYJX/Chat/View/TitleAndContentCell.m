@@ -13,23 +13,56 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self initSubViews];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangEvent:) name:UITextFieldTextDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
     }
     return self;
 }
 
-
-
--(void)setModel:(GroupDetailModel *)model {
-//    self.model = (GroupDetailModel *)model;
-    [self.iconImage setImage:[UIImage imageNamed:model.iconName]];
-    self.contentLb.placeholder = model.placeHolder;
-}
+//-(void)setModel:(GroupDetailModel *)model {
+////    self.model = (GroupDetailModel *)model;
+//    [self.iconImage setImage:[UIImage imageNamed:model.iconName]];
+//    self.contentLb.placeholder = model.placeHolder;
+//}
 
 - (void)initSubViews{
     [self.contentView addSubview:self.iconImage];
+    [self.contentView addSubview:self.contentTextLb];
     [self.contentView addSubview:self.contentLb];
     [self.contentView addSubview:self.separatorLineView];
     [self layoutIfNeeded];
+}
+
+-(void)setModel:(LPXNewCustomerCellModel *)model {
+    _model = model;
+    self.iconImage.image = [UIImage imageNamed:model.leftViewImage];
+    self.contentLb.placeholder = model.placeholder;
+    self.contentLb.text = model.text;
+    self.contentLb.hidden = !model.userInteractionEnabled;
+    self.contentTextLb.hidden = model.userInteractionEnabled;
+    if (!model.userInteractionEnabled) {
+        if (model.text) {
+            self.contentTextLb.text = model.text;
+        }else {
+            self.contentTextLb.text = model.placeholder;
+        }
+    }
+}
+
+- (void)textDidChangEvent:(NSNotification *)notication {
+    if (notication.object == _contentLb) {
+        _model.text =  _contentLb.text?:@"";
+    }
+}
+
+- (void)textDidBeginEditing:(NSNotification *)notication {
+    if (notication.object == _contentLb) {
+        
+    }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return YES;
 }
 
 - (void)layoutSubviews{
@@ -43,9 +76,17 @@
         make.left.mas_equalTo(self.iconImage.mas_right).mas_equalTo(5);
         make.right.mas_equalTo(-10);
         make.centerY.mas_equalTo(0);
-        make.height.mas_equalTo(16);
-//        make.top.mas_equalTo(0);
-//        make.bottom.mas_equalTo(1);
+//        make.height.mas_equalTo(16);
+        make.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+    }];
+    [self.contentTextLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.iconImage.mas_right).mas_equalTo(5);
+        make.right.mas_equalTo(-10);
+        make.centerY.mas_equalTo(0);
+        //        make.height.mas_equalTo(16);
+                make.top.mas_equalTo(0);
+                make.bottom.mas_equalTo(1);
     }];
     
     [self.separatorLineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,6 +110,16 @@
         _contentLb.textColor = [UIColor colorWithHexString:@"999999"];
     }
     return _contentLb;
+}
+
+-(UILabel *)contentTextLb {
+    if (!_contentTextLb) {
+        _contentTextLb = [[UILabel alloc]init];
+        _contentTextLb.font = [UIFont systemFontOfSize:13];
+        _contentTextLb.textColor = [UIColor lightGrayColor];
+    }
+    return _contentTextLb;
+    
 }
 
 - (UIView *)separatorLineView{

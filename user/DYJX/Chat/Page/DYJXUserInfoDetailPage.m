@@ -19,10 +19,13 @@
 #import "DYJXUserInfoModel.h"
 #import "DYJXQRCodePage.h"
 #import "XYSelectIconPopView.h"
+#import "DYJXCompanyAddressController.h"
+#import "BaiduMapViewController.h"
 
 static NSString *kGroupDetailModelTipsFooter = @"kGroupDetailModelTipsFooter";
 static NSString *kGroupDetailModelBusinessLicenceFooter = @"kGroupDetailModelBusinessLicenceFooter";
 static NSString *kGroupDetailModelSpaceFooter = @"kGroupDetailModelSpaceFooter";
+
 static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailModelTitleAndContentArrowCell";
 @interface DYJXUserInfoDetailPage ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,XYSelectIconPopViewDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong)DYJXUserInfoDetailViewModel *viewModel;
@@ -37,6 +40,9 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
 @property(nonatomic, strong) UITextField *GPSAddressTF;
 @property(nonatomic, copy) NSString *Latitude;
 @property(nonatomic, copy) NSString *Longitude;
+@property (nonatomic, copy) NSString *ProvinceId;
+@property (nonatomic, copy) NSString *DistrictId;
+@property (nonatomic, copy) NSString *CityId;
 @property(nonatomic, strong) UITextField *NickNameTF;
 @property(nonatomic, strong) UITextField *PCDNameTF;
 @property(nonatomic, strong) UITextField *PersonAlipayTF;
@@ -67,32 +73,18 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
         }
     }];
     [self getUserInfo];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCompanyAddressNotification:) name:kDYJXAPI_CompanyAddress_Notification object:nil];
 }
 
 - (void)getUserInfo{
     WeakSelf;
     [self.viewModel getUserInfoSuccess:^(DYJXUserInfoModel *personInfoModel) {
         weakSelf.personInfoModel = personInfoModel;
-        NSArray *imageNamearray = [NSArray modelArrayWithClass:[PersonZhiZhaoModel class] json:personInfoModel.Business.IMInfo.Images];
-        [imageNamearray enumerateObjectsUsingBlock:^(PersonZhiZhaoModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                // 处理耗时操作的代码块...
-                UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[obj.Name XYImageURL]]]];
-                if (image) {
-                    [weakSelf.imgArr addObject:image];
-                }
-                //通知主线程刷新
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    //回调或者说是通知主线程刷新，
-                    [weakSelf.tableView reloadData];
-                });
-                
-            });
-            
-        }];
-        
+        //通知主线程刷新
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //回调或者说是通知主线程刷新，
+            [weakSelf.tableView reloadData];
+        });
     } failed:^(NSString *errorMsg) {
         
     }];
@@ -122,16 +114,48 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
 
 - (void)initNavigation{
     self.title = @"本人账号管理";
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
     UIButton *rightBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [rightBarButton addTarget:self action:@selector(CommitUserInfo) forControlEvents:UIControlEventTouchUpInside];
     rightBarButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10);
     rightBarButton.frame = CGRectMake(0, 0, 40, 20);
     [rightBarButton setTitle:@"提交" forState:UIControlStateNormal];
-    [rightBarButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [rightBarButton.titleLabel setFont:[UIFont systemFontOfSize:21]];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBarButton];
     
     rightBarButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     
+}
+
+- (void)changeCompanyAddressNotification:(NSNotification *)noti {
+    NSDictionary *userInfo = noti.userInfo;
+    NSMutableString *companyAddress = @"".mutableCopy;
+    if ([[userInfo allKeys] containsObject:@"ProvinceName"]) {
+        [companyAddress insertString:userInfo[@"ProvinceName"] atIndex:companyAddress.length];
+    }
+    if ([[userInfo allKeys] containsObject:@"CityName"]) {
+        [companyAddress insertString:userInfo[@"CityName"] atIndex:companyAddress.length];
+    }
+    if ([[userInfo allKeys] containsObject:@"DistrictName"]) {
+        [companyAddress insertString:userInfo[@"DistrictName"] atIndex:companyAddress.length];
+    }
+    
+    if ([[userInfo allKeys] containsObject:@"ProvinceID"]) {
+        self.ProvinceId = [((NSNumber *)userInfo[@"ProvinceID"]) stringValue];
+    }
+    if ([[userInfo allKeys] containsObject:@"CityID"]) {
+        self.CityId = [((NSNumber *)userInfo[@"CityID"]) stringValue];
+    }
+    if ([[userInfo allKeys] containsObject:@"DistrictID"]) {
+        self.DistrictId = [((NSNumber *)userInfo[@"DistrictID"]) stringValue];
+    }
+    
+    
+    self.viewModel.dataArray[1][3].text = companyAddress.copy;
+    NSIndexPath *indexPath= [NSIndexPath indexPathForRow:3 inSection:1] ;
+    [self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -145,193 +169,68 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WeakSelf;
-    UITableViewCell *cell = nil;
-    if (indexPath.section == 0) {
-        switch (indexPath.row) {
-            case 0:
-            {
-                OwnerImageCell *ownerImageCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelPorityCellId forIndexPath:indexPath];
-                if ([self.headerImage CGImage]) {
-                    [ownerImageCell.porityImageView setImage:self.headerImage];
-                }else{
-//                    [ownerImageCell.porityImageView setImageWithURL:[NSURL URLWithString:self.userIconImageURL] placeholder:[UIImage imageNamed:@"btn_group"]];
-                    [ownerImageCell.porityImageView setImageWithURL:[NSURL URLWithString:[self.personInfoModel.Business.IMInfo.HeadImgUrl XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
-                }
-                ownerImageCell.block = ^{
-                    weakSelf.isSelectHeader = YES;
-                    [weakSelf showActionForPhoto];
-                };
-                ownerImageCell.qrCcodeblock = ^{
-                    DYJXQRCodePage *qrCodePage = [[DYJXQRCodePage alloc]init];
-                    DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
-                    qrCodePage.userIdOrCompanyId = userModel.UserID;
-                    qrCodePage.companyNumber = self.personInfoModel.NumberString;
-                    qrCodePage.companyName = self.personInfoModel.NumberString;
-                    [weakSelf.navigationController pushViewController:qrCodePage animated:YES];
-                };
-                cell = ownerImageCell;
-            }
-                break;
-            case 1:
-            {
-                TitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentCell forIndexPath:indexPath];
-                [titleAndContentCell.iconImage setImage:[UIImage imageNamed:@"shanghao"]];
-                titleAndContentCell.contentLb.userInteractionEnabled = NO;
-                titleAndContentCell.contentLb.text = self.personInfoModel.NumberString;
-                cell = titleAndContentCell;
-            }
-                break;
-            case 2:
-            {
-                TitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentCell forIndexPath:indexPath];
-                [titleAndContentCell.iconImage setImage:[UIImage imageNamed:@"phone"]];
-//                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                titleAndContentCell.contentLb.userInteractionEnabled = NO;
-                titleAndContentCell.contentLb.text = self.personInfoModel.Cellphone;
-                cell = titleAndContentCell;
-                
-            }
-                break;
-                
-                
-            default:
-                break;
-        }
-    }else if(indexPath.section == 1){
-        switch (indexPath.row) {
-                
-            case 0:
-            {
-                TitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentCell forIndexPath:indexPath];
-                [titleAndContentCell.iconImage setImage:[UIImage imageNamed:@"person_orange"]];
-                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                titleAndContentCell.contentLb.text = self.personInfoModel.Business.IMInfo.NickName;
-                self.NickNameTF = titleAndContentCell.contentLb;
-                cell = titleAndContentCell;
-            }
-                break;
-            case 1:
-            {
-                TitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentCell forIndexPath:indexPath];
-                [titleAndContentCell.iconImage setImage:[UIImage imageNamed:@"sign"]];
-                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                titleAndContentCell.contentLb.text = self.personInfoModel.Business.IMInfo.PersonRemark;
-                self.PersonRemarkTF = titleAndContentCell.contentLb;
-                cell = titleAndContentCell;
-            }
-                break;
-                
-            case 2:
-            {
-                TitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentCell forIndexPath:indexPath];
-                [titleAndContentCell.iconImage setImage:[UIImage imageNamed:@"id"]];
-                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                titleAndContentCell.contentLb.text = self.personInfoModel.Business.IMInfo.TrueName;
-                self.TrueNameTF = titleAndContentCell.contentLb;
-                cell = titleAndContentCell;
-            }
-                break;
-                
-            case 3:
-            {
-                TitleAndContentArrowCell *titleAndContentArrowCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentArrowCell forIndexPath:indexPath];
-                [titleAndContentArrowCell.iconImage setImage:[UIImage imageNamed:@"location_blue"]];
-                titleAndContentArrowCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                titleAndContentArrowCell.contentLb.text = self.personInfoModel.Business.IMInfo.PCDName;
-                self.PCDNameTF = titleAndContentArrowCell.contentLb;
-                cell = titleAndContentArrowCell;
-            }
-                break;
-                
-            case 4:
-            {
-                TitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentCell forIndexPath:indexPath];
-                [titleAndContentCell.iconImage setImage:[UIImage imageNamed:@"location_blue"]];
-                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                titleAndContentCell.contentLb.text = self.personInfoModel.Business.IMInfo.Address;
-                self.AddressTF = titleAndContentCell.contentLb;
-                cell = titleAndContentCell;
-            }
-                break;
-                
-            case 5:
-            {
-                TitleAndContentArrowCell *titleAndContentArrowCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentArrowCell forIndexPath:indexPath];
-                [titleAndContentArrowCell.iconImage setImage:[UIImage imageNamed:@"location_blue"]];
-                titleAndContentArrowCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                titleAndContentArrowCell.contentLb.text = self.personInfoModel.Business.IMInfo.GPSAddress;
-                self.GPSAddressTF = titleAndContentArrowCell.contentLb;
-                cell = titleAndContentArrowCell;
-            }
-                break;
-                
-            case 6:
-            {
-                TitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentCell forIndexPath:indexPath];
-                [titleAndContentCell.iconImage setImage:[UIImage imageNamed:@"share_qq"]];
-                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                titleAndContentCell.contentLb.text = self.personInfoModel.Business.IMInfo.PersonQQ;
-                self.PersonQQTF = titleAndContentCell.contentLb;
-                cell = titleAndContentCell;
-            }
-                break;
-                
-            case 7:
-            {
-                TitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentCell forIndexPath:indexPath];
-                [titleAndContentCell.iconImage setImage:[UIImage imageNamed:@"share_weixin"]];
-                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                titleAndContentCell.contentLb.text = self.personInfoModel.Business.IMInfo.PersonWeiXin;
-                self.PersonWeiXinTF = titleAndContentCell.contentLb;
-                cell = titleAndContentCell;
-            }
-                break;
-                
-            case 8:
-            {
-                TitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentCell forIndexPath:indexPath];
-                [titleAndContentCell.iconImage setImage:[UIImage imageNamed:@"alipay"]];
-                titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-                titleAndContentCell.contentLb.text = self.personInfoModel.Business.IMInfo.PersonAlipay;
-                self.PersonAlipayTF = titleAndContentCell.contentLb;
-                cell = titleAndContentCell;
-            }
-                break;
-                
-            default:
-                break;
-        }
-    }else if(indexPath.section == 2){
-        TitleAndContentCell *titleAndContentCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelTitleAndContentCell forIndexPath:indexPath];
-        [titleAndContentCell.iconImage setImage:[UIImage imageNamed:@"unionpay"]];
-        titleAndContentCell.contentLb.placeholder = [self.viewModel content:indexPath];
-        cell = titleAndContentCell;
-        if (indexPath.row == 0) {
-            titleAndContentCell.contentLb.text = self.personInfoModel.Business.IMInfo.PersonBank;
-            self.PersonBankTF = titleAndContentCell.contentLb;
-        }else if(indexPath.row == 1){
-            titleAndContentCell.contentLb.text = self.personInfoModel.Business.IMInfo.PersonBankCardNo;
-            self.PersonBankCardNoTF = titleAndContentCell.contentLb;
-        }else{
-            titleAndContentCell.contentLb.text = self.personInfoModel.Business.IMInfo.PersonBankName;
-            self.PersonBankNameTF = titleAndContentCell.contentLb;
-        }
-    }else if(indexPath.section == 3){
-        ImageUploadCell *imageUploadCell = [tableView dequeueReusableCellWithIdentifier:kGroupDetailModelImageUploadCell forIndexPath:indexPath];
-//        imageUploadCell.contentLab.text = [self.viewModel contentWithIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.viewModel.dataArray[indexPath.section][indexPath.row].cellIdentity forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.section == self.viewModel.dataArray.count - 1) {
+        [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"cellmodel"];
+        ImageUploadCell *imageUploadCell = (ImageUploadCell *)cell;
         imageUploadCell.imagesArray = [self.imgArr mutableCopy];
         imageUploadCell.addPicturesBlock = ^(){
              weakSelf.isSelectHeader = NO;
             [weakSelf showActionForPhoto];
         };
         imageUploadCell.deleteImageBlock = ^(NSInteger index) {
-            [weakSelf.imgArr removeObjectAtIndex:index];
             
+            //TODO: 删除图片
+            [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray removeObjectAtIndex:index];
             [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+            
+//            [weakSelf.imgArr removeObjectAtIndex:index];
+//
+//            [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
         };
-        cell = imageUploadCell;
+    }else {
+        [cell setValue:self.viewModel.dataArray[indexPath.section][indexPath.row] forKey:@"model"];
+        if (indexPath.section == 0 && indexPath.row == 0) {
+            OwnerImageCell *ownerImageCell = (OwnerImageCell *)cell;
+            if ([self.headerImage CGImage]) {
+                [ownerImageCell.porityImageView setImage:self.headerImage];
+            }else{
+//                    [ownerImageCell.porityImageView setImageWithURL:[NSURL URLWithString:self.userIconImageURL] placeholder:[UIImage imageNamed:@"btn_group"]];
+                [ownerImageCell.porityImageView setImageWithURL:[NSURL URLWithString:[self.personInfoModel.Business.IMInfo.HeadImgUrl XYImageURL]] placeholder:[UIImage imageNamed:@"btn_group"]];
+            }
+            ownerImageCell.block = ^{
+                weakSelf.isSelectHeader = YES;
+                [weakSelf showActionForPhoto];
+            };
+            ownerImageCell.qrCcodeblock = ^{
+                DYJXQRCodePage *qrCodePage = [[DYJXQRCodePage alloc]init];
+                DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
+                qrCodePage.userIdOrCompanyId = userModel.UserID;
+                qrCodePage.companyNumber = self.personInfoModel.NumberString;
+                qrCodePage.companyName = self.personInfoModel.NumberString;
+                [weakSelf.navigationController pushViewController:qrCodePage animated:YES];
+            };
+        }else if (indexPath.section == 1 && (indexPath.row == 3 || indexPath.row == 5)) {
+            TitleAndContentArrowCell *newCell = (TitleAndContentArrowCell *)cell;
+            newCell.nextBtnBlock = ^(TitleAndContentArrowCell *cell) {
+                //TODO: 点击进行下一步操作
+                NSIndexPath *index = [tableView indexPathForCell:cell];
+                if (index.row == 3 && index.section == 1) {
+                    [weakSelf getCompanyAddressProvinces];
+                }else if (index.row == 5 && index.section == 1) {
+                    //TODO: 公司GPS位置
+                    [weakSelf requestAuthorizationWithCompletionHandler:^(BOOL granted) {
+                        if (granted) {
+                            [weakSelf pushViewControllerWithIndexPath:indexPath];
+                        }else {
+                            [weakSelf setLocationAuthorization];
+                        }
+                    }];
+                }
+            };
+        }
     }
-    
     return cell;
     
 }
@@ -362,9 +261,9 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
         if (indexPath.row == 0) {
             return 150;
         }
-        return 40;
+        return 50;
     }else if (indexPath.section == 1 || indexPath.section == 2){
-        return 40;
+        return 50;
     }else{
         return 120;
     }
@@ -384,14 +283,62 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
     }
 }
 
+#pragma mark 定位开启可以到百度地图
+- (void)pushViewControllerWithIndexPath:(NSIndexPath *)indexPath {
+    WeakSelf
+    TitleAndContentArrowCell *newCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    CLLocationCoordinate2D centerCoordinate = {0,0};
+    BaiduMapViewController *baiduMapVC = [[BaiduMapViewController alloc]initWithCenterCoordinate:centerCoordinate poiAddressBlock:^(CLLocationCoordinate2D centerCoordinate, NSString *name) {
+        newCell.model.text = name;
+        weakSelf.Latitude = [@(centerCoordinate.latitude) stringValue];
+        weakSelf.Longitude = [@(centerCoordinate.longitude) stringValue];
+        [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+    }];
+    [weakSelf.navigationController pushViewController:baiduMapVC animated:YES];
+}
+
+#pragma mark 定位没开启设置定位权限
+- (void)setLocationAuthorization {
+    WeakSelf
+    [UIAlertController alertWithTitle:@"定位权限没有开启" message:@"当前定位权限没有开启无法定位，请你去设置定位权限" preferredStyle:(UIAlertControllerStyleAlert) cancelActionTitle:@"取消" defaultActionTitle:@[@"去设置"] defaultActionBlock:^(UIAlertAction *action) {
+        [weakSelf setupAuthorization];
+    }];
+}
+
+- (void)setupAuthorization {
+    if (iOS8Later) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"抱歉" message:@"无法跳转到隐私设置页面，请手动前往设置页面，谢谢" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
+#pragma mark - （子）公司所属省市
+- (void)getCompanyAddressProvinces {
+    WeakSelf
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    [self.viewModel getProvincesWithSuccess:^(DYJXAddressModel * _Nonnull addressModel) {
+        [SVProgressHUD dismiss];
+        if (addressModel.Succeed) {
+            DYJXCompanyAddressController *companyAddressVC = [[DYJXCompanyAddressController alloc]initWithAddressModel:addressModel addressType:(DYJXCompanyAddressType_Province) addressParameters:@{}.copy];
+            [weakSelf.navigationController pushViewController:companyAddressVC animated:YES];
+        }else {
+            [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+        }
+    } failed:^(NSString * _Nonnull errorMsg) {
+        [YDBAlertView showToast:@"连接异常" dismissDelay:1.0];
+    }];
+}
+
 
 //弹出选择框
 -(void)showActionForPhoto
 {
-//    if (self.imgArr.count == 4) {
-//        [XYProgressHUD svHUDShowStyle:XYHUDStyleInfo title:@"最多4张图片" dismissTimeInterval:1.0];
-//        return;
-//    }
+    if (self.imgArr.count == 4 && !self.isSelectHeader) {
+        [XYProgressHUD svHUDShowStyle:XYHUDStyleInfo title:@"最多4张图片" dismissTimeInterval:1.0];
+        return;
+    }
     
     //选择图片时收起键盘
     [self.view endEditing:YES];
@@ -449,37 +396,55 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
     [self dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    if (self.isSelectHeader) {
-        self.headerImage = image;
-        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:0];
-        OwnerImageCell *ownerImageCell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [ownerImageCell.porityImageView setImage:image];
+    WeakSelf
+    [self.viewModel uploadFile:image Success:^(id  _Nullable responseObject) {
+        if (self.isSelectHeader) {
+            self.headerImage = image;
+            self.viewModel.dataArray.firstObject.firstObject.spareImage = image;
+            self.viewModel.dataArray.firstObject.firstObject.spareString = responseObject[@"SavedFileName"];
+            NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:0];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                OwnerImageCell *ownerImageCell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
+                [ownerImageCell.porityImageView setImage:image];
+            });
+        }else{
+            PersonZhiZhaoModel *model = [[PersonZhiZhaoModel alloc]init];
+            model.Name = responseObject[@"SavedFileName"];
+            if (weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray) {
+                model.Title = [NSString stringWithFormat:@"执照图片%u",weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray.count + 1];
+            }else {
+                model.Title = @"执照图片1";
+            }
+            LPXPhotoModel *photoModel = [[LPXPhotoModel alloc]init];
+            photoModel.photoImage = image;
+            photoModel.photo = model;
+            [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:photoModel];
+            //            [weakSelf.viewModel.dataArray.lastObject.lastObject.spareArray addObject:model];
+            NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:3] ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
+            });
+        }
+    } failed:^(NSString *errorMsg) {
         
-    }else{
-        [self.imgArr addObject:image];
-        
-        NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:3] ;
-        [self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:(UITableViewRowAnimationAutomatic)];
-    }
-
+    }];
 }
-
 
 - (void)CommitUserInfo{
     WeakSelf;
     
-    if (self.imgArr.count != 0) {
-        //上传执照
-        [weakSelf uploadImgArr];
-    }else{
-        if([weakSelf.headerImage CGImage]){
-            //上传个人头像
-            [weakSelf uploadHeaderImg];
-        }else{
+//    if (self.imgArr.count != 0) {
+//        //上传执照
+//        [weakSelf uploadImgArr];
+//    }else{
+//        if([weakSelf.headerImage CGImage]){
+//            //上传个人头像
+//            [weakSelf uploadHeaderImg];
+//        }else{
             //提交用户信息
-            [weakSelf UpdateIMUserInfo];
-        }
-    }
+            [self UpdateIMUserInfo];
+//        }
+//    }
 
 }
 
@@ -538,62 +503,39 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
     __block NSMutableArray *iamgeNameArray = [NSMutableArray array];
 
     /*@property(strong,nonatomic) NSMutableArray<NSString*> *imgNameArr ;*/
-    if (self.HeadImgUrl) {
-        [requstDic setObject:self.HeadImgUrl forKey:@"HeadImgUrl"];
-    }
-    if (![YWDTools isNil:self.AddressTF.text]) {
-        [requstDic setObject:self.AddressTF.text forKey:@"Address"];
-    }
-    if (![YWDTools isNil:self.GPSAddressTF.text]) {
-        [requstDic setObject:self.GPSAddressTF.text forKey:@"GPSAddress"];
-    }
+//    if (self.HeadImgUrl) {
+//        [requstDic setObject:self.HeadImgUrl forKey:@"HeadImgUrl"];
+//    }
+    [requstDic addEntriesFromDictionary:[self.viewModel getUpDataParameters]];
     if (![YWDTools isNil:self.Latitude]) {
-        [requstDic setObject:self.Latitude forKey:@"Latitude"];
+        [requstDic setObject:@([self.Latitude floatValue]) forKey:@"Latitude"];
     }
     if (![YWDTools isNil:self.Longitude]) {
-        [requstDic setObject:self.Longitude forKey:@"Longitude"];
+        [requstDic setObject:@([self.Longitude floatValue]) forKey:@"Longitude"];
     }
-    if (![YWDTools isNil:self.NickNameTF.text]) {
-        [requstDic setObject:self.NickNameTF.text forKey:@"NickName"];
+    
+    if (![YWDTools isNil:self.ProvinceId]) {
+        [requstDic setObject:@([self.ProvinceId integerValue]) forKey:@"ProvinceId"];
     }
-    if (![YWDTools isNil:self.PCDNameTF.text]) {
-        [requstDic setObject:self.PCDNameTF.text forKey:@"PCDName"];
+    
+    if (![YWDTools isNil:self.CityId]) {
+        [requstDic setObject:@([self.CityId integerValue]) forKey:@"CityId"];
     }
-    if (![YWDTools isNil:self.PersonAlipayTF.text]) {
-        [requstDic setObject:self.PersonAlipayTF.text forKey:@"PersonAlipay"];
+    
+    if (![YWDTools isNil:self.DistrictId]) {
+        [requstDic setObject:@([self.DistrictId integerValue]) forKey:@"DistrictId"];
     }
-    if (![YWDTools isNil:self.PersonBankTF.text]) {
-        [requstDic setObject:self.PersonBankTF.text forKey:@"PersonBank"];
-    }
-    if (![YWDTools isNil:self.PersonBankCardNoTF.text]) {
-        [requstDic setObject:self.PersonBankCardNoTF.text forKey:@"PersonBankCardNo"];
-    }
-    if (![YWDTools isNil:self.PersonBankNameTF.text]) {
-        [requstDic setObject:self.PersonBankNameTF.text forKey:@"PersonBankName"];
-    }
-    if (![YWDTools isNil:self.PersonQQTF.text]) {
-        [requstDic setObject:self.PersonQQTF.text forKey:@"PersonQQ"];
-    }
-    if (![YWDTools isNil:self.PersonRemarkTF.text]) {
-        [requstDic setObject:self.PersonRemarkTF.text forKey:@"PersonRemark"];
-    }
-    if (![YWDTools isNil:self.PersonWeiXinTF.text]) {
-        [requstDic setObject:self.PersonWeiXinTF.text forKey:@"PersonWeiXin"];
-    }
-    if (![YWDTools isNil:self.TrueNameTF.text]) {
-        [requstDic setObject:self.TrueNameTF.text forKey:@"TrueName"];
-    }
-    if (self.imgNameArr.count > 0){
-        [self.imgNameArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-             NSMutableDictionary *imageNameDic = [NSMutableDictionary dictionary];
-
-            [imageNameDic setObject:obj forKey:@"Name"];
-            [imageNameDic setObject:[NSString stringWithFormat:@"执照照片%ld",idx + 1] forKey:@"Title"];
-            [iamgeNameArray addObject:imageNameDic];
-
-        }];
-    }
-    [requstDic setObject:[iamgeNameArray mj_JSONString] forKey:@"Images"];
+//    if (self.imgNameArr.count > 0){
+//        [self.imgNameArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//             NSMutableDictionary *imageNameDic = [NSMutableDictionary dictionary];
+//
+//            [imageNameDic setObject:obj forKey:@"Name"];
+//            [imageNameDic setObject:[NSString stringWithFormat:@"执照照片%ld",idx + 1] forKey:@"Title"];
+//            [iamgeNameArray addObject:imageNameDic];
+//
+//        }];
+//    }
+//    [requstDic setObject:[iamgeNameArray mj_JSONString] forKey:@"Images"];
 
     [self.viewModel.requestDic setObject:requstDic forKey:@"Data"];
     [self.viewModel CommitUserInfoSuccess:^{
@@ -616,7 +558,7 @@ static NSString *kGroupDetailModelTitleAndContentArrowCell =  @"kGroupDetailMode
 -(UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _tableView.delaysContentTouches = NO;
+//        _tableView.delaysContentTouches = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;

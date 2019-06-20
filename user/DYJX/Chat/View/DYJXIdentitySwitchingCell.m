@@ -156,8 +156,8 @@
         _detailButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _detailButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
         _detailButton.titleLabel.numberOfLines = 2;
-        [_detailButton setTitleColor:[UIColor colorWithRed:63/255.0 green:105/255.0 blue:164/255.0 alpha:1] forState:UIControlStateNormal];
-        [_detailButton setTitleColor:[UIColor colorWithRed:63/255.0 green:105/255.0 blue:164/255.0 alpha:0.5]
+        [_detailButton setTitleColor:[UIColor colorWithRed:124/255.0 green:158/255.0 blue:196/255.0 alpha:1] forState:UIControlStateNormal];
+        [_detailButton setTitleColor:[UIColor colorWithRed:124/255.0 green:158/255.0 blue:196/255.0 alpha:0.5]
                             forState:UIControlStateHighlighted];
         [_detailButton setTitle:@"子公司\n  详情" forState:UIControlStateNormal];
     }

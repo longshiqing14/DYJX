@@ -27,6 +27,7 @@
 #import "IMSDK.h"
 #import "DYJXComparePage.h"
 #import "iPhoneXBottomBackgroundView.h"
+#import "DYJXAddCompanyPageController.h"
 
 @interface DYJXIdentitySwitchingPage ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -60,6 +61,7 @@ static NSString *headerID=@"headerID";
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf GetUserInfo];
     }];
+    
 
     //设置接收消息代理
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -98,24 +100,31 @@ static NSString *headerID=@"headerID";
     self.title = @"身份切换";
     self.navigationController.navigationBar.titleTextAttributes=
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
-      NSFontAttributeName:[UIFont systemFontOfSize:18]};
-    [self.navigationItem.leftBarButtonItem setCustomView:[UIView new]];
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
 
     UIButton *rightBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [rightBarButton addTarget:self action:@selector(IdentitySwitchingCommit) forControlEvents:UIControlEventTouchUpInside];
     rightBarButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10);
     rightBarButton.frame = CGRectMake(0, 0, 40, 20);
     [rightBarButton setTitle:@"提交" forState:UIControlStateNormal];
-    [rightBarButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [rightBarButton.titleLabel setFont:[UIFont systemFontOfSize:21]];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBarButton];
     
     rightBarButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem new];
+
     
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
 
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
+
+    
     [self GetUserInfo];
     self.selectedIdentity = [[DYJXIdentitySwitchingModel alloc] init];
     //    [self.otherTableView.mj_header beginRefreshing];
@@ -127,9 +136,12 @@ static NSString *headerID=@"headerID";
         [weakSelf.viewModel getMyEnterprisesSuccess:^{
             [weakSelf.tableView.mj_header endRefreshing];
             DYJXUserModel * model =[XYUserDefaults readUserDefaultsLoginedInfoModel];
-            self.selectedIdentity.Id = model.UserID;
+            weakSelf.selectedIdentity.Id = model.UserID;
             [weakSelf.tableView reloadData];
             [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            weakSelf.selectedIdentity = [weakSelf.viewModel IdentityAtIndexPath:indexPath];
+                weakSelf.selectedIdentity.Id = model.UserID;
         } failed:^(NSString *errorMsg) {
               [weakSelf.tableView.mj_header endRefreshing];
         }];
@@ -577,20 +589,24 @@ static NSString *headerID=@"headerID";
     }
     else {
         if (model.IsPart) { // 子公司详情
-            DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
-            page.userIconImageURL = [model.GroupHeadImg XYImageURL];
-            page.groupNumber = model.GroupNumber;
-            page.targetId = model.Id;
-            page.isAdmin = [self isAdmin:model];
+//            DYJXSubcompanyInfoDetailPage *page = [[DYJXSubcompanyInfoDetailPage alloc]init];
+//            page.userIconImageURL = [model.GroupHeadImg XYImageURL];
+//            page.groupNumber = model.GroupNumber;
+//            page.targetId = model.Id;
+//            page.isAdmin = [self isAdmin:model];
+            DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_SubDetails) groupNumber:model.GroupNumber targetId:model.Id userIconImageURL:[model.GroupHeadImg XYImageURL]isAdmin:[self isAdmin:model]];
             [self.navigationController pushViewController:page animated:YES];
+            
+            
 //            target.type = XJGroupTypeSubCompany;
         }
         else { // 公司详情
-            DYJXCompanyInfoDetailPage *page = [[DYJXCompanyInfoDetailPage alloc]init];
-            page.userIconImageURL = [model.GroupHeadImg XYImageURL];
-            page.groupNumber = model.GroupNumber;
-            page.targetId = model.Id;
-             page.isAdmin = [self isAdmin:model];
+//            DYJXCompanyInfoDetailPage *page = [[DYJXCompanyInfoDetailPage alloc]init];
+//            page.userIconImageURL = [model.GroupHeadImg XYImageURL];
+//            page.groupNumber = model.GroupNumber;
+//            page.targetId = model.Id;
+//             page.isAdmin = [self isAdmin:model];
+            DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_Details) groupNumber:model.GroupNumber targetId:model.Id userIconImageURL:[model.GroupHeadImg XYImageURL]isAdmin:[self isAdmin:model]];
             [self.navigationController pushViewController:page animated:YES];
 //            target.type = XJGroupTypeCompany;
         }
@@ -615,14 +631,21 @@ static NSString *headerID=@"headerID";
 
 - (void)IdentitySwitchingCommit{
     if ([YWDTools isNil:self.selectedIdentity.Id]) {
-        [YDBAlertView showToast:@"请选择一个身份!"];
-        return;
+//        [YDBAlertView showToast:@"请选择一个身份!"];
+//        return;
+        DYJXUserModel * model =[XYUserDefaults readUserDefaultsLoginedInfoModel];
+        
+        self.selectedIdentity.Id = model.UserID;
+        [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
+
     }
 
     [UserManager shared].swichModel = self.selectedIdentity;
     if ([[UserManager shared].getUserModel.Result.NumberString isEqualToString:self.selectedIdentity.NumberString]) { // 本人详情
         [UserManager shared].isCompany = 1;
          [JSExtension shared].enterpriseId = self.selectedIdentity.Id;
+        [JSExtension shared].myIdentityId = self.selectedIdentity.Id;
+
     }
     else {
         if (self.selectedIdentity.IsPart) { // 子公司详情

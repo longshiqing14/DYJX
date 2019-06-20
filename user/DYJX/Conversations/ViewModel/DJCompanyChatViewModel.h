@@ -13,17 +13,18 @@
 @property (nonatomic,strong) NSMutableDictionary *requestDic;
 
 - (NSInteger)numberOfSection;
-//- (NSInteger)numberOfCell:(NSInteger )section;
-- (NSInteger)numberOfCell;
+- (NSInteger)numberOfCell:(NSInteger )section;
+//- (NSInteger)numberOfCell;
 - (NSString *)GroupName:(NSIndexPath *)indexPath;
 - (NSString *)GroupNumberString:(NSIndexPath *)indexPath;
 - (NSString *)iconImageUrl:(NSIndexPath *)indexPath;
 - (NSArray *)goodsLable:(NSIndexPath *)indexPath;
 - (NSString *)productID:(NSIndexPath *)indexPath;
-
+- (NSString *)isQuanYuan:(NSIndexPath *)indexPath;
+- (NSString *)isAdmin:(NSIndexPath *)indexPath;
 - (NSString *)sectionHeaderGroupName:(NSInteger )section;
 - (NSString *)sectionHeaderGroupNumberString:(NSInteger )section;
-- (NSString *)sectionHeadericonImageUrl:(NSInteger )section;
+- (NSString *)sectionHeadericonImageUrl:(NSIndexPath * )section;
 
 - (NSMutableArray<DYJXXYResult*> *)getRefundReasonsArray;
 //获取我创建或参与公司

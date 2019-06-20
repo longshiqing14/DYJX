@@ -29,8 +29,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dark_bg" translatesAutoresizingMaskIntoConstraints="NO" id="DX4-26-R85">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DX4-26-R85">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <color key="backgroundColor" red="0.082352941176470587" green="0.16078431372549018" blue="0.23137254901960785" alpha="0.98999999999999999" colorSpace="calibratedRGB"/>
                 </imageView>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4X-aX-atQ">
                     <rect key="frame" x="230" y="115" width="125" height="45"/>
@@ -196,7 +197,6 @@
     <resources>
         <image name="btn_get_code" width="474" height="139"/>
         <image name="btn_password" width="18.5" height="21.5"/>
-        <image name="dark_bg" width="160" height="284"/>
         <image name="icon_account" width="15.5" height="23"/>
         <image name="login_button_pre" width="415" height="139"/>
     </resources>

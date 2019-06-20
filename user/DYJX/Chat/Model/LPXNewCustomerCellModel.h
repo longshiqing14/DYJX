@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *cellIdentity;
 /** cell左边title */
 @property (nonatomic, copy) NSString *leftViewText;
+/** cell左边image */
+@property (nonatomic, copy) NSString *leftViewImage;
 /** placeholder */
 @property (nonatomic, copy) NSString *placeholder;
 /** 键盘类型 */
@@ -42,6 +44,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger maxLength;
 /** 备用数组 */
 @property (nonatomic, strong) NSMutableArray *spareArray;
+/** 备用字符串 */
+@property (nonatomic, copy) NSString *spareString;
+/** 备用图片 */
+@property (nonatomic, strong) UIImage *spareImage;
+/** 是否开启用户交互 () */
+@property (nonatomic, assign)BOOL userInteractionEnabled;
+
+@end
+
+@interface LPXPhotoModel : NSObject
+
+@property (nonatomic, strong) UIImage *photoImage;
+@property (nonatomic, strong) NSDictionary *photo;
 
 @end
 

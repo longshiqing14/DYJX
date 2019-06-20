@@ -27,7 +27,9 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"F4F4F4"];
     self.title = @"添加成员";
-    
+    self.navigationController.navigationBar.titleTextAttributes=
+    @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
     [self initCollectionView];
     
 //    [self.viewModel.requestDic setObject:self.IdentityModel.Id forKey:@"CertificateId"];

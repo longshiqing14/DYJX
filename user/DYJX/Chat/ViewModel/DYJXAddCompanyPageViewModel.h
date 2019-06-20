@@ -30,7 +30,15 @@ NS_ASSUME_NONNULL_BEGIN
 /** （子）公司详情 */
 @property (nonatomic, strong) DYJXXYGroupByIdResponse *response;
 
+@property (nonatomic, copy) NSString *userIconImageURL;
+
 @property (nonatomic, strong) NSMutableArray<NSMutableArray<LPXNewCustomerCellModel *> *> *dataArray;
+
+@property (nonatomic, copy) NSString *Longitude;
+@property (nonatomic, copy) NSString *Latitude;
+@property (nonatomic, copy) NSString *ProvinceId;
+@property (nonatomic, copy) NSString *DistrictId;
+@property (nonatomic, copy) NSString *CityId;
 - (NSInteger)numberOfSections;
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;
@@ -39,6 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getGroupInfoWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail;
 //上传图片
 - (void)uploadFile:(UIImage*)image Success:(void(^)(id  _Nullable responseObject))success failed:(void(^)(NSString *errorMsg))fail;
+// 上传执业照片
+- (void)uploadFileWithImages:(NSArray<UIImage *> *)images success:(void(^)(NSString  *responseObject))success failed:(void(^)(NSString *errorMsg))fail;
+
 //删除公司
 - (void)deleteGroupWithGroupId:(NSString*)groupId Success:(void(^)(DYJXXYGroupByIdResponse*))success failed:(void(^)(NSString *errorMsg))fail;
 //退出公司

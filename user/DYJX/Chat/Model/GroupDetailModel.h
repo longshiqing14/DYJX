@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "BaseModel.h"
 
-
 static NSString *kGroupDetailModelPorityCellId = @"kGroupDetailModelPorityCellId";
 static NSString *kGroupDetailModelSampleCellId = @"kGroupDetailModelSampleCellId";
 static NSString *kGroupDetailModelTitleAndContentCell = @"kGroupDetailModelTitleAndContentCell";

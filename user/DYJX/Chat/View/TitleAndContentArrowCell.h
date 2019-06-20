@@ -12,5 +12,9 @@
 @property(nonatomic, strong) UIImageView *iconImage;
 @property(nonatomic, strong) UITextField* contentLb;
 @property (nonatomic, strong) UIView *separatorLineView;
-@property (nonatomic, strong) UIImageView *arrowImage;
+@property (nonatomic, strong) UIButton *arrowImageBtn;
+
+@property (nonatomic, strong) LPXNewCustomerCellModel *model;
+@property (nonatomic, copy) void (^nextBtnBlock)(TitleAndContentArrowCell *cell);
+
 @end

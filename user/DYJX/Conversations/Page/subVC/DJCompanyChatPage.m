@@ -48,7 +48,7 @@
 - (void)initNavigation{
     self.navigationController.navigationBar.titleTextAttributes=
     @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#F2A73B"],
-      NSFontAttributeName:[UIFont systemFontOfSize:18]};
+      NSFontAttributeName:[UIFont systemFontOfSize:21]};
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:21/255. green:41/255. blue:59/255. alpha:1]] forBarMetrics:UIBarMetricsDefault];
 
     UIImage *image = [UIImage imageNamed:@"btn_home"];
@@ -71,6 +71,10 @@
     self.navigationItem.rightBarButtonItem.width = 20;
 
     UIView *rightCustomView = [[UIView alloc] initWithFrame: iconImage.frame];
+    if (self.isPersonIdentification) {
+        rightCustomView.layer.cornerRadius = 10;
+        rightCustomView.clipsToBounds = YES;
+    }
     [rightCustomView addGestureRecognizer:self.tapGestureRecognizer];
     [rightCustomView addSubview: iconImage];
     
@@ -161,11 +165,11 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    return [self.viewModel numberOfCell:section];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return [self.viewModel numberOfCell];
+    return [self.viewModel numberOfSection];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -175,8 +179,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     DJCompanyChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DJCompanyChatCell" forIndexPath:indexPath];
-    [cell.userIcon setImageWithURL:[NSURL URLWithString:[[self.viewModel sectionHeadericonImageUrl:indexPath.section] XYImageURL]] placeholder:[UIImage imageNamed:@"person_orange"]];
-    cell.userName.text = [NSString stringWithFormat:@"%@ %@(全员+管理员)",[self.viewModel GroupNumberString:indexPath],[self.viewModel GroupName:indexPath]];
+    [cell.userIcon setImageWithURL:[NSURL URLWithString:[[self.viewModel sectionHeadericonImageUrl:indexPath] XYImageURL]] placeholder:[UIImage imageNamed:@"person_orange"]];
+    cell.userName.text = [NSString stringWithFormat:@"%@ %@(%@+%@)",[self.viewModel GroupNumberString:indexPath],[self.viewModel GroupName:indexPath],[self.viewModel isQuanYuan:indexPath],[self.viewModel isAdmin:indexPath]];
 
     return cell;
 }
@@ -186,10 +190,36 @@
     header.groupName.text = [self.viewModel sectionHeaderGroupName:section];
     WeakSelf
     header.block = ^{ // 新增子公司
+        if (![[self.viewModel isAdmin:[NSIndexPath indexPathForRow:0 inSection:section]] isEqualToString:@"管理员"]) {
+            [YDBAlertView showToast:@"您还不是管理员无法此操作！"];
+            return ;
+        } 
         DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(DYJXAddCompanyType_Sub) requestDic:weakSelf.viewModel.requestDic result:[weakSelf.viewModel getRefundReasonsArray][section]];
         [weakSelf.navigationController pushViewController:page animated:YES];
     };
     return header;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DYJXXYResult *result = [self.viewModel getRefundReasonsArray][indexPath.section];
+    DYJXAddCompanyType companyType = DYJXAddCompanyType_Details;
+    if ([[self.viewModel isQuanYuan:indexPath] isEqualToString:@"子公司"]) {
+        companyType = DYJXAddCompanyType_SubDetails;
+    }
+    DYJXAddCompanyPageController *page = [[DYJXAddCompanyPageController alloc]initWithCompanyType:(companyType) requestDic:@{} result:result];
+    
+    if (result.Children) {
+        page.groupNumber = result.Children[indexPath.row].GroupNumber;
+    }else{
+        page.groupNumber = result.GroupNumber;
+    }
+    
+    if ([[self.viewModel isAdmin:indexPath] isEqualToString:@"管理员"]) {
+        page.isAdmin = YES;
+    }
+
+    page.isFromMyCompany = YES;
+    [self.navigationController pushViewController:page animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -202,12 +232,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 50;
-}
-
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
 }
 
 #pragma mark - UI
