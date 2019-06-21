@@ -42,6 +42,10 @@
     return self.dataArray[indexPath.section].GroupNumber;
 }
 
+- (NSString *)sectionHeaderGroupId:(NSIndexPath *)indexPath{
+    return self.dataArray[indexPath.row].Id;
+}
+
 - (NSString *)iconImageUrl:(NSIndexPath *)indexPath
 {
     return self.dataArray[indexPath.row].GroupHeadImg;

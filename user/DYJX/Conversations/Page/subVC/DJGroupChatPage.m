@@ -295,23 +295,39 @@
     if (indexPath.section + 1 <= self.viewModel.innerGroupdataArray.count) {
         
             DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
-            [[JSExtension shared] getConversion:self.viewModel.innerGroupdataArray[indexPath.section].Children[indexPath.row].GroupNumber FromId:userModel.UserID type:1 DataSuccess:^(id  _Nonnull response) {
+            [[JSExtension shared] getConversion:[self.viewModel GroupId:indexPath] FromId:[JSExtension shared].myIdentityId type:1 DataSuccess:^(id  _Nonnull response) {
                 SKResult *respo = (SKResult *)response;
                 NIMSessionType type = NIMSessionTypeTeam;
                 [JSExtension shared].type = 1;
                 [JSExtension shared].conversionId = respo.Id;
-                if (respo.LastMsg.RowData) {
-                    NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
-                    NSDictionary *dic = [body stringToDictionary];
-                    if (dic[@"extra"]) {
-                        NSDictionary *dict = [dic[@"extra"] stringToDictionary];
-                        [JSExtension shared].targetId = dict[@"TargetId"];
-                        [JSExtension shared].targetName = dict[@"TargetName"];
-                        [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
-                        [JSExtension shared].conversionId = respo.Id;
-                    }
+
+                if ([respo.TargetId isEqualToString:[JSExtension shared].myIdentityId]) { //
+                    [JSExtension shared].targetId = respo.FromId;
+                    [JSExtension shared].targetName = respo.FromName;
+                    [JSExtension shared].targetImg = respo.FromHeadImg;
                 }
-                
+                else {
+                    [JSExtension shared].targetId = respo.TargetId;
+                    [JSExtension shared].targetName = respo.TargetName;
+                    [JSExtension shared].targetImg = respo.TargetHeadImg;
+                }
+
+                [JSExtension shared].UserType = 1;
+                [JSExtension shared].ImUserId = [self.viewModel GroupId:indexPath];
+                [JSExtension shared].targetName = [self.viewModel GroupName:indexPath];
+
+//                if (respo.LastMsg.RowData) {
+//                    NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
+//                    NSDictionary *dic = [body stringToDictionary];
+//                    if (dic[@"extra"]) {
+//                        NSDictionary *dict = [dic[@"extra"] stringToDictionary];
+//                        [JSExtension shared].targetId = dict[@"TargetId"];
+//                        [JSExtension shared].targetName = dict[@"TargetName"];
+//                        [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
+////                        [JSExtension shared].conversionId = respo.Id;
+//                    }
+//                }
+
                 if([JSExtension shared].conversionId.length) {
                     [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
                     
@@ -340,23 +356,38 @@
     }else{
         
         DYJXUserModel *userModel = [XYUserDefaults readUserDefaultsLoginedInfoModel];
-        [[JSExtension shared] getConversion:self.viewModel.wildGroupdataArray[indexPath.section].GroupNumber FromId:userModel.UserID type:1 DataSuccess:^(id  _Nonnull response) {
+        [[JSExtension shared] getConversion:[self.viewModel GroupId:indexPath] FromId:[JSExtension shared].myIdentityId type:1 DataSuccess:^(id  _Nonnull response) {
             SKResult *respo = (SKResult *)response;
             NIMSessionType type = NIMSessionTypeTeam;
             [JSExtension shared].type = 1;
             [JSExtension shared].conversionId = respo.Id;
-            if (respo.LastMsg.RowData) {
-                NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
-                NSDictionary *dic = [body stringToDictionary];
-                if (dic[@"extra"]) {
-                    NSDictionary *dict = [dic[@"extra"] stringToDictionary];
-                    [JSExtension shared].targetId = dict[@"TargetId"];
-                    [JSExtension shared].targetName = dict[@"TargetName"];
-                    [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
-                    [JSExtension shared].conversionId = respo.Id;
-                }
+
+            if ([respo.TargetId isEqualToString:[JSExtension shared].myIdentityId]) { //
+                [JSExtension shared].targetId = respo.FromId;
+                [JSExtension shared].targetName = respo.FromName;
+                [JSExtension shared].targetImg = respo.FromHeadImg;
             }
-            
+            else {
+                [JSExtension shared].targetId = respo.TargetId;
+                [JSExtension shared].targetName = respo.TargetName;
+                [JSExtension shared].targetImg = respo.TargetHeadImg;
+            }
+            [JSExtension shared].UserType = 1;
+            [JSExtension shared].ImUserId = [self.viewModel GroupId:indexPath];
+            [JSExtension shared].targetName = [self.viewModel GroupName:indexPath];
+
+//            if (respo.LastMsg.RowData) {
+//                NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
+//                NSDictionary *dic = [body stringToDictionary];
+//                if (dic[@"extra"]) {
+//                    NSDictionary *dict = [dic[@"extra"] stringToDictionary];
+//                    [JSExtension shared].targetId = dict[@"TargetId"];
+//                    [JSExtension shared].targetName = dict[@"TargetName"];
+//                    [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
+////                    [JSExtension shared].conversionId = respo.Id;
+//                }
+//            }
+
             if([JSExtension shared].conversionId.length) {
                 [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:[JSExtension shared].conversionId];
                 

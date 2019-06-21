@@ -235,8 +235,8 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
                                                 });
 
                                             } error:^(RCConnectErrorCode status) {
-                                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                                    [weakSelf IMInit];
+                                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                                                    [weakSelf IMInit];
                                                 });
                                                 NSLog(@"登陆的错误码为:%ld", status);
                                             } tokenIncorrect:^{

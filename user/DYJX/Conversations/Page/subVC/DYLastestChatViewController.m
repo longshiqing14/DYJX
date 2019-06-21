@@ -25,6 +25,12 @@
 
 @implementation DYLastestChatViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+//    [self reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -46,9 +52,15 @@
     [self reloadData];
 
     //设置接收消息代理
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(didReceiveMessageNotification:)
+//                                                 name:RCKitDispatchMessageNotification
+//                                               object:nil];
+
+    //设置接收消息代理
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveMessageNotification:)
-                                                 name:RCKitDispatchMessageNotification
+                                                 name:XY_IM_InsertModel
                                                object:nil];
 
     // 已读
@@ -89,17 +101,21 @@
         conversationType = ConversationType_GROUP;
         type = NIMSessionTypeTeam;
         [JSExtension shared].type = 1;
+        [JSExtension shared].ImUserId = conversationModel.extend[@"targetId"];
         [JSExtension shared].targetId = conversationModel.extend[@"targetId"];
         [JSExtension shared].targetName = conversationModel.extend[@"targetName"];
         [JSExtension shared].targetImg = conversationModel.extend[@"targetImg"];
+        [JSExtension shared].UserType = (NSInteger)conversationModel.extend[@"userType"];
     }
     else if ([dict[@"type"] isEqualToString:@"0"]) {
         conversationType = ConversationType_PRIVATE;
         type = NIMSessionTypeP2P;
         [JSExtension shared].type = 0;
+        [JSExtension shared].ImUserId = conversationModel.extend[@"targetId"];
         [JSExtension shared].targetId = conversationModel.extend[@"targetId"];
         [JSExtension shared].targetName = conversationModel.extend[@"targetName"];
         [JSExtension shared].targetImg = conversationModel.extend[@"targetImg"];
+        [JSExtension shared].UserType = (NSInteger)conversationModel.extend[@"userType"];
     }
 
     [JSExtension shared].conversionId = conversationModel.targetId;
@@ -249,9 +265,23 @@
         }
         if (result.Type == 1) {
             [dictory setObject:@"1" forKey:@"type"];
+            dictory[@"userType"] = @1;
         }
         else if (result.Type == 0){
             [dictory setObject:@"0" forKey:@"type"];
+            dictory[@"userType"] = @0;
+        }
+
+        NSString *fromId = [NSString stringWithFormat:@"%@",result.LastMsg[@"FromId"]];
+        NSString *fromCerterId = [NSString stringWithFormat:@"%@",result.LastMsg[@"FromCertifyId"]];
+
+        if (fromId.length > 6) {
+            if ([fromId isEqualToString:fromCerterId]) {
+                dictory[@"userType"] = @0;
+            }
+            else {
+                dictory[@"userType"] = @1;
+            }
         }
 
         if ([result.TargetId isEqualToString:[UserManager shared].getUserModel.UserID]) {

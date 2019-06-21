@@ -18,6 +18,7 @@
 - (NSArray *)goodsLable:(NSIndexPath *)indexPath;
 - (NSString *)productID:(NSIndexPath *)indexPath;
 - (NSString *)sectionHeaderGroupNumber:(NSIndexPath *)indexPath;
+- (NSString *)sectionHeaderGroupId:(NSIndexPath *)indexPath;
 
 - (NSString *)sectionHeaderGroupName:(NSInteger )section;
 - (NSString *)sectionHeaderGroupNumberString:(NSInteger )section;

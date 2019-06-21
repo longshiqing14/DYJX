@@ -35,8 +35,8 @@
 }
 
 -(NSArray *)getModel:(RCIMMessage *)model identifyId:(NSString *)identifyId conversionId:(NSString *)conversionId {
-    NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
-    NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+    NSString *tempIdentifyId = [identifyId stringByReplacingOccurrencesOfString:@"-" withString:@"_"]; // 6a464fb8_c00a_40ca_ae48_78d55c4985ed
+    NSString *tempConversionId = [conversionId stringByReplacingOccurrencesOfString:@"-" withString:@"_"]; // 2a473bc2-c6b9-4640-8a22-d2da7d8357f9
 
     YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initDBWithName:[NSString stringWithFormat:@"%@.db",[UserManager shared].getUserModel.UserID]];
     NSString *tableName = [NSString stringWithFormat:@"%@%@%@",firstString,tempIdentifyId,tempConversionId];

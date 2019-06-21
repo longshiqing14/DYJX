@@ -35,6 +35,15 @@
     }
 }
 
+- (NSString *)GroupId:(NSIndexPath *)indexPath
+{
+    if (indexPath.section + 1 <= self.innerGroupdataArray.count) {
+        return self.innerGroupdataArray[indexPath.section].Children[indexPath.row].Id ? self.innerGroupdataArray[indexPath.section].Children[indexPath.row].Id : @"";
+    }else{
+        return self.wildGroupdataArray[indexPath.row].Id ? self.wildGroupdataArray[indexPath.row].Id : @"";
+    }
+}
+
 - (NSString *)GroupNumberString:(NSIndexPath *)indexPath
 {
     if (indexPath.section + 1 <= self.innerGroupdataArray.count) {

@@ -20,6 +20,7 @@
 - (NSString *)iconImageUrl:(NSIndexPath *)indexPath;
 - (NSArray *)goodsLable:(NSIndexPath *)indexPath;
 - (NSString *)productID:(NSIndexPath *)indexPath;
+- (NSString *)GroupId:(NSIndexPath *)indexPath;
 
 - (NSString *)sectionHeaderGroupName:(NSInteger )section;
 - (NSString *)sectionHeaderGroupNumberString:(NSInteger )section;

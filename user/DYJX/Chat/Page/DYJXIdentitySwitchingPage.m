@@ -336,19 +336,22 @@ static NSString *headerID=@"headerID";
         }
         else { // 外部群群聊
             for (DYJXIdentitySwitchingModel *item in [UserManager shared].dataArray) {
-                if ([item.Id isEqualToString:extraDic[@"GMembers"]]) {
-                    if ([model.content isKindOfClass:[RCImageMessage class]]) {
-                        NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-                        NSString *imagePath = [NSString stringWithFormat:@"%@/%@%@%@.%@",docDir,item.Id,extraDic[@"ConversationId"],model.messageUId,type];
-                        model.LocalPath = imagePath;
+                NSMutableArray *wildArray = [extraDic[@"GMembers"] mutableCopy];
+                for (int s = 0; s < wildArray.count; s++) {
+                    if ([item.Id isEqualToString:wildArray[s]]) {
+                        if ([model.content isKindOfClass:[RCImageMessage class]]) {
+                            NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                            NSString *imagePath = [NSString stringWithFormat:@"%@/%@%@%@.%@",docDir,item.Id,extraDic[@"ConversationId"],model.messageUId,type];
+                            model.LocalPath = imagePath;
+                        }
+                        else if ([model.content isKindOfClass:[RCVoiceMessage class]]) {
+                            model.LocalPath = [self getPathFromModel:model identifyId:item.Id conversationId:extraDic[@"ConversationId"]];
+                        }
+                        [self storeSourceWithContent:model identifyId:item.Id conversationId:extraDic[@"ConversationId"]];
+                        [[DataBaseManager shared] insertModel:model identifyId:item.Id conversionId:extraDic[@"ConversationId"]];
                     }
-                    else if ([model.content isKindOfClass:[RCVoiceMessage class]]) {
-                        model.LocalPath = [self getPathFromModel:model identifyId:item.Id conversationId:extraDic[@"ConversationId"]];
                     }
-                    [self storeSourceWithContent:model identifyId:item.Id conversationId:extraDic[@"ConversationId"]];
-                    [[DataBaseManager shared] insertModel:model identifyId:item.Id conversionId:extraDic[@"ConversationId"]];
                 }
-            }
         }
     }
 

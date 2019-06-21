@@ -31,12 +31,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *enterpriseId;
 @property (nonatomic, copy)NSString *action;
 
+@property (nonatomic, copy)NSString *ImUserId;
 @property (nonatomic, copy)NSString *targetId;
+
 @property (nonatomic, assign)NSInteger type;
 @property (nonatomic, copy)NSString *conversionId;
 @property (nonatomic, strong)  NIMSession *session;
 @property (nonatomic, copy)NSString *targetName;
 @property (nonatomic, copy)NSString *targetImg;
+@property (nonatomic, assign) NSInteger UserType;
 
 @property (nonatomic, strong)NSArray <RCIMMessage *> *dataArray;
 @property (nonatomic, strong)NSArray <RCConversationModel *> *conversionArray;

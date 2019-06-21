@@ -328,7 +328,7 @@
     [requestDic setObject:[UserManager shared].getUserModel.MemberID forKey:@"MemberID"];
     [requestDic setObject:[JSExtension shared].myIdentityId?:[UserManager shared].getUserModel.UserID forKey:@"CertificateId"];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    [data setObject:fromId forKey:@"FromId"];
+    [data setObject:[JSExtension shared].myIdentityId forKey:@"FromId"]; // 就是身份ID
     if (targetId.length) {
         [data setObject:targetId forKey:@"TargetId"];
     }

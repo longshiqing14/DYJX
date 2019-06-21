@@ -227,7 +227,9 @@
             }
         }
         else { // 外部群群聊
-            if ([[JSExtension shared].myIdentityId isEqualToString:extraDic[@"GMembers"]]) {
+            NSMutableArray *wildArray = [extraDic[@"GMembers"] mutableCopy];
+            for (int s = 0; s < wildArray.count; s++) {
+                if ([[JSExtension shared].myIdentityId isEqualToString:wildArray[s]]) {
                 if ([[JSExtension shared].conversionId isEqualToString:extraDic[@"ConversationId"]]) {
                     if ([_delegate respondsToSelector:@selector(onRecvMessages:)]) {
                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -237,6 +239,7 @@
                             [[DataBaseManager shared] remarkAllReadIdentifyId:[JSExtension shared].myIdentityId conversionId:extraDic[@"ConversationId"]];
                         });
                     }
+                }
                 }
             }
         }

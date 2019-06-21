@@ -421,10 +421,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.type == 1) {
         DLLResult *result = (DLLResult *)self.goodArray[indexPath.row];
-        [[JSExtension shared] getConversion:result.BindUserId FromId:result.UserId type:result.UserType DataSuccess:^(id  _Nonnull response) {
+        [[JSExtension shared] getConversion:result.ContactEnterprise FromId:[JSExtension shared].myIdentityId type:0 DataSuccess:^(id  _Nonnull response) {
             SKResult *respo = (SKResult *)response;
             NIMSessionType type = NIMSessionTypeP2P;
             [JSExtension shared].type = 0;
+            [JSExtension shared].conversionId = respo.Id;
+            [JSExtension shared].UserType = result.UserType;
+            [JSExtension shared].ImUserId = result.IMUser.Id;
             if (respo.LastMsg.RowData) {
                 NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
                 NSDictionary *dic = [body stringToDictionary];
@@ -433,7 +436,6 @@
                     [JSExtension shared].targetId = dict[@"TargetId"];
                     [JSExtension shared].targetName = dict[@"TargetName"];
                     [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
-                    [JSExtension shared].conversionId = respo.LastMsg.ConversationId;
                 }
             }
 
@@ -459,10 +461,14 @@
     }
     else if(self.type == 2) {
         DLLResult *result = (DLLResult *)self.genralArray[indexPath.row];
-        [[JSExtension shared] getConversion:result.BindUserId FromId:result.UserId type:result.UserType DataSuccess:^(id  _Nonnull response) {
+        [[JSExtension shared] getConversion:result.ContactEnterprise FromId:[JSExtension shared].myIdentityId type:0 DataSuccess:^(id  _Nonnull response) {
             SKResult *respo = (SKResult *)response;
             NIMSessionType type = NIMSessionTypeP2P;
             [JSExtension shared].type = 0;
+            [JSExtension shared].conversionId = respo.Id;
+            [JSExtension shared].UserType = result.UserType;
+            [JSExtension shared].ImUserId = result.IMUser.Id;
+
             if (respo.LastMsg.RowData) {
                 NSString *body = [NSString stringWithFormat:@"%@",respo.LastMsg.RowData];
                 NSDictionary *dic = [body stringToDictionary];
@@ -471,7 +477,6 @@
                     [JSExtension shared].targetId = dict[@"TargetId"];
                     [JSExtension shared].targetName = dict[@"TargetName"];
                     [JSExtension shared].targetImg = dict[@"TargetHeadImg"];
-                    [JSExtension shared].conversionId = respo.LastMsg.ConversationId;
                 }
             }
 
