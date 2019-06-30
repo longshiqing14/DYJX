@@ -216,6 +216,8 @@
             
             if ([[responseObject objectForKey:@"Succeed"] boolValue]) {
                 [SVProgressHUD dismiss];
+                [[RCIMClient sharedRCIMClient]
+                 logout]; // 退出连接
                 success();
                 
             }else{

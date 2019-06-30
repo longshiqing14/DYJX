@@ -28,7 +28,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-//    [self reloadData];
+    [self reloadData];
 }
 
 - (void)viewDidLoad {
@@ -58,16 +58,16 @@
 //                                               object:nil];
 
     //设置接收消息代理
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveMessageNotification:)
-                                                 name:XY_IM_InsertModel
-                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(didReceiveMessageNotification:)
+//                                                 name:XY_IM_InsertModel
+//                                               object:nil];
 
     // 已读
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:XY_IM_AlreadRead object:nil];
-
-    // 已读
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:XY_IM_AlreadUpdateData object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:XY_IM_AlreadRead object:nil];
+//
+//    // 已读
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:XY_IM_AlreadUpdateData object:nil];
 }
 
 -(void)dealloc {

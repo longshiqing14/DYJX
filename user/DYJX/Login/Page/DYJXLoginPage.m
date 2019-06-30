@@ -100,9 +100,16 @@
 //    self.passwordTF.text = @"111111";
 //        self.userNameTF.text = @"18778399213";
 //        self.passwordTF.text = @"123456";
+//            self.userNameTF.text = @"18778399212";
+//            self.passwordTF.text = @"123456";
+//    self.userNameTF.text = @"13750820441";
+//    self.passwordTF.text = @"654321";
 
-    self.userNameTF.text = @"13750820441";
-    self.passwordTF.text = @"654321";
+    self.userNameTF.text = @"1010053";
+        self.passwordTF.text = @"888666";
+
+//    self.userNameTF.text = @"1050610";
+//    self.passwordTF.text = @"999888";
 }
 
 -(void)emptyClick {
@@ -190,6 +197,7 @@
             AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             appDelegate.rootViewController = [[NaviViewController alloc]initWithRootViewController:identitySwitchingPage];
             XYKeyWindow.rootViewController = appDelegate.rootViewController;
+
         } failed:^(NSString *errorMsg) {
 
         }];

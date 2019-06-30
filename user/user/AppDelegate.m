@@ -41,6 +41,7 @@
 #import <QMapKit/QMapKit.h>
 #import <QMapSearchKit/QMapSearchKit.h>
 #import <WXApi.h>
+#import "DYJXIdentitySwitchingViewModel.h"
 
 
 // 账号密码： 18778399213 123456
@@ -57,7 +58,7 @@
 
 #endif
 
-@interface AppDelegate ()<JPUSHRegisterDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,RCIMGroupUserInfoDataSource,RCIMReceiveMessageDelegate,RCIMConnectionStatusDelegate,WXApiDelegate>
+@interface AppDelegate ()<JPUSHRegisterDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,RCIMGroupUserInfoDataSource,RCIMReceiveMessageDelegate,RCIMConnectionStatusDelegate,WXApiDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) UIImageView *photoIV;
 @property (nonatomic, copy) NSString *shareURL;
@@ -255,7 +256,7 @@ static NSString *const FIRSTLANUCH = @"FIRSTLANUCH";
     //群名片信息提供者
     [[RCIM sharedRCIM] setGroupUserInfoDataSource:self];
     //IMKit连接状态的监听器
-    //    [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
+    [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
     //IMKit消息接收的监听器
     [[RCIM sharedRCIM] setReceiveMessageDelegate:self];
     //是否关闭本地通知，默认是打开的
@@ -459,6 +460,19 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     //  return NO;
 }
 
+
+#pragma mark - UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    DYJXIdentitySwitchingViewModel *viewModel = [[DYJXIdentitySwitchingViewModel alloc] init];
+    [viewModel logoutSuccess:^{
+        //        [YDBAlertView showToast:@"退出登录成功！"];
+        [XYUserDefaults deleteUserDefaultsLoginedInfoModel];
+        XYKeyWindow.rootViewController = [[NaviViewController alloc]initWithRootViewController:[[DYJXLoginPage alloc] initWithNibName:@"DYJXLoginPage" bundle:nil]];
+    } failed:^(NSString *errorMsg) {
+
+    }];
+}
+
 #pragma mark - RCIMConnectionStatusDelegate
 
 /**
@@ -471,11 +485,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                         message:@"您的帐号在别的设备上登录，"
                               @"您被迫下线！"
-                                                       delegate:nil
+                                                       delegate:self
                                               cancelButtonTitle:@"知道了"
                                               otherButtonTitles:nil, nil];
         [alert show];
-    } else if (status == ConnectionStatus_TOKEN_INCORRECT) {
+    } else if (status == ConnectionStatus_Connected) {
         [[RCIMClient sharedRCIMClient] connectWithToken:[UserManager shared].getUserModel.Result.RongCloudToken
                                                 success:^(NSString *userId) {
                                                     NSLog(@"登陆成功。当前登录的用户ID：%@", userId);
@@ -496,12 +510,14 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         [[RCIMClient sharedRCIMClient] disconnect];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                         message:@"您的帐号被封禁"
-                                                       delegate:nil
+                                                       delegate:self
                                               cancelButtonTitle:@"知道了"
                                               otherButtonTitles:nil, nil];
         [alert show];
     }
 }
+
+
 
 #pragma mark - 更新BadgeNumber
 -(void)updataBadgeNumber{

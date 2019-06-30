@@ -10,6 +10,7 @@
 #import "DYJXUserModel.h"
 #import "JSExtension.h"
 #import "DJJLLoginResponse.h"
+#import "AppDelegate.h"
 
 @interface DYJXLoginViewModel()
 
